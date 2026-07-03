@@ -1,4 +1,3 @@
-import { black, white } from "@/data/characters"
 import TierList from "../../../components/tier-list/TierList"
 
 export default function TierListPage() {
