@@ -1,4 +1,4 @@
-import { TopHeader } from "@/components/header/TopHeader";
+import CommonHeader from "@/components/header/CommonHeader";
 
 export default function EnLayout({
   children,
@@ -6,8 +6,8 @@ export default function EnLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div>
-        {TopHeader()}
+    <div className="page">
+        <CommonHeader />
         {children}
     </div>
   );
