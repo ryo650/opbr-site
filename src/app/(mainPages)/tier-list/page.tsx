@@ -8,25 +8,39 @@ export const metadata = {
 
 export default function TierListPage() {
   return (
-    <div>
+    <main>
 
       {/* タイトル */}
-      <div>
-      <h1>OPBR Character Tier List</h1>
-      <p>7/3 10:00 updated</p>
-      </div>
+      <section>
+        <h1>OPBR Character Tier List</h1>
+        <p>Last updated: July 3, 2026</p>
+        <p>
+          This OPBR tier list ranks the best characters in One Piece Bounty Rush
+          based on their current meta strength, league battle performance, role value,
+          and overall usefulness. Stay updated with the top picks for your team.  
+        </p>
+      </section>
 
       {/* アップデート、上方修正によるランキング変動(最新キャラの) */}
-      <div></div>
 
       {/* Tier List */}
-      <div>
+      <section>
+        <h2>Tier List</h2>
         <TierList />
-      </div>
+      </section>
 
       {/* それぞれのキャラのランキング変動 */}
-      <div></div>
 
-    </div>
+
+      <section>
+        <h2>Evaluation Criteria</h2>
+        <p>
+          Characters are ranked based on league battle performance, meta impact,
+          role value, versatility, ease of use, and matchup strength in the
+          current environment.
+        </p>
+      </section>
+
+    </main>
   )
 }
