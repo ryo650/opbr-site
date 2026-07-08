@@ -1,7 +1,7 @@
 export default function NewScoutpage() {
   return (
     <div>
-      <p>New Scout</p>
+      <p>Coming soon...</p>
     </div>
   )
 }

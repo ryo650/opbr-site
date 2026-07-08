@@ -1,0 +1,46 @@
+.page {
+  min-height: 100vh;
+  background: #262626;
+  color: white;
+}
+
+.inner {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+}
+
+.hero {
+  margin-bottom: 24px;
+}
+
+.hero h1 {
+  margin: 0 0 8px;
+  font-size: 32px;
+}
+
+.hero p {
+  margin: 0;
+  max-width: 720px;
+  color: #d1d5db;
+  line-height: 1.6;
+}
+
+.contents {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.cardGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+@media (min-width: 768px) {
+  .cardGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

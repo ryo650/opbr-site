@@ -5,9 +5,7 @@ import { Button } from "../ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
-  DropdownMenuLabel,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 
@@ -27,10 +25,10 @@ export default function CommonHeader() {
            <DropdownMenuItem asChild>
              <Link href="/tier-list">Tier List</Link>
              </DropdownMenuItem>
-             {/*
            <DropdownMenuItem asChild>
              <Link href="/new-characters">New Characters</Link>
            </DropdownMenuItem>
+            {/*
            <DropdownMenuItem asChild>
              <Link href="/new-scout">New Scout</Link>
            </DropdownMenuItem>
@@ -48,7 +46,7 @@ export default function CommonHeader() {
 
         {/* 中央のロゴ */}
         <Link href="/" className={styles["logoWrap"]}>
-            <Image src="/new-logo2.png" alt="OPBR Logo" width={100} height={100} className={styles["logo"]} />
+            <Image src="/new-logo2.png" alt="OPBR Logo" width={100} height={100} className={styles["logo"]} priority />
         </Link>
 
     </header>
