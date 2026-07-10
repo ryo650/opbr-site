@@ -33,4 +33,12 @@ export const blackCharacters: Record<string, Character> = {
         element: "black",
         role: "attacker"
     },
+    "unexpected-collaboration-rob-lucci":{
+        id:"unexpected-collaboration-rob-lucci",
+        name: "Unexpected-Collaboration-Rob-Lucci",
+        image: "/characters/black/unexpected-collaboration-rob-lucci.webp",
+        grade: "bf",
+        element: "black",
+        role: "defender"
+    }
 }

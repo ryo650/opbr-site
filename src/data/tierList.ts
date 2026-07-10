@@ -7,31 +7,31 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-ethanbaron-v-nusjuro","the-wings-zoro-sanji"]
+        characterIds: ["the-wings-zoro-sanji","the-five-elders-st-ethanbaron-v-nusjuro","the-four-emperors-monkey-d-luffy"]
     },
     {
         tier: "S",
         colorClass: "S",
-        characterIds: ["flame-emperor-sabo","winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king"]
+        characterIds: ["flame-emperor-sabo"]
     },
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["seraphim-s-snake","great-pirate-edward-newgate","blackbeard-pirates-kuzan"]
+        characterIds: ["winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king","seraphim-s-snake","great-pirate-edward-newgate"]
     },
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["great-pirate-gol-d-roger","the-fouremperors-marshall-d-teach","film-z-zephyr","asl-ace-sabo-luffy"]
+        characterIds: ["the-fouremperors-marshall-d-teach","blackbeard-pirates-kuzan","unexpected-collaboration-rob-lucci","great-pirate-gol-d-roger","film-z-zephyr","asl-ace-sabo-luffy"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["king-of-the-pirates-gol-d-roger","legendary-hero-monkey-d-garp","battle-of-monsters-on-onigashima-kaido","ama-no-murakumo-sword-kizaru","father-and-daughter-kuma-bonny"]
+        characterIds: ["legendary-gladiator-kyros","ama-no-murakumo-sword-kizaru","father-and-daughter-kuma-bonny","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","battle-of-monsters-on-onigashima-kaido","legendary-hero-monkey-d-garp"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["gear-five-monkey-d-luffy","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","navy-hq-fleet-admiral-akainu","heir-to-the-shogun-of-wano-kozuki-oden","cp9-bulueno","awakened-form-rob-lucci","germa-66-vinsmoke-niji","legendary-gladiator-kyros"]
+        characterIds: ["heir-to-the-shogun-of-wano-kozuki-oden","gear-five-monkey-d-luffy","king-of-the-pirates-gol-d-roger","navy-hq-fleet-admiral-akainu","cp9-bulueno","awakened-form-rob-lucci","germa-66-vinsmoke-niji"]
     }
 ]
