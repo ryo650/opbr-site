@@ -5,6 +5,14 @@ import type { Metadata } from "next";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
+const websiteJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  name: "OPBR Guide",
+  alternateName: ["OPBR Tier List & Guide", "One Piece Bounty Rush Guide"],
+  url: "https://opbr-site.vercel.app",
+};
+
 export const metadata: Metadata = {
   verification:{ "google": "3E7MzcTwoRzsGYr3UPygrqEsML__uod9wisR7CDMdes" 
   },
@@ -34,6 +42,12 @@ export default function RootLayout({
   return (
     <html lang="en" className={cn("font-sans", inter.variable)}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(websiteJsonLd),
+          }}
+        />
         {children}
       </body>
     </html>
