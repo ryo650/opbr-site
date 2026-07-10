@@ -18,10 +18,10 @@ export const redCharacters: Record<string, Character> = {
         element: "red",
         role: "runner"
     },
-    "the-five-elders-st-ethanbaron-v-nasjuro":{
-        id:"the-five-elders-st-ethanbaron-v-nasjuro",
-        name:"The-Five-Elders-St-Ethanbaron-V-Nasjuro",
-        image: "/characters/red/the-five-elders-st-ethanbaron-v-nasjuro.webp",
+    "the-five-elders-st-ethanbaron-v-nusjuro":{
+        id:"the-five-elders-st-ethanbaron-v-nusjuro",
+        name:"The-Five-Elders-St-Ethanbaron-V-Nusjuro",
+        image: "/characters/red/the-five-elders-st-ethanbaron-v-nusjuro.webp",
         grade: "ex",
         element: "red",
         role: "defender"

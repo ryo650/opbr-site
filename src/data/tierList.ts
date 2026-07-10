@@ -7,7 +7,7 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-ethanbaron-v-nasjuro","the-wings-zoro-sanji"]
+        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-ethanbaron-v-nusjuro","the-wings-zoro-sanji"]
     },
     {
         tier: "S",
