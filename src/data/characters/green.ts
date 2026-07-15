@@ -249,10 +249,10 @@ export const greenCharacters: Record<string, Character> ={
         element: "green",
         role: "defender"
     },
-    "blackbeard-pirates-helmsman-champ-jesus-burges":{
-        id: "blackbeard-pirates-helmsman-champ-jesus-burges",
-        name:"Blackbeard-Pirates-Helmsman-Champ-Jesus-Burges",
-        image: "/characters/green/blackbeard-pirates-helmsman-champ-jesus-burges.webp",
+    "blackbeard-pirates-helmsman-champ-jesus-burgess":{
+        id: "blackbeard-pirates-helmsman-champ-jesus-burgess",
+        name:"Blackbeard-Pirates-Helmsman-Champ-Jesus-Burgess",
+        image: "/characters/green/blackbeard-pirates-helmsman-champ-jesus-burgess.webp",
         grade: "bf",
         element: "green",
         role: "attacker"
@@ -441,10 +441,10 @@ export const greenCharacters: Record<string, Character> ={
         element: "green",
         role: "runner"
     },
-    "cp9-rob-lucci":{
-        id: "cp9-rob-lucci",
+    "cp-9-rob-lucci":{
+        id: "cp-9-rob-lucci",
         name:"CP9 - Rob Lucci",
-        image: "/characters/green/cp9-rob-lucci.webp",
+        image: "/characters/green/cp-9-rob-lucci.webp",
         grade: "star-4",
         element: "green",
         role: "attacker"
@@ -705,10 +705,10 @@ export const greenCharacters: Record<string, Character> ={
         element: "green",
         role: "runner"
     },
-    "navy-hq-science-team-captain-senotmaru":{
-        id: "navy-hq-science-team-captain-senotmaru",
+    "navy-hq-science-team-captain-sentomaru":{
+        id: "navy-hq-science-team-captain-sentomaru",
         name: "Navy-HQ-Science-Team-Captain-Sentomaru",
-        image: "/characters/green/navy-hq-science-team-captain-senotmaru.webp",
+        image: "/characters/green/navy-hq-science-team-captain-sentomaru.webp",
         grade: "star-4",
         element: "green",
         role: "defender"
@@ -777,18 +777,18 @@ export const greenCharacters: Record<string, Character> ={
         element: "green",
         role: "runner"
     },
-    "buggy-pirates-chief-staff-cabaji":{
-        id: "buggy-pirates-chief-staff-cabaji",
-        name: "Buggy-Pirates-Chief-Staff-Cabaji",
-        image: "/characters/green/buggy-pirates-chief-staff-cabaji.webp",
+    "buggy-pirates-chief-of-staff-cabaji":{
+        id: "buggy-pirates-chie-of-staff-cabaji",
+        name: "Buggy-Pirates-Chie-of-Staff-Cabaji",
+        image: "/characters/green/buggy-pirates-chief-of-staff-cabaji.webp",
         grade: "star-2",
         element: "green",
         role: "runner"
     },
-    "krieg-s-pirates-armada-adimiral-don-krieg":{
-        id: "krieg-s-pirates-armada-adimiral-don-krieg",
-        name: "Krieg-s-Pirate-Armada-Adimiral-Don-Krieg",
-        image: "/characters/green/krieg-s-pirates-armada-adimiral-don-krieg.webp",
+    "krieg-s-pirate-armada-admiral-don-krieg":{
+        id: "krieg-s-pirate-armada-admiral-don-krieg",
+        name: "Krieg-s-Pirate-Armada-Admiral-Don-Krieg",
+        image: "/characters/green/krieg-s-pirate-armada-admiral-don-krieg.webp",
         grade: "star-3",
         element: "green",
         role: "defender"
