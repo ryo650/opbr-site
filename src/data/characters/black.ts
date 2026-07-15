@@ -48,5 +48,125 @@ export const blackCharacters: Record<string, Character> = {
         grade: "unknown",
         element: "black",
         role: "unknown"
+    },
+    "baroque-works-officer-agent-mr-5": {
+        id: "baroque-works-officer-agent-mr-5",
+        name: "Baroque-Works-Officer-Agent-Mr-5",
+        image: "/characters/black/baroque-works-officer-agent-mr-5.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "drum-island-lapin": {
+        id: "drum-island-lapin",
+        name: "Drum-Island-Lapin",
+        image: "/characters/black/drum-island-lapin.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "egghead-franky": {
+        id: "egghead-franky",
+        name: "Egghead-Franky",
+        image: "/characters/black/egghead-franky.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "egghead-jinbe": {
+        id: "egghead-jinbe",
+        name: "Egghead-Jinbe",
+        image: "/characters/black/egghead-jinbe.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "evil-black-drum-kingdom-king-wapol": {
+        id: "evil-black-drum-kingdom-king-wapol",
+        name: "Evil-Black-Drum-Kingdom-King-Wapol",
+        image: "/characters/black/evil-black-drum-kingdom-king-wapol.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "ex-roger-pirates-first-mate-silvers-rayleigh": {
+        id: "ex-roger-pirates-first-mate-silvers-rayleigh",
+        name: "Ex-Roger-Pirates-First-Mate-Silvers-Rayleigh",
+        image: "/characters/black/ex-roger-pirates-first-mate-silvers-rayleigh.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "happy-halloween-uta": {
+        id: "happy-halloween-uta",
+        name: "Happy-Halloween-Uta",
+        image: "/characters/black/happy-halloween-uta.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "navy-hq-captain-koby": {
+        id: "navy-hq-captain-koby",
+        name: "Navy-Hq-Captain-Koby",
+        image: "/characters/black/navy-hq-captain-koby.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "punk-05-atlas": {
+        id: "punk-05-atlas",
+        name: "Punk-05-Atlas",
+        image: "/characters/black/punk-05-atlas.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "sakura-kingdom-king-dalton": {
+        id: "sakura-kingdom-king-dalton",
+        name: "Sakura-Kingdom-King-Dalton",
+        image: "/characters/black/sakura-kingdom-king-dalton.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "the-blue-dorry": {
+        id: "the-blue-dorry",
+        name: "The-Blue-Dorry",
+        image: "/characters/black/the-blue-dorry.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "the-navy-s-human-weapon-pacifista": {
+        id: "the-navy-s-human-weapon-pacifista",
+        name: "The-Navy-S-Human-Weapon-Pacifista",
+        image: "/characters/black/the-navy-s-human-weapon-pacifista.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "the-red-broggy": {
+        id: "the-red-broggy",
+        name: "The-Red-Broggy",
+        image: "/characters/black/the-red-broggy.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "the-sky-knight-ganfor": {
+        id: "the-sky-knight-ganfor",
+        name: "The-Sky-Knight-Ganfor",
+        image: "/characters/black/the-sky-knight-ganfor.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
+    },
+    "warp-warp-fruit-van-ogre": {
+        id: "warp-warp-fruit-van-ogre",
+        name: "Warp-Warp-Fruit-Van-Ogre",
+        image: "/characters/black/warp-warp-fruit-van-ogre.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
     }
 }
