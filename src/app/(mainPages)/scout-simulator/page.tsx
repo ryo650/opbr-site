@@ -4,9 +4,12 @@ import { useState } from "react";
 import Image from "next/image";
 import { characters } from "@/data/characters";
 import { sampleExScout } from "@/data/scouts/sampleExScout";
-import { rollScout } from "@/lib/scout";
 import { rollScoutMany } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
+
+function getUnknownSafeLabel(value: Character["grade"] | Character["role"]): string {
+  return value === "unknown" ? "Unknown" : value;
+}
 
 export default function ScoutSimulatorpage() {
 
@@ -45,7 +48,7 @@ export default function ScoutSimulatorpage() {
                 />
                 <p>{character.name}</p>
                 <p>
-                  {character.element} / {character.role} / {character.grade}
+                  {character.element} / {getUnknownSafeLabel(character.role)} / {getUnknownSafeLabel(character.grade)}
                 </p>
               </div>
             ))}

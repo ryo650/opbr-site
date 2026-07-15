@@ -40,5 +40,13 @@ export const blackCharacters: Record<string, Character> = {
         grade: "bf",
         element: "black",
         role: "defender"
+    },
+    "red-roc-monkey-d-luffy": {
+        id: "red-roc-monkey-d-luffy",
+        name: "Red-Roc-Monkey-D-Luffy",
+        image: "/characters/black/red-roc-monkey-d-luffy.webp",
+        grade: "unknown",
+        element: "black",
+        role: "unknown"
     }
 }
