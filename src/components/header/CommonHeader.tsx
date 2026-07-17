@@ -1,3 +1,5 @@
+'use client'
+
 import Image from "next/image";
 import Link from "next/link";
 import { Globe2, MenuIcon } from "lucide-react";
@@ -45,7 +47,7 @@ export default function CommonHeader() {
         <Link href="/" className={styles.logoWrap} aria-label="OPBR Guide home">
           <span className={styles.logoHalo} aria-hidden="true" />
           <Image
-            src="/new-logo2.png"
+            src="/favicon-gold-b.png"
             alt="OPBR Guide"
             width={72}
             height={72}
@@ -54,10 +56,12 @@ export default function CommonHeader() {
           />
         </Link>
 
+        {/*
         <Link href="/" className={styles.languageButton} aria-label="Switch language to English">
           <Globe2 aria-hidden="true" />
           <span>EN</span>
         </Link>
+        */}
       </div>
     </header>
   );
