@@ -28,9 +28,9 @@ export const metadata: Metadata = {
   applicationName: "OPBR Tier List & Guide",
 
   icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/favicon.ico",
+    icon: "/icon.png",
+    shortcut: "/icon.png",
+    apple: "/icon.png",
   },
 };
 
