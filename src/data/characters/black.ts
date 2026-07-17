@@ -47,7 +47,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/red-rock-monkey-d-luffy.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "runner"
     },
     "baroque-works-officer-agent-mr-5": {
         id: "baroque-works-officer-agent-mr-5",
@@ -55,7 +55,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/baroque-works-officer-agent-mr-5.webp",
         grade: "star-4",
         element: "black",
-        role: "unknown"
+        role: "defender"
     },
     "drum-island-lapin": {
         id: "drum-island-lapin",
@@ -63,7 +63,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/drum-island-lapin.webp",
         grade: "exchange",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "egghead-franky": {
         id: "egghead-franky",
@@ -71,7 +71,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/egghead-franky.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "egghead-jinbe": {
         id: "egghead-jinbe",
@@ -79,7 +79,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/egghead-jinbe.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "runner"
     },
     "evil-black-drum-kingdom-king-wapol": {
         id: "evil-black-drum-kingdom-king-wapol",
@@ -87,7 +87,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/evil-black-drum-kingdom-king-wapol.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "defender"
     },
     "ex-roger-pirates-first-mate-silvers-rayleigh": {
         id: "ex-roger-pirates-first-mate-silvers-rayleigh",
@@ -95,7 +95,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/ex-roger-pirates-first-mate-silvers-rayleigh.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "defender"
     },
     "happy-halloween-uta": {
         id: "happy-halloween-uta",
@@ -103,7 +103,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/happy-halloween-uta.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "runner"
     },
     "navy-hq-captain-koby": {
         id: "navy-hq-captain-koby",
@@ -111,7 +111,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/navy-hq-captain-koby.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "punk-05-atlas": {
         id: "punk-05-atlas",
@@ -119,7 +119,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/punk-05-atlas.webp",
         grade: "star-4",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "sakura-kingdom-king-dalton": {
         id: "sakura-kingdom-king-dalton",
@@ -127,7 +127,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/sakura-kingdom-king-dalton.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "the-blue-dorry": {
         id: "the-blue-dorry",
@@ -135,7 +135,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/the-blue-dorry.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "the-navy-s-human-weapon-pacifista": {
         id: "the-navy-s-human-weapon-pacifista",
@@ -143,7 +143,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/the-navy-s-human-weapon-pacifista.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     },
     "the-red-broggy": {
         id: "the-red-broggy",
@@ -151,7 +151,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/the-red-broggy.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "defender"
     },
     "the-sky-knight-ganfor": {
         id: "the-sky-knight-ganfor",
@@ -159,7 +159,7 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/the-sky-knight-ganfor.webp",
         grade: "star-4",
         element: "black",
-        role: "unknown"
+        role: "defender"
     },
     "warp-warp-fruit-van-ogre": {
         id: "warp-warp-fruit-van-ogre",
@@ -167,6 +167,6 @@ export const blackCharacters: Record<string, Character> = {
         image: "/characters/black/warp-warp-fruit-van-ogre.webp",
         grade: "bf",
         element: "black",
-        role: "unknown"
+        role: "attacker"
     }
 }

@@ -25,15 +25,15 @@ export default function CommonHeader() {
            <DropdownMenuItem asChild>
              <Link href="/tier-list">Tier List</Link>
              </DropdownMenuItem>
-           <DropdownMenuItem asChild>
-             <Link href="/new-characters">New Characters</Link>
+             <DropdownMenuItem asChild>
+             <Link href="/scout-simulator">Scout Simulator</Link>
            </DropdownMenuItem>
             {/*
            <DropdownMenuItem asChild>
-             <Link href="/new-scout">New Scout</Link>
+             <Link href="/new-characters">New Characters</Link>
            </DropdownMenuItem>
            <DropdownMenuItem asChild>
-             <Link href="/scout-simulator">Scout Simulator</Link>
+             <Link href="/new-scout">New Scout</Link>
            </DropdownMenuItem>
            <DropdownMenuItem asChild>
              <Link href="/beginner-guide">Beginner Guide</Link>
