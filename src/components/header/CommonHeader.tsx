@@ -1,5 +1,6 @@
-'use client'
+"use client";
 
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Globe2, MenuIcon } from "lucide-react";
@@ -19,8 +20,42 @@ const navigationItems = [
 ];
 
 export default function CommonHeader() {
+  const [isHidden, setIsHidden] = useState(false);
+  const previousScrollY = useRef(0);
+
+  useEffect(() => {
+    previousScrollY.current = window.scrollY;
+
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      const difference = currentScrollY - previousScrollY.current;
+
+      // ページ最上部では必ず表示
+      if (currentScrollY <= 16) {
+        setIsHidden(false);
+      } else if (difference > 6) {
+        // 下へスクロール
+        setIsHidden(true);
+      } else if (difference < -6) {
+        // 上へスクロール
+        setIsHidden(false);
+      }
+
+      previousScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
-    <header className={styles.header}>
+    <header
+      className={`${styles.header} ${isHidden ? styles.headerHidden : ""}`}
+    >
+      {/* 現在の .surface 以下はそのまま */}
       <div className={styles.surface}>
         <div className={styles.menu}>
           <DropdownMenu>
