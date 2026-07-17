@@ -1,34 +1,168 @@
 .header {
-    position: relative;
-
-    width: 100%;
-    height: 94px;
-    padding-inline: 16px;
-
-    display: flex;
-    align-items: center;
-
-    background-color: #4F4F4F;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  width: 100%;
+  padding: 12px 12px 0;
+  background:
+    linear-gradient(180deg, rgba(18, 18, 18, 0.96) 0%, rgba(32, 32, 32, 0.9) 72%, rgba(32, 32, 32, 0) 100%);
 }
-.menu {
-    display: flex;
-    align-items: center;
+
+.surface {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 82px;
+  padding: 0 12px;
+  overflow: visible;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.14), transparent 28%),
+    linear-gradient(180deg, #373737 0%, #242424 54%, #1b1b1b 100%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 16px 36px rgba(0, 0, 0, 0.28);
 }
+
+.surface::after {
+  position: absolute;
+  right: 0;
+  bottom: -1px;
+  left: 0;
+  height: 1px;
+  content: "";
+  background: linear-gradient(90deg, transparent, rgba(255, 210, 0, 0.72), transparent);
+  opacity: 0.45;
+}
+
+.menu,
+.languageButton {
+  position: relative;
+  z-index: 2;
+}
+
+.menuButton,
+.languageButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 999px;
+  background: rgba(26, 26, 26, 0.74);
+  color: #f4f4f4;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 8px 18px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(10px);
+}
+
+.menuButton {
+  padding: 0 13px 0 11px;
+}
+
+.languageButton {
+  min-width: 51px;
+  justify-content: center;
+  padding: 0 11px;
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.menuButton:hover,
+.languageButton:hover {
+  border-color: rgba(255, 210, 0, 0.5);
+  background: rgba(39, 39, 39, 0.92);
+}
+
+.languageButton:active {
+  transform: translateY(1px);
+}
+
+.menuButton svg,
+.languageButton svg {
+  width: 14px;
+  height: 14px;
+}
+
+.menuContent {
+  min-width: 190px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(31, 31, 31, 0.98);
+  color: #f8f8f8;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.35);
+}
+
 .logoWrap {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-
-    width: 100px;
-    height: 100px;
-    border-radius: 9999px;
-    overflow: hidden;
+  position: absolute;
+  left: 50%;
+  top: 52%;
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 999px;
+  transform: translate(-50%, -50%);
 }
+
+.logoWrap::after {
+  position: absolute;
+  bottom: -9px;
+  left: 50%;
+  width: 42px;
+  height: 4px;
+  content: "";
+  border-radius: 999px;
+  background: #ffd200;
+  box-shadow: 0 0 14px rgba(255, 210, 0, 0.48);
+  transform: translateX(-50%);
+}
+
+.logoHalo {
+  position: absolute;
+  inset: 0;
+  border: 2px solid rgba(255, 255, 255, 0.78);
+  border-radius: inherit;
+  background: linear-gradient(180deg, #f4f4f4, #9f9f9f);
+  box-shadow:
+    0 0 0 4px rgba(255, 210, 0, 0.16),
+    0 8px 22px rgba(0, 0, 0, 0.42),
+    inset 0 0 16px rgba(255, 255, 255, 0.6);
+}
+
 .logo {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 9999px;
+  position: relative;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+  border-radius: 999px;
+  object-fit: cover;
 }
 
+@media (min-width: 768px) {
+  .header {
+    padding-inline: 18px;
+  }
+
+  .surface {
+    min-height: 94px;
+    padding-inline: 18px;
+  }
+
+  .logoWrap {
+    width: 82px;
+    height: 82px;
+  }
+
+  .logo {
+    width: 68px;
+    height: 68px;
+  }
+}
