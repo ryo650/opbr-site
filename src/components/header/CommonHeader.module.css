@@ -35,6 +35,7 @@
   box-shadow:
     inset 0 1px 0 rgba(255, 255, 255, 0.1),
     0 12px 28px rgba(0, 0, 0, 0.26);
+    box-sizing: border-box;
 }
 
 .surface::after {
@@ -86,10 +87,25 @@
   transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
 }
 
+.menuItem {
+  cursor: pointer;
+  border-radius: 6px;
+  color: #f4f4f4;
+  transition:
+    color 140ms ease,
+    background-color 140ms ease;
+}
+
 .menuButton:hover,
 .languageButton:hover {
   border-color: rgba(255, 210, 0, 0.5);
-  background: rgba(39, 39, 39, 0.92);
+  background-color: rgba(39, 39, 39, 0.92);
+}
+
+.menuContent [role="menuitem"][data-highlighted] {
+  outline: none;
+  background-color: rgba(255, 210, 0, 0.14);
+  color: #ffd200;
 }
 
 .languageButton:active {
@@ -157,23 +173,9 @@
   object-fit: cover;
 }
 
-@media (min-width: 768px) {
+@media (prefers-reduced-motion: reduce) {
   .header {
-    padding-inline: 18px;
-  }
-
-  .surface {
-    min-height: 94px;
-    padding-inline: 18px;
-  }
-
-  .logoWrap {
-    width: 82px;
-    height: 82px;
-  }
-
-  .logo {
-    width: 68px;
-    height: 68px;
+    transition: none;
   }
 }
+

@@ -71,7 +71,7 @@ export default function CommonHeader() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className={styles.menuContent}>
               {navigationItems.map((item) => (
-                <DropdownMenuItem key={item.href} asChild>
+                <DropdownMenuItem key={item.href} asChild className="menuItem">
                   <Link href={item.href}>{item.label}</Link>
                 </DropdownMenuItem>
               ))}
