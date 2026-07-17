@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { Globe2, MenuIcon } from "lucide-react";
 import styles from "./CommonHeader.module.css";
 import { Button } from "../ui/button";
 import {
@@ -7,49 +8,57 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
+} from "@/components/ui/dropdown-menu";
+
+const navigationItems = [
+  { href: "/", label: "Home" },
+  { href: "/tier-list", label: "Tier List" },
+  { href: "/scout-simulator", label: "Scout Simulator" },
+];
 
 export default function CommonHeader() {
   return (
-    <header className={styles["header"]}>
-        {/* 左　のドロップダウンメニュー */}
-        <div className={styles["menu"]}>
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline">Menu</Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="w-56">
-           <DropdownMenuItem asChild>
-             <Link href="/">Home</Link>
-           </DropdownMenuItem>
-           <DropdownMenuItem asChild>
-             <Link href="/tier-list">Tier List</Link>
-             </DropdownMenuItem>
-             <DropdownMenuItem asChild>
-             <Link href="/scout-simulator">Scout Simulator</Link>
-           </DropdownMenuItem>
-            {/*
-           <DropdownMenuItem asChild>
-             <Link href="/new-characters">New Characters</Link>
-           </DropdownMenuItem>
-           <DropdownMenuItem asChild>
-             <Link href="/new-scout">New Scout</Link>
-           </DropdownMenuItem>
-           <DropdownMenuItem asChild>
-             <Link href="/beginner-guide">Beginner Guide</Link>
-           </DropdownMenuItem>
-           */}
-          </DropdownMenuContent>
-        </DropdownMenu>
+    <header className={styles.header}>
+      <div className={styles.surface}>
+        <div className={styles.menu}>
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="outline"
+                className={styles.menuButton}
+                aria-label="Open navigation menu"
+              >
+                <MenuIcon aria-hidden="true" />
+                <span>Menu</span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className={styles.menuContent}>
+              {navigationItems.map((item) => (
+                <DropdownMenuItem key={item.href} asChild>
+                  <Link href={item.href}>{item.label}</Link>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
 
-
-        {/* 中央のロゴ */}
-        <Link href="/" className={styles["logoWrap"]}>
-            <Image src="/new-logo2.png" alt="OPBR Logo" width={100} height={100} className={styles["logo"]} priority />
+        <Link href="/" className={styles.logoWrap} aria-label="OPBR Guide home">
+          <span className={styles.logoHalo} aria-hidden="true" />
+          <Image
+            src="/new-logo2.png"
+            alt="OPBR Guide"
+            width={72}
+            height={72}
+            className={styles.logo}
+            priority
+          />
         </Link>
 
+        <Link href="/" className={styles.languageButton} aria-label="Switch language to English">
+          <Globe2 aria-hidden="true" />
+          <span>EN</span>
+        </Link>
+      </div>
     </header>
-  )
+  );
 }
-
