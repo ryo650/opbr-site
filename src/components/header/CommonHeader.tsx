@@ -75,7 +75,7 @@ export default function CommonHeader() {
                 <span>Menu</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={styles.menuContent}>
+            <DropdownMenuContent className={styles.menuContent} onCloseAutoFocus={(event) => event.preventDefault()}>
               {navigationItems.map((item) => (
                 <DropdownMenuItem key={item.href} asChild className={styles.menuItem}>
                   <Link href={item.href}>{item.label}</Link>
