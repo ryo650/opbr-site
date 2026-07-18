@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { Globe2, MenuIcon } from "lucide-react";
+import { MenuIcon } from "lucide-react";
 import styles from "./CommonHeader.module.css";
 import { Button } from "../ui/button";
 import {
@@ -21,6 +21,7 @@ const navigationItems = [
 
 export default function CommonHeader() {
   const [isHidden, setIsHidden] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const previousScrollY = useRef(0);
 
   useEffect(() => {
@@ -36,6 +37,7 @@ export default function CommonHeader() {
       } else if (difference > 6) {
         // 下へスクロール
         setIsHidden(true);
+        setIsMenuOpen(false);
       } else if (difference < -6) {
         // 上へスクロール
         setIsHidden(false);
@@ -58,7 +60,11 @@ export default function CommonHeader() {
       {/* 現在の .surface 以下はそのまま */}
       <div className={styles.surface}>
         <div className={styles.menu}>
-          <DropdownMenu>
+          <DropdownMenu 
+            modal={false}
+            open={isMenuOpen}
+            onOpenChange={setIsMenuOpen}
+            >
             <DropdownMenuTrigger asChild>
               <Button
                 variant="outline"
@@ -71,7 +77,7 @@ export default function CommonHeader() {
             </DropdownMenuTrigger>
             <DropdownMenuContent className={styles.menuContent}>
               {navigationItems.map((item) => (
-                <DropdownMenuItem key={item.href} asChild className="menuItem">
+                <DropdownMenuItem key={item.href} asChild className={styles.menuItem}>
                   <Link href={item.href}>{item.label}</Link>
                 </DropdownMenuItem>
               ))}
