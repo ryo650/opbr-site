@@ -1,9 +1,14 @@
 import "./globals.css";
 import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+
+export const viewport: Viewport = {
+  themeColor: "#202020",
+  colorScheme: "dark",
+}
 
 const websiteJsonLd = {
   "@context": "https://schema.org",
