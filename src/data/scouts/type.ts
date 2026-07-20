@@ -2,11 +2,18 @@ export type ScoutCategory = "pickup" | "ex" | "bf" | "star-4" | "star-3" | "star
 
 export type ScoutRates = Partial<Record<ScoutCategory, number>>;
 
+export type ScoutPullOption = {
+    pullCount: number;
+    diamondCost: number;
+};
+
 export type ScoutBanner = {
     id: string;
     name: string;
-    cost: number;
-    pulls: number;
+    pullOptions: {
+        single: ScoutPullOption;
+        multi: ScoutPullOption;
+    };
     pickupIds: string[];
     rates: ScoutRates;
 }
