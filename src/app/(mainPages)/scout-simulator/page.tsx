@@ -7,6 +7,7 @@ import { sampleExScout } from "@/data/scouts/sampleExScout";
 import { rollScout } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
 import type { ScoutPullOption } from "@/data/scouts/type";
+import styles from "./page.module.css";
 
 const MAX_PULL_UNTIL = 1_000;
 const RECENT_RESULTS_LIMIT = 11;
@@ -64,9 +65,18 @@ function addRecentResult(results: Character[], character: Character): void {
   }
 }
 
-function getUnknownSafeLabel(value: Character["grade"] | Character["role"]): string {
-  return value === "unknown" ? "Unknown" : value;
-}
+const gradeLabels: Record<Character["grade"], string> = {
+  ex: "EX",
+  bf: "BF",
+  sp: "SP",
+  "star-4": "4★",
+  "star-3": "3★",
+  "star-2": "2★",
+  free: "FREE",
+  exchange: "EXCH",
+  cola: "COLA",
+  unknown: "?",
+};
 
 export default function ScoutSimulatorpage() {
   const [results, setResults] = useState<Character[]>([]);
@@ -150,68 +160,84 @@ export default function ScoutSimulatorpage() {
     stats.totalPulls === 0 ? 0 : (stats.star4Pulls / stats.totalPulls) * 100;
 
   return (
-    <main>
-      <h1>Scout Simulator</h1>
-      <p>Try a simple OPBR scout simulation.</p>
+    <main className={styles.page}>
+      <div className={styles.content}>
+        <header className={styles.intro}>
+          <p className={styles.eyebrow}>OPBR SCOUT</p>
+          <h1>Scout Simulator</h1>
+        </header>
 
-      <section>
-        <h2>{sampleExScout.name}</h2>
-        <p>
-          1 Pull: {sampleExScout.pullOptions.single.diamondCost} Rainbow Diamonds
-        </p>
-        <p>
-          11 Pulls: {sampleExScout.pullOptions.multi.diamondCost} Rainbow Diamonds
-        </p>
+        <section className={styles.scoutPanel} aria-labelledby="banner-title">
+          <div className={styles.banner}>
+            <Image
+              src="/scouts/ex/IMG_1871.jpg"
+              alt="Sample EX Scout banner"
+              fill
+              priority
+              sizes="(max-width: 430px) calc(100vw - 32px), 390px"
+            />
+            <div className={styles.bannerShade} />
+            <div className={styles.bannerCopy}>
+              <p>LIMITED SCOUT</p>
+              <h2 id="banner-title">{sampleExScout.name}</h2>
+            </div>
+          </div>
 
-        <button onClick={() => handleScout(sampleExScout.pullOptions.single)}>
-          Scout *1
-        </button>
-        <button onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
-          Scout *11
-        </button>
-
-        <button onClick={handlePullUntilPickup}>Pull Until Pickup</button>
-        <button onClick={handleReset}>Reset Session</button>
-        <p>Pull Until stops after a Pickup or {MAX_PULL_UNTIL} pulls.</p>
-        {pullUntilMessage && <p role="status">{pullUntilMessage}</p>}
-      </section>
-
-      <section>
-        <h2>Session Statistics</h2>
-        <p>Total Pulls: {stats.totalPulls}</p>
-
-        <p>
-          Diamonds Spent: {stats.diamondsSpent}
-        </p>
-        <p>Pickup: {stats.pickupPulls} ({pickupRate.toFixed(2)}%)</p>
-        <p>EX: {stats.exPulls} ({exRate.toFixed(2)}%)</p>
-        <p>BF: {stats.bfPulls} ({bfRate.toFixed(2)}%)</p>
-        <p>Star 4: {stats.star4Pulls} ({star4Rate.toFixed(2)}%)</p>
-
-      </section>
-
-      {results.length > 0 && (
-        <section>
-          <h2>Recent Results (last {RECENT_RESULTS_LIMIT})</h2>
-
-          <div>
-            {results.map((character, index) => (
-              <div key={`${character.id}-${index}`}>
-                <Image
-                  src={character.image}
-                  alt={character.name}
-                  width={96}
-                  height={96}
-                />
-                <p>{character.name}</p>
-                <p>
-                  {character.element} / {getUnknownSafeLabel(character.role)} / {getUnknownSafeLabel(character.grade)}
-                </p>
-              </div>
-            ))}
+          <div className={styles.pullActions}>
+            <button className={styles.singlePull} onClick={() => handleScout(sampleExScout.pullOptions.single)}>
+              <span>1 Pull</span>
+              <small>{sampleExScout.pullOptions.single.diamondCost} <span aria-hidden="true">◆</span></small>
+            </button>
+            <button className={styles.multiPull} onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
+              <span>11 Pulls</span>
+              <small>{sampleExScout.pullOptions.multi.diamondCost} <span aria-hidden="true">◆</span></small>
+            </button>
           </div>
         </section>
-      )}
+
+        <section className={styles.resultsSection} aria-labelledby="results-title">
+          <div className={styles.sectionHeading}>
+            <h2 id="results-title">Scout Results</h2>
+            <span>LAST {RECENT_RESULTS_LIMIT}</span>
+          </div>
+          {results.length > 0 ? (
+            <div className={styles.resultsGrid}>
+              {results.map((character, index) => (
+                <div
+                  className={`${styles.resultCard} ${styles[`grade${character.grade.replace("-", "")}`]}`}
+                  key={`${character.id}-${index}`}
+                >
+                  <span className={styles.rarityLabel}>{gradeLabels[character.grade]}</span>
+                  <Image src={character.image} alt={character.name} width={112} height={112} sizes="72px" />
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.emptyResults}>Your latest scout results will appear here.</div>
+          )}
+        </section>
+
+        <section className={styles.sessionSection} aria-labelledby="session-title">
+          <div className={styles.utilityActions}>
+            <button className={styles.untilButton} onClick={handlePullUntilPickup}>Pull Until Pickup</button>
+            <button className={styles.resetButton} onClick={handleReset}>Reset</button>
+          </div>
+          <p className={styles.helper}>Pull Until stops after a Pickup or {MAX_PULL_UNTIL} pulls.</p>
+          {pullUntilMessage && <p className={styles.status} role="status">{pullUntilMessage}</p>}
+
+          <div className={styles.statistics}>
+            <h2 id="session-title">Session Statistics</h2>
+            <dl>
+              <div><dt>Total Pulls</dt><dd>{stats.totalPulls}</dd></div>
+              <div><dt>Diamonds Spent</dt><dd>{stats.diamondsSpent}</dd></div>
+              <div><dt>Pickup</dt><dd>{stats.pickupPulls} <small>{pickupRate.toFixed(2)}%</small></dd></div>
+              <div><dt>EX</dt><dd>{stats.exPulls} <small>{exRate.toFixed(2)}%</small></dd></div>
+              <div><dt>BF</dt><dd>{stats.bfPulls} <small>{bfRate.toFixed(2)}%</small></dd></div>
+              <div><dt>Star 4</dt><dd>{stats.star4Pulls} <small>{star4Rate.toFixed(2)}%</small></dd></div>
+            </dl>
+          </div>
+        </section>
+      </div>
     </main>
   )
 }
