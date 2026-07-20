@@ -70,6 +70,7 @@ function getUnknownSafeLabel(value: Character["grade"] | Character["role"]): str
 
 export default function ScoutSimulatorpage() {
   const [results, setResults] = useState<Character[]>([]);
+
   const [stats, setStats] = useState<SessionStats>(createEmptyStats);
   const [pullUntilMessage, setPullUntilMessage] = useState("");
 
@@ -97,6 +98,7 @@ export default function ScoutSimulatorpage() {
 
   function handlePullUntilPickup() {
     setPullUntilMessage("");
+
     let pullStats = createEmptyStats();
     const pullResults: Character[] = [];
 
@@ -121,6 +123,7 @@ export default function ScoutSimulatorpage() {
 
     setResults(pullResults);
     setStats(pullStats);
+
     setPullUntilMessage(
       `Stopped after ${MAX_PULL_UNTIL} pulls without obtaining a Pickup.`,
     );
@@ -128,7 +131,9 @@ export default function ScoutSimulatorpage() {
 
   function handleReset() {
     setResults([]);
+
     setStats(createEmptyStats());
+
     setPullUntilMessage("");
   }
 
@@ -136,6 +141,7 @@ export default function ScoutSimulatorpage() {
     stats.totalPulls === 0
       ? 0
       : (stats.pickupPulls / stats.totalPulls) * 100;
+
   const exRate =
     stats.totalPulls === 0 ? 0 : (stats.exPulls / stats.totalPulls) * 100;
   const bfRate =
@@ -163,6 +169,7 @@ export default function ScoutSimulatorpage() {
         <button onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
           Scout *11
         </button>
+
         <button onClick={handlePullUntilPickup}>Pull Until Pickup</button>
         <button onClick={handleReset}>Reset Session</button>
         <p>Pull Until stops after a Pickup or {MAX_PULL_UNTIL} pulls.</p>
@@ -172,6 +179,7 @@ export default function ScoutSimulatorpage() {
       <section>
         <h2>Session Statistics</h2>
         <p>Total Pulls: {stats.totalPulls}</p>
+
         <p>
           Diamonds Spent: {stats.diamondsSpent}
         </p>
@@ -179,6 +187,7 @@ export default function ScoutSimulatorpage() {
         <p>EX: {stats.exPulls} ({exRate.toFixed(2)}%)</p>
         <p>BF: {stats.bfPulls} ({bfRate.toFixed(2)}%)</p>
         <p>Star 4: {stats.star4Pulls} ({star4Rate.toFixed(2)}%)</p>
+
       </section>
 
       {results.length > 0 && (
