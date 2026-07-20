@@ -3,8 +3,10 @@ import type { ScoutBanner } from "./type";
 export const sampleExScout: ScoutBanner = {
     id: "sample-ex-scout",
     name: "Sample EX Scout",
-    cost: 5,
-    pulls: 10,
+    pullOptions: {
+        single: { pullCount: 1, diamondCost: 5 },
+        multi: { pullCount: 11, diamondCost: 50 },
+    },
     pickupIds: ["flame-emperor-sabo"],
     rates: {
         pickup: 0.2,

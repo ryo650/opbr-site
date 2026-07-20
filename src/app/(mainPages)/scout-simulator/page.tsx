@@ -6,13 +6,14 @@ import { characters } from "@/data/characters";
 import { sampleExScout } from "@/data/scouts/sampleExScout";
 import { rollScout } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
+import type { ScoutPullOption } from "@/data/scouts/type";
 
 const MAX_PULL_UNTIL = 1_000;
 const RECENT_RESULTS_LIMIT = 11;
 
 type SessionStats = {
   totalPulls: number;
-  diamondsSpent: number | null;
+  diamondsSpent: number;
   pickupPulls: number;
   exPulls: number;
   bfPulls: number;
@@ -30,12 +31,13 @@ function createEmptyStats(): SessionStats {
   };
 }
 
-function getStatsForPull(character: Character): SessionStats {
+function getStatsForPull(
+  character: Character,
+  diamondCost: number,
+): SessionStats {
   return {
     totalPulls: 1,
-    // ScoutBanner only provides one cost and a pulls count (10 for this banner).
-    // It does not define the cost of a 1-pull or an 11-pull action.
-    diamondsSpent: null,
+    diamondsSpent: diamondCost,
     pickupPulls: Number(sampleExScout.pickupIds.includes(character.id)),
     exPulls: Number(character.grade === "ex"),
     bfPulls: Number(character.grade === "bf"),
@@ -46,10 +48,7 @@ function getStatsForPull(character: Character): SessionStats {
 function addStats(currentStats: SessionStats, addedStats: SessionStats): SessionStats {
   return {
     totalPulls: currentStats.totalPulls + addedStats.totalPulls,
-    diamondsSpent:
-      currentStats.diamondsSpent === null || addedStats.diamondsSpent === null
-        ? null
-        : currentStats.diamondsSpent + addedStats.diamondsSpent,
+    diamondsSpent: currentStats.diamondsSpent + addedStats.diamondsSpent,
     pickupPulls: currentStats.pickupPulls + addedStats.pickupPulls,
     exPulls: currentStats.exPulls + addedStats.exPulls,
     bfPulls: currentStats.bfPulls + addedStats.bfPulls,
@@ -74,19 +73,21 @@ export default function ScoutSimulatorpage() {
   const [stats, setStats] = useState<SessionStats>(createEmptyStats);
   const [pullUntilMessage, setPullUntilMessage] = useState("");
 
-  function handleScout(count: number) {
+  function handleScout(pullOption: ScoutPullOption) {
     setPullUntilMessage("");
     let pullStats = createEmptyStats();
     const pullResults: Character[] = [];
 
-    for (let index = 0; index < count; index += 1) {
+    for (let index = 0; index < pullOption.pullCount; index += 1) {
       const character = rollScout(sampleExScout, characters);
 
       if (character) {
-        pullStats = addStats(pullStats, getStatsForPull(character));
+        pullStats = addStats(pullStats, getStatsForPull(character, 0));
         addRecentResult(pullResults, character);
       }
     }
+
+    pullStats.diamondsSpent = pullOption.diamondCost;
 
     setResults((currentResults) =>
       [...currentResults, ...pullResults].slice(-RECENT_RESULTS_LIMIT),
@@ -103,7 +104,10 @@ export default function ScoutSimulatorpage() {
       const character = rollScout(sampleExScout, characters);
 
       if (character) {
-        pullStats = addStats(pullStats, getStatsForPull(character));
+        pullStats = addStats(
+          pullStats,
+          getStatsForPull(character, sampleExScout.pullOptions.single.diamondCost),
+        );
         addRecentResult(pullResults, character);
 
         if (sampleExScout.pickupIds.includes(character.id)) {
@@ -146,10 +150,19 @@ export default function ScoutSimulatorpage() {
 
       <section>
         <h2>{sampleExScout.name}</h2>
-        <p>Cost: {sampleExScout.cost} Rainbow Diamonds</p>
+        <p>
+          1 Pull: {sampleExScout.pullOptions.single.diamondCost} Rainbow Diamonds
+        </p>
+        <p>
+          11 Pulls: {sampleExScout.pullOptions.multi.diamondCost} Rainbow Diamonds
+        </p>
 
-        <button onClick={() => handleScout(1)}>Scout *1</button>
-        <button onClick={() => handleScout(11)}>Scout *11</button>
+        <button onClick={() => handleScout(sampleExScout.pullOptions.single)}>
+          Scout *1
+        </button>
+        <button onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
+          Scout *11
+        </button>
         <button onClick={handlePullUntilPickup}>Pull Until Pickup</button>
         <button onClick={handleReset}>Reset Session</button>
         <p>Pull Until stops after a Pickup or {MAX_PULL_UNTIL} pulls.</p>
@@ -160,7 +173,7 @@ export default function ScoutSimulatorpage() {
         <h2>Session Statistics</h2>
         <p>Total Pulls: {stats.totalPulls}</p>
         <p>
-          Diamonds Spent: {stats.diamondsSpent === null ? "Not available" : stats.diamondsSpent}
+          Diamonds Spent: {stats.diamondsSpent}
         </p>
         <p>Pickup: {stats.pickupPulls} ({pickupRate.toFixed(2)}%)</p>
         <p>EX: {stats.exPulls} ({exRate.toFixed(2)}%)</p>
