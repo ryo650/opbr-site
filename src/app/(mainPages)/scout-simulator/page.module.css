@@ -6,22 +6,52 @@
 .intro h1 { font-size: 28px; letter-spacing: -.03em; }
 .scoutPanel, .resultsSection, .sessionSection { border: 1px solid rgba(255,255,255,.1); border-radius: 12px; background: rgba(29,31,34,.9); box-shadow: 0 12px 24px rgba(0,0,0,.18); }
 .scoutPanel { overflow: hidden; }
-.banner { position: relative; height: 144px; overflow: hidden; background: #34363a; }
+.banner { position: relative; height: 144px; overflow: hidden; background: #34363a;}
 .banner > img { object-fit: cover; object-position: center 36%; }
 .bannerShade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,10,12,.72), transparent 68%), linear-gradient(0deg, rgba(10,10,12,.45), transparent 55%); }
 .bannerCopy { position: absolute; left: 16px; bottom: 16px; }
 .bannerCopy p { margin: 0 0 2px; color: #ffd650; font-size: 10px; font-weight: 900; letter-spacing: .12em; }
 .bannerCopy h2 { margin: 0; color: #fff; font-size: 20px; line-height: 1; }
+.diamondCost {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    white-space: nowrap;
+}
+.diamondIcon {
+    width: 16px;
+    height: 16px;
+    flex: 0 0 16px;
+    object-fit: contain;
+}
 .pullActions, .utilityActions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 12px; }
 .pullActions button, .utilityActions button { min-height: 52px; cursor: pointer; border-radius: 8px; font: inherit; font-weight: 800; }
 .pullActions button { display: flex; flex-direction: column; align-items: center; justify-content: center; color: #19191a; }
-.pullActions span { font-size: 16px; }.pullActions small { margin-top: 2px; font-size: 12px; }.singlePull { border: 1px solid #e6b93e; background: linear-gradient(#ffe27a, #e9ad32); }.multiPull { border: 1px solid #f5f1e4; background: linear-gradient(#fff, #cac8c2); }
+.pullActions button > span:first-child { font-size: 16px; }.singlePull { border: 1px solid #e6b93e; background: linear-gradient(#ffe27a, #e9ad32); }.multiPull { border: 1px solid #f5f1e4; background: linear-gradient(#fff, #cac8c2); }
 .resultsSection { margin-top: 16px; padding: 12px; }
 .sectionHeading { display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 12px; }.sectionHeading h2, .statistics h2 { font-size: 16px; }.sectionHeading span { color: #9ca3af; font-size: 9px; font-weight: 800; letter-spacing: .08em; }
 .resultsGrid { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 8px; }
 .resultCard { position: relative; aspect-ratio: 1; overflow: hidden; border: 3px solid #989898; border-radius: 6px; background: #151515; box-shadow: inset 0 0 0 1px rgba(255,255,255,.5), 0 2px 6px rgba(0,0,0,.4); }.resultCard img { width: 100%; height: 100%; object-fit: cover; }
 .rarityLabel { position: absolute; z-index: 1; top: 0; left: 0; padding: 2px 4px; border-radius: 0 0 4px; background: rgba(20,20,20,.88); color: #fff; font-size: 8px; font-weight: 900; line-height: 1; }
-.gradeex { border-color: #efc441; box-shadow: inset 0 0 0 1px #fff5a8, 0 0 10px rgba(239,196,65,.45); }.gradebf { border-color: #c774f1; }.gradesp { border-color: #78d3ff; }.gradestar4 { border-color: #eea74b; }.gradestar3 { border-color: #7eb4de; }.gradestar2 { border-color: #9ea5aa; }.gradefree, .gradeexchange, .gradecola, .gradeunknown { border-color: #8a8a8a; }
+.gradeex {
+  border-color: transparent;
+  background:
+    linear-gradient(#151515, #151515) padding-box,
+    linear-gradient(
+      135deg,
+      #f26a00 0%,
+      #ff9d00 22%,
+      #ffd21f 45%,
+      #fff08a 58%,
+      #ffc400 75%,
+      #e85b00 100%
+    ) border-box;
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 248, 170, 0.9),
+    0 0 8px rgba(255, 174, 0, 0.6),
+    0 0 14px rgba(242, 106, 0, 0.28);
+}.gradebf { border-color: #c774f1; }.gradesp { border-color: #78d3ff; }.gradestar4 { border-color: #eea74b; }.gradestar3 { border-color: #7eb4de; }.gradestar2 { border-color: #9ea5aa; }.gradefree, .gradeexchange, .gradecola, .gradeunknown { border-color: #8a8a8a; }
 .emptyResults { display: grid; min-height: 112px; place-items: center; border: 1px dashed rgba(255,255,255,.18); border-radius: 8px; color: #89909a; font-size: 12px; text-align: center; }
 .sessionSection { margin-top: 16px; overflow: hidden; }.utilityActions { padding-bottom: 4px; }.utilityActions button { min-height: 44px; color: #f8fafc; }.untilButton { border: 1px solid #dbab31; background: #5e4617; }.resetButton { border: 1px solid #5f6873; background: #333940; }.helper, .status { margin: 4px 12px 12px; color: #9ca3af; font-size: 10px; line-height: 1.4; }.status { color: #ffe080; }
 .statistics { padding: 16px 12px; border-top: 1px solid rgba(255,255,255,.1); }.statistics h2 { margin-bottom: 12px; }.statistics dl { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0; }.statistics dl div { display: flex; justify-content: space-between; padding: 8px; border-radius: 6px; background: #25282c; }.statistics dt { color: #aab1bc; font-size: 10px; }.statistics dd { margin: 0; color: #fff; font-size: 12px; font-weight: 800; }.statistics dd small { color: #adb7c4; font-size: 9px; font-weight: 600; }

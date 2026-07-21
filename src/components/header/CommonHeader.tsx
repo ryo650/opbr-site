@@ -17,6 +17,7 @@ const navigationItems = [
   { href: "/", label: "Home" },
   { href: "/tier-list", label: "Tier List" },
   { href: "/scout-simulator", label: "Scout Simulator" },
+  { href: "/create-tier-list", label: "Create Tier List"},
 ];
 
 export default function CommonHeader() {

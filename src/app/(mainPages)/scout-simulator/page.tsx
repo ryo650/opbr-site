@@ -12,6 +12,21 @@ import styles from "./page.module.css";
 const MAX_PULL_UNTIL = 1_000;
 const RECENT_RESULTS_LIMIT = 11;
 
+function DiamondCost({ amount }: { amount: number }) {
+  return (
+    <span className={styles.diamondCost}>
+      {amount}
+      <Image
+        className={styles.diamondIcon}
+        src="/rainbow-diamonds.webp"
+        alt="Rainbow Diamonds"
+        width={16}
+        height={16}
+      />
+    </span>
+  );
+}
+
 type SessionStats = {
   totalPulls: number;
   diamondsSpent: number;
@@ -39,7 +54,7 @@ function getStatsForPull(
   return {
     totalPulls: 1,
     diamondsSpent: diamondCost,
-    pickupPulls: Number(sampleExScout.pickupIds.includes(character.id)),
+    pickupPulls: Number(isPickupCharacter(character.id)),
     exPulls: Number(character.grade === "ex"),
     bfPulls: Number(character.grade === "bf"),
     star4Pulls: Number(character.grade === "star-4"),
@@ -78,6 +93,12 @@ const gradeLabels: Record<Character["grade"], string> = {
   unknown: "?",
 };
 
+function isPickupCharacter(characterId: string): boolean {
+  return sampleExScout.pickups.some(
+    (pickup) => pickup.characterId === characterId,
+  );
+}
+
 export default function ScoutSimulatorpage() {
   const [results, setResults] = useState<Character[]>([]);
 
@@ -106,7 +127,7 @@ export default function ScoutSimulatorpage() {
     setStats((currentStats) => addStats(currentStats, pullStats));
   }
 
-  function handlePullUntilPickup() {
+  function handlePullUntilFeatured() {
     setPullUntilMessage("");
 
     let pullStats = createEmptyStats();
@@ -122,7 +143,7 @@ export default function ScoutSimulatorpage() {
         );
         addRecentResult(pullResults, character);
 
-        if (sampleExScout.pickupIds.includes(character.id)) {
+        if (character.id === sampleExScout.featuredCharacterId) {
           setResults(pullResults);
           setStats(pullStats);
           setPullUntilMessage(`Stopped after ${index + 1} pulls: Pickup obtained.`);
@@ -174,7 +195,8 @@ export default function ScoutSimulatorpage() {
               alt="Sample EX Scout banner"
               fill
               priority
-              sizes="(max-width: 430px) calc(100vw - 32px), 390px"
+              sizes="(max-width: 480px) 100vw, 390px"
+              className={styles.bannerImage}
             />
             <div className={styles.bannerShade} />
             <div className={styles.bannerCopy}>
@@ -186,11 +208,11 @@ export default function ScoutSimulatorpage() {
           <div className={styles.pullActions}>
             <button className={styles.singlePull} onClick={() => handleScout(sampleExScout.pullOptions.single)}>
               <span>1 Pull</span>
-              <small>{sampleExScout.pullOptions.single.diamondCost} <span aria-hidden="true">◆</span></small>
+              <DiamondCost amount={sampleExScout.pullOptions.single.diamondCost} />
             </button>
             <button className={styles.multiPull} onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
               <span>11 Pulls</span>
-              <small>{sampleExScout.pullOptions.multi.diamondCost} <span aria-hidden="true">◆</span></small>
+              <DiamondCost amount={sampleExScout.pullOptions.multi.diamondCost} />
             </button>
           </div>
         </section>
@@ -219,10 +241,12 @@ export default function ScoutSimulatorpage() {
 
         <section className={styles.sessionSection} aria-labelledby="session-title">
           <div className={styles.utilityActions}>
-            <button className={styles.untilButton} onClick={handlePullUntilPickup}>Pull Until Pickup</button>
+            <button className={styles.untilButton} onClick={handlePullUntilFeatured}>Pull Until Featured</button>
             <button className={styles.resetButton} onClick={handleReset}>Reset</button>
           </div>
-          <p className={styles.helper}>Pull Until stops after a Pickup or {MAX_PULL_UNTIL} pulls.</p>
+          <p className={styles.helper}>
+            Stops after the featured character or {MAX_PULL_UNTIL} pulls.
+          </p>
           {pullUntilMessage && <p className={styles.status} role="status">{pullUntilMessage}</p>}
 
           <div className={styles.statistics}>

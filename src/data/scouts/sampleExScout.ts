@@ -1,4 +1,31 @@
-import type { ScoutBanner } from "./type";
+import type { 
+    ScoutBanner,
+    ScoutPickup,
+ } from "./type";
+
+const pickups = [
+    {
+        characterId: "great-pirate-edward-newgate",
+        rate: 0.2
+    },
+    {
+        characterId: "warp-warp-fruit-van-ogre",
+        rate: 0.5
+    },
+    {
+        characterId: "happosui-army-13th-chief-sai",
+        rate: 0.5
+    },
+    {
+        characterId: "navy-hq-captain-koby",
+        rate: 0.5
+    },
+] satisfies readonly ScoutPickup[];
+
+const totalPickupRate = pickups.reduce(
+    (total, pickup) => total + pickup.rate,
+    0
+);
 
 export const sampleExScout: ScoutBanner = {
     id: "sample-ex-scout",
@@ -7,12 +34,13 @@ export const sampleExScout: ScoutBanner = {
         single: { pullCount: 1, diamondCost: 5 },
         multi: { pullCount: 11, diamondCost: 50 },
     },
-    pickupIds: ["flame-emperor-sabo"],
+    pickups,
+    featuredCharacterId: "great-pirate-edward-newgate",
     rates: {
-        pickup: 0.2,
-        bf: 2.2,
-        "star-4":4.6,
+        pickup: totalPickupRate,
+        bf: 1.49,
+        "star-4": 3.81,
         "star-3": 28,
-        "star-2": 25
+        "star-2": 65
     }
 }

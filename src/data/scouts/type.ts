@@ -7,6 +7,11 @@ export type ScoutPullOption = {
     diamondCost: number;
 };
 
+export type ScoutPickup = {
+    characterId: string,
+    rate: number
+}
+
 export type ScoutBanner = {
     id: string;
     name: string;
@@ -14,6 +19,7 @@ export type ScoutBanner = {
         single: ScoutPullOption;
         multi: ScoutPullOption;
     };
-    pickupIds: string[];
+    pickups: readonly ScoutPickup[];
+    featuredCharacterId: string;
     rates: ScoutRates;
 }
