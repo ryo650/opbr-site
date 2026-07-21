@@ -238,7 +238,7 @@ export const redCharacters: Record<string, Character> = {
         id: "cp0-rob-lucci",
         name: "Cp0-Rob-Lucci",
         image: "/characters/red/cp0-rob-lucci.webp",
-        grade: "star-4",
+        grade: "bf",
         element: "red",
         role: "attacker"
     },
