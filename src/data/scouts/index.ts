@@ -1,5 +1,7 @@
-import { sampleExScout } from "./sampleExScout";
+import { exWhitebeardRivival } from "./exWhitebeardRivival";
+import { OPDayExBountyFestival } from "./OPDayExBountyFestival"
 
 export const scouts = [
-    sampleExScout,
+    exWhitebeardRivival,
+    OPDayExBountyFestival,
 ]

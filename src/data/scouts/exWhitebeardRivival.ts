@@ -27,9 +27,9 @@ const totalPickupRate = pickups.reduce(
     0
 );
 
-export const sampleExScout: ScoutBanner = {
-    id: "sample-ex-scout",
-    name: "Sample EX Scout",
+export const exWhitebeardRivival: ScoutBanner = {
+    id: "ex-whitebeard-rivival",
+    name: "EX Whitebeard Rivival",
     bannerImg: "/scouts/ex/7-5-year-anniversary-great-pirate-edward-newgate.webp",
     startAt: "2026-07-13T14:00:00+09:00",
     endAt: "2026-07-27T13:59:59+09:00",
