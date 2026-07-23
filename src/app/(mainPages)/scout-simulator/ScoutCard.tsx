@@ -35,7 +35,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
     <article className={styles.scoutCard}>
       <div className={styles.banner}>
         <Image
-          src={`${scout.bannerImg}.webp`}
+          src={`${scout.bannerImg}`}
           alt={`${scout.name} banner`}
           fill
           sizes="(max-width: 699px) 100vw, 360px"

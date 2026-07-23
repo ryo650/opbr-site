@@ -191,7 +191,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
         <section className={styles.scoutPanel} aria-labelledby="banner-title">
           <div className={styles.banner}>
             <Image
-              src={`${scout.bannerImg}.webp`}
+              src={`${scout.bannerImg}`}
               alt={`${scout.name} banner`}
               fill
               priority
