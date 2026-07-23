@@ -27,7 +27,7 @@ export default function ScoutSimulatorPage() {
 
         <section className={styles.section} aria-labelledby="current-scouts-title">
           <div className={styles.sectionHeading}>
-            <h2 id="current-scouts-title">開催中のガチャ</h2>
+            <h2 id="current-scouts-title">Current Scouts</h2>
             <span>{currentScouts.length}</span>
           </div>
           <div className={styles.scoutList}>
@@ -45,7 +45,7 @@ export default function ScoutSimulatorPage() {
         {pastScouts.length > 0 && (
           <section className={styles.section} aria-labelledby="past-scouts-title">
             <div className={styles.sectionHeading}>
-              <h2 id="past-scouts-title">過去のガチャ</h2>
+              <h2 id="past-scouts-title">Past Scouts</h2>
               <span>{pastScouts.length}</span>
             </div>
             <div className={styles.scoutList}>

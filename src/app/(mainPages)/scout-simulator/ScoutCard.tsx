@@ -60,12 +60,12 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
 
         <dl className={styles.scoutFacts}>
           <div>
-            <dt>開催期間</dt>
+            <dt>Scout Period</dt>
             <dd>{formatDateRange(scout.startAt, scout.endAt)}</dd>
           </div>
           {showMetaMeter && (
             <div>
-              <dt>Pickup内の環境キャラ</dt>
+              <dt>Meta Pickups</dt>
               <dd className={styles.metaMeter}>
                 <span aria-hidden="true"><i style={{ width: `${(metaCharacterCount / Math.max(pickupCharacters.length, 1)) * 100}%` }} /></span>
                 {metaCharacterCount} / {pickupCharacters.length}
@@ -75,7 +75,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
         </dl>
 
         <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`}>
-          シミュレーターへ
+          Open Simulator
           <span aria-hidden="true">→</span>
         </Link>
       </div>
