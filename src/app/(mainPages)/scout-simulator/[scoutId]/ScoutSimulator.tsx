@@ -7,7 +7,7 @@ import { sampleExScout } from "@/data/scouts/sampleExScout";
 import { rollScout } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
 import type { ScoutPullOption } from "@/data/scouts/type";
-import styles from "./page.module.css";
+import styles from "../page.module.css";
 
 const MAX_PULL_UNTIL = 1_000;
 const RECENT_RESULTS_LIMIT = 11;
