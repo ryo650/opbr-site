@@ -30,6 +30,9 @@ const totalPickupRate = pickups.reduce(
 export const sampleExScout: ScoutBanner = {
     id: "sample-ex-scout",
     name: "Sample EX Scout",
+    bannerImg: "/scouts/ex/7-5-year-anniversary-graet-pirate-edward-newgate",
+    startAt: "2026-07-13T14:00:00+09:00",
+    endAt: "2026-07-27T13:59:59+09:00",
     pullOptions: {
         single: { pullCount: 1, diamondCost: 5 },
         multi: { pullCount: 11, diamondCost: 50 },

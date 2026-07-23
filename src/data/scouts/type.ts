@@ -12,9 +12,15 @@ export type ScoutPickup = {
     rate: number
 }
 
+{/* あとガチャのおすすめ度も追加するかも
+    ゲーム内のガチャ抽選確率を参照してることも明記 */}
+
 export type ScoutBanner = {
     id: string;
     name: string;
+    bannerImg: string;
+    startAt: string;
+    endAt: string;
     pullOptions: {
         single: ScoutPullOption;
         multi: ScoutPullOption;

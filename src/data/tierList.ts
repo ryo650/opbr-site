@@ -17,7 +17,7 @@ export const tierList = [
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king","seraphim-s-snake","great-pirate-edward-newgate"]
+        characterIds: ["animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law","seraphim-s-snake","great-pirate-edward-newgate"]
     },
     {
         tier: "B",
@@ -27,11 +27,11 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["legendary-gladiator-kyros","ama-no-murakumo-sword-kizaru","father-and-daughter-kuma-bonny","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","battle-of-monsters-on-onigashima-kaido","legendary-hero-monkey-d-garp"]
+        characterIds: ["the-five-elders-st-jaygarcia-saturn","ama-no-murakumo-sword-kizaru","legendary-gladiator-kyros","father-and-daughter-kuma-bonny","egghead-tony-tony-chopper","battle-of-monsters-on-onigashima-kaido","the-four-emperors-shanks","egghead-sanji","germa-66-vinsmoke-niji"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["heir-to-the-shogun-of-wano-kozuki-oden","gear-five-monkey-d-luffy","king-of-the-pirates-gol-d-roger","navy-hq-fleet-admiral-akainu","cp9-bulueno","awakened-form-rob-lucci","germa-66-vinsmoke-niji"]
+        characterIds: ["legendary-hero-monkey-d-garp","king-of-the-pirates-gol-d-roger","navy-hq-fleet-admiral-akainu","gear-five-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","egghead-roronoa-zoro","awakened-form-rob-lucci","germa-66-vinsmoke-reiju","cp9-blueno"]
     }
 ]
