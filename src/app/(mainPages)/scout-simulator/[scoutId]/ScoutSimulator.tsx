@@ -3,11 +3,10 @@
 import { useState } from "react";
 import Image from "next/image";
 import { characters } from "@/data/characters";
-import { sampleExScout } from "@/data/scouts/sampleExScout";
 import { rollScout } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
-import type { ScoutPullOption } from "@/data/scouts/type";
-import styles from "../page.module.css";
+import type { ScoutBanner, ScoutPullOption } from "@/data/scouts/type";
+import styles from "./ScoutSimulator.module.css";
 
 const MAX_PULL_UNTIL = 1_000;
 const RECENT_RESULTS_LIMIT = 11;
@@ -50,11 +49,12 @@ function createEmptyStats(): SessionStats {
 function getStatsForPull(
   character: Character,
   diamondCost: number,
+  scout: ScoutBanner,
 ): SessionStats {
   return {
     totalPulls: 1,
     diamondsSpent: diamondCost,
-    pickupPulls: Number(isPickupCharacter(character.id)),
+    pickupPulls: Number(isPickupCharacter(scout, character.id)),
     exPulls: Number(character.grade === "ex"),
     bfPulls: Number(character.grade === "bf"),
     star4Pulls: Number(character.grade === "star-4"),
@@ -93,13 +93,13 @@ const gradeLabels: Record<Character["grade"], string> = {
   unknown: "?",
 };
 
-function isPickupCharacter(characterId: string): boolean {
-  return sampleExScout.pickups.some(
+function isPickupCharacter(scout: ScoutBanner, characterId: string): boolean {
+  return scout.pickups.some(
     (pickup) => pickup.characterId === characterId,
   );
 }
 
-export default function ScoutSimulatorpage() {
+export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
   const [results, setResults] = useState<Character[]>([]);
 
   const [stats, setStats] = useState<SessionStats>(createEmptyStats);
@@ -111,10 +111,10 @@ export default function ScoutSimulatorpage() {
     const pullResults: Character[] = [];
 
     for (let index = 0; index < pullOption.pullCount; index += 1) {
-      const character = rollScout(sampleExScout, characters);
+      const character = rollScout(scout, characters);
 
       if (character) {
-        pullStats = addStats(pullStats, getStatsForPull(character, 0));
+        pullStats = addStats(pullStats, getStatsForPull(character, 0, scout));
         addRecentResult(pullResults, character);
       }
     }
@@ -134,16 +134,16 @@ export default function ScoutSimulatorpage() {
     const pullResults: Character[] = [];
 
     for (let index = 0; index < MAX_PULL_UNTIL; index += 1) {
-      const character = rollScout(sampleExScout, characters);
+      const character = rollScout(scout, characters);
 
       if (character) {
         pullStats = addStats(
           pullStats,
-          getStatsForPull(character, sampleExScout.pullOptions.single.diamondCost),
+          getStatsForPull(character, scout.pullOptions.single.diamondCost, scout),
         );
         addRecentResult(pullResults, character);
 
-        if (character.id === sampleExScout.featuredCharacterId) {
+        if (character.id === scout.featuredCharacterId) {
           setResults(pullResults);
           setStats(pullStats);
           setPullUntilMessage(`Stopped after ${index + 1} pulls: Pickup obtained.`);
@@ -191,8 +191,8 @@ export default function ScoutSimulatorpage() {
         <section className={styles.scoutPanel} aria-labelledby="banner-title">
           <div className={styles.banner}>
             <Image
-              src="/scouts/ex/IMG_1871.jpg"
-              alt="Sample EX Scout banner"
+              src={`${scout.bannerImg}.webp`}
+              alt={`${scout.name} banner`}
               fill
               priority
               sizes="(max-width: 480px) 100vw, 390px"
@@ -201,18 +201,18 @@ export default function ScoutSimulatorpage() {
             <div className={styles.bannerShade} />
             <div className={styles.bannerCopy}>
               <p>LIMITED SCOUT</p>
-              <h2 id="banner-title">{sampleExScout.name}</h2>
+              <h2 id="banner-title">{scout.name}</h2>
             </div>
           </div>
 
           <div className={styles.pullActions}>
-            <button className={styles.singlePull} onClick={() => handleScout(sampleExScout.pullOptions.single)}>
+            <button className={styles.singlePull} onClick={() => handleScout(scout.pullOptions.single)}>
               <span>1 Pull</span>
-              <DiamondCost amount={sampleExScout.pullOptions.single.diamondCost} />
+              <DiamondCost amount={scout.pullOptions.single.diamondCost} />
             </button>
-            <button className={styles.multiPull} onClick={() => handleScout(sampleExScout.pullOptions.multi)}>
+            <button className={styles.multiPull} onClick={() => handleScout(scout.pullOptions.multi)}>
               <span>11 Pulls</span>
-              <DiamondCost amount={sampleExScout.pullOptions.multi.diamondCost} />
+              <DiamondCost amount={scout.pullOptions.multi.diamondCost} />
             </button>
           </div>
         </section>
