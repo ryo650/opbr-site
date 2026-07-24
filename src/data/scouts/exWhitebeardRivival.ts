@@ -44,6 +44,6 @@ export const exWhitebeardRivival: ScoutBanner = {
         bf: 1.49,
         "star-4": 3.81,
         "star-3": 28,
-        "star-2": 65
+        "star-2": 58
     }
 }
