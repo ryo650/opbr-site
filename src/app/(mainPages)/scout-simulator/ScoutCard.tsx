@@ -51,7 +51,16 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
           <div className={styles.pickupCharacters}>
             {pickupCharacters.map((character) => (
               <div className={styles.pickupCharacter} key={character.id}>
-                <Image src={character.image} alt={character.name} width={64} height={64} />
+                <div
+                  className={`${styles.characterFrame} ${styles[`grade-${character.grade}`]}`}
+                >
+                  <Image src={character.image} alt={character.name} width={64} height={64} />
+                  {character.grade === "ex" && (
+                    <span className={styles.exBadge} aria-label="Extreme character">
+                      EX
+                    </span>
+                  )}
+                </div>
                 <span>{character.name}</span>
               </div>
             ))}
