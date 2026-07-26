@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CharacterFrame from "@/components/character-frame/CharacterFrame";
 import type { Character } from "@/data/characters/type";
 import type { ScoutBanner } from "@/data/scouts/type";
 import styles from "./page.module.css";
@@ -51,8 +52,8 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
           <div className={styles.pickupCharacters}>
             {pickupCharacters.map((character) => (
               <div className={styles.pickupCharacter} key={character.id}>
-                <Image src={character.image} alt={character.name} width={64} height={64} />
-                <span>{character.name}</span>
+                <CharacterFrame character={character} size="compact" />
+                <span className={styles.pickupName}>{character.name}</span>
               </div>
             ))}
           </div>
