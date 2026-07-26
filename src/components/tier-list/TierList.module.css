@@ -5,7 +5,8 @@
 }
 
 .tier {
-  display: flex;
+  display: grid;
+  grid-template-columns: 92px minmax(0, 1fr);
   min-width: 0;
   overflow: hidden;
   border: 1px solid rgb(255 255 255 / 10%);
@@ -15,9 +16,7 @@
 }
 
 .tierLabel {
-  width: 92px;
   min-height: 116px;
-  flex-shrink: 0;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -90,14 +89,12 @@
   }
 
   .tier {
+    grid-template-columns: 42px minmax(0, 1fr);
     border-radius: 12px;
   }
 
   .tierLabel {
-    width: 42px;
     min-height: 64px;
-    align-self: flex-start;
-    align-items: flex-start;
     padding: 6px 2px;
     font-size: 0.875rem;
   }
@@ -114,12 +111,35 @@
     height: 48px;
     flex: 0 0 48px;
     border-radius: 8px;
+    animation: mobileRankHighlight 420ms ease-out both;
+    animation-iteration-count: 1;
+    animation-delay: calc(
+      120ms + (var(--tier-index) * 70ms) + (var(--character-index) * 45ms)
+    );
   }
 
   .characterImage {
     width: 44px;
     height: 44px;
     border-radius: 6px;
+  }
+}
+
+@keyframes mobileRankHighlight {
+  0%, 100% {
+    filter: brightness(1);
+    transform: translateY(0) scale(1);
+  }
+
+  55% {
+    filter: brightness(1.12);
+    transform: translateY(-2px) scale(1.04);
+  }
+}
+
+@media (max-width: 640px) and (prefers-reduced-motion: reduce) {
+  .characterCard {
+    animation: none;
   }
 }
 

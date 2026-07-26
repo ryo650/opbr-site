@@ -158,6 +158,11 @@ a {
   min-height: 100vh;
 }
 
+/* Shared dark page wash used by guide and simulator listing pages. */
+.upper-page-background {
+  background: radial-gradient(circle at 50% -8%, #41454a 0, #202124 42%, #17181a 100%);
+}
+
 /* 普通の横幅コンテナ */
 .container {
   width: 100%;
