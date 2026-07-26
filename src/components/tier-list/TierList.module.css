@@ -96,17 +96,17 @@
   .tierLabel {
     width: 42px;
     min-height: 64px;
+    align-self: flex-start;
+    align-items: flex-start;
     padding: 6px 2px;
     font-size: 0.875rem;
   }
 
   .tierContent {
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
     gap: 5px;
     padding: 7px;
-    overflow-x: auto;
-    overscroll-behavior-inline: contain;
-    scrollbar-width: thin;
+    overflow-x: visible;
   }
 
   .characterCard {
