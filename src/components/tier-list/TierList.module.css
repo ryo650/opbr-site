@@ -94,37 +94,38 @@
   }
 
   .tierLabel {
-    width: 58px;
-    min-height: 92px;
-    padding: 8px 4px;
-    font-size: 1rem;
+    width: 42px;
+    min-height: 64px;
+    padding: 6px 2px;
+    font-size: 0.875rem;
   }
 
   .tierContent {
-    gap: 8px;
-    padding: 10px;
+    flex-wrap: nowrap;
+    gap: 5px;
+    padding: 7px;
+    overflow-x: auto;
+    overscroll-behavior-inline: contain;
+    scrollbar-width: thin;
   }
 
   .characterCard {
-    width: 68px;
-    height: 68px;
-    border-radius: 9px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
+    border-radius: 8px;
   }
 
   .characterImage {
-    width: 64px;
-    height: 64px;
-    border-radius: 7px;
+    width: 44px;
+    height: 44px;
+    border-radius: 6px;
   }
 }
 
 @media (max-width: 380px) {
-  .tierLabel {
-    width: 52px;
-  }
-
   .tierContent {
-    gap: 6px;
-    padding: 8px;
+    gap: 4px;
+    padding-inline: 6px;
   }
 }
