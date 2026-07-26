@@ -12,7 +12,7 @@ export default function ScoutSimulatorPage() {
   const pastScouts = scouts.filter((scout) => !isCurrentScout(scout.endAt));
 
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} upper-page-background`}>
       <div className={styles.content}>
         <header className={styles.intro}>
           <p className={styles.eyebrow}>
