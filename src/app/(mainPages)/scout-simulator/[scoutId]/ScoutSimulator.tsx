@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import CharacterFrame from "@/components/character-frame/CharacterFrame";
 import { characters } from "@/data/characters";
 import { rollScout } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
@@ -79,19 +80,6 @@ function addRecentResult(results: Character[], character: Character): void {
     results.shift();
   }
 }
-
-const gradeLabels: Record<Character["grade"], string> = {
-  ex: "EX",
-  bf: "BF",
-  sp: "SP",
-  "star-4": "4★",
-  "star-3": "3★",
-  "star-2": "2★",
-  free: "FREE",
-  exchange: "EXCH",
-  cola: "COLA",
-  unknown: "?",
-};
 
 function isPickupCharacter(scout: ScoutBanner, characterId: string): boolean {
   return scout.pickups.some(
@@ -225,13 +213,10 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
           {results.length > 0 ? (
             <div className={styles.resultsGrid}>
               {results.map((character, index) => (
-                <div
-                  className={`${styles.resultCard} ${styles[`grade${character.grade.replace("-", "")}`]}`}
+                <CharacterFrame
+                  character={character}
                   key={`${character.id}-${index}`}
-                >
-                  <span className={styles.rarityLabel}>{gradeLabels[character.grade]}</span>
-                  <Image src={character.image} alt={character.name} width={112} height={112} sizes="72px" />
-                </div>
+                />
               ))}
             </div>
           ) : (

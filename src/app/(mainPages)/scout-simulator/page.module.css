@@ -21,13 +21,7 @@
 .pickupCharacters { display: flex; width: 100%; min-width: 0; gap: 10px; overflow-x: auto; padding: 2px 16px 4px 2px; scrollbar-width: none; scroll-snap-type: x proximity; overscroll-behavior-inline: contain; -webkit-overflow-scrolling: touch; }
 .pickupCharacters::-webkit-scrollbar { display: none; }
 .pickupCharacter { width: 64px; min-width: 64px; flex: 0 0 64px; scroll-snap-align: start; }
-.characterFrame { position: relative; width: 64px; height: 64px; padding: 2px; overflow: hidden; border: 1px solid #9c7b2d; border-radius: 9px; background: linear-gradient(145deg, #f3d36a, #8f681b); }
-.characterFrame img { display: block; width: 58px; height: 58px; border-radius: 6px; object-fit: cover; }
-.grade-ex { border-color: #ffe9a3; background: linear-gradient(135deg, #fff1a6 0%, #d99a22 42%, #fff0a0 70%, #9b6110 100%); box-shadow: 0 0 8px rgba(255,204,62,.42); }
-.grade-star-4, .grade-star-3, .grade-star-2, .grade-free, .grade-exchange, .grade-cola, .grade-sp, .grade-unknown { border-color: #858b94; background: linear-gradient(145deg, #c7cbd0, #626872); }
-.exBadge { position: absolute; top: 3px; right: 3px; min-width: 21px; padding: 2px 3px; border: 1px solid rgba(255,246,196,.9); border-radius: 4px; background: linear-gradient(135deg, #fff0a0, #c9840c); color: #392300; font-size: 8px; font-weight: 950; line-height: 1; letter-spacing: .06em; text-align: center; box-shadow: 0 1px 4px rgba(0,0,0,.55); }
-.pickupCharacter span { display: block; margin-top: 4px; overflow: hidden; color: #d4d8de; font-size: 9px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
-.pickupCharacter .exBadge { margin-top: 0; overflow: visible; color: #392300; font-size: 8px; line-height: 1; white-space: nowrap; }
+.pickupName { display: block; margin-top: 4px; overflow: hidden; color: #d4d8de; font-size: 9px; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
 .scoutFacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin: 0; }
 .scoutFacts div { padding: 10px; border-radius: 8px; background: #25282c; }
 .scoutFacts dt { color: #aab1bc; font-size: 10px; }
