@@ -64,7 +64,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
             <dt>Scout Period</dt>
             <dd>{formatDateRange(scout.startAt, scout.endAt)}</dd>
           </div>
-          {showMetaMeter && (
+          {/*{showMetaMeter && (
             <div>
               <dt>Meta Pickups</dt>
               <dd className={styles.metaMeter}>
@@ -72,7 +72,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
                 {metaCharacterCount} / {pickupCharacters.length}
               </dd>
             </div>
-          )}
+          )}*/}
         </dl>
 
         <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`}>
