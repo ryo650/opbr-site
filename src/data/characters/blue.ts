@@ -1,7 +1,15 @@
 import { Character } from "./type";
 
 export const blueCharacters: Record<string, Character> = {
-    "seraphim-s-snake":{
+    "the-five-elders-st-mars": {
+        id: "the-five-elders-st-mars",
+        name: "The-Five-Elders-St-Mars",
+        image: "/characters/blue/the-five-elders-st-mars.webp",
+        grade: "ex",
+        element: "blue",
+        role: "runner"
+    },
+    "seraphim-s-snake": {
         id: "seraphim-s-snake",
         name: "Seraphim-S-Snake",
         image: "/characters/blue/seraphim-s-snake.webp",
@@ -9,7 +17,7 @@ export const blueCharacters: Record<string, Character> = {
         element: "blue",
         role: "defender"
     },
-    "the-wings-zoro-sanji":{
+    "the-wings-zoro-sanji": {
         id: "the-wings-zoro-sanji",
         name: "The-Wings-Zoro-Sangi",
         image: "/characters/blue/the-wings-zoro-sanji.webp",
@@ -17,25 +25,25 @@ export const blueCharacters: Record<string, Character> = {
         element: "blue",
         role: "attacker"
     },
-    "cp9-blueno":{
+    "cp9-blueno": {
         id: "cp9-blueno",
-        name:"CP9-Blueno",
+        name: "CP9-Blueno",
         image: "/characters/blue/cp9-blueno.webp",
         grade: "bf",
         element: "blue",
         role: "runner"
     },
-    "germa-66-vinsmoke-niji":{
+    "germa-66-vinsmoke-niji": {
         id: "germa-66-vinsmoke-niji",
-        name:"Germa-66-Vinsmoke-Niji",
+        name: "Germa-66-Vinsmoke-Niji",
         image: "/characters/blue/germa-66-vinsmoke-niji.webp",
         grade: "bf",
         element: "blue",
         role: "runner"
     },
-    "awakened-form-rob-lucci":{
+    "awakened-form-rob-lucci": {
         id: "awakened-form-rob-lucci",
-        name:"Awakened-Form-Rob-Lucci",
+        name: "Awakened-Form-Rob-Lucci",
         image: "/characters/blue/awakened-form-rob-lucci.webp",
         grade: "ex",
         element: "blue",
