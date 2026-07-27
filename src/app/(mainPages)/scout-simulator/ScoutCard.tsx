@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import CharacterFrame from "@/components/character-frame/CharacterFrame";
 import type { Character } from "@/data/characters/type";
 import type { ScoutBanner } from "@/data/scouts/type";
 import styles from "./page.module.css";
@@ -51,8 +52,8 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
           <div className={styles.pickupCharacters}>
             {pickupCharacters.map((character) => (
               <div className={styles.pickupCharacter} key={character.id}>
-                <Image src={character.image} alt={character.name} width={64} height={64} />
-                <span>{character.name}</span>
+                <CharacterFrame character={character} size="compact" />
+                <span className={styles.pickupName}>{character.name}</span>
               </div>
             ))}
           </div>
@@ -63,7 +64,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
             <dt>Scout Period</dt>
             <dd>{formatDateRange(scout.startAt, scout.endAt)}</dd>
           </div>
-          {showMetaMeter && (
+          {/*{showMetaMeter && (
             <div>
               <dt>Meta Pickups</dt>
               <dd className={styles.metaMeter}>
@@ -71,7 +72,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
                 {metaCharacterCount} / {pickupCharacters.length}
               </dd>
             </div>
-          )}
+          )}*/}
         </dl>
 
         <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`}>

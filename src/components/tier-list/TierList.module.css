@@ -89,7 +89,7 @@
   }
 
   .tier {
-    grid-template-columns: 40px minmax(0, 1fr);
+    grid-template-columns: 42px minmax(0, 1fr);
     border-radius: 12px;
   }
 
@@ -101,15 +101,15 @@
 
   .tierContent {
     flex-wrap: wrap;
-    gap: 4px;
-    padding: 5px;
+    gap: 5px;
+    padding: 7px;
     overflow-x: visible;
   }
 
   .characterCard {
-    width: 52px;
-    height: 52px;
-    flex: 0 0 52px;
+    width: 48px;
+    height: 48px;
+    flex: 0 0 48px;
     border-radius: 8px;
     animation: mobileRankHighlight 420ms ease-out both;
     animation-iteration-count: 1;
@@ -119,8 +119,8 @@
   }
 
   .characterImage {
-    width: 48px;
-    height: 48px;
+    width: 44px;
+    height: 44px;
     border-radius: 6px;
   }
 }
@@ -145,7 +145,7 @@
 
 @media (max-width: 380px) {
   .tierContent {
-    gap: 3px;
-    padding-inline: 4px;
+    gap: 4px;
+    padding-inline: 6px;
   }
 }
