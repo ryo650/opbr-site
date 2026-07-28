@@ -1,10 +1,10 @@
 import { Character } from "./type";
 
 export const blueCharacters: Record<string, Character> = {
-    "the-five-elders-st-mars": {
-        id: "the-five-elders-st-mars",
-        name: "The-Five-Elders-St-Mars",
-        image: "/characters/blue/the-five-elders-st-mars.webp",
+    "the-five-elders-st-marcus-mars": {
+        id: "the-five-elders-st-marcus-mars",
+        name: "The-Five-Elders-St-Marcus-Mars",
+        image: "/characters/blue/the-five-elders-st-marcus-mars.webp",
         grade: "ex",
         element: "blue",
         role: "runner"
