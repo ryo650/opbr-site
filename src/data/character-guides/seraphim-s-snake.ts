@@ -1,4 +1,3 @@
-import { Stick_No_Bills } from "next/font/google";
 import type { CharacterGuide } from "./type";
 
 export const sSnakeGuide: CharacterGuide = {
@@ -122,5 +121,5 @@ export const sSnakeGuide: CharacterGuide = {
             reason: "King can also gain three-hit invincibility, but S-Snake can usually remove it with her normal attacks before finishing him with the multi-hit Skill 1. If King retreats with his mobility skill, S-Snake can pressure him with Love-Love Mellow or quickly chase him using her long-hold normal attack.",
             advantage: 1
         }
-    ]
+    ],
 }
