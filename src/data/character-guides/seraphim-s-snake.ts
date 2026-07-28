@@ -28,7 +28,7 @@ export const sSnakeGuide: CharacterGuide = {
         }
     ],
 
-    weakness: [
+    weaknesses: [
         {
             title: "Predictable Repositioning",
             description: "S-Snake's long-hold normal attack gives her exceptional mobility, but it also creates a predictable landing point. Experienced opponents can time their skills or normal attacks to catch her immediately after she arrives, making careless rotations a significant risk. Only reposition when you are confident the destination is safe or the reward outweighs the risk."
@@ -43,10 +43,10 @@ export const sSnakeGuide: CharacterGuide = {
         }
     ],
 
-    normalattacks: [
+    normalAttacks: [
         {
-            normalattack: "folding",
-            video: "character-guides/seraphim-s-snake/normal-attack.mp4"
+            label: "folding",
+            video: "/character-guides/seraphim-s-snake/normal-attack.mp4"
         }
     ],
 
@@ -55,8 +55,8 @@ export const sSnakeGuide: CharacterGuide = {
             name: "Don't Touch Me, You Oaf!",
             description: "S-Snake's primary close-range skill that is difficult to react to at close range. Its short cooldown can be reduced even further through her traits, allowing her to use it frequently throughout the match. Use it aggressively to pressure enemies instead of saving it for the perfect moment.",
             cooldown: 24,
-            video: "character-guides/seraphim-s-snake/skill-1.mp4",
-            quicktips: [
+            video: "/character-guides/seraphim-s-snake/skill-1.mp4",
+            quickTips: [
                 "Difficult to dodge at close range",
                 "Short cooldown",
                 "Can be used aggressively",
@@ -67,8 +67,8 @@ export const sSnakeGuide: CharacterGuide = {
             name: "Love-Love Mellow",
             description: "Love-Love Mellow is most effective after your opponent has used their dodge, as experienced players can often react to it on sight. Its long range makes it excellent for supporting nearby teammates, while its increased damage against Runners makes it a powerful defensive tool.",
             cooldown: 31,
-            video: "character-guides/seraphim-s-snake/skill-2.mp4",
-            quicktips: [
+            video: "/character-guides/seraphim-s-snake/skill-2.mp4",
+            quickTips: [
                 "Wait for the enemy's dodge",
                 "Long-range support",
                 "Deals double damage to Runners",
@@ -77,7 +77,7 @@ export const sSnakeGuide: CharacterGuide = {
         }
     ],
 
-    howtoplay: [
+    howToPlay: [
         {
             title: "Prioritize Treasure Defense",
             description: "Your primary role is to protect your team's treasure areas. After your teammates capture a flag, rotate over whenever possible and build up the treasure gauge before enemies arrive."
@@ -110,7 +110,7 @@ export const sSnakeGuide: CharacterGuide = {
         }
     ],
 
-    strongagainst: [
+    strongAgainst: [
         {
             characterId: "great-pirate-gol-d-roger",
             reason: "S-Snake is one of the strongest Defenders against Dark Roger V2. Her knockback attacks and high damage make it extremely difficult for him to capture treasure while she can often KO him during his attempts. Be careful of Divine Departure, however, as its 50% HP damage can be lethal when S-Snake is below half health. If possible, use your three-hit invincibility to absorb the attack safely.",
