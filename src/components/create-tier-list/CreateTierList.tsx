@@ -28,8 +28,8 @@ function CharacterCard({ character, onDragStart, onTouchStart, onTouchMove, onTo
     onPointerDown={(event) => onTouchStart(event, character.id)} onPointerMove={onTouchMove} onPointerUp={onTouchEnd} onPointerCancel={onTouchEnd}
     aria-label={`Move ${character.name}`} title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
     <Image src={character.image} alt={character.name} width={72} height={72} draggable={false} className={styles.characterImage} />
-    <span className={styles.characterName}>{character.name}</span>
-    <span className={styles.element}>{character.element}</span>
+    {/*<span className={styles.characterName}>{character.name}</span>
+    <span className={styles.element}>{character.element}</span> */}
   </div>;
 }
 

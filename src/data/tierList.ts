@@ -7,31 +7,31 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["the-wings-zoro-sanji","the-five-elders-st-ethanbaron-v-nusjuro","the-four-emperors-monkey-d-luffy"]
+        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-marcus-mars","the-wings-zoro-sanji"]
     },
     {
         tier: "S",
         colorClass: "S",
-        characterIds: ["flame-emperor-sabo"]
+        characterIds: ["seraphim-s-snake","flame-emperor-sabo"]
     },
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law","seraphim-s-snake","great-pirate-edward-newgate"]
+        characterIds: ["blackbeard-pirates-kuzan","the-five-elders-st-ethanbaron-v-nusjuro","father-and-daughter-kuma-bonny","winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king","unexpected-collaboration-rob-lucci"]
     },
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["the-fouremperors-marshall-d-teach","blackbeard-pirates-kuzan","unexpected-collaboration-rob-lucci","great-pirate-gol-d-roger","film-z-zephyr","asl-ace-sabo-luffy"]
+        characterIds: ["the-fouremperors-marshall-d-teach","ama-no-murakumo-sword-kizaru","evil-black-drum-kingdom-king-wapol","germa-66-vinsmoke-yonji","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","great-pirate-gol-d-roger","film-z-zephyr","great-pirate-edward-newgate","asl-ace-sabo-luffy"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["the-five-elders-st-jaygarcia-saturn","ama-no-murakumo-sword-kizaru","legendary-gladiator-kyros","father-and-daughter-kuma-bonny","egghead-tony-tony-chopper","battle-of-monsters-on-onigashima-kaido","the-four-emperors-shanks","egghead-sanji","germa-66-vinsmoke-niji"]
+        characterIds: ["vegapunk-s-spy-stussy","germa-66-vinsmoke-niji","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["legendary-hero-monkey-d-garp","king-of-the-pirates-gol-d-roger","navy-hq-fleet-admiral-akainu","gear-five-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","egghead-roronoa-zoro","awakened-form-rob-lucci","germa-66-vinsmoke-reiju","cp9-blueno"]
+        characterIds: ["egghead-sanji","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","battle-of-monsters-on-onigashima-kaido","gear-five-monkey-d-luffy","the-four-emperors-shanks","egghead-roronoa-zoro"]
     }
 ]
