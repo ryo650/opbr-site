@@ -209,10 +209,10 @@ export const greenCharacters: Record<string, Character> ={
         element: "green",
         role: "attacker"
     },
-    "superhuman-chalotte-katakuri":{
-        id: "superhuman-chalotte-katakuri",
-        name:"Superhuman-Chalotte-Katakuri",
-        image: "/characters/green/superhuman-chalotte-katakuri.webp",
+    "superhuman-charlotte-katakuri":{
+        id: "superhuman-charlotte-katakuri",
+        name:"Superhuman-Charlotte-Katakuri",
+        image: "/characters/green/superhuman-charlotte-katakuri.webp",
         grade: "bf",
         element: "green",
         role: "defender"
