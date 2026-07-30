@@ -1,30 +1,31 @@
 import type { CharacterGuide } from "./type";
 
-export const sSnakeGuide: CharacterGuide = {
-    characterId: "seraphim-s-snake",
+export const stMarcusMarsGuide: CharacterGuide = {
+    characterId: "the-five-elders-st-marcus-mars",
 
     overview: {
-        hp: 9662,
-        attack: 2042,
-        defense: 2447
+        hp: 10095,
+        attack: 1981,
+        defense: 2418
+    },
+
+    notice: {
+        title: "Pre-Release Information",
+        description: "This guide is based on information available before St.Marcus Mars becomes playable. Some details, including stats, traits, skill behavior, and matchups, may change or require further testing after release."
     },
 
     strengths: [
         {
-            title: "Exceptional Map Control",
-            description: "S-Snake has one of the best repositioning tools among Defenders. By holding her normal attack, she can instantly travel to the farthest allied treasure area, allowing her to stop back-caps, reinforce teammates, or temporarily disengage from unfavorable fights. Her ability to quickly rotate across the map gives her exceptional control over the pace of the match."
+            title: "High Survivability",
+            description: "Mars is one of the tankiest characters in the game. His DEF increases by up to 70% while attacking enemies, and his Boost Trait allows him to fully recover and revive after receiving a fatal attack by consuming the Power Gauge. He also becomes immune to status effects after reviving."
         },
         {
-            title: "Dominant Treasure Defense",
-            description: "S-Snake excels at protecting treasure areas. Her third normal attack and both of her skills can knock enemies away from the treasure, making it difficult for Runners to capture flags. Since her skills deal increased damage to Runners, she can often secure a KO while defending. She can also remove enemy Defense increases after landing an attack, making defensive Runners such as St. Marcus Mars much easier to deal with."
+            title: "Strong Against Meta Characters",
+            description: "Mars has traits specifically designed to counter top meta characters. He takes 50% less damage from characters such as Zoro & Sanji and Nusjuro while also reducing their ATK, making it difficult for them to defeat him."
         },
         {
-            title: "Reliable Survivability",
-            description: "Landing Skill 1 grants S-Snake a three-hit invincibility effect, allowing her to completely ignore up to three incoming attacks. This lets her save her dodge for critical moments and survive powerful burst skills from characters like Zoro & Sanji or G5V2(Luffy)."
-        },
-        {
-            title: "Shuts Down Buff-Dependent Characters",
-            description: "S-Snake can remove an enemy's Attack increase after being hit by one of their skills, preventing Attack-stacking characters from reaching their full potential. This makes her particularly effective against opponents who rely on Attack buffs throughout the match."
+            title: "Excellent Treasure Capture",
+            description: "Mars captures treasure in a unique way without directly touching the flag. This allows him to ignore obstacles such as Whitebeard's walls. He can also use his skill while capturing to push enemies away, making it much easier to finish capturing the treasure."
         }
     ],
 

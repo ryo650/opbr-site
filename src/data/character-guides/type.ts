@@ -35,6 +35,10 @@ export type CharacterGuide = {
     attack: number;
     defense: number;
   };
+  notice?: {
+    title: string;
+    description: string;
+  };
   strengths?: GuidePoint[];
   weaknesses?: GuidePoint[];
   normalAttacks?: CharacterAttack[];
