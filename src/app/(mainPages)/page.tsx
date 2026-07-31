@@ -1,94 +1,144 @@
-import LinkCard from "@/components/tables/LinkCard"
+import Image from "next/image"
+import Link from "next/link"
+import { ArrowRight, Sparkles } from "lucide-react"
 import styles from "./page.module.css"
-import { Link } from "lucide-react"
 
-const cards = [
+const featuredCards = [
   {
-    title: "OPBR Guide",
-    description:
-      "Your go-to resource for One Piece Bounty Rush guides, character rankings, and meta updates.",
-    href: "/",
-    image: "/home/guide.webp",
-    buttonText: "Explore Guides",
-    variant: "large" as const,
-  },
-  {
+    eyebrow: "Updated rankings",
     title: "OPBR Tier List",
     description:
-      "Check the best characters in One Piece Bounty Rush ranked by current meta strength.",
+      "See the strongest characters in the current meta and find the best picks for your team.",
     href: "/tier-list",
     image: "/home/tier-list-2.webp",
-    buttonText: "View Tier List",
-    variant: "normal" as const,
+    action: "View Tier List",
   },
+  {
+    eyebrow: "Try your luck",
+    title: "Scout Simulator",
+    description:
+      "Test current scout banners with in-game rates before you spend your diamonds.",
+    href: "/scout-simulator",
+    image: "/home/scout-simulator-2.webp",
+    action: "Open Simulator",
+  },
+]
+
+const exploreCards = [
   {
     title: "New Characters",
-    description:
-      "Stay updated with the latest characters added to One Piece Bounty Rush.",
+    description: "Latest character releases, traits, and updates.",
     href: "/new-characters",
     image: "/home/new-characters.webp",
-    buttonText: "View New Characters",
-    variant: "normal" as const,
   },
   {
-    title: "medal sets",
-    description:
-      "Explore the best medal sets for each character in One Piece Bounty Rush.",
+    title: "Medal Sets",
+    description: "Find practical medal combinations for your characters.",
     href: "/medal-sets",
     image: "/home/medal-sets.webp",
-    buttonText: "View Medal Sets",
-    variant: "normal" as const,
   },
   {
-    title: "begginer guide",
-    description:
-      "A simple and practical guide for beginners in One Piece Bounty Rush.",
+    title: "Beginner Guide",
+    description: "Learn the essentials and build a stronger account.",
     href: "/beginner-guide",
     image: "/home/beginner-guide2.webp",
-    buttonText: "View Beginner Guide",
-    variant: "normal" as const,
   },
   {
     title: "Create Tier List",
-    description:
-      "Create your own tier list for One Piece Bounty Rush characters and share it with others.",
+    description: "Build and share your own OPBR character ranking.",
     href: "/create-tier-list",
     image: "/home/create-tier-list.webp",
-    buttonText: "Create Tier List",
-    variant: "normal" as const,
   },
-  {
-    title: "Scout Simulator",
-    description:
-      "Simulate scout pulls in One Piece Bounty Rush and see what characters you can get.",
-    href: "/scout-simulator",
-    image: "/home/scout-simulator-2.webp",
-    buttonText: "Try Scout Simulator",
-    variant: "normal" as const,
-  }
 ]
 
 export default function TopPage() {
   return (
-    <main className={styles.page}>
+    <main className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
-      <section className={styles.hero}>
-        <h1>OPBR Guide</h1>
-        <p>
-          Simple and practical OPBR guides for characters rankings, meta updates,
-          and new characters.
-        </p>
-      </section>
+        <section className={styles.hero}>
+          <p className={styles.eyebrow}>One Piece Bounty Rush Guide</p>
+          <h1>
+            Build a stronger team.
+            <span>Play the meta with confidence.</span>
+          </h1>
+          <p className={styles.heroDescription}>
+            Current tier rankings, scout simulations, medal sets, and practical
+            guides—all in one place.
+          </p>
+          <div className={styles.heroActions}>
+            <Link href="/tier-list" className={styles.primaryAction}>
+              Explore Tier List <ArrowRight aria-hidden="true" />
+            </Link>
+            <Link href="/scout-simulator" className={styles.secondaryAction}>
+              <Sparkles aria-hidden="true" /> Try Scout Simulator
+            </Link>
+          </div>
+        </section>
 
-      <section className={styles.contents}>
-        <LinkCard {...cards[0]} />
+        <section className={styles.featured} aria-labelledby="featured-heading">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.sectionKicker}>Start here</p>
+              <h2 id="featured-heading">Essential OPBR tools</h2>
+            </div>
+            <p>Quick answers for the decisions that matter most.</p>
+          </div>
 
-        <div className={styles.cardGrid}>
-          {cards.slice(1).map((card) => (
-            <LinkCard key={card.title} {...card} />
-          ))}
-        </div>
-      </section>
+          <div className={styles.featuredGrid}>
+            {featuredCards.map((card) => (
+              <Link href={card.href} className={styles.featuredCard} key={card.title}>
+                <Image
+                  src={card.image}
+                  alt=""
+                  fill
+                  sizes="(max-width: 767px) 100vw, 50vw"
+                  className={styles.featuredImage}
+                />
+                <span className={styles.featuredOverlay} />
+                <span className={styles.featuredContent}>
+                  <span className={styles.cardEyebrow}>{card.eyebrow}</span>
+                  <strong>{card.title}</strong>
+                  <span className={styles.cardDescription}>{card.description}</span>
+                  <span className={styles.cardAction}>
+                    {card.action} <ArrowRight aria-hidden="true" />
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        <section className={styles.explore} aria-labelledby="explore-heading">
+          <div className={styles.sectionHeading}>
+            <div>
+              <p className={styles.sectionKicker}>Explore more</p>
+              <h2 id="explore-heading">Guides for every step</h2>
+            </div>
+          </div>
+
+          <div className={styles.exploreGrid}>
+            {exploreCards.map((card) => (
+              <Link href={card.href} className={styles.exploreCard} key={card.title}>
+                <span className={styles.thumbnail}>
+                  <Image
+                    src={card.image}
+                    alt=""
+                    fill
+                    sizes="(max-width: 767px) 116px, 240px"
+                    className={styles.exploreImage}
+                  />
+                </span>
+                <span className={styles.exploreContent}>
+                  <strong>{card.title}</strong>
+                  <span>{card.description}</span>
+                  <span className={styles.textLink}>
+                    Explore <ArrowRight aria-hidden="true" />
+                  </span>
+                </span>
+              </Link>
+            ))}
+          </div>
+        </section>
       </div>
     </main>
   )
