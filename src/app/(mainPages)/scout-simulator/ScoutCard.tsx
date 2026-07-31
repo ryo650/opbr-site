@@ -75,7 +75,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
           )}*/}
         </dl>
 
-        <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`}>
+        <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`} prefetch={false}>
           Open Simulator
           <span aria-hidden="true">→</span>
         </Link>

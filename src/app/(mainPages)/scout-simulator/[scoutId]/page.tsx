@@ -3,6 +3,14 @@ import { notFound } from "next/navigation";
 import { scouts } from "@/data/scouts";
 import ScoutSimulator from "./ScoutSimulator";
 
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return scouts.map((scout) => ({
+    scoutId: scout.id,
+  }));
+}
+
 export default async function ScoutSimulatorPage({
   params,
 }: {
