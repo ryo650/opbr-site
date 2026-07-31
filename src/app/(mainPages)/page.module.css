@@ -11,7 +11,7 @@
 
 .hero {
   max-width: 900px;
-  padding-bottom: 56px;
+  padding-bottom: 48px;
   border-bottom: 1px solid rgb(255 255 255 / 10%);
 }
 
@@ -35,69 +35,12 @@
   letter-spacing: -0.055em;
 }
 
-.hero h1 span {
-  display: block;
-  color: #aeb5bf;
-}
-
 .heroDescription {
-  max-width: 650px;
-  margin: 26px 0 0;
+  max-width: 680px;
+  margin: 24px 0 0;
   color: #cbd5e1;
   font-size: clamp(1rem, 1.8vw, 1.15rem);
   line-height: 1.7;
-}
-
-.heroActions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 30px;
-}
-
-.primaryAction,
-.secondaryAction {
-  display: inline-flex;
-  min-height: 48px;
-  align-items: center;
-  justify-content: center;
-  gap: 9px;
-  padding: 0 18px;
-  border-radius: 9px;
-  font-size: 0.9rem;
-  font-weight: 800;
-  transition: transform 180ms ease, filter 180ms ease, border-color 180ms ease;
-}
-
-.primaryAction {
-  border: 1px solid #e6b93e;
-  background: linear-gradient(#ffe27a, #e9ad32);
-  color: #19191a;
-}
-
-.secondaryAction {
-  border: 1px solid rgb(255 255 255 / 14%);
-  background: rgb(255 255 255 / 5%);
-  color: #f8fafc;
-}
-
-.primaryAction svg,
-.secondaryAction svg {
-  width: 17px;
-  height: 17px;
-}
-
-.primaryAction:hover,
-.secondaryAction:hover {
-  transform: translateY(-2px);
-}
-
-.primaryAction:hover {
-  filter: brightness(1.06);
-}
-
-.secondaryAction:hover {
-  border-color: rgb(251 191 36 / 45%);
 }
 
 .featured,
@@ -342,17 +285,6 @@
     line-height: 1.62;
   }
 
-  .heroActions {
-    display: grid;
-    grid-template-columns: 1fr;
-    margin-top: 25px;
-  }
-
-  .primaryAction,
-  .secondaryAction {
-    width: 100%;
-  }
-
   .featuredCard {
     min-height: 300px;
     border-radius: 15px;
@@ -392,8 +324,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .primaryAction,
-  .secondaryAction,
   .featuredImage,
   .cardAction svg,
   .exploreCard,
