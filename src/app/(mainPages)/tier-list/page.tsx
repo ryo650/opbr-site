@@ -15,7 +15,7 @@ export default function TierListPage() {
         <section className={styles.introduction}>
           <p className={styles.eyebrow}>One Piece Bounty Rush Guide</p>
           <h1 className={styles.title}>OPBR Character Tier List</h1>
-          <p className={styles.updated}>Last updated: July 30, 2026</p>
+          <p className={styles.updated}>Last updated: July 31, 2026</p>
           <p className={styles.description}>
             This OPBR tier list ranks the best characters in One Piece Bounty Rush
             based on their current meta strength, league battle performance, role value,

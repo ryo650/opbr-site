@@ -7,12 +7,12 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-marcus-mars","the-wings-zoro-sanji"]
+        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-marcus-mars","the-wings-zoro-sanji","seraphim-s-snake"]
     },
     {
         tier: "S",
         colorClass: "S",
-        characterIds: ["seraphim-s-snake","flame-emperor-sabo"]
+        characterIds: ["flame-emperor-sabo"]
     },
     {
         tier: "A",
@@ -22,12 +22,12 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["the-fouremperors-marshall-d-teach","ama-no-murakumo-sword-kizaru","evil-black-drum-kingdom-king-wapol","germa-66-vinsmoke-yonji","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","great-pirate-gol-d-roger","film-z-zephyr","great-pirate-edward-newgate","asl-ace-sabo-luffy"]
+        characterIds: ["the-fouremperors-marshall-d-teach","ama-no-murakumo-sword-kizaru","vegapunk-s-spy-stussy","evil-black-drum-kingdom-king-wapol","germa-66-vinsmoke-yonji","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","great-pirate-gol-d-roger","film-z-zephyr","great-pirate-edward-newgate","asl-ace-sabo-luffy"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["vegapunk-s-spy-stussy","germa-66-vinsmoke-niji","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci"]
+        characterIds: ["germa-66-vinsmoke-niji","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci"]
     },
     {
         tier: "D",
