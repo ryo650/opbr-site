@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Link from "next/link"
-import { ArrowRight, Sparkles } from "lucide-react"
+import { ArrowRight } from "lucide-react"
 import styles from "./page.module.css"
 
 const featuredCards = [
@@ -56,23 +56,13 @@ export default function TopPage() {
     <main className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>One Piece Bounty Rush Guide</p>
-          <h1>
-            Build a stronger team.
-            <span>Play the meta with confidence.</span>
-          </h1>
+          <p className={styles.eyebrow}>One Piece Bounty Rush</p>
+          <h1>OPBR Guide</h1>
           <p className={styles.heroDescription}>
-            Current tier rankings, scout simulations, medal sets, and practical
-            guides—all in one place.
+            A practical guide to One Piece Bounty Rush with current tier
+            rankings, scout simulations, medal sets, and resources for building
+            a stronger team.
           </p>
-          <div className={styles.heroActions}>
-            <Link href="/tier-list" className={styles.primaryAction}>
-              Explore Tier List <ArrowRight aria-hidden="true" />
-            </Link>
-            <Link href="/scout-simulator" className={styles.secondaryAction}>
-              <Sparkles aria-hidden="true" /> Try Scout Simulator
-            </Link>
-          </div>
         </section>
 
         <section className={styles.featured} aria-labelledby="featured-heading">
