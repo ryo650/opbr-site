@@ -16,6 +16,7 @@ import {
 const navigationItems = [
   { href: "/", label: "Home" },
   { href: "/tier-list", label: "Tier List" },
+  { href: "/character-usage", label: "Character Usage" },
   { href: "/scout-simulator", label: "Scout Simulator" },
   { href: "/create-tier-list", label: "Create Tier List"},
 ];

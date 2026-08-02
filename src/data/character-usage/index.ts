@@ -4,15 +4,15 @@ export const characterUsageSnapshots = [
   characterUsage20260802,
 ].sort(
   (a, b) =>
-    new Date(b.date).getTime() -
-    new Date(a.date).getTime(),
+    new Date(a.date).getTime() -
+    new Date(b.date).getTime(),
 );
 
 export const latestCharacterUsage =
-  characterUsageSnapshots[0];
+  characterUsageSnapshots.at(-1);
 
 export const previousCharacterUsage =
-  characterUsageSnapshots[1] ?? null;
+  characterUsageSnapshots.at(-2) ?? null;
 
 export * from "./type";
 export * from "./helpers";

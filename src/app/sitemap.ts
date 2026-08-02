@@ -14,6 +14,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
             lastModified: new Date(),
         },
         {
+            url: `${baseUrl}/character-usage`,
+            lastModified: new Date(),
+        },
+        {
             url: `${baseUrl}/scout-simulator`,
             lastModified: new Date(),
         },
