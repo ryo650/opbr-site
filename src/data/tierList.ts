@@ -27,11 +27,11 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["germa-66-vinsmoke-niji","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci"]
+        characterIds: ["germa-66-vinsmoke-niji","the-five-elders-st-jaygarcia-saturn","egghead-tony-tony-chopper","heir-to-the-shogun-of-wano-kozuki-oden","egghead-sanji"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["egghead-sanji","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","battle-of-monsters-on-onigashima-kaido","gear-five-monkey-d-luffy","the-four-emperors-shanks","egghead-roronoa-zoro"]
+        characterIds: ["legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","battle-of-monsters-on-onigashima-kaido","gear-five-monkey-d-luffy","awakened-form-rob-lucci","the-four-emperors-shanks","egghead-roronoa-zoro"]
     }
 ]
