@@ -46,14 +46,15 @@ export const sSnakeGuide: CharacterGuide = {
     normalAttacks: [
         {
             label: "folding",
-            video: "/character-guides/seraphim-s-snake/normal-attack.mp4"
+            video: "/character-guides/seraphim-s-snake/normal-attack.mp4",
+            tips: []
         }
     ],
 
     skills: [
         {
             name: "Don't Touch Me, You Oaf!",
-            description: "S-Snake's primary close-range skill that is difficult to react to at close range. Its short cooldown can be reduced even further through her traits, allowing her to use it frequently throughout the match. Use it aggressively to pressure enemies instead of saving it for the perfect moment.",
+            label: "Skill 1",
             cooldown: 24,
             video: "/character-guides/seraphim-s-snake/skill-1.mp4",
             quickTips: [

@@ -31,17 +31,13 @@ export const stMarcusMarsGuide: CharacterGuide = {
 
     weaknesses: [
         {
-            title: "Predictable Repositioning",
-            description: "S-Snake's long-hold normal attack gives her exceptional mobility, but it also creates a predictable landing point. Experienced opponents can time their skills or normal attacks to catch her immediately after she arrives, making careless rotations a significant risk. Only reposition when you are confident the destination is safe or the reward outweighs the risk."
+            title: "Slow Treasure Capture",
+            description: "Mars does not have any traits that increase treasure capture speed. Unlike many other runners, he relies on medal sets or support tags to improve capture speed, making it harder to secure treasures quickly."
         },
         {
-            title: "Relies on Skill 1 for Survival",
-            description: "Much of S-Snake's survivability comes from the three-hit invincibility granted by Skill 1. Without it, she relies mainly on healing and a 30% damage reduction while standing in her treasure area, making her much easier to eliminate with burst damage. Using Skill 1 at the wrong time can leave her exposed during crucial fights."
+            title: "Limited Power Gauge at the Start of the Match",
+            description: "Unlike Nusjuro or Saturn, Mars does not start the match with two Power Gauge stocks. As a result, he cannot fully utilize his revive mechanic during the early stages of the battle."
         },
-        {
-            title: "Vulnerable Outside Treasure Areas",
-            description: "S-Snake performs best while defending treasure areas, where she gains additional survivability. Outside of those zones, she loses a large part of her defensive potential and becomes much easier to pressure or eliminate. Avoid taking extended fights away from your treasure whenever possible."
-        }
     ],
 
     normalAttacks: [
