@@ -17,7 +17,7 @@ export const tierList = [
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["blackbeard-pirates-kuzan","the-five-elders-st-ethanbaron-v-nusjuro","father-and-daughter-kuma-bonny","winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king","unexpected-collaboration-rob-lucci"]
+        characterIds: ["blackbeard-pirates-kuzan","the-five-elders-st-ethanbaron-v-nusjuro","father-and-daughter-kuma-bonny","winner-island-trafalgar-law","animal-kingdom-pirates-lead-performer-king","unexpected-collaboration-kaku","unexpected-collaboration-rob-lucci"]
     },
     {
         tier: "B",
