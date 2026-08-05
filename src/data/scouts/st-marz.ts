@@ -18,7 +18,7 @@ const totalPickupRate = pickups.reduce(
 export const eggheadStMarz: ScoutBanner = {
     id: "the-five-elders-st-marcus-mars",
     name: "7.5Anniv. St.MarcusMars",
-    bannerImg: "/scouts/ex/7-5-anniversary-mars.webp",
+    bannerImg: "/scouts/ex/7-5-year-anniversary-mars.webp",
     startAt: "2026-07-29T14:00:00+09:00",
     endAt: "2026-08-25T13:59:59+09:00",
     pullOptions: {
