@@ -4,6 +4,8 @@ import { exTheFourEmperorsMonkeyDLuffy } from "./eXTheFourEmperorsMonkeyDLuffyRi
 import { eggheadBfRobLucci } from "./7-5bfRobLucci";
 import { bfDoressrosa } from "./doressrosabf";
 import { eggheadStMarz } from "./st-marz";
+import { eggheadBfKaku } from "./7-5bfKaku";
+import { exZephyr } from "./7-5exZephyr";
 
 export const scouts = [
     eggheadStMarz,
@@ -12,4 +14,6 @@ export const scouts = [
     exTheFourEmperorsMonkeyDLuffy,
     eggheadBfRobLucci,
     bfDoressrosa,
+    eggheadBfKaku,
+    exZephyr
 ]
