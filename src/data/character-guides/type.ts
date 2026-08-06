@@ -70,6 +70,8 @@ export type CharacterGuide = {
     };
 
     overview?: CharacterOverview;
+    quickStrengths: string[];
+    quickWeaknesses: string[];
     strengths?: GuidePoint[];
     weaknesses?: GuidePoint[];
     normalAttacks?: NormalAttackGuide[];

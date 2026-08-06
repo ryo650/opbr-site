@@ -9,6 +9,19 @@ export const sSnakeGuide: CharacterGuide = {
         defense: 2447
     },
 
+    quickStrengths: [
+        "Exceptional mobility between allied treasure areas",
+        "Excellent at stopping Runners from capturing treasure",
+        "Three-hit invincibility provides strong survivability",
+        "Removes important enemy Attack and Defense increases",
+    ],
+
+    quickWeaknesses: [
+        "Held normal attack has a predictable landing point",
+        "Relies heavily on Skill 1 for survivability",
+        "Much easier to defeat outside allied treasure areas",
+    ],
+
     strengths: [
         {
             title: "Exceptional Map Control",
