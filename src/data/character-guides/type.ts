@@ -1,49 +1,82 @@
+export type Rating = 1 | 2 | 3 | 4 | 5;
+
 export type GuidePoint = {
-  title: string;
-  description: string;
+    title: string;
+    description: string;
 };
 
-export type CharacterAttack = {
-  label?: string;
-  video?: string;
-};
-
-export type CharacterSkill = {
-  name: string;
-  description: string;
-  cooldown?: number;
-  video?: string;
-  quickTips?: string[];
-};
-
-export type CharacterCounter = {
-  characterId: string;
-  reason: string;
-  difficulty: 1 | 2 | 3 | 4 | 5;
-};
-
-export type CharacterAdvantage = {
-  characterId: string;
-  reason: string;
-  advantage: 1 | 2 | 3 | 4 | 5;
-};
-
-export type CharacterGuide = {
-  characterId: string;
-  overview?: {
+export type CharacterOverview = {
     hp: number;
     attack: number;
     defense: number;
-  };
-  notice?: {
-    title: string;
-    description: string;
-  };
-  strengths?: GuidePoint[];
-  weaknesses?: GuidePoint[];
-  normalAttacks?: CharacterAttack[];
-  skills?: CharacterSkill[];
-  howToPlay?: GuidePoint[];
-  counters?: CharacterCounter[];
-  strongAgainst?: CharacterAdvantage[];
+};
+
+export type NormalAttackGuide = {
+    label: string;
+    form?: string;
+    video?: string;
+    tips: string[];
+};
+
+export type SkillVariant = {
+    label: string;
+    video?: string;
+    details?: string[];
+};
+
+{/*labelはスキルの変化の条件、状態を表すもの、ev,comboなど */ }
+export type CharacterSkill = {
+    slot: 1 | 2;
+    label: string;
+    name: string;
+    cooldown?: number;
+    video?: string;
+    quickTips: string[];
+    details: string[];
+    variants?: SkillVariant[];
+};
+
+{/*displayTypeによって表示方式で区別する
+    tabGroupはevスキルcomboスキル、フォーム、ダブルキャラなど、
+    見せ方の種類を決めるグループ*/}
+export type SkillGroup = {
+    id?: string;
+    label?: string;
+    displayType?: "default" | "section" | "tab";
+    tabGroup?: string;
+    skills: CharacterSkill[];
+};
+
+export type CounterMatchup = {
+    characterId: string;
+    difficulty: Rating;
+    whyDifficult: string[];
+    howToRespond?: string[];
+};
+
+export type StrongAgainstMatchup = {
+    characterId: string;
+    advantage: Rating;
+    whyYouWin: string[];
+    watchOut?: string[];
+};
+
+export type CharacterGuide = {
+    characterId: string;
+
+    notice?: {
+        title: string;
+        description: string;
+    };
+
+    overview?: CharacterOverview;
+    quickStrengths: string[];
+    quickWeaknesses: string[];
+    strengths?: GuidePoint[];
+    weaknesses?: GuidePoint[];
+    normalAttacks?: NormalAttackGuide[];
+    skillGroups?: SkillGroup[];
+    howToPlay?: GuidePoint[];
+    counters?: CounterMatchup[];
+    strongAgainst?: StrongAgainstMatchup[];
 };
