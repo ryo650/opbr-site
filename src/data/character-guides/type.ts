@@ -30,15 +30,19 @@ type CharacterSkill = {
     label: string;
     name: string;
     cooldown?: number;
+    video?: string;
     quickTips: string[];
+    details: string[];
     variants?: SkillVariant[];
 };
 
-{/*displayTypeによって表示方式で区別する*/}
+{/*displayTypeによって表示方式で区別する
+    tabGroupはevスキルcomboスキル、フォーム、ダブルキャラなど、
+    見せ方の種類を決めるグループ*/}
 type SkillGroup = {
-    id: string;
-    label: string;
-    displayType: "default"| "section"| "tab";
+    id?: string;
+    label?: string;
+    displayType?: "default"| "section"| "tab";
     tabGroup?: string;
     skills: CharacterSkill[];
 }
@@ -69,7 +73,7 @@ export type CharacterGuide = {
     strengths?: GuidePoint[];
     weaknesses?: GuidePoint[];
     normalAttacks?: NormalAttackGuide[];
-    skills?: SkillGroup[];
+    skillGroups?: SkillGroup[];
     howToPlay?: GuidePoint[];
     counters?: CounterMatchup[];
     strongAgainst?: StrongAgainstMatchup[];
