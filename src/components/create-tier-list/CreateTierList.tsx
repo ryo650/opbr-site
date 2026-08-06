@@ -33,6 +33,7 @@ function CharacterCard({ character, onDragStart, onPointerStart, onPointerMove, 
   };
   return <div className={styles.characterCard} draggable role="button" tabIndex={0} onDragStart={(event) => onDragStart(event, character.id)}
     onPointerDown={(event) => onPointerStart(event, character.id)} onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerCancel} onKeyDown={onKeyDown}
+    onContextMenu={(event) => event.preventDefault()}
     aria-label={`Choose a tier for ${character.name}`} title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
     <Image src={character.image} alt={character.name} width={72} height={72} draggable={false} className={styles.characterImage} />
     {/*<span className={styles.characterName}>{character.name}</span>
