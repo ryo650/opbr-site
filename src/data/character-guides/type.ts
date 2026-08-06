@@ -1,31 +1,31 @@
-type Rating = 1 | 2 | 3 | 4 | 5;
+export type Rating = 1 | 2 | 3 | 4 | 5;
 
-type GuidePoint = {
+export type GuidePoint = {
     title: string;
     description: string;
 };
 
-type CharacterOverview = {
+export type CharacterOverview = {
     hp: number;
     attack: number;
     defense: number;
 };
 
-type NormalAttackGuide = {
+export type NormalAttackGuide = {
     label: string;
     form?: string;
     video?: string;
     tips: string[];
 };
 
-type SkillVariant = {
+export type SkillVariant = {
     label: string;
     video?: string;
     details?: string[];
 };
 
 {/*labelはスキルの変化の条件、状態を表すもの、ev,comboなど */ }
-type CharacterSkill = {
+export type CharacterSkill = {
     slot: 1 | 2;
     label: string;
     name: string;
@@ -39,22 +39,22 @@ type CharacterSkill = {
 {/*displayTypeによって表示方式で区別する
     tabGroupはevスキルcomboスキル、フォーム、ダブルキャラなど、
     見せ方の種類を決めるグループ*/}
-type SkillGroup = {
+export type SkillGroup = {
     id?: string;
     label?: string;
-    displayType?: "default"| "section"| "tab";
+    displayType?: "default" | "section" | "tab";
     tabGroup?: string;
     skills: CharacterSkill[];
-}
+};
 
-type CounterMatchup = {
+export type CounterMatchup = {
     characterId: string;
     difficulty: Rating;
     whyDifficult: string[];
     howToRespond?: string[];
 };
 
-type StrongAgainstMatchup = {
+export type StrongAgainstMatchup = {
     characterId: string;
     advantage: Rating;
     whyYouWin: string[];
@@ -70,6 +70,8 @@ export type CharacterGuide = {
     };
 
     overview?: CharacterOverview;
+    quickStrengths: string[];
+    quickWeaknesses: string[];
     strengths?: GuidePoint[];
     weaknesses?: GuidePoint[];
     normalAttacks?: NormalAttackGuide[];
