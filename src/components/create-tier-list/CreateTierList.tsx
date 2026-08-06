@@ -21,13 +21,11 @@ const emptyTiers = (): TierState => ({ god: [], ss: [], s: [], a: [], b: [], c: 
 const allCharacters = Object.values(characters);
 const allIds = allCharacters.map((character) => character.id);
 const grades: Character["grade"][] = ["ex", "bf", "sp", "star-4", "star-3", "star-2", "free", "exchange", "cola", "unknown"];
-const longPressDelay = 300;
-const scrollMovementThreshold = 10;
 const preventTouchScroll = (event: TouchEvent) => event.preventDefault();
 
-function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onPointerStart, onPointerMove, onPointerEnd, onPointerCancel, onSelect }: {
-  character: Character; isDragging: boolean; onDragStart: (event: DragEvent<HTMLDivElement>, id: string) => void; onDragEnd: () => void; onPointerStart: (event: PointerEvent<HTMLDivElement>, id: string) => void;
-  onPointerMove: (event: PointerEvent<HTMLDivElement>) => void; onPointerEnd: (event: PointerEvent<HTMLDivElement>) => void;
+function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onHandlePointerStart, onHandlePointerMove, onHandlePointerEnd, onPointerCancel, onSelect }: {
+  character: Character; isDragging: boolean; onDragStart: (event: DragEvent<HTMLDivElement>, id: string) => void; onDragEnd: () => void; onHandlePointerStart: (event: PointerEvent<HTMLButtonElement>, id: string) => void;
+  onHandlePointerMove: (event: PointerEvent<HTMLButtonElement>) => void; onHandlePointerEnd: (event: PointerEvent<HTMLButtonElement>) => void;
   onPointerCancel: () => void; onSelect: (id: string) => void;
 }) {
   const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
@@ -37,7 +35,7 @@ function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onPointe
     }
   };
   return <div className={`${styles.characterCard} ${isDragging ? styles.draggingSource : ""}`} draggable role="button" tabIndex={0} onDragStart={(event) => onDragStart(event, character.id)} onDragEnd={onDragEnd}
-    onPointerDown={(event) => onPointerStart(event, character.id)} onPointerMove={onPointerMove} onPointerUp={onPointerEnd} onPointerCancel={onPointerCancel} onKeyDown={onKeyDown}
+    onClick={() => onSelect(character.id)} onKeyDown={onKeyDown}
     onContextMenu={(event) => event.preventDefault()}
     aria-label={`Choose a tier for ${character.name}`} title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
     <Image src={character.image} alt={character.name} width={72} height={72} draggable={false} className={styles.characterImage} />
@@ -64,7 +62,7 @@ export default function CreateTierList() {
   const [pointerPreview, setPointerPreview] = useState<{ id: string; x: number; y: number } | null>(null);
   const activeId = useRef<string | null>(null);
   const dragPreviewElement = useRef<HTMLElement | null>(null);
-  const pointerStart = useRef<{ x: number; y: number; moved: boolean; id: string; pointerType: string } | null>(null);
+  const pointerDrag = useRef<{ id: string; pointerId: number; target: HTMLButtonElement } | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
 
   const rankedIds = useMemo(() => new Set(Object.values(tierState).flat()), [tierState]);
@@ -87,7 +85,12 @@ export default function CreateTierList() {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedCharacterId]);
-;
+
+  useEffect(() => () => {
+    document.removeEventListener("touchmove", preventTouchScroll);
+    document.body.classList.remove(styles.pointerDraggingBody);
+    dragPreviewElement.current?.remove();
+  }, []);
 
   const moveCharacter = (id: string, destination: DropZone, targetId?: string, placement: DropPlacement = "after") => {
     if (targetId === id) return;
@@ -109,7 +112,7 @@ export default function CreateTierList() {
       return without;
     });
   };
-  const clearDragState = () => { dragPreviewElement.current?.remove(); dragPreviewElement.current = null; activeId.current = null; setDraggingId(null); setDropIntent(null); setPointerPreview(null); };
+  const clearDragState = () => { document.removeEventListener("touchmove", preventTouchScroll); document.body.classList.remove(styles.pointerDraggingBody); dragPreviewElement.current?.remove(); dragPreviewElement.current = null; pointerDrag.current = null; activeId.current = null; setDraggingId(null); setDropIntent(null); setPointerPreview(null); };
   const getIntent = (destination: DropZone, target: Element | null, clientX: number): DropIntent => {
     const card = target?.closest<HTMLElement>("[data-character-id]");
     if (!card || !card.closest(`[data-zone-container="${destination}"]`)) return { destination, placement: "after" };
@@ -118,8 +121,7 @@ export default function CreateTierList() {
   };
   const drop = (intent: DropIntent) => { if (activeId.current) moveCharacter(activeId.current, intent.destination, intent.targetId, intent.placement); clearDragState(); };
   const dragStartHandler = (event: DragEvent<HTMLDivElement>, id: string) => {
-    if (pointerStart.current?.pointerType && pointerStart.current.pointerType !== "mouse") { event.preventDefault(); return; }
-    activeId.current = id; setDraggingId(id); if (pointerStart.current) pointerStart.current.moved = true;
+    activeId.current = id; setDraggingId(id);
     event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", id);
     const rect = event.currentTarget.getBoundingClientRect();
     const preview = event.currentTarget.cloneNode(true) as HTMLElement;
@@ -130,14 +132,36 @@ export default function CreateTierList() {
   const dragOverHandler = (event: DragEvent<HTMLElement>, destination: DropZone) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; setDropIntent(getIntent(destination, event.target as Element, event.clientX)); };
   const dragLeaveHandler = (event: DragEvent<HTMLElement>) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropIntent(null); };
   const dropFromDataTransfer = (event: DragEvent<HTMLElement>, destination: DropZone) => { event.preventDefault(); const id = event.dataTransfer.getData("text/plain"); const intent = getIntent(destination, event.target as Element, event.clientX); if (id) moveCharacter(id, destination, intent.targetId, intent.placement); clearDragState(); };
-  const pointerStartHandler = (event: PointerEvent<HTMLDivElement>, id: string) => { pointerStart.current = { x: event.clientX, y: event.clientY, moved: false, id, pointerType: event.pointerType }; if (event.pointerType !== "mouse") { activeId.current = id; event.currentTarget.setPointerCapture(event.pointerId); } };
-  const pointerMoveHandler = (event: PointerEvent<HTMLDivElement>) => { const start = pointerStart.current; if (!start || start.pointerType === "mouse") return; if (Math.hypot(event.clientX - start.x, event.clientY - start.y) > 8) { start.moved = true; setDraggingId(start.id); setPointerPreview({ id: start.id, x: event.clientX, y: event.clientY }); const element = document.elementFromPoint(event.clientX, event.clientY); const zone = element?.closest<HTMLElement>("[data-zone-container]")?.dataset.zoneContainer as DropZone | undefined; setDropIntent(zone ? getIntent(zone, element, event.clientX) : null); } };
-  const pointerEndHandler = (event: PointerEvent<HTMLDivElement>) => { const start = pointerStart.current; pointerStart.current = null; if (!start) return; if (!start.moved) { clearDragState(); setSelectedCharacterId(start.id); return; } if (start.pointerType === "mouse") { clearDragState(); return; } const element = document.elementFromPoint(event.clientX, event.clientY); const zone = element?.closest<HTMLElement>("[data-zone-container]")?.dataset.zoneContainer as DropZone | undefined; if (zone) drop(getIntent(zone, element, event.clientX)); else clearDragState(); };
-  const pointerCancelHandler = () => { pointerStart.current = null; clearDragState(); };
+  const handlePointerStart = (event: PointerEvent<HTMLButtonElement>, id: string) => {
+    event.stopPropagation();
+    if (event.pointerType !== "touch" && event.pointerType !== "pen") return;
+    event.preventDefault(); pointerDrag.current = { id, pointerId: event.pointerId, target: event.currentTarget }; activeId.current = id;
+    event.currentTarget.setPointerCapture(event.pointerId); document.body.classList.add(styles.pointerDraggingBody);
+    document.addEventListener("touchmove", preventTouchScroll, { passive: false });
+    setDraggingId(id); setPointerPreview({ id, x: event.clientX, y: event.clientY });
+  };
+  const handlePointerMove = (event: PointerEvent<HTMLButtonElement>) => {
+    const drag = pointerDrag.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    event.preventDefault(); setPointerPreview({ id: drag.id, x: event.clientX, y: event.clientY });
+    const element = document.elementFromPoint(event.clientX, event.clientY);
+    const zone = element?.closest<HTMLElement>("[data-zone-container]")?.dataset.zoneContainer as DropZone | undefined;
+    setDropIntent(zone ? getIntent(zone, element, event.clientX) : null);
+  };
+  const handlePointerEnd = (event: PointerEvent<HTMLButtonElement>) => {
+    const drag = pointerDrag.current;
+    if (!drag || drag.pointerId !== event.pointerId) return;
+    event.preventDefault(); event.stopPropagation();
+    if (drag.target.hasPointerCapture(drag.pointerId)) drag.target.releasePointerCapture(drag.pointerId);
+    const element = document.elementFromPoint(event.clientX, event.clientY);
+    const zone = element?.closest<HTMLElement>("[data-zone-container]")?.dataset.zoneContainer as DropZone | undefined;
+    if (zone) drop(getIntent(zone, element, event.clientX)); else clearDragState();
+  };
+  const pointerCancelHandler = () => { const drag = pointerDrag.current; if (drag?.target.hasPointerCapture(drag.pointerId)) drag.target.releasePointerCapture(drag.pointerId); clearDragState(); };
   const selectDestination = (destination: DropZone) => { if (!selectedCharacterId) return; moveCharacter(selectedCharacterId, destination); setSelectedCharacterId(null); };
   const reset = () => { if (window.confirm("Reset this tier list? Your current placements and filters will be cleared.")) { setTitle("My OPBR Tier List"); setTierState(emptyTiers()); setPoolOrder(allIds); setQuery(""); setElement("all"); setRole("all"); setGrade("all"); setSort("default"); setSelectedCharacterId(null); } };
 
-  const characterCardProps = { onDragStart: dragStartHandler, onDragEnd: clearDragState, onPointerStart: pointerStartHandler, onPointerMove: pointerMoveHandler, onPointerEnd: pointerEndHandler, onPointerCancel: pointerCancelHandler, onSelect: setSelectedCharacterId };
+  const characterCardProps = { onDragStart: dragStartHandler, onDragEnd: clearDragState, onHandlePointerStart: handlePointerStart, onHandlePointerMove: handlePointerMove, onHandlePointerEnd: handlePointerEnd, onPointerCancel: pointerCancelHandler, onSelect: setSelectedCharacterId };
 
   return <div className={styles.container}>
     <header className={styles.header}><div><h1>Create Tier List</h1><p>Drag characters into tiers to create your own OPBR ranking.</p></div><button type="button" className={styles.reset} onClick={reset}>Reset</button></header>
