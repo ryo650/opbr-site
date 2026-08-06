@@ -21,6 +21,9 @@ const emptyTiers = (): TierState => ({ god: [], ss: [], s: [], a: [], b: [], c: 
 const allCharacters = Object.values(characters);
 const allIds = allCharacters.map((character) => character.id);
 const grades: Character["grade"][] = ["ex", "bf", "sp", "star-4", "star-3", "star-2", "free", "exchange", "cola", "unknown"];
+const longPressDelay = 300;
+const scrollMovementThreshold = 10;
+const preventTouchScroll = (event: TouchEvent) => event.preventDefault();
 
 function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onPointerStart, onPointerMove, onPointerEnd, onPointerCancel, onSelect }: {
   character: Character; isDragging: boolean; onDragStart: (event: DragEvent<HTMLDivElement>, id: string) => void; onDragEnd: () => void; onPointerStart: (event: PointerEvent<HTMLDivElement>, id: string) => void;
@@ -81,6 +84,7 @@ export default function CreateTierList() {
     window.addEventListener("keydown", closeOnEscape);
     return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedCharacterId]);
+;
 
   const moveCharacter = (id: string, destination: DropZone, targetId?: string, placement: DropPlacement = "after") => {
     if (targetId === id) return;
