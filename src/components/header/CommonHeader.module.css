@@ -21,7 +21,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 82px;
+  min-height: var(--site-header-height);
   padding: 0 24px;
   overflow: visible;
   border-bottom: 1px solid rgba(255, 255, 255, 0.08);
@@ -178,4 +178,3 @@
     transition: none;
   }
 }
-

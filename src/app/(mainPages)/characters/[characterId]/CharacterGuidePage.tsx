@@ -1,8 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CircleCheck, TriangleAlert } from "lucide-react";
 import type { Character } from "@/data/characters/type";
 import type { CharacterGuide, CounterMatchup, GuidePoint, StrongAgainstMatchup } from "@/data/character-guides/type";
 import CharacterGuideSkills from "./CharacterGuideSkills";
+import CharacterGuideTableOfContents, { type TableOfContentsItem } from "./CharacterGuideTableOfContents";
 import CharacterGuideVideo from "./CharacterGuideVideo";
 import styles from "./page.module.css";
 
@@ -15,6 +17,19 @@ function Section({ id, title, children }: { id: string; title: string; children:
 
 function PointGrid({ points }: { points: GuidePoint[] }) {
   return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><p>{point.description}</p></article>)}</div>;
+}
+
+function QuickPoints({ strengths, weaknesses }: { strengths: string[]; weaknesses: string[] }) {
+  return <div className={styles.quickPoints}>
+    {!!strengths.length && <section className={`${styles.quickList} ${styles.quickStrengths}`} aria-labelledby="quick-strengths-heading">
+      <h3 id="quick-strengths-heading"><CircleCheck aria-hidden="true" />Quick Strengths</h3>
+      <ul>{strengths.map((strength) => <li key={strength}>{strength}</li>)}</ul>
+    </section>}
+    {!!weaknesses.length && <section className={`${styles.quickList} ${styles.quickWeaknesses}`} aria-labelledby="quick-weaknesses-heading">
+      <h3 id="quick-weaknesses-heading"><TriangleAlert aria-hidden="true" />Quick Weaknesses</h3>
+      <ul>{weaknesses.map((weakness) => <li key={weakness}>{weakness}</li>)}</ul>
+    </section>}
+  </div>;
 }
 
 function MatchupList({ title, items }: { title: string; items?: string[] }) {
@@ -39,15 +54,17 @@ function StrongAgainstCard({ matchup, character }: { matchup: StrongAgainstMatch
 }
 
 export default function CharacterGuidePage({ character, guide, matchupCharacters }: { character: Character; guide: CharacterGuide; matchupCharacters: Record<string, Character> }) {
+  const hasStrengthsAndWeaknesses = Boolean(guide.quickStrengths.length || guide.quickWeaknesses.length || guide.strengths?.length || guide.weaknesses?.length);
+  const skillGroups = guide.skillGroups?.filter((group) => group.skills.length) ?? [];
   const tableOfContents = [
     guide.overview && ["overview-stats", "Overview Stats"],
-    (guide.strengths?.length || guide.weaknesses?.length) && ["strengths-and-weaknesses", "Strengths & Weaknesses"],
+    hasStrengthsAndWeaknesses && ["strengths-and-weaknesses", "Strengths & Weaknesses"],
     guide.normalAttacks?.length && ["normal-attacks", "Normal Attacks"],
-    guide.skillGroups?.length && ["skills", "Skills"],
+    skillGroups.length && ["skills", "Skills"],
     guide.howToPlay?.length && ["how-to-play", "How to Play"],
     guide.counters?.length && ["counters", "Counters"],
     guide.strongAgainst?.length && ["strong-against", "Strong Against"],
-  ].filter((item): item is string[] => Boolean(item));
+  ].filter((item): item is [string, string] => Boolean(item)).map(([id, label]): TableOfContentsItem => ({ id, label }));
 
   return <main className={`${styles.page} upper-page-background`}>
     <article className={styles.content}>
@@ -57,21 +74,25 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
 
       <section className={styles.introduction} aria-labelledby="guide-overview-heading"><p className={styles.eyebrow}>Guide Overview</p><h2 id="guide-overview-heading">Master {character.name}</h2><p>Review the character&apos;s key strengths, weaknesses, attacks, matchups, and practical game plan.</p></section>
 
+      <div className={styles.guideLayout}>
+      <div className={styles.guideSections}>
       {guide.overview && <Section id="overview-stats" title="Overview Stats"><dl className={styles.stats}>{Object.entries(guide.overview).map(([name, value]) => <div key={name}><dt>{name}</dt><dd>{value.toLocaleString("en-US")}</dd></div>)}</dl></Section>}
 
-      {!!tableOfContents.length && <nav className={styles.toc} aria-label="Table of contents"><p className={styles.eyebrow}>On this page</p><ol>{tableOfContents.map(([id, label]) => <li key={id}><a href={`#${id}`}>{label}</a></li>)}</ol></nav>}
-
-      {(!!guide.strengths?.length || !!guide.weaknesses?.length) && <Section id="strengths-and-weaknesses" title="Strengths and Weaknesses">
+      {hasStrengthsAndWeaknesses && <Section id="strengths-and-weaknesses" title="Strengths and Weaknesses">
+        <QuickPoints strengths={guide.quickStrengths} weaknesses={guide.quickWeaknesses} />
         {!!guide.strengths?.length && <div className={styles.pointSection}><h3>Strengths</h3><PointGrid points={guide.strengths} /></div>}
         {!!guide.weaknesses?.length && <div className={styles.pointSection}><h3>Weaknesses</h3><PointGrid points={guide.weaknesses} /></div>}
       </Section>}
 
       {!!guide.normalAttacks?.length && <Section id="normal-attacks" title="Normal Attacks"><div className={styles.mediaGrid}>{guide.normalAttacks.map((attack, index) => <article className={`${styles.card} ${styles.attackCard}`} key={`${attack.label}-${index}`}><div><p className={styles.skillLabel}>{attack.form}</p><h3>{attack.label}</h3></div>{attack.video && <CharacterGuideVideo src={attack.video} label={`${character.name} ${attack.label}`} />}{!!attack.tips.length && <div className={styles.details}><h4>Tips</h4><ul>{attack.tips.map((tip) => <li key={tip}>{tip}</li>)}</ul></div>}</article>)}</div></Section>}
-      {!!guide.skillGroups?.length && <Section id="skills" title="Skills"><CharacterGuideSkills groups={guide.skillGroups} /></Section>}
+      {!!skillGroups.length && <Section id="skills" title="Skills"><CharacterGuideSkills groups={skillGroups} /></Section>}
       {!!guide.howToPlay?.length && <Section id="how-to-play" title="How to Play"><PointGrid points={guide.howToPlay} /></Section>}
       {!!guide.counters?.length && <Section id="counters" title="Counters"><div className={styles.matchupGrid}>{guide.counters.map((matchup) => <CounterCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}
       {!!guide.strongAgainst?.length && <Section id="strong-against" title="Strong Against"><div className={styles.matchupGrid}>{guide.strongAgainst.map((matchup) => <StrongAgainstCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}
       <aside className={styles.cta}><p className={styles.eyebrow}>Explore the meta</p><h2>See how {character.name} compares with the rest of the current meta.</h2><Link href="/tier-list">View OPBR Tier List</Link></aside>
+      </div>
+      {!!tableOfContents.length && <CharacterGuideTableOfContents items={tableOfContents} />}
+      </div>
     </article>
   </main>;
 }
