@@ -10,7 +10,24 @@ export type TableOfContentsItem = {
 
 export default function CharacterGuideTableOfContents({ items }: { items: TableOfContentsItem[] }) {
   const [activeId, setActiveId] = useState(items[0]?.id ?? "");
+  const navRef = useRef<HTMLElement>(null);
   const linkRefs = useRef(new Map<string, HTMLAnchorElement>());
+
+  useEffect(() => {
+    const nav = navRef.current;
+    const layout = nav?.parentElement;
+    if (!nav || !layout) return;
+
+    const updateTocHeight = () => layout.style.setProperty("--guide-toc-height", `${nav.offsetHeight}px`);
+    const observer = new ResizeObserver(updateTocHeight);
+    updateTocHeight();
+    observer.observe(nav);
+
+    return () => {
+      observer.disconnect();
+      layout.style.removeProperty("--guide-toc-height");
+    };
+  }, []);
 
   useEffect(() => {
     const sections = items
@@ -43,7 +60,7 @@ export default function CharacterGuideTableOfContents({ items }: { items: TableO
   }, [activeId]);
 
   return (
-    <nav className={styles.toc} aria-label="Table of contents">
+    <nav ref={navRef} className={styles.toc} aria-label="Table of contents">
       <p className={styles.eyebrow}>On this page</p>
       <ol>
         {items.map(({ id, label }) => (

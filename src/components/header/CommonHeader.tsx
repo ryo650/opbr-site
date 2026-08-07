@@ -24,7 +24,34 @@ const navigationItems = [
 export default function CommonHeader() {
   const [isHidden, setIsHidden] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const headerRef = useRef<HTMLElement>(null);
+  const headerHeight = useRef(0);
   const previousScrollY = useRef(0);
+
+  useEffect(() => {
+    const header = headerRef.current;
+    if (!header) return;
+
+    const updateHeaderHeight = () => {
+      headerHeight.current = header.getBoundingClientRect().height;
+      document.documentElement.style.setProperty("--site-header-height", `${headerHeight.current}px`);
+      if (!header.classList.contains(styles.headerHidden)) {
+        document.documentElement.style.setProperty("--site-header-visible-height", `${headerHeight.current}px`);
+      }
+    };
+    const observer = new ResizeObserver(updateHeaderHeight);
+    updateHeaderHeight();
+    observer.observe(header);
+
+    return () => observer.disconnect();
+  }, []);
+
+  useEffect(() => {
+    document.documentElement.style.setProperty(
+      "--site-header-visible-height",
+      isHidden ? "0px" : `${headerHeight.current}px`,
+    );
+  }, [isHidden]);
 
   useEffect(() => {
     previousScrollY.current = window.scrollY;
@@ -57,6 +84,7 @@ export default function CommonHeader() {
 
   return (
     <header
+      ref={headerRef}
       className={`${styles.header} ${isHidden ? styles.headerHidden : ""}`}
     >
       {/* 現在の .surface 以下はそのまま */}
