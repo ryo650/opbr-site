@@ -3,6 +3,21 @@ import type { CharacterGuide } from "./type";
 export const sSnakeGuide: CharacterGuide = {
     characterId: "seraphim-s-snake",
 
+    guideOverview: {
+        title: "Master Seraphim-S-Snake",
+        description:  "S-Snake is one of the most versatile Defenders in OPBR, combining strong treasure defense with exceptional map mobility. She can quickly rotate to distant allied treasure areas, disrupt captures with knockback attacks, and survive dangerous fights using her three-hit invincibility. Her biggest strength is controlling where fights happen, although she becomes much easier to pressure when caught outside allied treasure areas or without Skill 1 available.",
+        links: [
+            {
+                label: "View OPBR Tier List",
+                href: "/tier-list",
+            },
+            {
+                label: "Browse Characters",
+                href: "/characters",
+            },
+        ]
+    },
+
     overview: {
         hp: 9662,
         attack: 2042,
