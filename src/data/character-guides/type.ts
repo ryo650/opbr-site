@@ -5,15 +5,10 @@ export type GuidePoint = {
     description: string;
 };
 
-type GuideLinks = {
-    label: string;
-    href: string;
-}
 
 export type GuideOverview = {
     title?: string;
     description?: string;
-    links?: GuideLinks[];
 }
 
 export type CharacterOverview = {
