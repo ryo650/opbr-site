@@ -5,6 +5,17 @@ export type GuidePoint = {
     description: string;
 };
 
+type GuideLinks = {
+    label: string;
+    href: string;
+}
+
+export type GuideOverview = {
+    title?: string;
+    description?: string;
+    links?: GuideLinks[];
+}
+
 export type CharacterOverview = {
     hp: number;
     attack: number;
@@ -68,6 +79,8 @@ export type CharacterGuide = {
         title: string;
         description: string;
     };
+
+    guideOverview?: GuideOverview;
 
     overview?: CharacterOverview;
     quickStrengths: string[];
