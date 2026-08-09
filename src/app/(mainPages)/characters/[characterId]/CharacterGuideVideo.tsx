@@ -10,14 +10,40 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
     const video = videoRef.current;
     if (!video) return;
 
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const playVideo = () => {
+      video.muted = true;
+      void video.play().catch(() => {
+        // Autoplay can still be blocked by the browser. Controls remain available.
+      });
+    };
+
     const observer = new IntersectionObserver(
       ([entry]) => {
-        if (!entry.isIntersecting) video.pause();
+        if (!entry.isIntersecting) {
+          video.pause();
+          return;
+        }
+
+        if (entry.intersectionRatio >= 0.5 && !reducedMotion.matches) {
+          playVideo();
+        }
       },
-      { threshold: 0.2 },
+      { threshold: [0, 0.5] },
     );
+
+    const handleReducedMotionChange = () => {
+      if (reducedMotion.matches) video.pause();
+    };
+
     observer.observe(video);
-    return () => observer.disconnect();
+    reducedMotion.addEventListener("change", handleReducedMotionChange);
+
+    return () => {
+      observer.disconnect();
+      reducedMotion.removeEventListener("change", handleReducedMotionChange);
+    };
   }, []);
 
   return (
