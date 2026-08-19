@@ -15,7 +15,7 @@ const totalPickupRate = pickups.reduce(
     0
 );
 
-export const exBlackbeardPiratesKuzan: ScoutBanner = {
+export const exBonny: ScoutBanner = {
     id: "bonny",
     name: "7.5Anniv. Ex Bonny",
     bannerImg: "/scouts/ex/7-5-year-anniversary-bonny.webp",

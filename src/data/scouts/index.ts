@@ -9,6 +9,7 @@ import { exZephyr } from "./7-5exZephyr";
 import { exFlameEmperorSabo } from "./7-5exSabo";
 import { exHungerPangsCharlotteLinlin } from "./7-5exlinlin";
 import { exBlackbeardPiratesKuzan } from "./7-5exKuzan";
+import { exBonny } from "./7-5exBonny";
 
 export const scouts = [
     eggheadStMarz,
@@ -22,4 +23,5 @@ export const scouts = [
     exFlameEmperorSabo,
     exHungerPangsCharlotteLinlin,
     exBlackbeardPiratesKuzan,
+    exBonny
 ]
