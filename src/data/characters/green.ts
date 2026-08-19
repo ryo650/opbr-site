@@ -1,6 +1,14 @@
 import { Character } from "./type";
 
 export const greenCharacters: Record<string, Character> ={
+    "bonny": {
+        id: "bonny",
+        name: "Bonny",
+        image: "/characters/green/bonny.webp",
+        grade: "ex",
+        element: "green",
+        role: "attacker"
+    },
     "unexpected-collaboration-kaku": {
         id: "unexpected-collaboration-kaku",
         name: "Unexpected-Collaboration-Kaku",
