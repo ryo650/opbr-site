@@ -1,0 +1,95 @@
+.page {
+  min-height: 100vh;
+  color: #f8fafc;
+}
+
+.inner {
+  width: min(100%, 920px);
+  margin: 0 auto;
+  padding: 72px 24px 104px;
+}
+
+.hero {
+  padding-bottom: 34px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.eyebrow {
+  margin: 0;
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 14px 0 0;
+  font-size: clamp(2.4rem, 6vw, 4.9rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.055em;
+}
+
+.lead {
+  max-width: 720px;
+  margin: 22px 0 0;
+  color: #cbd5e1;
+  font-size: clamp(1rem, 1.8vw, 1.13rem);
+  line-height: 1.7;
+}
+
+.content {
+  display: grid;
+  gap: 18px;
+  margin-top: 34px;
+}
+
+.card {
+  border: 1px solid rgb(255 255 255 / 10%);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgb(255 255 255 / 6%), rgb(255 255 255 / 2%));
+  padding: 26px;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 1.8rem);
+  letter-spacing: -0.03em;
+}
+
+.card p,
+.card li {
+  color: #cbd5e1;
+  line-height: 1.7;
+}
+
+.card p:last-child,
+.card ul:last-child {
+  margin-bottom: 0;
+}
+
+.card ul {
+  padding-left: 1.2rem;
+}
+
+.card a {
+  color: #f8d56a;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.card a:hover {
+  color: #ffeaa3;
+}
+
+@media (max-width: 540px) {
+  .inner {
+    padding: 38px 16px 80px;
+  }
+
+  .card {
+    border-radius: 15px;
+    padding: 20px;
+  }
+}

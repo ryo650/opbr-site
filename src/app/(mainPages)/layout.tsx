@@ -1,3 +1,4 @@
+import CommonFooter from "@/components/footer/CommonFooter";
 import CommonHeader from "@/components/header/CommonHeader";
 
 export default function EnLayout({
@@ -9,6 +10,7 @@ export default function EnLayout({
     <div className="page">
         <CommonHeader />
         {children}
+        <CommonFooter />
     </div>
   );
 }

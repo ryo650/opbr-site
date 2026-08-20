@@ -10,6 +10,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tier-list` },
     { url: `${baseUrl}/character-usage` },
     { url: `${baseUrl}/scout-simulator` },
+    { url: `${baseUrl}/about` },
+    { url: `${baseUrl}/contact` },
+    { url: `${baseUrl}/privacy-policy` },
   ];
 
   const scoutPages: MetadataRoute.Sitemap = scouts.map((scout) => ({
