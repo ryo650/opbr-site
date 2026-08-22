@@ -1,10 +1,10 @@
 import { Character } from "./type";
 
 export const greenCharacters: Record<string, Character> ={
-    "bonny": {
-        id: "bonny",
-        name: "Bonny",
-        image: "/characters/green/bonny.webp",
+    "future-where-i-m-the-most-free-jewelry-bonny": {
+        id: "future-where-i-m-the-most-free-jewelry-bonny",
+        name: "Future-Where-I-m-the-Most-Free-Jewelry-Bonny",
+        image: "/characters/green/future-where-i-m-the-most-free-jewelry-bonny.webp",
         grade: "ex",
         element: "green",
         role: "attacker"
