@@ -27,7 +27,7 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["legendary-gladiator-kyros","great-pirate-edward-newgate","seraphim-s-snake",,"germa-66-vinsmoke-niji","egghead-tony-tony-chopper","egghead-roronoa-zoro","kaido-s-son-yamato"]
+        characterIds: ["legendary-gladiator-kyros","great-pirate-edward-newgate","seraphim-s-snake","germa-66-vinsmoke-niji","egghead-tony-tony-chopper","egghead-roronoa-zoro","kaido-s-son-yamato"]
     },
     {
         tier: "D",
