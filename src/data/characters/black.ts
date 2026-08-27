@@ -27,7 +27,7 @@ export const blackCharacters: Record<string, Character> = {
     },
     "the-fouremperors-marshall-d-teach":{
         id: "the-fouremperors-marshall-d-teach",
-        name: "Great-Pirate-Gol-D-Roger",
+        name: "The-Fouremperors-Marshall-D-Teach",
         image: "/characters/black/the-fouremperors-marshall-d-teach.webp",
         grade: "ex",
         element: "black",
