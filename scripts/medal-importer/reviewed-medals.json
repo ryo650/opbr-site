@@ -1,0 +1,238 @@
+{
+  "screenshotSize": {
+    "width": 2532,
+    "height": 1170
+  },
+  "crop": {
+    "x": 800,
+    "y": 140,
+    "width": 200,
+    "height": 200
+  },
+  "fieldCrops": {
+    "uniqueTrait": {
+      "x": 1020,
+      "y": 230,
+      "width": 870,
+      "height": 220,
+      "scale": 2
+    },
+    "rateTraits": {
+      "x": 790,
+      "y": 300,
+      "width": 700,
+      "height": 650,
+      "scale": 2
+    }
+  },
+  "medals": [
+    {
+      "id": "future-where-im-the-most-free",
+      "name": "Future Where I'm the Most Free Medal",
+      "category": "character",
+      "uniqueTrait": "When attacking an enemy with a Normal Attack, 30% chance to: Reduce the cooldown time of Skill 2 by 3%.",
+      "tags": [
+        { "id": "egghead", "name": "Egghead" },
+        { "id": "bonney-pirates", "name": "Bonney Pirates" },
+        { "id": "paramecia", "name": "Paramecia" },
+        { "id": "captain", "name": "Captain" },
+        { "id": "royalty-former-royalty", "name": "Royalty / Former Royalty" },
+        { "id": "worst-generation", "name": "Worst Generation" }
+      ],
+      "nativeTraits": ["hp", "def", "crit"],
+      "sources": {
+        "details": "IMG_2059.PNG",
+        "tag": "IMG_2060.PNG",
+        "rates": ["IMG_2061.PNG", "IMG_2062.PNG"]
+      }
+    },
+    {
+      "id": "tempest-kick-white-thunder",
+      "name": "Tempest Kick: White Thunder Medal",
+      "category": "character",
+      "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 13%.",
+      "tags": [
+        { "id": "egghead", "name": "Egghead" },
+        { "id": "cipher-pol-former-cipher-pol", "name": "Cipher Pol / Former Cipher Pol" },
+        { "id": "zoan", "name": "Zoan" },
+        { "id": "intelligence-agent", "name": "Intelligence Agent" },
+        { "id": "six-powers", "name": "Six Powers" }
+      ],
+      "nativeTraits": ["hp", "def", "crit"],
+      "sources": {
+        "details": "IMG_2063.PNG",
+        "tag": "IMG_2064.PNG",
+        "rates": ["IMG_2065.PNG", "IMG_2066.PNG"]
+      }
+    },
+    {
+      "id": "warrior-of-liberation",
+      "name": "Warrior of Liberation Medal",
+      "category": "event",
+      "uniqueTrait": "When the equipped character is character type \"Captain\": Increase Normal Attack damage dealt by 3%.",
+      "tags": [
+        { "id": "egghead", "name": "Egghead" },
+        { "id": "straw-hat-pirates", "name": "Straw Hat Pirates" },
+        { "id": "zoan", "name": "Zoan" },
+        { "id": "captain", "name": "Captain" },
+        { "id": "the-four-emperors", "name": "The Four Emperors" },
+        { "id": "blood-brothers", "name": "Blood Brothers" }
+      ],
+      "nativeTraits": ["hp", "atk", "def", "crit"],
+      "sources": {
+        "details": "IMG_2067.PNG",
+        "tag": "IMG_2068.PNG",
+        "rates": ["IMG_2069.PNG", "IMG_2070.PNG"]
+      }
+    },
+    {
+      "id": "bonneys-daddy",
+      "name": "Bonney's Daddy Medal",
+      "category": "event",
+      "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 2 by 5%.",
+      "tags": [
+        { "id": "revolutionary-army", "name": "Revolutionary Army" },
+        {
+          "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+          "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+        },
+        { "id": "paramecia", "name": "Paramecia" },
+        { "id": "royalty-former-royalty", "name": "Royalty / Former Royalty" }
+      ],
+      "nativeTraits": ["hp", "atk", "def", "crit"],
+      "sources": {
+        "details": "IMG_2071.PNG",
+        "tag": "IMG_2072.PNG",
+        "rates": ["IMG_2073.PNG", "IMG_2074.PNG", "IMG_2075.PNG"]
+      }
+    },
+    {
+      "id": "hand-pistol-yellow-lotus",
+      "name": "Hand Pistol Yellow Lotus Medal",
+      "category": "character",
+      "uniqueTrait": "When an enemy begins capturing one of your team's Treasure Areas: Reduce the cooldown time of Skill 1 by 3%.",
+      "tags": [
+        { "id": "egghead", "name": "Egghead" },
+        { "id": "cipher-pol-former-cipher-pol", "name": "Cipher Pol / Former Cipher Pol" },
+        { "id": "zoan", "name": "Zoan" },
+        { "id": "intelligence-agent", "name": "Intelligence Agent" },
+        { "id": "six-powers", "name": "Six Powers" }
+      ],
+      "nativeTraits": ["atk", "crit"],
+      "statusReductions": ["clawed"],
+      "sources": {
+        "details": "IMG_2076.PNG",
+        "tag": "IMG_2077.PNG",
+        "rates": ["IMG_2078.PNG", "IMG_2079.PNG"]
+      }
+    },
+    {
+      "id": "st-marcus-mars",
+      "name": "St. Marcus Mars Medal",
+      "category": "character",
+      "uniqueTrait": "When in the area around your enemy's Treasure: Reduce damage received by 5%.",
+      "tags": [
+        { "id": "egghead", "name": "Egghead" },
+        { "id": "world-noble", "name": "World Noble" },
+        { "id": "the-five-elders", "name": "The Five Elders" }
+      ],
+      "nativeTraits": ["atk", "def", "hp"],
+      "sources": {
+        "details": "IMG_2080.PNG",
+        "tag": "IMG_2081.PNG",
+        "rates": ["IMG_2082.PNG", "IMG_2083.PNG"]
+      }
+    },
+    {
+      "id": "kyros",
+      "name": "Kyros Medal",
+      "category": "character",
+      "uniqueTrait": "When in the Treasure Area: Reduce damage received by 5%.",
+      "tags": [
+        { "id": "dressrosa", "name": "Dressrosa" }
+      ],
+      "nativeTraits": ["atk", "def", "hp"],
+      "sources": {
+        "details": "IMG_2084.PNG",
+        "tag": "IMG_2085.PNG",
+        "rates": ["IMG_2086.PNG", "IMG_2087.PNG"]
+      }
+    },
+    {
+      "id": "gungnir",
+      "name": "Gungnir Medal",
+      "category": "character",
+      "uniqueTrait": "When your HP is 70% or more: Increase damage dealt by 5%.",
+      "tags": [
+        { "id": "dressrosa", "name": "Dressrosa" },
+        { "id": "captain", "name": "Captain" },
+        { "id": "giant", "name": "Giant" },
+        { "id": "straw-hat-fleet", "name": "Straw Hat Fleet" }
+      ],
+      "nativeTraits": ["crit", "def", "hp"],
+      "sources": {
+        "details": "IMG_2088.PNG",
+        "tag": "IMG_2089.PNG",
+        "rates": ["IMG_2090.PNG", "IMG_2091.PNG"]
+      }
+    },
+    {
+      "id": "stone-stone",
+      "name": "Stone Stone Medal",
+      "category": "character",
+      "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+      "tags": [
+        { "id": "dressrosa", "name": "Dressrosa" },
+        { "id": "paramecia", "name": "Paramecia" },
+        { "id": "pica-army", "name": "Pica Army" },
+        { "id": "don-quixote-family", "name": "Don Quixote Family" }
+      ],
+      "nativeTraits": ["atk", "crit"],
+      "statusReductions": ["capture-block"],
+      "sources": {
+        "details": "IMG_2092.PNG",
+        "tag": "IMG_2093.PNG",
+        "rates": ["IMG_2094.PNG", "IMG_2095.PNG"]
+      }
+    },
+    {
+      "id": "the-wings",
+      "name": "The Wings Medal",
+      "category": "character",
+      "uniqueTrait": "When you are Downed: Reduce the cooldown time of Skill 2 by 4%.",
+      "tags": [
+        { "id": "land-of-wano", "name": "Land of Wano" },
+        { "id": "straw-hat-pirates", "name": "Straw Hat Pirates" },
+        { "id": "combatant", "name": "Combatant" },
+        { "id": "royalty-former-royalty", "name": "Royalty / Former Royalty" },
+        { "id": "great-grade-sword-wielder", "name": "Great Grade Sword Wielder" },
+        { "id": "worst-generation", "name": "Worst Generation" }
+      ],
+      "nativeTraits": ["hp", "crit"],
+      "statusReductions": ["aflame"],
+      "sources": {
+        "details": "IMG_2096.PNG",
+        "tag": "IMG_2097.PNG",
+        "rates": ["IMG_2098.PNG", "IMG_2099.PNG"]
+      }
+    },
+    {
+      "id": "sew-sew",
+      "name": "Sew-Sew Medal",
+      "category": "event",
+      "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 6%.",
+      "tags": [
+        { "id": "dressrosa", "name": "Dressrosa" },
+        { "id": "paramecia", "name": "Paramecia" },
+        { "id": "captain", "name": "Captain" },
+        { "id": "straw-hat-fleet", "name": "Straw Hat Fleet" }
+      ],
+      "nativeTraits": ["hp", "atk", "def"],
+      "sources": {
+        "details": "IMG_2100.PNG",
+        "tag": "IMG_2101.PNG",
+        "rates": ["IMG_2102.PNG", "IMG_2103.PNG"]
+      }
+    }
+  ]
+}

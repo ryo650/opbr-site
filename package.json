@@ -6,7 +6,8 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "medals:import": "node scripts/medal-importer/import.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

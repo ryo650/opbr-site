@@ -42,3 +42,9 @@ next-env.d.ts
 
 # public
 public_backup/
+
+
+# medal importer local inputs and reproducible intermediate files
+/scripts/medal-importer/input/
+/scripts/medal-importer/draft-medals.json
+/scripts/medal-importer/.tmp/
