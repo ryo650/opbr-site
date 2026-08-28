@@ -17,6 +17,12 @@ import {
   readProductionMedals,
   validateMergePlan,
 } from "./incremental.mjs";
+import {
+  createUnknownStatusEffectIssue,
+  createStatusEffectIndex,
+  loadStatusEffectCatalog,
+  resolveStatusEffect,
+} from "./status-effects.mjs";
 import { groupScreens, mergeTagPages } from "./tag-pages.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
@@ -24,25 +30,17 @@ const projectDir = path.resolve(importerDir, "../..");
 const inputDir = path.join(importerDir, "input");
 const reviewPath = path.join(importerDir, "reviewed-medals.json");
 const draftPath = path.join(importerDir, "draft-medals.json");
+const statusEffectCatalogPath = path.join(importerDir, "status-effects.json");
 const ocrPath = path.join(importerDir, "ocr.swift");
 const dataPath = path.join(projectDir, "src/data/medals/medals.ts");
 const imageDir = path.join(projectDir, "public/medals");
 const dryRun = process.argv.includes("--dry-run");
 const regressionMode = process.argv.includes("--regression");
 const knownNativeTraits = new Set(["atk", "def", "hp", "crit"]);
-const knownStatusEffects = new Set([
-  "clawed",
-  "capture-block",
-  "aflame",
-  "tremor",
-  "stun",
-  "poison",
-  "confuse",
-  "shock",
-  "freeze",
-  "entrance",
-  "negative",
-]);
+const statusEffectCatalog = await loadStatusEffectCatalog(
+  statusEffectCatalogPath,
+);
+const statusEffectsByName = createStatusEffectIndex(statusEffectCatalog);
 
 function requireCommand(command, fallbackPaths = []) {
   try {
@@ -224,10 +222,6 @@ function normalizeText(value) {
   return value.toLowerCase().replace(/[^a-z0-9]+/g, " ").trim();
 }
 
-function statusEffectId(value) {
-  return normalizeText(value).replace(/\s+/g, "-");
-}
-
 function issue(code, message, screenshot, ocrText, extra = {}) {
   return { code, message, screenshot, ocrText, ...extra };
 }
@@ -322,21 +316,24 @@ function analyzeRateTraits(ocr, medalName, file) {
         );
         continue;
       }
-      const status = statusEffectId(match[1]);
-      traitKinds.add(`status:${status}`);
-      if (!knownStatusEffects.has(status)) {
-        addIssue(
-          issue(
-            "unknown-status-effect",
-            `Unknown status effect detected: "${match[1]}"`,
-            file,
-            statusText,
-            { medalName, unknownStatusText: match[1] },
-          ),
-        );
+      const displayNameCandidate = match[1].trim();
+      const approvedStatus = resolveStatusEffect(
+        statusEffectsByName,
+        displayNameCandidate,
+      );
+      traitKinds.add(
+        `status:${approvedStatus?.id ?? `unknown-${normalizeText(displayNameCandidate)}`}`,
+      );
+      if (!approvedStatus) {
+        addIssue(createUnknownStatusEffectIssue({
+          medalName,
+          displayNameCandidate,
+          ocrText: statusText,
+          screenshot: file,
+        }));
         continue;
       }
-      statusReductions.add(status);
+      statusReductions.add(approvedStatus.id);
       continue;
     }
 
@@ -1186,6 +1183,18 @@ for (const [index, draft] of drafts.entries()) {
     console.log(
       `  issue: ${draftIssue.code} | ${draftIssue.screenshot} | ${draftIssue.message}`,
     );
+    if (draftIssue.code === "unknown-status-effect") {
+      console.log(`    medal name: ${draftIssue.medalName}`);
+      console.log(
+        `    display name candidate: ${draftIssue.displayNameCandidate}`,
+      );
+      console.log(`    OCR: ${draftIssue.ocrText}`);
+      console.log(`    source screenshot: ${draftIssue.screenshot}`);
+      console.log(`    Rate screen: ${draftIssue.rateScreen}`);
+      console.log(
+        `    suggested ID: ${draftIssue.suggestedId ?? "<unavailable>"}`,
+      );
+    }
   }
 }
 for (const { medal } of mergePlan.duplicates) {

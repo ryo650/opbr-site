@@ -8,6 +8,11 @@ import {
   productionContent,
   validateMergePlan,
 } from "./incremental.mjs";
+import {
+  renderStatusEffectTypes,
+  validateProductionStatusEffects,
+  validateStatusEffectCatalog,
+} from "./status-effects.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -38,6 +43,18 @@ const production = parseGeneratedMedals(
 );
 const draft = readJson("draft-medals.json");
 const review = readJson("reviewed-medals.json");
+const statusEffectCatalog = validateStatusEffectCatalog(
+  readJson("status-effects.json"),
+);
+const generatedStatusEffectTypesPath = path.join(
+  projectDir,
+  "src/data/medals/status-effects.generated.ts",
+);
+assertEqual(
+  readFileSync(generatedStatusEffectTypesPath, "utf8"),
+  renderStatusEffectTypes(statusEffectCatalog),
+  "Generated StatusEffectType is out of sync with status-effects.json",
+);
 if (!draft.merge?.previousProduction) {
   throw new Error("Draft does not contain an incremental production snapshot");
 }
@@ -78,6 +95,8 @@ for (const [field, expected] of Object.entries(expectedSummary)) {
 
 const ids = production.map((medal) => medal.id);
 if (new Set(ids).size !== ids.length) throw new Error("Duplicate medal IDs found");
+
+validateProductionStatusEffects(production, statusEffectCatalog);
 
 const reviewed = review.medals.map(productionContent);
 const productionById = new Map(production.map((medal) => [medal.id, medal]));
@@ -151,6 +170,9 @@ console.log(
       webpFiles: imageFiles.length,
       webpSize: "200x200",
       targetedRetryValuesMatch: true,
+      approvedStatusEffects: statusEffectCatalog.length,
+      productionStatusEffectsCatalogued: true,
+      generatedStatusEffectTypeCurrent: true,
     },
     null,
     2,

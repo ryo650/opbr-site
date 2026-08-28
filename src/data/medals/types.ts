@@ -1,3 +1,7 @@
+import type { StatusEffectType } from "./status-effects.generated";
+
+export type { StatusEffectType } from "./status-effects.generated";
+
 export type MedalCategory = "character" | "event";
 
 export type MedalTag = {
@@ -6,19 +10,6 @@ export type MedalTag = {
 };
 
 export type NativeTraitType = "atk" | "def" | "hp" | "crit";
-
-export type StatusEffectType =
-  | "clawed"
-  | "capture-block"
-  | "aflame"
-  | "tremor"
-  | "stun"
-  | "poison"
-  | "confuse"
-  | "shock"
-  | "freeze"
-  | "entrance"
-  | "negative";
 
 export type Medal = {
   id: string;

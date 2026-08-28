@@ -3661,5 +3661,2025 @@ export const medals = [
     "statusReductions": [
       "aflame"
     ]
+  },
+  {
+    "id": "the-demon-heir",
+    "name": "The Demon Heir Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "mad-dog-of-the-navy",
+    "name": "Mad Dog of the Navy Medal",
+    "category": "character",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "cutting-mist",
+    "name": "Cutting Mist Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "magellan",
+    "name": "Magellan Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "impel-down",
+        "name": "Impel Down"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "ivankov",
+    "name": "Ivankov Medal",
+    "category": "character",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "impel-down",
+        "name": "Impel Down"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "new-kama",
+        "name": "New Kama"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "king-cobra",
+    "name": "King Cobra Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "rayleigh",
+    "name": "Rayleigh Medal",
+    "category": "character",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "sabaody-archipelago-island-of-women",
+        "name": "Sabaody Archipelago / Island of Women"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "sengoku",
+    "name": "Sengoku Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "urouge",
+    "name": "Urouge Medal",
+    "category": "character",
+    "uniqueTrait": "When attacked by an enemy, 100% chance to: Reduce the cooldown time of Skill 1 by 2%.",
+    "tags": [
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "apoo",
+    "name": "Apoo Medal",
+    "category": "character",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "repel",
+    "name": "Repel Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "kid-pirates",
+        "name": "Kid Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "drake",
+    "name": "Drake Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "killer",
+    "name": "Killer Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 50% or less: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "kid-pirates",
+        "name": "Kid Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ninpo-lightning-blast",
+    "name": "Ninpo Lightning Blast Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      },
+      {
+        "id": "ninja",
+        "name": "Ninja"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "sumo-slap",
+    "name": "Sumo Slap Medal",
+    "category": "character",
+    "uniqueTrait": "When in the Treasure Area: Increase damage to Defenders by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "great-grade-sword-wielder",
+        "name": "Great Grade Sword Wielder"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "six-king-pistol",
+    "name": "Six King Pistol Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "mamaragan",
+    "name": "Mamaragan Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "sky-island-lrll",
+        "name": "Sky Island / LRLL"
+      },
+      {
+        "id": "god-s-army",
+        "name": "God's Army"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "mantra",
+        "name": "Mantra"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "rebecca",
+    "name": "Rebecca Medal",
+    "category": "character",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "corazon",
+    "name": "Corazon Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "confuse"
+    ]
+  },
+  {
+    "id": "ikoku-sovereignty",
+    "name": "Ikoku Sovereignty Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      },
+      {
+        "id": "former-rocks-pirates",
+        "name": "Former Rocks Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "buzz-cut-mochi",
+    "name": "Buzz Cut Mochi Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "sweet-3-general",
+        "name": "\"Sweet 3\" General"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "chop-chop",
+    "name": "Chop-Chop Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has more Treasure secured: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "buggy-s-delivery",
+        "name": "Buggy's Delivery"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "caesar",
+    "name": "Caesar Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "poison"
+    ]
+  },
+  {
+    "id": "the-master-swordsman",
+    "name": "The Master Swordsman Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "supreme-grade-sword-wielder",
+        "name": "Supreme Grade Sword Wielder"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "perfume-femur",
+    "name": "Perfume Femur Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "sabaody-archipelago-island-of-women",
+        "name": "Sabaody Archipelago / Island of Women"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "kuja-pirates",
+        "name": "Kuja Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "gorgon-sisters",
+        "name": "Gorgon Sisters"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "entrance"
+    ]
+  },
+  {
+    "id": "negative-ghost",
+    "name": "Negative Ghost Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "thriller-bark-pirates",
+        "name": "Thriller Bark Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "negative"
+    ]
+  },
+  {
+    "id": "crescent-cutlass",
+    "name": "Crescent Cutlass Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "smoker-chambres",
+    "name": "Smoker (Chambres) Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      },
+      {
+        "id": "chambres",
+        "name": "Chambres"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "pheasant-peck",
+    "name": "Pheasant Peck Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "freeze"
+    ]
+  },
+  {
+    "id": "kinemon",
+    "name": "Kin'emon Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "the-billion-fold-world-trichiliocosm",
+    "name": "The Billion-Fold World Trichiliocosm Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "great-grade-sword-wielder",
+        "name": "Great Grade Sword Wielder"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "sky-walk",
+    "name": "Sky Walk Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "cross-fire",
+    "name": "Cross Fire Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "whitebeard-pirates-commander",
+        "name": "Whitebeard Pirates Commander"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "chopperemon",
+    "name": "Chopperemon Medal",
+    "category": "character",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      },
+      {
+        "id": "ninja",
+        "name": "Ninja"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kawamatsu",
+    "name": "Kawamatsu Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "kozuki-oden",
+    "name": "Kozuki Oden Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "great-grade-sword-wielder",
+        "name": "Great Grade Sword Wielder"
+      },
+      {
+        "id": "whitebeard-pirates-commander",
+        "name": "Whitebeard Pirates Commander"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "kikunojo",
+    "name": "Kikunojo Medal",
+    "category": "character",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "roger",
+    "name": "Roger Medal",
+    "category": "character",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "supreme-grade-sword-wielder",
+        "name": "Supreme Grade Sword Wielder"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "napping-kyoshiro",
+    "name": "Napping Kyoshiro Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ashura-doji",
+    "name": "Ashura Doji Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "tremor-tremor",
+    "name": "Tremor-Tremor Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "supreme-grade-sword-wielder",
+        "name": "Supreme Grade Sword Wielder"
+      },
+      {
+        "id": "former-rocks-pirates",
+        "name": "Former Rocks Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "hero",
+    "name": "Hero Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "mokomo-dukedom-musketeer",
+        "name": "Mokomo Dukedom Musketeer"
+      },
+      {
+        "id": "kingsbird",
+        "name": "Kingsbird"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "assistant-fish-man-karate-master",
+    "name": "Assistant Fish-Man Karate Master Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of dodge by 13%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "general-franky",
+    "name": "General Franky Medal",
+    "category": "character",
+    "uniqueTrait": "When you are Downed: Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "ship-carpenter",
+        "name": "Ship Carpenter"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "god-usopp",
+    "name": "God Usopp Medal",
+    "category": "character",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "gaimon",
+    "name": "Gaimon Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "east-blue",
+        "name": "East Blue"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "duke-dogstorm",
+    "name": "Duke Dogstorm Medal",
+    "category": "character",
+    "uniqueTrait": "For 90 seconds after the battle has started: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "cat-viper",
+    "name": "Cat Viper Medal",
+    "category": "character",
+    "uniqueTrait": "When there are 90 seconds or less remaining: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "candula",
+    "name": "Candula Medal",
+    "category": "character",
+    "uniqueTrait": "When attacked by an enemy, 100% chance to: Reduce the cooldown time of Skill 1 by 2%.",
+    "tags": [
+      {
+        "id": "water-7-enies-lobby",
+        "name": "Water 7 / Enies Lobby"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "palm",
+    "name": "Palm Medal",
+    "category": "character",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "fish-man-island",
+        "name": "Fish-Man Island"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "raid-luffy",
+    "name": "Raid Luffy Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "memoir-of-that-summer-day",
+    "name": "Memoir of that Summer Day Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "impel-down",
+        "name": "Impel Down"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "new-kama",
+        "name": "New Kama"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "raid-kid",
+    "name": "Raid Kid Medal",
+    "category": "character",
+    "uniqueTrait": "When hit with Knockback by enemy: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kid-pirates",
+        "name": "Kid Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "galdino",
+    "name": "Galdino Medal",
+    "category": "character",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "the-grand-line",
+        "name": "The Grand Line"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "officer-agent",
+        "name": "Officer Agent"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "ms-goldenweek",
+    "name": "Ms. Goldenweek Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "the-grand-line",
+        "name": "The Grand Line"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "officer-agent",
+        "name": "Officer Agent"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pell",
+    "name": "Pell Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "alabasta",
+        "name": "Alabasta"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "alabasta-kingdom",
+        "name": "Alabasta Kingdom"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vivi-karoo",
+    "name": "Vivi & Karoo Medal",
+    "category": "character",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "alabasta",
+        "name": "Alabasta"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "alabasta-kingdom",
+        "name": "Alabasta Kingdom"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "delphinium",
+    "name": "Delphinium Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ice-burn",
+    "name": "Ice-Burn Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "musician",
+        "name": "Musician"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "freeze"
+    ]
+  },
+  {
+    "id": "sentomaru",
+    "name": "Sentomaru Medal",
+    "category": "character",
+    "uniqueTrait": "When you Knockback an enemy: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "sabaody-archipelago-island-of-women",
+        "name": "Sabaody Archipelago / Island of Women"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "koby-paramount-war",
+    "name": "Koby (Paramount war) Medal",
+    "category": "character",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "master-chief-petty-officer",
+        "name": "Master Chief Petty Officer"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "fleet-admiral-akainu",
+    "name": "Fleet Admiral Akainu Medal",
+    "category": "character",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "baby-5",
+    "name": "Baby 5 Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "pica-army",
+        "name": "Pica Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "hard-boiled",
+    "name": "Hard-Boiled Medal",
+    "category": "character",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "diamante-army",
+        "name": "Diamante Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "stun"
+    ]
+  },
+  {
+    "id": "hina",
+    "name": "Hina Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "bind"
+    ]
+  },
+  {
+    "id": "scalpel",
+    "name": "Scalpel Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "stolen-heart"
+    ]
+  },
+  {
+    "id": "spiky-shadow-lizard",
+    "name": "Spiky Shadow Lizard Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "thriller-bark-pirates",
+        "name": "Thriller Bark Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "shadowless"
+    ]
+  },
+  {
+    "id": "fire-fist-pistol-red-hawk",
+    "name": "Fire-Fist Pistol Red Hawk Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "recovery-blocked"
+    ]
+  },
+  {
+    "id": "raid-law",
+    "name": "Raid Law Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "recovery-blocked"
+    ]
   }
 ] as const satisfies readonly Medal[];

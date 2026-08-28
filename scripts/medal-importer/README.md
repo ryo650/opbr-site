@@ -22,6 +22,25 @@ reordering existing production data.
 5. Run `npm run medals:validate` to verify the merge and every production WebP.
 6. Empty `input/` only after the import and validation succeed.
 
+If dry-run reports an unknown Status Effect:
+
+1. Inspect the reported source Rate screenshot in the game capture.
+2. Approve the exact display name with
+   `npm run medals:approve-status -- "Status Name"`.
+3. Run `npm run medals:import -- --dry-run` again.
+4. Import only after `needsReview` reaches zero.
+5. Run `npm run medals:import` and then `npm run medals:validate`.
+
+Use `--name` and `--id` when the generated slug is not the desired stable ID:
+
+```sh
+npm run medals:approve-status -- --name "Some Status" --id some-status
+```
+
+The approval command is intentionally non-interactive: explicitly running it is
+the human approval. It validates the display name and ID, rejects conflicting
+names or IDs, appends the catalog entry, and regenerates the TypeScript type.
+
 The importer never edits files in `input/`. Ordering, screen classification,
 grouping, screenshot dimensions, and regression-fixture failures stop the whole
 run. New-medal content problems are attached only to that medal as `needsReview`.
@@ -85,13 +104,22 @@ medal so no edge is clipped.
 Rate values and conditions are intentionally discarded. The generated data keeps
 only the available native-stat types (`atk`, `def`, `hp`, and `crit`).
 Status reductions are stored separately by status-effect ID without their value.
-The currently verified IDs are `clawed`, `capture-block`, `aflame`, `tremor`,
-`stun`, `poison`, `confuse`, `shock`, `freeze`, `entrance`, and `negative`.
+`status-effects.json` is the single source of truth for approved display names
+and stable production IDs. The importer compares normalized display names from
+OCR with that catalog using case-, quote-, and whitespace-insensitive exact
+matching. It does not use fuzzy matching.
+
+`src/data/medals/status-effects.generated.ts` is derived from the catalog and
+provides `StatusEffectType` to production TypeScript. The approval command keeps
+it synchronized, so adding a Status Effect never requires editing `types.ts`.
+`npm run medals:generate-status-types` can explicitly regenerate the derived
+file, and `npm run medals:validate` rejects an out-of-sync generated type.
 
 The importer re-extracts these types from every Rate screenshot. An unknown
 effect sentence or status-effect name marks only that medal as `needsReview`
-with its name, original OCR text, and source screenshot. Add a new explicit type
-only after a human verifies that failure against the image.
+with its medal name, display-name candidate, original OCR text, source Rate
+screenshot, and a suggested ID. The suggestion is diagnostic only and is never
+added automatically.
 
 OCR is used after ordering for screen classification and field extraction.
 New groups are structured directly from OCR. A new medal is eligible for import
@@ -125,6 +153,10 @@ directory. It validates IDs, counts, the generated TypeScript structure, and
 200x200 WebPs first. New images are copied without overwrite and `medals.ts` is
 replaced atomically last. If the data commit fails, added images are rolled back.
 Existing WebPs are never replaced or deleted.
+
+`npm run medals:validate` also validates that catalog IDs and normalized names
+are unique, IDs use lowercase kebab-case, the generated TypeScript type matches
+the catalog, and every production `statusReductions` ID exists in the catalog.
 
 If an existing production WebP is missing, the importer stops unless the same
 medal is present as an identical validated duplicate in the current batch. In

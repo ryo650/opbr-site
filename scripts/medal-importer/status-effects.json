@@ -1,0 +1,62 @@
+[
+  {
+    "id": "clawed",
+    "name": "Clawed"
+  },
+  {
+    "id": "capture-block",
+    "name": "Capture Block"
+  },
+  {
+    "id": "aflame",
+    "name": "Aflame"
+  },
+  {
+    "id": "tremor",
+    "name": "Tremor"
+  },
+  {
+    "id": "stun",
+    "name": "Stun"
+  },
+  {
+    "id": "poison",
+    "name": "Poison"
+  },
+  {
+    "id": "confuse",
+    "name": "Confuse"
+  },
+  {
+    "id": "shock",
+    "name": "Shock"
+  },
+  {
+    "id": "freeze",
+    "name": "Freeze"
+  },
+  {
+    "id": "entrance",
+    "name": "Entrance"
+  },
+  {
+    "id": "negative",
+    "name": "Negative"
+  },
+  {
+    "id": "bind",
+    "name": "Bind"
+  },
+  {
+    "id": "stolen-heart",
+    "name": "Stolen Heart"
+  },
+  {
+    "id": "shadowless",
+    "name": "Shadowless"
+  },
+  {
+    "id": "recovery-blocked",
+    "name": "Recovery Blocked"
+  }
+]

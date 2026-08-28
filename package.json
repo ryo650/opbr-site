@@ -10,7 +10,9 @@
     "medals:import": "node scripts/medal-importer/import.mjs",
     "medals:regression": "node scripts/medal-importer/import.mjs --dry-run --regression",
     "medals:test": "node --test scripts/medal-importer/*.test.mjs",
-    "medals:validate": "node scripts/medal-importer/validate-output.mjs"
+    "medals:validate": "node scripts/medal-importer/validate-output.mjs",
+    "medals:approve-status": "node scripts/medal-importer/approve-status.mjs",
+    "medals:generate-status-types": "node scripts/medal-importer/generate-status-types.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
