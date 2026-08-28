@@ -10,6 +10,13 @@
     "height": 200
   },
   "fieldCrops": {
+    "name": {
+      "x": 1020,
+      "y": 105,
+      "width": 800,
+      "height": 90,
+      "scale": 2
+    },
     "uniqueTrait": {
       "x": 1020,
       "y": 230,

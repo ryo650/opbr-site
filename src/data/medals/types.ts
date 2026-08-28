@@ -13,7 +13,11 @@ export type StatusEffectType =
   | "aflame"
   | "tremor"
   | "stun"
-  | "poison";
+  | "poison"
+  | "confuse"
+  | "shock"
+  | "freeze"
+  | "entrance";
 
 export type Medal = {
   id: string;

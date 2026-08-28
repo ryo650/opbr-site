@@ -36,6 +36,10 @@ const knownStatusEffects = new Set([
   "tremor",
   "stun",
   "poison",
+  "confuse",
+  "shock",
+  "freeze",
+  "entrance",
 ]);
 
 function requireCommand(command, fallbackPaths = []) {
@@ -407,6 +411,10 @@ function classify(ocr, file) {
   const hasPercentage = ocr.lines.some((line) => /\d+(?:[.,]\d+)?%/.test(line));
   const hasRateSignature = hasRateDescription && hasPercentage;
   const hasDetailsSignature = normalizedLines.includes("unique trait");
+  const hasDetailsBodyStructure =
+    normalizedLines.some((line) => /^extra trait(?: \d+)?$/.test(line)) &&
+    normalizedLines.includes("rate") &&
+    normalizedLines.includes("craft");
 
   if (type === "rate" && !hasRateSignature) {
     throw new Error(
@@ -418,9 +426,13 @@ function classify(ocr, file) {
       `${file}: ${type} title conflicts with Rate signature\nOCR: ${ocrText}`,
     );
   }
-  if (type === "details" && !hasDetailsSignature) {
+  if (
+    type === "details" &&
+    !hasDetailsSignature &&
+    !hasDetailsBodyStructure
+  ) {
     throw new Error(
-      `${file}: Medal Details title conflicts with missing Unique Trait signature\nOCR: ${ocrText}`,
+      `${file}: Medal Details title conflicts with missing Details body structure\nOCR: ${ocrText}`,
     );
   }
   if (type === "tag" && hasDetailsSignature) {
@@ -478,6 +490,13 @@ function extractRetriedUniqueTrait(ocr) {
   const uniqueTrait = joinOcrLines(selectedLines);
   if (hasUniqueTraitStructureAnomaly(uniqueTrait, selectedLines)) return null;
   return uniqueTrait;
+}
+
+function extractRetriedName(ocr) {
+  const nameCandidates = ocr.lines
+    .map((line) => line.trim())
+    .filter((line) => /\S+\s+medal$/i.test(line));
+  return nameCandidates.length === 1 ? nameCandidates[0] : null;
 }
 
 function extractDetails(ocr, file) {
@@ -728,7 +747,7 @@ if (
 ) {
   throw new Error("Configured medal crop falls outside the expected screenshot");
 }
-for (const fieldName of ["uniqueTrait", "rateTraits"]) {
+for (const fieldName of ["name", "uniqueTrait", "rateTraits"]) {
   const fieldCrop = review.fieldCrops?.[fieldName];
   if (
     !fieldCrop ||
@@ -837,6 +856,28 @@ for (const group of groups) {
 
   const details = extractDetails(detailsOcr, group.details);
   const fieldOcrRetries = [];
+  if (details.issues.some((detailIssue) => detailIssue.code === "missing-name")) {
+    const retry = await retryFieldOcr(
+      path.join(inputDir, group.details),
+      "name",
+      review.fieldCrops.name,
+    );
+    const retriedName = extractRetriedName(retry);
+    fieldOcrRetries.push({
+      field: "name",
+      screenshot: group.details,
+      crop: retry.crop,
+      initialOcr: details.name ?? detailsOcr.lines,
+      retryOcr: retry.lines,
+      resolved: Boolean(retriedName),
+    });
+    if (retriedName) {
+      details.name = retriedName;
+      details.issues = details.issues.filter(
+        (detailIssue) => detailIssue.code !== "missing-name",
+      );
+    }
+  }
   if (
     details.issues.some((detailIssue) =>
       ["missing-unique-trait", "ambiguous-unique-trait-ocr"].includes(

@@ -78,7 +78,7 @@ Rate values and conditions are intentionally discarded. The generated data keeps
 only the available native-stat types (`atk`, `def`, `hp`, and `crit`).
 Status reductions are stored separately by status-effect ID without their value.
 The currently verified IDs are `clawed`, `capture-block`, `aflame`, `tremor`,
-`stun`, and `poison`.
+`stun`, `poison`, `confuse`, `shock`, `freeze`, and `entrance`.
 
 The importer re-extracts these types from every Rate screenshot. An unknown
 effect sentence or status-effect name marks only that medal as `needsReview`
