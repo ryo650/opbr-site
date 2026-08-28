@@ -17,6 +17,7 @@ import {
   readProductionMedals,
   validateMergePlan,
 } from "./incremental.mjs";
+import { groupScreens, mergeTagPages } from "./tag-pages.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -40,6 +41,7 @@ const knownStatusEffects = new Set([
   "shock",
   "freeze",
   "entrance",
+  "negative",
 ]);
 
 function requireCommand(command, fallbackPaths = []) {
@@ -645,45 +647,16 @@ function extractTags(ocr, file) {
   return { tags, issues };
 }
 
-function groupScreens(screens) {
-  const groups = [];
-  let current = null;
-
-  for (const screen of screens) {
-    if (screen.type === "details") {
-      current = { details: screen.file, tag: null, rates: [] };
-      groups.push(current);
-      continue;
-    }
-    if (!current) {
-      throw new Error(`${screen.file} appears before the first Medal Details screen`);
-    }
-    if (screen.type === "tag") {
-      if (current.tag) {
-        throw new Error(`Duplicate Tag screens in group beginning ${current.details}`);
-      }
-      current.tag = screen.file;
-      continue;
-    }
-    if (screen.type === "rate") {
-      current.rates.push(screen.file);
-      continue;
-    }
-    throw new Error(`Could not classify ${screen.file}; refusing to guess`);
-  }
-
-  for (const group of groups) {
-    if (!group.tag || group.rates.length === 0) {
-      throw new Error(`Incomplete group beginning ${group.details}`);
-    }
-  }
-  return groups;
+function sourceTagScreens(sources) {
+  if (Array.isArray(sources.tags)) return sources.tags;
+  return sources.tag ? [sources.tag] : [];
 }
 
 function sameSources(group, sources) {
   return (
     group.details === sources.details &&
-    group.tag === sources.tag &&
+    JSON.stringify(group.tagScreens) ===
+      JSON.stringify(sourceTagScreens(sources)) &&
     JSON.stringify(group.rates) === JSON.stringify(sources.rates)
   );
 }
@@ -794,7 +767,7 @@ const skippedScreenshotNames = new Set(
 const activeReviewMedals = (regressionMode ? review.medals : []).filter((medal) => {
   const sourceFiles = [
     medal.sources.details,
-    medal.sources.tag,
+    ...sourceTagScreens(medal.sources),
     ...medal.sources.rates,
   ];
   const skippedCount = sourceFiles.filter((file) =>
@@ -849,8 +822,11 @@ const drafts = [];
 for (const group of groups) {
   const fixture = fixtureByDetails.get(group.details) ?? null;
   const detailsOcr = ocrByFile.get(group.details);
-  const tagOcr = ocrByFile.get(group.tag);
-  if (!detailsOcr || !tagOcr) {
+  const tagOcrPages = group.tagScreens.map((file) => ({
+    file,
+    ocr: ocrByFile.get(file),
+  }));
+  if (!detailsOcr || tagOcrPages.some((page) => !page.ocr)) {
     throw new Error(`Missing OCR data for group beginning ${group.details}`);
   }
 
@@ -909,7 +885,12 @@ for (const group of groups) {
       );
     }
   }
-  const tagResult = extractTags(tagOcr, group.tag);
+  const tagResult = mergeTagPages(
+    tagOcrPages.map(({ file, ocr: tagOcr }) => ({
+      file,
+      ...extractTags(tagOcr, file),
+    })),
+  );
   const draftIssues = [...details.issues, ...tagResult.issues];
   const nativeTraits = new Set();
   const statusReductions = new Set();
@@ -1002,16 +983,20 @@ for (const group of groups) {
     issues: draftIssues,
     sources: {
       details: group.details,
-      tag: group.tag,
+      tags: group.tagScreens,
       rates: group.rates,
     },
     cropCheck: colorCheck,
     ocr: {
       details: detailsOcr.lines,
-      tag: tagOcr.lines,
+      tags: tagOcrPages.map(({ file, ocr: tagOcr }) => ({
+        file,
+        lines: tagOcr.lines,
+      })),
       rates: rateOcr,
     },
     fieldOcrRetries,
+    tagPages: tagResult.pages,
   };
 
   if (fixture) {
@@ -1192,7 +1177,7 @@ for (const [index, draft] of drafts.entries()) {
     `Group ${index + 1}: ${draft.name ?? "<missing name>"} | ${draft.category ?? "ambiguous"} | ${draft.fixture ? "fixture" : "batch"} | ${draft.validationPassed ? "validation passed" : "needs review"}`,
   );
   console.log(
-    `  sources: ${draft.sources.details}, ${draft.sources.tag}, ${draft.sources.rates.join(", ")}`,
+    `  sources: ${draft.sources.details}, ${draft.sources.tags.join(", ")}, ${draft.sources.rates.join(", ")}`,
   );
   console.log(
     `  crop mean RGB: ${rgb.red.toFixed(3)}, ${rgb.green.toFixed(3)}, ${rgb.blue.toFixed(3)} -> ${draft.cropCheck.detected ?? "ambiguous"}`,

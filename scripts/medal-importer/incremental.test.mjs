@@ -19,7 +19,8 @@ const production = await readProductionMedals(
   path.join(projectDir, "src/data/medals/medals.ts"),
 );
 
-assert.equal(production.length, 40, "test baseline must remain 40 medals");
+assert.ok(production.length > 0, "test baseline must contain production medals");
+const baselineCount = production.length;
 
 function newMedal(overrides = {}) {
   return {
@@ -46,17 +47,17 @@ test("A. empty input stops safely", () => {
   assert.throws(() => assertInputNotEmpty([]), /No input screenshots found/);
 });
 
-test("B. a new-only batch appends after the existing 40", () => {
+test("B. a new-only batch appends after existing production", () => {
   const incoming = newMedal();
   const plan = mergeProductionMedals(production, [incoming]);
   validateMergePlan(plan);
-  assert.equal(plan.existing.length, 40);
+  assert.equal(plan.existing.length, baselineCount);
   assert.equal(plan.newMedals.length, 1);
   assert.equal(plan.duplicates.length, 0);
   assert.equal(plan.conflicts.length, 0);
-  assert.equal(plan.merged.length, 41);
-  assert.deepEqual(plan.merged.slice(0, 40), production);
-  assert.deepEqual(plan.merged[40], productionContent(incoming));
+  assert.equal(plan.merged.length, baselineCount + 1);
+  assert.deepEqual(plan.merged.slice(0, baselineCount), production);
+  assert.deepEqual(plan.merged[baselineCount], productionContent(incoming));
 });
 
 test("C. a semantically identical production medal is skipped", () => {
@@ -100,7 +101,7 @@ test("E. mixed new and identical duplicate batch appends only the new ID", () =>
   validateMergePlan(plan);
   assert.equal(plan.newMedals.length, 1);
   assert.equal(plan.duplicates.length, 1);
-  assert.equal(plan.merged.length, 41);
+  assert.equal(plan.merged.length, baselineCount + 1);
 });
 
 test("F. needsReview medals are excluded while validated medals remain eligible", () => {
@@ -118,7 +119,7 @@ test("F. needsReview medals are excluded while validated medals remain eligible"
   assert.deepEqual(plan.newMedals.map((medal) => medal.id), [
     "incremental-test-medal",
   ]);
-  assert.equal(plan.merged.length, 41);
+  assert.equal(plan.merged.length, baselineCount + 1);
 });
 
 test("G. a failure before data commit rolls back added WebPs", async () => {

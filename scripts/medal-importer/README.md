@@ -57,6 +57,14 @@ begins a group; every following Tag or Rate screen belongs to that group until
 the next Medal Details screen. Missing or conflicting titles and body signatures
 stop the import instead of falling back to a guess.
 
+A group may contain one or more consecutive Tag screens before its Rate screens.
+Tags are extracted page by page, merged in page order, and deduplicated by Tag ID
+while keeping the first occurrence. A Tag screen after Rate has started is a
+fatal structure error. Different screenshots with identical extracted Tag
+content and no new Tag produce a `needsReview` issue as a possible accidental
+duplicate; pixel-identical screenshots are still removed by the earlier pixel
+deduplication step.
+
 ## Fixed crop
 
 The verified coordinate box for 2532 x 1170 screenshots is:
@@ -78,7 +86,7 @@ Rate values and conditions are intentionally discarded. The generated data keeps
 only the available native-stat types (`atk`, `def`, `hp`, and `crit`).
 Status reductions are stored separately by status-effect ID without their value.
 The currently verified IDs are `clawed`, `capture-block`, `aflame`, `tremor`,
-`stun`, `poison`, `confuse`, `shock`, `freeze`, and `entrance`.
+`stun`, `poison`, `confuse`, `shock`, `freeze`, `entrance`, and `negative`.
 
 The importer re-extracts these types from every Rate screenshot. An unknown
 effect sentence or status-effect name marks only that medal as `needsReview`

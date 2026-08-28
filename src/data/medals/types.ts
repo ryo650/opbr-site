@@ -17,7 +17,8 @@ export type StatusEffectType =
   | "confuse"
   | "shock"
   | "freeze"
-  | "entrance";
+  | "entrance"
+  | "negative";
 
 export type Medal = {
   id: string;

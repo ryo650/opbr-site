@@ -49,7 +49,7 @@
       "nativeTraits": ["hp", "def", "crit"],
       "sources": {
         "details": "IMG_2059.PNG",
-        "tag": "IMG_2060.PNG",
+        "tags": ["IMG_2060.PNG"],
         "rates": ["IMG_2061.PNG", "IMG_2062.PNG"]
       }
     },
@@ -68,7 +68,7 @@
       "nativeTraits": ["hp", "def", "crit"],
       "sources": {
         "details": "IMG_2063.PNG",
-        "tag": "IMG_2064.PNG",
+        "tags": ["IMG_2064.PNG"],
         "rates": ["IMG_2065.PNG", "IMG_2066.PNG"]
       }
     },
@@ -88,7 +88,7 @@
       "nativeTraits": ["hp", "atk", "def", "crit"],
       "sources": {
         "details": "IMG_2067.PNG",
-        "tag": "IMG_2068.PNG",
+        "tags": ["IMG_2068.PNG"],
         "rates": ["IMG_2069.PNG", "IMG_2070.PNG"]
       }
     },
@@ -109,7 +109,7 @@
       "nativeTraits": ["hp", "atk", "def", "crit"],
       "sources": {
         "details": "IMG_2071.PNG",
-        "tag": "IMG_2072.PNG",
+        "tags": ["IMG_2072.PNG"],
         "rates": ["IMG_2073.PNG", "IMG_2074.PNG", "IMG_2075.PNG"]
       }
     },
@@ -129,7 +129,7 @@
       "statusReductions": ["clawed"],
       "sources": {
         "details": "IMG_2076.PNG",
-        "tag": "IMG_2077.PNG",
+        "tags": ["IMG_2077.PNG"],
         "rates": ["IMG_2078.PNG", "IMG_2079.PNG"]
       }
     },
@@ -146,7 +146,7 @@
       "nativeTraits": ["atk", "def", "hp"],
       "sources": {
         "details": "IMG_2080.PNG",
-        "tag": "IMG_2081.PNG",
+        "tags": ["IMG_2081.PNG"],
         "rates": ["IMG_2082.PNG", "IMG_2083.PNG"]
       }
     },
@@ -161,7 +161,7 @@
       "nativeTraits": ["atk", "def", "hp"],
       "sources": {
         "details": "IMG_2084.PNG",
-        "tag": "IMG_2085.PNG",
+        "tags": ["IMG_2085.PNG"],
         "rates": ["IMG_2086.PNG", "IMG_2087.PNG"]
       }
     },
@@ -179,7 +179,7 @@
       "nativeTraits": ["crit", "def", "hp"],
       "sources": {
         "details": "IMG_2088.PNG",
-        "tag": "IMG_2089.PNG",
+        "tags": ["IMG_2089.PNG"],
         "rates": ["IMG_2090.PNG", "IMG_2091.PNG"]
       }
     },
@@ -198,7 +198,7 @@
       "statusReductions": ["capture-block"],
       "sources": {
         "details": "IMG_2092.PNG",
-        "tag": "IMG_2093.PNG",
+        "tags": ["IMG_2093.PNG"],
         "rates": ["IMG_2094.PNG", "IMG_2095.PNG"]
       }
     },
@@ -219,7 +219,7 @@
       "statusReductions": ["aflame"],
       "sources": {
         "details": "IMG_2096.PNG",
-        "tag": "IMG_2097.PNG",
+        "tags": ["IMG_2097.PNG"],
         "rates": ["IMG_2098.PNG", "IMG_2099.PNG"]
       }
     },
@@ -237,7 +237,7 @@
       "nativeTraits": ["hp", "atk", "def"],
       "sources": {
         "details": "IMG_2100.PNG",
-        "tag": "IMG_2101.PNG",
+        "tags": ["IMG_2101.PNG"],
         "rates": ["IMG_2102.PNG", "IMG_2103.PNG"]
       }
     }
