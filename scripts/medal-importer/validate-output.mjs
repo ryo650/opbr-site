@@ -2,26 +2,29 @@ import { execFileSync } from "node:child_process";
 import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import {
+  mergeProductionMedals,
+  parseGeneratedMedals,
+  productionContent,
+  validateMergePlan,
+} from "./incremental.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
+const magickCommand = ["/opt/homebrew/bin/magick", "/usr/local/bin/magick"].find(
+  (candidate) => {
+    try {
+      execFileSync(candidate, ["-version"], { stdio: "ignore" });
+      return true;
+    } catch {
+      return false;
+    }
+  },
+);
+if (!magickCommand) throw new Error("Required command not found: magick");
 
 function readJson(file) {
   return JSON.parse(readFileSync(path.join(importerDir, file), "utf8"));
-}
-
-function productionFields(medal) {
-  return {
-    id: medal.id,
-    name: medal.name,
-    category: medal.category,
-    uniqueTrait: medal.uniqueTrait,
-    tags: medal.tags,
-    nativeTraits: medal.nativeTraits,
-    ...(medal.statusReductions?.length
-      ? { statusReductions: medal.statusReductions }
-      : {}),
-  };
 }
 
 function assertEqual(actual, expected, message) {
@@ -30,38 +33,61 @@ function assertEqual(actual, expected, message) {
   }
 }
 
-const productionText = readFileSync(
-  path.join(projectDir, "src/data/medals/medals.ts"),
-  "utf8",
+const production = parseGeneratedMedals(
+  readFileSync(path.join(projectDir, "src/data/medals/medals.ts"), "utf8"),
 );
-const productionMatch = productionText.match(
-  /export const medals = ([\s\S]+) as const satisfies readonly Medal\[\];/,
-);
-if (!productionMatch) throw new Error("Could not parse generated medals.ts");
-
-const production = JSON.parse(productionMatch[1]);
 const draft = readJson("draft-medals.json");
 const review = readJson("reviewed-medals.json");
-const eligibleDraft = draft.medals
+if (!draft.merge?.previousProduction) {
+  throw new Error("Draft does not contain an incremental production snapshot");
+}
+
+const eligibleBatch = draft.medals
   .filter((medal) => medal.validationPassed)
-  .map(productionFields);
+  .map((medal) => ({ ...productionContent(medal), sources: medal.sources }));
+const plan = mergeProductionMedals(draft.merge.previousProduction, eligibleBatch);
+validateMergePlan(plan);
+
 assertEqual(
   production,
-  eligibleDraft,
-  "Production medals do not match validationPassed Draft fields",
+  plan.merged,
+  "Production does not equal previous production plus validated new batch medals",
 );
+assertEqual(
+  production.slice(0, plan.existing.length),
+  plan.existing,
+  "Existing production content or order changed",
+);
+assertEqual(
+  plan.newMedals.map(productionContent),
+  production.slice(plan.existing.length),
+  "New production suffix does not match validated batch fields",
+);
+
+const expectedSummary = {
+  existingProductionMedals: plan.existing.length,
+  batchMedals: draft.medals.length,
+  newMedals: plan.newMedals.length,
+  duplicateMedals: plan.duplicates.length,
+  conflicts: plan.conflicts.length,
+  nextProductionMedals: plan.merged.length,
+};
+for (const [field, expected] of Object.entries(expectedSummary)) {
+  assertEqual(draft.summary[field], expected, `Draft summary ${field} is incorrect`);
+}
 
 const ids = production.map((medal) => medal.id);
 if (new Set(ids).size !== ids.length) throw new Error("Duplicate medal IDs found");
 
-const reviewed = review.medals.map(productionFields);
-const reviewedIds = new Set(reviewed.map((medal) => medal.id));
-const productionFixtures = production.filter((medal) => reviewedIds.has(medal.id));
-assertEqual(
-  productionFixtures,
-  reviewed,
-  "Existing regression fixtures changed during generation",
-);
+const reviewed = review.medals.map(productionContent);
+const productionById = new Map(production.map((medal) => [medal.id, medal]));
+for (const fixture of reviewed) {
+  assertEqual(
+    productionById.get(fixture.id),
+    fixture,
+    `Regression fixture changed in production: ${fixture.id}`,
+  );
+}
 
 const imageDir = path.join(projectDir, "public/medals");
 const imageFiles = readdirSync(imageDir)
@@ -72,8 +98,8 @@ assertEqual(imageFiles, expectedImages, "WebP filenames do not match medal IDs")
 
 for (const file of imageFiles) {
   const metadata = execFileSync(
-    "/usr/bin/env",
-    ["magick", "identify", "-format", "%m %w %h", path.join(imageDir, file)],
+    magickCommand,
+    ["identify", "-format", "%m %w %h", path.join(imageDir, file)],
     { encoding: "utf8" },
   ).trim();
   if (metadata !== "WEBP 200 200") {
@@ -113,14 +139,17 @@ for (const [name, expected] of Object.entries(targetedValues)) {
 console.log(
   JSON.stringify(
     {
-      productionMedals: production.length,
-      existingFixtures: productionFixtures.length,
-      newMedals: production.length - productionFixtures.length,
+      previousProduction: plan.existing.length,
+      batchMedals: draft.medals.length,
+      newMedals: plan.newMedals.length,
+      duplicateSkipped: plan.duplicates.length,
+      mergedProduction: production.length,
       uniqueIds: new Set(ids).size,
+      existingProductionPreserved: true,
+      batchFieldsMatch: true,
+      regressionFixturesPreserved: reviewed.length,
       webpFiles: imageFiles.length,
       webpSize: "200x200",
-      draftFieldMatch: true,
-      existingFixtureMatch: true,
       targetedRetryValuesMatch: true,
     },
     null,

@@ -7,7 +7,10 @@
     "build": "next build --webpack",
     "start": "next start",
     "lint": "eslint",
-    "medals:import": "node scripts/medal-importer/import.mjs"
+    "medals:import": "node scripts/medal-importer/import.mjs",
+    "medals:regression": "node scripts/medal-importer/import.mjs --dry-run --regression",
+    "medals:test": "node --test scripts/medal-importer/incremental.test.mjs",
+    "medals:validate": "node scripts/medal-importer/validate-output.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

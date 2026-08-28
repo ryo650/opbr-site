@@ -1,8 +1,9 @@
 # Medal importer
 
-This is a deliberately small, review-first importer for the Medal Sets / Medal
-Builder data. It turns one ordered screenshot batch into checked TypeScript data
-and fixed-coordinate WebP crops.
+This is a deliberately small incremental importer for the Medal Sets / Medal
+Builder data. It validates one new screenshot batch, merges only new medal IDs
+into production, and creates fixed-coordinate WebP crops without rebuilding or
+reordering existing production data.
 
 ## Requirements
 
@@ -12,15 +13,14 @@ and fixed-coordinate WebP crops.
 
 ## Workflow
 
-1. Add untouched screenshots to `input/`.
-2. Keep known regression fixtures in `reviewed-medals.json`; new medal groups do
-   not need to be added there before scanning.
+1. After a successful import, empty the ignored `input/` directory.
+2. Add untouched screenshots for only the next new batch.
 3. Run `npm run medals:import -- --dry-run` to inspect ordering, screen
    classification, grouping, dimensions, OCR, category-color checks, and
    `draft-medals.json` validation results.
 4. Run `npm run medals:import`.
-5. Review the generated `src/data/medals/medals.ts` and
-   `public/medals/*.webp`.
+5. Run `npm run medals:validate` to verify the merge and every production WebP.
+6. Empty `input/` only after the import and validation succeed.
 
 The importer never edits files in `input/`. Ordering, screen classification,
 grouping, screenshot dimensions, and regression-fixture failures stop the whole
@@ -28,11 +28,17 @@ run. New-medal content problems are attached only to that medal as `needsReview`
 
 Pixel-identical screenshots are detected with ImageMagick's decoded-pixel
 signature and the later copy is skipped after ordering is resolved and before
-grouping. Duplicate
-medal IDs are compared without their source filenames: matching content is
-generated once, while any differing field stops the import and reports both
-Details screenshots. A newly captured duplicate medal still needs a reviewed
-manifest entry so its ID and content can be verified rather than inferred.
+grouping. The current production `medals.ts` is the merge baseline. Batch medals
+with a new ID are appended, while production order and content are preserved.
+A production ID with semantically identical content is skipped even if tag or
+Trait arrays use a different order. A production ID with differing content is a
+blocking conflict that reports both values, differing fields, and batch source
+screenshots. It is never overwritten.
+
+Normal imports do not require old OCR fixture screenshots in `input/`.
+`reviewed-medals.json` remains the expected fixture data, and
+`npm run medals:regression` is the explicit OCR regression mode. That command
+requires the fixture screenshots and never writes production.
 
 ## Ordering and grouping
 
@@ -80,10 +86,10 @@ with its name, original OCR text, and source screenshot. Add a new explicit type
 only after a human verifies that failure against the image.
 
 OCR is used after ordering for screen classification and field extraction.
-Structured medal fields for existing fixtures are checked against
-`reviewed-medals.json`. New groups are structured directly from OCR. A new medal
-is eligible for import only when every required field, known Trait, category
-check, crop check, and ID check passes.
+New groups are structured directly from OCR. A new medal is eligible for import
+only when every required field, known Trait, category check, crop check, and ID
+check passes. Fixture fields are checked against `reviewed-medals.json` only in
+the explicit regression mode.
 
 Objective Unique Trait structure errors and unparsed Rate Trait text trigger a
 field-level retry. The importer crops the configured field rectangle, enlarges
@@ -99,8 +105,20 @@ fields, source screenshots, raw OCR lines, crop diagnostics, `validationPassed`,
 medals do not need to be copied into `reviewed-medals.json` or manually approved
 when validation passes.
 
-A real import includes regression fixtures and new medals with
-`validationPassed: true`. A medal with an unknown Trait, unknown status effect,
-unparsed OCR, ambiguous category, incomplete Rate coverage, or ID conflict is
-excluded individually. Global ordering, classification, grouping, or fixture
-regression failures still stop the entire import.
+A real import appends only batch medals with `validationPassed: true`. A medal
+with an unknown Trait, unknown status effect, unparsed OCR, ambiguous category,
+or incomplete Rate coverage is excluded individually; other validated new
+medals remain eligible. A production ID conflict and global ordering,
+classification, grouping, or data-structure failures stop the entire import.
+
+Before publication, the importer stages the merged `medals.ts`, every new or
+recoverable missing WebP, and validation results under the ignored `.tmp/`
+directory. It validates IDs, counts, the generated TypeScript structure, and
+200x200 WebPs first. New images are copied without overwrite and `medals.ts` is
+replaced atomically last. If the data commit fails, added images are rolled back.
+Existing WebPs are never replaced or deleted.
+
+If an existing production WebP is missing, the importer stops unless the same
+medal is present as an identical validated duplicate in the current batch. In
+that case only the missing image can be safely regenerated from that Details
+screenshot. A WebP already occupying a new ID is never overwritten.

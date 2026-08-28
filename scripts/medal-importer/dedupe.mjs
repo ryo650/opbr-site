@@ -1,11 +1,12 @@
-function comparableMedal(medal) {
+export function comparableMedal(medal) {
   const content = { ...medal };
   delete content.sources;
   delete content.colorCheck;
   return {
     ...content,
-    tags: [...content.tags].sort((left, right) =>
-      left.id.localeCompare(right.id),
+    tags: [...content.tags].sort(
+      (left, right) =>
+        left.id.localeCompare(right.id) || left.name.localeCompare(right.name),
     ),
     nativeTraits: [...content.nativeTraits].sort(),
     ...(content.statusReductions
@@ -14,7 +15,7 @@ function comparableMedal(medal) {
   };
 }
 
-function differingFields(left, right) {
+export function differingFields(left, right) {
   const fields = new Set([...Object.keys(left), ...Object.keys(right)]);
   return [...fields].filter(
     (field) => JSON.stringify(left[field]) !== JSON.stringify(right[field]),
