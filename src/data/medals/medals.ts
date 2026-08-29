@@ -11902,5 +11902,6760 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "gas-gas",
+    "name": "Gas-Gas Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "poison"
+    ]
+  },
+  {
+    "id": "warrior",
+    "name": "Warrior Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 30% or less: Boost tale the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "happosui-army",
+    "name": "Happosui Army Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "former-cp9-director",
+    "name": "Former CP9 Director Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "stick-stick",
+    "name": "Stick-Stick Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "hobby-hobby",
+    "name": "Hobby-Hobby Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "lucy-luffy",
+    "name": "Lucy (Luffy) Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "robiland",
+    "name": "Robiland Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 60 seconds or less tale remaining: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pica",
+    "name": "Pica Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "pica-army",
+        "name": "Pica Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "buffalo",
+    "name": "Buffalo Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "pica-army",
+        "name": "Pica Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "diamante",
+    "name": "Diamante Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "diamante-army",
+        "name": "Diamante Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "dellinger",
+    "name": "Dellinger Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy captures one of your team's Treasure Areas: CRIT: Boosted by 90% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "diamante-army",
+        "name": "Diamante Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "savior",
+    "name": "Savior Medal",
+    "category": "event",
+    "uniqueTrait": "When the equipped character is character type \"Long-Range Normal Attacks\": Increase Normal Attack damage dealt by 5%. and When upgrading a Medal, the number of *s for an assigned Trait may be untrue.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pop-pop",
+    "name": "Pop-Pop Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy captures one of your team's Treasure Areas: Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "pica-army",
+        "name": "Pica Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "art-art",
+    "name": "Art-Art Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "trebol-army",
+        "name": "Trebol Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "glare-glare",
+    "name": "Glare-Glare Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy whose ATK is boosted: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "trebol-army",
+        "name": "Trebol Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "ton-ton",
+    "name": "Ton-Ton Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy whose ATK is boosted: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "diamante-army",
+        "name": "Diamante Army"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "barrier-barrier",
+    "name": "Barrier-Barrier Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "barto-club",
+        "name": "Barto Club"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "hajrudin",
+    "name": "Hajrudin Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "hajrudin-straw-hat-fleet",
+    "name": "Hajrudin (Straw Hat Fleet) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "giant",
+        "name": "Giant"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "skill2-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "bartolomeo-straw-hat-fleet",
+    "name": "Bartolomeo (Straw Hat Fleet) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 2 by 2%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "barto-club",
+        "name": "Barto Club"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "skill1-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "joker",
+    "name": "Joker Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "all-seeing-eye",
+    "name": "All-Seeing Eye Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with Skill 2: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "trebol-army",
+        "name": "Trebol Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "half-n-half",
+    "name": "Half 'n Half Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "beautiful-pirates",
+        "name": "Beautiful Pirates"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "straw-hat-fleet",
+        "name": "Straw Hat Fleet"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "mermaid-princess",
+    "name": "Mermaid Princess Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "attendant-of-dressrosa",
+    "name": "Attendant of Dressrosa Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "conney",
+    "name": "Conney Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 30% or less: CRIT: Boosted by 60% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "bonney-pirates",
+        "name": "Bonney Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "koala-reverie",
+    "name": "Koala (Reverie) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "push-push",
+    "name": "Push-Push Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain-of-the-revolutionary-army",
+        "name": "Captain of the Revolutionary Army"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "horm-horm",
+    "name": "Horm-Horm Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally KOs an enemy: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "new-kama",
+        "name": "New Kama"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "inventor",
+    "name": "Inventor Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "captain-of-the-revolutionary-army",
+        "name": "Captain of the Revolutionary Army"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "princess-of-alabasta",
+    "name": "Princess of Alabasta Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally KOs an enemy: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "alabasta-kingdom",
+        "name": "Alabasta Kingdom"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "captain-koby",
+    "name": "Captain Koby Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your captured Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "reverie",
+        "name": "Reverie"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "wring-wring",
+    "name": "Wring-Wring Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "sweet-3-general",
+        "name": "\"Sweet 3\" General"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "bis-bis",
+    "name": "Bis-Bis Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 30% or less: CRIT: Boosted by 60% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "sweet-3-general",
+        "name": "\"Sweet 3\" General"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "memo-memo",
+    "name": "Memo-Memo Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "chiffon",
+    "name": "Chiffon Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "firetank-pirates",
+        "name": "Firetank Pirates"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "zeus",
+    "name": "Zeus Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy, 30% chance to: Nullify Shock.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "shock"
+    ]
+  },
+  {
+    "id": "prometheus",
+    "name": "Prometheus Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy, 30% chance to: Nullify Aflame.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "crit"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "napoleon",
+    "name": "Napoleon Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "queen-of-the-pleasure-district",
+    "name": "Queen of the Pleasure District Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "mirror-mirror",
+    "name": "Mirror-Mirror Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "truly-favored-sister",
+    "name": "Truly Favored Sister Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "pekoms",
+    "name": "Pekoms Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of dodge by 13%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pedro",
+    "name": "Pedro Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "shishilian",
+    "name": "Shishilian Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy inflicted with Shock: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "mokomo-dukedom-musketeer",
+        "name": "Mokomo Dukedom Musketeer"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "wanda",
+    "name": "Wanda Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Shock: SPD: Boosted by 3% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "mokomo-dukedom-musketeer",
+        "name": "Mokomo Dukedom Musketeer"
+      },
+      {
+        "id": "kingsbird",
+        "name": "Kingsbird"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "puff-puff",
+    "name": "Puff-Puff Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "heat-heat",
+    "name": "Heat-Heat Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "chopper-whole-cake-island",
+    "name": "Chopper (Whole Cake Island) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pedro-whole-cake-island",
+    "name": "Pedro (Whole Cake Island) Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Shock: Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "aladdin",
+    "name": "Aladdin Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking a character type \"Power users\" enemy: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      },
+      {
+        "id": "sun-pirates",
+        "name": "Sun Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "praline",
+    "name": "Praline Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type tale \"Power users\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      },
+      {
+        "id": "sun-pirates",
+        "name": "Sun Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "lucky-fellow",
+    "name": "Lucky Fellow? Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "gourmet-knight",
+    "name": "Gourmet Knight Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "mochi-mochi",
+    "name": "Mochi-Mochi Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "sweet-3-general",
+        "name": "\"Sweet 3\" General"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "montdor",
+    "name": "Montd'or Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your team's Treasure Area and the Treasure Gauge is 80% or more: Boost the cooldown reduction speed of Skill 1 by 10%. and Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "carrot-sulong",
+    "name": "Carrot (Sulong) Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Shock: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "mokomo-dukedom-musketeer",
+        "name": "Mokomo Dukedom Musketeer"
+      },
+      {
+        "id": "kingsbird",
+        "name": "Kingsbird"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "mystoms",
+    "name": "Mystoms Medal",
+    "category": "event",
+    "uniqueTrait": "When a damage-dealing Shock infliction has been nullified: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "milky",
+    "name": "Milky Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Shock: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "tristan",
+    "name": "Tristan Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "zou-whole-cake-island",
+        "name": "Zou / Whole Cake Island"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "foxfire",
+    "name": "Foxfire Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "evening-shower",
+    "name": "Evening Shower Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of dodge by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "plague",
+    "name": "Plague Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "drought",
+    "name": "Drought Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "straw-straw",
+    "name": "Straw-Straw Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "starving-skeleton",
+    "name": "Starving Skeleton Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "musician",
+        "name": "Musician"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "geisha",
+    "name": "Geisha Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "carpenter",
+    "name": "Carpenter Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: CRIT: Boosted by 80% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "ship-carpenter",
+        "name": "Ship Carpenter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "toad-oil-salesman",
+    "name": "Toad-Oil Salesman Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "momonosuke",
+    "name": "Momonosuke Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your enemy's Treasure Area and the Treasure Gauge is 50% or less: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "hiyori",
+    "name": "Hiyori Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "the-strongest-creature",
+    "name": "The Strongest Creature Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "raizo-of-the-mist",
+    "name": "Raizo of the Mist Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "ninja",
+        "name": "Ninja"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "veteran-kunoichi",
+    "name": "Veteran Kunoichi Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "ninja",
+        "name": "Ninja"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kids-partner",
+    "name": "Kid's Partner Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kid-pirates",
+        "name": "Kid Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "bepo",
+    "name": "Bepo Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "soba-cart-cook",
+    "name": "Soba Cart Cook Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ronin",
+    "name": "Ronin Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "izo-child",
+    "name": "Izo (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "kikunojo-child",
+    "name": "Kikunojo (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by tale 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ace-land-of-wano",
+    "name": "Ace (Land of Wano) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 50% or less: Boost tale the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "otama",
+    "name": "Otama Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "ulti",
+    "name": "Ulti Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "page-one",
+    "name": "Page One Medal",
+    "category": "event",
+    "uniqueTrait": "When the Treasure Gauge is recovered to 100%: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "wildfire",
+    "name": "Wildfire Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy, 100% chance to: Reduce the cooldown time of Skill 1 by 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "black-maria",
+    "name": "Black Maria Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "saber-toothed-tiger",
+    "name": "Saber-Toothed Tiger Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "triceratops",
+    "name": "Triceratops Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "daifuku-land-of-wano",
+    "name": "Daifuku (Land of Wano) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Down an enemy: Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "flampe-land-of-wano",
+    "name": "Flampe (Land of Wano) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kinemon-the-akazaya-nine",
+    "name": "Kin'emon (The Akazaya Nine) Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally captures Treasure: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "denjiro-the-akazaya-nine",
+    "name": "Denjiro (The Akazaya Nine) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "eleph-eleph",
+    "name": "Eleph-Eleph Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sasaki",
+    "name": "Sasaki Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "smoothie-pirate-alliance",
+    "name": "Smoothie (Pirate Alliance) Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Aflame: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "sweet-3-general",
+        "name": "\"Sweet 3\" General"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "perospero-pirate-alliance",
+    "name": "Perospero (Pirate Alliance) Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your team's Treasure Area and the Treasure Gauge is 80% or more: Increase damage dealt by 3%. and Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "charlotte-family",
+        "name": "Charlotte Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "red-roc",
+    "name": "Red Roc Medal",
+    "category": "event",
+    "uniqueTrait": "Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "rotisserie-strike",
+    "name": "Rotisserie Strike Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 50% or less: Boost tale the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "zoro-bandages",
+    "name": "Zoro (Bandages) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "baby-geezer-chopper",
+    "name": "Baby Geezer Chopper Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your enemy's Treasure Area and the Treasure Gauge is 50% or more: Boost capture speed by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ace-izayoizuki",
+    "name": "Ace (Izayoizuki) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "momonosuke-dragon",
+    "name": "Momonosuke (Dragon) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale capture speed by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "lightning-blast",
+    "name": "Lightning Blast Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Shock: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "komachiyo",
+    "name": "Komachiyo Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 4%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "hera",
+    "name": "Hera Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your team's Treasure Area and the Treasure Gauge is 80% or more: Boost the cooldown reduction speed of Skill 1 by 13%. and Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "prometheus-land-of-wano",
+    "name": "Prometheus (Land of Wano) Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy is inflicted with Aflame: Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "big-mom-pirates",
+        "name": "Big Mom Pirates"
+      },
+      {
+        "id": "homies",
+        "name": "Homies"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "kong-gun",
+    "name": "Kong Gun Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "purgatory-onigiri",
+    "name": "Purgatory Onigiri Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 2 by 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "three-captains-luffy",
+    "name": "Three Captains Luffy Medal",
+    "category": "event",
+    "uniqueTrait": "When in the Treasure Area: Reduce tale damage received by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "three-captains-kid",
+    "name": "Three Captains Kid Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kid-pirates",
+        "name": "Kid Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "three-captains-law",
+    "name": "Three Captains Law Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kaido-human-monster-form",
+    "name": "'Kaido (Human-Monster Form) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "former-rocks-pirates",
+        "name": "Former Rocks Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "jack-human-monster-form",
+    "name": "Jack (Human-Monster Form) Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Boost capture speed by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ulti-human-monster-form",
+    "name": "Ulti (Human-Monster Form) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "page-one-human-monster-form",
+    "name": "Page One (Human-Monster Form) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your captured Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "tobi-roppo",
+        "name": "Tobi Roppo"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "jinbe-onigashima-infiltration",
+    "name": "Jinbe (Onigashima Infiltration) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "helmsman",
+        "name": "Helmsman"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "robin-onigashima-infiltration",
+    "name": "Robin (Onigashima Infiltration) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "speed",
+    "name": "Speed Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy captures one of your team's Treasure Areas: Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "headliner",
+        "name": "Headliner"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "daifugo",
+    "name": "Daifugo Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "headliner",
+        "name": "Headliner"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "yamato-post-onigashima",
+    "name": "Yamato (Post-Onigashima) Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "princess-hiyori",
+    "name": "Princess Hiyori Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost capture speed by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "luffy-post-onigashima",
+    "name": "Luffy (Post-Onigashima) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the Treasure Area: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "otama-post-onigashima",
+    "name": "Otama (Post-Onigashima) Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 4%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "redtaro",
+    "name": "Redtaro Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def"
+    ],
+    "nativeEffects": [
+      "damage-received"
+    ]
+  },
+  {
+    "id": "buggyjiro",
+    "name": "Buggyjiro Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "zoro-feast",
+    "name": "Zoro (Feast) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type tale \"Power users\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "king-bandaged",
+    "name": "King (Bandaged) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by tale 2%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pteranodon",
+    "name": "Pteranodon Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale capture speed by 8%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "brachiosaurus",
+    "name": "Brachiosaurus Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost capture speed by 6%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "lead-performer",
+        "name": "Lead Performer"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "the-man-who-will-be-king-of-the-pirates",
+    "name": "The Man Who Will Be King of the Pirates Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "azure-dragon",
+    "name": "Azure Dragon Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "animal-kingdom-pirates",
+        "name": "Animal Kingdom Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "former-rocks-pirates",
+        "name": "Former Rocks Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "demonio-fleur",
+    "name": "Demonio Fleur Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "baroque-works-former-baroque-works",
+        "name": "Baroque Works / Former Baroque Works"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "chopper-monster",
+    "name": "Chopper (Monster) Medal",
+    "category": "event",
+    "uniqueTrait": "Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "land-of-wano",
+        "name": "Land of Wano"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "bonney-kid",
+    "name": "Bonney (Kid) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "bonney-pirates",
+        "name": "Bonney Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "lilith",
+    "name": "Lilith Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: by 6%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "dr-vegapunk",
+    "name": "Dr. Vegapunk Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "luffy-future-outfit",
+    "name": "Luffy (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "zoro-future-outfit",
+    "name": "Zoro (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "stussy-cpo",
+    "name": "Stussy (CPO) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "hattori-cpo",
+    "name": "Hattori (CPO) Medal",
+    "category": "event",
+    "uniqueTrait": "When the equipped character is character type \"Cipher Pol / Former Cipher Pol\": Increase Normal Attack damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "shaka",
+    "name": "Shaka Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy, 100% chance to: Reduce the cooldown time of Skill 1 by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "edison",
+    "name": "Edison Medal",
+    "category": "event",
+    "uniqueTrait": "When hit with Knockback by enemy: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "oimo",
+    "name": "Oimo Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "giant-pirate-crew",
+        "name": "Giant Pirate Crew"
+      },
+      {
+        "id": "giant",
+        "name": "Giant"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "kashii",
+    "name": "Kashii Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "giant-pirate-crew",
+        "name": "Giant Pirate Crew"
+      },
+      {
+        "id": "giant",
+        "name": "Giant"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vegaforce-01",
+    "name": "Vegaforce-01 Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pythagoras",
+    "name": "Pythagoras Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "luffy-lucci",
+    "name": "Luffy & Lucci Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "bonneys-father",
+    "name": "Bonney's Father Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "brook-future-outfit",
+    "name": "Brook (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "musician",
+        "name": "Musician"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "chopper-future-outfit",
+    "name": "Chopper (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Down an enemy: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "robin-future-outfit",
+    "name": "Robin (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "nami-future-outfit",
+    "name": "Nami (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "peacock-fullalead",
+    "name": "Peacock (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "tashigi-fullalead",
+    "name": "Tashigi (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost tale the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "prince-grus-fullalead",
+    "name": "Prince Grus (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "hibari-fullalead",
+    "name": "Hibari (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "garp-fullalead",
+    "name": "Garp (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "helmeppo-fullalead",
+    "name": "Helmeppo (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 4%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "captain-of-the-eastern-forces",
+    "name": "Captain of the Eastern Forces Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain-of-the-revolutionary-army",
+        "name": "Captain of the Revolutionary Army"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "skill2-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "vice-captain-of-the-eastern-forces",
+    "name": "Vice Captain of the Eastern Forces Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 50% or less: tale Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "skill1-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "free-form",
+    "name": "Free Form Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def"
+    ],
+    "nativeEffects": [
+      "damage-received"
+    ]
+  },
+  {
+    "id": "kumas-daughter",
+    "name": "Kuma's Daughter Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "bonney-pirates",
+        "name": "Bonney Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "damage-received"
+    ]
+  },
+  {
+    "id": "doll",
+    "name": "Doll Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "skill2-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "bluegrass",
+    "name": "Bluegrass Medal",
+    "category": "event",
+    "uniqueTrait": "Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "skill1-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "edison-bandaged",
+    "name": "Edison (Bandaged) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "satellite",
+        "name": "Satellite"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "atlas-order",
+    "name": "Atlas (Order) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "satellite",
+        "name": "Satellite"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "a-hundred-times-stronger",
+    "name": "A Hundred Times Stronger Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "sanji-future-outfit",
+    "name": "Sanji (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "usopp-future-outfit",
+    "name": "Usopp (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally KOs an enemy: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "franky-future-outfit",
+    "name": "Franky (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy whose ATK is boosted: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "ship-carpenter",
+        "name": "Ship Carpenter"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "zoro-kaku",
+    "name": "Zoro & Kaku Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your captured Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "jinbe-future-outfit",
+    "name": "Jinbe (Future Outfit) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy in the area around your enemy's Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "helmsman",
+        "name": "Helmsman"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "warrior-god-of-justice",
+    "name": "Warrior God of Justice Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "warrior-god-of-agriculture",
+    "name": "Warrior God of Agriculture Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 2 by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "atk"
+    ],
+    "nativeEffects": [
+      "skill2-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "ginny-child",
+    "name": "Ginny (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Down an enemy: Reduce the cooldown time of Skill 2 by 4%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sentomaru-child",
+    "name": "Sentomaru (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally captures Treasure: Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "winner-takes-all",
+    "name": "Winner Takes All Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sulong",
+    "name": "Веро (Sulong) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 2 by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      },
+      {
+        "id": "minks",
+        "name": "Minks"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "damage-dealt"
+    ]
+  },
+  {
+    "id": "the-four-emperors-blackbeard",
+    "name": "The Four Emperors Blackbeard Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with the Element you are strong against: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "the-four-emperors-red-hair",
+    "name": "The Four Emperors Red Hair Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "hp"
+    ],
+    "nativeEffects": [
+      "damage-received"
+    ]
+  },
+  {
+    "id": "the-four-emperors-straw-hat",
+    "name": "The Four Emperors Straw Hat Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "the-four-emperors-genius-jester",
+    "name": "The Four Emperors Genius Jester Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with Skill 2: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "buggy-s-delivery",
+        "name": "Buggy's Delivery"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "avalo-pizarro",
+    "name": "Avalo Pizarro Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking a character type \"Paramecia\" enemy: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "vasco-shot",
+    "name": "Vasco Shot Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally KOs an enemy: Reduce the cooldown time of Skill 2 by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "godhead-of-environment",
+    "name": "Godhead of Environment Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy whose ATK is boosted: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "godhead-of-science-defense",
+    "name": "Godhead of Science & Defense Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking a character type \"Straw Hat Pirates\" enemy: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "lucci-mask",
+    "name": "Lucci (Mask) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kaku-mask",
+    "name": "Kaku (Mask) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "intelligence-agent",
+        "name": "Intelligence Agent"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "gyuki",
+    "name": "Gyuki Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "godhead-of-finance",
+    "name": "Godhead of Finance Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy with the Element you are strong against: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "s-snake-blushing",
+    "name": "S-Snake (Blushing) Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "seraphim",
+        "name": "Seraphim"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "s-hawk-dice-dice",
+    "name": "S-Hawk (Dice-Dice) Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "seraphim",
+        "name": "Seraphim"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "luffy-film-strong-world",
+    "name": "Luffy (FILM STRONG WORLD) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your calE enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "film-strong-world",
+        "name": "FILM STRONG WORLD"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "nami-film-strong-world",
+    "name": "Nami (FILM STRONG WORLD) Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "film-strong-world",
+        "name": "FILM STRONG WORLD"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sanji-film-gold",
+    "name": "Sanji (FILM GOLD) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "film-gold",
+        "name": "FILM GOLD"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "usopp-film-gold",
+    "name": "Usopp (FILM GOLD) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "film-gold",
+        "name": "FILM GOLD"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "zoro-film-z",
+    "name": "Zoro (FILM Z) Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "film-z",
+        "name": "FILM Z"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "chopper-film-z",
+    "name": "Chopper (FILM Z) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "film-z",
+        "name": "FILM Z"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "admiral-zephyr",
+    "name": "Admiral Zephyr Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "film-z",
+        "name": "FILM Z"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "def",
+      "crit",
+      "atk"
+    ],
+    "nativeEffects": [
+      "skill1-cooldown-reduction-speed"
+    ]
+  },
+  {
+    "id": "kuzan-film-z",
+    "name": "Kuzan (FILM Z) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "film-z",
+        "name": "FILM Z"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "bullet",
+    "name": "Bullet Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy, 30% chance to: Nullify Tremor.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "festa",
+    "name": "Festa Medal",
+    "category": "event",
+    "uniqueTrait": "When Respawned: CRIT: Boosted by 80% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "tashigi-stampede",
+    "name": "Tashigi (STAMPEDE) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 30% or less: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "lucci-stampede",
+    "name": "Lucci (STAMPEDE) Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "ann",
+    "name": "Ann Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 90 seconds or more remaining: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "usopp-stampede",
+    "name": "Usopp (STAMPEDE) Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "law-stampede",
+    "name": "Law (STAMPEDE) Medal",
+    "category": "event",
+    "uniqueTrait": "When the enemy has inflicted you with Tremor: Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "clank-clank",
+    "name": "Clank-Clank Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "stampede",
+        "name": "STAMPEDE"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "tremor"
+    ]
+  },
+  {
+    "id": "jinbe-film-red",
+    "name": "Jinbe (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "helmsman",
+        "name": "Helmsman"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "robin-film-red",
+    "name": "Robin (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "archaeologist",
+        "name": "Archaeologist"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "lucky-roux-film-red",
+    "name": "Lucky Roux (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "limejuice-film-red",
+    "name": "Limejuice (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "franky-film-red",
+    "name": "Franky (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are near the Treasure area where you are at: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "ship-carpenter",
+        "name": "Ship Carpenter"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "brook-film-red",
+    "name": "Brook (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "musician",
+        "name": "Musician"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sunny-kun-film-red",
+    "name": "Sunny-kun (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When the equipped character is tale Increase Normal Attack damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "rockstar-film-red",
+    "name": "Rockstar (FILM RED) Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 4%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "utas-father",
+    "name": "Uta's Father Medal",
+    "category": "event",
+    "uniqueTrait": "When you Knockback an enemy: tale by 5%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "gordon",
+    "name": "Gordon Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "lim",
+    "name": "Lim Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with a Normal Attack, 30% chance to: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "odyssey",
+        "name": "ODYSSEY"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "dry-penguin",
+    "name": "Dry Penguin Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 50% or more: Increase Normal Attack damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "odyssey",
+        "name": "ODYSSEY"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "marco-young",
+    "name": "Marco (Young) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy that is capturing Treasure: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "jozu-young",
+    "name": "Jozu (Young) Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your team's Treasure Area and the Treasure Gauge is 80% or more: Boost the cooldown reduction speed of Skill 2 by 10%. and Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "oden-roger-pirates",
+    "name": "Oden (Roger Pirates) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "whitebeard-pirates-commander",
+        "name": "Whitebeard Pirates Commander"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "oden-2nd-division-commander",
+    "name": "Oden (2nd Division Commander) Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 6%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "kozuki-clan-kozuki-clan-servant",
+        "name": "Kozuki Clan / Kozuki Clan Servant"
+      },
+      {
+        "id": "whitebeard-pirates-commander",
+        "name": "Whitebeard Pirates Commander"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vista-land-of-wano-memoir",
+    "name": "Vista (Land of Wano Memoir) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "marco-land-of-wano-memoir",
+    "name": "Marco (Land of Wano Memoir) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "fisher-tiger",
+    "name": "Fisher Tiger Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by an enemy whose ATK is boosted: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "sun-pirates",
+        "name": "Sun Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "arlong-sun-pirates",
+    "name": "Arlong (Sun Pirates) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type \"Power users\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      },
+      {
+        "id": "sun-pirates",
+        "name": "Sun Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "reiju-child",
+    "name": "Reiju (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has less Treasure secured: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "germa-66",
+        "name": "Germa 66"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "sanji-child",
+    "name": "Sanji (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "germa-66",
+        "name": "Germa 66"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "cat-burglar",
+    "name": "Cat Burglar Medal",
+    "category": "event",
+    "uniqueTrait": "When you are in your enemy's Treasure Area and the Treasure Gauge is 50% or less: Boost capture speed by 6%.",
+    "tags": [
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "navigator",
+        "name": "Navigator"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "pirate-hunter",
+    "name": "Pirate Hunter Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy captures one of your tale team's Treasure Areas: Reduce the cooldown time of Skill 1 by 8%.",
+    "tags": [
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "combatant",
+        "name": "Combatant"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "admiral-sengoku",
+    "name": "Admiral Sengoku Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vice-admiral-tsuru",
+    "name": "Vice Admiral Tsuru Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "loan-shark",
+    "name": "Loan Shark Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "buggy-s-delivery",
+        "name": "Buggy's Delivery"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "iron-mace",
+    "name": "Iron Mace Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "buggy-s-delivery",
+        "name": "Buggy's Delivery"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "miracle-worker",
+    "name": "Miracle Worker Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "new-kama",
+        "name": "New Kama"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "koala",
+    "name": "Koala Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Increase damage dealt by 3%.",
+    "tags": [
+      {
+        "id": "revolutionary-army",
+        "name": "Revolutionary Army"
+      },
+      {
+        "id": "fish-man-karate",
+        "name": "Fish-Man Karate"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "red-hair",
+    "name": "Red Hair Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "genius-jester",
+    "name": "Genius Jester Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "shanks-child",
+    "name": "Shanks (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "child",
+        "name": "Child"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "buggy-child",
+    "name": "Buggy (Child) Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: CRIT: Boosted by 90% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "child",
+        "name": "Child"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "crocus-roger-pirata",
+    "name": "Crocus (Roger Pirata) Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 1 by 4%.",
+    "tags": [
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "the-pirate-kings-right-arm",
+    "name": "The Pirate King's Right Arm Medal",
+    "category": "event",
+    "uniqueTrait": "When you or an ally KOs an enemy: Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "roger-captain",
+    "name": "Roger (Captain) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "rayleigh-first-mate",
+    "name": "Rayleigh (First Mate) Medal",
+    "category": "event",
+    "uniqueTrait": "When in the Treasure Area: Boost the cooldown reduction speed of dodge by 10%.",
+    "tags": [
+      {
+        "id": "roger-pirates-ex-roger-pirates",
+        "name": "Roger Pirates / Ex-Roger Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

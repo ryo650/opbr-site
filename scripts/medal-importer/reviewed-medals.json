@@ -24,6 +24,13 @@
       "height": 350,
       "scale": 2.5
     },
+    "tags": {
+      "x": 500,
+      "y": 110,
+      "width": 1450,
+      "height": 500,
+      "scale": 2.5
+    },
     "rateTraits": {
       "x": 790,
       "y": 300,

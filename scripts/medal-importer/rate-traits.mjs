@@ -80,7 +80,20 @@ function findSafeContinuation(lines, startIndex, matches) {
   return -1;
 }
 
-export function reconstructRateTraitLines(lines) {
+function approvedNativeEffectCandidate(text, nativeEffectsByName) {
+  if (!nativeEffectsByName) return null;
+  const candidate =
+    extractCooldownNativeEffectCandidate(text) ??
+    extractDamageNativeEffectCandidate(text);
+  return candidate && resolveNativeEffect(nativeEffectsByName, candidate)
+    ? candidate
+    : null;
+}
+
+export function reconstructRateTraitLines(
+  lines,
+  { nativeEffectsByName } = {},
+) {
   const consumed = new Set();
   const reconstructed = [];
 
@@ -123,6 +136,28 @@ export function reconstructRateTraitLines(lines) {
       }
     }
 
+    if (
+      /\b(?:boost|increase|reduce)\b/i.test(line) &&
+      !approvedNativeEffectCandidate(line, nativeEffectsByName)
+    ) {
+      const continuationIndex = findSafeContinuation(
+        lines,
+        index,
+        (candidate) =>
+          Boolean(
+            approvedNativeEffectCandidate(
+              `${line} ${candidate}`,
+              nativeEffectsByName,
+            ),
+          ),
+      );
+      if (continuationIndex !== -1) {
+        reconstructed.push(`${line} ${lines[continuationIndex].trim()}`);
+        consumed.add(continuationIndex);
+        continue;
+      }
+    }
+
     reconstructed.push(line);
   }
 
@@ -135,11 +170,14 @@ export function analyzeRateTraits(
   file,
   { statusEffectsByName, nativeEffectsByName },
 ) {
-  const parsedLines = reconstructRateTraitLines(ocr.lines);
+  const parsedLines = reconstructRateTraitLines(ocr.lines, {
+    nativeEffectsByName,
+  });
   const nativeTraits = new Set();
   const nativeEffects = new Set();
   const statusReductions = new Set();
   const traitKinds = new Set();
+  const nativeTraitEvidence = [];
   const issues = [];
   const consumedLines = new Set();
 
@@ -161,6 +199,16 @@ export function analyzeRateTraits(
     for (const match of nativeMatches) {
       consumedLines.add(index);
       const trait = match[1].toLowerCase();
+      const value = line
+        .slice(match.index)
+        .match(/\bby\s+(\d+(?:[.,]\d+)?)%/i)?.[1]
+        ?.replace(",", ".") ?? null;
+      nativeTraitEvidence.push({
+        rawTrait: match[1],
+        trait: KNOWN_NATIVE_TRAITS.has(trait) ? trait : null,
+        value,
+        ocrText: line,
+      });
       if (!KNOWN_NATIVE_TRAITS.has(trait)) {
         traitKinds.add(`unknown-native:${trait}`);
         addIssue(
@@ -303,8 +351,46 @@ export function analyzeRateTraits(
     nativeEffects,
     statusReductions,
     traitKinds,
+    nativeTraitEvidence,
     issues,
   };
+}
+
+function isSingleDroppedCharacter(initialToken, retriedToken) {
+  const initial = initialToken.toLowerCase();
+  const retried = retriedToken.toLowerCase();
+  if (initial.length < 2 || retried.length !== initial.length + 1) return false;
+  return [...retried].some(
+    (_, index) => retried.slice(0, index) + retried.slice(index + 1) === initial,
+  );
+}
+
+function unknownNativeTraitsSafelyResolved(initial, retried) {
+  const initialEvidence = initial.nativeTraitEvidence ?? [];
+  const remainingRetryEvidence = [...(retried.nativeTraitEvidence ?? [])];
+
+  for (const evidence of initialEvidence.filter(({ trait }) => trait)) {
+    const matchIndex = remainingRetryEvidence.findIndex(
+      (candidate) =>
+        candidate.trait === evidence.trait && candidate.value === evidence.value,
+    );
+    if (matchIndex === -1) return false;
+    remainingRetryEvidence.splice(matchIndex, 1);
+  }
+
+  for (const evidence of initialEvidence.filter(({ trait }) => !trait)) {
+    if (!evidence.value) return false;
+    const matchIndex = remainingRetryEvidence.findIndex(
+      (candidate) =>
+        candidate.trait &&
+        candidate.value === evidence.value &&
+        isSingleDroppedCharacter(evidence.rawTrait, candidate.trait),
+    );
+    if (matchIndex === -1) return false;
+    remainingRetryEvidence.splice(matchIndex, 1);
+  }
+
+  return true;
 }
 
 export function isRateTraitRetryResolved(initial, retried) {
@@ -314,18 +400,30 @@ export function isRateTraitRetryResolved(initial, retried) {
     "unparsed-rate-trait",
   ]);
   if (retried.issues.some(({ code }) => blockingCodes.has(code))) return false;
-  const initialBlockingIssues = initial.issues.filter(({ code }) =>
+  let initialBlockingIssues = initial.issues.filter(({ code }) =>
     blockingCodes.has(code),
   );
+  const unknownNativeTraitIssues = initialBlockingIssues.filter(
+    ({ code }) => code === "unknown-native-trait",
+  );
+  if (unknownNativeTraitIssues.length > 0) {
+    if (!unknownNativeTraitsSafelyResolved(initial, retried)) return false;
+    initialBlockingIssues = initialBlockingIssues.filter(
+      ({ code }) => code !== "unknown-native-trait",
+    );
+    if (initialBlockingIssues.length === 0) return true;
+  }
   const unknownEffectIssues = initialBlockingIssues.filter(
     ({ code }) => code === "unknown-native-effect",
   );
   if (unknownEffectIssues.length > 0) {
     const safelyReplaced = unknownEffectIssues.every((item) => {
-    const nativeTrait = item.ocrText?.match(/\b(atk|def|hp|crit)\s+by\b/i)?.[1];
-    return nativeTrait
-      ? retried.nativeTraits.has(nativeTrait.toLowerCase())
-      : false;
+      const nativeTrait = item.ocrText?.match(
+        /\b(atk|def|hp|crit)\s+by\b/i,
+      )?.[1];
+      return nativeTrait
+        ? retried.nativeTraits.has(nativeTrait.toLowerCase())
+        : false;
     });
     if (!safelyReplaced) return false;
     if (unknownEffectIssues.length === initialBlockingIssues.length) return true;

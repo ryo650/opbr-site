@@ -4,6 +4,19 @@ export function groupScreens(screens) {
 
   for (const screen of screens) {
     if (screen.type === "details") {
+      if (screen.detailsContinuation) {
+        if (!current) {
+          throw new Error(
+            `${screen.file}: Details continuation appears before the base Medal Details screen`,
+          );
+        }
+        current.detailsContinuations ??= [];
+        current.detailsContinuations.push({
+          file: screen.file,
+          ...screen.detailsContinuation,
+        });
+        continue;
+      }
       current = { details: screen.file, tagScreens: [], rates: [] };
       groups.push(current);
       continue;

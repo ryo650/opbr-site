@@ -89,3 +89,27 @@ test("6. a Tag screen after Rate is a fatal structure error", () => {
     /Tag screen appears after Rate screens/,
   );
 });
+
+test("7. a validated Details continuation may follow Tag before Rate", () => {
+  assert.deepEqual(
+    groupScreens([
+      screen("D1", "details"),
+      screen("T1", "tag"),
+      {
+        ...screen("D2", "details"),
+        detailsContinuation: { accepted: true, issues: [] },
+      },
+      screen("R1", "rate"),
+    ]),
+    [
+      {
+        details: "D1",
+        detailsContinuations: [
+          { file: "D2", accepted: true, issues: [] },
+        ],
+        tagScreens: ["T1"],
+        rates: ["R1"],
+      },
+    ],
+  );
+});

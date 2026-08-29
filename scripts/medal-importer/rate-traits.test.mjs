@@ -214,6 +214,51 @@ test("split Skill cooldown text resolves to the existing approved Effect", () =>
   assert.deepEqual(result.issues, []);
 });
 
+test("approved damage dealt text split by a probability line is safely reconstructed", () => {
+  const lines = [
+    'character type "Navy": Increase',
+    "1.10%",
+    "damage dealt by 3%.",
+  ];
+  const result = parse(lines);
+  assert.deepEqual([...result.nativeEffects], ["damage-dealt"]);
+  assert.deepEqual(result.issues, []);
+});
+
+test("approved damage dealt text may split after damage within one Rate entry", () => {
+  const lines = [
+    'When attacking a character type "Logia" enemy: Increase damage',
+    "2.70%",
+    "dealt by 3%.",
+  ];
+  const result = parse(lines);
+  assert.deepEqual([...result.nativeEffects], ["damage-dealt"]);
+  assert.deepEqual(result.issues, []);
+});
+
+test("approved Skill cooldown text split after Boost the is safely reconstructed", () => {
+  const lines = [
+    'type "Revolutionary Army": Boost the',
+    "1.12%",
+    "cooldown reduction speed of Skill 2 by 1%.",
+  ];
+  const result = parse(lines);
+  assert.deepEqual([...result.nativeEffects], [
+    "skill2-cooldown-reduction-speed",
+  ]);
+  assert.deepEqual(result.issues, []);
+});
+
+test("nearby lines are not joined unless the result is an approved Native Effect", () => {
+  const result = parse([
+    "Increase",
+    "1.00%",
+    "Treasure Gauge charge efficiency by 5%.",
+  ]);
+  assert.deepEqual([...result.nativeEffects], []);
+  assert.ok(result.issues.length > 0);
+});
+
 test("approved damage dealt and received Effects parse without values or conditions", () => {
   const result = parse([
     'character type "The Grand Line": Increase damage dealt by 5%.',
@@ -232,6 +277,30 @@ test("retry may replace an accented Increase line only when the same stat is par
   assert.equal(isRateTraitRetryResolved(initial, correctedRetry), true);
   assert.equal(
     isRateTraitRetryResolved(initial, parse(["Increase DEF by 12%."])),
+    false,
+  );
+});
+
+test("field retry may restore one dropped character in a native Trait at the same value", () => {
+  const initial = parse([
+    "Increase ATK by 14%.",
+    "Increase AT by 12%.",
+  ]);
+  const correctedRetry = parse([
+    "Increase ATK by 14%.",
+    "Increase ATK by 12%.",
+  ]);
+
+  assert.equal(isRateTraitRetryResolved(initial, correctedRetry), true);
+  assert.equal(
+    isRateTraitRetryResolved(
+      initial,
+      parse(["Increase ATK by 14%.", "Increase DEF by 12%."]),
+    ),
+    false,
+  );
+  assert.equal(
+    isRateTraitRetryResolved(initial, parse(["Increase ATK by 14%."])),
     false,
   );
 });

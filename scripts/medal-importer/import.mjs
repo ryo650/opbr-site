@@ -31,6 +31,15 @@ import {
 } from "./rate-traits.mjs";
 import { classifyScreen } from "./screen-classification.mjs";
 import {
+  analyzeUniqueTraitScrollbarPixels,
+  evaluateDetailsContinuation,
+  extractDetailsScreenName,
+  extractUniqueTraitFieldLines,
+  mergeUniqueTraitSegments,
+  UNIQUE_TRAIT_SCROLLBAR_CROP,
+} from "./details-continuation.mjs";
+import { parseImageSequence, resolveInputOrder } from "./input-order.mjs";
+import {
   analyzeRateScrollbarPixels,
   evaluateRateCoverage,
   RATE_SCROLLBAR_CROP,
@@ -122,65 +131,6 @@ async function retryFieldOcr(filePath, fieldName, crop) {
   }
 }
 
-function imageSequence(file) {
-  const match = file.match(/^IMG_(\d+)\.(?:png|jpe?g)$/i);
-  return match ? Number(match[1]) : null;
-}
-
-function resolveInputOrder(items) {
-  const allHaveSequence = items.every((item) => item.sequence !== null);
-  const uniqueSequences =
-    new Set(items.map((item) => item.sequence)).size === items.length;
-
-  if (allHaveSequence && uniqueSequences) {
-    const ordered = [...items].sort(
-      (left, right) =>
-        left.sequence - right.sequence || left.file.localeCompare(right.file),
-    );
-    const warnings = [];
-
-    for (let index = 1; index < ordered.length; index += 1) {
-      const previous = ordered[index - 1];
-      const current = ordered[index];
-      if (
-        previous.captureTime &&
-        current.captureTime &&
-        previous.captureTime >= current.captureTime
-      ) {
-        warnings.push(
-          `${previous.file} (${previous.captureTime}) -> ${current.file} (${current.captureTime})`,
-        );
-      }
-    }
-
-    return { ordered, source: "filename sequence", warnings };
-  }
-
-  const allHaveCaptureTime = items.every((item) => item.captureTime);
-  if (!allHaveCaptureTime) {
-    throw new Error(
-      "Filename sequences are unavailable or ambiguous, and not every screenshot has an EXIF capture timestamp",
-    );
-  }
-
-  const captureTimes = items.map((item) => item.captureTime);
-  if (new Set(captureTimes).size !== captureTimes.length) {
-    throw new Error(
-      "Filename sequences are unavailable or ambiguous, and EXIF capture timestamps are not unique",
-    );
-  }
-
-  return {
-    ordered: [...items].sort(
-      (left, right) =>
-        left.captureTime.localeCompare(right.captureTime) ||
-        left.file.localeCompare(right.file),
-    ),
-    source: "EXIF DateTimeOriginal",
-    warnings: [],
-  };
-}
-
 function captureTime(filePath) {
   const value = run(magickCommand, [
     "identify",
@@ -217,6 +167,21 @@ function rateViewport(filePath) {
     "txt:-",
   ]);
   return analyzeRateScrollbarPixels(pixelDump);
+}
+
+function uniqueTraitScrollbar(filePath) {
+  const crop = UNIQUE_TRAIT_SCROLLBAR_CROP;
+  const pixelDump = run(magickCommand, [
+    filePath,
+    "-crop",
+    `${crop.width}x${crop.height}+${crop.x}+${crop.y}`,
+    "+repage",
+    "txt:-",
+  ]);
+  return {
+    crop,
+    ...analyzeUniqueTraitScrollbarPixels(pixelDump),
+  };
 }
 
 function categoryFromCrop(filePath, crop) {
@@ -316,7 +281,10 @@ function hasUniqueTraitStructureAnomaly(uniqueTrait, traitLines) {
   });
   return (
     openingParentheses !== closingParentheses ||
-    traitLines.some((line) => /^[+*×‹<>]/.test(line.trim())) ||
+    traitLines.some((line) => {
+      const trimmed = line.trim();
+      return /^[+*×‹<>]/.test(trimmed) && !/^\*s\b/i.test(trimmed);
+    }) ||
     hasUnexpectedIsolatedShortLine ||
     /[\u0400-\u04ff]/.test(uniqueTrait) ||
     /\b(?:boost|increase|reduce)\s+(?:the\s+)?by\b/i.test(uniqueTrait) ||
@@ -493,6 +461,23 @@ function extractTags(ocr, file) {
   return { tags, issues };
 }
 
+function rebaseFieldOcrToScreenshot(ocr, screenshotSize) {
+  const { crop } = ocr;
+  return {
+    ...ocr,
+    observations: ocr.observations.map((observation) => ({
+      ...observation,
+      x: (crop.x + observation.x * crop.width) / screenshotSize.width,
+      y:
+        (screenshotSize.height - crop.y - crop.height +
+          observation.y * crop.height) /
+        screenshotSize.height,
+      width: (observation.width * crop.width) / screenshotSize.width,
+      height: (observation.height * crop.height) / screenshotSize.height,
+    })),
+  };
+}
+
 function sourceTagScreens(sources) {
   if (Array.isArray(sources.tags)) return sources.tags;
   return sources.tag ? [sources.tag] : [];
@@ -501,6 +486,9 @@ function sourceTagScreens(sources) {
 function sameSources(group, sources) {
   return (
     group.details === sources.details &&
+    JSON.stringify(
+      (group.detailsContinuations ?? []).map(({ file }) => file),
+    ) === JSON.stringify(sources.detailsContinuations ?? []) &&
     JSON.stringify(group.tagScreens) ===
       JSON.stringify(sourceTagScreens(sources)) &&
     JSON.stringify(group.rates) === JSON.stringify(sources.rates)
@@ -568,7 +556,7 @@ if (
 ) {
   throw new Error("Configured medal crop falls outside the expected screenshot");
 }
-for (const fieldName of ["name", "uniqueTrait", "rateTraits"]) {
+for (const fieldName of ["name", "uniqueTrait", "tags", "rateTraits"]) {
   const fieldCrop = review.fieldCrops?.[fieldName];
   if (
     !fieldCrop ||
@@ -591,7 +579,7 @@ const discoveredInputFiles = (await readdir(inputDir))
     file,
     path: path.join(inputDir, file),
     captureTime: captureTime(path.join(inputDir, file)),
-    sequence: imageSequence(file),
+    sequence: parseImageSequence(file),
     signature: screenshotSignature(path.join(inputDir, file)),
   }));
 
@@ -615,6 +603,7 @@ const skippedScreenshotNames = new Set(
 const activeReviewMedals = (regressionMode ? review.medals : []).filter((medal) => {
   const sourceFiles = [
     medal.sources.details,
+    ...(medal.sources.detailsContinuations ?? []),
     ...sourceTagScreens(medal.sources),
     ...medal.sources.rates,
   ];
@@ -651,6 +640,59 @@ const screens = inputFiles.map((item) => ({
     item.file,
   ),
 }));
+const uniqueTraitScrollByFile = new Map();
+function scrollForDetails(file) {
+  let result = uniqueTraitScrollByFile.get(file);
+  if (!result) {
+    result = uniqueTraitScrollbar(path.join(inputDir, file));
+    uniqueTraitScrollByFile.set(file, result);
+  }
+  return result;
+}
+
+let openDetails = null;
+for (const screen of screens) {
+  if (screen.type === "details") {
+    const candidateName = extractDetailsScreenName(
+      ocrByFile.get(screen.file) ?? { lines: [] },
+    );
+    if (
+      openDetails &&
+      candidateName &&
+      normalizeText(candidateName) === normalizeText(openDetails.name ?? "")
+    ) {
+      const baseScroll = scrollForDetails(openDetails.lastFile);
+      const candidateScroll = scrollForDetails(screen.file);
+      const decision = evaluateDetailsContinuation({
+        baseName: openDetails.name,
+        candidateName,
+        baseScroll,
+        candidateScroll,
+        rateStarted: openDetails.rateStarted,
+      });
+      if (decision.candidate) {
+        screen.detailsContinuation = {
+          accepted: decision.accepted,
+          issues: decision.issues,
+          baseName: openDetails.name,
+          candidateName,
+          previousFile: openDetails.lastFile,
+          baseScroll,
+          scroll: candidateScroll,
+        };
+        openDetails.lastFile = screen.file;
+        continue;
+      }
+    }
+    openDetails = {
+      name: candidateName,
+      lastFile: screen.file,
+      rateStarted: false,
+    };
+    continue;
+  }
+  if (screen.type === "rate" && openDetails) openDetails.rateStarted = true;
+}
 const groups = groupScreens(screens);
 const fixtureByDetails = new Map(
   activeReviewMedals.map((medal) => [medal.sources.details, medal]),
@@ -680,6 +722,8 @@ for (const group of groups) {
 
   const details = extractDetails(detailsOcr, group.details);
   const fieldOcrRetries = [];
+  const detailsContinuationDiagnostics = [];
+  let uniqueTraitFieldOcr = null;
   if (details.issues.some((detailIssue) => detailIssue.code === "missing-name")) {
     const retry = await retryFieldOcr(
       path.join(inputDir, group.details),
@@ -714,6 +758,7 @@ for (const group of groups) {
       "unique-trait",
       review.fieldCrops.uniqueTrait,
     );
+    uniqueTraitFieldOcr = retry;
     const retriedUniqueTrait = extractRetriedUniqueTrait(retry);
     fieldOcrRetries.push({
       field: "uniqueTrait",
@@ -733,12 +778,163 @@ for (const group of groups) {
       );
     }
   }
-  const tagResult = mergeTagPages(
-    tagOcrPages.map(({ file, ocr: tagOcr }) => ({
-      file,
-      ...extractTags(tagOcr, file),
-    })),
-  );
+  if ((group.detailsContinuations ?? []).length > 0) {
+    if (!uniqueTraitFieldOcr) {
+      uniqueTraitFieldOcr = await retryFieldOcr(
+        path.join(inputDir, group.details),
+        "unique-trait",
+        review.fieldCrops.uniqueTrait,
+      );
+      fieldOcrRetries.push({
+        field: "uniqueTrait",
+        screenshot: group.details,
+        crop: uniqueTraitFieldOcr.crop,
+        initialOcr: details.uniqueTrait ?? detailsOcr.lines,
+        retryOcr: uniqueTraitFieldOcr.lines,
+        resolved: false,
+      });
+    }
+
+    let mergedLines = extractUniqueTraitFieldLines(uniqueTraitFieldOcr);
+    let continuationResolved = mergedLines.length > 0;
+    for (const continuation of group.detailsContinuations) {
+      const continuationOcr = ocrByFile.get(continuation.file);
+      const continuationName = continuationOcr
+        ? extractDetailsScreenName(continuationOcr)
+        : null;
+      const retry = await retryFieldOcr(
+        path.join(inputDir, continuation.file),
+        "unique-trait-continuation",
+        review.fieldCrops.uniqueTrait,
+      );
+      const visibleLines = extractUniqueTraitFieldLines(retry);
+      const merged = mergeUniqueTraitSegments(mergedLines, visibleLines);
+      const sameName =
+        Boolean(details.name) &&
+        Boolean(continuationName) &&
+        normalizeText(details.name) === normalizeText(continuationName);
+      const pageResolved =
+        continuation.accepted &&
+        sameName &&
+        visibleLines.length > 0 &&
+        merged.merged;
+
+      fieldOcrRetries.push({
+        field: "uniqueTraitContinuation",
+        screenshot: continuation.file,
+        crop: retry.crop,
+        initialOcr: continuationOcr?.lines ?? [],
+        retryOcr: retry.lines,
+        resolved: pageResolved,
+      });
+      detailsContinuationDiagnostics.push({
+        screenshot: continuation.file,
+        previousScreenshot: continuation.previousFile,
+        baseName: details.name,
+        continuationName,
+        precheckAccepted: continuation.accepted,
+        precheckIssues: continuation.issues,
+        baseScroll: continuation.baseScroll,
+        scroll: continuation.scroll,
+        visibleLines,
+        overlapLines: merged.overlapLines,
+        merged: pageResolved,
+      });
+
+      if (!continuation.accepted) {
+        details.issues.push(
+          issue(
+            "invalid-details-continuation",
+            `Details continuation failed its scroll-position checks: ${continuation.issues.join(", ")}`,
+            continuation.file,
+            continuationOcr?.lines.join(" | ") ?? "",
+          ),
+        );
+      } else if (!sameName) {
+        details.issues.push(
+          issue(
+            "details-continuation-name-mismatch",
+            "Details continuation medal name does not match the base Details screen",
+            continuation.file,
+            continuationName ?? continuationOcr?.lines.join(" | ") ?? "",
+          ),
+        );
+      } else if (!merged.merged) {
+        details.issues.push(
+          issue(
+            "unique-trait-continuation-overlap-missing",
+            "Unique Trait continuation has no sufficiently long exact overlap with the preceding page",
+            continuation.file,
+            visibleLines.join(" | "),
+          ),
+        );
+      }
+
+      if (pageResolved) mergedLines = merged.lines;
+      else continuationResolved = false;
+    }
+
+    const lastContinuation = group.detailsContinuations.at(-1);
+    if (!lastContinuation?.scroll.atBottom) {
+      continuationResolved = false;
+      details.issues.push(
+        issue(
+          "unique-trait-continuation-incomplete",
+          "The last Unique Trait continuation has not reached the scrollbar bottom",
+          lastContinuation?.file ?? group.details,
+          mergedLines.join(" | "),
+        ),
+      );
+    }
+
+    const mergedUniqueTrait = joinOcrLines(mergedLines);
+    if (
+      continuationResolved &&
+      !hasUniqueTraitStructureAnomaly(mergedUniqueTrait, mergedLines)
+    ) {
+      details.uniqueTrait = mergedUniqueTrait;
+      details.issues = details.issues.filter(
+        (detailIssue) =>
+          !["missing-unique-trait", "ambiguous-unique-trait-ocr"].includes(
+            detailIssue.code,
+          ),
+      );
+      const baseRetryDiagnostic = fieldOcrRetries.find(
+        (retry) =>
+          retry.field === "uniqueTrait" && retry.screenshot === group.details,
+      );
+      if (baseRetryDiagnostic) {
+        baseRetryDiagnostic.resolvedByContinuation = true;
+      }
+    }
+  }
+  const tagPageResults = [];
+  for (const { file, ocr: tagOcr } of tagOcrPages) {
+    let extracted = extractTags(tagOcr, file);
+    if (extracted.issues.some((tagIssue) => tagIssue.code === "missing-tags")) {
+      const retry = await retryFieldOcr(
+        path.join(inputDir, file),
+        "tags",
+        review.fieldCrops.tags,
+      );
+      const retried = extractTags(
+        rebaseFieldOcrToScreenshot(retry, review.screenshotSize),
+        file,
+      );
+      const resolved = retried.tags.length > 0 && retried.issues.length === 0;
+      fieldOcrRetries.push({
+        field: "tags",
+        screenshot: file,
+        crop: retry.crop,
+        initialOcr: tagOcr.lines,
+        retryOcr: retry.lines,
+        resolved,
+      });
+      if (resolved) extracted = retried;
+    }
+    tagPageResults.push({ file, ...extracted });
+  }
+  const tagResult = mergeTagPages(tagPageResults);
   const draftIssues = [...details.issues, ...tagResult.issues];
   const nativeTraits = new Set();
   const nativeEffects = new Set();
@@ -850,12 +1046,29 @@ for (const group of groups) {
     issues: draftIssues,
     sources: {
       details: group.details,
+      ...((group.detailsContinuations ?? []).length > 0
+        ? {
+            detailsContinuations: group.detailsContinuations.map(
+              ({ file }) => file,
+            ),
+          }
+        : {}),
       tags: group.tagScreens,
       rates: group.rates,
     },
     cropCheck: colorCheck,
     ocr: {
       details: detailsOcr.lines,
+      ...((group.detailsContinuations ?? []).length > 0
+        ? {
+            detailsContinuations: group.detailsContinuations.map(
+              ({ file }) => ({
+                file,
+                lines: ocrByFile.get(file)?.lines ?? [],
+              }),
+            ),
+          }
+        : {}),
       tags: tagOcrPages.map(({ file, ocr: tagOcr }) => ({
         file,
         lines: tagOcr.lines,
@@ -863,6 +1076,9 @@ for (const group of groups) {
       rates: rateOcr,
     },
     fieldOcrRetries,
+    ...(detailsContinuationDiagnostics.length > 0
+      ? { detailsContinuations: detailsContinuationDiagnostics }
+      : {}),
     tagPages: tagResult.pages,
     rateCoverage: {
       ...rateCoverage,
@@ -1057,7 +1273,12 @@ for (const [index, draft] of drafts.entries()) {
     `Group ${index + 1}: ${draft.name ?? "<missing name>"} | ${draft.category ?? "ambiguous"} | ${draft.fixture ? "fixture" : "batch"} | ${draft.validationPassed ? "validation passed" : "needs review"}`,
   );
   console.log(
-    `  sources: ${draft.sources.details}, ${draft.sources.tags.join(", ")}, ${draft.sources.rates.join(", ")}`,
+    `  sources: ${[
+      draft.sources.details,
+      ...(draft.sources.detailsContinuations ?? []),
+      ...draft.sources.tags,
+      ...draft.sources.rates,
+    ].join(", ")}`,
   );
   console.log(
     `  crop mean RGB: ${rgb.red.toFixed(3)}, ${rgb.green.toFixed(3)}, ${rgb.blue.toFixed(3)} -> ${draft.cropCheck.detected ?? "ambiguous"}`,

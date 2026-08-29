@@ -76,8 +76,14 @@ requires the fixture screenshots and never writes production.
 
 ## Ordering and grouping
 
-When every file has a unique `IMG_XXXX.PNG` / `IMG_XXXX.JPG` sequence number,
-that filename sequence is authoritative. EXIF `DateTimeOriginal` remains
+When every file has a unique `IMG_XXXX.PNG` / `IMG_XXXX.JPG` sequence key,
+that filename sequence is authoritative. Numeric continuation suffixes are
+supported and sorted as `(sequence number, suffix number)`, with an unsuffixed
+file treated as suffix zero. For example, the order is
+`IMG_4000.PNG`, `IMG_4000_2.PNG`, `IMG_4000_3.PNG`, `IMG_4001.PNG`—never a
+plain lexical sort. For a long Unique Trait, use the base Details screenshot's
+number and append `_2`, `_3`, and so on to continuation captures. EXIF
+`DateTimeOriginal` remains
 supplementary: an adjacent reversal is reported as a warning but does not
 reorder an otherwise consistent filename batch. If filename sequences are
 unavailable or ambiguous, the importer uses EXIF only when every screenshot has
@@ -88,8 +94,16 @@ Apple Vision OCR classifies each screen only from the modal-title region
 (`x=0.35...0.65`, `y>=0.85` in normalized Vision coordinates). Background
 controls and Details-body Tag / Rate buttons are excluded. A Medal Details screen
 begins a group; every following Tag or Rate screen belongs to that group until
-the next Medal Details screen. Missing or conflicting titles and body signatures
-stop the import instead of falling back to a guess.
+the next Medal Details screen. A second Medal Details screen may remain in the
+same group only as a validated Unique Trait continuation: its medal name must
+match exactly after safe normalization, it must appear before Rate begins, its
+fixed scrollbar must be lower than the preceding Details page, its field OCR
+must have a sufficiently long exact overlap with the preceding page, and the
+last continuation must reach the scrollbar bottom. This also safely permits a
+continuation after Tag. A different medal name still starts a new group, and a
+same-name page that fails continuation validation becomes `needsReview` rather
+than being joined by guesswork. Missing or conflicting titles and body
+signatures stop the import instead of falling back to a guess.
 
 A group may contain one or more consecutive Tag screens before its Rate screens.
 Tags are extracted page by page, merged in page order, and deduplicated by Tag ID
