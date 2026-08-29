@@ -15,6 +15,19 @@ export const STATUS_EFFECT_IDS = [
   "stolen-heart",
   "shadowless",
   "recovery-blocked",
+  "toy",
+  "edit",
+  "candyman",
+  "gold",
+  "sing-sing",
+  "intimidate",
+  "frostbite",
+  "sleep",
+  "spiderweb",
+  "ice-ball",
+  "sew-sew",
+  "slow-slow",
+  "marked",
 ] as const;
 
 export type StatusEffectType = (typeof STATUS_EFFECT_IDS)[number];

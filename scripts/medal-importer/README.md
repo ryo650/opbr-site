@@ -41,6 +41,21 @@ The approval command is intentionally non-interactive: explicitly running it is
 the human approval. It validates the display name and ID, rejects conflicting
 names or IDs, appends the catalog entry, and regenerates the TypeScript type.
 
+If dry-run reports an unknown Native Effect, inspect the exact Extra Trait on
+the source Rate screenshot, then approve its stable display name in the same
+way:
+
+```sh
+npm run medals:approve-native-effect -- "Dodge cooldown reduction speed"
+npm run medals:import -- --dry-run
+```
+
+An explicit ID is also supported:
+
+```sh
+npm run medals:approve-native-effect -- --name "Some Effect" --id some-effect
+```
+
 The importer never edits files in `input/`. Ordering, screen classification,
 grouping, screenshot dimensions, and regression-fixture failures stop the whole
 run. New-medal content problems are attached only to that medal as `needsReview`.
@@ -104,6 +119,25 @@ medal so no edge is clipped.
 Rate values and conditions are intentionally discarded. The generated data keeps
 only the available native-stat types (`atk`, `def`, `hp`, and `crit`).
 Status reductions are stored separately by status-effect ID without their value.
+
+Other approved Extra Traits are stored separately as `nativeEffects`, without
+their conditions or values. For example, both conditional and unconditional
+forms of “Boost the cooldown reduction speed of Skill 2 by 1%” become
+`skill2-cooldown-reduction-speed`. Duplicate values or conditions do not create
+duplicate IDs. `native-effects.json` is the single source of truth for these
+effect display names and stable production IDs. The initial approved catalog is:
+
+- `skill1-cooldown-reduction-speed` — Skill 1 cooldown reduction speed
+- `skill2-cooldown-reduction-speed` — Skill 2 cooldown reduction speed
+
+Unknown effect-like Rate text is not discarded or fuzzily mapped. It marks the
+medal as `needsReview` and records the medal name, OCR original, Rate screenshot,
+display-name candidate, and suggested ID. After human confirmation,
+`medals:approve-native-effect` appends the catalog and regenerates
+`src/data/medals/native-effects.generated.ts`; `types.ts` never needs a manual
+union edit. `npm run medals:generate-native-effect-types` explicitly regenerates
+the derived file.
+
 `status-effects.json` is the single source of truth for approved display names
 and stable production IDs. The importer compares normalized display names from
 OCR with that catalog using case-, quote-, and whitespace-insensitive exact
@@ -120,6 +154,15 @@ effect sentence or status-effect name marks only that medal as `needsReview`
 with its medal name, display-name candidate, original OCR text, source Rate
 screenshot, and a suggested ID. The suggestion is diagnostic only and is never
 added automatically.
+
+Rate coverage is not rejected merely because fewer than three distinct Trait
+kinds exist. For a one- or two-kind result, the importer inspects the fixed Rate
+scrollbar region and accepts it only when the list fits without a scrollbar or
+the final screenshot has reached the scrollbar bottom. Every visible Trait must
+also parse successfully. A scrollable partial one/two-kind capture remains
+`needsReview`. Existing three-kind captures retain their established validation
+behavior, while the terminal diagnostics are recorded in the Draft for future
+capture auditing.
 
 OCR is used after ordering for screen classification and field extraction.
 New groups are structured directly from OCR. A new medal is eligible for import
@@ -154,9 +197,11 @@ directory. It validates IDs, counts, the generated TypeScript structure, and
 replaced atomically last. If the data commit fails, added images are rolled back.
 Existing WebPs are never replaced or deleted.
 
-`npm run medals:validate` also validates that catalog IDs and normalized names
-are unique, IDs use lowercase kebab-case, the generated TypeScript type matches
-the catalog, and every production `statusReductions` ID exists in the catalog.
+`npm run medals:validate` also validates that both catalog files have unique IDs
+and normalized names, IDs use lowercase kebab-case, both generated TypeScript
+types match their catalogs, and every production `statusReductions` and
+`nativeEffects` ID exists in its catalog. Duplicate `nativeEffects` on one medal
+are rejected.
 
 If an existing production WebP is missing, the importer stops unless the same
 medal is present as an identical validated duplicate in the current batch. In

@@ -12,7 +12,9 @@
     "medals:test": "node --test scripts/medal-importer/*.test.mjs",
     "medals:validate": "node scripts/medal-importer/validate-output.mjs",
     "medals:approve-status": "node scripts/medal-importer/approve-status.mjs",
-    "medals:generate-status-types": "node scripts/medal-importer/generate-status-types.mjs"
+    "medals:generate-status-types": "node scripts/medal-importer/generate-status-types.mjs",
+    "medals:approve-native-effect": "node scripts/medal-importer/approve-native-effect.mjs",
+    "medals:generate-native-effect-types": "node scripts/medal-importer/generate-native-effect-types.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",

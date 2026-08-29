@@ -33,6 +33,7 @@ function newMedal(overrides = {}) {
       { id: "first-tag", name: "First Tag" },
     ],
     nativeTraits: ["hp", "atk"],
+    nativeEffects: ["skill2-cooldown-reduction-speed"],
     statusReductions: ["stun"],
     sources: {
       details: "IMG_9000.PNG",
@@ -66,6 +67,9 @@ test("C. a semantically identical production medal is skipped", () => {
     ...structuredClone(existing),
     tags: [...existing.tags].reverse(),
     nativeTraits: [...existing.nativeTraits].reverse(),
+    ...(existing.nativeEffects
+      ? { nativeEffects: [...existing.nativeEffects].reverse() }
+      : {}),
     ...(existing.statusReductions
       ? { statusReductions: [...existing.statusReductions].reverse() }
       : {}),

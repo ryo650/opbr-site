@@ -10,6 +10,9 @@ export function productionContent(medal) {
     uniqueTrait: medal.uniqueTrait,
     tags: medal.tags,
     nativeTraits: medal.nativeTraits,
+    ...(medal.nativeEffects?.length
+      ? { nativeEffects: medal.nativeEffects }
+      : {}),
     ...(medal.statusReductions?.length
       ? { statusReductions: medal.statusReductions }
       : {}),

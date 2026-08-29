@@ -13,6 +13,11 @@ import {
   validateProductionStatusEffects,
   validateStatusEffectCatalog,
 } from "./status-effects.mjs";
+import {
+  renderNativeEffectTypes,
+  validateNativeEffectCatalog,
+  validateProductionNativeEffects,
+} from "./native-effects.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -46,6 +51,9 @@ const review = readJson("reviewed-medals.json");
 const statusEffectCatalog = validateStatusEffectCatalog(
   readJson("status-effects.json"),
 );
+const nativeEffectCatalog = validateNativeEffectCatalog(
+  readJson("native-effects.json"),
+);
 const generatedStatusEffectTypesPath = path.join(
   projectDir,
   "src/data/medals/status-effects.generated.ts",
@@ -54,6 +62,15 @@ assertEqual(
   readFileSync(generatedStatusEffectTypesPath, "utf8"),
   renderStatusEffectTypes(statusEffectCatalog),
   "Generated StatusEffectType is out of sync with status-effects.json",
+);
+const generatedNativeEffectTypesPath = path.join(
+  projectDir,
+  "src/data/medals/native-effects.generated.ts",
+);
+assertEqual(
+  readFileSync(generatedNativeEffectTypesPath, "utf8"),
+  renderNativeEffectTypes(nativeEffectCatalog),
+  "Generated NativeEffectType is out of sync with native-effects.json",
 );
 if (!draft.merge?.previousProduction) {
   throw new Error("Draft does not contain an incremental production snapshot");
@@ -97,6 +114,7 @@ const ids = production.map((medal) => medal.id);
 if (new Set(ids).size !== ids.length) throw new Error("Duplicate medal IDs found");
 
 validateProductionStatusEffects(production, statusEffectCatalog);
+validateProductionNativeEffects(production, nativeEffectCatalog);
 
 const reviewed = review.medals.map(productionContent);
 const productionById = new Map(production.map((medal) => [medal.id, medal]));
@@ -173,6 +191,9 @@ console.log(
       approvedStatusEffects: statusEffectCatalog.length,
       productionStatusEffectsCatalogued: true,
       generatedStatusEffectTypeCurrent: true,
+      approvedNativeEffects: nativeEffectCatalog.length,
+      productionNativeEffectsCatalogued: true,
+      generatedNativeEffectTypeCurrent: true,
     },
     null,
     2,

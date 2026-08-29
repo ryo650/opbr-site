@@ -1,0 +1,18 @@
+[
+  {
+    "id": "skill1-cooldown-reduction-speed",
+    "name": "Skill 1 cooldown reduction speed"
+  },
+  {
+    "id": "skill2-cooldown-reduction-speed",
+    "name": "Skill 2 cooldown reduction speed"
+  },
+  {
+    "id": "damage-dealt",
+    "name": "Damage dealt"
+  },
+  {
+    "id": "damage-received",
+    "name": "Damage received"
+  }
+]

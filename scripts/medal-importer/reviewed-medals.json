@@ -18,11 +18,11 @@
       "scale": 2
     },
     "uniqueTrait": {
-      "x": 1020,
-      "y": 230,
-      "width": 870,
-      "height": 220,
-      "scale": 2
+      "x": 980,
+      "y": 175,
+      "width": 900,
+      "height": 350,
+      "scale": 2.5
     },
     "rateTraits": {
       "x": 790,

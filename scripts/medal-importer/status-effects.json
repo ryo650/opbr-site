@@ -58,5 +58,57 @@
   {
     "id": "recovery-blocked",
     "name": "Recovery Blocked"
+  },
+  {
+    "id": "toy",
+    "name": "Toy"
+  },
+  {
+    "id": "edit",
+    "name": "Edit"
+  },
+  {
+    "id": "candyman",
+    "name": "Candyman"
+  },
+  {
+    "id": "gold",
+    "name": "GOLD"
+  },
+  {
+    "id": "sing-sing",
+    "name": "Sing-Sing"
+  },
+  {
+    "id": "intimidate",
+    "name": "Intimidate"
+  },
+  {
+    "id": "frostbite",
+    "name": "Frostbite"
+  },
+  {
+    "id": "sleep",
+    "name": "Sleep"
+  },
+  {
+    "id": "spiderweb",
+    "name": "Spiderweb"
+  },
+  {
+    "id": "ice-ball",
+    "name": "Ice Ball"
+  },
+  {
+    "id": "sew-sew",
+    "name": "Sew-Sew"
+  },
+  {
+    "id": "slow-slow",
+    "name": "Slow-Slow"
+  },
+  {
+    "id": "marked",
+    "name": "Marked"
   }
 ]

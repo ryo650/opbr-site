@@ -18,11 +18,23 @@ import {
   validateMergePlan,
 } from "./incremental.mjs";
 import {
-  createUnknownStatusEffectIssue,
   createStatusEffectIndex,
   loadStatusEffectCatalog,
-  resolveStatusEffect,
 } from "./status-effects.mjs";
+import {
+  createNativeEffectIndex,
+  loadNativeEffectCatalog,
+} from "./native-effects.mjs";
+import {
+  analyzeRateTraits,
+  isRateTraitRetryResolved,
+} from "./rate-traits.mjs";
+import { classifyScreen } from "./screen-classification.mjs";
+import {
+  analyzeRateScrollbarPixels,
+  evaluateRateCoverage,
+  RATE_SCROLLBAR_CROP,
+} from "./rate-coverage.mjs";
 import { groupScreens, mergeTagPages } from "./tag-pages.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
@@ -31,16 +43,20 @@ const inputDir = path.join(importerDir, "input");
 const reviewPath = path.join(importerDir, "reviewed-medals.json");
 const draftPath = path.join(importerDir, "draft-medals.json");
 const statusEffectCatalogPath = path.join(importerDir, "status-effects.json");
+const nativeEffectCatalogPath = path.join(importerDir, "native-effects.json");
 const ocrPath = path.join(importerDir, "ocr.swift");
 const dataPath = path.join(projectDir, "src/data/medals/medals.ts");
 const imageDir = path.join(projectDir, "public/medals");
 const dryRun = process.argv.includes("--dry-run");
 const regressionMode = process.argv.includes("--regression");
-const knownNativeTraits = new Set(["atk", "def", "hp", "crit"]);
 const statusEffectCatalog = await loadStatusEffectCatalog(
   statusEffectCatalogPath,
 );
 const statusEffectsByName = createStatusEffectIndex(statusEffectCatalog);
+const nativeEffectCatalog = await loadNativeEffectCatalog(
+  nativeEffectCatalogPath,
+);
+const nativeEffectsByName = createNativeEffectIndex(nativeEffectCatalog);
 
 function requireCommand(command, fallbackPaths = []) {
   try {
@@ -191,6 +207,18 @@ function dimensions(filePath) {
   return { width, height };
 }
 
+function rateViewport(filePath) {
+  const crop = RATE_SCROLLBAR_CROP;
+  const pixelDump = run(magickCommand, [
+    filePath,
+    "-crop",
+    `${crop.width}x${crop.height}+${crop.x}+${crop.y}`,
+    "+repage",
+    "txt:-",
+  ]);
+  return analyzeRateScrollbarPixels(pixelDump);
+}
+
 function categoryFromCrop(filePath, crop) {
   const geometry = `${crop.width}x${crop.height}+${crop.x}+${crop.y}`;
   const values = run(magickCommand, [
@@ -226,221 +254,11 @@ function issue(code, message, screenshot, ocrText, extra = {}) {
   return { code, message, screenshot, ocrText, ...extra };
 }
 
-function isRateNoiseLine(line) {
-  const trimmed = line.trim();
-  return (
-    /^\d+(?:[.,]\d+)?%$/.test(trimmed) ||
-    /^[*.<>\-\s]+$/.test(trimmed) ||
-    trimmed === "X O"
-  );
-}
-
-function analyzeRateTraits(ocr, medalName, file) {
-  const nativeTraits = new Set();
-  const statusReductions = new Set();
-  const traitKinds = new Set();
-  const issues = [];
-
-  function addIssue(nextIssue) {
-    if (
-      !issues.some(
-        (existing) =>
-          existing.code === nextIssue.code &&
-          existing.ocrText === nextIssue.ocrText,
-      )
-    ) {
-      issues.push(nextIssue);
-    }
-  }
-
-  for (let index = 0; index < ocr.lines.length; index += 1) {
-    const line = ocr.lines[index];
-    const nativeMatches = [...line.matchAll(/\bincrease\s+([a-z]+)\s+by\b/gi)];
-    for (const match of nativeMatches) {
-      const trait = match[1].toLowerCase();
-      if (!knownNativeTraits.has(trait)) {
-        traitKinds.add(`unknown-native:${trait}`);
-        addIssue(
-          issue(
-            "unknown-native-trait",
-            `Unknown native trait detected: "${match[1]}"`,
-            file,
-            line,
-            { medalName, unknownTraitText: match[1] },
-          ),
-        );
-        continue;
-      }
-      nativeTraits.add(trait);
-      traitKinds.add(`native:${trait}`);
-    }
-
-    if (/\bincrease\b/i.test(line) && nativeMatches.length === 0) {
-      addIssue(
-        issue(
-          "unparsed-rate-trait",
-          "Rate contains an Increase trait that could not be parsed",
-          file,
-          line,
-          { medalName, unknownTraitText: line },
-        ),
-      );
-    }
-
-    if (/^reduces?\s+duration\s+of\b/i.test(line.trim())) {
-      let statusText = line.trim();
-      let lookahead = index + 1;
-      while (
-        !/\bduration\s+of\s+.+?\s+by\b/i.test(statusText) &&
-        lookahead < ocr.lines.length &&
-        lookahead <= index + 3
-      ) {
-        const continuation = ocr.lines[lookahead].trim();
-        if (!isRateNoiseLine(continuation)) {
-          statusText += ` ${continuation}`;
-        }
-        lookahead += 1;
-      }
-      const match = statusText.match(
-        /\bduration\s+of\s+(.+?)\s+by(?:\s|$)/i,
-      );
-      if (!match) {
-        addIssue(
-          issue(
-            "unparsed-rate-trait",
-            "Status reduction trait could not be parsed",
-            file,
-            statusText,
-            { medalName, unknownTraitText: statusText },
-          ),
-        );
-        continue;
-      }
-      const displayNameCandidate = match[1].trim();
-      const approvedStatus = resolveStatusEffect(
-        statusEffectsByName,
-        displayNameCandidate,
-      );
-      traitKinds.add(
-        `status:${approvedStatus?.id ?? `unknown-${normalizeText(displayNameCandidate)}`}`,
-      );
-      if (!approvedStatus) {
-        addIssue(createUnknownStatusEffectIssue({
-          medalName,
-          displayNameCandidate,
-          ocrText: statusText,
-          screenshot: file,
-        }));
-        continue;
-      }
-      statusReductions.add(approvedStatus.id);
-      continue;
-    }
-
-    if (
-      /\b(boost|decrease|reduces?|recover|restore|nullif|shorten|extend|inflict|remove)\b/i.test(
-        line,
-      ) &&
-      !/drop rates? are rounded/i.test(line)
-    ) {
-      addIssue(
-        issue(
-          "unparsed-rate-trait",
-          "Rate contains a trait-like sentence that could not be parsed",
-          file,
-          line,
-          { medalName, unknownTraitText: line },
-        ),
-      );
-    }
-  }
-
-  if (traitKinds.size === 0) {
-    issues.push(
-      issue(
-        "unparsed-rate-trait",
-        "No native trait could be parsed from Rate screen",
-        file,
-        ocr.lines.join(" | "),
-        { medalName },
-      ),
-    );
-  }
-
-  return { nativeTraits, statusReductions, traitKinds, issues };
-}
-
 function sameStringSet(expected, actual) {
   return (
     expected.length === actual.size &&
     expected.every((value) => actual.has(value))
   );
-}
-
-function classify(ocr, file) {
-  const ocrText = ocr.lines.join(" | ");
-  const titleTypes = new Set(
-    ocr.observations
-      .filter(
-        ({ x, y, width }) =>
-          x >= 0.35 && x + width <= 0.65 && y >= 0.85,
-      )
-      .map(({ text }) => {
-        const title = normalizeText(text);
-        if (title === "medal details") return "details";
-        if (title === "tag") return "tag";
-        if (title === "rate") return "rate";
-        return null;
-      })
-      .filter(Boolean),
-  );
-
-  if (titleTypes.size !== 1) {
-    const found = [...titleTypes].join(", ") || "none";
-    throw new Error(
-      `${file}: expected exactly one recognized modal title, found ${found}\nOCR: ${ocrText}`,
-    );
-  }
-
-  const [type] = titleTypes;
-  const normalizedLines = ocr.lines.map(normalizeText);
-  const hasRateDescription = normalizedLines.some((line) =>
-    line.includes("drop rates are rounded off"),
-  );
-  const hasPercentage = ocr.lines.some((line) => /\d+(?:[.,]\d+)?%/.test(line));
-  const hasRateSignature = hasRateDescription && hasPercentage;
-  const hasDetailsSignature = normalizedLines.includes("unique trait");
-  const hasDetailsBodyStructure =
-    normalizedLines.some((line) => /^extra trait(?: \d+)?$/.test(line)) &&
-    normalizedLines.includes("rate") &&
-    normalizedLines.includes("craft");
-
-  if (type === "rate" && !hasRateSignature) {
-    throw new Error(
-      `${file}: Rate title conflicts with missing Rate signature\nOCR: ${ocrText}`,
-    );
-  }
-  if (type !== "rate" && hasRateSignature) {
-    throw new Error(
-      `${file}: ${type} title conflicts with Rate signature\nOCR: ${ocrText}`,
-    );
-  }
-  if (
-    type === "details" &&
-    !hasDetailsSignature &&
-    !hasDetailsBodyStructure
-  ) {
-    throw new Error(
-      `${file}: Medal Details title conflicts with missing Details body structure\nOCR: ${ocrText}`,
-    );
-  }
-  if (type === "tag" && hasDetailsSignature) {
-    throw new Error(
-      `${file}: Tag title conflicts with Details signature\nOCR: ${ocrText}`,
-    );
-  }
-
-  return type;
 }
 
 function slugify(value) {
@@ -449,7 +267,7 @@ function slugify(value) {
 
 function medalIdFromName(name) {
   return slugify(
-    name.replace(/\s+medal$/i, "").replace(/[’']/g, ""),
+    name.replace(/\s+medals?$/i, "").replace(/[’']/g, ""),
   );
 }
 
@@ -469,9 +287,40 @@ function hasUniqueTraitStructureAnomaly(uniqueTrait, traitLines) {
   const closingParentheses = [...uniqueTrait].filter(
     (value) => value === ")",
   ).length;
+  const allowedShortLines = new Set([
+    "a",
+    "an",
+    "and",
+    "at",
+    "atk",
+    "by",
+    "def",
+    "for",
+    "hp",
+    "if",
+    "in",
+    "is",
+    "ko",
+    "kos",
+    "of",
+    "or",
+    "the",
+    "to",
+  ]);
+  const hasUnexpectedIsolatedShortLine = traitLines.some((line) => {
+    const token = line.trim();
+    return (
+      /^[A-Za-z]{1,3}$/.test(token) &&
+      !allowedShortLines.has(token.toLowerCase())
+    );
+  });
   return (
     openingParentheses !== closingParentheses ||
-    traitLines.some((line) => /^[+*×‹<>]/.test(line.trim()))
+    traitLines.some((line) => /^[+*×‹<>]/.test(line.trim())) ||
+    hasUnexpectedIsolatedShortLine ||
+    /[\u0400-\u04ff]/.test(uniqueTrait) ||
+    /\b(?:boost|increase|reduce)\s+(?:the\s+)?by\b/i.test(uniqueTrait) ||
+    !/[.!?)]$/.test(uniqueTrait)
   );
 }
 
@@ -494,14 +343,14 @@ function extractRetriedUniqueTrait(ocr) {
 function extractRetriedName(ocr) {
   const nameCandidates = ocr.lines
     .map((line) => line.trim())
-    .filter((line) => /\S+\s+medal$/i.test(line));
+    .filter((line) => /\S+\s+medals?$/i.test(line));
   return nameCandidates.length === 1 ? nameCandidates[0] : null;
 }
 
 function extractDetails(ocr, file) {
   const issues = [];
   const nameCandidates = ocr.lines.filter(
-    (line) => /\bmedal$/i.test(line.trim()) && normalizeText(line) !== "medal details",
+    (line) => /\bmedals?$/i.test(line.trim()) && normalizeText(line) !== "medal details",
   );
   const name = nameCandidates.length === 1 ? nameCandidates[0].trim() : null;
 
@@ -667,6 +516,7 @@ function renderData(medals) {
       uniqueTrait,
       tags,
       nativeTraits,
+      nativeEffects,
       statusReductions,
     }) => ({
       id,
@@ -675,6 +525,7 @@ function renderData(medals) {
       uniqueTrait,
       tags,
       nativeTraits,
+      ...(nativeEffects?.length ? { nativeEffects } : {}),
       ...(statusReductions?.length ? { statusReductions } : {}),
     }),
   );
@@ -795,7 +646,7 @@ const ocr = JSON.parse(
 const ocrByFile = new Map(ocr.map((item) => [item.file, item]));
 const screens = inputFiles.map((item) => ({
   ...item,
-  type: classify(
+  type: classifyScreen(
     ocrByFile.get(item.file) ?? { lines: [], observations: [] },
     item.file,
   ),
@@ -890,9 +741,11 @@ for (const group of groups) {
   );
   const draftIssues = [...details.issues, ...tagResult.issues];
   const nativeTraits = new Set();
+  const nativeEffects = new Set();
   const statusReductions = new Set();
   const traitKinds = new Set();
   const rateOcr = [];
+  const rateCoveragePages = [];
   const medalName = details.name ?? group.details;
 
   for (const rateFile of group.rates) {
@@ -901,12 +754,17 @@ for (const group of groups) {
       throw new Error(`${rateFile}: missing OCR result`);
     }
     rateOcr.push({ file: rateFile, lines: screenOcr.lines });
-    let detected = analyzeRateTraits(screenOcr, medalName, rateFile);
+    let detected = analyzeRateTraits(screenOcr, medalName, rateFile, {
+      statusEffectsByName,
+      nativeEffectsByName,
+    });
     if (
       detected.issues.some((rateIssue) =>
-        ["unknown-native-trait", "unparsed-rate-trait"].includes(
-          rateIssue.code,
-        ),
+        [
+          "unknown-native-trait",
+          "unknown-native-effect",
+          "unparsed-rate-trait",
+        ].includes(rateIssue.code),
       )
     ) {
       const retry = await retryFieldOcr(
@@ -914,12 +772,11 @@ for (const group of groups) {
         "rate-traits",
         review.fieldCrops.rateTraits,
       );
-      const retried = analyzeRateTraits(retry, medalName, rateFile);
-      const resolved = !retried.issues.some((rateIssue) =>
-        ["unknown-native-trait", "unparsed-rate-trait"].includes(
-          rateIssue.code,
-        ),
-      );
+      const retried = analyzeRateTraits(retry, medalName, rateFile, {
+        statusEffectsByName,
+        nativeEffectsByName,
+      });
+      const resolved = isRateTraitRetryResolved(detected, retried);
       fieldOcrRetries.push({
         field: "rateTraits",
         screenshot: rateFile,
@@ -931,19 +788,29 @@ for (const group of groups) {
       if (resolved) detected = retried;
     }
     for (const trait of detected.nativeTraits) nativeTraits.add(trait);
+    for (const effect of detected.nativeEffects) nativeEffects.add(effect);
     for (const status of detected.statusReductions) statusReductions.add(status);
     for (const kind of detected.traitKinds) traitKinds.add(kind);
     draftIssues.push(...detected.issues);
+    rateCoveragePages.push({
+      file: rateFile,
+      viewport: rateViewport(path.join(inputDir, rateFile)),
+      allDisplayedTraitsParsed: detected.issues.length === 0,
+    });
   }
 
-  if (traitKinds.size < 3) {
+  const rateCoverage = evaluateRateCoverage({
+    traitKindCount: traitKinds.size,
+    pages: rateCoveragePages,
+  });
+  if (!rateCoverage.accepted) {
     draftIssues.push(
       issue(
         "rate-coverage-incomplete",
-        `Rate screens expose only ${traitKinds.size} distinct trait kinds; expected at least 3`,
-        group.rates.join(", "),
+        `Rate list coverage could not be confirmed (${rateCoverage.basis}); parsed ${traitKinds.size} distinct trait kind(s)`,
+        group.rates.at(-1),
         rateOcr.flatMap((item) => item.lines).join(" | "),
-        { medalName },
+        { medalName, rateCoverage },
       ),
     );
   }
@@ -971,6 +838,9 @@ for (const group of groups) {
     uniqueTrait: details.uniqueTrait,
     tags: tagResult.tags,
     nativeTraits: [...nativeTraits],
+    ...(nativeEffects.size > 0
+      ? { nativeEffects: [...nativeEffects] }
+      : {}),
     ...(statusReductions.size > 0
       ? { statusReductions: [...statusReductions] }
       : {}),
@@ -994,6 +864,11 @@ for (const group of groups) {
     },
     fieldOcrRetries,
     tagPages: tagResult.pages,
+    rateCoverage: {
+      ...rateCoverage,
+      traitKindCount: traitKinds.size,
+      pages: rateCoveragePages,
+    },
   };
 
   if (fixture) {
@@ -1023,6 +898,11 @@ for (const group of groups) {
         `nativeTraits: [${draft.nativeTraits.join(", ")}] != [${fixture.nativeTraits.join(", ")}]`,
       );
     }
+    if (!sameStringSet(fixture.nativeEffects ?? [], nativeEffects)) {
+      regressionIssues.push(
+        `nativeEffects: [${draft.nativeEffects?.join(", ") ?? ""}] != [${fixture.nativeEffects?.join(", ") ?? ""}]`,
+      );
+    }
     if (!sameStringSet(fixture.statusReductions ?? [], statusReductions)) {
       regressionIssues.push(
         `statusReductions: [${draft.statusReductions?.join(", ") ?? ""}] != [${fixture.statusReductions?.join(", ") ?? ""}]`,
@@ -1040,6 +920,9 @@ for (const group of groups) {
     draft.uniqueTrait = fixture.uniqueTrait;
     draft.tags = fixture.tags;
     draft.nativeTraits = fixture.nativeTraits;
+    if (fixture.nativeEffects) {
+      draft.nativeEffects = fixture.nativeEffects;
+    }
     if (fixture.statusReductions) {
       draft.statusReductions = fixture.statusReductions;
     }
@@ -1183,7 +1066,11 @@ for (const [index, draft] of drafts.entries()) {
     console.log(
       `  issue: ${draftIssue.code} | ${draftIssue.screenshot} | ${draftIssue.message}`,
     );
-    if (draftIssue.code === "unknown-status-effect") {
+    if (
+      ["unknown-status-effect", "unknown-native-effect"].includes(
+        draftIssue.code,
+      )
+    ) {
       console.log(`    medal name: ${draftIssue.medalName}`);
       console.log(
         `    display name candidate: ${draftIssue.displayNameCandidate}`,

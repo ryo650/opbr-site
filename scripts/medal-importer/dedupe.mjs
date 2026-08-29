@@ -9,6 +9,9 @@ export function comparableMedal(medal) {
         left.id.localeCompare(right.id) || left.name.localeCompare(right.name),
     ),
     nativeTraits: [...content.nativeTraits].sort(),
+    ...(content.nativeEffects
+      ? { nativeEffects: [...content.nativeEffects].sort() }
+      : {}),
     ...(content.statusReductions
       ? { statusReductions: [...content.statusReductions].sort() }
       : {}),
