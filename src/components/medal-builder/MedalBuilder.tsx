@@ -10,6 +10,7 @@ import styles from "./MedalBuilder.module.css";
 type Category = "all" | Medal["category"];
 type Sort = "default" | "az" | "za" | "category" | "match";
 type Tab = "medals" | "analysis";
+type FilterSection = "tags" | "traits" | "effects" | "reductions";
 type MedalSlots = [Medal | null, Medal | null, Medal | null];
 
 const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", hp: "HP", crit: "CRIT" };
@@ -34,6 +35,8 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   const [effects, setEffects] = useState<NativeEffectType[]>([]);
   const [reductions, setReductions] = useState<StatusEffectType[]>([]);
   const [filtersOpen, setFiltersOpen] = useState(false);
+  const [expandedFilter, setExpandedFilter] = useState<FilterSection | null>(null);
+  const [tagQuery, setTagQuery] = useState("");
   const [tab, setTab] = useState<Tab>("medals");
   const [dragSlot, setDragSlot] = useState<number | null>(null);
 
@@ -46,6 +49,10 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   }, [medals]);
   const allEffects = useMemo(() => [...new Set(medals.flatMap((medal) => medal.nativeEffects ?? []))].sort(), [medals]);
   const allReductions = useMemo(() => [...new Set(medals.flatMap((medal) => medal.statusReductions ?? []))].sort(), [medals]);
+  const filteredTags = useMemo(() => {
+    const needle = tagQuery.trim().toLocaleLowerCase();
+    return needle ? allTags.filter(([, name]) => name.toLocaleLowerCase().includes(needle)) : allTags;
+  }, [allTags, tagQuery]);
   const selectedTagIds = useMemo(() => new Set(selected.flatMap((medal) => medal.tags.map((tag) => tag.id))), [selected]);
 
   const filtered = useMemo(() => {
@@ -105,15 +112,22 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   };
   const toggle = <T extends string>(value: T, values: T[], setValues: (next: T[]) => void) => setValues(values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
   const activeFilterCount = tags.length + traits.length + effects.length + reductions.length + Number(category !== "all");
-  const clearFilters = () => { setCategory("all"); setTags([]); setTraits([]); setEffects([]); setReductions([]); };
+  const clearFilters = () => { setCategory("all"); setTags([]); setTraits([]); setEffects([]); setReductions([]); setTagQuery(""); };
+  const toggleFilterSection = (section: FilterSection) => setExpandedFilter((current) => current === section ? null : section);
 
   const filterPanel = <div className={styles.filterPanel}>
     <div className={styles.filterHeading}><div><span className={styles.kicker}>Refine catalog</span><h2>Filters</h2></div><button type="button" className={styles.closeFilters} onClick={() => setFiltersOpen(false)} aria-label="Close filters"><X /></button></div>
     <fieldset><legend>Category</legend><div className={styles.segmented}>{(["all", "character", "event"] as Category[]).map((value) => <button type="button" key={value} className={category === value ? styles.activeSegment : ""} onClick={() => setCategory(value)}>{labelId(value)}</button>)}</div></fieldset>
-    <FilterGroup title="Tags" options={allTags} selected={tags} onToggle={(id) => toggle(id, tags, setTags)} />
-    <FilterGroup title="Native traits" options={(Object.keys(traitLabels) as NativeTraitType[]).map((id) => [id, traitLabels[id]])} selected={traits} onToggle={(id) => toggle(id as NativeTraitType, traits, setTraits)} />
-    <FilterGroup title="Native effects" options={allEffects.map((id) => [id, labelId(id)])} selected={effects} onToggle={(id) => toggle(id as NativeEffectType, effects, setEffects)} />
-    <FilterGroup title="Status reductions" options={allReductions.map((id) => [id, labelId(id)])} selected={reductions} onToggle={(id) => toggle(id as StatusEffectType, reductions, setReductions)} />
+    <div className={styles.filterLaunchers}>
+      <FilterLauncher title="Tags" count={tags.length} expanded={expandedFilter === "tags"} onClick={() => toggleFilterSection("tags")} />
+      {expandedFilter === "tags" && <FilterSelector title="Tags" options={filteredTags} selected={tags} onToggle={(id) => toggle(id, tags, setTags)} search={{ value: tagQuery, onChange: setTagQuery }} />}
+      <FilterLauncher title="Native Traits" count={traits.length} expanded={expandedFilter === "traits"} onClick={() => toggleFilterSection("traits")} />
+      {expandedFilter === "traits" && <FilterSelector title="Native Traits" options={(Object.keys(traitLabels) as NativeTraitType[]).map((id) => [id, traitLabels[id]])} selected={traits} onToggle={(id) => toggle(id as NativeTraitType, traits, setTraits)} />}
+      <FilterLauncher title="Native Effects" count={effects.length} expanded={expandedFilter === "effects"} onClick={() => toggleFilterSection("effects")} />
+      {expandedFilter === "effects" && <FilterSelector title="Native Effects" options={allEffects.map((id) => [id, labelId(id)])} selected={effects} onToggle={(id) => toggle(id as NativeEffectType, effects, setEffects)} />}
+      <FilterLauncher title="Status Reductions" count={reductions.length} expanded={expandedFilter === "reductions"} onClick={() => toggleFilterSection("reductions")} />
+      {expandedFilter === "reductions" && <FilterSelector title="Status Reductions" options={allReductions.map((id) => [id, labelId(id)])} selected={reductions} onToggle={(id) => toggle(id as StatusEffectType, reductions, setReductions)} />}
+    </div>
     <button type="button" className={styles.clearButton} onClick={clearFilters} disabled={!activeFilterCount}>Clear all filters</button>
   </div>;
 
@@ -124,8 +138,8 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       <div className={styles.setHeading}><span className={styles.kicker}>Your loadout</span><h2 id="current-set-title">Current Medal Set</h2><p>Open a medal for details, or drag it into a slot.</p></div>
       <div className={styles.slots}>{slots.map((medal, index) => <div className={styles.slotWrap} key={index}>
         <div className={`${styles.slot} ${medal ? styles.filledSlot : ""} ${dragSlot === index ? styles.dragTarget : ""}`} onDragOver={(event) => { event.preventDefault(); setDragSlot(index); }} onDragLeave={() => setDragSlot(null)} onDrop={(event) => handleDrop(event, index)}>
-          {medal ? <MedalArt medal={medal} sizes="110px" priority /> : <span className={styles.emptySlot}>{index + 1}</span>}
-          {medal && <button type="button" onClick={() => setSlots((current) => current.map((item, slot) => slot === index ? null : item) as MedalSlots)} aria-label={`Remove ${medal.name}`}><X /></button>}
+          {medal ? <button type="button" className={styles.currentMedalButton} onClick={() => setDetailMedal(medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog"><MedalArt medal={medal} sizes="110px" priority /></button> : <span className={styles.emptySlot}>{index + 1}</span>}
+          {medal && <button type="button" className={styles.removeButton} onClick={() => setSlots((current) => current.map((item, slot) => slot === index ? null : item) as MedalSlots)} aria-label={`Remove ${medal.name}`}><X /></button>}
         </div><strong>SLOT {index + 1}</strong>
       </div>)}</div>
     </section>
@@ -152,7 +166,6 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
 function Analysis({ selected, commonTags, tab }: { selected: readonly Medal[]; commonTags: { name: string; count: number }[]; tab: Tab }) {
   return <aside className={`${styles.analysis} ${tab !== "analysis" ? styles.mobileHidden : ""}`}><span className={styles.kicker}>Live breakdown</span><h2>Set Analysis</h2>{!selected.length ? <div className={styles.analysisEmpty}><strong>Your analysis starts here.</strong><p>Open a medal and choose a mini slot.</p></div> : <>
     <section><h3>Common Tags</h3><div className={styles.commonTags}>{commonTags.map((tag) => <div key={tag.name}><span className={styles.dots} aria-hidden="true">{Array.from({ length: selected.length }, (_, index) => <i className={index < tag.count ? styles.dotOn : ""} key={index} />)}</span><strong>{tag.name}</strong><span>{tag.count}/{selected.length}</span></div>)}</div></section>
-    <section><h3>Medal Traits</h3><div className={styles.traits}>{selected.map((medal) => <article key={medal.id}><header><MedalArt medal={medal} sizes="44px" /><strong>{medal.name}</strong></header><TraitRow title="Unique trait" values={[medal.uniqueTrait]} /><TraitRow title="Native traits" values={medal.nativeTraits.map((trait) => traitLabels[trait])} /><TraitRow title="Native effects" values={(medal.nativeEffects ?? []).map(labelId)} /><TraitRow title="Status reductions" values={(medal.statusReductions ?? []).map(labelId)} /></article>)}</div></section>
   </>}</aside>;
 }
 
@@ -167,5 +180,5 @@ function MedalDetails({ medal, slots, onPlace, onClose }: { medal: Medal; slots:
 
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) { return <section className={styles.detailSection}><h3>{title}</h3>{children}</section>; }
 function Pills({ values }: { values: readonly string[] }) { return values.length ? <div className={styles.pills}>{values.map((value) => <span key={value}>{value}</span>)}</div> : <em className={styles.none}>None</em>; }
-function FilterGroup({ title, options, selected, onToggle }: { title: string; options: [string, string][]; selected: readonly string[]; onToggle: (id: string) => void }) { return <fieldset><legend>{title}</legend><div className={styles.checkList}>{options.map(([id, label]) => <label key={id}><input type="checkbox" checked={selected.includes(id)} onChange={() => onToggle(id)} /><span>{label}</span></label>)}</div></fieldset>; }
-function TraitRow({ title, values }: { title: string; values: readonly string[] }) { return <div className={styles.traitRow}><span>{title}</span>{values.length ? <div>{values.map((value) => <span key={value}>{value}</span>)}</div> : <em>None</em>}</div>; }
+function FilterLauncher({ title, count, expanded, onClick }: { title: string; count: number; expanded: boolean; onClick: () => void }) { return <button type="button" className={styles.filterLauncher} onClick={onClick} aria-expanded={expanded}><span>{title}</span>{count > 0 && <strong>{count}</strong>}<span aria-hidden="true">{expanded ? "−" : "+"}</span></button>; }
+function FilterSelector({ title, options, selected, onToggle, search }: { title: string; options: [string, string][]; selected: readonly string[]; onToggle: (id: string) => void; search?: { value: string; onChange: (value: string) => void } }) { return <div className={styles.filterSelector} aria-label={`${title} filters`}>{search && <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search tags</span><input value={search.value} onChange={(event) => search.onChange(event.target.value)} placeholder="Search tags…" /></label>}<div className={styles.checkList}>{options.map(([id, label]) => <label key={id}><input type="checkbox" checked={selected.includes(id)} onChange={() => onToggle(id)} /><span>{label}</span></label>)}{!options.length && <span className={styles.noFilterOptions}>No matching tags</span>}</div></div>; }
