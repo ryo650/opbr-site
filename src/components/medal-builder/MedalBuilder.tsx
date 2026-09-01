@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Filter, Search, X } from "lucide-react";
 import type { Medal, NativeTraitType, StatusEffectType } from "@/data/medals";
 import type { NativeEffectType } from "@/data/medals/types";
@@ -13,8 +13,8 @@ type Tab = "medals" | "analysis";
 type FilterSection = "tags" | "traits" | "effects" | "reductions";
 type MedalSlots = [Medal | null, Medal | null, Medal | null];
 
-const INITIAL_VISIBLE_MEDALS = 96;
-const MEDAL_BATCH_SIZE = 96;
+const INITIAL_VISIBLE_MEDALS = 60;
+const MEDAL_BATCH_SIZE = 60;
 
 const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", hp: "HP", crit: "CRIT" };
 const labelId = (value: string) => value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
@@ -67,9 +67,9 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   }, [allTags, tagQuery]);
   const selectedTagIds = useMemo(() => new Set(selected.flatMap((medal) => medal.tags.map((tag) => tag.id))), [selected]);
 
-  const filtered = useMemo(() => {
+  const baseFiltered = useMemo(() => {
     const needle = query.trim().toLocaleLowerCase();
-    const result = medals.filter((medal) => {
+    return medals.filter((medal) => {
       if (category !== "all" && medal.category !== category) return false;
       if (needle && !medal.name.toLocaleLowerCase().includes(needle) && !medal.tags.some((tag) => tag.name.toLocaleLowerCase().includes(needle))) return false;
       if (tags.length && !tags.every((id) => medal.tags.some((tag) => tag.id === id))) return false;
@@ -78,15 +78,25 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       if (reductions.length && !reductions.every((effect) => medal.statusReductions?.includes(effect))) return false;
       return true;
     });
-    const matchCount = (medal: Medal) => medal.tags.reduce((total, tag) => total + Number(selectedTagIds.has(tag.id)), 0);
-    return result.map((medal, index) => ({ medal, index })).sort((a, b) => {
+  }, [medals, query, category, tags, traits, effects, reductions]);
+
+  const normallySorted = useMemo(() => {
+    if (sort === "default" || sort === "match") return baseFiltered;
+    return baseFiltered.map((medal, index) => ({ medal, index })).sort((a, b) => {
       if (sort === "az") return a.medal.name.localeCompare(b.medal.name);
       if (sort === "za") return b.medal.name.localeCompare(a.medal.name);
       if (sort === "category") return a.medal.category.localeCompare(b.medal.category) || a.index - b.index;
-      if (sort === "match") return matchCount(b.medal) - matchCount(a.medal) || a.index - b.index;
       return a.index - b.index;
     }).map(({ medal }) => medal);
-  }, [medals, query, category, tags, traits, effects, reductions, sort, selectedTagIds]);
+  }, [baseFiltered, sort]);
+
+  const filtered = useMemo(() => {
+    if (sort !== "match") return normallySorted;
+    const matchCount = (medal: Medal) => medal.tags.reduce((total, tag) => total + Number(selectedTagIds.has(tag.id)), 0);
+    return baseFiltered.map((medal, index) => ({ medal, index })).sort((a, b) =>
+      matchCount(b.medal) - matchCount(a.medal) || a.index - b.index
+    ).map(({ medal }) => medal);
+  }, [baseFiltered, normallySorted, selectedTagIds, sort]);
 
   const commonTags = useMemo(() => {
     const matches = new Map<string, { name: string; count: number }>();
@@ -144,6 +154,11 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   const activeFilterCount = tags.length + traits.length + effects.length + reductions.length + Number(category !== "all");
   const clearFilters = () => { setCategory("all"); setTags([]); setTraits([]); setEffects([]); setReductions([]); setTagQuery(""); setVisibleCount(INITIAL_VISIBLE_MEDALS); };
   const toggleFilterSection = (section: FilterSection) => setExpandedFilter((current) => current === section ? null : section);
+  const openMedalDetails = useCallback((medal: Medal) => setDetailMedal(medal), []);
+  const startMedalDrag = useCallback((event: React.DragEvent<HTMLButtonElement>, medal: Medal) => {
+    event.dataTransfer.setData("text/plain", medal.id);
+    event.dataTransfer.effectAllowed = "copy";
+  }, []);
 
   const filterPanel = <div className={styles.filterPanel}>
     <div className={styles.filterHeading}><div><span className={styles.kicker}>Refine catalog</span><h2>Filters</h2></div><button type="button" className={styles.closeFilters} onClick={() => setFiltersOpen(false)} aria-label="Close filters"><X /></button></div>
@@ -182,7 +197,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
         <div className={styles.browserTop}><div><span className={styles.kicker}>Production catalog</span><h2>Medal Browser</h2><p>{filtered.length} of {medals.length} medals</p></div><button type="button" className={styles.filterButton} onClick={() => setFiltersOpen(true)}><Filter /> Filters{activeFilterCount ? ` (${activeFilterCount})` : ""}</button></div>
         <div className={styles.controls}><label className={styles.search}><Search /><span className={styles.srOnly}>Search medals</span><input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} placeholder="Search name or tag…" /></label><label className={styles.sort}><span>Sort</span><select value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}><option value="default">Default</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option><option value="category">Category</option><option value="match">Best Tag Match</option></select></label></div>
         <div className={styles.browserBody}><aside className={styles.desktopFilters}>{filterPanel}</aside><div className={styles.medalGrid}>
-          {visibleMedals.map((medal) => { const selectedCount = selectedCounts.get(medal.id) ?? 0; return <button type="button" key={medal.id} className={`${styles.medalButton} ${selectedCount ? styles.selectedMedal : ""}`} data-name={medal.name} onClick={() => setDetailMedal(medal)} draggable onDragStart={(event) => { event.dataTransfer.setData("text/plain", medal.id); event.dataTransfer.effectAllowed = "copy"; }} aria-label={`View ${medal.name} details`} aria-haspopup="dialog" aria-pressed={selectedCount > 0}><MedalArt medal={medal} sizes="(max-width: 700px) 72px, 82px" /><span className={styles.tooltip}>{medal.name}</span>{selectedCount > 0 && <span className={styles.selectedDot} aria-label={`${selectedCount} in current set`}>{selectedCount > 1 ? `×${selectedCount}` : ""}</span>}</button>; })}
+          {visibleMedals.map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectedCount={selectedCounts.get(medal.id) ?? 0} onOpen={openMedalDetails} onDragStart={startMedalDrag} />)}
           {hasMoreMedals && <div ref={loadMoreRef} className={styles.loadMoreSentinel} aria-hidden="true" />}
           {!filtered.length && <div className={styles.empty}><strong>No medals found</strong><span>Try clearing filters or using a different search.</span></div>}
         </div></div>
@@ -193,6 +208,14 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   {detailMedal && <MedalDetails medal={detailMedal} slots={slots} onPlace={setMedal} onClose={() => setDetailMedal(null)} />}
   </main>;
 }
+
+const MedalBrowserItem = memo(function MedalBrowserItem({ medal, selectedCount, onOpen, onDragStart }: { medal: Medal; selectedCount: number; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void }) {
+  return <button type="button" className={`${styles.medalButton} ${selectedCount ? styles.selectedMedal : ""}`} data-name={medal.name} onClick={() => onOpen(medal)} draggable onDragStart={(event) => onDragStart(event, medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog" aria-pressed={selectedCount > 0}>
+    <MedalArt medal={medal} sizes="(max-width: 700px) 54px, 82px" />
+    <span className={styles.tooltip}>{medal.name}</span>
+    {selectedCount > 0 && <span className={styles.selectedDot} aria-label={`${selectedCount} in current set`}>{selectedCount > 1 ? `×${selectedCount}` : ""}</span>}
+  </button>;
+});
 
 function Analysis({ selected, commonTags, tab }: { selected: readonly Medal[]; commonTags: { name: string; count: number }[]; tab: Tab }) {
   return <aside className={`${styles.analysis} ${tab !== "analysis" ? styles.mobileHidden : ""}`}><span className={styles.kicker}>Live breakdown</span><h2>Set Analysis</h2>{!selected.length ? <div className={styles.analysisEmpty}><strong>Your analysis starts here.</strong><p>Open a medal and choose a mini slot.</p></div> : <>
