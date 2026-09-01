@@ -1,0 +1,238 @@
+"use client";
+
+import Image from "next/image";
+import { memo, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Filter, Search, X } from "lucide-react";
+import type { Medal, NativeTraitType, StatusEffectType } from "@/data/medals";
+import type { NativeEffectType } from "@/data/medals/types";
+import styles from "./MedalBuilder.module.css";
+
+type Category = "all" | Medal["category"];
+type Sort = "default" | "az" | "za" | "category" | "match";
+type Tab = "medals" | "analysis";
+type FilterSection = "tags" | "traits" | "effects" | "reductions";
+type MedalSlots = [Medal | null, Medal | null, Medal | null];
+
+const INITIAL_VISIBLE_MEDALS = 60;
+const MEDAL_BATCH_SIZE = 60;
+
+const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", hp: "HP", crit: "CRIT" };
+const labelId = (value: string) => value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
+const medalImage = (medal: Medal) => `/medals/${medal.id}.webp`;
+
+function MedalArt({ medal, sizes, eager = false }: { medal: Medal; sizes: string; eager?: boolean }) {
+  return <span className={styles.medalArt}>
+    <span className={styles.medalImageViewport}>
+      <Image src={medalImage(medal)} alt="" fill sizes={sizes} loading={eager ? "eager" : "lazy"} decoding="async" />
+      <span className={styles.gloss} aria-hidden="true" />
+    </span>
+  </span>;
+}
+
+export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
+  const [slots, setSlots] = useState<MedalSlots>([null, null, null]);
+  const [detailMedal, setDetailMedal] = useState<Medal | null>(null);
+  const [query, setQuery] = useState("");
+  const [category, setCategory] = useState<Category>("all");
+  const [sort, setSort] = useState<Sort>("default");
+  const [tags, setTags] = useState<string[]>([]);
+  const [traits, setTraits] = useState<NativeTraitType[]>([]);
+  const [effects, setEffects] = useState<NativeEffectType[]>([]);
+  const [reductions, setReductions] = useState<StatusEffectType[]>([]);
+  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [expandedFilter, setExpandedFilter] = useState<FilterSection | null>(null);
+  const [tagQuery, setTagQuery] = useState("");
+  const [tab, setTab] = useState<Tab>("medals");
+  const [dragSlot, setDragSlot] = useState<number | null>(null);
+  const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_MEDALS);
+  const loadMoreRef = useRef<HTMLDivElement>(null);
+
+  const selected = useMemo(() => slots.filter((medal): medal is Medal => medal !== null), [slots]);
+  const selectedCounts = useMemo(() => {
+    const counts = new Map<string, number>();
+    selected.forEach((medal) => counts.set(medal.id, (counts.get(medal.id) ?? 0) + 1));
+    return counts;
+  }, [selected]);
+  const medalById = useMemo(() => new Map(medals.map((medal) => [medal.id, medal])), [medals]);
+  const allTags = useMemo(() => {
+    const catalog = new Map<string, string>();
+    medals.forEach((medal) => medal.tags.forEach((tag) => catalog.set(tag.id, tag.name)));
+    return [...catalog].sort((a, b) => a[1].localeCompare(b[1]));
+  }, [medals]);
+  const allEffects = useMemo(() => [...new Set(medals.flatMap((medal) => medal.nativeEffects ?? []))].sort(), [medals]);
+  const allReductions = useMemo(() => [...new Set(medals.flatMap((medal) => medal.statusReductions ?? []))].sort(), [medals]);
+  const filteredTags = useMemo(() => {
+    const needle = tagQuery.trim().toLocaleLowerCase();
+    return needle ? allTags.filter(([, name]) => name.toLocaleLowerCase().includes(needle)) : allTags;
+  }, [allTags, tagQuery]);
+  const selectedTagIds = useMemo(() => new Set(selected.flatMap((medal) => medal.tags.map((tag) => tag.id))), [selected]);
+
+  const baseFiltered = useMemo(() => {
+    const needle = query.trim().toLocaleLowerCase();
+    return medals.filter((medal) => {
+      if (category !== "all" && medal.category !== category) return false;
+      if (needle && !medal.name.toLocaleLowerCase().includes(needle) && !medal.tags.some((tag) => tag.name.toLocaleLowerCase().includes(needle))) return false;
+      if (tags.length && !tags.every((id) => medal.tags.some((tag) => tag.id === id))) return false;
+      if (traits.length && !traits.every((trait) => medal.nativeTraits.includes(trait))) return false;
+      if (effects.length && !effects.every((effect) => medal.nativeEffects?.includes(effect))) return false;
+      if (reductions.length && !reductions.every((effect) => medal.statusReductions?.includes(effect))) return false;
+      return true;
+    });
+  }, [medals, query, category, tags, traits, effects, reductions]);
+
+  const normallySorted = useMemo(() => {
+    if (sort === "default" || sort === "match") return baseFiltered;
+    return baseFiltered.map((medal, index) => ({ medal, index })).sort((a, b) => {
+      if (sort === "az") return a.medal.name.localeCompare(b.medal.name);
+      if (sort === "za") return b.medal.name.localeCompare(a.medal.name);
+      if (sort === "category") return a.medal.category.localeCompare(b.medal.category) || a.index - b.index;
+      return a.index - b.index;
+    }).map(({ medal }) => medal);
+  }, [baseFiltered, sort]);
+
+  const filtered = useMemo(() => {
+    if (sort !== "match") return normallySorted;
+    const matchCount = (medal: Medal) => medal.tags.reduce((total, tag) => total + Number(selectedTagIds.has(tag.id)), 0);
+    return baseFiltered.map((medal, index) => ({ medal, index })).sort((a, b) =>
+      matchCount(b.medal) - matchCount(a.medal) || a.index - b.index
+    ).map(({ medal }) => medal);
+  }, [baseFiltered, normallySorted, selectedTagIds, sort]);
+
+  const commonTags = useMemo(() => {
+    const matches = new Map<string, { name: string; count: number }>();
+    selected.forEach((medal) => medal.tags.forEach((tag) => {
+      const current = matches.get(tag.id);
+      matches.set(tag.id, { name: tag.name, count: (current?.count ?? 0) + 1 });
+    }));
+    return [...matches.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+  }, [selected]);
+  const visibleMedals = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
+  const hasMoreMedals = visibleCount < filtered.length;
+
+  useEffect(() => {
+    const sentinel = loadMoreRef.current;
+    if (!sentinel || !hasMoreMedals) return;
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) setVisibleCount((current) => Math.min(current + MEDAL_BATCH_SIZE, filtered.length));
+    }, { rootMargin: "500px 0px" });
+    observer.observe(sentinel);
+    return () => observer.disconnect();
+  }, [filtered.length, hasMoreMedals]);
+
+  useEffect(() => {
+    if (!detailMedal && !filtersOpen) return;
+    const previous = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === "Escape") { setDetailMedal(null); setFiltersOpen(false); }
+    };
+    window.addEventListener("keydown", closeOnEscape);
+    return () => { document.body.style.overflow = previous; window.removeEventListener("keydown", closeOnEscape); };
+  }, [detailMedal, filtersOpen]);
+
+  const setMedal = (slotIndex: number, medal: Medal) => {
+    setSlots((current) => {
+      const next = [...current] as MedalSlots;
+      next[slotIndex] = medal;
+      return next;
+    });
+    if (sort === "match") setVisibleCount(INITIAL_VISIBLE_MEDALS);
+  };
+  const removeMedal = (slotIndex: number) => {
+    setSlots((current) => current.map((item, slot) => slot === slotIndex ? null : item) as MedalSlots);
+    if (sort === "match") setVisibleCount(INITIAL_VISIBLE_MEDALS);
+  };
+  const handleDrop = (event: React.DragEvent, slotIndex: number) => {
+    event.preventDefault(); setDragSlot(null);
+    const medal = medalById.get(event.dataTransfer.getData("text/plain"));
+    if (medal) setMedal(slotIndex, medal);
+  };
+  const toggle = <T extends string>(value: T, values: T[], setValues: (next: T[]) => void) => {
+    setValues(values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
+    setVisibleCount(INITIAL_VISIBLE_MEDALS);
+  };
+  const activeFilterCount = tags.length + traits.length + effects.length + reductions.length + Number(category !== "all");
+  const clearFilters = () => { setCategory("all"); setTags([]); setTraits([]); setEffects([]); setReductions([]); setTagQuery(""); setVisibleCount(INITIAL_VISIBLE_MEDALS); };
+  const toggleFilterSection = (section: FilterSection) => setExpandedFilter((current) => current === section ? null : section);
+  const openMedalDetails = useCallback((medal: Medal) => setDetailMedal(medal), []);
+  const startMedalDrag = useCallback((event: React.DragEvent<HTMLButtonElement>, medal: Medal) => {
+    event.dataTransfer.setData("text/plain", medal.id);
+    event.dataTransfer.effectAllowed = "copy";
+  }, []);
+
+  const filterPanel = <div className={styles.filterPanel}>
+    <div className={styles.filterHeading}><div><span className={styles.kicker}>Refine catalog</span><h2>Filters</h2></div><button type="button" className={styles.closeFilters} onClick={() => setFiltersOpen(false)} aria-label="Close filters"><X /></button></div>
+    <fieldset><legend>Category</legend><div className={styles.segmented}>{(["all", "character", "event"] as Category[]).map((value) => <button type="button" key={value} className={category === value ? styles.activeSegment : ""} onClick={() => { setCategory(value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}>{labelId(value)}</button>)}</div></fieldset>
+    <div className={styles.filterLaunchers}>
+      <FilterLauncher title="Tags" count={tags.length} expanded={expandedFilter === "tags"} onClick={() => toggleFilterSection("tags")} />
+      {expandedFilter === "tags" && <FilterSelector title="Tags" options={filteredTags} selected={tags} onToggle={(id) => toggle(id, tags, setTags)} search={{ value: tagQuery, onChange: setTagQuery }} />}
+      <FilterLauncher title="Native Traits" count={traits.length} expanded={expandedFilter === "traits"} onClick={() => toggleFilterSection("traits")} />
+      {expandedFilter === "traits" && <FilterSelector title="Native Traits" options={(Object.keys(traitLabels) as NativeTraitType[]).map((id) => [id, traitLabels[id]])} selected={traits} onToggle={(id) => toggle(id as NativeTraitType, traits, setTraits)} />}
+      <FilterLauncher title="Native Effects" count={effects.length} expanded={expandedFilter === "effects"} onClick={() => toggleFilterSection("effects")} />
+      {expandedFilter === "effects" && <FilterSelector title="Native Effects" options={allEffects.map((id) => [id, labelId(id)])} selected={effects} onToggle={(id) => toggle(id as NativeEffectType, effects, setEffects)} />}
+      <FilterLauncher title="Status Reductions" count={reductions.length} expanded={expandedFilter === "reductions"} onClick={() => toggleFilterSection("reductions")} />
+      {expandedFilter === "reductions" && <FilterSelector title="Status Reductions" options={allReductions.map((id) => [id, labelId(id)])} selected={reductions} onToggle={(id) => toggle(id as StatusEffectType, reductions, setReductions)} />}
+    </div>
+    <button type="button" className={styles.clearButton} onClick={clearFilters} disabled={!activeFilterCount}>Clear all filters</button>
+  </div>;
+
+  return <main className={styles.page}><div className={styles.inner}>
+    <header className={styles.hero}><p className={styles.kicker}>Build · Compare · Refine</p><h1>Medal Builder</h1><p>Explore every production medal, then build a three-medal set.</p></header>
+
+    <section className={styles.currentSet} aria-labelledby="current-set-title">
+      <div className={styles.setHeading}><span className={styles.kicker}>Your loadout</span><h2 id="current-set-title">Current Medal Set</h2><p>Open a medal for details, or drag it into a slot.</p></div>
+      <div className={styles.slots}>{slots.map((medal, index) => <div className={styles.slotWrap} key={index}>
+        <div className={`${styles.slot} ${medal ? styles.filledSlot : ""} ${dragSlot === index ? styles.dragTarget : ""}`} onDragOver={(event) => { event.preventDefault(); setDragSlot(index); }} onDragLeave={() => setDragSlot(null)} onDrop={(event) => handleDrop(event, index)}>
+          {medal ? <button type="button" className={styles.currentMedalButton} onClick={() => setDetailMedal(medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog"><MedalArt medal={medal} sizes="110px" eager /></button> : <span className={styles.emptySlot}>{index + 1}</span>}
+          {medal && <button type="button" className={styles.removeButton} onClick={() => removeMedal(index)} aria-label={`Remove ${medal.name}`}><X /></button>}
+        </div><strong>SLOT {index + 1}</strong>
+      </div>)}</div>
+    </section>
+
+    <div className={styles.mobileTabs} role="tablist" aria-label="Builder sections"><button role="tab" aria-selected={tab === "medals"} onClick={() => setTab("medals")}>Medals</button><button role="tab" aria-selected={tab === "analysis"} onClick={() => setTab("analysis")}>Set Analysis</button></div>
+
+    <div className={styles.workspace}>
+      <Analysis selected={selected} commonTags={commonTags} tab={tab} />
+      <section className={`${styles.browser} ${tab !== "medals" ? styles.mobileHidden : ""}`}>
+        <div className={styles.browserTop}><div><span className={styles.kicker}>Production catalog</span><h2>Medal Browser</h2><p>{filtered.length} of {medals.length} medals</p></div><button type="button" className={styles.filterButton} onClick={() => setFiltersOpen(true)}><Filter /> Filters{activeFilterCount ? ` (${activeFilterCount})` : ""}</button></div>
+        <div className={styles.controls}><label className={styles.search}><Search /><span className={styles.srOnly}>Search medals</span><input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} placeholder="Search name or tag…" /></label><label className={styles.sort}><span>Sort</span><select value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}><option value="default">Default</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option><option value="category">Category</option><option value="match">Best Tag Match</option></select></label></div>
+        <div className={styles.browserBody}><aside className={styles.desktopFilters}>{filterPanel}</aside><div className={styles.medalGrid}>
+          {visibleMedals.map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectedCount={selectedCounts.get(medal.id) ?? 0} onOpen={openMedalDetails} onDragStart={startMedalDrag} />)}
+          {hasMoreMedals && <div ref={loadMoreRef} className={styles.loadMoreSentinel} aria-hidden="true" />}
+          {!filtered.length && <div className={styles.empty}><strong>No medals found</strong><span>Try clearing filters or using a different search.</span></div>}
+        </div></div>
+      </section>
+    </div>
+  </div>
+  {filtersOpen && <div className={styles.drawer} role="dialog" aria-modal="true" aria-label="Medal filters"><button className={styles.backdrop} onClick={() => setFiltersOpen(false)} aria-label="Close filters" />{filterPanel}</div>}
+  {detailMedal && <MedalDetails medal={detailMedal} slots={slots} onPlace={setMedal} onRemove={removeMedal} onClose={() => setDetailMedal(null)} />}
+  </main>;
+}
+
+const MedalBrowserItem = memo(function MedalBrowserItem({ medal, selectedCount, onOpen, onDragStart }: { medal: Medal; selectedCount: number; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void }) {
+  return <button type="button" className={`${styles.medalButton} ${selectedCount ? styles.selectedMedal : ""}`} data-name={medal.name} onClick={() => onOpen(medal)} draggable onDragStart={(event) => onDragStart(event, medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog" aria-pressed={selectedCount > 0}>
+    <MedalArt medal={medal} sizes="(max-width: 700px) 54px, 82px" />
+    <span className={styles.tooltip}>{medal.name}</span>
+    {selectedCount > 0 && <span className={styles.selectedDot} aria-label={`${selectedCount} in current set`}>{selectedCount > 1 ? `×${selectedCount}` : ""}</span>}
+  </button>;
+});
+
+function Analysis({ selected, commonTags, tab }: { selected: readonly Medal[]; commonTags: { name: string; count: number }[]; tab: Tab }) {
+  return <aside className={`${styles.analysis} ${tab !== "analysis" ? styles.mobileHidden : ""}`}><span className={styles.kicker}>Live breakdown</span><h2>Set Analysis</h2>{!selected.length ? <div className={styles.analysisEmpty}><strong>Your analysis starts here.</strong><p>Open a medal and choose a mini slot.</p></div> : <>
+    <section><h3>Common Tags</h3><div className={styles.commonTags}>{commonTags.map((tag) => <div key={tag.name}><span className={styles.dots} aria-hidden="true">{Array.from({ length: selected.length }, (_, index) => <i className={index < tag.count ? styles.dotOn : ""} key={index} />)}</span><strong>{tag.name}</strong><span>{tag.count}/{selected.length}</span></div>)}</div></section>
+  </>}</aside>;
+}
+
+function MedalDetails({ medal, slots, onPlace, onRemove, onClose }: { medal: Medal; slots: MedalSlots; onPlace: (slot: number, medal: Medal) => void; onRemove: (slot: number) => void; onClose: () => void }) {
+  return <div className={styles.detailsLayer} role="dialog" aria-modal="true" aria-labelledby="medal-detail-title"><button className={styles.backdrop} onClick={onClose} aria-label="Close medal details" /><article className={styles.detailsSheet}>
+    <div className={styles.sheetHandle} aria-hidden="true" /><button type="button" className={styles.detailsClose} onClick={onClose} aria-label="Close medal details"><X /></button>
+    <header className={styles.detailsHeader}><MedalArt medal={medal} sizes="150px" eager /><div><span>{medal.category}</span><h2 id="medal-detail-title">{medal.name}</h2></div></header>
+    <section className={styles.miniSet}><div><span className={styles.kicker}>Current set</span><p>Choose a slot to add, replace, or remove.</p></div><div className={styles.miniSlots}>{slots.map((slotMedal, index) => { const current = slotMedal?.id === medal.id; return <button type="button" key={index} className={current ? styles.currentMiniSlot : ""} onClick={() => current ? onRemove(index) : onPlace(index, medal)} aria-label={current ? `Remove ${medal.name} from slot ${index + 1}` : `${slotMedal ? "Replace" : "Add to"} slot ${index + 1}`}><span>{slotMedal ? <MedalArt medal={slotMedal} sizes="64px" /> : index + 1}</span><strong>{current ? "CURRENT" : `SLOT ${index + 1}`}</strong></button>; })}</div></section>
+    <div className={styles.detailContent}><DetailSection title="Unique Trait"><p>{medal.uniqueTrait}</p></DetailSection><DetailSection title="Tags"><Pills values={medal.tags.map((tag) => tag.name)} /></DetailSection><DetailSection title="Native Traits"><Pills values={medal.nativeTraits.map((trait) => traitLabels[trait])} /></DetailSection><DetailSection title="Native Effects"><Pills values={(medal.nativeEffects ?? []).map(labelId)} /></DetailSection><DetailSection title="Status Reductions"><Pills values={(medal.statusReductions ?? []).map(labelId)} /></DetailSection></div>
+  </article></div>;
+}
+
+function DetailSection({ title, children }: { title: string; children: React.ReactNode }) { return <section className={styles.detailSection}><h3>{title}</h3>{children}</section>; }
+function Pills({ values }: { values: readonly string[] }) { return values.length ? <div className={styles.pills}>{values.map((value) => <span key={value}>{value}</span>)}</div> : <em className={styles.none}>None</em>; }
+function FilterLauncher({ title, count, expanded, onClick }: { title: string; count: number; expanded: boolean; onClick: () => void }) { return <button type="button" className={styles.filterLauncher} onClick={onClick} aria-expanded={expanded}><span>{title}</span>{count > 0 && <strong>{count}</strong>}<span aria-hidden="true">{expanded ? "−" : "+"}</span></button>; }
+function FilterSelector({ title, options, selected, onToggle, search }: { title: string; options: [string, string][]; selected: readonly string[]; onToggle: (id: string) => void; search?: { value: string; onChange: (value: string) => void } }) { return <div className={styles.filterSelector} aria-label={`${title} filters`}>{search && <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search tags</span><input value={search.value} onChange={(event) => search.onChange(event.target.value)} placeholder="Search tags…" /></label>}<div className={styles.checkList}>{options.map(([id, label]) => <label key={id}><input type="checkbox" checked={selected.includes(id)} onChange={() => onToggle(id)} /><span>{label}</span></label>)}{!options.length && <span className={styles.noFilterOptions}>No matching tags</span>}</div></div>; }
