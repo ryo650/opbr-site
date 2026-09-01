@@ -215,7 +215,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     </div>
   </div>
   {filtersOpen && <div className={styles.drawer} role="dialog" aria-modal="true" aria-label="Medal filters"><button className={styles.backdrop} onClick={() => setFiltersOpen(false)} aria-label="Close filters" />{filterPanel}</div>}
-  {detailMedal && <MedalDetails medal={detailMedal} slots={slots} onPlace={setMedal} onClose={() => setDetailMedal(null)} />}
+  {detailMedal && <MedalDetails medal={detailMedal} slots={slots} onPlace={setMedal} onRemove={removeMedal} onClose={() => setDetailMedal(null)} />}
   </main>;
 }
 
@@ -238,9 +238,10 @@ function MobileMedalGrid({ medals, selectedCounts, onOpen, onDragStart, active }
     estimateSize: () => MOBILE_MEDAL_SIZE,
     gap: MOBILE_ROW_GAP,
     getItemKey: (index) => medals[index * columnCount]?.id ?? index,
-    overscan: 5,
+    overscan: 2,
     scrollMargin,
     enabled: active,
+    useFlushSync: false,
   });
 
   useEffect(() => {
@@ -296,11 +297,11 @@ function Analysis({ selected, commonTags, tab }: { selected: readonly Medal[]; c
   </>}</aside>;
 }
 
-function MedalDetails({ medal, slots, onPlace, onClose }: { medal: Medal; slots: MedalSlots; onPlace: (slot: number, medal: Medal) => void; onClose: () => void }) {
+function MedalDetails({ medal, slots, onPlace, onRemove, onClose }: { medal: Medal; slots: MedalSlots; onPlace: (slot: number, medal: Medal) => void; onRemove: (slot: number) => void; onClose: () => void }) {
   return <div className={styles.detailsLayer} role="dialog" aria-modal="true" aria-labelledby="medal-detail-title"><button className={styles.backdrop} onClick={onClose} aria-label="Close medal details" /><article className={styles.detailsSheet}>
     <div className={styles.sheetHandle} aria-hidden="true" /><button type="button" className={styles.detailsClose} onClick={onClose} aria-label="Close medal details"><X /></button>
     <header className={styles.detailsHeader}><MedalArt medal={medal} sizes="150px" eager /><div><span>{medal.category}</span><h2 id="medal-detail-title">{medal.name}</h2></div></header>
-    <section className={styles.miniSet}><div><span className={styles.kicker}>Current set</span><p>Choose a slot to add or replace.</p></div><div className={styles.miniSlots}>{slots.map((slotMedal, index) => { const current = slotMedal?.id === medal.id; return <button type="button" key={index} className={current ? styles.currentMiniSlot : ""} onClick={() => onPlace(index, medal)} aria-label={current ? `${medal.name} is in slot ${index + 1}` : `${slotMedal ? "Replace" : "Add to"} slot ${index + 1}`}><span>{slotMedal ? <MedalArt medal={slotMedal} sizes="64px" /> : index + 1}</span><strong>{current ? "CURRENT" : `SLOT ${index + 1}`}</strong></button>; })}</div></section>
+    <section className={styles.miniSet}><div><span className={styles.kicker}>Current set</span><p>Choose a slot to add or replace.</p></div><div className={styles.miniSlots}>{slots.map((slotMedal, index) => { const current = slotMedal?.id === medal.id; return <button type="button" key={index} className={current ? styles.currentMiniSlot : ""} onClick={() => current ? onRemove(index) : onPlace(index, medal)} aria-label={current ? `${medal.name} is in slot ${index + 1}` : `${slotMedal ? "Replace" : "Add to"} slot ${index + 1}`}><span>{slotMedal ? <MedalArt medal={slotMedal} sizes="64px" /> : index + 1}</span><strong>{current ? "CURRENT" : `SLOT ${index + 1}`}</strong></button>; })}</div></section>
     <div className={styles.detailContent}><DetailSection title="Unique Trait"><p>{medal.uniqueTrait}</p></DetailSection><DetailSection title="Tags"><Pills values={medal.tags.map((tag) => tag.name)} /></DetailSection><DetailSection title="Native Traits"><Pills values={medal.nativeTraits.map((trait) => traitLabels[trait])} /></DetailSection><DetailSection title="Native Effects"><Pills values={(medal.nativeEffects ?? []).map(labelId)} /></DetailSection><DetailSection title="Status Reductions"><Pills values={(medal.statusReductions ?? []).map(labelId)} /></DetailSection></div>
   </article></div>;
 }
