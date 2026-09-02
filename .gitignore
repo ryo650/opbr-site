@@ -43,3 +43,9 @@ next-env.d.ts
 # public
 public_backup/
 /scripts/medal-importer/draft-medals.json
+/scripts/medal-importer/.tmp/
+
+# scout importer local inputs and staging files
+/scripts/scout-importer/input/*
+!/scripts/scout-importer/input/.gitkeep
+/scripts/scout-importer/.tmp/
