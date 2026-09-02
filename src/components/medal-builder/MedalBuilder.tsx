@@ -6,11 +6,17 @@ import { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExterna
 import { Filter, Search, X } from "lucide-react";
 import type { Medal, NativeTraitType, StatusEffectType } from "@/data/medals";
 import type { NativeEffectType } from "@/data/medals/types";
+import {
+  formatMedalEffectCondition,
+  formatMedalEffectValue,
+  getActiveTagSetEffects,
+  type ActiveTagSetEffect,
+} from "@/data/medals/active-tag-set-effects";
 import styles from "./MedalBuilder.module.css";
 
 type Category = "all" | Medal["category"];
 type Sort = "default" | "az" | "za" | "category" | "match";
-type Tab = "medals" | "analysis";
+type Tab = "medals" | "analysis" | "set-effects";
 type FilterSection = "tags" | "traits" | "effects" | "reductions";
 type MedalSlots = [Medal | null, Medal | null, Medal | null];
 
@@ -113,6 +119,10 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     }));
     return [...matches.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
   }, [selected]);
+  const activeTagSetEffects = useMemo(
+    () => getActiveTagSetEffects(selected),
+    [selected],
+  );
   const visibleMedals = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
   const hasMoreMedals = visibleCount < filtered.length;
 
@@ -196,10 +206,13 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       </div>)}</div>
     </section>
 
-    <div className={styles.mobileTabs} role="tablist" aria-label="Builder sections"><button role="tab" aria-selected={tab === "medals"} onClick={() => setTab("medals")}>Medals</button><button role="tab" aria-selected={tab === "analysis"} onClick={() => setTab("analysis")}>Set Analysis</button></div>
+    <div className={styles.mobileTabs} role="tablist" aria-label="Builder sections"><button role="tab" aria-selected={tab === "medals"} onClick={() => setTab("medals")}>Medals</button><button role="tab" aria-selected={tab === "analysis"} onClick={() => setTab("analysis")}>Set Analysis</button><button role="tab" aria-selected={tab === "set-effects"} onClick={() => setTab("set-effects")}>Set Effects</button></div>
 
     <div className={styles.workspace}>
-      <Analysis selected={selected} commonTags={commonTags} tab={tab} />
+      <div className={styles.insights}>
+        <Analysis selected={selected} commonTags={commonTags} tab={tab} />
+        <SetEffects effects={activeTagSetEffects} tab={tab} />
+      </div>
       <section className={`${styles.browser} ${tab !== "medals" ? styles.mobileHidden : ""}`}>
         <div className={styles.browserTop}><div><span className={styles.kicker}>Production catalog</span><h2>Medal Browser</h2><p>{filtered.length} of {medals.length} medals</p></div><button type="button" className={styles.filterButton} onClick={() => setFiltersOpen(true)}><Filter /> Filters{activeFilterCount ? ` (${activeFilterCount})` : ""}</button></div>
         <div className={styles.controls}><label className={styles.search}><Search /><span className={styles.srOnly}>Search medals</span><input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} placeholder="Search name or tag…" /></label><label className={styles.sort}><span>Sort</span><select value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}><option value="default">Default</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option><option value="category">Category</option><option value="match">Best Tag Match</option></select></label></div>
@@ -295,6 +308,27 @@ function Analysis({ selected, commonTags, tab }: { selected: readonly Medal[]; c
   return <aside className={`${styles.analysis} ${tab !== "analysis" ? styles.mobileHidden : ""}`}><span className={styles.kicker}>Live breakdown</span><h2>Set Analysis</h2>{!selected.length ? <div className={styles.analysisEmpty}><strong>Your analysis starts here.</strong><p>Open a medal and choose a mini slot.</p></div> : <>
     <section><h3>Common Tags</h3><div className={styles.commonTags}>{commonTags.map((tag) => <div key={tag.name}><span className={styles.dots} aria-hidden="true">{Array.from({ length: selected.length }, (_, index) => <i className={index < tag.count ? styles.dotOn : ""} key={index} />)}</span><strong>{tag.name}</strong><span>{tag.count}/{selected.length}</span></div>)}</div></section>
   </>}</aside>;
+}
+
+function SetEffects({ effects, tab }: { effects: readonly ActiveTagSetEffect[]; tab: Tab }) {
+  const threeSetEffects = effects.filter((effect) => effect.setSize === 3);
+  const twoSetEffects = effects.filter((effect) => effect.setSize === 2);
+
+  return <aside className={`${styles.setEffects} ${tab !== "set-effects" ? styles.mobileHidden : ""}`}><span className={styles.kicker}>Active Tag bonuses</span><h2>Set Effects</h2>
+    <SetEffectSection title="3 Set Effects" effects={threeSetEffects} setSize={3} />
+    <SetEffectSection title="2 Set Effects" effects={twoSetEffects} setSize={2} />
+  </aside>;
+}
+
+function SetEffectSection({ title, effects, setSize }: { title: string; effects: readonly ActiveTagSetEffect[]; setSize: 2 | 3 }) {
+  return <section className={styles.setEffectSection}><h3>{title}</h3>{effects.length
+    ? <div className={styles.setEffectList}>{effects.map((effect) => <article className={`${styles.setEffectEntry} ${setSize === 3 ? styles.threeSetEffect : ""}`} key={`${effect.groupId}:${effect.tagId}`}>
+      <strong className={styles.setEffectTag}>{effect.tagName}</strong>
+      <div className={styles.setEffectSummary}><span>{effect.effectLabel}</span><strong>{formatMedalEffectValue(effect.value, effect.valueSchema)}</strong></div>
+      {effect.condition && <p>{formatMedalEffectCondition(effect.condition)}</p>}
+    </article>)}</div>
+    : <p className={styles.setEffectEmpty}>No {setSize} Set Effects</p>}
+  </section>;
 }
 
 function MedalDetails({ medal, slots, onPlace, onRemove, onClose }: { medal: Medal; slots: MedalSlots; onPlace: (slot: number, medal: Medal) => void; onRemove: (slot: number) => void; onClose: () => void }) {
