@@ -32,6 +32,6 @@ export const tierList = [
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","egghead-sanji"]
+        characterIds: ["film-red-shanks","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","egghead-sanji"]
     }
 ]

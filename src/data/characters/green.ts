@@ -1,6 +1,14 @@
 import { Character } from "./type";
 
 export const greenCharacters: Record<string, Character> ={
+    "film-red-shanks": {
+        id: "film-red-shanks",
+        name: "FILM-RED-Shanks",
+        image: "/characters/green/film-red-shanks.webp",
+        grade: "ex",
+        element: "green",
+        role: "attacker"
+    },
     "future-where-i-m-the-most-free-jewelry-bonny": {
         id: "future-where-i-m-the-most-free-jewelry-bonny",
         name: "Future-Where-I-m-the-Most-Free-Jewelry-Bonny",
