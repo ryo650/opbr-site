@@ -17,7 +17,7 @@ export const tierList = [
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["the-fouremperors-marshall-d-teach","great-pirate-gol-d-roger","flame-emperor-sabo","blackbeard-pirates-kuzan","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law"]
+        characterIds: ["great-pirate-gol-d-roger","flame-emperor-sabo","the-fouremperors-marshall-d-teach","blackbeard-pirates-kuzan","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law"]
     },
     {
         tier: "B",
@@ -27,11 +27,11 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","kaido-s-son-yamato","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","divine-departure-shanks","asl-ace-sabo-luffy"]
+        characterIds: ["legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","kaido-s-son-yamato","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","divine-departure-shanks","seraphim-s-shark","asl-ace-sabo-luffy"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["film-red-shanks","heir-to-the-shogun-of-wano-kozuki-oden","awakened-form-rob-lucci","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","egghead-sanji"]
+        characterIds: ["awakened-form-rob-lucci","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","film-red-shanks","egghead-sanji"]
     }
 ]
