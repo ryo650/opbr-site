@@ -5433,6 +5433,18 @@ export const medals = [
       {
         "id": "navy",
         "name": "Navy"
+      },
+      {
+        "id": "fleet-admiral",
+        "name": "Fleet Admiral"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [

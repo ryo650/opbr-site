@@ -48,3 +48,5 @@ public_backup/
 /scripts/medal-importer/input/
 /scripts/medal-importer/draft-medals.json
 /scripts/medal-importer/.tmp/
+
+/scripts/medal-tag-effects/input/

@@ -16,6 +16,7 @@ export const medalEffectFilterCategories = [
   "spd-increase",
   "skill-1",
   "skill-2",
+  "dodge",
 ] as const;
 
 export type MedalEffectFilterCategory = (typeof medalEffectFilterCategories)[number];
@@ -58,6 +59,26 @@ export const medalEffectCapGroups = [
     label: "Cooldown Reduction Speed (Skill 2)",
     valueSchema: { kind: "scalar", unit: "percent" },
   },
+  {
+    id: "dodge-cooldown-reduction-speed",
+    label: "Cooldown Reduction Speed (Dodging)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "capture-speed-increase",
+    label: "Capture Speed Increase",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "damage-received-reduction",
+    label: "Damage Received Reduction",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "damage-dealt-increase",
+    label: "Damage Dealt Increase",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
 ] as const satisfies readonly MedalEffectCapGroupDefinition[];
 
 export type MedalEffectCapGroupId = (typeof medalEffectCapGroups)[number]["id"];
@@ -85,6 +106,74 @@ export const medalEffectCatalog = [
     filterCategories: ["cooldown", "skill-2"],
     valueSchema: { kind: "scalar", unit: "percent" },
     capGroup: "skill2-cooldown-reduction-speed",
+  },
+  {
+    id: "dodge-cooldown-reduction-speed",
+    label: "Cooldown Reduction (Dodging)",
+    filterCategories: ["cooldown", "dodge"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "dodge-cooldown-reduction-speed",
+  },
+  {
+    id: "capture-speed-increase",
+    label: "Capture Speed Increase",
+    filterCategories: ["capture-speed"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "capture-speed-increase",
+  },
+  {
+    id: "spd-increase-when-spawning",
+    label: "SPD Increase (When spawning)",
+    filterCategories: ["spd-increase"],
+    valueSchema: { kind: "timed", unit: "percent" },
+    condition: {
+      kind: "text",
+      description: "When spawning. Cannot stack.",
+    },
+  },
+  {
+    id: "damage-received-reduction-when-team-has-less-treasure-secured",
+    label: "Received Damage Reduction (When your team has less Treasure secured)",
+    filterCategories: ["damage-reduction"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-received-reduction",
+    condition: {
+      kind: "text",
+      description: "When your team has less Treasure secured.",
+    },
+  },
+  {
+    id: "damage-dealt-increase-when-team-has-less-treasure-secured",
+    label: "Inflicted Damage Increase (When your team has less Treasure secured)",
+    filterCategories: ["damage-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-dealt-increase",
+    condition: {
+      kind: "text",
+      description: "When your team has less Treasure secured.",
+    },
+  },
+  {
+    id: "damage-dealt-increase-when-allies-near-treasure-area",
+    label: "Inflicted Damage Increase (When your allies are near the Treasure area)",
+    filterCategories: ["damage-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-dealt-increase",
+    condition: {
+      kind: "text",
+      description: "When your allies are near the Treasure area where you are at.",
+    },
+  },
+  {
+    id: "damage-received-reduction-when-allies-not-near-treasure-area",
+    label: "Received Damage Reduction (When your allies are not near the Treasure area)",
+    filterCategories: ["damage-reduction"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-received-reduction",
+    condition: {
+      kind: "text",
+      description: "When your allies are not near the Treasure area where you are at.",
+    },
   },
 ] as const satisfies readonly MedalEffectDefinition[];
 
