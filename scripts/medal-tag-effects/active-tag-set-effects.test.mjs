@@ -1,10 +1,14 @@
 import assert from "node:assert/strict";
 import test from "node:test";
 import {
+  createTagSetEffectFilterIndex,
   formatMedalEffectCondition,
   formatMedalEffectValue,
   getActiveTagSetEffects,
+  getTagSetEffectFilterOptions,
+  matchesSelectedTagSetEffects,
 } from "../../src/data/medals/active-tag-set-effects.ts";
+import { medals } from "../../src/data/medals/medals.ts";
 
 function medal(id, tags) {
   return {
@@ -131,5 +135,43 @@ test("all and any Conditions remain understandable when nested", () => {
   assert.equal(
     formatMedalEffectCondition(condition),
     "All of: Condition A. and (Any of: Condition B. or Condition C.)",
+  );
+});
+
+test("Set Effect filter options use catalog labels and production Tag names", () => {
+  const options = getTagSetEffectFilterOptions(medals);
+  const skill1 = options.find(
+    (option) => option.effectId === "skill1-cooldown-reduction-speed",
+  );
+
+  assert.equal(skill1.label, "Cooldown Reduction (Skill 1)");
+  assert.equal(
+    skill1.tags.find((tag) => tag.id === "land-of-wano").name,
+    "Land of Wano",
+  );
+});
+
+test("an Effect filter is ANY within its Tags and AND across Effects", () => {
+  const options = getTagSetEffectFilterOptions(medals);
+  const index = createTagSetEffectFilterIndex(options);
+
+  assert.equal(
+    matchesSelectedTagSetEffects(
+      new Set(["land-of-wano"]),
+      ["skill1-cooldown-reduction-speed"],
+      index,
+    ),
+    true,
+  );
+  assert.equal(
+    matchesSelectedTagSetEffects(
+      new Set(["land-of-wano"]),
+      [
+        "skill1-cooldown-reduction-speed",
+        "skill2-cooldown-reduction-speed",
+      ],
+      index,
+    ),
+    false,
   );
 });

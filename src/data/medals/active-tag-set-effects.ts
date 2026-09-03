@@ -12,7 +12,7 @@ import {
   tagSetEffectCountingPolicy,
   tagSetEffectGroups,
 } from "./tag-set-effects.ts";
-import type { Medal } from "./types.ts";
+import type { Medal, MedalTag } from "./types.ts";
 
 export type ActiveTagSetEffect = {
   readonly groupId: string;
@@ -27,6 +27,17 @@ export type ActiveTagSetEffect = {
   readonly condition?: MedalEffectCondition;
   readonly sourceMedalIds: readonly string[];
 };
+
+export type TagSetEffectFilterOption = {
+  readonly effectId: MedalEffectId;
+  readonly label: string;
+  readonly tags: readonly MedalTag[];
+};
+
+export type TagSetEffectFilterIndex = ReadonlyMap<
+  MedalEffectId,
+  ReadonlySet<string>
+>;
 
 const effectDefinitionById = new Map<string, MedalEffectDefinition>(
   medalEffectCatalog.map((definition) => [definition.id, definition]),
@@ -86,6 +97,69 @@ export function getActiveTagSetEffects(
   }
 
   return activeEffects;
+}
+
+export function getTagSetEffectFilterOptions(
+  medals: readonly Medal[],
+): TagSetEffectFilterOption[] {
+  const tagNames = new Map<string, string>();
+  for (const medal of medals) {
+    for (const tag of medal.tags) {
+      if (!tagNames.has(tag.id)) tagNames.set(tag.id, tag.name);
+    }
+  }
+
+  const options = new Map<MedalEffectId, TagSetEffectFilterOption>();
+  for (const group of tagSetEffectGroups) {
+    const definition = effectDefinitionById.get(group.effectId);
+    if (!definition) {
+      throw new Error(`Missing Medal Effect definition: ${group.effectId}`);
+    }
+
+    const effectId = definition.id as MedalEffectId;
+    const current = options.get(effectId);
+    const tags = current ? [...current.tags] : [];
+    const knownTagIds = new Set(tags.map((tag) => tag.id));
+    for (const tagId of group.tagIds) {
+      if (knownTagIds.has(tagId)) continue;
+      const name = tagNames.get(tagId);
+      if (!name) throw new Error(`Missing Tag display name: ${tagId}`);
+      tags.push({ id: tagId, name });
+      knownTagIds.add(tagId);
+    }
+
+    options.set(effectId, {
+      effectId,
+      label: definition.label,
+      tags,
+    });
+  }
+
+  return [...options.values()];
+}
+
+export function createTagSetEffectFilterIndex(
+  options: readonly TagSetEffectFilterOption[],
+): TagSetEffectFilterIndex {
+  return new Map(
+    options.map((option) => [
+      option.effectId,
+      new Set(option.tags.map((tag) => tag.id)),
+    ]),
+  );
+}
+
+export function matchesSelectedTagSetEffects(
+  medalTagIds: ReadonlySet<string>,
+  selectedEffectIds: readonly MedalEffectId[],
+  effectTagIdsById: TagSetEffectFilterIndex,
+): boolean {
+  return selectedEffectIds.every((effectId) => {
+    const effectTagIds = effectTagIdsById.get(effectId);
+    return Boolean(
+      effectTagIds && [...effectTagIds].some((tagId) => medalTagIds.has(tagId)),
+    );
+  });
 }
 
 function formatScalar(value: number, unit: MedalEffectValueUnit): string {
