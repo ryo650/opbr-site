@@ -17,7 +17,6 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { createInterface } from "node:readline/promises";
 import ts from "typescript";
-import { deduplicateScreenshots } from "../medal-importer/dedupe.mjs";
 import { loadCharacterMaster } from "./character-master.mjs";
 import {
   addScoutToIndex,
@@ -37,6 +36,7 @@ import {
   validateScoutDraft,
 } from "./core.mjs";
 import { compareDecimal, decimalToString } from "./decimal.mjs";
+import { deduplicateScreenshots } from "./dedupe.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");

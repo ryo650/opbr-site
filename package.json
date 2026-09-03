@@ -6,7 +6,9 @@
     "dev": "next dev --webpack",
     "build": "next build --webpack",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "scouts:import": "node scripts/scout-importer/import.mjs",
+    "scouts:test": "node --test scripts/scout-importer/*.test.mjs"
   },
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
