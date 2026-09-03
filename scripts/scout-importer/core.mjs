@@ -27,6 +27,38 @@ export function slugify(value) {
   return normalizeText(value).replace(/\s+/g, "-");
 }
 
+export function canonicalizeScoutTitle(value) {
+  return value
+    .normalize("NFKC")
+    .replace(/^\s*\d+\s*[-‐‑‒–—]?\s*step\b[\s:：\-‐‑‒–—]*/i, "")
+    .replace(/[\[\]{}()【】「」『』［］｛｝（）]/g, " ")
+    .replace(/[#＃№]/g, " ")
+    .replace(/[^\p{L}\p{N}&'’.\-]+/gu, " ")
+    .replace(/[\s:：\-‐‑‒–—]*\bstep\s*\d+\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+export function extractScoutIdentity(lines) {
+  const titleLines = [];
+  for (const rawLine of lines) {
+    if (PERCENT_PATTERN.test(rawLine) || detectStarLabel(rawLine)) break;
+    const normalized = normalizeText(rawLine);
+    if (
+      !normalized ||
+      /^(?:drop rates?|scout details?|details|close|back)$/.test(normalized) ||
+      /drop rates are rounded/.test(normalized)
+    ) {
+      continue;
+    }
+    titleLines.push(rawLine);
+  }
+
+  const canonicalTitle = canonicalizeScoutTitle(titleLines.join(" "));
+  const id = canonicalTitle ? slugify(canonicalTitle) : null;
+  return { canonicalTitle: canonicalTitle || null, id: id || null };
+}
+
 export function naturalImageCompare(left, right) {
   return left.localeCompare(right, "en", {
     numeric: true,
@@ -451,30 +483,6 @@ export function extractEndAt(lines, startAt) {
   );
 }
 
-export function extractScoutName(ocr) {
-  const excluded = /(?:drop rates?|scout points?|exchange|details|step\s*\d|\bto\s+\d|rainbow diamonds?|close)/i;
-  const keyword = /(?:scout|festival|anniv|celebration|campaign|bounty)/i;
-  const candidates = ocr.observations
-    .filter(({ text }) => keyword.test(text) && !excluded.test(text))
-    .map(({ text, height = 0 }) => ({ text: text.trim(), height }))
-    .filter(({ text }) => text.length >= 4);
-  const unique = [...new Map(candidates.map((candidate) => [normalizeText(candidate.text), candidate])).values()];
-  const maximal = unique.filter(
-    (candidate) =>
-      !unique.some(
-        (other) =>
-          other !== candidate &&
-          normalizeText(other.text).includes(normalizeText(candidate.text)),
-      ),
-  );
-  if (maximal.length === 1) return { name: maximal[0].text, candidates: maximal };
-  const ranked = [...maximal].sort((left, right) => right.height - left.height);
-  if (ranked.length > 0 && (ranked.length === 1 || ranked[0].height >= ranked[1].height * 1.25)) {
-    return { name: ranked[0].text, candidates: ranked };
-  }
-  return { name: null, candidates: ranked };
-}
-
 export function inspectScreenshotOcr(ocr, startAt) {
   const text = ocr.lines.join(" ");
   const rates = parseDropRates(ocr.lines);
@@ -554,7 +562,7 @@ export function validateScoutDraft(draft) {
   for (const [label, value] of requiredRates) {
     if (!value) issues.push(`${label} rate was not recognized`);
   }
-  if (!draft.name) issues.push("Scout name was not recognized");
+  if (!draft.name) issues.push("Scout name was not provided");
   if (!draft.endAt) issues.push("Scout endAt was not recognized");
   if (!draft.featuredCharacter) issues.push("featuredCharacterId does not exist in character master");
   if (draft.pickups.length === 0) issues.push("No Featured Characters pickup was recognized");

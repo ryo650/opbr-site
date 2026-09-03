@@ -24,14 +24,13 @@ import {
   calculateScoutRates,
   decimalDisplay,
   extractCharacterRows,
-  extractScoutName,
+  extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
   normalizeText,
   parseDateOverride,
   renderScoutModule,
   scoutVariableName,
-  slugify,
   validateOrderedScreenshotOcr,
   validateScoutDraft,
 } from "./core.mjs";
@@ -56,9 +55,9 @@ Usage:
 Options:
   --featured-character-id <id>  ScoutBanner.featuredCharacterId (prompted in a TTY)
   --start-at <date>             Override automatic 14:00 JST start
-  --name <name>                 Override OCR Scout name after visual review
+  --name <name>                 Scout name (required outside a TTY)
   --end-at <date>               Override OCR end date after visual review
-  --id <id>                     Override generated lowercase kebab-case ID
+  --id <id>                     Override ID generated from the 3rd image title
   --character-map <ocr=id>      Explicitly resolve one reviewed OCR name (repeatable)
   --dry-run                     Validate and print without writing any files
   --help                        Show this help
@@ -149,6 +148,18 @@ async function promptFeaturedCharacterId() {
   }
 }
 
+async function promptScoutName() {
+  if (!process.stdin.isTTY || !process.stdout.isTTY) {
+    throw new Error("--name is required when the importer is not running interactively");
+  }
+  const readline = createInterface({ input: process.stdin, output: process.stdout });
+  try {
+    return (await readline.question("Scout Name: ")).trim();
+  } finally {
+    readline.close();
+  }
+}
+
 function manualMappings(values, characterMaster) {
   const mappings = new Map();
   for (const value of values) {
@@ -229,6 +240,7 @@ function printSummary(draft, outputDataPath, outputBannerPath, indexPath, banner
   const calculation = draft.rateCalculation;
   console.log("\nScout Importer V1 review");
   console.log(`Scout Name: ${draft.name ?? "<missing>"}`);
+  console.log(`Scout ID: ${draft.id ?? "<missing>"}`);
   console.log(`Start: ${draft.startAt}`);
   console.log(`End: ${draft.endAt ?? "<missing>"}`);
   console.log(
@@ -321,6 +333,7 @@ const magickCommand = requireCommand("magick", [
 const swiftCommand = requireCommand("swift", ["/usr/bin/swift"]);
 const characterMaster = await loadCharacterMaster(characterDir);
 const featuredCharacterId = options.featuredCharacterId ?? await promptFeaturedCharacterId();
+const name = options.name ?? await promptScoutName();
 const featuredCharacter = characterMaster.byId.get(featuredCharacterId) ?? null;
 const mappings = manualMappings(options.characterMaps, characterMaster);
 const startAt = options.startAt
@@ -351,13 +364,14 @@ if (discovered.length < 4) {
   throw new Error("Scout Importer V1 needs at least four screenshots in natural filename order");
 }
 
+const ocrInputs = discovered.slice(1);
 const ocrResults = JSON.parse(
-  run(swiftCommand, [ocrPath, ...discovered.map(({ path: filePath }) => filePath)]),
+  run(swiftCommand, [ocrPath, ...ocrInputs.map(({ path: filePath }) => filePath)]),
 );
 const ocrByFile = new Map(ocrResults.map((ocr) => [ocr.file, ocr]));
 const orderedInputs = discovered.map((input, index) => {
-  const ocr = ocrByFile.get(input.file);
-  if (!ocr) throw new Error(`OCR returned no result for ${input.file}`);
+  const ocr = index === 0 ? null : ocrByFile.get(input.file);
+  if (index > 0 && !ocr) throw new Error(`OCR returned no result for ${input.file}`);
   const role = index === 0
     ? "banner"
     : index === 1
@@ -387,10 +401,7 @@ if (orderedValidation.issues.length > 0) {
 }
 
 const rateSummary = orderedValidation.rateSummary;
-const bannerName = extractScoutName(banner.ocr);
-const periodName = extractScoutName(periodScreen.ocr);
-const extractedName = bannerName.name ? bannerName : periodName;
-const name = options.name ?? extractedName.name;
+const scoutIdentity = extractScoutIdentity(rateScreen.ocr.lines);
 const endAt = options.endAt
   ? parseDateOverride(options.endAt, "endAt", 59)
   : orderedValidation.endAt;
@@ -431,7 +442,12 @@ if (normalBfRows.length === 0) {
   }
 }
 
-const id = options.id ?? (name ? slugify(name) : "unresolved-scout");
+const id = options.id ?? scoutIdentity.id;
+if (!id) {
+  throw new Error(
+    `${rateScreen.file}: Scout title could not be recognized in the 3rd image; review and pass --id`,
+  );
+}
 if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
   throw new Error(`Scout id must be lowercase kebab-case: ${id}`);
 }

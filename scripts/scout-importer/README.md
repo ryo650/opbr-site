@@ -33,9 +33,9 @@ scripts/scout-importer/input/
   IMG_4104.PNG  # 5枚目（必要な場合）
 ```
 
-1. サイトでそのまま使用する完成済みScout TOP/banner画像。cropや加工はせず、元寸法のままWebP化する
+1. サイトでそのまま使用する完成済みScout TOP/banner画像。cropや加工はせず、元寸法のままWebP化する。OCRには使用しない
 2. Scout終了日時の `to ...` が見えるスクリーンショット。endAt OCR専用でbannerには使わない
-3. Drop Rates上部。★4/★3/★2の3つが同時に見えるスクリーンショット
+3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット
 4. 以降はCharacter Drop Rates。`Featured Characters` 見出しと全pickup、および通常（非Featured）のBFを最低1体含める
 
 入力は最低4枚必要です。順序が役割を決定し、特定のファイル名やprefixには依存しません。Character画面のsection状態は4枚目から後続ページへ引き継ぎます。同じ通常BFが複数見える場合はrateをクロスチェックします。
@@ -44,7 +44,7 @@ scripts/scout-importer/input/
 
 ## 実行方法
 
-`featuredCharacterId` はゲーム内のFeatured Charactersとは別概念です。毎回character masterの既存IDを指定します。TTYでは引数を省略するとpromptが出ます。
+`featuredCharacterId` はゲーム内のFeatured Charactersとは別概念です。毎回character masterの既存IDを指定します。Scout NameもOCRせず、実行時に入力します。TTYでは引数を省略するとそれぞれpromptが出ます。
 
 ```sh
 npm run scouts:import -- --dry-run
@@ -54,14 +54,16 @@ npm run scouts:import -- --dry-run
 
 ```sh
 npm run scouts:import -- --dry-run \
-  --featured-character-id unexpected-collaboration-kaku
+  --featured-character-id unexpected-collaboration-kaku \
+  --name "7.5 Anniv. Bounty Festival"
 ```
 
 validation通過後の実生成:
 
 ```sh
 npm run scouts:import -- \
-  --featured-character-id unexpected-collaboration-kaku
+  --featured-character-id unexpected-collaboration-kaku \
+  --name "7.5 Anniv. Bounty Festival"
 ```
 
 開始日時override:
@@ -69,10 +71,11 @@ npm run scouts:import -- \
 ```sh
 npm run scouts:import -- --dry-run \
   --featured-character-id unexpected-collaboration-kaku \
+  --name "7.5 Anniv. Bounty Festival" \
   --start-at "2026-08-28 14:00"
 ```
 
-OCRを目視確認したうえでの明示的な補正も可能です。
+Scout Nameは `--name` でも指定できます。character OCRを目視確認したうえでの明示的な補正も可能です。
 
 ```sh
 npm run scouts:import -- --dry-run \
@@ -86,6 +89,8 @@ npm run scouts:import -- --dry-run \
 - `--end-at "2026-09-15 13:59"`
 - `--id some-stable-scout-id`
 
+Scout IDは3枚目のDrop Rates画面上部のタイトルから生成します。先頭の `3-Step` / `4-Step` など、末尾の `Step 1` など、括弧や不要な記号を除いてcanonical titleを作り、lowercase kebab-caseへ変換します。既存IDと重複した場合はsuffixを付けずに停止します。タイトルを正しく取得できない場合だけ、目視確認後に `--id` でoverrideします。
+
 1枚目のbanner画像にはcrop、resize、位置調整を行いません。メタデータを除去して品質90のWebPへ変換し、入力画像と同じpixel寸法で出力します。
 
 ## Validationと計算
@@ -98,7 +103,7 @@ bfTotal = bfCount * normal BF unit rate
 star-4 = ★4 total - pickup total - bfTotal
 ```
 
-★4/★3/★2、pickup、characterId、通常BF rate、非負のBF/star-4、最終rate合計、Scout名、endAt、featuredCharacterId、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
+★4/★3/★2、pickup、characterId、通常BF rate、非負のBF/star-4、最終rate合計、入力されたScout名、3枚目から生成したScout ID、endAt、featuredCharacterId、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
 
 ## V1の制限
 
@@ -107,5 +112,5 @@ star-4 = ★4 total - pickup total - bfTotal
 - 最新BFまで通常排出される前提。例外Scoutや期間別character poolは未対応
 - 全排出characterは解析しない。Featured全員と通常BF最低1体だけを使う
 - OCRは英語UI向け。曖昧なcharacter名はreviewで停止する
-- 1枚目は完成済みbannerであることが前提。Importer内でcropやレイアウト調整はしない
+- 1枚目は完成済みbannerであることが前提。Importer内でOCR、crop、レイアウト調整はしない
 - 既存Scoutの修正・上書きは行わず、新規追加だけを扱う

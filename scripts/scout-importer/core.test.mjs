@@ -7,8 +7,10 @@ import {
   addScoutToIndex,
   automaticStartAt,
   calculateScoutRates,
+  canonicalizeScoutTitle,
   extractCharacterRows,
   extractEndAt,
+  extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
   parseDateOverride,
@@ -71,6 +73,39 @@ test("Drop Rates summary keeps seven-decimal OCR precision", () => {
   assert.equal(decimalToString(rates.fourStar), "7");
   assert.equal(decimalToString(rates.threeStar), "35");
   assert.equal(decimalToString(rates.twoStar), "58");
+});
+
+test("Scout ID uses the canonical title from the top of the Drop Rates screen", () => {
+  const identity = extractScoutIdentity([
+    "Drop Rates",
+    "3-Step [260 Million Downloads Celebration]",
+    "Extreme Bounty Festival #2 Step 1",
+    "★4 Characters",
+    "7.0000000%",
+  ]);
+  assert.deepEqual(identity, {
+    canonicalTitle:
+      "260 Million Downloads Celebration Extreme Bounty Festival 2",
+    id: "260-million-downloads-celebration-extreme-bounty-festival-2",
+  });
+});
+
+test("Scout title canonicalization removes only numeric step wrappers", () => {
+  assert.equal(
+    canonicalizeScoutTitle("4-Step [New Year] Bounty Festival Step 2"),
+    "New Year Bounty Festival",
+  );
+  assert.equal(
+    canonicalizeScoutTitle("Step-Up Scout Celebration"),
+    "Step-Up Scout Celebration",
+  );
+});
+
+test("Scout ID extraction stops at rate data and reports a missing title", () => {
+  assert.deepEqual(
+    extractScoutIdentity(["Drop Rates", "4 Star 7%", "3 Star 35%", "2 Star 58%"]),
+    { canonicalTitle: null, id: null },
+  );
 });
 
 test("IMG filenames use numeric natural order without role-based names", () => {
