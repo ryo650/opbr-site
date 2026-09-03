@@ -17,6 +17,8 @@
     "medals:generate-status-types": "node scripts/medal-importer/generate-status-types.mjs",
     "medals:approve-native-effect": "node scripts/medal-importer/approve-native-effect.mjs",
     "medals:generate-native-effect-types": "node scripts/medal-importer/generate-native-effect-types.mjs",
+    "medals:generate-unique-trait-categories": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/medal-unique-traits/generate.mjs",
+    "medals:test-unique-trait-categories": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/medal-unique-traits/*.test.mjs",
     "scouts:import": "node scripts/scout-importer/import.mjs",
     "scouts:test": "node --test scripts/scout-importer/*.test.mjs"
   },

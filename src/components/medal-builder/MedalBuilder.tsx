@@ -4,7 +4,17 @@ import Image from "next/image";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
 import { Filter, Search, X } from "lucide-react";
-import type { Medal, MedalEffectId, NativeTraitType, StatusEffectType } from "@/data/medals";
+import {
+  matchesUniqueTraitFilters,
+  uniqueTraitCategoryCatalog,
+  uniqueTraitCategoryIdsByMedalId,
+  type Medal,
+  type MedalEffectId,
+  type NativeTraitType,
+  type StatusEffectType,
+  type UniqueTraitCategoryId,
+  type UniqueTraitCategoryMatchMode,
+} from "@/data/medals";
 import type { NativeEffectType } from "@/data/medals/types";
 import {
   createTagSetEffectFilterIndex,
@@ -21,7 +31,7 @@ import styles from "./MedalBuilder.module.css";
 type Category = "all" | Medal["category"];
 type Sort = "default" | "az" | "za" | "category" | "match";
 type Tab = "medals" | "analysis" | "set-effects";
-type FilterSection = "tag-effects" | "traits" | "effects" | "reductions";
+type FilterSection = "tag-effects" | "unique-traits" | "traits" | "effects" | "reductions";
 type MedalSlots = [Medal | null, Medal | null, Medal | null];
 
 const INITIAL_VISIBLE_MEDALS = 60;
@@ -60,6 +70,8 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   const [expandedFilter, setExpandedFilter] = useState<FilterSection | null>(null);
   const [tagQuery, setTagQuery] = useState("");
   const [uniqueTraitQuery, setUniqueTraitQuery] = useState("");
+  const [uniqueTraitCategories, setUniqueTraitCategories] = useState<UniqueTraitCategoryId[]>([]);
+  const [uniqueTraitMatchMode, setUniqueTraitMatchMode] = useState<UniqueTraitCategoryMatchMode>("any");
   const [expandedSetEffects, setExpandedSetEffects] = useState<MedalEffectId[]>([]);
   const [tab, setTab] = useState<Tab>("medals");
   const [dragSlot, setDragSlot] = useState<number | null>(null);
@@ -94,6 +106,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     tags: medal.tags.map((tag) => tag.name.toLocaleLowerCase()),
     tagIds: new Set(medal.tags.map((tag) => tag.id)),
     uniqueTrait: medal.uniqueTrait.toLocaleLowerCase(),
+    uniqueTraitCategoryIds: new Set(uniqueTraitCategoryIdsByMedalId[medal.id] ?? []),
   }])), [medals]);
   const searchNeedle = useMemo(() => query.trim().toLocaleLowerCase(), [query]);
   const uniqueTraitNeedle = useMemo(() => uniqueTraitQuery.trim().toLocaleLowerCase(), [uniqueTraitQuery]);
@@ -105,7 +118,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       if (!index) return false;
       if (category !== "all" && medal.category !== category) return false;
       if (searchNeedle && !index.name.includes(searchNeedle) && !index.tags.some((tag) => tag.includes(searchNeedle))) return false;
-      if (uniqueTraitNeedle && !index.uniqueTrait.includes(uniqueTraitNeedle)) return false;
+      if (!matchesUniqueTraitFilters(index.uniqueTrait, index.uniqueTraitCategoryIds, uniqueTraitCategories, uniqueTraitMatchMode, uniqueTraitNeedle)) return false;
       if (!matchesSelectedTagSetEffects(index.tagIds, setEffectIds, effectTagIdsById)) return false;
       if (tags.length && !tags.every((id) => index.tagIds.has(id))) return false;
       if (traits.length && !traits.every((trait) => medal.nativeTraits.includes(trait))) return false;
@@ -113,7 +126,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       if (reductions.length && !reductions.every((effect) => medal.statusReductions?.includes(effect))) return false;
       return true;
     });
-  }, [medals, medalFilterIndex, category, searchNeedle, uniqueTraitNeedle, setEffectIds, effectTagIdsById, tags, traits, nativeEffects, reductions]);
+  }, [medals, medalFilterIndex, category, searchNeedle, uniqueTraitNeedle, uniqueTraitCategories, uniqueTraitMatchMode, setEffectIds, effectTagIdsById, tags, traits, nativeEffects, reductions]);
 
   const normallySorted = useMemo(() => {
     if (sort === "default" || sort === "match") return baseFiltered;
@@ -190,8 +203,9 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     setValues(values.includes(value) ? values.filter((item) => item !== value) : [...values, value]);
     setVisibleCount(INITIAL_VISIBLE_MEDALS);
   };
-  const activeFilterCount = setEffectIds.length + tags.length + traits.length + nativeEffects.length + reductions.length + Number(category !== "all") + Number(Boolean(uniqueTraitNeedle));
-  const clearFilters = () => { setCategory("all"); setSetEffectIds([]); setTags([]); setTraits([]); setNativeEffects([]); setReductions([]); setTagQuery(""); setUniqueTraitQuery(""); setVisibleCount(INITIAL_VISIBLE_MEDALS); };
+  const activeFilterCount = setEffectIds.length + tags.length + traits.length + nativeEffects.length + reductions.length + uniqueTraitCategories.length + Number(category !== "all") + Number(Boolean(uniqueTraitNeedle));
+  const hasActiveFilterState = activeFilterCount > 0 || uniqueTraitMatchMode !== "any";
+  const clearFilters = () => { setCategory("all"); setSetEffectIds([]); setTags([]); setTraits([]); setNativeEffects([]); setReductions([]); setTagQuery(""); setUniqueTraitQuery(""); setUniqueTraitCategories([]); setUniqueTraitMatchMode("any"); setVisibleCount(INITIAL_VISIBLE_MEDALS); };
   const toggleFilterSection = (section: FilterSection) => setExpandedFilter((current) => current === section ? null : section);
   const toggleSetEffectExpansion = (effectId: MedalEffectId) => setExpandedSetEffects((current) => current.includes(effectId) ? current.filter((id) => id !== effectId) : [...current, effectId]);
   const openMedalDetails = useCallback((medal: Medal) => setDetailMedal(medal), []);
@@ -205,25 +219,29 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     dragPreview.setAttribute("aria-hidden", "true");
     dragPreview.appendChild(medalArt.cloneNode(true));
     document.body.appendChild(dragPreview);
-    event.dataTransfer.setDragImage(dragPreview, 32, 32);
+    const { width, height } = dragPreview.getBoundingClientRect();
+    dragPreview.style.left = `${event.clientX - width / 2}px`;
+    dragPreview.style.top = `${event.clientY - height / 2}px`;
+    event.dataTransfer.setDragImage(dragPreview, width / 2, height / 2);
     requestAnimationFrame(() => dragPreview.remove());
   }, []);
 
   const filterPanel = <div className={styles.filterPanel}>
     <div className={styles.filterHeading}><div><span className={styles.kicker}>Refine catalog</span><h2>Filters</h2></div><button type="button" className={styles.closeFilters} onClick={() => setFiltersOpen(false)} aria-label="Close filters"><X /></button></div>
     <fieldset><legend>Category</legend><div className={styles.segmented}>{(["all", "character", "event"] as Category[]).map((value) => <button type="button" key={value} className={category === value ? styles.activeSegment : ""} onClick={() => { setCategory(value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}>{labelId(value)}</button>)}</div></fieldset>
-    <label className={`${styles.filterSearch} ${styles.uniqueTraitSearch}`}><Search /><span className={styles.srOnly}>Search unique traits</span><input value={uniqueTraitQuery} onChange={(event) => { setUniqueTraitQuery(event.target.value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} placeholder="Search unique traits…" /></label>
     <div className={styles.filterLaunchers}>
-      <FilterLauncher title="Tag Set Effects & Tags" count={setEffectIds.length + tags.length} expanded={expandedFilter === "tag-effects"} onClick={() => toggleFilterSection("tag-effects")} />
+      <FilterLauncher title="Set Effects & Tags" count={setEffectIds.length + tags.length} expanded={expandedFilter === "tag-effects"} onClick={() => toggleFilterSection("tag-effects")} />
       {expandedFilter === "tag-effects" && <TagSetEffectFilter options={filteredTagSetEffectOptions} selectedEffectIds={setEffectIds} selectedTagIds={tags} expandedEffectIds={expandedSetEffects} search={tagQuery} onSearchChange={setTagQuery} onToggleEffect={(id) => toggle(id, setEffectIds, setSetEffectIds)} onToggleTag={(id) => toggle(id, tags, setTags)} onToggleExpanded={toggleSetEffectExpansion} />}
-      <FilterLauncher title="Native Traits" count={traits.length} expanded={expandedFilter === "traits"} onClick={() => toggleFilterSection("traits")} />
-      {expandedFilter === "traits" && <FilterSelector title="Native Traits" options={(Object.keys(traitLabels) as NativeTraitType[]).map((id) => [id, traitLabels[id]])} selected={traits} onToggle={(id) => toggle(id as NativeTraitType, traits, setTraits)} />}
-      <FilterLauncher title="Native Effects" count={nativeEffects.length} expanded={expandedFilter === "effects"} onClick={() => toggleFilterSection("effects")} />
-      {expandedFilter === "effects" && <FilterSelector title="Native Effects" options={allNativeEffects.map((id) => [id, labelId(id)])} selected={nativeEffects} onToggle={(id) => toggle(id as NativeEffectType, nativeEffects, setNativeEffects)} />}
+      <FilterLauncher title="Unique Traits" count={uniqueTraitCategories.length + Number(Boolean(uniqueTraitNeedle))} expanded={expandedFilter === "unique-traits"} onClick={() => toggleFilterSection("unique-traits")} />
+      {expandedFilter === "unique-traits" && <UniqueTraitFilter query={uniqueTraitQuery} selected={uniqueTraitCategories} matchMode={uniqueTraitMatchMode} onQueryChange={(value) => { setUniqueTraitQuery(value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} onToggle={(id) => toggle(id, uniqueTraitCategories, setUniqueTraitCategories)} onMatchModeChange={(mode) => { setUniqueTraitMatchMode(mode); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} />}
+      <FilterLauncher title="Extra Trait Effects" count={nativeEffects.length} expanded={expandedFilter === "effects"} onClick={() => toggleFilterSection("effects")} />
+      {expandedFilter === "effects" && <FilterSelector title="Extra Trait Effects" options={allNativeEffects.map((id) => [id, labelId(id)])} selected={nativeEffects} onToggle={(id) => toggle(id as NativeEffectType, nativeEffects, setNativeEffects)} />}
       <FilterLauncher title="Status Reductions" count={reductions.length} expanded={expandedFilter === "reductions"} onClick={() => toggleFilterSection("reductions")} />
       {expandedFilter === "reductions" && <FilterSelector title="Status Reductions" options={allReductions.map((id) => [id, labelId(id)])} selected={reductions} onToggle={(id) => toggle(id as StatusEffectType, reductions, setReductions)} />}
+      <FilterLauncher title="Native Traits" count={traits.length} expanded={expandedFilter === "traits"} onClick={() => toggleFilterSection("traits")} />
+      {expandedFilter === "traits" && <FilterSelector title="Native Traits" options={(Object.keys(traitLabels) as NativeTraitType[]).map((id) => [id, traitLabels[id]])} selected={traits} onToggle={(id) => toggle(id as NativeTraitType, traits, setTraits)} />}
     </div>
-    <button type="button" className={styles.clearButton} onClick={clearFilters} disabled={!activeFilterCount}>Clear all filters</button>
+    <button type="button" className={styles.clearButton} onClick={clearFilters} disabled={!hasActiveFilterState}>Clear all filters</button>
   </div>;
 
   return <main className={styles.page}><div className={styles.inner}>
@@ -369,13 +387,20 @@ function MedalDetails({ medal, slots, onPlace, onRemove, onClose }: { medal: Med
     <div className={styles.sheetHandle} aria-hidden="true" /><button type="button" className={styles.detailsClose} onClick={onClose} aria-label="Close medal details"><X /></button>
     <header className={styles.detailsHeader}><MedalArt medal={medal} sizes="150px" eager /><div><span>{medal.category}</span><h2 id="medal-detail-title">{medal.name}</h2></div></header>
     <section className={styles.miniSet}><div><span className={styles.kicker}>Current set</span><p>Choose a slot to add or replace.</p></div><div className={styles.miniSlots}>{slots.map((slotMedal, index) => { const current = slotMedal?.id === medal.id; return <button type="button" key={index} className={current ? styles.currentMiniSlot : ""} onClick={() => current ? onRemove(index) : onPlace(index, medal)} aria-label={current ? `${medal.name} is in slot ${index + 1}` : `${slotMedal ? "Replace" : "Add to"} slot ${index + 1}`}><span>{slotMedal ? <MedalArt medal={slotMedal} sizes="64px" /> : index + 1}</span><strong>{current ? "CURRENT" : `SLOT ${index + 1}`}</strong></button>; })}</div></section>
-    <div className={styles.detailContent}><DetailSection title="Unique Trait"><p>{medal.uniqueTrait}</p></DetailSection><DetailSection title="Tags"><Pills values={medal.tags.map((tag) => tag.name)} /></DetailSection><DetailSection title="Native Traits"><Pills values={medal.nativeTraits.map((trait) => traitLabels[trait])} /></DetailSection><DetailSection title="Native Effects"><Pills values={(medal.nativeEffects ?? []).map(labelId)} /></DetailSection><DetailSection title="Status Reductions"><Pills values={(medal.statusReductions ?? []).map(labelId)} /></DetailSection></div>
+    <div className={styles.detailContent}><DetailSection title="Unique Trait"><p>{medal.uniqueTrait}</p></DetailSection><DetailSection title="Tags"><Pills values={medal.tags.map((tag) => tag.name)} /></DetailSection><DetailSection title="Native Traits"><Pills values={medal.nativeTraits.map((trait) => traitLabels[trait])} /></DetailSection><DetailSection title="Extra Trait Effects"><Pills values={(medal.nativeEffects ?? []).map(labelId)} /></DetailSection><DetailSection title="Status Reductions"><Pills values={(medal.statusReductions ?? []).map(labelId)} /></DetailSection></div>
   </article></div>;
 }
 
 function DetailSection({ title, children }: { title: string; children: React.ReactNode }) { return <section className={styles.detailSection}><h3>{title}</h3>{children}</section>; }
 function Pills({ values }: { values: readonly string[] }) { return values.length ? <div className={styles.pills}>{values.map((value) => <span key={value}>{value}</span>)}</div> : <em className={styles.none}>None</em>; }
 function FilterLauncher({ title, count, expanded, onClick }: { title: string; count: number; expanded: boolean; onClick: () => void }) { return <button type="button" className={styles.filterLauncher} onClick={onClick} aria-expanded={expanded}><span>{title}</span>{count > 0 && <strong>{count}</strong>}<span aria-hidden="true">{expanded ? "−" : "+"}</span></button>; }
+function UniqueTraitFilter({ query, selected, matchMode, onQueryChange, onToggle, onMatchModeChange }: { query: string; selected: readonly UniqueTraitCategoryId[]; matchMode: UniqueTraitCategoryMatchMode; onQueryChange: (value: string) => void; onToggle: (id: UniqueTraitCategoryId) => void; onMatchModeChange: (mode: UniqueTraitCategoryMatchMode) => void }) {
+  return <div className={styles.filterSelector} aria-label="Unique Trait filters">
+    <label className={`${styles.filterSearch} ${styles.uniqueTraitSearch}`}><Search /><span className={styles.srOnly}>Search unique traits</span><input value={query} onChange={(event) => onQueryChange(event.target.value)} placeholder="Search unique traits…" /></label>
+    <div className={styles.matchMode}><span>Category matching</span><div className={styles.segmented}>{(["any", "all"] as UniqueTraitCategoryMatchMode[]).map((mode) => <button type="button" key={mode} className={matchMode === mode ? styles.activeSegment : ""} onClick={() => onMatchModeChange(mode)} aria-pressed={matchMode === mode}>Match {labelId(mode)}</button>)}</div></div>
+    <div className={styles.checkList}>{uniqueTraitCategoryCatalog.map(({ id, label }) => <label key={id}><input type="checkbox" checked={selected.includes(id)} onChange={() => onToggle(id)} /><span>{label}</span></label>)}</div>
+  </div>;
+}
 function TagSetEffectFilter({ options, selectedEffectIds, selectedTagIds, expandedEffectIds, search, onSearchChange, onToggleEffect, onToggleTag, onToggleExpanded }: { options: readonly TagSetEffectFilterOption[]; selectedEffectIds: readonly MedalEffectId[]; selectedTagIds: readonly string[]; expandedEffectIds: readonly MedalEffectId[]; search: string; onSearchChange: (value: string) => void; onToggleEffect: (id: MedalEffectId) => void; onToggleTag: (id: string) => void; onToggleExpanded: (id: MedalEffectId) => void }) {
   const searching = Boolean(search.trim());
   return <div className={styles.filterSelector} aria-label="Tag Set Effect and Tag filters">

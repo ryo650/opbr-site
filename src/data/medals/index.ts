@@ -6,6 +6,15 @@ export {
   medalEffectFilterCategories,
 } from "./medal-effect-catalog";
 export { tagSetEffectCountingPolicy, tagSetEffectGroups } from "./tag-set-effects";
+export {
+  uniqueTraitCategoryCatalog,
+  matchesUniqueTraitCategories,
+  matchesUniqueTraitFilters,
+} from "./unique-trait-categories";
+export {
+  uniqueTraitCategoryIdsByMedalId,
+  uniqueTraitCategoryNeedsReview,
+} from "./unique-trait-categories.generated";
 export type {
   Medal,
   MedalCategory,
@@ -26,3 +35,7 @@ export type {
   MedalEffectValueUnit,
 } from "./medal-effect-catalog";
 export type { TagSetEffectGroup } from "./tag-set-effects";
+export type {
+  UniqueTraitCategoryId,
+  UniqueTraitCategoryMatchMode,
+} from "./unique-trait-categories";

@@ -13,6 +13,10 @@ import {
   validateNativeEffectCatalog,
   validateProductionNativeEffects,
 } from "./native-effects.mjs";
+import {
+  renderUniqueTraitCategoryData,
+  summarizeUniqueTraitCategories,
+} from "../medal-unique-traits/classify-unique-traits.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -66,6 +70,16 @@ assertEqual(
   renderNativeEffectTypes(nativeEffectCatalog),
   "Generated NativeEffectType is out of sync with native-effects.json",
 );
+const generatedUniqueTraitCategoriesPath = path.join(
+  projectDir,
+  "src/data/medals/unique-trait-categories.generated.ts",
+);
+assertEqual(
+  readFileSync(generatedUniqueTraitCategoriesPath, "utf8"),
+  renderUniqueTraitCategoryData(production),
+  "Generated Unique Trait categories are out of sync with medals.ts",
+);
+const uniqueTraitCategorySummary = summarizeUniqueTraitCategories(production);
 const ids = production.map((medal) => medal.id);
 if (new Set(ids).size !== ids.length) throw new Error("Duplicate medal IDs found");
 
@@ -145,6 +159,9 @@ console.log(
       approvedNativeEffects: nativeEffectCatalog.length,
       productionNativeEffectsCatalogued: true,
       generatedNativeEffectTypeCurrent: true,
+      generatedUniqueTraitCategoriesCurrent: true,
+      uniqueTraitCategoryCounts: uniqueTraitCategorySummary.categoryCounts,
+      uniqueTraitCategoriesNeedsReview: uniqueTraitCategorySummary.needsReview.length,
     },
     null,
     2,
