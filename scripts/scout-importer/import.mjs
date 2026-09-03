@@ -27,14 +27,15 @@ import {
   extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
-  normalizeText,
+  normalizeCharacterName,
   parseDateOverride,
   renderScoutModule,
   scoutVariableName,
+  selectNormalBfUnitRate,
   validateOrderedScreenshotOcr,
   validateScoutDraft,
 } from "./core.mjs";
-import { compareDecimal, decimalToString } from "./decimal.mjs";
+import { decimalToString } from "./decimal.mjs";
 import { deduplicateScreenshots } from "./dedupe.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
@@ -167,7 +168,7 @@ function manualMappings(values, characterMaster) {
     if (separator <= 0 || separator === value.length - 1) {
       throw new Error(`Invalid --character-map ${value}; expected OCR_TEXT=character-id`);
     }
-    const source = normalizeText(value.slice(0, separator));
+    const source = normalizeCharacterName(value.slice(0, separator));
     const id = value.slice(separator + 1).trim();
     if (!characterMaster.byId.has(id)) {
       throw new Error(`--character-map target does not exist in character master: ${id}`);
@@ -401,12 +402,15 @@ if (orderedValidation.issues.length > 0) {
 }
 
 const rateSummary = orderedValidation.rateSummary;
-const scoutIdentity = extractScoutIdentity(rateScreen.ocr.lines);
+const scoutIdentity = extractScoutIdentity(rateScreen.ocr);
 const endAt = options.endAt
   ? parseDateOverride(options.endAt, "endAt", 59)
   : orderedValidation.endAt;
 const extractedRows = extractCharacterRows(
-  characterScreens.map(({ file, ocr }) => ({ file, lines: ocr.lines })),
+  characterScreens.map(({ file, ocr }) => ({
+    file,
+    observations: ocr.observations,
+  })),
   characterMaster.characters,
   { manualMappings: mappings },
 );
@@ -415,32 +419,13 @@ const rows = mergedRows.rows;
 const pickups = rows
   .filter(({ featured }) => featured)
   .map(({ character, rate }) => ({ characterId: character.id, rate }));
-const normalBfRows = rows.filter(
-  ({ featured, character }) => !featured && character.grade === "bf",
-);
-let bfUnitRate = normalBfRows[0]?.rate ?? null;
+const bfSelection = selectNormalBfUnitRate(rows);
+const bfUnitRate = bfSelection.rate;
 const characterIssues = [
   ...extractedRows.issues.filter((issue) => issue.featured !== false),
   ...mergedRows.issues,
+  ...bfSelection.issues,
 ];
-if (normalBfRows.length === 0) {
-  characterIssues.push({
-    code: "missing-normal-bf-rate",
-    message: "No non-featured grade=bf character and rate were resolved",
-  });
-} else {
-  for (const row of normalBfRows.slice(1)) {
-    if (compareDecimal(row.rate, bfUnitRate) !== 0) {
-      characterIssues.push({
-        code: "normal-bf-rate-mismatch",
-        message: `Normal BF rates differ: ${decimalToString(bfUnitRate)}% and ${decimalToString(row.rate)}%`,
-        file: row.sourceFile,
-      });
-      bfUnitRate = null;
-      break;
-    }
-  }
-}
 
 const id = options.id ?? scoutIdentity.id;
 if (!id) {

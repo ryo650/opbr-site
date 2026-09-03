@@ -27,6 +27,13 @@ export function slugify(value) {
   return normalizeText(value).replace(/\s+/g, "-");
 }
 
+export function normalizeCharacterName(value) {
+  return normalizeText(value)
+    .replace(/\band\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
 export function canonicalizeScoutTitle(value) {
   return value
     .normalize("NFKC")
@@ -39,23 +46,54 @@ export function canonicalizeScoutTitle(value) {
     .trim();
 }
 
-export function extractScoutIdentity(lines) {
-  const titleLines = [];
-  for (const rawLine of lines) {
-    if (PERCENT_PATTERN.test(rawLine) || detectStarLabel(rawLine)) break;
-    const normalized = normalizeText(rawLine);
-    if (
-      !normalized ||
-      /^(?:drop rates?|scout details?|details|close|back)$/.test(normalized) ||
-      /drop rates are rounded/.test(normalized)
-    ) {
-      continue;
-    }
-    titleLines.push(rawLine);
+function centerX(observation) {
+  return observation.x + observation.width / 2;
+}
+
+function centerY(observation) {
+  return observation.y + observation.height / 2;
+}
+
+function singleAnchor(observations, label) {
+  const normalizedLabel = normalizeText(label);
+  const anchors = observations.filter(
+    ({ text }) => normalizeText(text) === normalizedLabel,
+  );
+  return anchors.length === 1 ? anchors[0] : null;
+}
+
+export function extractScoutIdentity(ocr) {
+  const observations = ocr.observations ?? [];
+  const header = singleAnchor(observations, "Show Drop Rates");
+  if (!header) return { canonicalTitle: null, id: null };
+
+  const headerX = centerX(header);
+  const headerY = centerY(header);
+  // Vision coordinates are normalized. The title is the centered, large-text
+  // block directly below the modal header and above the explanatory copy.
+  const titleObservations = observations
+    .filter((observation) => {
+      if (observation === header) return false;
+      const verticalGap = headerY - centerY(observation);
+      return (
+        verticalGap >= 0.05 &&
+        verticalGap <= 0.19 &&
+        Math.abs(centerX(observation) - headerX) <= 0.2 &&
+        observation.height >= header.height * 0.75
+      );
+    })
+    .sort((left, right) => centerY(right) - centerY(left));
+  if (titleObservations.length === 0 || titleObservations.length > 4) {
+    return { canonicalTitle: null, id: null };
   }
 
-  const canonicalTitle = canonicalizeScoutTitle(titleLines.join(" "));
+  const canonicalTitle = canonicalizeScoutTitle(
+    titleObservations.map(({ text }) => text).join(" "),
+  );
   const id = canonicalTitle ? slugify(canonicalTitle) : null;
+  if (!id || id.length > 120 || id.split("-").length > 20) {
+    return { canonicalTitle: null, id: null };
+  }
   return { canonicalTitle: canonicalTitle || null, id: id || null };
 }
 
@@ -129,37 +167,11 @@ function headingMode(line) {
   return null;
 }
 
-function isCandidateNoise(line) {
-  const normalized = normalizeText(line);
-  return (
-    !normalized ||
-    headingMode(line) !== null ||
-    /^(?:character )?drop rates?$/.test(normalized) ||
-    /drop rates are rounded/.test(normalized) ||
-    /^(?:close|back|details|rarity)$/.test(normalized) ||
-    /^to \d/.test(normalized)
-  );
-}
-
-function candidatePhrases(lines) {
-  const cleaned = lines
-    .map((line) => line.replace(PERCENT_PATTERN, " ").trim())
-    .filter((line) => !isCandidateNoise(line));
-  const phrases = [];
-  const maxParts = Math.min(6, cleaned.length);
-  for (let length = maxParts; length >= 1; length -= 1) {
-    for (let start = cleaned.length - length; start >= 0; start -= 1) {
-      phrases.push(cleaned.slice(start, start + length).join(" "));
-    }
-  }
-  return [...new Set(phrases.map((phrase) => phrase.trim()).filter(Boolean))];
-}
-
 export function createCharacterNameIndex(characters) {
   const index = new Map();
   for (const character of characters) {
     for (const value of [character.id, character.name]) {
-      const key = normalizeText(value);
+      const key = normalizeCharacterName(value);
       if (!index.has(key)) index.set(key, []);
       if (!index.get(key).some(({ id }) => id === character.id)) {
         index.get(key).push(character);
@@ -187,11 +199,11 @@ function levenshtein(left, right) {
 }
 
 function suggestions(phrases, characters) {
-  const target = normalizeText(phrases.at(-1) ?? phrases.join(" "));
+  const target = normalizeCharacterName(phrases.at(-1) ?? phrases.join(" "));
   if (!target) return [];
   return characters
     .map((character) => {
-      const name = normalizeText(character.name);
+      const name = normalizeCharacterName(character.name);
       return {
         id: character.id,
         name: character.name,
@@ -205,7 +217,7 @@ function suggestions(phrases, characters) {
 function resolveCharacter(phrases, nameIndex, characters, manualMappings) {
   const resolved = new Map();
   for (const phrase of phrases) {
-    const normalized = normalizeText(phrase);
+    const normalized = normalizeCharacterName(phrase);
     const manualId = manualMappings.get(normalized);
     if (manualId) {
       const character = characters.find(({ id }) => id === manualId);
@@ -237,6 +249,109 @@ function resolveCharacter(phrases, nameIndex, characters, manualMappings) {
   };
 }
 
+function joinCharacterNameParts(observations) {
+  let name = "";
+  for (const { text } of observations.sort((left, right) => {
+    const vertical = centerY(right) - centerY(left);
+    return Math.abs(vertical) > 0.01 ? vertical : left.x - right.x;
+  })) {
+    const part = text.trim();
+    if (!part) continue;
+    if (/^[a-z]$/.test(part) && /[a-z]$/i.test(name)) {
+      name += part;
+    } else {
+      name += `${name ? " " : ""}${part}`;
+    }
+  }
+  return name.replace(/\s+/g, " ").trim();
+}
+
+function characterRowsFromPage(page) {
+  const observations = page.observations ?? [];
+  const header = singleAnchor(observations, "Character Drop Rates");
+  if (!header) {
+    return {
+      rows: [],
+      issues: [{
+        code: "missing-character-table-region",
+        message: "Could not locate the Character Drop Rates modal header",
+        file: page.file,
+      }],
+    };
+  }
+
+  const modalX = centerX(header);
+  const tableTop = centerY(header) - 0.04;
+  const tableBottom = Math.max(0, centerY(header) - 0.72);
+  const inTableY = (observation) => {
+    const y = centerY(observation);
+    return y < tableTop && y > tableBottom;
+  };
+  const rateObservations = observations
+    .filter((observation) => {
+      const x = centerX(observation);
+      return (
+        inTableY(observation) &&
+        x >= modalX + 0.06 &&
+        x <= modalX + 0.25 &&
+        parsePercent(observation.text)
+      );
+    })
+    .sort((left, right) => centerY(right) - centerY(left));
+  if (rateObservations.length === 0) {
+    return {
+      rows: [],
+      issues: [{
+        code: "missing-character-rate-rows",
+        message: "No Character Drop Rates rows were found inside the modal",
+        file: page.file,
+      }],
+    };
+  }
+
+  const gaps = rateObservations
+    .slice(1)
+    .map((observation, index) => centerY(rateObservations[index]) - centerY(observation));
+  const fallbackHalfGap = gaps.length > 0
+    ? Math.max(0.06, Math.min(...gaps) / 2)
+    : 0.1;
+  const rows = rateObservations.map((rateObservation, index) => {
+    const rateY = centerY(rateObservation);
+    const upper = index === 0
+      ? tableTop
+      : (centerY(rateObservations[index - 1]) + rateY) / 2;
+    const lower = index === rateObservations.length - 1
+      ? Math.max(tableBottom, rateY - fallbackHalfGap)
+      : (rateY + centerY(rateObservations[index + 1])) / 2;
+    const inRow = (observation) => {
+      const y = centerY(observation);
+      return y <= upper && y > lower;
+    };
+    // Name and rate columns are relative to the centered modal heading. This
+    // excludes the Scout carousel on the left and the underlying UI on the right.
+    const nameObservations = observations.filter((observation) => {
+      const x = centerX(observation);
+      return inRow(observation) && x >= modalX - 0.17 && x <= modalX + 0.06;
+    });
+    const featured = observations.some((observation) => {
+      const x = centerX(observation);
+      return (
+        inRow(observation) &&
+        x >= modalX + 0.04 &&
+        x <= modalX + 0.28 &&
+        headingMode(observation.text) === true
+      );
+    });
+    return {
+      name: joinCharacterNameParts(nameObservations),
+      rate: parsePercent(rateObservation.text),
+      featured,
+      sourceRateText: rateObservation.text,
+    };
+  });
+  return { rows, issues: [] };
+}
+
 export function extractCharacterRows(
   ocrPages,
   characters,
@@ -245,22 +360,12 @@ export function extractCharacterRows(
   const nameIndex = createCharacterNameIndex(characters);
   const rows = [];
   const issues = [];
-  let featuredMode = null;
 
   for (const page of ocrPages) {
-    let segment = [];
-    for (const rawLine of page.lines) {
-      const mode = headingMode(rawLine);
-      if (mode !== null) {
-        featuredMode = mode;
-        segment = [];
-        continue;
-      }
-      const rate = parsePercent(rawLine);
-      segment.push(rawLine);
-      if (!rate) continue;
-
-      const phrases = candidatePhrases(segment);
+    const reconstructed = characterRowsFromPage(page);
+    issues.push(...reconstructed.issues);
+    for (const row of reconstructed.rows) {
+      const phrases = row.name ? [row.name] : [];
       const resolution = resolveCharacter(
         phrases,
         nameIndex,
@@ -271,31 +376,49 @@ export function extractCharacterRows(
         issues.push({
           ...resolution.issue,
           file: page.file,
-          rate: decimalToString(rate),
-          featured: featuredMode,
-        });
-      } else if (featuredMode === null) {
-        issues.push({
-          code: "unknown-character-section",
-          message: "Character rate was recognized before a Featured/normal section heading",
-          file: page.file,
-          characterId: resolution.match.character.id,
-          phrases,
+          rate: decimalToString(row.rate),
+          featured: row.featured,
         });
       } else {
         rows.push({
           character: resolution.match.character,
-          rate,
-          featured: featuredMode,
+          rate: row.rate,
+          featured: row.featured,
           sourceText: resolution.match.phrase,
           sourceFile: page.file,
           manuallyResolved: resolution.match.manual,
         });
       }
-      segment = [];
     }
   }
   return { rows, issues };
+}
+
+export function selectNormalBfUnitRate(rows) {
+  const normalBfRows = rows.filter(
+    ({ featured, character }) => !featured && character.grade === "bf",
+  );
+  const issues = [];
+  let rate = normalBfRows[0]?.rate ?? null;
+  if (!rate) {
+    issues.push({
+      code: "missing-normal-bf-rate",
+      message: "No non-featured grade=bf character and rate were resolved",
+    });
+  } else {
+    for (const row of normalBfRows.slice(1)) {
+      if (compareDecimal(row.rate, rate) !== 0) {
+        issues.push({
+          code: "normal-bf-rate-mismatch",
+          message: `Normal BF rates differ: ${decimalToString(rate)}% and ${decimalToString(row.rate)}%`,
+          file: row.sourceFile,
+        });
+        rate = null;
+        break;
+      }
+    }
+  }
+  return { rate, rows: normalBfRows, issues };
 }
 
 export function mergeCharacterRows(rows) {

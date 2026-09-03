@@ -5,7 +5,7 @@ Scout Simulator向けの通常ScoutデータとWebP bannerを、ゲーム内ス�
 ## Medal Importerから再利用した設計
 
 - 元スクリーンショットは変更せず、専用のignored `input/` だけを読む
-- Apple Visionのaccurate OCRとImageMagickを使用する
+- Apple Visionのaccurate OCRとbounding box、ImageMagickを使用する
 - 画像をdecoded-pixel signatureで検査し、位置がずれる重複入力を停止する
 - 曖昧な文字列をfuzzy matchで確定せず、reviewとして停止する
 - productionの既存ID・TypeScript・WebPを上書きしない
@@ -38,7 +38,7 @@ scripts/scout-importer/input/
 3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット
 4. 以降はCharacter Drop Rates。`Featured Characters` 見出しと全pickup、および通常（非Featured）のBFを最低1体含める
 
-入力は最低4枚必要です。順序が役割を決定し、特定のファイル名やprefixには依存しません。Character画面のsection状態は4枚目から後続ページへ引き継ぎます。同じ通常BFが複数見える場合はrateをクロスチェックします。
+入力は最低4枚必要です。順序が役割を決定し、特定のファイル名やprefixには依存しません。Character画面は中央のDrop Ratesモーダルだけをbounding boxで抽出し、各rateのY座標からrowを復元します。`Featured Characters` は同じrow内の表示有無で判定します。同じ通常BFが複数見える場合はrateをクロスチェックします。
 
 2枚目に `to ...` がない、3枚目に★4/★3/★2が揃わない、4枚目以降が合計rate画面や期間画面に見える、などOCR内容と位置が明らかに矛盾するときは生成せずreview/errorにします。同一画像も自動除外すると位置がずれるためエラーになります。
 
@@ -89,7 +89,7 @@ npm run scouts:import -- --dry-run \
 - `--end-at "2026-09-15 13:59"`
 - `--id some-stable-scout-id`
 
-Scout IDは3枚目のDrop Rates画面上部のタイトルから生成します。先頭の `3-Step` / `4-Step` など、末尾の `Step 1` など、括弧や不要な記号を除いてcanonical titleを作り、lowercase kebab-caseへ変換します。既存IDと重複した場合はsuffixを付けずに停止します。タイトルを正しく取得できない場合だけ、目視確認後に `--id` でoverrideします。
+Scout IDは3枚目の `Show Drop Rates` モーダル見出しを基準に、bounding boxで特定した直下のタイトル領域だけから生成します。先頭の `3-Step` / `4-Step` など、末尾の `Step 1` など、括弧や不要な記号を除いてcanonical titleを作り、lowercase kebab-caseへ変換します。領域を一意かつ安全に特定できない場合や既存IDと重複した場合は、巨大なslugやsuffixを生成せず停止します。タイトルを正しく取得できない場合だけ、目視確認後に `--id` でoverrideします。
 
 1枚目のbanner画像にはcrop、resize、位置調整を行いません。メタデータを除去して品質90のWebPへ変換し、入力画像と同じpixel寸法で出力します。
 

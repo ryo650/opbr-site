@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFile } from "node:fs/promises";
 import path from "node:path";
 import test from "node:test";
 import { fileURLToPath } from "node:url";
@@ -17,12 +18,55 @@ import {
   parseDropRates,
   renderScoutModule,
   scoutVariableName,
+  selectNormalBfUnitRate,
   validateOrderedScreenshotOcr,
 } from "./core.mjs";
 import { decimal, decimalToString } from "./decimal.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const characterDir = path.resolve(importerDir, "../../src/data/characters");
+const realOcr = JSON.parse(
+  await readFile(new URL("./fixtures/real-ocr-patterns.json", import.meta.url), "utf8"),
+);
+
+function characterPage(rows) {
+  const observations = [{
+    text: "Character Drop Rates",
+    x: 0.4,
+    y: 0.84,
+    width: 0.18,
+    height: 0.04,
+  }];
+  for (const [index, row] of rows.entries()) {
+    const rateY = 0.69 - index * 0.18;
+    for (const [partIndex, text] of row.nameParts.entries()) {
+      observations.push({
+        text,
+        x: 0.4,
+        y: rateY + 0.03 - partIndex * 0.04,
+        width: 0.12,
+        height: 0.03,
+      });
+    }
+    if (row.featured) {
+      observations.push({
+        text: "Featured Characters",
+        x: 0.58,
+        y: rateY + 0.05,
+        width: 0.14,
+        height: 0.03,
+      });
+    }
+    observations.push({
+      text: row.rate,
+      x: 0.61,
+      y: rateY,
+      width: 0.09,
+      height: 0.03,
+    });
+  }
+  return { file: "characters.png", observations };
+}
 
 test("automaticStartAt uses the previous 14:00 JST before cutoff", () => {
   assert.equal(
@@ -76,18 +120,15 @@ test("Drop Rates summary keeps seven-decimal OCR precision", () => {
 });
 
 test("Scout ID uses the canonical title from the top of the Drop Rates screen", () => {
-  const identity = extractScoutIdentity([
-    "Drop Rates",
-    "3-Step [260 Million Downloads Celebration]",
-    "Extreme Bounty Festival #2 Step 1",
-    "★4 Characters",
-    "7.0000000%",
-  ]);
+  const identity = extractScoutIdentity(realOcr.rateScreen);
   assert.deepEqual(identity, {
     canonicalTitle:
       "260 Million Downloads Celebration Extreme Bounty Festival 2",
     id: "260-million-downloads-celebration-extreme-bounty-festival-2",
   });
+  assert.equal(identity.id.includes("show-drop-rates"), false);
+  assert.equal(identity.id.includes("scout-points"), false);
+  assert.equal(identity.id.includes("until"), false);
 });
 
 test("Scout title canonicalization removes only numeric step wrappers", () => {
@@ -103,9 +144,31 @@ test("Scout title canonicalization removes only numeric step wrappers", () => {
 
 test("Scout ID extraction stops at rate data and reports a missing title", () => {
   assert.deepEqual(
-    extractScoutIdentity(["Drop Rates", "4 Star 7%", "3 Star 35%", "2 Star 58%"]),
+    extractScoutIdentity({
+      observations: [
+        { text: "Show Drop Rates", x: 0.4, y: 0.9, width: 0.2, height: 0.05 },
+        { text: "7.0000000%", x: 0.59, y: 0.43, width: 0.09, height: 0.04 }
+      ],
+    }),
     { canonicalTitle: null, id: null },
   );
+});
+
+test("an ambiguous oversized title region stops instead of producing a giant ID", () => {
+  const observations = [
+    { text: "Show Drop Rates", x: 0.4, y: 0.9, width: 0.2, height: 0.05 },
+    ...Array.from({ length: 5 }, (_, index) => ({
+      text: `Untrusted title fragment ${index}`,
+      x: 0.4,
+      y: 0.82 - index * 0.02,
+      width: 0.2,
+      height: 0.04,
+    })),
+  ];
+  assert.deepEqual(extractScoutIdentity({ observations }), {
+    canonicalTitle: null,
+    id: null,
+  });
 });
 
 test("IMG filenames use numeric natural order without role-based names", () => {
@@ -203,18 +266,18 @@ test("character rows use exact master names and section headings", () => {
     { id: "navy-hq-captain-koby", name: "Navy-Hq-Captain-Koby", grade: "bf" },
   ];
   const result = extractCharacterRows(
-    [{
-      file: "characters-01.png",
-      lines: [
-        "Featured Characters",
-        "Egghead",
-        "Monkey D. Luffy",
-        "1.0000000%",
-        "★4 Characters",
-        "Navy HQ Captain Koby",
-        "0.0123456%",
-      ],
-    }],
+    [characterPage([
+      {
+        nameParts: ["Egghead", "Monkey D. Luffy"],
+        rate: "1.0000000%",
+        featured: true,
+      },
+      {
+        nameParts: ["Navy HQ Captain Koby"],
+        rate: "0.0123456%",
+        featured: false,
+      },
+    ])],
     characters,
   );
   assert.deepEqual(result.issues, []);
@@ -233,7 +296,11 @@ test("character rows use exact master names and section headings", () => {
 
 test("ambiguous OCR is reported and never fuzzily selected", () => {
   const result = extractCharacterRows(
-    [{ file: "characters.png", lines: ["Featured Characters", "Monkey Lufy", "1.0%"] }],
+    [characterPage([{
+      nameParts: ["Monkey Lufy"],
+      rate: "1.0%",
+      featured: true,
+    }])],
     [{ id: "monkey-d-luffy", name: "Monkey-D-Luffy", grade: "bf" }],
   );
   assert.equal(result.rows.length, 0);
@@ -244,13 +311,58 @@ test("ambiguous OCR is reported and never fuzzily selected", () => {
 test("explicit reviewed character mappings resolve OCR without fuzzy matching", () => {
   const characters = [{ id: "monkey-d-luffy", name: "Monkey-D-Luffy", grade: "bf" }];
   const result = extractCharacterRows(
-    [{ file: "characters.png", lines: ["Featured Characters", "Monkey Lufy", "1.0%"] }],
+    [characterPage([{
+      nameParts: ["Monkey Lufy"],
+      rate: "1.0%",
+      featured: true,
+    }])],
     characters,
     { manualMappings: new Map([["monkey lufy", "monkey-d-luffy"]]) },
   );
   assert.equal(result.issues.length, 0);
   assert.equal(result.rows[0].character.id, "monkey-d-luffy");
   assert.equal(result.rows[0].manuallyResolved, true);
+});
+
+test("real Character Drop Rates boxes reconstruct rows and exclude the left Scout UI", async () => {
+  const master = await loadCharacterMaster(characterDir);
+  const result = extractCharacterRows(
+    [realOcr.characterScreen],
+    master.characters,
+  );
+  assert.deepEqual(result.issues, []);
+  assert.deepEqual(
+    result.rows.map(({ character, featured, rate, sourceText }) => ({
+      id: character.id,
+      featured,
+      rate: decimalToString(rate),
+      sourceText,
+    })),
+    [
+      {
+        id: "the-wings-zoro-sanji",
+        featured: true,
+        rate: "0.2",
+        sourceText: "The Wings Zoro & Sanji",
+      },
+      {
+        id: "unexpected-collaboration-kaku",
+        featured: false,
+        rate: "0.0195804",
+        sourceText: "Unexpected Collaboration Kaku",
+      },
+    ],
+  );
+  assert.equal(
+    result.rows.some(({ sourceText }) =>
+      /Extreme Bounty Festival|day\(s\) left|Get Points/.test(sourceText)),
+    false,
+  );
+
+  const bfSelection = selectNormalBfUnitRate(result.rows);
+  assert.deepEqual(bfSelection.issues, []);
+  assert.equal(decimalToString(bfSelection.rate), "0.0195804");
+  assert.equal(bfSelection.rows[0].character.id, "unexpected-collaboration-kaku");
 });
 
 test("duplicate character screenshots cross-check rates", () => {

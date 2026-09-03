@@ -1,0 +1,51 @@
+{
+  "rateScreen": {
+    "file": "IMG_4786.PNG",
+    "observations": [
+      { "text": "Homs", "x": 0.1483, "y": 0.9497, "width": 0.0509, "height": 0.0346 },
+      { "text": "Show Drop Rates", "x": 0.3968, "y": 0.8991, "width": 0.2035, "height": 0.0474 },
+      { "text": "Scout Points", "x": 0.1003, "y": 0.8803, "width": 0.0727, "height": 0.0285 },
+      { "text": "Until 09/28", "x": 0.1002, "y": 0.8423, "width": 0.0684, "height": 0.0293 },
+      { "text": "3-Step [260 Million Downloads Celebration] Extreme", "x": 0.2, "y": 0.8108, "width": 0.5792, "height": 0.0541 },
+      { "text": "Bounty Festival #2 Step 1", "x": 0.3488, "y": 0.739, "width": 0.282, "height": 0.0535 },
+      { "text": "*Drop rates will vary depending on how many times you use this Scout.", "x": 0.1991, "y": 0.6792, "width": 0.5756, "height": 0.0378 },
+      { "text": "Drop Rates(x11)", "x": 0.2209, "y": 0.5031, "width": 0.1294, "height": 0.0379 },
+      { "text": "Includes \"Get Points\"", "x": 0.0625, "y": 0.4872, "width": 0.0901, "height": 0.0256 },
+      { "text": "*4", "x": 0.3358, "y": 0.4277, "width": 0.0262, "height": 0.0409 },
+      { "text": "7.0000000%", "x": 0.5886, "y": 0.4272, "width": 0.0858, "height": 0.0387 },
+      { "text": "Extreme Bounty Festival", "x": 0.0671, "y": 0.3577, "width": 0.0956, "height": 0.0776 },
+      { "text": "*3", "x": 0.3372, "y": 0.3396, "width": 0.0247, "height": 0.0409 },
+      { "text": "35.0000000 %", "x": 0.5858, "y": 0.3459, "width": 0.0901, "height": 0.0284 },
+      { "text": "15 day(s) left", "x": 0.0756, "y": 0.3205, "width": 0.0669, "height": 0.0285 },
+      { "text": "etails", "x": 0.8256, "y": 0.3082, "width": 0.0465, "height": 0.0283 },
+      { "text": "*2", "x": 0.3372, "y": 0.2579, "width": 0.0247, "height": 0.0377 },
+      { "text": "58.0000000 %", "x": 0.5858, "y": 0.2607, "width": 0.0901, "height": 0.0286 },
+      { "text": "Character Drop Rates", "x": 0.3997, "y": 0.1632, "width": 0.1802, "height": 0.0317 },
+      { "text": "Close", "x": 0.4695, "y": 0.0818, "width": 0.0625, "height": 0.0409 }
+    ]
+  },
+  "characterScreen": {
+    "file": "IMG_4787.PNG",
+    "observations": [
+      { "text": "Homs", "x": 0.1483, "y": 0.9497, "width": 0.0509, "height": 0.0346 },
+      { "text": "Show Drop Rates", "x": 0.3968, "y": 0.8991, "width": 0.2035, "height": 0.0474 },
+      { "text": "Scout Points", "x": 0.1003, "y": 0.8802, "width": 0.0727, "height": 0.0289 },
+      { "text": "Until 09/28", "x": 0.1002, "y": 0.8421, "width": 0.0684, "height": 0.0297 },
+      { "text": "Character Drop Rates", "x": 0.3997, "y": 0.8393, "width": 0.1817, "height": 0.0412 },
+      { "text": "Featured Characters", "x": 0.5741, "y": 0.7484, "width": 0.1541, "height": 0.0285 },
+      { "text": "The Wings", "x": 0.4113, "y": 0.7224, "width": 0.067, "height": 0.0332 },
+      { "text": "Zoro & Sanji", "x": 0.4055, "y": 0.6855, "width": 0.0785, "height": 0.0316 },
+      { "text": "0.2000000 %", "x": 0.609, "y": 0.6977, "width": 0.0844, "height": 0.0322 },
+      { "text": "Unexpected Collaboratio", "x": 0.3692, "y": 0.5564, "width": 0.1512, "height": 0.0316 },
+      { "text": "n", "x": 0.439, "y": 0.5189, "width": 0.0102, "height": 0.0252 },
+      { "text": "0.0195804 %", "x": 0.6089, "y": 0.5144, "width": 0.0845, "height": 0.0373 },
+      { "text": "Includes \"Get Points\"", "x": 0.0625, "y": 0.4872, "width": 0.0901, "height": 0.0256 },
+      { "text": "Kaku", "x": 0.4288, "y": 0.478, "width": 0.032, "height": 0.0283 },
+      { "text": "Extreme", "x": 0.0664, "y": 0.3895, "width": 0.0733, "height": 0.0786 },
+      { "text": "Bounty Festival", "x": 0.0698, "y": 0.3615, "width": 0.0901, "height": 0.0726 },
+      { "text": "15 day(s) left", "x": 0.0754, "y": 0.3191, "width": 0.0671, "height": 0.0317 },
+      { "text": "etails", "x": 0.8256, "y": 0.3082, "width": 0.0465, "height": 0.0283 },
+      { "text": "Close", "x": 0.4695, "y": 0.0818, "width": 0.0625, "height": 0.0409 }
+    ]
+  }
+}
