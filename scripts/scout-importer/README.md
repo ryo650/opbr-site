@@ -36,9 +36,10 @@ scripts/scout-importer/input/
 1. サイトでそのまま使用する完成済みScout TOP/banner画像。cropや加工はせず、元寸法のままWebP化する。OCRには使用しない
 2. Scout終了日時の `to ...` が見えるスクリーンショット。endAt OCR専用でbannerには使わない
 3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット
-4. 以降はCharacter Drop Rates。`Featured Characters` 見出しと全pickup、および通常（非Featured）のBFを最低1体含める
+4. Character Drop Ratesの先頭画面。table geometry取得用の `Character Drop Rates` ヘッダー、全pickupの取得開始、および通常（非Featured）のBFを最低1体含める
+5. 以降は同じ画面サイズ・レイアウトで下へスクロールしたCharacter Drop Rates継続画面。`Character Drop Rates` ヘッダーは画面外でもよい
 
-入力は最低4枚必要です。順序が役割を決定し、特定のファイル名やprefixには依存しません。Character画面は中央のDrop Ratesモーダルだけをbounding boxで抽出し、各rateのY座標からrowを復元します。`Featured Characters` は同じrow内の表示有無で判定します。同じ通常BFが複数見える場合はrateをクロスチェックします。
+入力は最低4枚必要です。順序が役割を決定し、特定のファイル名やprefixには依存しません。Character画面は4枚目から取得した中央のDrop Ratesモーダルのnormalized geometryを継続画面へ引き継ぎ、各rateのY座標からrowを復元します。画面下端でrateまで揃わないrowは確定せず、次の継続画面に委ねます。同じcharacter・rate・Featured状態のrowは重複除去し、同じcharacterで値やFeatured状態が食い違う場合はreviewで停止します。同じ通常BFが複数見える場合もrateをクロスチェックします。
 
 2枚目に `to ...` がない、3枚目に★4/★3/★2が揃わない、4枚目以降が合計rate画面や期間画面に見える、などOCR内容と位置が明らかに矛盾するときは生成せずreview/errorにします。同一画像も自動除外すると位置がずれるためエラーになります。
 

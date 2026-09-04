@@ -35,6 +35,10 @@ export function normalizeCharacterName(value) {
     .trim();
 }
 
+export function characterComparisonKey(value) {
+  return normalizeCharacterName(value).replace(/\s+/g, "");
+}
+
 export function canonicalizeScoutTitle(value) {
   return value
     .normalize("NFKC")
@@ -172,7 +176,7 @@ export function createCharacterNameIndex(characters) {
   const index = new Map();
   for (const character of characters) {
     for (const value of [character.id, character.name]) {
-      const key = normalizeCharacterName(value);
+      const key = characterComparisonKey(value);
       if (!index.has(key)) index.set(key, []);
       if (!index.get(key).some(({ id }) => id === character.id)) {
         index.get(key).push(character);
@@ -222,9 +226,13 @@ function resolveCharacter(phrases, nameIndex, characters, manualMappings) {
     const manualId = manualMappings.get(normalized);
     if (manualId) {
       const character = characters.find(({ id }) => id === manualId);
-      if (character) resolved.set(character.id, { character, phrase, manual: true });
+      if (character) {
+        resolved.set(character.id, { character, phrase, manual: true });
+        continue;
+      }
     }
-    for (const character of nameIndex.get(normalized) ?? []) {
+    const comparisonKey = characterComparisonKey(phrase);
+    for (const character of nameIndex.get(comparisonKey) ?? []) {
       resolved.set(character.id, { character, phrase, manual: false });
     }
   }
@@ -234,7 +242,7 @@ function resolveCharacter(phrases, nameIndex, characters, manualMappings) {
       match: null,
       issue: {
         code: "ambiguous-character-name",
-        message: `OCR text exactly matches multiple characters: ${[...resolved.keys()].join(", ")}`,
+        message: `OCR comparison key matches multiple characters: ${[...resolved.keys()].join(", ")}`,
         phrases,
       },
     };
@@ -243,7 +251,7 @@ function resolveCharacter(phrases, nameIndex, characters, manualMappings) {
     match: null,
     issue: {
       code: "unresolved-character-name",
-      message: "Character OCR could not be matched exactly to the character master",
+      message: "Character OCR could not be matched by the strict comparison key",
       phrases,
       suggestions: suggestions(phrases, characters),
     },
@@ -267,23 +275,73 @@ function joinCharacterNameParts(observations) {
   return name.replace(/\s+/g, " ").trim();
 }
 
-function characterRowsFromPage(page) {
+function characterTableGeometry(page) {
   const observations = page.observations ?? [];
   const header = singleAnchor(observations, "Character Drop Rates");
   if (!header) {
     return {
-      rows: [],
-      issues: [{
+      geometry: null,
+      issue: {
         code: "missing-character-table-region",
-        message: "Could not locate the Character Drop Rates modal header",
+        message: "Could not locate the Character Drop Rates modal header in the first character screenshot",
         file: page.file,
-      }],
+      },
     };
   }
 
   const modalX = centerX(header);
-  const tableTop = centerY(header) - 0.04;
-  const tableBottom = Math.max(0, centerY(header) - 0.72);
+  return {
+    geometry: {
+      dimensions: page.dimensions ?? null,
+      tableTop: header.y,
+      tableBottom: Math.max(0, centerY(header) - 0.72),
+      nameLeft: modalX - 0.17,
+      nameRight: modalX + 0.06,
+      featuredLeft: modalX + 0.04,
+      featuredRight: modalX + 0.28,
+      rateLeft: modalX + 0.06,
+      rateRight: modalX + 0.25,
+    },
+    issue: null,
+  };
+}
+
+function relativeDifference(left, right) {
+  return Math.abs(left - right) / Math.max(Math.abs(left), Math.abs(right), 1);
+}
+
+function incompatibleCharacterGeometry(page, geometry) {
+  if (!geometry.dimensions || !page.dimensions) return null;
+  const reference = geometry.dimensions;
+  const candidate = page.dimensions;
+  const referenceAspect = reference.width / reference.height;
+  const candidateAspect = candidate.width / candidate.height;
+  if (
+    relativeDifference(reference.width, candidate.width) <= 0.02 &&
+    relativeDifference(reference.height, candidate.height) <= 0.02 &&
+    relativeDifference(referenceAspect, candidateAspect) <= 0.01
+  ) {
+    return null;
+  }
+  return {
+    code: "incompatible-character-table-geometry",
+    message: `Screenshot geometry ${candidate.width}x${candidate.height} is incompatible with the first character screenshot ${reference.width}x${reference.height}`,
+    file: page.file,
+  };
+}
+
+function characterRowsFromPage(page, geometry) {
+  const observations = page.observations ?? [];
+  const {
+    tableTop,
+    tableBottom,
+    nameLeft,
+    nameRight,
+    featuredLeft,
+    featuredRight,
+    rateLeft,
+    rateRight,
+  } = geometry;
   const inTableY = (observation) => {
     const y = centerY(observation);
     return y < tableTop && y > tableBottom;
@@ -293,8 +351,8 @@ function characterRowsFromPage(page) {
       const x = centerX(observation);
       return (
         inTableY(observation) &&
-        x >= modalX + 0.06 &&
-        x <= modalX + 0.25 &&
+        x >= rateLeft &&
+        x <= rateRight &&
         parsePercent(observation.text)
       );
     })
@@ -332,14 +390,14 @@ function characterRowsFromPage(page) {
     // excludes the Scout carousel on the left and the underlying UI on the right.
     const nameObservations = observations.filter((observation) => {
       const x = centerX(observation);
-      return inRow(observation) && x >= modalX - 0.17 && x <= modalX + 0.06;
+      return inRow(observation) && x >= nameLeft && x <= nameRight;
     });
     const featured = observations.some((observation) => {
       const x = centerX(observation);
       return (
         inRow(observation) &&
-        x >= modalX + 0.04 &&
-        x <= modalX + 0.28 &&
+        x >= featuredLeft &&
+        x <= featuredRight &&
         headingMode(observation.text) === true
       );
     });
@@ -361,35 +419,55 @@ export function extractCharacterRows(
   const nameIndex = createCharacterNameIndex(characters);
   const rows = [];
   const issues = [];
+  const firstPage = ocrPages[0];
+  if (!firstPage) return { rows, issues };
+
+  const geometryResult = characterTableGeometry(firstPage);
+  if (!geometryResult.geometry) {
+    return { rows, issues: [geometryResult.issue] };
+  }
+  const reconstructedRows = [];
 
   for (const page of ocrPages) {
-    const reconstructed = characterRowsFromPage(page);
+    const geometryIssue = incompatibleCharacterGeometry(
+      page,
+      geometryResult.geometry,
+    );
+    if (geometryIssue) {
+      issues.push(geometryIssue);
+      continue;
+    }
+    const reconstructed = characterRowsFromPage(page, geometryResult.geometry);
     issues.push(...reconstructed.issues);
-    for (const row of reconstructed.rows) {
-      const phrases = row.name ? [row.name] : [];
-      const resolution = resolveCharacter(
-        phrases,
-        nameIndex,
-        characters,
-        manualMappings,
-      );
-      if (!resolution.match) {
-        issues.push({
-          ...resolution.issue,
-          file: page.file,
-          rate: decimalToString(row.rate),
-          featured: row.featured,
-        });
-      } else {
-        rows.push({
-          character: resolution.match.character,
-          rate: row.rate,
-          featured: row.featured,
-          sourceText: resolution.match.phrase,
-          sourceFile: page.file,
-          manuallyResolved: resolution.match.manual,
-        });
-      }
+    reconstructedRows.push(
+      ...reconstructed.rows.map((row) => ({ ...row, sourceFile: page.file })),
+    );
+  }
+
+  for (const row of reconstructedRows) {
+    const phrases = row.name ? [row.name] : [];
+    const resolution = resolveCharacter(
+      phrases,
+      nameIndex,
+      characters,
+      manualMappings,
+    );
+    if (!resolution.match) {
+      issues.push({
+        ...resolution.issue,
+        file: row.sourceFile,
+        rate: decimalToString(row.rate),
+        featured: row.featured,
+      });
+    } else {
+      rows.push({
+        character: resolution.match.character,
+        rate: row.rate,
+        featured: row.featured,
+        sourceText: resolution.match.phrase,
+        sourceFile: row.sourceFile,
+        manuallyResolved: resolution.match.manual,
+      });
     }
   }
   return { rows, issues };
@@ -439,13 +517,20 @@ export function mergeCharacterRows(rows) {
   const byKey = new Map();
   const issues = [];
   for (const row of rows) {
-    const key = `${row.featured ? "featured" : "normal"}:${row.character.id}`;
+    const key = row.character.id;
     const existing = byKey.get(key);
     if (!existing) {
       byKey.set(key, row);
       continue;
     }
-    if (compareDecimal(existing.rate, row.rate) !== 0) {
+    if (existing.featured !== row.featured) {
+      issues.push({
+        code: "conflicting-character-featured",
+        message: `${row.character.id} has conflicting Featured status across screenshots`,
+        firstFile: existing.sourceFile,
+        secondFile: row.sourceFile,
+      });
+    } else if (compareDecimal(existing.rate, row.rate) !== 0) {
       issues.push({
         code: "conflicting-character-rate",
         message: `${row.character.id} has conflicting rates across screenshots`,

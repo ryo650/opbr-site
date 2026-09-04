@@ -10,6 +10,7 @@ import {
   calculateFinalScoutRates,
   calculateScoutRates,
   canonicalizeScoutTitle,
+  characterComparisonKey,
   extractCharacterRows,
   extractEndAt,
   extractScoutIdentity,
@@ -24,7 +25,7 @@ import {
   validateOrderedScreenshotOcr,
   validateScoutDraft,
 } from "./core.mjs";
-import { decimal, decimalToString } from "./decimal.mjs";
+import { decimal, decimalToString, sumDecimals } from "./decimal.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const characterDir = path.resolve(importerDir, "../../src/data/characters");
@@ -311,6 +312,27 @@ test("ambiguous OCR is reported and never fuzzily selected", () => {
   assert.equal(result.issues[0].suggestions[0].id, "monkey-d-luffy");
 });
 
+test("strict character comparison ignores OCR spaces but stops on key collisions", () => {
+  assert.equal(
+    characterComparisonKey("Battle of Monsters on On igashima Kaido"),
+    characterComparisonKey("Battle-of-Monsters-on-Onigashima-Kaido"),
+  );
+
+  const result = extractCharacterRows(
+    [characterPage([{
+      nameParts: ["Alpha Beta"],
+      rate: "1.0%",
+      featured: true,
+    }])],
+    [
+      { id: "alpha-beta", name: "Alpha-Beta", grade: "bf" },
+      { id: "alph-abeta", name: "Alph-Abeta", grade: "bf" },
+    ],
+  );
+  assert.equal(result.rows.length, 0);
+  assert.equal(result.issues[0].code, "ambiguous-character-name");
+});
+
 test("explicit reviewed character mappings resolve OCR without fuzzy matching", () => {
   const characters = [{ id: "monkey-d-luffy", name: "Monkey-D-Luffy", grade: "bf" }];
   const result = extractCharacterRows(
@@ -368,13 +390,140 @@ test("real Character Drop Rates boxes reconstruct rows and exclude the left Scou
   assert.equal(bfSelection.rows[0].character.id, "unexpected-collaboration-kaku");
 });
 
-test("duplicate character screenshots cross-check rates", () => {
+test("real continuation screenshots inherit table geometry and finalize all complete rows", async () => {
+  const master = await loadCharacterMaster(characterDir);
+  const extracted = extractCharacterRows(
+    realOcr.continuationCharacterScreens,
+    master.characters,
+  );
+  assert.deepEqual(
+    extracted.issues.filter(({ featured }) => featured !== false),
+    [],
+  );
+
+  const merged = mergeCharacterRows(extracted.rows);
+  assert.deepEqual(merged.issues, []);
+  assert.deepEqual(
+    merged.rows.map(({ character, featured, rate }) => ({
+      id: character.id,
+      featured,
+      rate: decimalToString(rate),
+    })),
+    [
+      {
+        id: "battle-of-monsters-on-onigashima-kaido",
+        featured: true,
+        rate: "0.2",
+      },
+      { id: "legendary-gladiator-kyros", featured: true, rate: "0.5" },
+      { id: "sakura-kingdom-king-dalton", featured: true, rate: "0.5" },
+      { id: "clear-clear-fruit-shiryu", featured: true, rate: "0.5" },
+      {
+        id: "unexpected-collaboration-kaku",
+        featured: false,
+        rate: "0.0092856",
+      },
+      {
+        id: "unexpected-collaboration-rob-lucci",
+        featured: false,
+        rate: "0.0092856",
+      },
+    ],
+  );
+
+  const shiryuRows = extracted.rows.filter(
+    ({ character }) => character.id === "clear-clear-fruit-shiryu",
+  );
+  assert.equal(shiryuRows.length, 1);
+  assert.equal(shiryuRows[0].sourceFile, "IMG_4792 2.PNG");
+
+  const pickups = merged.rows.filter(({ featured }) => featured);
+  assert.deepEqual(
+    pickups.map(({ character }) => character.id),
+    [
+      "battle-of-monsters-on-onigashima-kaido",
+      "legendary-gladiator-kyros",
+      "sakura-kingdom-king-dalton",
+      "clear-clear-fruit-shiryu",
+    ],
+  );
+  assert.equal(
+    decimalToString(sumDecimals(pickups.map(({ rate }) => rate))),
+    "1.7",
+  );
+
+  const bfSelection = selectNormalBfUnitRate(merged.rows);
+  assert.deepEqual(bfSelection.issues, []);
+  assert.equal(decimalToString(bfSelection.rate), "0.0092856");
+  assert.deepEqual(
+    bfSelection.rows.map(({ character }) => character.id),
+    [
+      "unexpected-collaboration-kaku",
+      "unexpected-collaboration-rob-lucci",
+    ],
+  );
+});
+
+test("continuation screenshots stop when inherited table geometry is unsafe", async () => {
+  const master = await loadCharacterMaster(characterDir);
+  const pages = structuredClone(realOcr.continuationCharacterScreens);
+  pages[1].dimensions = { width: 1170, height: 2532 };
+  const extracted = extractCharacterRows(pages, master.characters);
+  assert.ok(
+    extracted.issues.some(
+      ({ code }) => code === "incompatible-character-table-geometry",
+    ),
+  );
+  assert.equal(
+    extracted.rows.some(
+      ({ character }) => character.id === "clear-clear-fruit-shiryu",
+    ),
+    false,
+  );
+});
+
+test("duplicate character screenshots dedupe exact rows and cross-check conflicts", () => {
   const character = { id: "bf-one", name: "BF-One", grade: "bf" };
+  const duplicate = mergeCharacterRows([
+    { character, featured: true, rate: decimal("0.5"), sourceFile: "one.png" },
+    { character, featured: true, rate: decimal("0.5"), sourceFile: "two.png" },
+  ]);
+  assert.equal(duplicate.rows.length, 1);
+  assert.deepEqual(duplicate.issues, []);
+
   const merged = mergeCharacterRows([
     { character, featured: false, rate: decimal("0.01"), sourceFile: "one.png" },
     { character, featured: false, rate: decimal("0.02"), sourceFile: "two.png" },
   ]);
   assert.equal(merged.issues[0].code, "conflicting-character-rate");
+
+  const featuredConflict = mergeCharacterRows([
+    { character, featured: true, rate: decimal("0.5"), sourceFile: "one.png" },
+    { character, featured: false, rate: decimal("0.5"), sourceFile: "two.png" },
+  ]);
+  assert.equal(
+    featuredConflict.issues[0].code,
+    "conflicting-character-featured",
+  );
+});
+
+test("multiple non-featured BF rows must have the same unit rate", () => {
+  const result = selectNormalBfUnitRate([
+    {
+      character: { id: "bf-one", grade: "bf" },
+      featured: false,
+      rate: decimal("0.0092856"),
+      sourceFile: "one.png",
+    },
+    {
+      character: { id: "bf-two", grade: "bf" },
+      featured: false,
+      rate: decimal("0.01"),
+      sourceFile: "two.png",
+    },
+  ]);
+  assert.equal(result.rate, null);
+  assert.equal(result.issues[0].code, "normal-bf-rate-mismatch");
 });
 
 test("BF and star-4 calculations are exact fixed-point operations", () => {

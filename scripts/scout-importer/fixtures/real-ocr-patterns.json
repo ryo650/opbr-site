@@ -47,5 +47,52 @@
       { "text": "etails", "x": 0.8256, "y": 0.3082, "width": 0.0465, "height": 0.0283 },
       { "text": "Close", "x": 0.4695, "y": 0.0818, "width": 0.0625, "height": 0.0409 }
     ]
-  }
+  },
+  "continuationCharacterScreens": [
+    {
+      "file": "IMG_4791 2.PNG",
+      "dimensions": { "width": 2532, "height": 1170 },
+      "observations": [
+        { "text": "Character Drop Rates", "x": 0.3997, "y": 0.827, "width": 0.1802, "height": 0.0409 },
+        { "text": "Battle of Monsters on On", "x": 0.3677, "y": 0.717, "width": 0.1526, "height": 0.0283 },
+        { "text": "Featured Characters", "x": 0.5741, "y": 0.717, "width": 0.1541, "height": 0.0317 },
+        { "text": "igashima", "x": 0.4157, "y": 0.6698, "width": 0.0567, "height": 0.0346 },
+        { "text": "0.2000000 %", "x": 0.609, "y": 0.6665, "width": 0.0843, "height": 0.0318 },
+        { "text": "Kaido", "x": 0.4259, "y": 0.6352, "width": 0.0363, "height": 0.0283 },
+        { "text": "Featured Characters", "x": 0.5741, "y": 0.5282, "width": 0.1541, "height": 0.0284 },
+        { "text": "Legendary Gladiator", "x": 0.3823, "y": 0.5031, "width": 0.125, "height": 0.0346 },
+        { "text": "Kyros", "x": 0.4258, "y": 0.4617, "width": 0.0366, "height": 0.0358 },
+        { "text": "0.5000000 %", "x": 0.609, "y": 0.4778, "width": 0.0843, "height": 0.0317 },
+        { "text": "Featured Characters", "x": 0.5741, "y": 0.3581, "width": 0.1541, "height": 0.0318 },
+        { "text": "Sakura Kingdom / King", "x": 0.3735, "y": 0.3365, "width": 0.141, "height": 0.0314 },
+        { "text": "Dalton", "x": 0.4244, "y": 0.2987, "width": 0.0407, "height": 0.0283 },
+        { "text": "0.5000000%", "x": 0.609, "y": 0.3113, "width": 0.0843, "height": 0.0283 },
+        { "text": "Featured Characters", "x": 0.5756, "y": 0.1949, "width": 0.1526, "height": 0.0284 },
+        { "text": "Clear-Clear Fruit", "x": 0.3924, "y": 0.1726, "width": 0.1032, "height": 0.0318 },
+        { "text": "...", "x": 0.6105, "y": 0.1604, "width": 0.0785, "height": 0.0189 },
+        { "text": "Includes \"Get Points\"", "x": 0.0669, "y": 0.6821, "width": 0.0843, "height": 0.0224 }
+      ]
+    },
+    {
+      "file": "IMG_4792 2.PNG",
+      "dimensions": { "width": 2532, "height": 1170 },
+      "observations": [
+        { "text": "Featured Characters", "x": 0.5741, "y": 0.7956, "width": 0.1541, "height": 0.0318 },
+        { "text": "Clear-Clear Fruit", "x": 0.3924, "y": 0.7767, "width": 0.1032, "height": 0.0284 },
+        { "text": "0.5000000%", "x": 0.609, "y": 0.7484, "width": 0.0843, "height": 0.0283 },
+        { "text": "Shiryu", "x": 0.4242, "y": 0.7285, "width": 0.0396, "height": 0.0367 },
+        { "text": "Unexpected Collaboratio", "x": 0.3692, "y": 0.6034, "width": 0.1512, "height": 0.035 },
+        { "text": "n", "x": 0.439, "y": 0.566, "width": 0.0102, "height": 0.0252 },
+        { "text": "0.0092856 %", "x": 0.609, "y": 0.5658, "width": 0.0843, "height": 0.0319 },
+        { "text": "Kaku", "x": 0.4273, "y": 0.5283, "width": 0.0334, "height": 0.0283 },
+        { "text": "Unexpected Collaboratio", "x": 0.3692, "y": 0.3931, "width": 0.1512, "height": 0.0346 },
+        { "text": "n", "x": 0.439, "y": 0.3585, "width": 0.0102, "height": 0.0252 },
+        { "text": "0.0092856 %", "x": 0.609, "y": 0.3549, "width": 0.0844, "height": 0.0354 },
+        { "text": "Rob Lucci", "x": 0.4142, "y": 0.3172, "width": 0.0626, "height": 0.0323 },
+        { "text": "Giant Warrior", "x": 0.4041, "y": 0.1915, "width": 0.0828, "height": 0.0291 },
+        { "text": "0.0092856 %", "x": 0.609, "y": 0.1698, "width": 0.0858, "height": 0.0314 },
+        { "text": "Includes \"Get Points\"", "x": 0.0669, "y": 0.6821, "width": 0.0843, "height": 0.0224 }
+      ]
+    }
+  ]
 }
