@@ -61,6 +61,22 @@ export function multiplyDecimalByInteger(value, multiplier) {
   });
 }
 
+export function roundDecimal(value, scale) {
+  if (!Number.isSafeInteger(scale) || scale < 0) {
+    throw new Error(`Decimal scale must be a non-negative safe integer: ${scale}`);
+  }
+  if (value.scale <= scale) return normalizeDecimal(value);
+
+  const divisor = pow10(value.scale - scale);
+  let units = value.units / divisor;
+  const remainder = value.units % divisor;
+  const absoluteRemainder = remainder < 0n ? -remainder : remainder;
+  if (absoluteRemainder * 2n >= divisor) {
+    units += value.units < 0n ? -1n : 1n;
+  }
+  return normalizeDecimal({ units, scale });
+}
+
 export function compareDecimal(left, right) {
   const aligned = align(left, right);
   if (aligned.left < aligned.right) return -1;

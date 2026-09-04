@@ -7,6 +7,7 @@ import { loadCharacterMaster } from "./character-master.mjs";
 import {
   addScoutToIndex,
   automaticStartAt,
+  calculateFinalScoutRates,
   calculateScoutRates,
   canonicalizeScoutTitle,
   extractCharacterRows,
@@ -20,6 +21,7 @@ import {
   scoutVariableName,
   selectNormalBfUnitRate,
   validateOrderedScreenshotOcr,
+  validateScoutDraft,
 } from "./core.mjs";
 import { decimal, decimalToString } from "./decimal.mjs";
 
@@ -395,6 +397,57 @@ test("BF and star-4 calculations are exact fixed-point operations", () => {
   assert.equal(decimalToString(result.finalTotal), "100");
 });
 
+test("final rates round BF, derive star-4 from the rounded BF, and total 100", () => {
+  const characters = [
+    { id: "pickup-ex", grade: "ex" },
+    ...Array.from({ length: 147 }, (_, index) => ({
+      id: `normal-bf-${index}`,
+      grade: "bf",
+    })),
+  ];
+  const pickups = [{ characterId: "pickup-ex", rate: decimal("0.2000000") }];
+  const rateCalculation = calculateScoutRates({
+    totalFourStarRate: decimal("7.0000000"),
+    threeStarRate: decimal("35.0000000"),
+    twoStarRate: decimal("58.0000000"),
+    pickups,
+    bfUnitRate: decimal("0.0195804"),
+    characters,
+  });
+  const finalRates = calculateFinalScoutRates({
+    totalFourStarRate: decimal("7.0000000"),
+    threeStarRate: decimal("35.0000000"),
+    twoStarRate: decimal("58.0000000"),
+    pickups,
+    rateCalculation,
+  });
+
+  assert.equal(decimalToString(rateCalculation.bfTotal), "2.8783188");
+  assert.equal(decimalToString(rateCalculation.star4), "3.9216812");
+  assert.equal(decimalToString(pickups[0].rate), "0.2");
+  assert.equal(decimalToString(finalRates.bf), "2.88");
+  assert.equal(decimalToString(finalRates.star4), "3.92");
+  assert.equal(decimalToString(finalRates.star3), "35");
+  assert.equal(decimalToString(finalRates.star2), "58");
+  assert.equal(decimalToString(finalRates.total), "100");
+
+  const issues = validateScoutDraft({
+    name: "Sample Scout",
+    startAt: "2026-09-01T14:00:00+09:00",
+    endAt: "2026-09-15T13:59:59+09:00",
+    featuredCharacter: characters[0],
+    pickups,
+    totalFourStarRate: decimal("7"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("58"),
+    bfUnitRate: decimal("0.0195804"),
+    rateCalculation,
+    finalRates: { ...finalRates, total: decimal("99.99") },
+    characterIssues: [],
+  });
+  assert.ok(issues.includes("Final output rates total 99.99 instead of 100"));
+});
+
 test("character master is parsed from the repository TypeScript", async () => {
   const master = await loadCharacterMaster(characterDir);
   assert.ok(master.characters.length > 300);
@@ -415,10 +468,14 @@ test("generated module and index follow existing ScoutBanner registration", () =
     pickups: [{ characterId: "pickup-bf", rate: decimal("1") }],
     threeStarRate: decimal("35"),
     twoStarRate: decimal("58"),
-    rateCalculation: { bfTotal: decimal("1.5"), star4: decimal("4.5") },
+    rateCalculation: { bfTotal: decimal("1.49999"), star4: decimal("4.50001") },
+    finalRates: { bf: decimal("1.5"), star4: decimal("4.5") },
   };
   const moduleSource = renderScoutModule(draft);
   assert.match(moduleSource, /export const scoutSampleScout: ScoutBanner/);
+  assert.match(moduleSource, /bf: 1\.5,/);
+  assert.match(moduleSource, /"star-4": 4\.5,/);
+  assert.doesNotMatch(moduleSource, /1\.49999|4\.50001/);
   assert.doesNotMatch(moduleSource, /^\+/m);
   const index = addScoutToIndex(
     'import { old } from "./old";\n\nexport const scouts = [\n    old\n]\n',

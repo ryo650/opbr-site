@@ -103,7 +103,14 @@ bfTotal = bfCount * normal BF unit rate
 star-4 = ★4 total - pickup total - bfTotal
 ```
 
-★4/★3/★2、pickup、characterId、通常BF rate、非負のBF/star-4、最終rate合計、入力されたScout名、3枚目から生成したScout ID、endAt、featuredCharacterId、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
+この高精度計算結果はvalidation用に維持します。生成する最終ratesでは、pickup rateはOCRの値を丸めず保持し、BF合計だけを小数第2位へ丸めます。star-4は丸め後のBFを使った残差を小数第2位へ丸めます。star-3とstar-2はOCRの取得値をそのまま使用します。
+
+```text
+final bf = round(bfTotal, 2)
+final star-4 = round(★4 total - pickup total - final bf, 2)
+```
+
+★4/★3/★2、pickup、characterId、通常BF rate、非負のraw BF/star-4、高精度rate合計、最終出力rate合計が正確に100%、入力されたScout名、3枚目から生成したScout ID、endAt、featuredCharacterId、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
 
 ## V1の制限
 

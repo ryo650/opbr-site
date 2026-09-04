@@ -21,6 +21,7 @@ import { loadCharacterMaster } from "./character-master.mjs";
 import {
   addScoutToIndex,
   automaticStartAt,
+  calculateFinalScoutRates,
   calculateScoutRates,
   decimalDisplay,
   extractCharacterRows,
@@ -255,10 +256,13 @@ function printSummary(draft, outputDataPath, outputBannerPath, indexPath, banner
   console.log(`★4 total: ${decimalDisplay(draft.totalFourStarRate)}%`);
   console.log(`BF unit rate: ${decimalDisplay(draft.bfUnitRate)}%`);
   console.log(`BF count: ${calculation?.bfCount ?? "<unavailable>"}`);
-  console.log(`Calculated BF: ${decimalDisplay(calculation?.bfTotal)}%`);
-  console.log(`Calculated star-4: ${decimalDisplay(calculation?.star4)}%`);
+  console.log(`Calculated BF raw: ${decimalDisplay(calculation?.bfTotal)}%`);
+  console.log(`Calculated star-4 raw: ${decimalDisplay(calculation?.star4)}%`);
+  console.log(`Final BF: ${decimalDisplay(draft.finalRates?.bf)}%`);
+  console.log(`Final star-4: ${decimalDisplay(draft.finalRates?.star4)}%`);
   console.log(`★3: ${decimalDisplay(draft.threeStarRate)}%`);
   console.log(`★2: ${decimalDisplay(draft.twoStarRate)}%`);
+  console.log(`Final rates total: ${decimalDisplay(draft.finalRates?.total)}%`);
   console.log(`Banner source: ${banner.file} (${banner.width}x${banner.height}, no crop)`);
   console.log("Planned output files:");
   console.log(`  ${path.relative(projectDir, outputDataPath)}`);
@@ -457,6 +461,15 @@ const rateCalculation = hasRequiredRates
       characters: characterMaster.characters,
     })
   : null;
+const finalRates = rateCalculation
+  ? calculateFinalScoutRates({
+      totalFourStarRate: rateSummary.fourStar,
+      threeStarRate: rateSummary.threeStar,
+      twoStarRate: rateSummary.twoStar,
+      pickups,
+      rateCalculation,
+    })
+  : null;
 const draft = {
   id,
   variableName,
@@ -470,6 +483,7 @@ const draft = {
   twoStarRate: rateSummary.twoStar,
   bfUnitRate,
   rateCalculation,
+  finalRates,
   characterIssues,
   bannerPublicPath: location.publicPath,
 };
