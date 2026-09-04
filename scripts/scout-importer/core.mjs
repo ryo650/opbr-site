@@ -422,6 +422,19 @@ export function selectNormalBfUnitRate(rows) {
   return { rate, rows: normalBfRows, issues };
 }
 
+export function parseBfCountOverride(value) {
+  if (value === undefined || value === null) return null;
+  const source = String(value).trim();
+  if (!/^[1-9]\d*$/.test(source)) {
+    throw new Error("--bf-count must be a positive integer");
+  }
+  const count = Number(source);
+  if (!Number.isSafeInteger(count)) {
+    throw new Error("--bf-count must be a positive safe integer");
+  }
+  return count;
+}
+
 export function mergeCharacterRows(rows) {
   const byKey = new Map();
   const issues = [];
@@ -451,13 +464,21 @@ export function calculateScoutRates({
   pickups,
   bfUnitRate,
   characters,
+  bfCountOverride = null,
 }) {
   const pickupIds = new Set(pickups.map(({ characterId }) => characterId));
   const allBfCount = characters.filter(({ grade }) => grade === "bf").length;
   const pickupBfCount = characters.filter(
     ({ id, grade }) => grade === "bf" && pickupIds.has(id),
   ).length;
-  const bfCount = allBfCount - pickupBfCount;
+  if (
+    bfCountOverride !== null &&
+    (!Number.isSafeInteger(bfCountOverride) || bfCountOverride <= 0)
+  ) {
+    throw new Error("bfCountOverride must be a positive safe integer");
+  }
+  const bfCount = bfCountOverride ?? (allBfCount - pickupBfCount);
+  const bfCountSource = bfCountOverride === null ? "character master" : "override";
   const pickupTotal = sumDecimals(pickups.map(({ rate }) => rate));
   const bfTotal = multiplyDecimalByInteger(bfUnitRate, bfCount);
   const star4 = subtractDecimal(
@@ -475,6 +496,7 @@ export function calculateScoutRates({
     allBfCount,
     pickupBfCount,
     bfCount,
+    bfCountSource,
     pickupTotal,
     bfTotal,
     star4,

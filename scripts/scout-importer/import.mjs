@@ -29,6 +29,7 @@ import {
   mergeCharacterRows,
   naturalImageCompare,
   normalizeCharacterName,
+  parseBfCountOverride,
   parseDateOverride,
   renderScoutModule,
   scoutVariableName,
@@ -60,6 +61,7 @@ Options:
   --name <name>                 Scout name (required outside a TTY)
   --end-at <date>               Override OCR end date after visual review
   --id <id>                     Override ID generated from the 3rd image title
+  --bf-count <number>           Override the character-master BF pool count
   --character-map <ocr=id>      Explicitly resolve one reviewed OCR name (repeatable)
   --dry-run                     Validate and print without writing any files
   --help                        Show this help
@@ -74,6 +76,7 @@ function parseArgs(argv) {
     ["--name", "name"],
     ["--end-at", "endAt"],
     ["--id", "id"],
+    ["--bf-count", "bfCount"],
   ]);
   for (let index = 0; index < argv.length; index += 1) {
     const argument = argv[index];
@@ -213,13 +216,8 @@ async function existingScoutIds() {
   return ids;
 }
 
-function bannerLocation(featuredCharacter, id) {
-  const subdirectory = ["ex", "bf"].includes(featuredCharacter.grade)
-    ? featuredCharacter.grade
-    : null;
-  const relative = subdirectory
-    ? path.join("scouts", subdirectory, `${id}.webp`)
-    : path.join("scouts", `${id}.webp`);
+function bannerLocation(id) {
+  const relative = path.join("scouts", `${id}.webp`);
   return {
     productionPath: path.join(projectDir, "public", relative),
     publicPath: `/${relative.split(path.sep).join("/")}`,
@@ -255,7 +253,9 @@ function printSummary(draft, outputDataPath, outputBannerPath, indexPath, banner
   }
   console.log(`★4 total: ${decimalDisplay(draft.totalFourStarRate)}%`);
   console.log(`BF unit rate: ${decimalDisplay(draft.bfUnitRate)}%`);
-  console.log(`BF count: ${calculation?.bfCount ?? "<unavailable>"}`);
+  console.log(
+    `BF count: ${calculation ? `${calculation.bfCount} (${calculation.bfCountSource})` : "<unavailable>"}`,
+  );
   console.log(`Calculated BF raw: ${decimalDisplay(calculation?.bfTotal)}%`);
   console.log(`Calculated star-4 raw: ${decimalDisplay(calculation?.star4)}%`);
   console.log(`Final BF: ${decimalDisplay(draft.finalRates?.bf)}%`);
@@ -341,6 +341,7 @@ const featuredCharacterId = options.featuredCharacterId ?? await promptFeaturedC
 const name = options.name ?? await promptScoutName();
 const featuredCharacter = characterMaster.byId.get(featuredCharacterId) ?? null;
 const mappings = manualMappings(options.characterMaps, characterMaster);
+const bfCountOverride = parseBfCountOverride(options.bfCount);
 const startAt = options.startAt
   ? parseDateOverride(options.startAt, "startAt")
   : automaticStartAt();
@@ -441,9 +442,7 @@ if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
   throw new Error(`Scout id must be lowercase kebab-case: ${id}`);
 }
 const variableName = scoutVariableName(id);
-const location = featuredCharacter
-  ? bannerLocation(featuredCharacter, id)
-  : { productionPath: path.join(projectDir, "public/scouts", `${id}.webp`), publicPath: `/scouts/${id}.webp` };
+const location = bannerLocation(id);
 const dataPath = path.join(scoutDataDir, `${id}.ts`);
 const dimensions = imageDimensions(magickCommand, banner.path);
 if (dimensions.width <= 0 || dimensions.height <= 0) {
@@ -459,6 +458,7 @@ const rateCalculation = hasRequiredRates
       pickups,
       bfUnitRate,
       characters: characterMaster.characters,
+      bfCountOverride,
     })
   : null;
 const finalRates = rateCalculation

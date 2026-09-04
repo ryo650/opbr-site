@@ -15,6 +15,7 @@ import {
   extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
+  parseBfCountOverride,
   parseDateOverride,
   parseDropRates,
   renderScoutModule,
@@ -392,9 +393,34 @@ test("BF and star-4 calculations are exact fixed-point operations", () => {
     characters,
   });
   assert.equal(result.bfCount, 2);
+  assert.equal(result.bfCountSource, "character master");
   assert.equal(decimalToString(result.bfTotal), "0.0246912");
   assert.equal(decimalToString(result.star4), "5.9753088");
   assert.equal(decimalToString(result.finalTotal), "100");
+});
+
+test("BF count override replaces the character-master count and validates input", () => {
+  assert.equal(parseBfCountOverride(undefined), null);
+  assert.equal(parseBfCountOverride("147"), 147);
+  for (const invalid of ["0", "-1", "1.5", "abc", "9007199254740992"]) {
+    assert.throws(() => parseBfCountOverride(invalid), /positive/);
+  }
+
+  const result = calculateScoutRates({
+    totalFourStarRate: decimal("7"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("58"),
+    pickups: [{ characterId: "pickup-bf", rate: decimal("0.2") }],
+    bfUnitRate: decimal("0.0195804"),
+    characters: [
+      { id: "pickup-bf", grade: "bf" },
+      { id: "normal-bf", grade: "bf" },
+    ],
+    bfCountOverride: 147,
+  });
+  assert.equal(result.bfCount, 147);
+  assert.equal(result.bfCountSource, "override");
+  assert.equal(decimalToString(result.bfTotal), "2.8783188");
 });
 
 test("final rates round BF, derive star-4 from the rounded BF, and total 100", () => {
@@ -461,7 +487,7 @@ test("generated module and index follow existing ScoutBanner registration", () =
     id: "sample-scout",
     variableName,
     name: "Sample Scout",
-    bannerPublicPath: "/scouts/bf/sample-scout.webp",
+    bannerPublicPath: "/scouts/sample-scout.webp",
     startAt: "2026-09-01T14:00:00+09:00",
     endAt: "2026-09-15T13:59:59+09:00",
     featuredCharacter: { id: "pickup-bf" },
@@ -473,6 +499,7 @@ test("generated module and index follow existing ScoutBanner registration", () =
   };
   const moduleSource = renderScoutModule(draft);
   assert.match(moduleSource, /export const scoutSampleScout: ScoutBanner/);
+  assert.match(moduleSource, /bannerImg: "\/scouts\/sample-scout\.webp"/);
   assert.match(moduleSource, /bf: 1\.5,/);
   assert.match(moduleSource, /"star-4": 4\.5,/);
   assert.doesNotMatch(moduleSource, /1\.49999|4\.50001/);

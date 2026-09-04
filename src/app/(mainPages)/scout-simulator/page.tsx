@@ -7,9 +7,20 @@ function isCurrentScout(endAt: string): boolean {
   return new Date(endAt).getTime() >= Date.now();
 }
 
+function newestScoutFirst(
+  left: (typeof scouts)[number],
+  right: (typeof scouts)[number],
+): number {
+  return new Date(right.startAt).getTime() - new Date(left.startAt).getTime();
+}
+
 export default function ScoutSimulatorPage() {
-  const currentScouts = scouts.filter((scout) => isCurrentScout(scout.endAt));
-  const pastScouts = scouts.filter((scout) => !isCurrentScout(scout.endAt));
+  const currentScouts = scouts
+    .filter((scout) => isCurrentScout(scout.endAt))
+    .sort(newestScoutFirst);
+  const pastScouts = scouts
+    .filter((scout) => !isCurrentScout(scout.endAt))
+    .sort(newestScoutFirst);
 
   return (
     <main className={`${styles.page} upper-page-background`}>

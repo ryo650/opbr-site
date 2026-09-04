@@ -88,10 +88,13 @@ npm run scouts:import -- --dry-run \
 
 - `--end-at "2026-09-15 13:59"`
 - `--id some-stable-scout-id`
+- `--bf-count 147`
 
 Scout IDは3枚目の `Show Drop Rates` モーダル見出しを基準に、bounding boxで特定した直下のタイトル領域だけから生成します。先頭の `3-Step` / `4-Step` など、末尾の `Step 1` など、括弧や不要な記号を除いてcanonical titleを作り、lowercase kebab-caseへ変換します。領域を一意かつ安全に特定できない場合や既存IDと重複した場合は、巨大なslugやsuffixを生成せず停止します。タイトルを正しく取得できない場合だけ、目視確認後に `--id` でoverrideします。
 
-1枚目のbanner画像にはcrop、resize、位置調整を行いません。メタデータを除去して品質90のWebPへ変換し、入力画像と同じpixel寸法で出力します。
+1枚目のbanner画像にはcrop、resize、位置調整を行いません。メタデータを除去して品質90のWebPへ変換し、入力画像と同じpixel寸法で `public/scouts/<id>.webp` に出力します。生成する `ScoutBanner.bannerImg` も `/scouts/<id>.webp` です。既存の `public/scouts/ex/`・`public/scouts/bf/` 配下の画像と既存Scoutデータは移行しません。
+
+Scout SimulatorのCurrent/Past分類は従来どおりendAtで行い、それぞれの一覧をstartAt降順で表示します。表示順は `src/data/scouts/index.ts` の登録位置には依存しません。
 
 ## Validationと計算
 
@@ -102,6 +105,8 @@ bfCount = all BF - pickup BF
 bfTotal = bfCount * normal BF unit rate
 star-4 = ★4 total - pickup total - bfTotal
 ```
+
+通常ケースでは最新character masterのBF poolからbfCountを自動計算します。過去Scoutや特殊poolだけは `--bf-count <number>` で正の整数を明示し、その値をbfCountとして使用できます。dry-runには由来を `(character master)` または `(override)` と表示します。通常は自動、例外だけoverrideする方針です。
 
 この高精度計算結果はvalidation用に維持します。生成する最終ratesでは、pickup rateはOCRの値を丸めず保持し、BF合計だけを小数第2位へ丸めます。star-4は丸め後のBFを使った残差を小数第2位へ丸めます。star-3とstar-2はOCRの取得値をそのまま使用します。
 
