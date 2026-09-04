@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
-import { memo, useCallback, useEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
+import { memo, startTransition, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore, type RefObject } from "react";
 import { Filter, Search, X } from "lucide-react";
 import {
   matchesUniqueTraitFilters,
@@ -33,6 +33,7 @@ type Sort = "default" | "az" | "za" | "category" | "match";
 type Tab = "medals" | "analysis" | "set-effects";
 type FilterSection = "tag-effects" | "unique-traits" | "traits" | "effects" | "reductions";
 type MedalSlots = [Medal | null, Medal | null, Medal | null];
+type SelectionCountStore = ReturnType<typeof createSelectionCountStore>;
 
 const INITIAL_VISIBLE_MEDALS = 60;
 const MEDAL_BATCH_SIZE = 60;
@@ -40,11 +41,91 @@ const MOBILE_COLUMNS = 7;
 const NARROW_MOBILE_COLUMNS = 6;
 const MOBILE_MEDAL_SIZE = 48;
 const MOBILE_ROW_GAP = 12;
+const DRAG_PREVIEW_SIZE = 64;
 const getServerMediaSnapshot = () => false;
+const getServerSelectionCount = () => 0;
+const emptySelectedTagIds = new Set<string>();
 
 const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", hp: "HP", crit: "CRIT" };
 const labelId = (value: string) => value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 const medalImage = (medal: Medal) => `/medals/${medal.id}.webp`;
+
+function createSelectionCountStore() {
+  let counts: ReadonlyMap<string, number> = new Map();
+  const listenersByMedalId = new Map<string, Set<() => void>>();
+
+  return {
+    getSnapshot(medalId: string) {
+      return counts.get(medalId) ?? 0;
+    },
+    subscribe(medalId: string, listener: () => void) {
+      const listeners = listenersByMedalId.get(medalId) ?? new Set<() => void>();
+      listeners.add(listener);
+      listenersByMedalId.set(medalId, listeners);
+      return () => {
+        listeners.delete(listener);
+        if (!listeners.size) listenersByMedalId.delete(medalId);
+      };
+    },
+    update(nextCounts: ReadonlyMap<string, number>) {
+      const affectedMedalIds = new Set([...counts.keys(), ...nextCounts.keys()]);
+      const previousCounts = counts;
+      counts = nextCounts;
+      affectedMedalIds.forEach((medalId) => {
+        if ((previousCounts.get(medalId) ?? 0) === (nextCounts.get(medalId) ?? 0)) return;
+        listenersByMedalId.get(medalId)?.forEach((listener) => listener());
+      });
+    },
+  };
+}
+
+function useSelectedMedalCount(store: SelectionCountStore, medalId: string) {
+  const subscribe = useCallback((listener: () => void) => store.subscribe(medalId, listener), [medalId, store]);
+  const getSnapshot = useCallback(() => store.getSnapshot(medalId), [medalId, store]);
+  return useSyncExternalStore(subscribe, getSnapshot, getServerSelectionCount);
+}
+
+function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElement) {
+  const pixelRatio = window.devicePixelRatio || 1;
+  canvas.width = Math.round(DRAG_PREVIEW_SIZE * pixelRatio);
+  canvas.height = Math.round(DRAG_PREVIEW_SIZE * pixelRatio);
+
+  const context = canvas.getContext("2d");
+  if (!context) return false;
+
+  context.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+  context.clearRect(0, 0, DRAG_PREVIEW_SIZE, DRAG_PREVIEW_SIZE);
+  context.imageSmoothingEnabled = true;
+  context.imageSmoothingQuality = "high";
+
+  const center = DRAG_PREVIEW_SIZE / 2;
+  const artworkScale = Math.max(
+    DRAG_PREVIEW_SIZE / image.naturalWidth,
+    DRAG_PREVIEW_SIZE / image.naturalHeight,
+  ) * 1.1;
+  const artworkWidth = image.naturalWidth * artworkScale;
+  const artworkHeight = image.naturalHeight * artworkScale;
+
+  context.save();
+  context.beginPath();
+  context.arc(center, center, center - 1, 0, Math.PI * 2);
+  context.clip();
+  context.drawImage(
+    image,
+    (DRAG_PREVIEW_SIZE - artworkWidth) / 2 + DRAG_PREVIEW_SIZE * 0.03,
+    (DRAG_PREVIEW_SIZE - artworkHeight) / 2 + DRAG_PREVIEW_SIZE * 0.04,
+    artworkWidth,
+    artworkHeight,
+  );
+  context.restore();
+
+  context.beginPath();
+  context.arc(center, center, center - 1, 0, Math.PI * 2);
+  context.strokeStyle = "#fbbf24";
+  context.lineWidth = 2;
+  context.stroke();
+  return true;
+}
 
 function MedalArt({ medal, sizes, eager = false }: { medal: Medal; sizes: string; eager?: boolean }) {
   return <span className={styles.medalArt} data-medal-art>
@@ -76,7 +157,9 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   const [tab, setTab] = useState<Tab>("medals");
   const [dragSlot, setDragSlot] = useState<number | null>(null);
   const [visibleCount, setVisibleCount] = useState(INITIAL_VISIBLE_MEDALS);
+  const [selectionCountStore] = useState(createSelectionCountStore);
   const loadMoreRef = useRef<HTMLDivElement>(null);
+  const dragPreviewRef = useRef<HTMLCanvasElement>(null);
   const isMobile = useMediaQuery("(max-width: 700px)");
 
   const selected = useMemo(() => slots.filter((medal): medal is Medal => medal !== null), [slots]);
@@ -111,6 +194,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   const searchNeedle = useMemo(() => query.trim().toLocaleLowerCase(), [query]);
   const uniqueTraitNeedle = useMemo(() => uniqueTraitQuery.trim().toLocaleLowerCase(), [uniqueTraitQuery]);
   const selectedTagIds = useMemo(() => new Set(selected.flatMap((medal) => medal.tags.map((tag) => tag.id))), [selected]);
+  const selectedTagIdsForSort = useDeferredValue(sort === "match" ? selectedTagIds : emptySelectedTagIds);
 
   const baseFiltered = useMemo(() => {
     return medals.filter((medal) => {
@@ -140,11 +224,11 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
 
   const filtered = useMemo(() => {
     if (sort !== "match") return normallySorted;
-    const matchCount = (medal: Medal) => medal.tags.reduce((total, tag) => total + Number(selectedTagIds.has(tag.id)), 0);
+    const matchCount = (medal: Medal) => medal.tags.reduce((total, tag) => total + Number(selectedTagIdsForSort.has(tag.id)), 0);
     return baseFiltered.map((medal, index) => ({ medal, index })).sort((a, b) =>
       matchCount(b.medal) - matchCount(a.medal) || a.index - b.index
     ).map(({ medal }) => medal);
-  }, [baseFiltered, normallySorted, selectedTagIds, sort]);
+  }, [baseFiltered, normallySorted, selectedTagIdsForSort, sort]);
 
   const commonTags = useMemo(() => {
     const matches = new Map<string, { name: string; count: number }>();
@@ -160,6 +244,10 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
   );
   const visibleMedals = useMemo(() => filtered.slice(0, visibleCount), [filtered, visibleCount]);
   const hasMoreMedals = visibleCount < filtered.length;
+
+  useLayoutEffect(() => {
+    selectionCountStore.update(selectedCounts);
+  }, [selectedCounts, selectionCountStore]);
 
   useEffect(() => {
     const sentinel = loadMoreRef.current;
@@ -188,11 +276,11 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
       next[slotIndex] = medal;
       return next;
     });
-    if (sort === "match") setVisibleCount(INITIAL_VISIBLE_MEDALS);
+    if (sort === "match") startTransition(() => setVisibleCount(INITIAL_VISIBLE_MEDALS));
   };
   const removeMedal = (slotIndex: number) => {
     setSlots((current) => current.map((item, slot) => slot === slotIndex ? null : item) as MedalSlots);
-    if (sort === "match") setVisibleCount(INITIAL_VISIBLE_MEDALS);
+    if (sort === "match") startTransition(() => setVisibleCount(INITIAL_VISIBLE_MEDALS));
   };
   const handleDrop = (event: React.DragEvent, slotIndex: number) => {
     event.preventDefault(); setDragSlot(null);
@@ -214,16 +302,24 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     event.dataTransfer.effectAllowed = "copy";
     const medalArt = event.currentTarget.querySelector<HTMLElement>("[data-medal-art]");
     if (!medalArt) return;
-    const dragPreview = document.createElement("div");
-    dragPreview.className = styles.dragPreview;
-    dragPreview.setAttribute("aria-hidden", "true");
-    dragPreview.appendChild(medalArt.cloneNode(true));
-    document.body.appendChild(dragPreview);
+    const renderedImage = medalArt.querySelector<HTMLImageElement>("img");
+    const dragPreview = dragPreviewRef.current;
+    if (!dragPreview || !renderedImage?.complete || !renderedImage.naturalWidth || !paintMedalDragPreview(dragPreview, renderedImage)) {
+      const { width, height } = medalArt.getBoundingClientRect();
+      event.dataTransfer.setDragImage(medalArt, width / 2, height / 2);
+      return;
+    }
+
     const { width, height } = dragPreview.getBoundingClientRect();
     dragPreview.style.left = `${event.clientX - width / 2}px`;
     dragPreview.style.top = `${event.clientY - height / 2}px`;
+    dragPreview.classList.add(styles.dragPreviewActive);
     event.dataTransfer.setDragImage(dragPreview, width / 2, height / 2);
-    requestAnimationFrame(() => dragPreview.remove());
+    requestAnimationFrame(() => {
+      dragPreview.classList.remove(styles.dragPreviewActive);
+      dragPreview.style.removeProperty("left");
+      dragPreview.style.removeProperty("top");
+    });
   }, []);
 
   const filterPanel = <div className={styles.filterPanel}>
@@ -250,7 +346,7 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
     <section className={styles.currentSet} aria-labelledby="current-set-title">
       <div className={styles.setHeading}><span className={styles.kicker}>Your loadout</span><h2 id="current-set-title">Current Medal Set</h2><p>Open a medal for details, or drag it into a slot.</p></div>
       <div className={styles.slots}>{slots.map((medal, index) => <div className={styles.slotWrap} key={index}>
-        <div className={`${styles.slot} ${medal ? styles.filledSlot : ""} ${dragSlot === index ? styles.dragTarget : ""}`} onDragOver={(event) => { event.preventDefault(); setDragSlot(index); }} onDragLeave={() => setDragSlot(null)} onDrop={(event) => handleDrop(event, index)}>
+        <div className={`${styles.slot} ${medal ? styles.filledSlot : ""} ${dragSlot === index ? styles.dragTarget : ""}`} data-slot-state={medal ? "filled" : "empty"} onDragOver={(event) => { event.preventDefault(); setDragSlot(index); }} onDragLeave={() => setDragSlot(null)} onDrop={(event) => handleDrop(event, index)}>
           {medal ? <button type="button" className={styles.currentMedalButton} onClick={() => setDetailMedal(medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog"><MedalArt medal={medal} sizes="110px" eager /></button> : <span className={styles.emptySlot}>{index + 1}</span>}
           {medal && <button type="button" className={styles.removeButton} onClick={() => removeMedal(index)} aria-label={`Remove ${medal.name}`}><X /></button>}
         </div><strong>SLOT {index + 1}</strong>
@@ -268,22 +364,20 @@ export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
         <div className={styles.browserTop}><div><span className={styles.kicker}>Production catalog</span><h2>Medal Browser</h2><p>{filtered.length} of {medals.length} medals</p></div><button type="button" className={styles.filterButton} onClick={() => setFiltersOpen(true)}><Filter /> Filters{activeFilterCount ? ` (${activeFilterCount})` : ""}</button></div>
         <div className={styles.controls}><label className={styles.search}><Search /><span className={styles.srOnly}>Search medals</span><input value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(INITIAL_VISIBLE_MEDALS); }} placeholder="Search name or tag…" /></label><label className={styles.sort}><span>Sort</span><select value={sort} onChange={(event) => { setSort(event.target.value as Sort); setVisibleCount(INITIAL_VISIBLE_MEDALS); }}><option value="default">Default</option><option value="az">Name A–Z</option><option value="za">Name Z–A</option><option value="category">Category</option><option value="match">Best Tag Match</option></select></label></div>
         <div className={styles.browserBody}><aside className={styles.desktopFilters}>{filterPanel}</aside>{isMobile
-          ? <MobileMedalGrid medals={filtered} selectedCounts={selectedCounts} onOpen={openMedalDetails} onDragStart={startMedalDrag} active={tab === "medals"} />
-          : <div className={styles.medalGrid}>
-            {visibleMedals.map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectedCount={selectedCounts.get(medal.id) ?? 0} onOpen={openMedalDetails} onDragStart={startMedalDrag} />)}
-            {hasMoreMedals && <div ref={loadMoreRef} className={styles.loadMoreSentinel} aria-hidden="true" />}
-            {!filtered.length && <EmptyMedalGrid />}
-          </div>}
+          ? <MobileMedalGrid medals={filtered} selectionCountStore={selectionCountStore} onOpen={openMedalDetails} onDragStart={startMedalDrag} active={tab === "medals"} />
+          : <DesktopMedalGrid medals={visibleMedals} selectionCountStore={selectionCountStore} onOpen={openMedalDetails} onDragStart={startMedalDrag} hasMoreMedals={hasMoreMedals} loadMoreRef={loadMoreRef} />}
         </div>
       </section>
     </div>
   </div>
   {filtersOpen && <div className={styles.drawer} role="dialog" aria-modal="true" aria-label="Medal filters"><button className={styles.backdrop} onClick={() => setFiltersOpen(false)} aria-label="Close filters" />{filterPanel}</div>}
   {detailMedal && <MedalDetails medal={detailMedal} slots={slots} onPlace={setMedal} onRemove={removeMedal} onClose={() => setDetailMedal(null)} />}
+  <canvas ref={dragPreviewRef} className={styles.dragPreview} width={DRAG_PREVIEW_SIZE} height={DRAG_PREVIEW_SIZE} aria-hidden="true" />
   </main>;
 }
 
-const MedalBrowserItem = memo(function MedalBrowserItem({ medal, selectedCount, onOpen, onDragStart }: { medal: Medal; selectedCount: number; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void }) {
+const MedalBrowserItem = memo(function MedalBrowserItem({ medal, selectionCountStore, onOpen, onDragStart }: { medal: Medal; selectionCountStore: SelectionCountStore; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void }) {
+  const selectedCount = useSelectedMedalCount(selectionCountStore, medal.id);
   return <button type="button" className={`${styles.medalButton} ${selectedCount ? styles.selectedMedal : ""}`} data-name={medal.name} onClick={() => onOpen(medal)} draggable onDragStart={(event) => onDragStart(event, medal)} aria-label={`View ${medal.name} details`} aria-haspopup="dialog" aria-pressed={selectedCount > 0}>
     <MedalArt medal={medal} sizes="(max-width: 700px) 48px, 82px" />
     <span className={styles.tooltip}>{medal.name}</span>
@@ -291,7 +385,15 @@ const MedalBrowserItem = memo(function MedalBrowserItem({ medal, selectedCount, 
   </button>;
 });
 
-function MobileMedalGrid({ medals, selectedCounts, onOpen, onDragStart, active }: { medals: readonly Medal[]; selectedCounts: ReadonlyMap<string, number>; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void; active: boolean }) {
+const DesktopMedalGrid = memo(function DesktopMedalGrid({ medals, selectionCountStore, onOpen, onDragStart, hasMoreMedals, loadMoreRef }: { medals: readonly Medal[]; selectionCountStore: SelectionCountStore; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void; hasMoreMedals: boolean; loadMoreRef: RefObject<HTMLDivElement | null> }) {
+  return <div className={styles.medalGrid}>
+    {medals.map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectionCountStore={selectionCountStore} onOpen={onOpen} onDragStart={onDragStart} />)}
+    {hasMoreMedals && <div ref={loadMoreRef} className={styles.loadMoreSentinel} aria-hidden="true" />}
+    {!medals.length && <EmptyMedalGrid />}
+  </div>;
+});
+
+const MobileMedalGrid = memo(function MobileMedalGrid({ medals, selectionCountStore, onOpen, onDragStart, active }: { medals: readonly Medal[]; selectionCountStore: SelectionCountStore; onOpen: (medal: Medal) => void; onDragStart: (event: React.DragEvent<HTMLButtonElement>, medal: Medal) => void; active: boolean }) {
   const isNarrowMobile = useMediaQuery("(max-width: 360px)");
   const columnCount = isNarrowMobile ? NARROW_MOBILE_COLUMNS : MOBILE_COLUMNS;
   const rowCount = Math.ceil(medals.length / columnCount);
@@ -334,12 +436,12 @@ function MobileMedalGrid({ medals, selectedCounts, onOpen, onDragStart, active }
           data-index={virtualRow.index}
           style={{ transform: `translateY(${virtualRow.start - scrollMargin}px)` }}
         >
-          {medals.slice(rowStart, rowStart + columnCount).map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectedCount={selectedCounts.get(medal.id) ?? 0} onOpen={onOpen} onDragStart={onDragStart} />)}
+          {medals.slice(rowStart, rowStart + columnCount).map((medal) => <MedalBrowserItem key={medal.id} medal={medal} selectionCountStore={selectionCountStore} onOpen={onOpen} onDragStart={onDragStart} />)}
         </div>;
       })}
     </div>
   </div>;
-}
+});
 
 function EmptyMedalGrid() {
   return <div className={styles.empty}><strong>No medals found</strong><span>Try clearing filters or using a different search.</span></div>;
