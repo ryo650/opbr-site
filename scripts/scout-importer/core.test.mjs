@@ -9,11 +9,10 @@ import {
   automaticStartAt,
   calculateFinalScoutRates,
   calculateScoutRates,
-  canonicalizeScoutTitle,
   characterComparisonKey,
+  createDefaultScoutId,
   extractCharacterRows,
   extractEndAt,
-  extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
   parseBfCountOverride,
@@ -123,56 +122,35 @@ test("Drop Rates summary keeps seven-decimal OCR precision", () => {
   assert.equal(decimalToString(rates.twoStar), "58");
 });
 
-test("Scout ID uses the canonical title from the top of the Drop Rates screen", () => {
-  const identity = extractScoutIdentity(realOcr.rateScreen);
-  assert.deepEqual(identity, {
-    canonicalTitle:
-      "260 Million Downloads Celebration Extreme Bounty Festival 2",
-    id: "260-million-downloads-celebration-extreme-bounty-festival-2",
-  });
-  assert.equal(identity.id.includes("show-drop-rates"), false);
-  assert.equal(identity.id.includes("scout-points"), false);
-  assert.equal(identity.id.includes("until"), false);
-});
-
-test("Scout title canonicalization removes only numeric step wrappers", () => {
+test("Scout ID uses the featured character and Tokyo end date", () => {
   assert.equal(
-    canonicalizeScoutTitle("4-Step [New Year] Bounty Festival Step 2"),
-    "New Year Bounty Festival",
+    createDefaultScoutId(
+      "giant-warrior-hajrudin",
+      "2026-09-18T13:59:59+09:00",
+    ),
+    "giant-warrior-hajrudin-20260918",
   );
   assert.equal(
-    canonicalizeScoutTitle("Step-Up Scout Celebration"),
-    "Step-Up Scout Celebration",
+    createDefaultScoutId(
+      "battle-of-monsters-on-onigashima-kaido",
+      "2026-09-09",
+    ),
+    "battle-of-monsters-on-onigashima-kaido-20260909",
   );
 });
 
-test("Scout ID extraction stops at rate data and reports a missing title", () => {
-  assert.deepEqual(
-    extractScoutIdentity({
-      observations: [
-        { text: "Show Drop Rates", x: 0.4, y: 0.9, width: 0.2, height: 0.05 },
-        { text: "7.0000000%", x: 0.59, y: 0.43, width: 0.09, height: 0.04 }
-      ],
-    }),
-    { canonicalTitle: null, id: null },
+test("Scout ID date is calculated in Asia/Tokyo and never gains a suffix", () => {
+  const id = createDefaultScoutId(
+    "giant-warrior-hajrudin",
+    "2026-09-18T16:00:00Z",
   );
-});
-
-test("an ambiguous oversized title region stops instead of producing a giant ID", () => {
-  const observations = [
-    { text: "Show Drop Rates", x: 0.4, y: 0.9, width: 0.2, height: 0.05 },
-    ...Array.from({ length: 5 }, (_, index) => ({
-      text: `Untrusted title fragment ${index}`,
-      x: 0.4,
-      y: 0.82 - index * 0.02,
-      width: 0.2,
-      height: 0.04,
-    })),
-  ];
-  assert.deepEqual(extractScoutIdentity({ observations }), {
-    canonicalTitle: null,
-    id: null,
-  });
+  assert.equal(id, "giant-warrior-hajrudin-20260919");
+  assert.equal(
+    createDefaultScoutId("giant-warrior-hajrudin", "2026-09-18T16:00:00Z"),
+    id,
+  );
+  assert.throws(() => createDefaultScoutId("giant-warrior-hajrudin", null));
+  assert.throws(() => createDefaultScoutId("giant-warrior-hajrudin", "bad"));
 });
 
 test("IMG filenames use numeric natural order without role-based names", () => {

@@ -35,7 +35,7 @@ scripts/scout-importer/input/
 
 1. サイトでそのまま使用する完成済みScout TOP/banner画像。cropや加工はせず、元寸法のままWebP化する。OCRには使用しない
 2. Scout終了日時の `to ...` が見えるスクリーンショット。endAt OCR専用でbannerには使わない
-3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット。下部にCharacter Drop Ratesが続いていてもよく、完全なrowは解析対象に含める
+3. Drop Rates上部。★4/★3/★2の3つが同時に見えるスクリーンショット。下部にCharacter Drop Ratesが続いていてもよく、完全なrowは解析対象に含める
 4. Character Drop Ratesの先頭画面。table geometry取得用の `Character Drop Rates` ヘッダー、全pickupの取得開始、および通常（非Featured）のBFを最低1体含める
 5. 以降は同じ画面サイズ・レイアウトで下へスクロールしたCharacter Drop Rates継続画面。`Character Drop Rates` ヘッダーは画面外でもよい
 
@@ -91,7 +91,7 @@ npm run scouts:import -- --dry-run \
 - `--id some-stable-scout-id`
 - `--bf-count 147`
 
-Scout IDは3枚目の `Show Drop Rates` モーダル見出しを基準に、bounding boxで特定した直下のタイトル領域だけから生成します。先頭の `3-Step` / `4-Step` など、末尾の `Step 1` など、括弧や不要な記号を除いてcanonical titleを作り、lowercase kebab-caseへ変換します。領域を一意かつ安全に特定できない場合や既存IDと重複した場合は、巨大なslugやsuffixを生成せず停止します。タイトルを正しく取得できない場合だけ、目視確認後に `--id` でoverrideします。
+Scout IDは `<featuredCharacterId>-<YYYYMMDD>` 形式で生成します。日付は確定したendAtをAsia/Tokyoへ変換した年月日です。3枚目のScoutタイトルはID生成に使用しません。既存IDと重複した場合はsuffixを付けず停止するため、その場合だけ `--id` で明示的に解決します。
 
 1枚目のbanner画像にはcrop、resize、位置調整を行いません。メタデータを除去して品質90のWebPへ変換し、入力画像と同じpixel寸法で `public/scouts/<id>.webp` に出力します。生成する `ScoutBanner.bannerImg` も `/scouts/<id>.webp` です。既存の `public/scouts/ex/`・`public/scouts/bf/` 配下の画像と既存Scoutデータは移行しません。
 
@@ -116,7 +116,7 @@ final bf = round(bfTotal, 2)
 final star-4 = round(★4 total - pickup total - final bf, 2)
 ```
 
-★4/★3/★2、pickup、characterId、通常BF rate、非負のraw BF/star-4、高精度rate合計、最終出力rate合計が正確に100%、入力されたScout名、3枚目から生成したScout ID、endAt、featuredCharacterId、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
+★4/★3/★2、pickup、characterId、通常BF rate、非負のraw BF/star-4、高精度rate合計、最終出力rate合計が正確に100%、入力されたScout名、featuredCharacterIdとendAtから生成したScout ID、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
 
 ## V1の制限
 

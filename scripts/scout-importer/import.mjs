@@ -23,9 +23,9 @@ import {
   automaticStartAt,
   calculateFinalScoutRates,
   calculateScoutRates,
+  createDefaultScoutId,
   decimalDisplay,
   extractCharacterRows,
-  extractScoutIdentity,
   mergeCharacterRows,
   naturalImageCompare,
   normalizeCharacterName,
@@ -60,7 +60,7 @@ Options:
   --start-at <date>             Override automatic 14:00 JST start
   --name <name>                 Scout name (required outside a TTY)
   --end-at <date>               Override OCR end date after visual review
-  --id <id>                     Override ID generated from the 3rd image title
+  --id <id>                     Override the generated Scout ID
   --bf-count <number>           Override the character-master BF pool count
   --character-map <ocr=id>      Explicitly resolve one reviewed OCR name (repeatable)
   --dry-run                     Validate and print without writing any files
@@ -407,7 +407,6 @@ if (orderedValidation.issues.length > 0) {
 }
 
 const rateSummary = orderedValidation.rateSummary;
-const scoutIdentity = extractScoutIdentity(rateScreen.ocr);
 const endAt = options.endAt
   ? parseDateOverride(options.endAt, "endAt", 59)
   : orderedValidation.endAt;
@@ -441,12 +440,7 @@ const characterIssues = [
   ...bfSelection.issues,
 ];
 
-const id = options.id ?? scoutIdentity.id;
-if (!id) {
-  throw new Error(
-    `${rateScreen.file}: Scout title could not be recognized in the 3rd image; review and pass --id`,
-  );
-}
+const id = options.id ?? createDefaultScoutId(featuredCharacterId, endAt);
 if (!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(id)) {
   throw new Error(`Scout id must be lowercase kebab-case: ${id}`);
 }

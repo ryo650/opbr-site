@@ -24,10 +24,6 @@ export function normalizeText(value) {
     .replace(/\s+/g, " ");
 }
 
-export function slugify(value) {
-  return normalizeText(value).replace(/\s+/g, "-");
-}
-
 export function normalizeCharacterName(value) {
   return normalizeText(value)
     .replace(/\band\b/g, " ")
@@ -39,16 +35,13 @@ export function characterComparisonKey(value) {
   return normalizeCharacterName(value).replace(/\s+/g, "");
 }
 
-export function canonicalizeScoutTitle(value) {
-  return value
-    .normalize("NFKC")
-    .replace(/^\s*\d+\s*[-‐‑‒–—]?\s*step\b[\s:：\-‐‑‒–—]*/i, "")
-    .replace(/[\[\]{}()【】「」『』［］｛｝（）]/g, " ")
-    .replace(/[#＃№]/g, " ")
-    .replace(/[^\p{L}\p{N}&'’.\-]+/gu, " ")
-    .replace(/[\s:：\-‐‑‒–—]*\bstep\s*\d+\s*$/i, "")
-    .replace(/\s+/g, " ")
-    .trim();
+export function createDefaultScoutId(featuredCharacterId, endAt) {
+  if (!featuredCharacterId) throw new Error("featuredCharacterId is required");
+  if (!endAt) throw new Error("endAt is required");
+  const endDate = new Date(endAt);
+  if (Number.isNaN(endDate.getTime())) throw new Error(`Invalid endAt: ${endAt}`);
+  const { year, month, day } = datePartsInTokyo(endDate);
+  return `${featuredCharacterId}-${year}${month}${day}`;
 }
 
 function centerX(observation) {
@@ -65,41 +58,6 @@ function singleAnchor(observations, label) {
     ({ text }) => normalizeText(text) === normalizedLabel,
   );
   return anchors.length === 1 ? anchors[0] : null;
-}
-
-export function extractScoutIdentity(ocr) {
-  const observations = ocr.observations ?? [];
-  const header = singleAnchor(observations, "Show Drop Rates");
-  if (!header) return { canonicalTitle: null, id: null };
-
-  const headerX = centerX(header);
-  const headerY = centerY(header);
-  // Vision coordinates are normalized. The title is the centered, large-text
-  // block directly below the modal header and above the explanatory copy.
-  const titleObservations = observations
-    .filter((observation) => {
-      if (observation === header) return false;
-      const verticalGap = headerY - centerY(observation);
-      return (
-        verticalGap >= 0.05 &&
-        verticalGap <= 0.19 &&
-        Math.abs(centerX(observation) - headerX) <= 0.2 &&
-        observation.height >= header.height * 0.75
-      );
-    })
-    .sort((left, right) => centerY(right) - centerY(left));
-  if (titleObservations.length === 0 || titleObservations.length > 4) {
-    return { canonicalTitle: null, id: null };
-  }
-
-  const canonicalTitle = canonicalizeScoutTitle(
-    titleObservations.map(({ text }) => text).join(" "),
-  );
-  const id = canonicalTitle ? slugify(canonicalTitle) : null;
-  if (!id || id.length > 120 || id.split("-").length > 20) {
-    return { canonicalTitle: null, id: null };
-  }
-  return { canonicalTitle: canonicalTitle || null, id: id || null };
 }
 
 export function naturalImageCompare(left, right) {
