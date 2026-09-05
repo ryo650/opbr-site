@@ -224,14 +224,35 @@ function bannerLocation(id) {
   };
 }
 
+function quoteCliArgument(value) {
+  return `"${String(value)
+    .replaceAll("\\", "\\\\")
+    .replaceAll('"', '\\"')
+    .replaceAll("$", "\\$")
+    .replaceAll("`", "\\`")}"`;
+}
+
 function printCharacterIssues(issues) {
   for (const issue of issues) {
     console.error(`  - ${issue.code}: ${issue.file ?? "<input>"}: ${issue.message}`);
-    if (issue.phrases?.length) console.error(`    OCR candidates: ${issue.phrases.join(" | ")}`);
+    const unresolvedNonFeaturedRow =
+      issue.featured === false && issue.rate != null && issue.phrases?.length;
+    if (unresolvedNonFeaturedRow) {
+      console.error(`    Unresolved non-featured row: ${issue.phrases[0]}`);
+      console.error(`    Rate: ${issue.rate}%`);
+    } else if (issue.phrases?.length) {
+      console.error(`    OCR candidates: ${issue.phrases.join(" | ")}`);
+    }
     if (issue.suggestions?.length) {
       console.error(
         `    suggestions only (not selected): ${issue.suggestions.map(({ id }) => id).join(", ")}`,
       );
+      if (unresolvedNonFeaturedRow) {
+        const mapping = `${issue.phrases[0]}=${issue.suggestions[0].id}`;
+        console.error(
+          `    Suggested override (review before use): --character-map ${quoteCliArgument(mapping)}`,
+        );
+      }
     }
   }
 }
@@ -435,7 +456,11 @@ const pickups = rows
 const bfSelection = selectNormalBfUnitRate(rows);
 const bfUnitRate = bfSelection.rate;
 const characterIssues = [
-  ...extractedRows.issues.filter((issue) => issue.featured !== false),
+  ...extractedRows.issues.filter(
+    (issue) =>
+      issue.featured !== false ||
+      (!bfUnitRate && issue.featured === false && issue.rate != null),
+  ),
   ...mergedRows.issues,
   ...bfSelection.issues,
 ];
