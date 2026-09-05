@@ -412,11 +412,19 @@ const endAt = options.endAt
   ? parseDateOverride(options.endAt, "endAt", 59)
   : orderedValidation.endAt;
 const extractedRows = extractCharacterRows(
-  characterScreens.map(({ file, path: screenPath, ocr }) => ({
-    file,
-    observations: ocr.observations,
-    dimensions: imageDimensions(magickCommand, screenPath),
-  })),
+  [
+    {
+      file: rateScreen.file,
+      observations: rateScreen.ocr.observations,
+      dimensions: imageDimensions(magickCommand, rateScreen.path),
+      optionalFragment: true,
+    },
+    ...characterScreens.map(({ file, path: screenPath, ocr }) => ({
+      file,
+      observations: ocr.observations,
+      dimensions: imageDimensions(magickCommand, screenPath),
+    })),
+  ],
   characterMaster.characters,
   { manualMappings: mappings },
 );

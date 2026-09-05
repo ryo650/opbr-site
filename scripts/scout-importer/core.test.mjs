@@ -212,6 +212,57 @@ test("ordered OCR slots accept period, total rates, then character rates", () =>
   assert.equal(decimalToString(result.rateSummary.fourStar), "7");
 });
 
+test("IMG_4805 summary accepts aggregate rates above a visible character fragment", () => {
+  const result = validateOrderedScreenshotOcr({
+    startAt: "2026-09-01T14:00:00+09:00",
+    periodScreen: {
+      file: "IMG_4804.PNG",
+      ocr: { lines: ["Scout Period", "to 09/15/2026 1:59 PM"] },
+    },
+    rateScreen: {
+      file: realOcr.summerBfRateScreen.file,
+      ocr: realOcr.summerBfRateScreen,
+    },
+    characterScreens: [{
+      file: "IMG_4806.PNG",
+      ocr: { lines: ["Featured Characters", "Giant Warrior Dorry", "0.5%"] },
+    }],
+  });
+  assert.deepEqual(result.issues, []);
+  assert.equal(decimalToString(result.rateSummary.fourStar), "7");
+  assert.equal(decimalToString(result.rateSummary.threeStar), "35");
+  assert.equal(decimalToString(result.rateSummary.twoStar), "58");
+});
+
+test("a character-only image is not accepted as the third summary image", () => {
+  const result = validateOrderedScreenshotOcr({
+    startAt: "2026-09-01T14:00:00+09:00",
+    periodScreen: {
+      file: "IMG_4804.PNG",
+      ocr: { lines: ["Scout Period", "to 09/15/2026 1:59 PM"] },
+    },
+    rateScreen: {
+      file: "IMG_4805.PNG",
+      ocr: {
+        lines: [
+          "Character Drop Rates",
+          "Featured Characters",
+          "Giant Warrior Dorry",
+          "0.5000000%",
+        ],
+      },
+    },
+    characterScreens: [{
+      file: "IMG_4806.PNG",
+      ocr: { lines: ["Featured Characters", "Giant Warrior Dorry", "0.5%"] },
+    }],
+  });
+  assert.ok(
+    result.issues.some((issue) =>
+      issue.includes("3rd image must contain ★4, ★3, and ★2 total rates")),
+  );
+});
+
 test("ordered OCR slots stop when period and total-rate images are swapped", () => {
   const result = validateOrderedScreenshotOcr({
     startAt: "2026-09-01T14:00:00+09:00",
@@ -388,6 +439,49 @@ test("real Character Drop Rates boxes reconstruct rows and exclude the left Scou
   assert.deepEqual(bfSelection.issues, []);
   assert.equal(decimalToString(bfSelection.rate), "0.0195804");
   assert.equal(bfSelection.rows[0].character.id, "unexpected-collaboration-kaku");
+});
+
+test("the third-image character fragment is parsed and deduped with the fourth image", () => {
+  const character = {
+    id: "legendary-gladiator-kyros",
+    name: "Legendary-Gladiator-Kyros",
+    grade: "bf",
+  };
+  const summaryFragment = {
+    file: "IMG_4805.PNG",
+    dimensions: { width: 2532, height: 1170 },
+    optionalFragment: true,
+    observations: [
+      { text: "Character Drop Rates", x: 0.3997, y: 0.2673, width: 0.1802, height: 0.0378 },
+      { text: "Featured Characters", x: 0.5741, y: 0.18, width: 0.1541, height: 0.0283 },
+      { text: "Legendary Gladiator", x: 0.3823, y: 0.17, width: 0.125, height: 0.03 },
+      { text: "Kyros", x: 0.4258, y: 0.13, width: 0.0366, height: 0.03 },
+      { text: "0.5000000%", x: 0.609, y: 0.11, width: 0.0843, height: 0.03 },
+    ],
+  };
+  const fourthImage = {
+    ...characterPage([{
+      nameParts: ["Legendary Gladiator", "Kyros"],
+      rate: "0.5000000%",
+      featured: true,
+    }]),
+    file: "IMG_4806.PNG",
+    dimensions: { width: 2532, height: 1170 },
+  };
+  const extracted = extractCharacterRows(
+    [summaryFragment, fourthImage],
+    [character],
+  );
+  assert.deepEqual(extracted.issues, []);
+  assert.equal(extracted.rows.length, 2);
+  assert.equal(extracted.rows[0].sourceFile, "IMG_4805.PNG");
+
+  const merged = mergeCharacterRows(extracted.rows);
+  assert.deepEqual(merged.issues, []);
+  assert.equal(merged.rows.length, 1);
+  assert.equal(merged.rows[0].character.id, character.id);
+  assert.equal(merged.rows[0].featured, true);
+  assert.equal(decimalToString(merged.rows[0].rate), "0.5");
 });
 
 test("real continuation screenshots inherit table geometry and finalize all complete rows", async () => {

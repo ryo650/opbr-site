@@ -419,26 +419,28 @@ export function extractCharacterRows(
   const nameIndex = createCharacterNameIndex(characters);
   const rows = [];
   const issues = [];
-  const firstPage = ocrPages[0];
-  if (!firstPage) return { rows, issues };
-
-  const geometryResult = characterTableGeometry(firstPage);
-  if (!geometryResult.geometry) {
-    return { rows, issues: [geometryResult.issue] };
-  }
   const reconstructedRows = [];
+  let geometry = null;
+  let geometryFromOptionalFragment = false;
 
   for (const page of ocrPages) {
-    const geometryIssue = incompatibleCharacterGeometry(
-      page,
-      geometryResult.geometry,
-    );
-    if (geometryIssue) {
-      issues.push(geometryIssue);
-      continue;
+    const pageGeometry = characterTableGeometry(page);
+    if (pageGeometry.geometry) {
+      geometry = pageGeometry.geometry;
+      geometryFromOptionalFragment = page.optionalFragment === true;
+    } else {
+      if (!geometry || (geometryFromOptionalFragment && !page.optionalFragment)) {
+        if (!page.optionalFragment) issues.push(pageGeometry.issue);
+        continue;
+      }
+      const geometryIssue = incompatibleCharacterGeometry(page, geometry);
+      if (geometryIssue) {
+        issues.push(geometryIssue);
+        continue;
+      }
     }
-    const reconstructed = characterRowsFromPage(page, geometryResult.geometry);
-    issues.push(...reconstructed.issues);
+    const reconstructed = characterRowsFromPage(page, geometry);
+    if (!page.optionalFragment) issues.push(...reconstructed.issues);
     reconstructedRows.push(
       ...reconstructed.rows.map((row) => ({ ...row, sourceFile: page.file })),
     );
@@ -783,7 +785,7 @@ export function validateOrderedScreenshotOcr({
   if (rate.starRateCount !== 3) {
     issues.push(`${rateScreen.file}: 3rd image must contain ★4, ★3, and ★2 total rates`);
   }
-  if (rate.endAt || rate.hasFeaturedHeading) {
+  if (rate.endAt) {
     issues.push(`${rateScreen.file}: 3rd image OCR conflicts with the expected Drop Rates summary`);
   }
 

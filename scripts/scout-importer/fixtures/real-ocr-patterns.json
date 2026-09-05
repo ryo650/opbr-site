@@ -94,5 +94,38 @@
         { "text": "Includes \"Get Points\"", "x": 0.0669, "y": 0.6821, "width": 0.0843, "height": 0.0224 }
       ]
     }
-  ]
+  ],
+  "summerBfRateScreen": {
+    "file": "IMG_4805.PNG",
+    "dimensions": { "width": 2532, "height": 1170 },
+    "lines": [
+      "Show Drop Rates",
+      "[2026 Summer] Bounty Festival #2 (x1)",
+      "*The drop rates are cut off at the eighth decimal place. The total number of the listed drop rates",
+      "may not add up to 100%. *More than one of the same character may appear from this Scout.",
+      "Drop Rates(x1)",
+      "*4",
+      "7.0000000%",
+      "*3",
+      "35.0000000 %",
+      "*2",
+      "58.0000000%",
+      "Character Drop Rates",
+      "Featured Characters",
+      "Giant Warrinr"
+    ],
+    "observations": [
+      { "text": "Show Drop Rates", "x": 0.3968, "y": 0.8991, "width": 0.2035, "height": 0.0474 },
+      { "text": "[2026 Summer] Bounty Festival #2 (x1)", "x": 0.275, "y": 0.8108, "width": 0.4333, "height": 0.0541 },
+      { "text": "*4", "x": 0.3358, "y": 0.5346, "width": 0.0276, "height": 0.044 },
+      { "text": "7.0000000%", "x": 0.5887, "y": 0.5377, "width": 0.0872, "height": 0.0346 },
+      { "text": "*3", "x": 0.3372, "y": 0.4528, "width": 0.0247, "height": 0.0377 },
+      { "text": "35.0000000 %", "x": 0.5858, "y": 0.4556, "width": 0.0901, "height": 0.0319 },
+      { "text": "*2", "x": 0.3358, "y": 0.3648, "width": 0.0262, "height": 0.044 },
+      { "text": "58.0000000%", "x": 0.5858, "y": 0.3679, "width": 0.0916, "height": 0.0314 },
+      { "text": "Character Drop Rates", "x": 0.3997, "y": 0.2673, "width": 0.1802, "height": 0.0378 },
+      { "text": "Featured Characters", "x": 0.5741, "y": 0.1761, "width": 0.1541, "height": 0.0283 },
+      { "text": "Giant Warrinr", "x": 0.4041, "y": 0.1632, "width": 0.0828, "height": 0.0223 }
+    ]
+  }
 }

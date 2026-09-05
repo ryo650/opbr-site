@@ -35,7 +35,7 @@ scripts/scout-importer/input/
 
 1. サイトでそのまま使用する完成済みScout TOP/banner画像。cropや加工はせず、元寸法のままWebP化する。OCRには使用しない
 2. Scout終了日時の `to ...` が見えるスクリーンショット。endAt OCR専用でbannerには使わない
-3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット
+3. ScoutタイトルとDrop Rates上部。Scoutタイトルおよび★4/★3/★2の3つが同時に見えるスクリーンショット。下部にCharacter Drop Ratesが続いていてもよく、完全なrowは解析対象に含める
 4. Character Drop Ratesの先頭画面。table geometry取得用の `Character Drop Rates` ヘッダー、全pickupの取得開始、および通常（非Featured）のBFを最低1体含める
 5. 以降は同じ画面サイズ・レイアウトで下へスクロールしたCharacter Drop Rates継続画面。`Character Drop Rates` ヘッダーは画面外でもよい
 
