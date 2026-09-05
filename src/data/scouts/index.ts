@@ -15,7 +15,10 @@ import { scout260MillionDownloadsCelebrationExtremeBountyFestival } from "./260-
 
 import { scout260MillionDownloadsCelebrationExtremeBountyFestival2 } from "./260-million-downloads-celebration-extreme-bounty-festival-2";
 
+import { scoutGiantWarriorHajrudin20260928 } from "./giant-warrior-hajrudin-20260928";
+
 export const scouts = [
+    scoutGiantWarriorHajrudin20260928,
     scout260MillionDownloadsCelebrationExtremeBountyFestival2,
     scout260MillionDownloadsCelebrationExtremeBountyFestival,
     eggheadStMarz,
