@@ -11,7 +11,10 @@ import { exHungerPangsCharlotteLinlin } from "./7-5exlinlin";
 import { exBlackbeardPiratesKuzan } from "./7-5exKuzan";
 import { exBonny } from "./7-5exBonny";
 
+import { scout260MillionDownloadsCelebrationExtremeBountyFestival } from "./260-million-downloads-celebration-extreme-bounty-festival";
+
 export const scouts = [
+    scout260MillionDownloadsCelebrationExtremeBountyFestival,
     eggheadStMarz,
     exWhitebeardRivival,
     OPDayExBountyFestival,
