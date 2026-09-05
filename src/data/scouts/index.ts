@@ -13,7 +13,10 @@ import { exBonny } from "./7-5exBonny";
 
 import { scout260MillionDownloadsCelebrationExtremeBountyFestival } from "./260-million-downloads-celebration-extreme-bounty-festival";
 
+import { scout260MillionDownloadsCelebrationExtremeBountyFestival2 } from "./260-million-downloads-celebration-extreme-bounty-festival-2";
+
 export const scouts = [
+    scout260MillionDownloadsCelebrationExtremeBountyFestival2,
     scout260MillionDownloadsCelebrationExtremeBountyFestival,
     eggheadStMarz,
     exWhitebeardRivival,
