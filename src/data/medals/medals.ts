@@ -2230,7 +2230,7 @@ export const medals = [
     "id": "bed-rest",
     "name": "Bed Rest Medal",
     "category": "character",
-    "uniqueTrait": "When your team has less Treasure secured: Reduce damage received by",
+    "uniqueTrait": "When your team has less Treasure secured: Reduce damage received by 5%.",
     "tags": [
       {
         "id": "2-years-later",
@@ -5433,6 +5433,18 @@ export const medals = [
       {
         "id": "navy",
         "name": "Navy"
+      },
+      {
+        "id": "fleet-admiral",
+        "name": "Fleet Admiral"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -6819,7 +6831,7 @@ export const medals = [
     "id": "usopp-film-red",
     "name": "Usopp (FILM RED) Medal",
     "category": "character",
-    "uniqueTrait": "Reduce the cooldown time ot skill l by 5%. xO",
+    "uniqueTrait": "Reduce the cooldown time of skill 1 by 5%.",
     "tags": [
       {
         "id": "film-red",

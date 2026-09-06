@@ -28,6 +28,6 @@ export const characterUsage20260819= {
         "king-of-the-pirates-gol-d-roger": 1,
         "genius-scientist-vegapunk": 1,
         "the-strongest-creature-alive-kaido": 1,
-        "the-fouremperors-marshall-d-teach": 1,
+        "the-four-emperors-marshall-d-teach": 1,
     },
 } satisfies CharacterUsageSnapshot;
