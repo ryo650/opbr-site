@@ -751,14 +751,15 @@ function ExtraTraitsEditor({ medal, slots, extraTraitsBySlot, onUpdate }: { meda
       <strong className={styles.extraTraitSlotLabel}>SLOT {medalSlot + 1}</strong>
       <div className={styles.equippedTraitRows}>{extraTraitsBySlot[medalSlot].map((traitId, traitSlot) => {
         const definition = traitId ? extraTraitDefinitionById.get(traitId) : undefined;
-        return <div className={styles.equippedTraitRow} key={traitSlot}>
+        const isEditing = activeEditing?.medalSlot === medalSlot && activeEditing.traitSlot === traitSlot;
+        return <div className={styles.equippedTraitRow} key={traitSlot} data-editing={isEditing} aria-current={isEditing ? "true" : undefined}>
           <span className={styles.traitNumber}>Trait {traitSlot + 1}</span>
           {definition ? <div className={styles.equippedTraitSummary}><strong>{definition.label}</strong><span>{formatExtraTraitValue(definition)}</span></div> : <em>Empty</em>}
-          <div className={styles.equippedTraitActions}><button type="button" onClick={() => beginEditing(medalSlot, traitSlot)}>{definition ? "Change" : "+ Add"}</button>{definition && <button type="button" className={styles.removeTraitButton} onClick={() => onUpdate(medalSlot, traitSlot, null)}>Remove</button>}</div>
+          <div className={styles.equippedTraitActions}><button type="button" aria-expanded={isEditing} aria-controls="extra-trait-picker" onClick={() => beginEditing(medalSlot, traitSlot)}>{definition ? "Change" : "+ Add"}</button>{definition && <button type="button" className={styles.removeTraitButton} onClick={() => onUpdate(medalSlot, traitSlot, null)}>Remove</button>}</div>
         </div>;
       })}</div>
     </div>)}
-    {activeEditing && <div className={styles.extraTraitPicker}>
+    {activeEditing && <div className={styles.extraTraitPicker} id="extra-trait-picker">
       <div className={styles.extraTraitPickerHeading}><div><span className={styles.kicker}>Trait {activeEditing.traitSlot + 1}</span><h4>Choose Extra Trait</h4></div><button type="button" onClick={() => setEditing(null)} aria-label="Close Extra Trait picker"><X /></button></div>
       <div className={styles.extraTraitPickerControls}>
         <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search Extra Traits</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search effects…" /></label>
