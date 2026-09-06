@@ -811,7 +811,8 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
     "skill-1"
   ],
   "usopp-film-red": [
-    "cooldown"
+    "cooldown",
+    "skill-1"
   ],
   "yasopp-film-red": [
     "cooldown",

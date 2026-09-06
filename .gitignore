@@ -50,3 +50,6 @@ public_backup/
 /scripts/medal-importer/.tmp/
 
 /scripts/medal-tag-effects/input/
+
+# Character Lv.100 screenshot importer local review artifact
+/scripts/character-level-100-stats/draft-screenshot.json

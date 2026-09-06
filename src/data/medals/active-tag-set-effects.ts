@@ -164,6 +164,7 @@ export function matchesSelectedTagSetEffects(
 
 function formatScalar(value: number, unit: MedalEffectValueUnit): string {
   if (unit === "percent") return `${value}%`;
+  if (unit === "points") return `${value} Pts`;
   if (unit === "seconds") return `${value}s`;
   return String(value);
 }

@@ -20,7 +20,7 @@ export const medalEffectFilterCategories = [
 ] as const;
 
 export type MedalEffectFilterCategory = (typeof medalEffectFilterCategories)[number];
-export type MedalEffectValueUnit = "percent" | "seconds" | "flat" | "count";
+export type MedalEffectValueUnit = "percent" | "points" | "seconds" | "flat" | "count";
 
 export type MedalEffectValue =
   | number
@@ -79,6 +79,61 @@ export const medalEffectCapGroups = [
     label: "Damage Dealt Increase",
     valueSchema: { kind: "scalar", unit: "percent" },
   },
+  {
+    id: "hp-increase-percent",
+    label: "HP Increase (%)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "hp-increase-points",
+    label: "HP Increase (Pts)",
+    valueSchema: { kind: "scalar", unit: "points" },
+  },
+  {
+    id: "atk-increase-percent",
+    label: "ATK Increase (%)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "atk-increase-points",
+    label: "ATK Increase (Pts)",
+    valueSchema: { kind: "scalar", unit: "points" },
+  },
+  {
+    id: "def-increase-percent",
+    label: "DEF Increase (%)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "def-increase-points",
+    label: "DEF Increase (Pts)",
+    valueSchema: { kind: "scalar", unit: "points" },
+  },
+  {
+    id: "crit-increase-percent",
+    label: "CRIT Increase (%)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "crit-increase-value",
+    label: "CRIT Increase (Value)",
+    valueSchema: { kind: "scalar", unit: "flat" },
+  },
+  {
+    id: "normal-attack-damage-dealt-increase",
+    label: "Normal Attack Damage Dealt Increase",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "spd-increase-percent",
+    label: "SPD Increase (%)",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "stun-duration-reduction",
+    label: "Stun Duration Reduction",
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
 ] as const satisfies readonly MedalEffectCapGroupDefinition[];
 
 export type MedalEffectCapGroupId = (typeof medalEffectCapGroups)[number]["id"];
@@ -93,6 +148,27 @@ export type MedalEffectDefinition = {
 };
 
 export const medalEffectCatalog = [
+  {
+    id: "damage-dealt-increase",
+    label: "Damage Dealt Increase",
+    filterCategories: ["damage-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-dealt-increase",
+  },
+  {
+    id: "normal-attack-damage-dealt-increase",
+    label: "Normal Attack Damage Dealt Increase",
+    filterCategories: ["damage-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "normal-attack-damage-dealt-increase",
+  },
+  {
+    id: "damage-received-reduction",
+    label: "Damage Received Reduction",
+    filterCategories: ["damage-reduction"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "damage-received-reduction",
+  },
   {
     id: "skill1-cooldown-reduction-speed",
     label: "Cooldown Reduction (Skill 1)",
@@ -120,6 +196,53 @@ export const medalEffectCatalog = [
     filterCategories: ["capture-speed"],
     valueSchema: { kind: "scalar", unit: "percent" },
     capGroup: "capture-speed-increase",
+  },
+  {
+    id: "hp-increase",
+    label: "HP Increase",
+    filterCategories: ["hp-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "hp-increase-percent",
+  },
+  {
+    id: "atk-increase",
+    label: "ATK Increase",
+    filterCategories: ["atk-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "atk-increase-percent",
+  },
+  {
+    id: "def-increase",
+    label: "DEF Increase",
+    filterCategories: ["def-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "def-increase-percent",
+  },
+  {
+    id: "crit-increase",
+    label: "CRIT Increase",
+    filterCategories: ["crit-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "crit-increase-percent",
+  },
+  {
+    id: "spd-increase",
+    label: "SPD Increase",
+    filterCategories: ["spd-increase"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+    capGroup: "spd-increase-percent",
+  },
+  {
+    id: "crit-increase-timed-cannot-stack",
+    label: "CRIT Increase (Timed, Cannot Stack)",
+    filterCategories: ["crit-increase", "power-up-down"],
+    valueSchema: { kind: "scalar", unit: "percent" },
+  },
+  {
+    id: "spd-increase-timed-cannot-stack",
+    label: "SPD Increase (Timed, Cannot Stack)",
+    filterCategories: ["spd-increase", "power-up-down"],
+    valueSchema: { kind: "scalar", unit: "percent" },
   },
   {
     id: "spd-increase-when-spawning",

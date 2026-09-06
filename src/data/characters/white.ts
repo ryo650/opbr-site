@@ -1,4 +1,4 @@
-import { Character } from "./type";
+import type { Character } from "./type.ts";
 
 
 export const whiteCharacters: Record<string, Character> = {

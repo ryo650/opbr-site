@@ -17,6 +17,10 @@ import {
   renderUniqueTraitCategoryData,
   summarizeUniqueTraitCategories,
 } from "../medal-unique-traits/classify-unique-traits.mjs";
+import {
+  renderUniqueTraitEffectData,
+  summarizeUniqueTraitEffects,
+} from "../medal-unique-traits/extract-unique-trait-effects.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -80,6 +84,16 @@ assertEqual(
   "Generated Unique Trait categories are out of sync with medals.ts",
 );
 const uniqueTraitCategorySummary = summarizeUniqueTraitCategories(production);
+const generatedUniqueTraitEffectsPath = path.join(
+  projectDir,
+  "src/data/medals/unique-trait-effects.generated.ts",
+);
+assertEqual(
+  readFileSync(generatedUniqueTraitEffectsPath, "utf8"),
+  renderUniqueTraitEffectData(production),
+  "Generated Unique Trait Effects are out of sync with medals.ts",
+);
+const uniqueTraitEffectSummary = summarizeUniqueTraitEffects(production);
 const ids = production.map((medal) => medal.id);
 if (new Set(ids).size !== ids.length) throw new Error("Duplicate medal IDs found");
 
@@ -162,6 +176,12 @@ console.log(
       generatedUniqueTraitCategoriesCurrent: true,
       uniqueTraitCategoryCounts: uniqueTraitCategorySummary.categoryCounts,
       uniqueTraitCategoriesNeedsReview: uniqueTraitCategorySummary.needsReview.length,
+      generatedUniqueTraitEffectsCurrent: true,
+      uniqueTraitEffectExtractedMedals: uniqueTraitEffectSummary.extractedMedals,
+      uniqueTraitEffectExtractions: uniqueTraitEffectSummary.extractionCount,
+      uniqueTraitEffectMultipleEffectMedals: uniqueTraitEffectSummary.multipleEffectMedals,
+      uniqueTraitEffectsNeedsReview: uniqueTraitEffectSummary.needsReviewCount,
+      uniqueTraitEffectsUnclassified: uniqueTraitEffectSummary.unclassifiedCount,
     },
     null,
     2,

@@ -10,7 +10,7 @@ import { tagSetEffectGroups } from "../../src/data/medals/tag-set-effects.ts";
 
 const hasOwn = (value, key) => Object.prototype.hasOwnProperty.call(value, key);
 const isPositiveFiniteNumber = (value) => typeof value === "number" && Number.isFinite(value) && value > 0;
-const numericUnits = new Set(["percent", "seconds", "flat", "count"]);
+const numericUnits = new Set(["percent", "points", "seconds", "flat", "count"]);
 
 function isValidValueSchema(schema) {
   if (!schema || typeof schema !== "object") return false;
