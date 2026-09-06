@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useWindowVirtualizer } from "@tanstack/react-virtual";
 import { memo, useCallback, useDeferredValue, useEffect, useLayoutEffect, useMemo, useRef, useState, useSyncExternalStore } from "react";
-import { Filter, Search, X } from "lucide-react";
+import { Check, Filter, Search, X } from "lucide-react";
 import {
   clearEquippedExtraTraitsForSlot,
   createEmptyEquippedExtraTraits,
@@ -723,6 +723,9 @@ function ExtraTraitsEditor({ medal, slots, extraTraitsBySlot, onUpdate }: { meda
   const [query, setQuery] = useState("");
   const [effectId, setEffectId] = useState<"all" | ExtraTraitEffectId>("all");
   const activeEditing = editing && slots[editing.medalSlot]?.id === medal.id ? editing : null;
+  const selectedTraitId = activeEditing
+    ? extraTraitsBySlot[activeEditing.medalSlot][activeEditing.traitSlot]
+    : null;
 
   const groupedCandidates = useMemo(() => {
     const groups = new Map<string, ExtraTraitDefinition[]>();
@@ -761,7 +764,10 @@ function ExtraTraitsEditor({ medal, slots, extraTraitsBySlot, onUpdate }: { meda
         <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search Extra Traits</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search effects…" /></label>
         <label><span>Effect</span><select value={effectId} onChange={(event) => setEffectId(event.target.value as "all" | ExtraTraitEffectId)}><option value="all">All Effects</option>{extraTraitEffectOptions.map(([id, label]) => <option value={id} key={id}>{label}</option>)}</select></label>
       </div>
-      <div className={styles.extraTraitCandidates}>{groupedCandidates.map(([label, definitions]) => <section key={label}><h5>{label}</h5>{definitions.map((definition) => <button type="button" key={definition.id} onClick={() => { onUpdate(activeEditing.medalSlot, activeEditing.traitSlot, definition.id); setEditing(null); }}><span><strong>{definition.label}</strong></span><b>{formatExtraTraitValue(definition)}</b></button>)}</section>)}{!groupedCandidates.length && <p className={styles.noTraitCandidates}>No matching Extra Traits</p>}</div>
+      <div className={styles.extraTraitCandidates}>{groupedCandidates.map(([label, definitions]) => <section key={label}><h5>{label}</h5>{definitions.map((definition) => {
+        const isSelected = definition.id === selectedTraitId;
+        return <button type="button" key={definition.id} className={isSelected ? styles.selectedExtraTrait : undefined} aria-pressed={isSelected} onClick={() => { onUpdate(activeEditing.medalSlot, activeEditing.traitSlot, definition.id); setEditing(null); }}><span><strong>{definition.label}</strong></span><b>{formatExtraTraitValue(definition)}</b><Check className={styles.extraTraitCheck} aria-hidden="true" /></button>;
+      })}</section>)}{!groupedCandidates.length && <p className={styles.noTraitCandidates}>No matching Extra Traits</p>}</div>
     </div>}
   </section>;
 }
