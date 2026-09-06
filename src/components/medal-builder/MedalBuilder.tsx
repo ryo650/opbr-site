@@ -171,7 +171,16 @@ function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElemen
 function MedalArt({ medal, sizes, eager = false }: { medal: Medal; sizes: string; eager?: boolean }) {
   return <span className={styles.medalArt} data-medal-art>
     <span className={styles.medalImageViewport}>
-      <Image src={medalImage(medal)} alt="" fill sizes={sizes} loading={eager ? "eager" : "lazy"} decoding="async" draggable={false} />
+      <Image
+        src={medalImage(medal)}
+        alt=""
+        fill
+        sizes={sizes}
+        loading={eager ? "eager" : "lazy"}
+        decoding={eager ? "sync" : "async"}
+        fetchPriority={eager ? "high" : undefined}
+        draggable={false}
+      />
       <span className={styles.gloss} aria-hidden="true" />
     </span>
   </span>;
@@ -749,7 +758,7 @@ function ExtraTraitsEditor({ medal, slots, extraTraitsBySlot, onUpdate }: { meda
     {activeEditing && <div className={styles.extraTraitPicker}>
       <div className={styles.extraTraitPickerHeading}><div><span className={styles.kicker}>Trait {activeEditing.traitSlot + 1}</span><h4>Choose Extra Trait</h4></div><button type="button" onClick={() => setEditing(null)} aria-label="Close Extra Trait picker"><X /></button></div>
       <div className={styles.extraTraitPickerControls}>
-        <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search Extra Traits</span><input autoFocus value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search effects…" /></label>
+        <label className={styles.filterSearch}><Search /><span className={styles.srOnly}>Search Extra Traits</span><input value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search effects…" /></label>
         <label><span>Effect</span><select value={effectId} onChange={(event) => setEffectId(event.target.value as "all" | ExtraTraitEffectId)}><option value="all">All Effects</option>{extraTraitEffectOptions.map(([id, label]) => <option value={id} key={id}>{label}</option>)}</select></label>
       </div>
       <div className={styles.extraTraitCandidates}>{groupedCandidates.map(([label, definitions]) => <section key={label}><h5>{label}</h5>{definitions.map((definition) => <button type="button" key={definition.id} onClick={() => { onUpdate(activeEditing.medalSlot, activeEditing.traitSlot, definition.id); setEditing(null); }}><span><strong>{definition.label}</strong></span><b>{formatExtraTraitValue(definition)}</b></button>)}</section>)}{!groupedCandidates.length && <p className={styles.noTraitCandidates}>No matching Extra Traits</p>}</div>
