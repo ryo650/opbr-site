@@ -26,6 +26,7 @@ import {
   createDefaultScoutId,
   decimalDisplay,
   extractCharacterRows,
+  isCompleteFeaturedOnlyFourStarPool,
   mergeCharacterRows,
   naturalImageCompare,
   normalizeCharacterName,
@@ -273,7 +274,9 @@ function printSummary(draft, outputDataPath, outputBannerPath, indexPath, banner
     console.log(`  ${pickup.characterId}: ${decimalToString(pickup.rate)}%`);
   }
   console.log(`★4 total: ${decimalDisplay(draft.totalFourStarRate)}%`);
-  console.log(`BF unit rate: ${decimalDisplay(draft.bfUnitRate)}%`);
+  console.log(
+    `BF unit rate: ${draft.featuredOnlyFourStarPool ? "<not required>" : `${decimalDisplay(draft.bfUnitRate)}%`}`,
+  );
   console.log(
     `BF count: ${calculation ? `${calculation.bfCount} (${calculation.bfCountSource})` : "<unavailable>"}`,
   );
@@ -455,6 +458,13 @@ const pickups = rows
   .map(({ character, rate }) => ({ characterId: character.id, rate }));
 const bfSelection = selectNormalBfUnitRate(rows);
 const bfUnitRate = bfSelection.rate;
+const featuredOnlyFourStarPool = isCompleteFeaturedOnlyFourStarPool({
+  totalFourStarRate: rateSummary.fourStar,
+  pickups,
+  extractionIssues: extractedRows.issues,
+  fourStarSectionComplete: extractedRows.fourStarSectionComplete,
+  normalBfRowCount: bfSelection.rows.length,
+});
 const characterIssues = [
   ...extractedRows.issues.filter(
     (issue) =>
@@ -462,7 +472,10 @@ const characterIssues = [
       (!bfUnitRate && issue.featured === false && issue.rate != null),
   ),
   ...mergedRows.issues,
-  ...bfSelection.issues,
+  ...bfSelection.issues.filter(
+    (issue) =>
+      !featuredOnlyFourStarPool || issue.code !== "missing-normal-bf-rate",
+  ),
 ];
 
 const id = options.id ?? createDefaultScoutId(featuredCharacterId, endAt);
@@ -477,7 +490,11 @@ if (dimensions.width <= 0 || dimensions.height <= 0) {
   throw new Error(`${banner.file}: banner image has invalid dimensions`);
 }
 
-const hasRequiredRates = rateSummary.fourStar && rateSummary.threeStar && rateSummary.twoStar && bfUnitRate;
+const hasRequiredRates =
+  rateSummary.fourStar &&
+  rateSummary.threeStar &&
+  rateSummary.twoStar &&
+  (bfUnitRate || featuredOnlyFourStarPool);
 const rateCalculation = hasRequiredRates
   ? calculateScoutRates({
       totalFourStarRate: rateSummary.fourStar,
@@ -487,6 +504,7 @@ const rateCalculation = hasRequiredRates
       bfUnitRate,
       characters: characterMaster.characters,
       bfCountOverride,
+      featuredOnlyFourStarPool,
     })
   : null;
 const finalRates = rateCalculation
@@ -510,6 +528,7 @@ const draft = {
   threeStarRate: rateSummary.threeStar,
   twoStarRate: rateSummary.twoStar,
   bfUnitRate,
+  featuredOnlyFourStarPool,
   rateCalculation,
   finalRates,
   characterIssues,

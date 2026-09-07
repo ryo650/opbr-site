@@ -359,10 +359,15 @@ function characterRowsFromPage(page, geometry) {
         headingMode(observation.text) === true
       );
     });
+    const star = observations
+      .filter(inRow)
+      .map(({ text }) => detectStarLabel(text))
+      .find((value) => value === 3 || value === 4) ?? null;
     return {
       name: joinCharacterNameParts(nameObservations),
       rate: parsePercent(rateObservation.text),
       featured,
+      star,
       sourceRateText: rateObservation.text,
     };
   });
@@ -378,6 +383,7 @@ export function extractCharacterRows(
   const rows = [];
   const issues = [];
   const reconstructedRows = [];
+  let fourStarSectionComplete = false;
   let geometry = null;
   let geometryFromOptionalFragment = false;
 
@@ -399,6 +405,16 @@ export function extractCharacterRows(
     }
     const reconstructed = characterRowsFromPage(page, geometry);
     if (!page.optionalFragment) issues.push(...reconstructed.issues);
+    if (
+      reconstructed.rows.some(
+        (row, index) =>
+          row.star === 4 &&
+          row.featured === true &&
+          reconstructed.rows[index + 1]?.star === 3,
+      )
+    ) {
+      fourStarSectionComplete = true;
+    }
     reconstructedRows.push(
       ...reconstructed.rows.map((row) => ({ ...row, sourceFile: page.file })),
     );
@@ -430,7 +446,26 @@ export function extractCharacterRows(
       });
     }
   }
-  return { rows, issues };
+  return { rows, issues, fourStarSectionComplete };
+}
+
+export function isCompleteFeaturedOnlyFourStarPool({
+  totalFourStarRate,
+  pickups,
+  extractionIssues,
+  fourStarSectionComplete,
+  normalBfRowCount,
+}) {
+  if (
+    !totalFourStarRate ||
+    !fourStarSectionComplete ||
+    normalBfRowCount !== 0
+  ) {
+    return false;
+  }
+  if (extractionIssues.some((issue) => issue.featured !== false)) return false;
+  const pickupTotal = sumDecimals(pickups.map(({ rate }) => rate));
+  return compareDecimal(pickupTotal, totalFourStarRate) === 0;
 }
 
 export function selectNormalBfUnitRate(rows) {
@@ -510,6 +545,7 @@ export function calculateScoutRates({
   bfUnitRate,
   characters,
   bfCountOverride = null,
+  featuredOnlyFourStarPool = false,
 }) {
   const pickupIds = new Set(pickups.map(({ characterId }) => characterId));
   const allBfCount = characters.filter(({ grade }) => grade === "bf").length;
@@ -522,10 +558,22 @@ export function calculateScoutRates({
   ) {
     throw new Error("bfCountOverride must be a positive safe integer");
   }
-  const bfCount = bfCountOverride ?? (allBfCount - pickupBfCount);
-  const bfCountSource = bfCountOverride === null ? "character master" : "override";
   const pickupTotal = sumDecimals(pickups.map(({ rate }) => rate));
-  const bfTotal = multiplyDecimalByInteger(bfUnitRate, bfCount);
+  if (
+    featuredOnlyFourStarPool &&
+    compareDecimal(pickupTotal, totalFourStarRate) !== 0
+  ) {
+    throw new Error("A featured-only ★4 pool requires pickup total to equal ★4 total");
+  }
+  const bfCount = featuredOnlyFourStarPool
+    ? 0
+    : (bfCountOverride ?? (allBfCount - pickupBfCount));
+  const bfCountSource = featuredOnlyFourStarPool
+    ? "complete featured ★4 pool"
+    : (bfCountOverride === null ? "character master" : "override");
+  const bfTotal = featuredOnlyFourStarPool
+    ? ZERO
+    : multiplyDecimalByInteger(bfUnitRate, bfCount);
   const star4 = subtractDecimal(
     subtractDecimal(totalFourStarRate, pickupTotal),
     bfTotal,
@@ -781,8 +829,10 @@ export function validateScoutDraft(draft) {
     ["★4 total", draft.totalFourStarRate],
     ["★3", draft.threeStarRate],
     ["★2", draft.twoStarRate],
-    ["normal BF unit", draft.bfUnitRate],
   ];
+  if (!draft.featuredOnlyFourStarPool) {
+    requiredRates.push(["normal BF unit", draft.bfUnitRate]);
+  }
   for (const [label, value] of requiredRates) {
     if (!value) issues.push(`${label} rate was not recognized`);
   }

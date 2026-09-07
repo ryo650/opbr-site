@@ -13,6 +13,7 @@ import {
   createDefaultScoutId,
   extractCharacterRows,
   extractEndAt,
+  isCompleteFeaturedOnlyFourStarPool,
   mergeCharacterRows,
   naturalImageCompare,
   parseBfCountOverride,
@@ -42,6 +43,15 @@ function characterPage(rows) {
   }];
   for (const [index, row] of rows.entries()) {
     const rateY = 0.69 - index * 0.18;
+    if (row.star) {
+      observations.push({
+        text: `★${row.star}`,
+        x: 0.22,
+        y: rateY,
+        width: 0.03,
+        height: 0.03,
+      });
+    }
     for (const [partIndex, text] of row.nameParts.entries()) {
       observations.push({
         text,
@@ -596,6 +606,124 @@ test("multiple non-featured BF rows must have the same unit rate", () => {
   ]);
   assert.equal(result.rate, null);
   assert.equal(result.issues[0].code, "normal-bf-rate-mismatch");
+});
+
+test("a completed featured-only ★4 pool succeeds without a normal BF row", () => {
+  const characters = [
+    { id: "featured-one", name: "Featured-One", grade: "bf" },
+    { id: "three-star-one", name: "Three-Star-One", grade: "star-3" },
+  ];
+  const extraction = extractCharacterRows(
+    [characterPage([
+      {
+        nameParts: ["Featured One"],
+        featured: true,
+        rate: "5.0000000%",
+        star: 4,
+      },
+      {
+        nameParts: ["Three Star One"],
+        featured: false,
+        rate: "2.5000000%",
+        star: 3,
+      },
+    ])],
+    characters,
+  );
+  const pickups = extraction.rows
+    .filter(({ featured }) => featured)
+    .map(({ character, rate }) => ({ characterId: character.id, rate }));
+  const featuredOnlyFourStarPool = isCompleteFeaturedOnlyFourStarPool({
+    totalFourStarRate: decimal("5"),
+    pickups,
+    extractionIssues: extraction.issues,
+    fourStarSectionComplete: extraction.fourStarSectionComplete,
+    normalBfRowCount: 0,
+  });
+
+  assert.equal(extraction.fourStarSectionComplete, true);
+  assert.equal(featuredOnlyFourStarPool, true);
+  assert.equal(selectNormalBfUnitRate(extraction.rows).rate, null);
+
+  const rateCalculation = calculateScoutRates({
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    bfUnitRate: null,
+    characters,
+    featuredOnlyFourStarPool,
+  });
+  const finalRates = calculateFinalScoutRates({
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    rateCalculation,
+  });
+
+  assert.equal(rateCalculation.bfCount, 0);
+  assert.equal(rateCalculation.bfCountSource, "complete featured ★4 pool");
+  assert.equal(decimalToString(finalRates.pickupTotal), "5");
+  assert.equal(decimalToString(finalRates.bf), "0");
+  assert.equal(decimalToString(finalRates.star4), "0");
+  assert.equal(decimalToString(finalRates.total), "100");
+  assert.deepEqual(validateScoutDraft({
+    name: "Featured Only Scout",
+    startAt: "2026-09-01T14:00:00+09:00",
+    endAt: "2026-09-15T13:59:59+09:00",
+    featuredCharacter: characters[0],
+    pickups,
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    bfUnitRate: null,
+    featuredOnlyFourStarPool,
+    rateCalculation,
+    finalRates,
+    characterIssues: [],
+  }), []);
+});
+
+test("a missing BF row is not treated as zero without complete and resolved ★4 evidence", () => {
+  const complete = {
+    totalFourStarRate: decimal("5"),
+    pickups: [{ characterId: "featured-one", rate: decimal("5") }],
+    extractionIssues: [],
+    fourStarSectionComplete: true,
+    normalBfRowCount: 0,
+  };
+  assert.equal(
+    isCompleteFeaturedOnlyFourStarPool({
+      ...complete,
+      fourStarSectionComplete: false,
+    }),
+    false,
+  );
+  assert.equal(
+    isCompleteFeaturedOnlyFourStarPool({
+      ...complete,
+      extractionIssues: [{
+        code: "unresolved-character-name",
+        featured: true,
+      }],
+    }),
+    false,
+  );
+  assert.equal(
+    isCompleteFeaturedOnlyFourStarPool({
+      ...complete,
+      pickups: [{ characterId: "featured-one", rate: decimal("4.5") }],
+    }),
+    false,
+  );
+  assert.equal(
+    isCompleteFeaturedOnlyFourStarPool({
+      ...complete,
+      normalBfRowCount: 1,
+    }),
+    false,
+  );
 });
 
 test("BF and star-4 calculations are exact fixed-point operations", () => {
