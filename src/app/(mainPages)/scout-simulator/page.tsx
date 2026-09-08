@@ -11,14 +11,30 @@ export const metadata = {
   alternates: { canonical: "/scout-simulator" },
 };
 
+
+function newestScoutFirst(
+  left: (typeof scouts)[number],
+  right: (typeof scouts)[number],
+): number {
+  return new Date(right.startAt).getTime() - new Date(left.startAt).getTime();
+}
+
 export default async function ScoutSimulatorPage() {
   await connection();
   // Request-time Server Component: connection() prevents build-time freezing.
   // eslint-disable-next-line react-hooks/purity
   const now = Date.now();
-  const currentScouts = scouts.filter((scout) => getScoutStatus(scout, now) === "current");
-  const pastScouts = scouts.filter((scout) => getScoutStatus(scout, now) === "past");
-  const upcomingScouts = scouts.filter((scout) => getScoutStatus(scout, now) === "upcoming");
+const currentScouts = scouts
+  .filter((scout) => getScoutStatus(scout, now) === "current")
+  .sort(newestScoutFirst);
+
+const pastScouts = scouts
+  .filter((scout) => getScoutStatus(scout, now) === "past")
+  .sort(newestScoutFirst);
+
+const upcomingScouts = scouts
+  .filter((scout) => getScoutStatus(scout, now) === "upcoming")
+  .sort(newestScoutFirst);
 
   return (
     <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>

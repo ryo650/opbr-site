@@ -11,7 +11,19 @@ import { exHungerPangsCharlotteLinlin } from "./7-5exlinlin";
 import { exBlackbeardPiratesKuzan } from "./7-5exKuzan";
 import { exBonny } from "./7-5exBonny";
 
+import { scout260MillionDownloadsCelebrationExtremeBountyFestival } from "./260-million-downloads-celebration-extreme-bounty-festival";
+
+import { scout260MillionDownloadsCelebrationExtremeBountyFestival2 } from "./260-million-downloads-celebration-extreme-bounty-festival-2";
+
+import { scoutGiantWarriorHajrudin20260928 } from "./giant-warrior-hajrudin-20260928";
+
+import { scoutRaidOnOnigashimaSanji20260914 } from "./raid-on-onigashima-sanji-20260914";
+
 export const scouts = [
+    scoutRaidOnOnigashimaSanji20260914,
+    scoutGiantWarriorHajrudin20260928,
+    scout260MillionDownloadsCelebrationExtremeBountyFestival2,
+    scout260MillionDownloadsCelebrationExtremeBountyFestival,
     eggheadStMarz,
     exWhitebeardRivival,
     OPDayExBountyFestival,
