@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "eslint",
     "scouts:import": "node scripts/scout-importer/import.mjs",
-    "scouts:test": "node --test scripts/scout-importer/*.test.mjs"
+    "scouts:test": "node --test scripts/scout-importer/*.test.mjs",
     "test": "node --require ./tests/register.cjs --test tests/core.test.cjs",
     "test:http": "node --require ./tests/register.cjs --test tests/http.test.cjs"
   },
