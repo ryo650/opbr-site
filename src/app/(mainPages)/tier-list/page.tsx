@@ -2,6 +2,7 @@ import TierList from "../../../components/tier-list/TierList"
 import styles from "./page.module.css"
 
 export const metadata = {
+  alternates: { canonical: "/tier-list" },
   title: "OPBR Tier List | Best Characters in One Piece Bounty Rush",
   description:
     "Check the latest OPBR tier list for One Piece Bounty Rush. Find the best characters ranked by current meta strength, league battle performance, roles, and overall usefulness. Stay updated with the top picks for your team.",
@@ -9,7 +10,7 @@ export const metadata = {
 
 export default function TierListPage() {
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.content}>
         {/* タイトル */}
         <section className={styles.introduction}>
