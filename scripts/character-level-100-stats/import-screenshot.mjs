@@ -115,6 +115,8 @@ try {
   const draft = buildCharacterStatsScreenshotDraft({
     sourceImage: basename(imagePath),
     templateId: maxLevelPreviewTemplate.id,
+    sourceContext: maxLevelPreviewTemplate.sourceContext,
+    boostStageId: maxLevelPreviewTemplate.boostStageId,
     crops,
     ocrByRegion,
     matchCharacterName,
@@ -136,10 +138,13 @@ try {
   console.log(`HP: ${draft.hp ?? "<unrecognized>"}`);
   console.log(`ATK: ${draft.atk ?? "<unrecognized>"}`);
   console.log(`DEF: ${draft.def ?? "<unrecognized>"}`);
+  console.log(`Base HP candidate: ${draft.baseStatsCandidate?.baseHp ?? "<needs review>"}`);
+  console.log(`Base ATK candidate: ${draft.baseStatsCandidate?.baseAtk ?? "<needs review>"}`);
+  console.log(`Base DEF candidate: ${draft.baseStatsCandidate?.baseDef ?? "<needs review>"}`);
   console.log(`Status: ${draft.reviewStatus}`);
   console.log(`Draft: ${draftPath}`);
   console.log("");
-  console.log("Dry run only; production level-100-stats.ts was not changed.");
+  console.log("Dry run only; production level-100-base-stats.ts was not changed.");
   if (draft.issues.length) {
     for (const issue of draft.issues) console.log(`Issue: ${issue.code} — ${issue.message}`);
   }

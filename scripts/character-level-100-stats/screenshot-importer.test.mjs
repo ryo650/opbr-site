@@ -15,10 +15,12 @@ const canonicalCharacters = {
   "red-rock-monkey-d-luffy": {
     id: "red-rock-monkey-d-luffy",
     name: "Red-Rock-Monkey-D-Luffy",
+    role: "runner",
   },
   "flame-emperor-sabo": {
     id: "flame-emperor-sabo",
     name: "Flame-Emperor-Sabo",
+    role: "runner",
   },
 };
 
@@ -46,6 +48,8 @@ function fixtureDraft(overrides = {}) {
   return buildCharacterStatsScreenshotDraft({
     sourceImage: "IMG_4816.PNG",
     templateId: maxLevelPreviewTemplate.id,
+    sourceContext: maxLevelPreviewTemplate.sourceContext,
+    boostStageId: maxLevelPreviewTemplate.boostStageId,
     crops: resolveTemplateCrops(maxLevelPreviewTemplate, maxLevelPreviewTemplate.referenceSize),
     ocrByRegion: { ...fixtureOcr, ...overrides },
     matchCharacterName,
@@ -74,6 +78,11 @@ test("fixture extracts Monkey D. Luffy Lv.100 and the three expected stats", () 
   assert.equal(draft.hp, 9386);
   assert.equal(draft.atk, 2175);
   assert.equal(draft.def, 2328);
+  assert.deepEqual(draft.baseStatsCandidate, {
+    baseHp: 6806,
+    baseAtk: 1535,
+    baseDef: 1688,
+  });
   assert.equal(draft.reviewStatus, "ready");
   assert.deepEqual(draft.issues, []);
 });
@@ -121,4 +130,21 @@ test("missing or ambiguous stat OCR is needs-review", () => {
   assert.equal(draft.hp, null);
   assert.equal(draft.reviewStatus, "needs-review");
   assert.ok(draft.issues.some(({ code }) => code === "hp-needs-review"));
+});
+
+test("a source that is not the unowned Max preview cannot derive Base Stats", () => {
+  const draft = buildCharacterStatsScreenshotDraft({
+    sourceImage: "owned-character.png",
+    templateId: "owned-character-v1",
+    sourceContext: "owned-character-screen",
+    boostStageId: "boost-max",
+    crops: {},
+    ocrByRegion: fixtureOcr,
+    matchCharacterName: createCharacterNameMatcher(canonicalCharacters, {
+      "red roc monkey d luffy": "red-rock-monkey-d-luffy",
+    }),
+  });
+  assert.equal(draft.baseStatsCandidate, null);
+  assert.equal(draft.reviewStatus, "needs-review");
+  assert.ok(draft.issues.some(({ code }) => code === "base-derivation-needs-review"));
 });

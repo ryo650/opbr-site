@@ -15,6 +15,8 @@ function relativeRegion(x, y, width, height) {
 // only the identity and four requested Stats fields, never the full screen.
 export const maxLevelPreviewTemplate = {
   id: MAX_LEVEL_PREVIEW_TEMPLATE_ID,
+  sourceContext: "unowned-max-preview",
+  boostStageId: "boost-max",
   referenceSize,
   ocrScale: 2,
   regions: {

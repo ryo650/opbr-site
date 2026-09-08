@@ -1,6 +1,6 @@
 export { medals } from "./medals";
 export { getCurrentSetSlotEntries } from "./current-set";
-export { getCharacterStatsPreview } from "./character-stats-preview";
+export { calculateCharacterStatPreviewValue, getCharacterStatsPreview } from "./character-stats-preview";
 export { effectCaps } from "./effect-caps";
 export {
   formatEffectCapScalar,

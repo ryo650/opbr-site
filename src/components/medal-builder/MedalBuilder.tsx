@@ -35,8 +35,11 @@ import {
   type UniqueTraitCategoryMatchMode,
 } from "@/data/medals";
 import {
-  characterLevel100StatsCatalog,
+  characterBoostStages,
+  characterLevel100BaseStatsCatalog,
   characters,
+  getSelectableCharacterLevel100BaseStats,
+  type CharacterBoostStageId,
 } from "@/data/characters";
 import type { NativeEffectType } from "@/data/medals/types";
 import {
@@ -83,12 +86,12 @@ const medalImage = (medal: Medal) => `/medals/${medal.id}.webp`;
 const extraTraitEffectOptions = [...new Map(selectableExtraTraits.map((definition) => [definition.effectId, definition.label])).entries()];
 const characterStatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
 const formatCharacterDisplayName = (name: string) => name.replaceAll("-", " ");
-const charactersWithLevel100Stats = characterLevel100StatsCatalog.flatMap((stats) => {
+const charactersWithLevel100BaseStats = getSelectableCharacterLevel100BaseStats(characterLevel100BaseStatsCatalog).flatMap((stats) => {
   const character = characters[stats.characterId];
   return character ? [{ character, stats }] : [];
 });
-const characterWithLevel100StatsById = new Map(
-  charactersWithLevel100Stats.map((entry) => [entry.character.id, entry]),
+const characterWithLevel100BaseStatsById = new Map(
+  charactersWithLevel100BaseStats.map((entry) => [entry.character.id, entry]),
 );
 
 function createSelectionCountStore() {
@@ -586,12 +589,13 @@ const Analysis = memo(function Analysis({ selected, commonTags, effectCapUsages,
 function CharacterPreview({ extraTraitsBySlot }: { extraTraitsBySlot: EquippedExtraTraitsBySlot }) {
   const [characterId, setCharacterId] = useState("");
   const [pickerOpen, setPickerOpen] = useState(false);
-  const selectedCharacter = characterWithLevel100StatsById.get(characterId);
+  const [boostStageId, setBoostStageId] = useState<CharacterBoostStageId>("boost-max");
+  const selectedCharacter = characterWithLevel100BaseStatsById.get(characterId);
   const preview = useMemo(
-    () => getCharacterStatsPreview(selectedCharacter?.character, selectedCharacter?.stats, extraTraitsBySlot),
-    [selectedCharacter, extraTraitsBySlot],
+    () => getCharacterStatsPreview(selectedCharacter?.character, selectedCharacter?.stats, extraTraitsBySlot, boostStageId),
+    [boostStageId, selectedCharacter, extraTraitsBySlot],
   );
-  const hasCharacters = charactersWithLevel100Stats.length > 0;
+  const hasCharacters = charactersWithLevel100BaseStats.length > 0;
 
   const selectCharacter = (nextCharacterId: string) => {
     setCharacterId(nextCharacterId);
@@ -607,9 +611,10 @@ function CharacterPreview({ extraTraitsBySlot }: { extraTraitsBySlot: EquippedEx
           <Image src={preview.character.image} alt={formatCharacterDisplayName(preview.character.name)} width={104} height={104} sizes="(max-width: 900px) 88px, 104px" />
           <div><strong>{formatCharacterDisplayName(preview.character.name)}</strong><span>Lv.100</span></div>
         </div>
+        <CharacterBoostSelector value={boostStageId} onChange={setBoostStageId} />
         <div className={styles.characterStatRows}>{(["hp", "atk", "def"] as const).map((stat) => <div key={stat}>
           <strong>{stat.toUpperCase()}</strong>
-          <span>{characterStatNumber.format(preview.stats[stat].base)}</span>
+          <span>{characterStatNumber.format(preview.stats[stat].displayed)}</span>
           <b>+{characterStatNumber.format(preview.stats[stat].increase)}</b>
         </div>)}</div>
         <button type="button" className={styles.changeCharacterButton} onClick={() => setPickerOpen((open) => !open)} aria-expanded={pickerOpen}>Change Character</button>
@@ -623,12 +628,19 @@ function CharacterPreview({ extraTraitsBySlot }: { extraTraitsBySlot: EquippedEx
   </section>;
 }
 
+function CharacterBoostSelector({ value, onChange }: { value: CharacterBoostStageId; onChange: (stageId: CharacterBoostStageId) => void }) {
+  return <div className={styles.characterBoostSelector} aria-label="Character Boost">
+    <span>Boost</span>
+    <div>{characterBoostStages.map((stage) => <button type="button" key={stage.id} aria-pressed={value === stage.id} title={`Use ${stage.label} stats`} onClick={() => onChange(stage.id)}>{stage.label}</button>)}</div>
+  </div>;
+}
+
 function CharacterSelector({ value, onChange, disabled = false }: { value: string; onChange: (characterId: string) => void; disabled?: boolean }) {
   return <label className={styles.characterSelector}>
     <span className={styles.srOnly}>Select Character</span>
     <select value={value} onChange={(event) => onChange(event.target.value)} disabled={disabled}>
       <option value="">{disabled ? "No verified Characters" : "Select Character"}</option>
-      {charactersWithLevel100Stats.map(({ character }) => <option value={character.id} key={character.id}>{formatCharacterDisplayName(character.name)}</option>)}
+      {charactersWithLevel100BaseStats.map(({ character }) => <option value={character.id} key={character.id}>{formatCharacterDisplayName(character.name)}</option>)}
     </select>
   </label>;
 }

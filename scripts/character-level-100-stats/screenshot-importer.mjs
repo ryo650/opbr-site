@@ -1,3 +1,8 @@
+import {
+  deriveBaseStatsFromDisplayedStats,
+  isCharacterBoostRole,
+} from "../../src/data/characters/boost-profiles.ts";
+
 export function normalizeCharacterName(value) {
   return value
     .normalize("NFKD")
@@ -47,6 +52,7 @@ export function createCharacterNameMatcher(canonicalCharacters, reviewedAliases 
         return {
           status: "matched",
           characterId: matches[0].catalogKey,
+          characterRole: matches[0].character.role ?? null,
           method: "canonical-name",
           identityText,
           candidates: [],
@@ -56,6 +62,7 @@ export function createCharacterNameMatcher(canonicalCharacters, reviewedAliases 
         return {
           status: "ambiguous",
           characterId: null,
+          characterRole: null,
           method: null,
           identityText,
           candidates: matches.map(({ catalogKey, character }) => ({
@@ -75,6 +82,7 @@ export function createCharacterNameMatcher(canonicalCharacters, reviewedAliases 
         return {
           status: "invalid-alias",
           characterId: null,
+          characterRole: null,
           method: null,
           identityText,
           candidates: [],
@@ -83,6 +91,7 @@ export function createCharacterNameMatcher(canonicalCharacters, reviewedAliases 
       return {
         status: "matched",
         characterId,
+        characterRole: character.role ?? null,
         method: "reviewed-alias",
         identityText,
         candidates: [],
@@ -103,6 +112,7 @@ export function createCharacterNameMatcher(canonicalCharacters, reviewedAliases 
     return {
       status: "unmatched",
       characterId: null,
+      characterRole: null,
       method: null,
       identityText,
       candidates,
@@ -169,6 +179,8 @@ export function extractCharacterIdentity(ocr) {
 export function buildCharacterStatsScreenshotDraft({
   sourceImage,
   templateId,
+  sourceContext,
+  boostStageId,
   crops,
   ocrByRegion,
   matchCharacterName,
@@ -176,7 +188,7 @@ export function buildCharacterStatsScreenshotDraft({
   const identity = extractCharacterIdentity(ocrByRegion.characterName);
   const match = identity.characterName
     ? matchCharacterName(identity)
-    : { status: "unmatched", characterId: null, method: null, identityText: "", candidates: [] };
+    : { status: "unmatched", characterId: null, characterRole: null, method: null, identityText: "", candidates: [] };
   const levelResult = extractLevel(ocrByRegion.level);
   const stats = {
     hp: extractStatValue(ocrByRegion.hp),
@@ -194,9 +206,32 @@ export function buildCharacterStatsScreenshotDraft({
     if (result.value === null) issues.push({ code: `${stat}-needs-review`, message: `${stat.toUpperCase()}: ${result.issue}` });
   }
 
+  const displayedStats = stats.hp.value !== null && stats.atk.value !== null && stats.def.value !== null
+    ? { hp: stats.hp.value, atk: stats.atk.value, def: stats.def.value }
+    : null;
+  const hasBoostRole = isCharacterBoostRole(match.characterRole);
+  const canDeriveBaseStats = sourceContext === "unowned-max-preview"
+    && boostStageId === "boost-max"
+    && hasBoostRole;
+  const baseStatsCandidate = displayedStats && canDeriveBaseStats
+    ? deriveBaseStatsFromDisplayedStats(displayedStats, match.characterRole, boostStageId)
+    : null;
+
+  if (match.status === "matched" && !hasBoostRole) {
+    issues.push({ code: "character-role-needs-review", message: `Canonical Character role cannot resolve a Boost profile: ${match.characterRole ?? "missing"}` });
+  }
+  if (sourceContext !== "unowned-max-preview" || boostStageId !== "boost-max") {
+    issues.push({ code: "base-derivation-needs-review", message: "Base Stats can only be derived from the verified unowned Max Level Preview template" });
+  }
+  if (baseStatsCandidate && Object.values(baseStatsCandidate).some((value) => !Number.isInteger(value) || value <= 0)) {
+    issues.push({ code: "invalid-base-stats-candidate", message: "Derived Base Stats must be positive integers" });
+  }
+
   return {
     sourceType: "screenshot",
     templateId,
+    sourceContext,
+    boostStageId,
     sourceImage,
     characterName: identity.characterName,
     characterId: match.characterId,
@@ -204,6 +239,8 @@ export function buildCharacterStatsScreenshotDraft({
     hp: stats.hp.value,
     atk: stats.atk.value,
     def: stats.def.value,
+    displayedStats,
+    baseStatsCandidate,
     reviewStatus: issues.length ? "needs-review" : "ready",
     issues,
     match,
