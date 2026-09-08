@@ -17,7 +17,10 @@ import { scout260MillionDownloadsCelebrationExtremeBountyFestival2 } from "./260
 
 import { scoutGiantWarriorHajrudin20260928 } from "./giant-warrior-hajrudin-20260928";
 
+import { scoutRaidOnOnigashimaSanji20260914 } from "./raid-on-onigashima-sanji-20260914";
+
 export const scouts = [
+    scoutRaidOnOnigashimaSanji20260914,
     scoutGiantWarriorHajrudin20260928,
     scout260MillionDownloadsCelebrationExtremeBountyFestival2,
     scout260MillionDownloadsCelebrationExtremeBountyFestival,
