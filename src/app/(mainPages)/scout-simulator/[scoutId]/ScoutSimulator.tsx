@@ -1,10 +1,10 @@
 'use client'
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Image from "next/image";
 import CharacterFrame from "@/components/character-frame/CharacterFrame";
 import { characters } from "@/data/characters";
-import { rollScout } from "@/lib/scout";
+import { createScoutRoller } from "@/lib/scout";
 import type { Character } from "@/data/characters/type";
 import type { ScoutBanner, ScoutPullOption } from "@/data/scouts/type";
 import styles from "./ScoutSimulator.module.css";
@@ -88,6 +88,7 @@ function isPickupCharacter(scout: ScoutBanner, characterId: string): boolean {
 }
 
 export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
+  const roll = useMemo(() => createScoutRoller(scout, characters), [scout]);
   const [results, setResults] = useState<Character[]>([]);
 
   const [stats, setStats] = useState<SessionStats>(createEmptyStats);
@@ -99,7 +100,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
     const pullResults: Character[] = [];
 
     for (let index = 0; index < pullOption.pullCount; index += 1) {
-      const character = rollScout(scout, characters);
+      const character = roll();
 
       if (character) {
         pullStats = addStats(pullStats, getStatsForPull(character, 0, scout));
@@ -122,7 +123,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
     const pullResults: Character[] = [];
 
     for (let index = 0; index < MAX_PULL_UNTIL; index += 1) {
-      const character = rollScout(scout, characters);
+      const character = roll();
 
       if (character) {
         pullStats = addStats(
@@ -169,7 +170,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
     stats.totalPulls === 0 ? 0 : (stats.star4Pulls / stats.totalPulls) * 100;
 
   return (
-    <main className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={styles.page}>
       <div className={styles.content}>
         <header className={styles.intro}>
           <p className={styles.eyebrow}>OPBR SCOUT</p>
@@ -182,7 +183,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
               src={`${scout.bannerImg}`}
               alt={`${scout.name} banner`}
               fill
-              priority
+              preload
               sizes="(max-width: 480px) 100vw, 390px"
               className={styles.bannerImage}
             />
@@ -195,16 +196,17 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
 
           <div className={styles.pullActions}>
             <button className={styles.singlePull} onClick={() => handleScout(scout.pullOptions.single)}>
-              <span>1 Pull</span>
+              <span>{scout.pullOptions.single.pullCount} Pull</span>
               <DiamondCost amount={scout.pullOptions.single.diamondCost} />
             </button>
             <button className={styles.multiPull} onClick={() => handleScout(scout.pullOptions.multi)}>
-              <span>11 Pulls</span>
+              <span>{scout.pullOptions.multi.pullCount} Pulls</span>
               <DiamondCost amount={scout.pullOptions.multi.diamondCost} />
             </button>
           </div>
         </section>
 
+        <p role="status" className="sr-only">{stats.totalPulls} total pulls. {stats.pickupPulls} pickups. {stats.diamondsSpent} diamonds spent.</p>
         <section className={styles.resultsSection} aria-labelledby="results-title">
           <div className={styles.sectionHeading}>
             <h2 id="results-title">Scout Results</h2>

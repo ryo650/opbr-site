@@ -66,7 +66,7 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
     guide.strongAgainst?.length && ["strong-against", "Strong Against"],
   ].filter((item): item is [string, string] => Boolean(item)).map(([id, label]): TableOfContentsItem => ({ id, label }));
 
-  return <main className={`${styles.page} upper-page-background`}>
+  return <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
     <article className={styles.content}>
       <header className={styles.hero}><div className={styles.portraitWrap}><Image src={character.image} alt={character.name} width={280} height={280} className={styles.portrait} preload /></div><div><p className={styles.eyebrow}>Character Guide</p><h1>{character.name}</h1><div className={styles.badges}><span>{character.element} element</span><span>{character.role}</span></div></div></header>
 

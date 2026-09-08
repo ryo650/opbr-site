@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About",
   description:
     "Learn about OPBR Guide, an unofficial fan site offering tier lists, character information, scout simulator tools, and guides for ONE PIECE Bounty Rush players.",
@@ -9,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function AboutPage() {
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>About this site</p>

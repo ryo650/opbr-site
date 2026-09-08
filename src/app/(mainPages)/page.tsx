@@ -3,6 +3,8 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import styles from "./page.module.css"
 
+export const metadata = { alternates: { canonical: "/" } };
+
 const featuredCards = [
   {
     eyebrow: "Updated rankings",
@@ -53,7 +55,7 @@ const exploreCards = [
 
 export default function TopPage() {
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>One Piece Bounty Rush</p>

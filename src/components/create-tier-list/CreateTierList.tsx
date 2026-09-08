@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { DragEvent, KeyboardEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
+import { DragEvent, PointerEvent, useEffect, useMemo, useRef, useState } from "react";
 import { characters } from "@/data/characters";
 import type { Character } from "@/data/characters/type";
 import styles from "./CreateTierList.module.css";
@@ -28,17 +28,11 @@ function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onHandle
   onHandlePointerMove: (event: PointerEvent<HTMLButtonElement>) => void; onHandlePointerEnd: (event: PointerEvent<HTMLButtonElement>) => void;
   onPointerCancel: () => void; onSelect: (id: string) => void;
 }) {
-  const onKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      onSelect(character.id);
-    }
-  };
-  return <div className={`${styles.characterCard} ${isDragging ? styles.draggingSource : ""}`} draggable role="button" tabIndex={0} onDragStart={(event) => onDragStart(event, character.id)} onDragEnd={onDragEnd}
-    onClick={() => onSelect(character.id)} onKeyDown={onKeyDown}
+  return <div className={`${styles.characterCard} ${isDragging ? styles.draggingSource : ""}`} draggable onDragStart={(event) => onDragStart(event, character.id)} onDragEnd={onDragEnd}
     onContextMenu={(event) => event.preventDefault()}
-    aria-label={`Choose a tier for ${character.name}`} title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
+    title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
     <Image src={character.image} alt={character.name} width={72} height={72} draggable={false} className={styles.characterImage} />
+    <button type="button" className={styles.chooseCharacter} aria-label={`Choose a tier for ${character.name}`} onClick={() => onSelect(character.id)} />
     <button type="button" className={styles.dragHandle} draggable={false} aria-label={`Drag ${character.name}`}
       onClick={(event) => event.stopPropagation()} onPointerDown={(event) => onHandlePointerStart(event, character.id)} onPointerMove={onHandlePointerMove}
       onPointerUp={onHandlePointerEnd} onPointerCancel={onPointerCancel}>⣿</button>
@@ -64,6 +58,7 @@ export default function CreateTierList() {
   const dragPreviewElement = useRef<HTMLElement | null>(null);
   const pointerDrag = useRef<{ id: string; pointerId: number; target: HTMLButtonElement } | null>(null);
   const closeButtonRef = useRef<HTMLButtonElement>(null);
+  const dialogRef = useRef<HTMLDialogElement>(null);
 
   const rankedIds = useMemo(() => new Set(Object.values(tierState).flat()), [tierState]);
   const pool = useMemo(() => poolOrder.map((id) => characters[id]).filter((character): character is Character => Boolean(character) && !rankedIds.has(character.id)), [poolOrder, rankedIds]);
@@ -78,12 +73,17 @@ export default function CreateTierList() {
 
   useEffect(() => {
     if (!selectedCharacterId) return;
+    const dialog = dialogRef.current;
+    const previousOverflow = document.body.style.overflow;
+    dialog?.showModal();
+    document.body.style.overflow = "hidden";
     closeButtonRef.current?.focus();
-    const closeOnEscape = (event: globalThis.KeyboardEvent) => {
-      if (event.key === "Escape") setSelectedCharacterId(null);
+    return () => {
+      dialog?.close();
+      document.body.style.overflow = previousOverflow;
+      // The selected card may have moved to a different row while the dialog closed.
+      document.querySelector<HTMLButtonElement>(`[data-character-id="${selectedCharacterId}"] .${styles.chooseCharacter}`)?.focus({ preventScroll: true });
     };
-    window.addEventListener("keydown", closeOnEscape);
-    return () => window.removeEventListener("keydown", closeOnEscape);
   }, [selectedCharacterId]);
 
   useEffect(() => () => {
@@ -93,7 +93,7 @@ export default function CreateTierList() {
   }, []);
 
   const moveCharacter = (id: string, destination: DropZone, targetId?: string, placement: DropPlacement = "after") => {
-    if (targetId === id) return;
+    if (!Object.hasOwn(characters, id) || targetId === id) return;
     setTierState((current) => {
       const next = Object.fromEntries(tiers.map((tier) => [tier.id, current[tier.id].filter((item) => item !== id)])) as TierState;
       if (destination !== "pool") {
@@ -170,6 +170,12 @@ export default function CreateTierList() {
     <section className={styles.poolSection}><div className={styles.poolHeading}><div><h2>Unranked Characters</h2><p>{pool.length} characters available</p></div></div><div className={styles.filters}><input aria-label="Search characters" placeholder="Search characters..." value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="Element filter" value={element} onChange={(event) => setElement(event.target.value as typeof element)}><option value="all">Element: All</option>{["red", "blue", "green", "white", "black"].map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Role filter" value={role} onChange={(event) => setRole(event.target.value as typeof role)}><option value="all">Role: All</option>{["attacker", "defender", "runner"].map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Grade filter" value={grade} onChange={(event) => setGrade(event.target.value as typeof grade)}><option value="all">Grade: All</option>{grades.map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Sort characters" value={sort} onChange={(event) => setSort(event.target.value as SortOrder)}><option value="default">Default</option><option value="name-asc">Name A–Z</option><option value="name-desc">Name Z–A</option></select></div>
     <div className={`${styles.pool} ${dropIntent?.destination === "pool" && !dropIntent.targetId ? styles.dropAtEnd : ""}`} data-zone-container="pool" onDragOver={(event) => dragOverHandler(event, "pool")} onDragLeave={dragLeaveHandler} onDrop={(event) => dropFromDataTransfer(event, "pool")}>{filteredPool.map((character) => { const indicator = dropIntent?.destination === "pool" && dropIntent.targetId === character.id ? (dropIntent.placement === "before" ? styles.dropBefore : styles.dropAfter) : ""; return <div className={`${styles.characterSlot} ${indicator}`} key={character.id} data-character-id={character.id}><CharacterCard character={character} isDragging={draggingId === character.id} {...characterCardProps} /></div>; })}{filteredPool.length === 0 && <p className={styles.empty}>No unranked characters match your search and filters.</p>}</div></section>
     {pointerPreview && characters[pointerPreview.id] && <div className={`${styles.characterCard} ${styles.pointerDragPreview}`} style={{ left: pointerPreview.x, top: pointerPreview.y }} aria-hidden="true"><Image src={characters[pointerPreview.id].image} alt="" width={72} height={72} draggable={false} className={styles.characterImage} /></div>}
-    {selectedCharacter && <div className={styles.dialogBackdrop} onPointerDown={(event) => { if (event.target === event.currentTarget) setSelectedCharacterId(null); }}><div className={styles.destinationDialog} role="dialog" aria-modal="true" aria-labelledby="destination-title" aria-describedby="destination-details"><div className={styles.sheetHandle} aria-hidden="true" /><button ref={closeButtonRef} type="button" className={styles.dialogClose} onClick={() => setSelectedCharacterId(null)} aria-label="Close tier selection">×</button><div className={styles.selectedCharacter}><div className={styles.selectedPortrait}><Image src={selectedCharacter.image} alt="" width={88} height={88} draggable={false} /></div><div className={styles.selectedCharacterDetails}><h2 id="destination-title">{selectedCharacter.name}</h2><div id="destination-details" className={styles.metadata}><span>{selectedCharacter.element}</span><span>{selectedCharacter.role}</span><span>{selectedCharacter.grade}</span></div></div></div><p className={styles.dialogPrompt}>Select tier</p><div className={styles.destinationButtons}>{tiers.map((tier) => <button type="button" key={tier.id} className={`${styles.destinationButton} ${styles[tier.id]}`} disabled={selectedZone === tier.id} aria-current={selectedZone === tier.id ? "true" : undefined} onClick={() => selectDestination(tier.id)}>{tier.label}{selectedZone === tier.id && <span>Current</span>}</button>)}</div>{selectedZone !== "pool" && <button type="button" className={styles.unrankedButton} onClick={() => selectDestination("pool")}>Return to Unranked</button>}</div></div>}
+    {selectedCharacter && <dialog ref={dialogRef} aria-labelledby="destination-title" aria-describedby="destination-details" onCancel={() => setSelectedCharacterId(null)} onKeyDown={(event) => {
+      if (event.key !== "Tab") return;
+      const buttons = event.currentTarget.querySelectorAll<HTMLButtonElement>("button:not(:disabled)");
+      const first = buttons[0], last = buttons[buttons.length - 1];
+      if (event.shiftKey && document.activeElement === first) { event.preventDefault(); last?.focus(); }
+      else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first?.focus(); }
+    }} className={styles.dialogBackdrop} onPointerDown={(event) => { if (event.target === event.currentTarget) setSelectedCharacterId(null); }}><div className={styles.destinationDialog}><div className={styles.sheetHandle} aria-hidden="true" /><button ref={closeButtonRef} type="button" className={styles.dialogClose} onClick={() => setSelectedCharacterId(null)} aria-label="Close tier selection">×</button><div className={styles.selectedCharacter}><div className={styles.selectedPortrait}><Image src={selectedCharacter.image} alt="" width={88} height={88} draggable={false} /></div><div className={styles.selectedCharacterDetails}><h2 id="destination-title">{selectedCharacter.name}</h2><div id="destination-details" className={styles.metadata}><span>{selectedCharacter.element}</span><span>{selectedCharacter.role}</span><span>{selectedCharacter.grade}</span></div></div></div><p className={styles.dialogPrompt}>Select tier</p><div className={styles.destinationButtons}>{tiers.map((tier) => <button type="button" key={tier.id} className={`${styles.destinationButton} ${styles[tier.id]}`} disabled={selectedZone === tier.id} aria-current={selectedZone === tier.id ? "true" : undefined} onClick={() => selectDestination(tier.id)}>{tier.label}{selectedZone === tier.id && <span>Current</span>}</button>)}</div>{selectedZone !== "pool" && <button type="button" className={styles.unrankedButton} onClick={() => selectDestination("pool")}>Return to Unranked</button>}</div></dialog>}
   </div>;
 }

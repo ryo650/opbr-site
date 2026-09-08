@@ -8,6 +8,7 @@ export default function EnLayout({
 }>) {
   return (
     <div className="page">
+        <a className="skip-link" href="#main-content">Skip to main content</a>
         <CommonHeader />
         {children}
         <CommonFooter />

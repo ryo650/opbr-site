@@ -6,6 +6,7 @@ import CharacterUsageAnalytics from "./CharacterUsageAnalytics";
 import styles from "./page.module.css";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/character-usage" },
   title: "Top League Character Usage | OPBR",
   description: "Explore estimated character usage among top One Piece Bounty Rush League Battle players.",
 };
@@ -18,7 +19,7 @@ export default function CharacterUsagePage() {
   const latest = snapshots.at(-1);
 
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.content}>
         <header className={styles.hero}>
           <p className={styles.eyebrow}>League Battle Analytics</p>

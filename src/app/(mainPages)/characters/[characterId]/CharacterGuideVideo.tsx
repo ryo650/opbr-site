@@ -54,7 +54,7 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
       muted
       loop
       playsInline
-      preload="metadata"
+      preload="none"
       aria-label={label}
     >
       <source src={src} type="video/mp4" />
