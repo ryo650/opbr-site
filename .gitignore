@@ -49,3 +49,4 @@ public_backup/
 /scripts/scout-importer/input/*
 !/scripts/scout-importer/input/.gitkeep
 /scripts/scout-importer/.tmp/
+/scripts/scout-importer/input/

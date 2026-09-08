@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import { cn } from "@/lib/utils";
 import type { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/next"
+import { SITE_URL } from "@/lib/site";
 
 const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
@@ -16,10 +17,11 @@ const websiteJsonLd = {
   "@type": "WebSite",
   name: "OPBR Guide",
   alternateName: ["OPBR Tier List & Guide", "One Piece Bounty Rush Guide"],
-  url: "https://opbr-site.vercel.app",
+  url: SITE_URL,
 };
 
 export const metadata: Metadata = {
+  metadataBase: new URL(SITE_URL),
   verification:{ "google": "3E7MzcTwoRzsGYr3UPygrqEsML__uod9wisR7CDMdes" 
   },
 

@@ -52,10 +52,15 @@ export default function CharacterGuideTableOfContents({ items }: { items: TableO
   }, [items]);
 
   useEffect(() => {
-    linkRefs.current.get(activeId)?.scrollIntoView({
-      behavior: "smooth",
-      block: "nearest",
-      inline: "center",
+    const link = linkRefs.current.get(activeId);
+    const list = navRef.current?.querySelector("ol");
+    if (!link || !list || list.scrollWidth <= list.clientWidth) return;
+    // Scroll only the horizontal list; scrollIntoView also moves the article.
+    const linkBounds = link.getBoundingClientRect();
+    const listBounds = list.getBoundingClientRect();
+    list.scrollTo({
+      left: list.scrollLeft + linkBounds.left - listBounds.left - (list.clientWidth - linkBounds.width) / 2,
+      behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth",
     });
   }, [activeId]);
 

@@ -330,14 +330,6 @@ export const redCharacters: Record<string, Character> = {
         element: "red",
         role: "defender"
     },
-    "father-and-daughter-kuma-bonney": {
-        id: "father-and-daughter-kuma-bonney",
-        name: "Father-And-Daughter-Kuma-Bonney",
-        image: "/characters/red/father-and-daughter-kuma-bonney.webp",
-        grade: "bf",
-        element: "red",
-        role: "attacker"
-    },
     "film-red-monkey-d-luffy": {
         id: "film-red-monkey-d-luffy",
         name: "Film-Red-Monkey-D-Luffy",

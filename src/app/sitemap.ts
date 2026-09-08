@@ -1,14 +1,16 @@
 import type { MetadataRoute } from "next";
 import { scouts } from "@/data/scouts";
 import { characterGuides } from "@/data/character-guides";
+import { SITE_URL } from "@/lib/site";
 
-const baseUrl = "https://opbr-site.vercel.app";
+const baseUrl = SITE_URL;
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/` },
     { url: `${baseUrl}/tier-list` },
     { url: `${baseUrl}/character-usage` },
+    { url: `${baseUrl}/create-tier-list` },
     { url: `${baseUrl}/scout-simulator` },
     { url: `${baseUrl}/about` },
     { url: `${baseUrl}/contact` },

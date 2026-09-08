@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 const contactEmail = "opbrsite.contact@gmail.com";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description:
     "Contact OPBR Guide for inquiries, information corrections, and feedback about the ONE PIECE Bounty Rush fan site.",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Contact</p>

@@ -9,7 +9,7 @@ const pickups = [
         rate: 0.2
     },
     {
-        characterId: "film-gold-gild-tesoro",
+        characterId: "film-gold-glid-tesoro",
         rate: 0.4
     },
     {

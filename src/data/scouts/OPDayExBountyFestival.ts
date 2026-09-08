@@ -9,7 +9,7 @@ const pickups = [
         rate: 0.2
     },
     {
-        characterId: "big-mom-pirates-sweet-3-general-charllote-cracker",
+        characterId: "big-mom-pirates-sweet-3-general-charlotte-cracker",
         rate: 1.33
     },
     {

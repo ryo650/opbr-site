@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useId, useRef, useState } from "react";
 import type { CharacterSkill, SkillGroup, SkillVariant } from "@/data/character-guides/type";
 import CharacterGuideVideo from "./CharacterGuideVideo";
 import styles from "./page.module.css";
@@ -29,15 +29,27 @@ function GroupContent({ group }: { group: SkillGroup }) {
 }
 
 function TabbedGroups({ groups }: { groups: SkillGroup[] }) {
+  const tabId = useId();
+  const tabRefs = useRef<(HTMLButtonElement | null)[]>([]);
   const [activeId, setActiveId] = useState(groups[0].id ?? "0");
   const activeIndex = Math.max(0, groups.findIndex((group, index) => (group.id ?? String(index)) === activeId));
   return <div className={styles.tabPanel}>
     <div className={styles.tabs} role="tablist" aria-label={groups[0].tabGroup ?? "Skill forms"}>{groups.map((group, index) => {
       const id = group.id ?? String(index);
       const selected = index === activeIndex;
-      return <button key={id} type="button" role="tab" aria-selected={selected} className={selected ? styles.activeTab : ""} onClick={() => setActiveId(id)}>{group.label ?? `Form ${index + 1}`}</button>;
+      return <button key={id} type="button" role="tab" id={`${tabId}-tab-${index}`} aria-controls={`${tabId}-panel`} tabIndex={selected ? 0 : -1} ref={(element) => { tabRefs.current[index] = element; }} onKeyDown={(event) => {
+        let nextIndex = index;
+        if (event.key === "ArrowRight") nextIndex = (index + 1) % groups.length;
+        else if (event.key === "ArrowLeft") nextIndex = (index - 1 + groups.length) % groups.length;
+        else if (event.key === "Home") nextIndex = 0;
+        else if (event.key === "End") nextIndex = groups.length - 1;
+        else return;
+        event.preventDefault();
+        setActiveId(groups[nextIndex].id ?? String(nextIndex));
+        tabRefs.current[nextIndex]?.focus();
+      }} aria-selected={selected} className={selected ? styles.activeTab : ""} onClick={() => setActiveId(id)}>{group.label ?? `Form ${index + 1}`}</button>;
     })}</div>
-    <div role="tabpanel"><GroupContent group={groups[activeIndex]} /></div>
+    <div role="tabpanel" id={`${tabId}-panel`} aria-labelledby={`${tabId}-tab-${activeIndex}`} tabIndex={0}><GroupContent group={groups[activeIndex]} /></div>
   </div>;
 }
 
