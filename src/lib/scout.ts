@@ -96,61 +96,23 @@ function rollPickup(
   return fallbackCharacter;
 }
 
-// 指定カテゴリの通常排出キャラ一覧を作る
-function getPoolByCategory(
-  category: ScoutCategory,
-  scout: ScoutBanner,
-  characters: CharacterRecord,
-): Character[] {
-  const characterList = Object.values(characters);
-
-  // ピックアップキャラが通常BF・Star 4枠から
-  // 重複して排出されないようにする
-  const pickupIds = new Set(
-    scout.pickups.map((pickup) => pickup.characterId),
-  );
-
-  if (category === "bf") {
-    return characterList.filter(
-      (character) =>
-        character.grade === "bf" &&
-        !pickupIds.has(character.id),
-    );
+// Prepare the category pools once for a sequence of pulls.
+// Rates remain relative weights, including existing incomplete input totals.
+export function createScoutRoller(scout: ScoutBanner, characters: CharacterRecord): () => Character | null {
+  const pickupIds = new Set(scout.pickups.map((pickup) => pickup.characterId));
+  const pools = new Map<ScoutCategory, Character[]>();
+  for (const character of Object.values(characters)) {
+    if (pickupIds.has(character.id) || character.grade === "unknown") continue;
+    const pool = pools.get(character.grade) ?? [];
+    pool.push(character);
+    pools.set(character.grade, pool);
   }
-
-  if (category === "sp") {
-    return characterList.filter(
-      (character) =>
-        character.grade === "sp" &&
-        !pickupIds.has(character.id),
-    );
-  }
-
-  if (category === "star-4") {
-    return characterList.filter(
-      (character) =>
-        character.grade === "star-4" &&
-        !pickupIds.has(character.id),
-    );
-  }
-
-  if (category === "star-3") {
-    return characterList.filter(
-      (character) =>
-        character.grade === "star-3" &&
-        !pickupIds.has(character.id),
-    );
-  }
-
-  if (category === "star-2") {
-    return characterList.filter(
-      (character) =>
-        character.grade === "star-2" &&
-        !pickupIds.has(character.id),
-    );
-  }
-
-  return [];
+  return () => {
+    const category = rollCategory(scout.rates);
+    if (!category) return null;
+    if (category === "pickup") return rollPickup(scout, characters);
+    return pickRandom(pools.get(category) ?? []);
+  };
 }
 
 // ガチャ1回分の結果を返す
@@ -158,25 +120,7 @@ export function rollScout(
   scout: ScoutBanner,
   characters: CharacterRecord,
 ): Character | null {
-  const category = rollCategory(scout.rates);
-
-  if (!category) {
-    return null;
-  }
-
-  // ピックアップだけ個別確率による抽選
-  if (category === "pickup") {
-    return rollPickup(scout, characters);
-  }
-
-  // それ以外は同カテゴリ内から均等抽選
-  const pool = getPoolByCategory(
-    category,
-    scout,
-    characters,
-  );
-
-  return pickRandom(pool);
+  return createScoutRoller(scout, characters)();
 }
 
 // 複数回の連続ガチャ
@@ -186,9 +130,10 @@ export function rollScoutMany(
   count: number,
 ): Character[] {
   const results: Character[] = [];
+  const roll = createScoutRoller(scout, characters);
 
   for (let index = 0; index < count; index += 1) {
-    const character = rollScout(scout, characters);
+    const character = roll();
 
     if (character) {
       results.push(character);

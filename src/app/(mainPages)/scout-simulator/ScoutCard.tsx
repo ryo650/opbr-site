@@ -8,11 +8,11 @@ import styles from "./page.module.css";
 type ScoutCardProps = {
   scout: ScoutBanner;
   characters: Record<string, Character>;
-  showMetaMeter?: boolean;
 };
 
 function formatDateRange(startAt: string, endAt: string): string {
   const formatter = new Intl.DateTimeFormat("ja-JP", {
+    timeZone: "Asia/Tokyo",
     month: "numeric",
     day: "numeric",
     hour: "2-digit",
@@ -22,15 +22,12 @@ function formatDateRange(startAt: string, endAt: string): string {
   return `${formatter.format(new Date(startAt))} 〜 ${formatter.format(new Date(endAt))}`;
 }
 
-export default function ScoutCard({ scout, characters, showMetaMeter = false }: ScoutCardProps) {
+export default function ScoutCard({ scout, characters }: ScoutCardProps) {
   const pickupCharacters = scout.pickups.flatMap((pickup) => {
     const character = characters[pickup.characterId];
 
     return character ? [character] : [];
   });
-  const metaCharacterCount = pickupCharacters.filter(
-    (character) => character.grade === "ex" || character.grade === "bf",
-  ).length;
 
   return (
     <article className={styles.scoutCard}>
@@ -49,7 +46,7 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
       <div className={styles.details}>
         <div>
           <p className={styles.detailLabel}>PICKUP</p>
-          <div className={styles.pickupCharacters}>
+          <div className={styles.pickupCharacters} tabIndex={0} role="region" aria-label={`${scout.name} pickup characters`}>
             {pickupCharacters.map((character) => (
               <div className={styles.pickupCharacter} key={character.id}>
                 <CharacterFrame character={character} size="compact" />
@@ -62,17 +59,9 @@ export default function ScoutCard({ scout, characters, showMetaMeter = false }: 
         <dl className={styles.scoutFacts}>
           <div>
             <dt>Scout Period</dt>
-            <dd>{formatDateRange(scout.startAt, scout.endAt)}</dd>
+            <dd>{formatDateRange(scout.startAt, scout.endAt)} JST</dd>
           </div>
-          {/*{showMetaMeter && (
-            <div>
-              <dt>Meta Pickups</dt>
-              <dd className={styles.metaMeter}>
-                <span aria-hidden="true"><i style={{ width: `${(metaCharacterCount / Math.max(pickupCharacters.length, 1)) * 100}%` }} /></span>
-                {metaCharacterCount} / {pickupCharacters.length}
-              </dd>
-            </div>
-          )}*/}
+
         </dl>
 
         <Link className={styles.simulatorLink} href={`/scout-simulator/${scout.id}`} prefetch={false}>

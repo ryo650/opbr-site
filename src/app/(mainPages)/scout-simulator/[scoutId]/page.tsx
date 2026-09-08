@@ -3,12 +3,19 @@ import { notFound } from "next/navigation";
 import { scouts } from "@/data/scouts";
 import ScoutSimulator from "./ScoutSimulator";
 
-export const dynamicParams = false;
-
 export function generateStaticParams() {
   return scouts.map((scout) => ({
     scoutId: scout.id,
   }));
+}
+
+export async function generateMetadata({ params }: { params: Promise<{ scoutId: string }> }) {
+  const { scoutId } = await params;
+  const scout = scouts.find((item) => item.id === scoutId);
+  if (!scout) notFound();
+  const title = `${scout.name} Scout Simulator`;
+  const description = `Simulate single and multi pulls for ${scout.name} in One Piece Bounty Rush.`;
+  return { title, description, alternates: { canonical: `/scout-simulator/${scoutId}` }, openGraph: { title, description, images: [{ url: scout.bannerImg, alt: scout.name }] } };
 }
 
 export default async function ScoutSimulatorPage({
