@@ -132,6 +132,49 @@ test("Drop Rates summary keeps seven-decimal OCR precision", () => {
   assert.equal(decimalToString(rates.twoStar), "58");
 });
 
+test("Drop Rates summary ignores individual rates below Character Drop Rates", () => {
+  const rates = parseDropRates([
+    "Drop Rates(x11)",
+    "★4",
+    "7.0000000%",
+    "★3",
+    "35.0000000%",
+    "★2",
+    "58.0000000%",
+    "Character Drop Rates",
+    "★4 Characters",
+    "Example Character",
+    "0.0200000%",
+  ]);
+  assert.equal(decimalToString(rates.fourStar), "7");
+  assert.equal(decimalToString(rates.threeStar), "35");
+  assert.equal(decimalToString(rates.twoStar), "58");
+});
+
+test("IMG_4823-like OCR returns aggregate rates when the character heading is split", () => {
+  const rates = parseDropRates([
+    "Show Drop Rates",
+    "New Scout (x11)",
+    "*The drop rates are cut off at the eighth decimal place.",
+    "Drop Rates(x11)",
+    "*4",
+    "7.0000000%",
+    "*3",
+    "35.0000000 %",
+    "*2",
+    "58.0000000%",
+    "Character",
+    "Drop Rates",
+    "*4",
+    "Featured Characters",
+    "Example Character",
+    "0.0200000%",
+  ]);
+  assert.equal(decimalToString(rates.fourStar), "7");
+  assert.equal(decimalToString(rates.threeStar), "35");
+  assert.equal(decimalToString(rates.twoStar), "58");
+});
+
 test("Scout ID uses the featured character and Tokyo end date", () => {
   assert.equal(
     createDefaultScoutId(
@@ -201,6 +244,11 @@ test("ordered OCR slots accept period, total rates, then character rates", () =>
 });
 
 test("IMG_4805 summary accepts aggregate rates above a visible character fragment", () => {
+  const parsedRates = parseDropRates(realOcr.summerBfRateScreen.lines);
+  assert.equal(decimalToString(parsedRates.fourStar), "7");
+  assert.equal(decimalToString(parsedRates.threeStar), "35");
+  assert.equal(decimalToString(parsedRates.twoStar), "58");
+
   const result = validateOrderedScreenshotOcr({
     startAt: "2026-09-01T14:00:00+09:00",
     periodScreen: {

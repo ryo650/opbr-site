@@ -92,10 +92,36 @@ function detectStarLabel(value) {
   return characterLabel ? Number(characterLabel[1]) : null;
 }
 
+function characterDropRatesStartIndex(lines) {
+  const headingTokens = ["character", "drop", "rates"];
+  let matchedTokens = 0;
+  let headingStartIndex = null;
+
+  for (const [lineIndex, line] of lines.entries()) {
+    const tokens = normalizeText(line).split(" ").filter(Boolean);
+    for (const token of tokens) {
+      if (token === headingTokens[matchedTokens]) {
+        if (matchedTokens === 0) headingStartIndex = lineIndex;
+        matchedTokens += 1;
+        if (matchedTokens === headingTokens.length) return headingStartIndex;
+      } else if (token === headingTokens[0]) {
+        headingStartIndex = lineIndex;
+        matchedTokens = 1;
+      } else {
+        headingStartIndex = null;
+        matchedTokens = 0;
+      }
+    }
+  }
+
+  return lines.length;
+}
+
 export function parseDropRates(lines) {
   const found = new Map();
   let segment = [];
-  for (const rawLine of lines) {
+  const summaryLines = lines.slice(0, characterDropRatesStartIndex(lines));
+  for (const rawLine of summaryLines) {
     const rate = parsePercent(rawLine);
     const textBeforeRate = rawLine.replace(PERCENT_PATTERN, " ").trim();
     if (textBeforeRate) segment.push(textBeforeRate);
