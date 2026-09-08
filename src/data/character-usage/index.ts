@@ -22,3 +22,5 @@ export const previousCharacterUsage =
 
 export * from "./type";
 export * from "./helpers";
+
+export * from "./processing";
