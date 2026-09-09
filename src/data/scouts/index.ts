@@ -19,7 +19,10 @@ import { scoutGiantWarriorHajrudin20260928 } from "./giant-warrior-hajrudin-2026
 
 import { scoutRaidOnOnigashimaSanji20260914 } from "./raid-on-onigashima-sanji-20260914";
 
+import { scoutTheFourEmperorsMonkeyDLuffy20260917 } from "./the-four-emperors-monkey-d-luffy-20260917";
+
 export const scouts = [
+    scoutTheFourEmperorsMonkeyDLuffy20260917,
     scoutRaidOnOnigashimaSanji20260914,
     scoutGiantWarriorHajrudin20260928,
     scout260MillionDownloadsCelebrationExtremeBountyFestival2,
