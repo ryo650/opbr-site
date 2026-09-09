@@ -26,7 +26,7 @@ export const characterUsage20260909= {
         "seraphim-s-shark": 4,
         "legendary-hero-monkey-d-garp": 2,
         "egghead-monkey-d-luffy": 1,
-        "asl-ace-sabo-luffy-": 1,
+        "asl-ace-sabo-luffy": 1,
         "awakened-form-rob-lucci": 1,
         "egghead-jinbe": 1,
         "revolutionary-army-captain-of-the-eastern-forces-belo-betty": 1,
