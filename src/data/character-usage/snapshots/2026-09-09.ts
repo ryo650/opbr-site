@@ -1,0 +1,36 @@
+import type { CharacterUsageSnapshot } from "../type";
+
+export const characterUsage20260909= {
+    date: "2026-09-09",
+    targetPlayers: 100,
+
+    usage: {
+        "the-four-emperors-monkey-d-luffy": 32,
+        "the-wings-zoro-sanji": 30,
+        "the-five-elders-st-marcus-mars": 13,
+        "seraphim-s-snake": 4,
+        "the-five-elders-st-ethanbaron-v-nusjuro": 19,
+        "ama-no-murakumo-sword-kizaru":3,
+        "flame-emperor-sabo": 3,
+        "animal-kingdom-pirates-lead-performer-king": 15,
+        "father-and-daughter-kuma-bonny": 6,
+        "blackbeard-pirates-kuzan": 9,
+        "unexpected-collaboration-rob-lucci": 4,
+        "winner-island-trafalgar-law": 6,
+        "great-pirate-edward-newgate": 3,
+        "great-pirate-gol-d-roger": 3,
+        "egghead-tony-tony-chopper": 5,
+        "the-four-emperors-marshall-d-teach": 4,
+        "future-where-i-m-the-most-free-jewelry-bonney": 26,
+        "red-rock-monkey-d-luffy": 2,
+        "seraphim-s-shark": 4,
+        "legendary-hero-monkey-d-garp": 2,
+        "egghead-monkey-d-luffy": 1,
+        "asl-ace-sabo-luffy-": 1,
+        "awakened-form-rob-lucci": 1,
+        "egghead-jinbe": 1,
+        "revolutionary-army-captain-of-the-eastern-forces-belo-betty": 1,
+        "one-sword-style-lai-lion-song-roronoa-zoro": 1,
+        "kurozumi-spy-kurozumi-kanjuro": 1,
+    },
+} satisfies CharacterUsageSnapshot;
