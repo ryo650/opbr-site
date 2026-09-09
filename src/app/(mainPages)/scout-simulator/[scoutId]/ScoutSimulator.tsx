@@ -89,10 +89,38 @@ function isPickupCharacter(scout: ScoutBanner, characterId: string): boolean {
 
 export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
   const roll = useMemo(() => createScoutRoller(scout, characters), [scout]);
+  const pickupOptions = useMemo(
+    () => scout.pickups.flatMap((pickup) => {
+      const character = characters[pickup.characterId];
+
+      if (!character) {
+        return [];
+      }
+
+      return [{
+        characterId: character.id,
+        name: character.name,
+        rate: pickup.rate,
+      }];
+    }),
+    [scout],
+  );
+  const [selectedPickupId, setSelectedPickupId] = useState(() => {
+    const featuredPickup = scout.pickups.find(
+      (pickup) =>
+        pickup.characterId === scout.featuredCharacterId &&
+        Boolean(characters[pickup.characterId]),
+    );
+
+    return featuredPickup?.characterId ?? pickupOptions[0]?.characterId ?? "";
+  });
   const [results, setResults] = useState<Character[]>([]);
 
   const [stats, setStats] = useState<SessionStats>(createEmptyStats);
   const [pullUntilMessage, setPullUntilMessage] = useState("");
+  const selectedPickupName =
+    pickupOptions.find((pickup) => pickup.characterId === selectedPickupId)?.name ??
+    "selected Pickup";
 
   function handleScout(pullOption: ScoutPullOption) {
     setPullUntilMessage("");
@@ -116,8 +144,13 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
     setStats((currentStats) => addStats(currentStats, pullStats));
   }
 
-  function handlePullUntilFeatured() {
+  function handlePullUntilSelectedPickup() {
     setPullUntilMessage("");
+
+    if (!selectedPickupId) {
+      setPullUntilMessage("Choose a Pickup character first.");
+      return;
+    }
 
     let pullStats = createEmptyStats();
     const pullResults: Character[] = [];
@@ -132,10 +165,12 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
         );
         addRecentResult(pullResults, character);
 
-        if (character.id === scout.featuredCharacterId) {
+        if (character.id === selectedPickupId) {
           setResults(pullResults);
           setStats(pullStats);
-          setPullUntilMessage(`Stopped after ${index + 1} pulls: Pickup obtained.`);
+          setPullUntilMessage(
+            `Stopped after ${index + 1} pulls: ${selectedPickupName} obtained.`,
+          );
           return;
         }
       }
@@ -145,7 +180,7 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
     setStats(pullStats);
 
     setPullUntilMessage(
-      `Stopped after ${MAX_PULL_UNTIL} pulls without obtaining a Pickup.`,
+      `Stopped after ${MAX_PULL_UNTIL} pulls without obtaining ${selectedPickupName}.`,
     );
   }
 
@@ -227,12 +262,36 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
         </section>
 
         <section className={styles.sessionSection} aria-labelledby="session-title">
+          <div className={styles.targetPicker}>
+            <label htmlFor="pickup-target">Pull Until Target</label>
+            <select
+              id="pickup-target"
+              value={selectedPickupId}
+              onChange={(event) => {
+                setSelectedPickupId(event.target.value);
+                setPullUntilMessage("");
+              }}
+              disabled={pickupOptions.length === 0}
+            >
+              {pickupOptions.map((pickup) => (
+                <option key={pickup.characterId} value={pickup.characterId}>
+                  {pickup.name} ({pickup.rate}%)
+                </option>
+              ))}
+            </select>
+          </div>
           <div className={styles.utilityActions}>
-            <button className={styles.untilButton} onClick={handlePullUntilFeatured}>Pull Until Featured</button>
+            <button
+              className={styles.untilButton}
+              onClick={handlePullUntilSelectedPickup}
+              disabled={!selectedPickupId}
+            >
+              Pull Until Selected Pickup
+            </button>
             <button className={styles.resetButton} onClick={handleReset}>Reset</button>
           </div>
           <p className={styles.helper}>
-            Stops after the featured character or {MAX_PULL_UNTIL} pulls.
+            Choose a Pickup character. Stops when it appears or after {MAX_PULL_UNTIL} pulls.
           </p>
           {pullUntilMessage && <p className={styles.status} role="status">{pullUntilMessage}</p>}
 
