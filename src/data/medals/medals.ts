@@ -18669,5 +18669,692 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "phoenix",
+    "name": "Phoenix Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Crafta Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "diamond",
+    "name": "Diamond Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 15% or less: Reduce Crafta damage received by 6%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "clint-clint",
+    "name": "Clint-Clint Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): SPD: Boosted by 4% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "tsuru",
+    "name": "Tsuru Medal",
+    "category": "event",
+    "uniqueTrait": "When an enemy captures one of your Crafta team's Treasure Areas: Reduce the cooldown time of Skill 2 by 9%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "heavenly-demon",
+    "name": "Heavenly Demon Medal",
+    "category": "event",
+    "uniqueTrait": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "first-son-of-the-sea",
+    "name": "First Son of the Sea Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 3%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "koby-master-chief-petty-officer",
+    "name": "Koby Master Chief Petty Officer Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 30% or less: Boost the cooldown reduction speed of dodge by 13%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "master-chief-petty-officer",
+        "name": "Master Chief Petty Officer"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "helmeppo-chief-petty-officer",
+    "name": "Helmeppo Chief Petty Officer Medal",
+    "category": "event",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "beckman",
+    "name": "Beckman Medal",
+    "category": "event",
+    "uniqueTrait": "When the enemy has inflicted you Crafta with Freeze: Recover HP by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "freeze"
+    ]
+  },
+  {
+    "id": "pursuer",
+    "name": "Pursuer Medal",
+    "category": "event",
+    "uniqueTrait": "When the enemy has inflicted you with Aflame: Reduce the cooldown time of Skill 1 by 6%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "red-haired-pirates",
+        "name": "Red-Haired Pirates"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "crit"
+    ],
+    "statusReductions": [
+      "aflame"
+    ]
+  },
+  {
+    "id": "rain",
+    "name": "Rain Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "champion",
+    "name": "Champion Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vista-paramount-war",
+    "name": "Vista (Paramount War) Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "izo-paramount-war",
+    "name": "Izo (Paramount War) Medal",
+    "category": "event",
+    "uniqueTrait": "When Respawned: SPD: Boosted by 4% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "van-ogre",
+    "name": "Van Ogre Medal",
+    "category": "event",
+    "uniqueTrait": "When there are 60 seconds or less remaining: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "doc-a",
+    "name": "Doc A Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 10%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "doctor",
+        "name": "Doctor"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "the-strongest-man-in-the-world",
+    "name": "The Strongest Man in the World Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost calE Crafta the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "haruta",
+    "name": "Haruta Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by 2%.",
+    "tags": [
+      {
+        "id": "the-paramount-war-at-marineford",
+        "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "whitebeard-pirates",
+        "name": "Whitebeard Pirates"
+      },
+      {
+        "id": "whitebeard-pirates-commander",
+        "name": "Whitebeard Pirates Commander"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "hody",
+    "name": "Hody Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "fish-man-island",
+        "name": "Fish-Man Island"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "mark-mark",
+    "name": "Mark-Mark Medal",
+    "category": "event",
+    "uniqueTrait": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 3%.",
+    "tags": [
+      {
+        "id": "fish-man-island",
+        "name": "Fish-Man Island"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "wadatsumi",
+    "name": "Wadatsumi Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy inflicted with Stun: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "fish-man-island",
+        "name": "Fish-Man Island"
+      },
+      {
+        "id": "flying-pirates",
+        "name": "Flying Pirates"
+      },
+      {
+        "id": "fish-man",
+        "name": "Fish-Man"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "ankoro",
+    "name": "Ankoro Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 10%.",
+    "tags": [
+      {
+        "id": "fish-man-island",
+        "name": "Fish-Man Island"
+      },
+      {
+        "id": "flying-pirates",
+        "name": "Flying Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "tashigi-chambres",
+    "name": "Tashigi (Chambres) Medal",
+    "category": "event",
+    "uniqueTrait": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      },
+      {
+        "id": "chambres",
+        "name": "Chambres"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "sanji-chambres",
+    "name": "Sanji (Chambres) Medal",
+    "category": "event",
+    "uniqueTrait": "When Critical occurs: Recover HP by tale 1%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      },
+      {
+        "id": "chambres",
+        "name": "Chambres"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "counter-shock",
+    "name": "Counter Shock Medal",
+    "category": "event",
+    "uniqueTrait": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "the-seven-warlords-of-the-sea-former-warlords-of-the-sea",
+        "name": "The Seven Warlords of the Sea / Former Warlords of the Sea"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      },
+      {
+        "id": "heart-pirates",
+        "name": "Heart Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "land-of-the-dead",
+    "name": "Land of the Dead Medal",
+    "category": "event",
+    "uniqueTrait": "When your team has more Treasure secured: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "punk-hazard",
+        "name": "Punk Hazard"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "vergo",
+    "name": "Vergo Medal",
+    "category": "event",
+    "uniqueTrait": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%.",
+    "tags": [
+      {
+        "id": "dressrosa",
+        "name": "Dressrosa"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "don-quixote-family",
+        "name": "Don Quixote Family"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
   }
 ] as const satisfies readonly Medal[];
