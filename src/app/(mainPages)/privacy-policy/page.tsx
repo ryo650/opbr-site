@@ -4,6 +4,7 @@ import styles from "./page.module.css";
 const contactEmail = "opbrsite.contact@gmail.com";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/privacy-policy" },
   title: "Privacy Policy",
   description:
     "Read the OPBR Guide privacy policy covering analytics, cookies, third-party advertising, external links, and contact information.",
@@ -11,7 +12,7 @@ export const metadata: Metadata = {
 
 export default function PrivacyPolicyPage() {
   return (
-    <main className={`${styles.page} upper-page-background`}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
           <p className={styles.eyebrow}>Privacy Policy</p>

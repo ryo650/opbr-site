@@ -3,6 +3,7 @@ import { medals } from "@/data/medals";
 import MedalBuilder from "@/components/medal-builder/MedalBuilder";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/medal-builder" },
   title: "Medal Builder | OPBR",
   description: "Build and compare an OPBR medal set using the complete medal catalog.",
 };

@@ -33,13 +33,14 @@
 .selectorList strong { font-size: .72rem; }.selectorList small { margin-top: 4px; color: #949ca7; font-size: .65rem; text-transform: capitalize; }
 .selectorStatus { color: #fcd34d; font-size: .62rem; font-weight: 800; text-transform: uppercase; }
 .noResults { margin: 7px 0; color: #94a3b8; font-size: .8rem; }
-.chartShell { position: relative; overflow-x: auto; border: 1px solid rgb(255 255 255 / 10%); border-radius: 16px; background: rgb(19 21 23 / 92%); }
+.chartShell { position: relative; border: 1px solid rgb(255 255 255 / 10%); border-radius: 16px; background: rgb(19 21 23 / 92%); }
+.chartScroll { overflow-x: auto; border-radius: inherit; }
 .chart { display: block; width: max(100%, 620px); min-height: 310px; }
 .chart text { fill: #8f98a5; font-size: 12px; }
 .gridLine { stroke: rgb(255 255 255 / 8%); stroke-dasharray: 4 5; }
 .hoverColumn { stroke: transparent; stroke-width: 44; outline: none; }
 .historyNote, .empty { margin: 12px 0 0; color: #9ca3af; font-size: .78rem; }
-.tooltip { position: absolute; z-index: 3; top: 14px; right: max(14px, env(safe-area-inset-right)); display: flex; width: min(330px, calc(100% - 28px)); max-height: min(390px, calc(100dvh - 110px - env(safe-area-inset-bottom))); overflow: hidden; flex-direction: column; border: 1px solid rgb(255 255 255 / 15%); border-radius: 12px; background: rgb(10 12 14 / 97%); box-shadow: 0 12px 35px #0008; }
+.tooltip { position: absolute; z-index: 3; top: 14px; right: max(14px, env(safe-area-inset-right)); display: flex; width: min(330px, calc(100% - 28px)); max-height: min(390px, calc(100% - 28px), calc(100dvh - 110px - env(safe-area-inset-bottom))); overflow: hidden; flex-direction: column; border: 1px solid rgb(255 255 255 / 15%); border-radius: 12px; background: rgb(10 12 14 / 97%); box-shadow: 0 12px 35px #0008; }
 .tooltip > header { display: flex; flex: 0 0 auto; align-items: center; justify-content: space-between; padding: 12px 12px 9px; border-bottom: 1px solid rgb(255 255 255 / 9%); }
 .tooltip > header strong { font-size: .8rem; }
 .tooltip > header button { display: grid; width: 32px; height: 32px; place-items: center; border: 0; border-radius: 7px; background: rgb(255 255 255 / 7%); color: #cbd5e1; font-size: 1.25rem; cursor: pointer; }
@@ -71,5 +72,7 @@ a.identity:hover span { color: #fcd34d; text-decoration: underline; }
 
 @media (min-width: 700px) { .content { padding: 64px 24px 112px; } .heroStats { grid-template-columns: repeat(4, 1fr); } .summaryGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); } .rankingRow { grid-template-columns: 45px minmax(230px, 1fr) auto minmax(300px, auto); } .rankingRow dl { display: flex; grid-column: auto; gap: 30px; justify-self: end; } }
 @media (min-width: 1000px) { .summaryGrid { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-@media (max-width: 420px) { .content { padding: 40px 12px calc(88px + env(safe-area-inset-bottom)); } .heroStats dd { font-size: .9rem; } .chartActions, .ranges { width: 100%; } .ranges { justify-content: space-between; } .ranges button { min-width: 0; flex: 1; } .tooltip { top: 8px; right: max(8px, env(safe-area-inset-right)); width: calc(100% - 16px); max-height: min(360px, calc(100dvh - 90px - env(safe-area-inset-bottom))); } }
+@media (max-width: 420px) { .content { padding: 40px 12px calc(88px + env(safe-area-inset-bottom)); } .heroStats dd { font-size: .9rem; } .chartActions, .ranges { width: 100%; } .ranges { justify-content: space-between; } .ranges button { min-width: 0; flex: 1; } .tooltip { top: 8px; right: max(8px, env(safe-area-inset-right)); width: calc(100% - 16px); max-height: min(360px, calc(100% - 16px), calc(100dvh - 90px - env(safe-area-inset-bottom))); } }
 @media (prefers-reduced-motion: reduce) { .page { scroll-behavior: auto !important; } }
+
+.summaryCard{position:relative}.summaryFocus{position:absolute;inset:0;width:100%;border:0;border-radius:inherit;background:transparent;cursor:pointer}.summaryFocus:focus-visible{outline:3px solid #93c5fd;outline-offset:2px}.summaryCard a{position:relative;z-index:1}.chart [role="button"]:focus-visible{outline:2px solid #fbbf24}

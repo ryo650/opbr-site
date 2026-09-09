@@ -25,7 +25,7 @@ const pickups = [
         rate: 0.3
     },
     {
-        characterId: "egghead-nicorobin",
+        characterId: "egghead-nico-robin",
         rate: 0.2
     },
     {

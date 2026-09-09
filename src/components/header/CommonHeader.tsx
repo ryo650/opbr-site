@@ -87,6 +87,7 @@ export default function CommonHeader() {
     <header
       ref={headerRef}
       className={`${styles.header} ${isHidden ? styles.headerHidden : ""}`}
+      onFocusCapture={() => setIsHidden(false)}
     >
       {/* 現在の .surface 以下はそのまま */}
       <div className={styles.surface}>
@@ -106,7 +107,7 @@ export default function CommonHeader() {
                 <span>Menu</span>
               </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={styles.menuContent} onCloseAutoFocus={(event) => event.preventDefault()}>
+            <DropdownMenuContent className={styles.menuContent}>
               {navigationItems.map((item) => (
                 <DropdownMenuItem key={item.href} asChild className={styles.menuItem}>
                   <Link href={item.href}>{item.label}</Link>
@@ -124,7 +125,7 @@ export default function CommonHeader() {
             width={72}
             height={72}
             className={styles.logo}
-            priority
+            preload
           />
         </Link>
 

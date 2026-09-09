@@ -19,7 +19,7 @@ export const blueCharacters: Record<string, Character> = {
     },
     "the-wings-zoro-sanji": {
         id: "the-wings-zoro-sanji",
-        name: "The-Wings-Zoro-Sangi",
+        name: "The-Wings-Zoro-Sanji",
         image: "/characters/blue/the-wings-zoro-sanji.webp",
         grade: "ex",
         element: "blue",

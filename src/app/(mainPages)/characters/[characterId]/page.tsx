@@ -7,6 +7,7 @@ import CharacterGuidePage from "./CharacterGuidePage";
 type Props = { params: Promise<{ characterId: string }> };
 
 function resolveGuide(characterId: string) {
+  if (!Object.hasOwn(characters, characterId) || !Object.hasOwn(characterGuides, characterId)) notFound();
   const character = characters[characterId];
   const guide = characterGuides[characterId];
   if (!character || !guide) notFound();
@@ -20,9 +21,9 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { characterId } = await params;
   const { character } = resolveGuide(characterId);
-  const title = `${character.name} Guide, Skills, Counters and Matchups | Any Lantern`;
+  const title = `${character.name} Guide, Skills, Counters and Matchups`;
   const description = `Learn how to play ${character.name}, including stats, skills, strengths, weaknesses, counters, and favorable matchups in One Piece Bounty Rush.`;
-  return { title: { absolute: title }, description, openGraph: { title, description, images: [{ url: character.image, alt: character.name }] } };
+  return { title, description, alternates: { canonical: `/characters/${characterId}` }, openGraph: { title, description, images: [{ url: character.image, alt: character.name }] } };
 }
 
 export default async function Page({ params }: Props) {

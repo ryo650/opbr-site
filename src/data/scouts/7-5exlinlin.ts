@@ -21,7 +21,7 @@ const pickups = [
         rate: 0.75
     },
     {
-        characterId: "the-seven-warlords-of-the-sea-batholomew-kuma",
+        characterId: "the-seven-warlords-of-the-sea-bartholomew-kuma",
         rate: 0.75
     },
 ] satisfies readonly ScoutPickup[];

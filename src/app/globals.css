@@ -206,3 +206,6 @@ a {
     padding-block: 72px;
   }
 }
+
+.skip-link{position:fixed;top:8px;left:8px;z-index:2000;padding:12px 18px;border-radius:6px;background:#f8fafc;color:#17181a;transform:translateY(-150%)}.skip-link:focus{transform:translateY(0)}
+.recovery-action{display:inline-block;margin:16px 16px 0 0;padding:10px 16px;border:1px solid #b8c0cc;border-radius:6px;background:#202124;color:#f8fafc;cursor:pointer}.recovery-action:focus-visible{outline:3px solid #93c5fd;outline-offset:3px}
