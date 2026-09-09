@@ -92,10 +92,36 @@ function detectStarLabel(value) {
   return characterLabel ? Number(characterLabel[1]) : null;
 }
 
+function characterDropRatesStartIndex(lines) {
+  const headingTokens = ["character", "drop", "rates"];
+  let matchedTokens = 0;
+  let headingStartIndex = null;
+
+  for (const [lineIndex, line] of lines.entries()) {
+    const tokens = normalizeText(line).split(" ").filter(Boolean);
+    for (const token of tokens) {
+      if (token === headingTokens[matchedTokens]) {
+        if (matchedTokens === 0) headingStartIndex = lineIndex;
+        matchedTokens += 1;
+        if (matchedTokens === headingTokens.length) return headingStartIndex;
+      } else if (token === headingTokens[0]) {
+        headingStartIndex = lineIndex;
+        matchedTokens = 1;
+      } else {
+        headingStartIndex = null;
+        matchedTokens = 0;
+      }
+    }
+  }
+
+  return lines.length;
+}
+
 export function parseDropRates(lines) {
   const found = new Map();
   let segment = [];
-  for (const rawLine of lines) {
+  const summaryLines = lines.slice(0, characterDropRatesStartIndex(lines));
+  for (const rawLine of summaryLines) {
     const rate = parsePercent(rawLine);
     const textBeforeRate = rawLine.replace(PERCENT_PATTERN, " ").trim();
     if (textBeforeRate) segment.push(textBeforeRate);
@@ -755,12 +781,16 @@ export function extractEndAt(lines, startAt) {
   );
 }
 
-export function inspectScreenshotOcr(ocr, startAt) {
+export function inspectScreenshotOcr(
+  ocr,
+  startAt,
+  { parseAggregateRates = true } = {},
+) {
   const text = ocr.lines.join(" ");
-  const rates = parseDropRates(ocr.lines);
-  const starRateCount = [rates.fourStar, rates.threeStar, rates.twoStar]
-    .filter(Boolean)
-    .length;
+  const rates = parseAggregateRates ? parseDropRates(ocr.lines) : null;
+  const starRateCount = rates
+    ? [rates.fourStar, rates.threeStar, rates.twoStar].filter(Boolean).length
+    : 0;
   return {
     endAt: extractEndAt(ocr.lines, startAt),
     rates,
@@ -797,17 +827,12 @@ export function validateOrderedScreenshotOcr({
 
   let hasFeaturedHeading = false;
   for (const screen of characterScreens) {
-    const evidence = inspectScreenshotOcr(screen.ocr, startAt);
+    const evidence = inspectScreenshotOcr(screen.ocr, startAt, {
+      parseAggregateRates: false,
+    });
     hasFeaturedHeading ||= evidence.hasFeaturedHeading;
     if (evidence.percentageCount === 0) {
       issues.push(`${screen.file}: Character Drop Rates image contains no recognized percentage`);
-    }
-    if (
-      evidence.starRateCount === 3 &&
-      evidence.percentageCount === 3 &&
-      !evidence.hasFeaturedHeading
-    ) {
-      issues.push(`${screen.file}: 4th-or-later image looks like the ★4/★3/★2 summary`);
     }
     if (evidence.endAt) {
       issues.push(`${screen.file}: 4th-or-later image looks like the Scout period screen`);
