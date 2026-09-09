@@ -42,6 +42,10 @@ const pickups = [
         characterId: "great-pirate-edward-newgate",
         rate: 0.02,
     },
+    {
+        characterId: "blackbeard-pirates-kuzan",
+        rate: 0.02,
+    }
 ] satisfies readonly ScoutPickup[];
 
 const totalPickupRate = pickups.reduce(
