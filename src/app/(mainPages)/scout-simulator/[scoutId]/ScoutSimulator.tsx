@@ -9,7 +9,7 @@ import type { Character } from "@/data/characters/type";
 import type { ScoutBanner, ScoutPullOption } from "@/data/scouts/type";
 import styles from "./ScoutSimulator.module.css";
 
-const MAX_PULL_UNTIL = 1_000;
+const MAX_PULL_UNTIL = 3_000;
 const RECENT_RESULTS_LIMIT = 11;
 
 function DiamondCost({ amount }: { amount: number }) {
