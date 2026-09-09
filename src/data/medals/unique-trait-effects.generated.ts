@@ -4759,6 +4759,180 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When in the Treasure Area: Boost the cooldown reduction speed of dodge by 10%."
     }
+  ],
+  "phoenix": [],
+  "diamond": [],
+  "clint-clint": [
+    {
+      "effectId": "spd-increase-timed-cannot-stack",
+      "value": 4,
+      "unit": "percent",
+      "originalText": "When an ally is KO'd (not including you): SPD: Boosted by 4% for 20 second(s). (Cannot Stack)"
+    }
+  ],
+  "tsuru": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 9,
+      "unit": "percent",
+      "originalText": "When an enemy captures one of your Crafta team's Treasure Areas: Reduce the cooldown time of Skill 2 by 9%."
+    }
+  ],
+  "heavenly-demon": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 6,
+      "unit": "percent",
+      "originalText": "When an ally is KO'd (not including you): Reduce the cooldown time of Skill 1 by 6%."
+    }
+  ],
+  "first-son-of-the-sea": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When using Skill 2: Reduce the cooldown time of Skill 1 by 3%."
+    }
+  ],
+  "koby-master-chief-petty-officer": [
+    {
+      "effectId": "dodge-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When your HP is 30% or less: Boost the cooldown reduction speed of dodge by 13%."
+    }
+  ],
+  "helmeppo-chief-petty-officer": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When using Skill 1: Reduce the cooldown time of Skill 2 by 3%."
+    }
+  ],
+  "beckman": [],
+  "pursuer": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 6,
+      "unit": "percent",
+      "originalText": "When the enemy has inflicted you with Aflame: Reduce the cooldown time of Skill 1 by 6%."
+    }
+  ],
+  "rain": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When Critical occurs: Reduce the cooldown time of Skill 1 by 5%."
+    }
+  ],
+  "champion": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When there are 60 seconds or less remaining: Reduce damage received by 5%."
+    }
+  ],
+  "vista-paramount-war": [
+    {
+      "effectId": "crit-increase-timed-cannot-stack",
+      "value": 120,
+      "unit": "percent",
+      "originalText": "After KOing an enemy, CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)"
+    }
+  ],
+  "izo-paramount-war": [
+    {
+      "effectId": "spd-increase-timed-cannot-stack",
+      "value": 4,
+      "unit": "percent",
+      "originalText": "When Respawned: SPD: Boosted by 4% for 20 second(s). (Cannot Stack)"
+    }
+  ],
+  "van-ogre": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When there are 60 seconds or less remaining: Boost the cooldown reduction speed of Skill 1 by 13%."
+    }
+  ],
+  "doc-a": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 10,
+      "unit": "percent",
+      "originalText": "When in the area around your enemy's Treasure: Boost the cooldown reduction speed of Skill 1 by 10%."
+    }
+  ],
+  "the-strongest-man-in-the-world": [],
+  "haruta": [],
+  "hody": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 1 by 13%."
+    }
+  ],
+  "mark-mark": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When performing a Perfect Dodge: Reduce the cooldown time of Skill 2 by 3%."
+    }
+  ],
+  "wadatsumi": [
+    {
+      "effectId": "damage-dealt-increase",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When attacking an enemy inflicted with Stun: Increase damage dealt by 5%."
+    }
+  ],
+  "ankoro": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 10,
+      "unit": "percent",
+      "originalText": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 10%."
+    }
+  ],
+  "tashigi-chambres": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When your allies are not near the Treasure area where you are at: Boost the cooldown reduction speed of Skill 2 by 13%."
+    }
+  ],
+  "sanji-chambres": [],
+  "counter-shock": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 8,
+      "unit": "percent",
+      "originalText": "After KOing an enemy, Reduce the cooldown time of Skill 2 by 8%."
+    }
+  ],
+  "land-of-the-dead": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When your team has more Treasure secured: Reduce damage received by 3%."
+    }
+  ],
+  "vergo": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 8,
+      "unit": "percent",
+      "originalText": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%."
+    }
   ]
 };
 
@@ -4822,5 +4996,11 @@ export const uniqueTraitEffectNeedsReview = [
     "medalName": "Uta's Father Medal",
     "originalText": "When you Knockback an enemy: tale by 5%.",
     "reason": "The effect name is missing after the activation condition."
+  },
+  {
+    "medalId": "the-strongest-man-in-the-world",
+    "medalName": "The Strongest Man in the World Medal",
+    "originalText": "When your HP is 70% or more: Boost calE Crafta the cooldown reduction speed of Skill 2 by 13%.",
+    "reason": "The cooldown Effect target or numeric value is ambiguous or OCR-corrupted."
   }
 ] as const satisfies readonly UniqueTraitEffectNeedsReview[];

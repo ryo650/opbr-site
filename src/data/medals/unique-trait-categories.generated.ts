@@ -2348,6 +2348,107 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   ],
   "rayleigh-first-mate": [
     "cooldown"
+  ],
+  "phoenix": [
+    "hp-recovery"
+  ],
+  "diamond": [],
+  "clint-clint": [
+    "power-up-down",
+    "spd-increase"
+  ],
+  "tsuru": [
+    "cooldown",
+    "skill-2"
+  ],
+  "heavenly-demon": [
+    "cooldown",
+    "skill-1"
+  ],
+  "first-son-of-the-sea": [
+    "cooldown",
+    "skill-1",
+    "skill-2"
+  ],
+  "koby-master-chief-petty-officer": [
+    "cooldown"
+  ],
+  "helmeppo-chief-petty-officer": [
+    "cooldown",
+    "skill-1",
+    "skill-2"
+  ],
+  "beckman": [
+    "hp-recovery"
+  ],
+  "pursuer": [
+    "cooldown",
+    "status-effect-infliction",
+    "skill-1"
+  ],
+  "rain": [
+    "cooldown",
+    "skill-1"
+  ],
+  "champion": [
+    "damage-reduction"
+  ],
+  "vista-paramount-war": [
+    "crit-increase",
+    "power-up-down"
+  ],
+  "izo-paramount-war": [
+    "power-up-down",
+    "spd-increase"
+  ],
+  "van-ogre": [
+    "cooldown",
+    "skill-1"
+  ],
+  "doc-a": [
+    "cooldown",
+    "skill-1"
+  ],
+  "the-strongest-man-in-the-world": [
+    "cooldown",
+    "skill-2"
+  ],
+  "haruta": [
+    "hp-recovery"
+  ],
+  "hody": [
+    "cooldown",
+    "skill-1"
+  ],
+  "mark-mark": [
+    "cooldown",
+    "skill-2"
+  ],
+  "wadatsumi": [
+    "damage-increase",
+    "status-effect-infliction"
+  ],
+  "ankoro": [
+    "cooldown",
+    "skill-2"
+  ],
+  "tashigi-chambres": [
+    "cooldown",
+    "skill-2"
+  ],
+  "sanji-chambres": [
+    "hp-recovery"
+  ],
+  "counter-shock": [
+    "cooldown",
+    "skill-2"
+  ],
+  "land-of-the-dead": [
+    "damage-reduction"
+  ],
+  "vergo": [
+    "cooldown",
+    "skill-2"
   ]
 };
 
