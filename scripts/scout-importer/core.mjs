@@ -781,12 +781,16 @@ export function extractEndAt(lines, startAt) {
   );
 }
 
-export function inspectScreenshotOcr(ocr, startAt) {
+export function inspectScreenshotOcr(
+  ocr,
+  startAt,
+  { parseAggregateRates = true } = {},
+) {
   const text = ocr.lines.join(" ");
-  const rates = parseDropRates(ocr.lines);
-  const starRateCount = [rates.fourStar, rates.threeStar, rates.twoStar]
-    .filter(Boolean)
-    .length;
+  const rates = parseAggregateRates ? parseDropRates(ocr.lines) : null;
+  const starRateCount = rates
+    ? [rates.fourStar, rates.threeStar, rates.twoStar].filter(Boolean).length
+    : 0;
   return {
     endAt: extractEndAt(ocr.lines, startAt),
     rates,
@@ -823,17 +827,12 @@ export function validateOrderedScreenshotOcr({
 
   let hasFeaturedHeading = false;
   for (const screen of characterScreens) {
-    const evidence = inspectScreenshotOcr(screen.ocr, startAt);
+    const evidence = inspectScreenshotOcr(screen.ocr, startAt, {
+      parseAggregateRates: false,
+    });
     hasFeaturedHeading ||= evidence.hasFeaturedHeading;
     if (evidence.percentageCount === 0) {
       issues.push(`${screen.file}: Character Drop Rates image contains no recognized percentage`);
-    }
-    if (
-      evidence.starRateCount === 3 &&
-      evidence.percentageCount === 3 &&
-      !evidence.hasFeaturedHeading
-    ) {
-      issues.push(`${screen.file}: 4th-or-later image looks like the ★4/★3/★2 summary`);
     }
     if (evidence.endAt) {
       issues.push(`${screen.file}: 4th-or-later image looks like the Scout period screen`);

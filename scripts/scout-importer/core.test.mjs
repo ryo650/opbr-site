@@ -243,6 +243,52 @@ test("ordered OCR slots accept period, total rates, then character rates", () =>
   assert.equal(decimalToString(result.rateSummary.fourStar), "7");
 });
 
+test("ordered OCR validation skips aggregate parsing for headingless character continuations", () => {
+  const result = validateOrderedScreenshotOcr({
+    startAt: "2026-09-01T14:00:00+09:00",
+    periodScreen: {
+      file: "IMG_4822.PNG",
+      ocr: { lines: ["Scout Period", "to 09/17/2026 10:59"] },
+    },
+    rateScreen: {
+      file: "IMG_4823.PNG",
+      ocr: {
+        lines: [
+          "Drop Rates(x11)",
+          "★4",
+          "7.0000000%",
+          "★3",
+          "35.0000000%",
+          "★2",
+          "58.0000000%",
+          "Character Drop Rates",
+        ],
+      },
+    },
+    characterScreens: [{
+      file: "IMG_4826.PNG",
+      ocr: {
+        lines: [
+          "Featured Characters",
+          "★4",
+          "Seraphim",
+          "S-Snake",
+          "0.0200000%",
+          "Unexpected Collaboration",
+          "★4",
+          "Kaku",
+          "0.0195804%",
+        ],
+      },
+    }],
+  });
+
+  assert.deepEqual(result.issues, []);
+  assert.equal(decimalToString(result.rateSummary.fourStar), "7");
+  assert.equal(decimalToString(result.rateSummary.threeStar), "35");
+  assert.equal(decimalToString(result.rateSummary.twoStar), "58");
+});
+
 test("IMG_4805 summary accepts aggregate rates above a visible character fragment", () => {
   const parsedRates = parseDropRates(realOcr.summerBfRateScreen.lines);
   assert.equal(decimalToString(parsedRates.fourStar), "7");
