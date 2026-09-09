@@ -42,11 +42,18 @@ next-env.d.ts
 
 # public
 public_backup/
+
+# medal importer local inputs and reproducible intermediate files
+/scripts/medal-importer/input/
 /scripts/medal-importer/draft-medals.json
 /scripts/medal-importer/.tmp/
+
+/scripts/medal-tag-effects/input/
+
+# Character Lv.100 screenshot importer local review artifact
+/scripts/character-level-100-stats/draft-screenshot.json
 
 # scout importer local inputs and staging files
 /scripts/scout-importer/input/*
 !/scripts/scout-importer/input/.gitkeep
 /scripts/scout-importer/.tmp/
-/scripts/scout-importer/input/

@@ -1,4 +1,4 @@
-import { Character } from "./type";
+import type { Character } from "./type.ts";
 
 export const blackCharacters: Record<string, Character> = {
     "great-pirate-gol-d-roger":{
@@ -25,10 +25,10 @@ export const blackCharacters: Record<string, Character> = {
         element: "black",
         role: "defender"
     },
-    "the-fouremperors-marshall-d-teach":{
-        id: "the-fouremperors-marshall-d-teach",
-        name: "The-Fouremperors-Marshall-D-Teach",
-        image: "/characters/black/the-fouremperors-marshall-d-teach.webp",
+    "the-four-emperors-marshall-d-teach":{
+        id: "the-four-emperors-marshall-d-teach",
+        name: "The-Four-Emperors-Marshall-D-Teach",
+        image: "/characters/black/the-four-emperors-marshall-d-teach.webp",
         grade: "ex",
         element: "black",
         role: "attacker"

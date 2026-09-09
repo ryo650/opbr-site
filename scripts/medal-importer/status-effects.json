@@ -1,0 +1,114 @@
+[
+  {
+    "id": "clawed",
+    "name": "Clawed"
+  },
+  {
+    "id": "capture-block",
+    "name": "Capture Block"
+  },
+  {
+    "id": "aflame",
+    "name": "Aflame"
+  },
+  {
+    "id": "tremor",
+    "name": "Tremor"
+  },
+  {
+    "id": "stun",
+    "name": "Stun"
+  },
+  {
+    "id": "poison",
+    "name": "Poison"
+  },
+  {
+    "id": "confuse",
+    "name": "Confuse"
+  },
+  {
+    "id": "shock",
+    "name": "Shock"
+  },
+  {
+    "id": "freeze",
+    "name": "Freeze"
+  },
+  {
+    "id": "entrance",
+    "name": "Entrance"
+  },
+  {
+    "id": "negative",
+    "name": "Negative"
+  },
+  {
+    "id": "bind",
+    "name": "Bind"
+  },
+  {
+    "id": "stolen-heart",
+    "name": "Stolen Heart"
+  },
+  {
+    "id": "shadowless",
+    "name": "Shadowless"
+  },
+  {
+    "id": "recovery-blocked",
+    "name": "Recovery Blocked"
+  },
+  {
+    "id": "toy",
+    "name": "Toy"
+  },
+  {
+    "id": "edit",
+    "name": "Edit"
+  },
+  {
+    "id": "candyman",
+    "name": "Candyman"
+  },
+  {
+    "id": "gold",
+    "name": "GOLD"
+  },
+  {
+    "id": "sing-sing",
+    "name": "Sing-Sing"
+  },
+  {
+    "id": "intimidate",
+    "name": "Intimidate"
+  },
+  {
+    "id": "frostbite",
+    "name": "Frostbite"
+  },
+  {
+    "id": "sleep",
+    "name": "Sleep"
+  },
+  {
+    "id": "spiderweb",
+    "name": "Spiderweb"
+  },
+  {
+    "id": "ice-ball",
+    "name": "Ice Ball"
+  },
+  {
+    "id": "sew-sew",
+    "name": "Sew-Sew"
+  },
+  {
+    "id": "slow-slow",
+    "name": "Slow-Slow"
+  },
+  {
+    "id": "marked",
+    "name": "Marked"
+  }
+]

@@ -4,9 +4,9 @@ const { scouts } = require('../src/data/scouts');
 const { characterGuides } = require('../src/data/character-guides');
 const { SITE_URL } = require('../src/lib/site');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3100';
-const pages = ['/', '/tier-list', '/character-usage', '/create-tier-list', '/scout-simulator', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`)];
+const pages = ['/', '/tier-list', '/character-usage', '/create-tier-list', '/medal-builder', '/scout-simulator', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`)];
 
-test('all 22 published pages return 200, one main and h1, and their own canonical', async () => {
+test('all published pages return 200, one main and h1, and their own canonical', async () => {
   const titles = new Set();
   for (const route of pages) {
     const response = await fetch(base + route);

@@ -14,7 +14,6 @@ export function validateCharacterUsageSnapshots(snapshots: readonly CharacterUsa
     }
   }
 }
-
 export function createCharacterUsageRanking(
   snapshot: CharacterUsageSnapshot,
   previousSnapshot: CharacterUsageSnapshot | null = null,
@@ -61,4 +60,3 @@ export function processCharacterUsageSnapshots(
     };
   });
 }
-
