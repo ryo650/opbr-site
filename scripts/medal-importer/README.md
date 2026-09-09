@@ -19,8 +19,11 @@ reordering existing production data.
    classification, grouping, dimensions, OCR, category-color checks, and
    `draft-medals.json` validation results.
 4. Run `npm run medals:import`.
-5. Run `npm run medals:validate` to verify the merge and every production WebP.
-6. Empty `input/` only after the import and validation succeed.
+5. Run `npm run medals:validate-importer-batch` while this batch's Draft is
+   current to verify `previousProduction + validated batch = production`.
+6. Run `npm run medals:validate` to verify production integrity and every
+   production WebP independently of historical Draft artifacts.
+7. Empty `input/` only after the import and both validations succeed.
 
 If dry-run reports an unknown Status Effect:
 
@@ -29,7 +32,8 @@ If dry-run reports an unknown Status Effect:
    `npm run medals:approve-status -- "Status Name"`.
 3. Run `npm run medals:import -- --dry-run` again.
 4. Import only after `needsReview` reaches zero.
-5. Run `npm run medals:import` and then `npm run medals:validate`.
+5. Run `npm run medals:import`, `npm run medals:validate-importer-batch`, and
+   then `npm run medals:validate`.
 
 Use `--name` and `--id` when the generated slug is not the desired stable ID:
 
@@ -211,11 +215,14 @@ directory. It validates IDs, counts, the generated TypeScript structure, and
 replaced atomically last. If the data commit fails, added images are rolled back.
 Existing WebPs are never replaced or deleted.
 
-`npm run medals:validate` also validates that both catalog files have unique IDs
-and normalized names, IDs use lowercase kebab-case, both generated TypeScript
-types match their catalogs, and every production `statusReductions` and
+`npm run medals:validate` validates production without reading
+`draft-medals.json`. It verifies that both catalog files have unique IDs and
+normalized names, IDs use lowercase kebab-case, both generated TypeScript types
+match their catalogs, and every production `statusReductions` and
 `nativeEffects` ID exists in its catalog. Duplicate `nativeEffects` on one medal
-are rejected.
+are rejected. `npm run medals:validate-importer-batch` retains the stricter
+reconciliation against `draft-medals.json`; run it only for the current batch,
+before the Draft becomes a historical audit artifact.
 
 If an existing production WebP is missing, the importer stops unless the same
 medal is present as an identical validated duplicate in the current batch. In

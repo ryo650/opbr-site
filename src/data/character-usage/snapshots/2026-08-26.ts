@@ -20,9 +20,9 @@ export const characterUsage20260826= {
         "great-pirate-edward-newgate": 3,
         "great-pirate-gol-d-roger": 2,
         "egghead-tony-tony-chopper": 3,
-        "the-fouremperors-marshall-d-teach": 7,
+        "the-four-emperors-marshall-d-teach": 7,
         "legendary-gladiator-kyros": 2,
-        "future-where-i-m-the-most-free-jewelry-bonny": 27,
+        "future-where-i-m-the-most-free-jewelry-bonney": 27,
         "red-rock-monkey-d-luffy": 4,
         "unexpected-collaboration-kaku": 1,
         "blind-swordsman-fujitora": 1

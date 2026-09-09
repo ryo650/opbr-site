@@ -7,7 +7,7 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["future-where-i-m-the-most-free-jewelry-bonny","the-four-emperors-monkey-d-luffy"]
+        characterIds: ["future-where-i-m-the-most-free-jewelry-bonney","the-four-emperors-monkey-d-luffy"]
     },
     {
         tier: "S",
@@ -17,7 +17,7 @@ export const tierList = [
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["winner-island-trafalgar-law","flame-emperor-sabo","blackbeard-pirates-kuzan","the-fouremperors-marshall-d-teach","animal-kingdom-pirates-lead-performer-king"]
+        characterIds: ["winner-island-trafalgar-law","flame-emperor-sabo","blackbeard-pirates-kuzan","the-four-emperors-marshall-d-teach","animal-kingdom-pirates-lead-performer-king"]
     },
     {
         tier: "B",
