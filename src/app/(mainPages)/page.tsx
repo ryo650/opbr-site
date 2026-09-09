@@ -51,6 +51,20 @@ const exploreCards = [
     href: "/create-tier-list",
     image: "/home/create-tier-list.webp",
   },
+  {
+    title: "Medal Builder",
+    description: "Build and optimize medal combinations for your characters.",
+    href: "/medal-builder",
+    image: "/home/medal-builder.webp",
+    alt: "King and Queen with matching medal icons",
+  },
+  {
+    title: "Character Usage",
+    description: "See which characters are being used in the current Top League meta.",
+    href: "/character-usage",
+    image: "/home/character-usage.webp",
+    alt: "Purple throne representing Top League rankings",
+  },
 ]
 
 export default function TopPage() {
@@ -114,7 +128,7 @@ export default function TopPage() {
                 <span className={styles.thumbnail}>
                   <Image
                     src={card.image}
-                    alt=""
+                    alt={card.alt ?? ""}
                     fill
                     sizes="(max-width: 767px) 116px, 240px"
                     className={styles.exploreImage}
