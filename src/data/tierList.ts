@@ -22,12 +22,12 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["ama-no-murakumo-sword-kizaru","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","battle-of-monsters-on-onigashima-kaido","great-pirate-edward-newgate","unexpected-collaboration-rob-lucci"]
+        characterIds: ["kaido-s-son-yamato","great-pirate-edward-newgate","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","battle-of-monsters-on-onigashima-kaido","unexpected-collaboration-rob-lucci","ama-no-murakumo-sword-kizaru"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","kaido-s-son-yamato","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","divine-departure-shanks","seraphim-s-shark","asl-ace-sabo-luffy"]
+        characterIds: ["legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","divine-departure-shanks","seraphim-s-shark","asl-ace-sabo-luffy"]
     },
     {
         tier: "D",
