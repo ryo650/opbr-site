@@ -22,7 +22,7 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["ama-no-murakumo-sword-kizaru","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","battle-of-monsters-on-onigashima-kaido","great-pirate-edward-newgate","unexpected-collaboration-rob-lucci"]
+        characterIds: ["kaido-s-son-yamato","great-pirate-edward-newgate","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","battle-of-monsters-on-onigashima-kaido","unexpected-collaboration-rob-lucci","ama-no-murakumo-sword-kizaru"]
     },
     {
         tier: "C",
