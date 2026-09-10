@@ -27,11 +27,11 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","kaido-s-son-yamato","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","divine-departure-shanks","seraphim-s-shark","asl-ace-sabo-luffy"]
+        characterIds: ["unexpected-collaboration-kaku","legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","seraphim-s-shark"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["awakened-form-rob-lucci","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","film-red-shanks","egghead-sanji"]
+        characterIds: ["asl-ace-sabo-luffy","awakened-form-rob-lucci","divine-departure-shanks","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","film-red-shanks","egghead-sanji"]
     }
 ]
