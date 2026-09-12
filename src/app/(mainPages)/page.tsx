@@ -72,7 +72,7 @@ export default function TopPage() {
     <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.inner}>
         <section className={styles.hero}>
-          <p className={styles.eyebrow}>One Piece Bounty Rush</p>
+          <p className={styles.eyebrow}>Mobile development loop test</p>
           <h1>OPBR Guide</h1>
           <p className={styles.heroDescription}>
             A practical guide to One Piece Bounty Rush with current tier
