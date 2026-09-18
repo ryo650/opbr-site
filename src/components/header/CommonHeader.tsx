@@ -19,6 +19,7 @@ const navigationItems = [
   { href: "/character-usage", label: "Character Usage" },
   { href: "/scout-simulator", label: "Scout Simulator" },
   { href: "/medal-builder", label: "Medal Builder" },
+  { href: "/medal-sets", label: "Medal Sets" },
   { href: "/create-tier-list", label: "Create Tier List"},
 ];
 
