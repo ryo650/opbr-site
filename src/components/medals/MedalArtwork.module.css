@@ -1,0 +1,22 @@
+.artwork {
+  position: relative;
+  display: block;
+  max-width: 100%;
+  aspect-ratio: 1;
+  flex: 0 0 auto;
+}
+
+.viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  clip-path: circle(50% at 50% 50%);
+}
+
+.viewport img {
+  object-fit: cover;
+  object-position: center;
+  transform: translate(3%, 4%) scale(1.1);
+  transform-origin: center;
+}

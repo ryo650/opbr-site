@@ -42,6 +42,7 @@ import {
   type CharacterBoostStageId,
 } from "@/data/characters";
 import type { NativeEffectType } from "@/data/medals/types";
+import MedalArtwork from "@/components/medals/MedalArtwork";
 import {
   createTagSetEffectFilterIndex,
   formatMedalEffectCondition,
@@ -82,7 +83,6 @@ const emptySelectedTagIds = new Set<string>();
 
 const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", hp: "HP", crit: "CRIT" };
 const labelId = (value: string) => value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
-const medalImage = (medal: Medal) => `/medals/${medal.id}.webp`;
 const extraTraitEffectOptions = [...new Map(selectableExtraTraits.map((definition) => [definition.effectId, definition.label])).entries()];
 const characterStatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
 const formatCharacterDisplayName = (name: string) => name.replaceAll("-", " ");
@@ -172,25 +172,31 @@ function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElemen
 }
 
 function MedalArt({ medal, sizes, eager = false }: { medal: Medal; sizes: string; eager?: boolean }) {
-  return <span className={styles.medalArt} data-medal-art>
-    <span className={styles.medalImageViewport}>
-      <Image
-        src={medalImage(medal)}
-        alt=""
-        fill
-        sizes={sizes}
-        loading={eager ? "eager" : "lazy"}
-        decoding={eager ? "sync" : "async"}
-        fetchPriority={eager ? "high" : undefined}
-        draggable={false}
-      />
+  return (
+    <MedalArtwork medal={medal} sizes={sizes} eager={eager} className={styles.medalArt}>
       <span className={styles.gloss} aria-hidden="true" />
-    </span>
-  </span>;
+    </MedalArtwork>
+  );
 }
 
-export default function MedalBuilder({ medals }: { medals: readonly Medal[] }) {
-  const [slots, setSlots] = useState<MedalSlots>([null, null, null]);
+function createInitialMedalSlots(medals: readonly Medal[], initialMedalIds?: readonly string[]): MedalSlots {
+  if (!initialMedalIds?.length) return [null, null, null];
+  const medalById = new Map(medals.map((medal) => [medal.id, medal]));
+  const selected = initialMedalIds.slice(0, 3).flatMap((id) => {
+    const medal = medalById.get(id);
+    return medal ? [medal] : [];
+  });
+  return [selected[0] ?? null, selected[1] ?? null, selected[2] ?? null];
+}
+
+export default function MedalBuilder({
+  medals,
+  initialMedalIds,
+}: {
+  medals: readonly Medal[];
+  initialMedalIds?: readonly string[];
+}) {
+  const [slots, setSlots] = useState<MedalSlots>(() => createInitialMedalSlots(medals, initialMedalIds));
   const [extraTraitsBySlot, setExtraTraitsBySlot] = useState<EquippedExtraTraitsBySlot>(createEmptyEquippedExtraTraits);
   const [detailMedal, setDetailMedal] = useState<Medal | null>(null);
   const [query, setQuery] = useState("");
