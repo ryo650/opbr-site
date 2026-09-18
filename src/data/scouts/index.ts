@@ -21,7 +21,16 @@ import { scoutRaidOnOnigashimaSanji20260914 } from "./raid-on-onigashima-sanji-2
 
 import { scoutTheFourEmperorsMonkeyDLuffy20260917 } from "./the-four-emperors-monkey-d-luffy-20260917";
 
+import { scoutNavyHqSwordKoby20261013 } from "./navy-hq-sword-koby-20261013";
+
+import { scoutKaidoSSonYamato20260924 } from "./kaido-s-son-yamato-20260924";
+
+import { scoutNavyHqSwordHibari20261001 } from "./navy-hq-sword-hibari-20261001";
+
 export const scouts = [
+    scoutNavyHqSwordHibari20261001,
+    scoutKaidoSSonYamato20260924,
+    scoutNavyHqSwordKoby20261013,
     scoutTheFourEmperorsMonkeyDLuffy20260917,
     scoutRaidOnOnigashimaSanji20260914,
     scoutGiantWarriorHajrudin20260928,

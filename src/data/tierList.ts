@@ -22,16 +22,16 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["kaido-s-son-yamato","great-pirate-edward-newgate","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","battle-of-monsters-on-onigashima-kaido","unexpected-collaboration-rob-lucci","ama-no-murakumo-sword-kizaru"]
+        characterIds: ["great-pirate-edward-newgate","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","unexpected-collaboration-rob-lucci","battle-of-monsters-on-onigashima-kaido","navy-hq-sword-koby","kaido-s-son-yamato","ama-no-murakumo-sword-kizaru"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["unexpected-collaboration-kaku","legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper","seraphim-s-shark"]
+        characterIds: ["navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["asl-ace-sabo-luffy","awakened-form-rob-lucci","divine-departure-shanks","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-roronoa-zoro","film-red-shanks","egghead-sanji"]
+        characterIds: ["navy-hq-sword-hibari","asl-ace-sabo-luffy","egghead-roronoa-zoro","divine-departure-shanks","seraphim-s-shark","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-sanji"]
     }
 ]

@@ -2,6 +2,14 @@ import type { Character } from "./type.ts";
 
 
 export const redCharacters: Record<string, Character> = {
+    "navy-hq-sword-koby": {
+        id: "navy-hq-sword-koby",
+        name: "Navy-HQ-Sword-Koby",
+        image: "/characters/red/navy-hq-sword-koby.webp",
+        grade: "bf",
+        element: "red",
+        role: "defender"
+    },
     "ama-no-murakumo-sword-kizaru":{
         id:"ama-no-murakumo-sword-kizaru",
         name:"Ama-no-Murakumo-Sword-Kizaru",

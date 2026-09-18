@@ -19356,5 +19356,154 @@ export const medals = [
       "def",
       "crit"
     ]
+  },
+  {
+    "id": "hibari",
+    "name": "Hibari Medal",
+    "category": "character",
+    "uniqueTrait": "When using Skill 2: Reduce the cooldown time of Skill 1 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "sharp-shooter",
+        "name": "Sharp Shooter"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "prince-grus",
+    "name": "Prince Grus Medal",
+    "category": "character",
+    "uniqueTrait": "When hit with Knockback by enemy: Recover HP by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "garps-protege",
+    "name": "Garp's Protege Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "koby-fullalead",
+    "name": "Koby (Fullalead) Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of dodge by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "navy-captain",
+        "name": "Navy Captain"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      },
+      {
+        "id": "sword",
+        "name": "\"Sword\""
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "garp-supreme-king",
+    "name": "Garp (Supreme King) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type \"Captain\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

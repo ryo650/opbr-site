@@ -572,6 +572,7 @@ export function calculateScoutRates({
   characters,
   bfCountOverride = null,
   featuredOnlyFourStarPool = false,
+  noBf = false,
 }) {
   const pickupIds = new Set(pickups.map(({ characterId }) => characterId));
   const allBfCount = characters.filter(({ grade }) => grade === "bf").length;
@@ -591,13 +592,18 @@ export function calculateScoutRates({
   ) {
     throw new Error("A featured-only ★4 pool requires pickup total to equal ★4 total");
   }
-  const bfCount = featuredOnlyFourStarPool
+  if (featuredOnlyFourStarPool && noBf) {
+    throw new Error("featuredOnlyFourStarPool and noBf cannot both be enabled");
+  }
+  const bfCount = featuredOnlyFourStarPool || noBf
     ? 0
     : (bfCountOverride ?? (allBfCount - pickupBfCount));
   const bfCountSource = featuredOnlyFourStarPool
     ? "complete featured ★4 pool"
-    : (bfCountOverride === null ? "character master" : "override");
-  const bfTotal = featuredOnlyFourStarPool
+    : noBf
+      ? "no BF pool"
+      : (bfCountOverride === null ? "character master" : "override");
+  const bfTotal = featuredOnlyFourStarPool || noBf
     ? ZERO
     : multiplyDecimalByInteger(bfUnitRate, bfCount);
   const star4 = subtractDecimal(
@@ -855,7 +861,7 @@ export function validateScoutDraft(draft) {
     ["★3", draft.threeStarRate],
     ["★2", draft.twoStarRate],
   ];
-  if (!draft.featuredOnlyFourStarPool) {
+  if (!draft.featuredOnlyFourStarPool && !draft.noBf) {
     requiredRates.push(["normal BF unit", draft.bfUnitRate]);
   }
   for (const [label, value] of requiredRates) {

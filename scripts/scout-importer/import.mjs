@@ -63,6 +63,7 @@ Options:
   --end-at <date>               Override OCR end date after visual review
   --id <id>                     Override the generated Scout ID
   --bf-count <number>           Override the character-master BF pool count
+  --no-bf                       Declare that this Scout has no BF pool
   --character-map <ocr=id>      Explicitly resolve one reviewed OCR name (repeatable)
   --dry-run                     Validate and print without writing any files
   --help                        Show this help
@@ -70,7 +71,7 @@ Options:
 }
 
 function parseArgs(argv) {
-  const options = { dryRun: false, characterMaps: [] };
+  const options = { dryRun: false, noBf: false, characterMaps: [] };
   const valueOptions = new Map([
     ["--featured-character-id", "featuredCharacterId"],
     ["--start-at", "startAt"],
@@ -83,6 +84,8 @@ function parseArgs(argv) {
     const argument = argv[index];
     if (argument === "--dry-run") {
       options.dryRun = true;
+    } else if (argument === "--no-bf") {
+      options.noBf = true;
     } else if (argument === "--help" || argument === "-h") {
       options.help = true;
     } else if (argument === "--character-map") {
@@ -366,6 +369,9 @@ const name = options.name ?? await promptScoutName();
 const featuredCharacter = characterMaster.byId.get(featuredCharacterId) ?? null;
 const mappings = manualMappings(options.characterMaps, characterMaster);
 const bfCountOverride = parseBfCountOverride(options.bfCount);
+if (options.noBf && bfCountOverride !== null) {
+  throw new Error("--no-bf cannot be combined with --bf-count");
+}
 const startAt = options.startAt
   ? parseDateOverride(options.startAt, "startAt")
   : automaticStartAt();
@@ -474,7 +480,8 @@ const characterIssues = [
   ...mergedRows.issues,
   ...bfSelection.issues.filter(
     (issue) =>
-      !featuredOnlyFourStarPool || issue.code !== "missing-normal-bf-rate",
+      (!featuredOnlyFourStarPool && !options.noBf) ||
+      issue.code !== "missing-normal-bf-rate",
   ),
 ];
 
@@ -494,7 +501,7 @@ const hasRequiredRates =
   rateSummary.fourStar &&
   rateSummary.threeStar &&
   rateSummary.twoStar &&
-  (bfUnitRate || featuredOnlyFourStarPool);
+  (bfUnitRate || featuredOnlyFourStarPool || options.noBf);
 const rateCalculation = hasRequiredRates
   ? calculateScoutRates({
       totalFourStarRate: rateSummary.fourStar,
@@ -505,6 +512,7 @@ const rateCalculation = hasRequiredRates
       characters: characterMaster.characters,
       bfCountOverride,
       featuredOnlyFourStarPool,
+      noBf: options.noBf,
     })
   : null;
 const finalRates = rateCalculation
@@ -529,6 +537,7 @@ const draft = {
   twoStarRate: rateSummary.twoStar,
   bfUnitRate,
   featuredOnlyFourStarPool,
+  noBf: options.noBf,
   rateCalculation,
   finalRates,
   characterIssues,
