@@ -1,8 +1,14 @@
-export const metadata = {
-  title: "Medal Sets",
-  robots: { index: false, follow: true },
+import type { Metadata } from "next";
+import MedalSets from "@/components/medal-sets/MedalSets";
+import { recommendedMedalSets } from "@/data/medal-sets";
+import { medals } from "@/data/medals";
+
+export const metadata: Metadata = {
+  alternates: { canonical: "/medal-sets" },
+  title: "Medal Sets | OPBR",
+  description: "Find recommended OPBR medal combinations for different playstyles.",
 };
 
 export default function Page() {
-  return <main id="main-content" tabIndex={-1} className="article-container section"><h1>Medal Sets</h1><p>Coming soon...</p></main>;
+  return <MedalSets medals={medals} sets={recommendedMedalSets} />;
 }
