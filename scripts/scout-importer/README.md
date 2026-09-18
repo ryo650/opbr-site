@@ -90,6 +90,7 @@ npm run scouts:import -- --dry-run \
 - `--end-at "2026-09-15 13:59"`
 - `--id some-stable-scout-id`
 - `--bf-count 147`
+- `--no-bf`（BFが排出対象外で、★4残差をすべて通常★4として扱うScout）
 
 Scout IDは `<featuredCharacterId>-<YYYYMMDD>` 形式で生成します。日付は確定したendAtをAsia/Tokyoへ変換した年月日です。3枚目のScoutタイトルはID生成に使用しません。既存IDと重複した場合はsuffixを付けず停止するため、その場合だけ `--id` で明示的に解決します。
 
@@ -108,6 +109,8 @@ star-4 = ★4 total - pickup total - bfTotal
 ```
 
 通常ケースでは最新character masterのBF poolからbfCountを自動計算します。過去Scoutや特殊poolだけは `--bf-count <number>` で正の整数を明示し、その値をbfCountとして使用できます。dry-runには由来を `(character master)` または `(override)` と表示します。通常は自動、例外だけoverrideする方針です。
+
+BFが排出対象外のScoutは `--no-bf` を明示します。この場合、BF countとBF rateは0になり、★4合計からpickup合計を引いた残りを通常★4として出力します。`--no-bf` と `--bf-count` は同時に指定できません。
 
 この高精度計算結果はvalidation用に維持します。生成する最終ratesでは、pickup rateはOCRの値を丸めず保持し、BF合計だけを小数第2位へ丸めます。star-4は丸め後のBFを使った残差を小数第2位へ丸めます。star-3とstar-2はOCRの取得値をそのまま使用します。
 

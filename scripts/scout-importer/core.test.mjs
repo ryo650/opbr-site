@@ -866,6 +866,52 @@ test("BF count override replaces the character-master count and validates input"
   assert.equal(decimalToString(result.bfTotal), "2.8783188");
 });
 
+test("an explicit no-BF Scout assigns the remaining four-star rate to star-4", () => {
+  const characters = [
+    { id: "featured-star4", grade: "star-4" },
+    { id: "normal-bf", grade: "bf" },
+  ];
+  const pickups = [{ characterId: "featured-star4", rate: decimal("1") }];
+  const rateCalculation = calculateScoutRates({
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    bfUnitRate: null,
+    characters,
+    noBf: true,
+  });
+  const finalRates = calculateFinalScoutRates({
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    rateCalculation,
+  });
+
+  assert.equal(rateCalculation.bfCount, 0);
+  assert.equal(rateCalculation.bfCountSource, "no BF pool");
+  assert.equal(decimalToString(finalRates.bf), "0");
+  assert.equal(decimalToString(finalRates.star4), "4");
+  assert.equal(decimalToString(finalRates.total), "100");
+  assert.deepEqual(validateScoutDraft({
+    name: "No BF Scout",
+    startAt: "2026-09-17T14:00:00+09:00",
+    endAt: "2026-10-01T13:59:59+09:00",
+    featuredCharacter: characters[0],
+    pickups,
+    totalFourStarRate: decimal("5"),
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    bfUnitRate: null,
+    featuredOnlyFourStarPool: false,
+    noBf: true,
+    rateCalculation,
+    finalRates,
+    characterIssues: [],
+  }), []);
+});
+
 test("final rates round BF, derive star-4 from the rounded BF, and total 100", () => {
   const characters = [
     { id: "pickup-ex", grade: "ex" },

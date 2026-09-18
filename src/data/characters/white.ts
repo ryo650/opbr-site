@@ -2,6 +2,22 @@ import type { Character } from "./type.ts";
 
 
 export const whiteCharacters: Record<string, Character> = {
+    "navy-hq-sword-prince-grus": {
+        id: "navy-hq-sword-prince-grus",
+        name: "Navy-HQ-Sword-Prince-Grus",
+        image: "/characters/white/navy-hq-sword-prince-grus.webp",
+        grade: "bf",
+        element: "white",
+        role: "runner"
+    },
+    "navy-hq-sword-hibari": {
+        id: "navy-hq-sword-hibari",
+        name: "Navy-HQ-Sword-Hibari",
+        image: "/characters/white/navy-hq-sword-hibari.webp",
+        grade: "star-4",
+        element: "white",
+        role: "runner"
+    },
     "asl-ace-sabo-luffy":{
         id: "asl-ace-sabo-luffy",
         name:"ASL-Ace-Sabo-Luffy",
