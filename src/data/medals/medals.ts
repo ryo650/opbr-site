@@ -3524,6 +3524,18 @@ export const medals = [
         "name": "Dressrosa"
       },
       {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
+      },
+      {
         "id": "supreme-grade-sword-wielder",
         "name": "Supreme Grade Sword Wielder"
       }
