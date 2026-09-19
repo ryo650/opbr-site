@@ -8,6 +8,23 @@ export const metadata: Metadata = {
   description: "Build and compare an OPBR medal set using the complete medal catalog.",
 };
 
-export default function MedalBuilderPage() {
-  return <MedalBuilder medals={medals} />;
+type Props = {
+  searchParams: Promise<{ medals?: string | string[] }>;
+};
+
+export default async function MedalBuilderPage({ searchParams }: Props) {
+  const value = (await searchParams).medals;
+  const requestedMedalIds = (Array.isArray(value) ? value[0] : value)
+    ?.split(",")
+    .map((id) => id.trim())
+    .filter(Boolean)
+    .slice(0, 3);
+
+  return (
+    <MedalBuilder
+      key={requestedMedalIds?.join(",") ?? "empty"}
+      medals={medals}
+      initialMedalIds={requestedMedalIds}
+    />
+  );
 }

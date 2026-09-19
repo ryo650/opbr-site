@@ -2,8 +2,9 @@
 
 import { useMemo, useState } from "react";
 import type { Medal } from "@/data/medals";
-import type { MedalSetCategory, RecommendedMedalSet } from "@/data/medal-sets";
-import MedalSetCard, { medalSetCategoryLabels } from "./MedalSetCard";
+import { createMedalById, type MedalSetCategory, type RecommendedMedalSet } from "@/data/medal-sets";
+import MedalSetCard from "./MedalSetCard";
+import { medalSetCategoryLabels } from "./labels";
 import styles from "./MedalSets.module.css";
 
 type Filter = "all" | MedalSetCategory;
@@ -26,7 +27,7 @@ export default function MedalSets({
   sets: readonly RecommendedMedalSet[];
 }) {
   const [filter, setFilter] = useState<Filter>("all");
-  const medalById = useMemo(() => new Map(medals.map((medal) => [medal.id, medal])), [medals]);
+  const medalById = useMemo(() => createMedalById(medals), [medals]);
   const visibleSets = filter === "all" ? sets : sets.filter((set) => set.category === filter);
 
   return (
