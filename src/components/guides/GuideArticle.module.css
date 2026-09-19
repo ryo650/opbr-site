@@ -1,0 +1,375 @@
+.page {
+  min-height: 100vh;
+  color: #f8fafc;
+}
+
+.inner {
+  width: min(100%, 1040px);
+  margin: 0 auto;
+  padding: 72px 24px 112px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 230px;
+  align-items: end;
+  gap: clamp(36px, 8vw, 96px);
+  padding-bottom: 52px;
+  border-bottom: 1px solid rgb(255 255 255 / 11%);
+}
+
+.heroWithoutTarget {
+  grid-template-columns: 1fr;
+}
+
+.eyebrow {
+  margin: 0;
+  color: #fbbf24;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  margin: 14px 0 0;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 850;
+  line-height: 0.96;
+  letter-spacing: -0.06em;
+  text-wrap: balance;
+}
+
+.introduction {
+  max-width: 680px;
+  margin: 23px 0 0;
+  color: #cbd5e1;
+  font-size: clamp(1rem, 1.7vw, 1.12rem);
+  line-height: 1.72;
+}
+
+.heroTarget {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 23px 0 5px 24px;
+  border-left: 2px solid rgb(251 191 36 / 70%);
+}
+
+.heroTarget strong {
+  color: #fde68a;
+  font-size: clamp(2.75rem, 6vw, 4.25rem);
+  line-height: 0.9;
+  letter-spacing: -0.065em;
+}
+
+.heroTarget span {
+  max-width: 190px;
+  margin-top: 13px;
+  color: #9da8b7;
+  font-size: 0.8rem;
+  font-weight: 700;
+  line-height: 1.45;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.guideSection {
+  --section-accent: #fbbf24;
+  display: grid;
+  grid-template-columns: 80px minmax(0, 1fr);
+  gap: 30px;
+  padding: 68px 0 72px;
+  border-bottom: 1px solid rgb(255 255 255 / 10%);
+}
+
+.guideSection:last-child {
+  padding-bottom: 24px;
+  border-bottom: 0;
+}
+
+.sectionNumber {
+  padding-top: 5px;
+  color: color-mix(in srgb, var(--section-accent) 72%, transparent);
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.14em;
+}
+
+.sectionBody {
+  min-width: 0;
+}
+
+.sectionWithImage .sectionBody {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(260px, 0.85fr);
+  align-items: start;
+  gap: clamp(32px, 6vw, 64px);
+}
+
+.sectionCopy {
+  max-width: 760px;
+}
+
+.sectionWithImage .sectionCopy {
+  max-width: none;
+}
+
+.guideSection h2 {
+  margin: 0;
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  line-height: 1.08;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.summary {
+  max-width: 720px;
+  margin: 20px 0 0;
+  color: #f8fafc;
+  font-size: clamp(1.06rem, 1.8vw, 1.24rem);
+  font-weight: 750;
+  line-height: 1.58;
+}
+
+.targetSection .summary,
+.boostSection .summary {
+  max-width: 680px;
+  padding: 17px 20px;
+  border-left: 3px solid var(--section-accent);
+  background: linear-gradient(90deg, rgb(251 191 36 / 10%), transparent 88%);
+  color: #fde68a;
+  font-size: clamp(1.2rem, 2.6vw, 1.55rem);
+}
+
+.paragraphs {
+  max-width: 720px;
+  margin-top: 20px;
+}
+
+.paragraphs p {
+  margin: 0;
+  color: #b9c2cf;
+  font-size: 1rem;
+  line-height: 1.78;
+}
+
+.paragraphs p + p {
+  margin-top: 17px;
+}
+
+.checklist {
+  display: grid;
+  gap: 10px;
+  max-width: 700px;
+  margin: 27px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.milestoneSection .checklist,
+.boostSection .checklist {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px 14px;
+}
+
+.checklist li {
+  position: relative;
+  min-height: 44px;
+  padding: 11px 15px 11px 40px;
+  border: 1px solid rgb(255 255 255 / 9%);
+  border-radius: 9px;
+  background: rgb(255 255 255 / 3%);
+  color: #dbe2ea;
+  line-height: 1.45;
+}
+
+.checklist li::before {
+  position: absolute;
+  top: 17px;
+  left: 17px;
+  width: 7px;
+  height: 7px;
+  content: "";
+  border-radius: 50%;
+  background: var(--section-accent);
+  box-shadow: 0 0 0 4px color-mix(in srgb, var(--section-accent) 12%, transparent);
+}
+
+.terms {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 25px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.terms li {
+  padding: 7px 11px;
+  border: 1px solid rgb(251 191 36 / 25%);
+  border-radius: 5px;
+  background: rgb(251 191 36 / 7%);
+  color: #f5d77d;
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.015em;
+}
+
+.callout {
+  max-width: 700px;
+  margin-top: 30px;
+  padding: 20px 22px;
+  border-left: 3px solid var(--section-accent);
+  background: linear-gradient(90deg, rgb(251 191 36 / 10%), rgb(251 191 36 / 2%));
+}
+
+.callout strong {
+  display: block;
+  color: #fde68a;
+  font-size: 0.95rem;
+}
+
+.callout p {
+  margin: 7px 0 0;
+  color: #cbd5e1;
+  line-height: 1.65;
+}
+
+.attackerSection {
+  --section-accent: #fb7185;
+}
+
+.runnerSection {
+  --section-accent: #60a5fa;
+}
+
+.defenderSection {
+  --section-accent: #4ade80;
+}
+
+.attackerSection h2,
+.runnerSection h2,
+.defenderSection h2 {
+  position: relative;
+  padding-left: 17px;
+}
+
+.attackerSection h2::before,
+.runnerSection h2::before,
+.defenderSection h2::before {
+  position: absolute;
+  top: 0.1em;
+  bottom: 0.08em;
+  left: 0;
+  width: 3px;
+  content: "";
+  border-radius: 999px;
+  background: var(--section-accent);
+}
+
+.boostSection {
+  --section-accent: #fbbf24;
+}
+
+.extendableSection {
+  padding-bottom: 48px;
+}
+
+.imageWrap {
+  position: relative;
+  min-height: 290px;
+  margin: 4px 0 0;
+  overflow: hidden;
+  border: 1px solid rgb(255 255 255 / 11%);
+  border-radius: 16px;
+  background: #22252a;
+  box-shadow: 0 20px 45px rgb(0 0 0 / 18%);
+}
+
+.image {
+  object-fit: cover;
+}
+
+@media (max-width: 760px) {
+  .inner {
+    padding: 48px 20px 88px;
+  }
+
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 28px;
+    padding-bottom: 44px;
+  }
+
+  .heroTarget {
+    max-width: 300px;
+  }
+
+  .guideSection {
+    grid-template-columns: 52px minmax(0, 1fr);
+    gap: 16px;
+    padding: 54px 0 58px;
+  }
+
+  .sectionWithImage .sectionBody {
+    grid-template-columns: 1fr;
+  }
+
+  .milestoneSection .checklist,
+  .boostSection .checklist {
+    grid-template-columns: 1fr;
+  }
+
+  .imageWrap {
+    min-height: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .inner {
+    padding: 38px 16px calc(80px + env(safe-area-inset-bottom));
+  }
+
+  .hero h1 {
+    font-size: clamp(2.55rem, 14vw, 4rem);
+  }
+
+  .guideSection {
+    grid-template-columns: 1fr;
+    gap: 11px;
+    padding: 47px 0 52px;
+  }
+
+  .sectionNumber {
+    padding-top: 0;
+  }
+
+  .guideSection h2 {
+    font-size: clamp(1.75rem, 9vw, 2.45rem);
+  }
+
+  .summary {
+    margin-top: 17px;
+    font-size: 1.04rem;
+  }
+
+  .targetSection .summary,
+  .boostSection .summary {
+    padding: 14px 16px;
+  }
+
+  .paragraphs p {
+    font-size: 0.96rem;
+    line-height: 1.72;
+  }
+
+  .checklist li {
+    padding-right: 12px;
+  }
+
+  .imageWrap {
+    min-height: 230px;
+    border-radius: 14px;
+  }
+}
