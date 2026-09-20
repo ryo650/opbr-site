@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { characterGuides } from "@/data/character-guides";
 import { characterUsageSnapshots, getAvailableCharacterIds, processCharacterUsageSnapshots } from "@/data/character-usage";
 import { characters } from "@/data/characters";
 import CharacterUsageAnalytics from "./CharacterUsageAnalytics";
@@ -39,7 +38,6 @@ export default function CharacterUsagePage() {
           <CharacterUsageAnalytics
             snapshots={snapshots}
             availableCharacters={availableCharacters}
-            guideCharacterIds={Object.keys(characterGuides)}
           />
         )}
       </div>

@@ -2,8 +2,8 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import Link from "next/link";
 import { Search } from "lucide-react";
+import CharacterGuideLink from "@/components/characters/CharacterGuideLink";
 import type { Character } from "@/data/characters/type";
 import { buildChartData, filterSnapshotsByRange } from "@/data/character-usage/helpers";
 import type { CharacterUsageRankingItem, ProcessedCharacterUsageSnapshot, UsageRange } from "@/data/character-usage/type";
@@ -20,14 +20,23 @@ function Change({ value }: { value: number | null }) {
   return <span className={direction}>{value > 0 ? "+" : ""}{value.toFixed(1)} pts</span>;
 }
 
-function CharacterIdentity({ item, linked }: { item: CharacterUsageRankingItem; linked: boolean }) {
+function CharacterIdentity({ item }: { item: CharacterUsageRankingItem }) {
   const content = <><Image src={item.character.image} alt="" width={48} height={48} /><span>{item.character.name}</span></>;
-  return linked ? <Link className={styles.identity} href={`/characters/${item.characterId}`}>{content}</Link> : <div className={styles.identity}>{content}</div>;
+  return (
+    <CharacterGuideLink
+      characterId={item.characterId}
+      characterName={item.character.name}
+      className={styles.identity}
+      fallbackClassName={styles.identity}
+    >
+      {content}
+    </CharacterGuideLink>
+  );
 }
 
-type Props = { snapshots: ProcessedCharacterUsageSnapshot[]; availableCharacters: Character[]; guideCharacterIds: string[] };
+type Props = { snapshots: ProcessedCharacterUsageSnapshot[]; availableCharacters: Character[] };
 
-export default function CharacterUsageAnalytics({ snapshots, availableCharacters, guideCharacterIds }: Props) {
+export default function CharacterUsageAnalytics({ snapshots, availableCharacters }: Props) {
   const latest = snapshots.at(-1)!;
   const baselineIds = useMemo(() => latest.ranking.slice(0, 10).map((item) => item.characterId), [latest]);
   const [focusedId, setFocusedId] = useState<string | null>(null);
@@ -59,11 +68,11 @@ export default function CharacterUsageAnalytics({ snapshots, availableCharacters
       <UsageChart rows={rows} characters={availableCharacters} visibleIds={visibleIds} focusedId={focusedId} tooltipIndex={tooltipIndex} setTooltipIndex={setTooltipIndex} />
       {rows.length === 1 && <p className={styles.historyNote}>More historical data will appear after future updates.</p>}
       {!rows.length && <p className={styles.empty}>No snapshots are available in this time range.</p>}
-      <div className={styles.summaryGrid} aria-label="Characters represented in chart">{visibleItems.map((item, index) => { const isFocused = focusedId === item.characterId; const toggleFocus = () => setFocusedId(isFocused ? null : item.characterId); return <article key={item.characterId} className={`${styles.summaryCard} ${isFocused ? styles.focusedCard : ""}`}><button type="button" className={styles.summaryFocus} aria-pressed={isFocused} onClick={toggleFocus} aria-label={`${isFocused ? "Clear focus from" : "Focus"} ${item.character.name}`} /><span className={styles.colorDot} style={{ background: colors[index % colors.length] }} /><CharacterIdentity item={item} linked={guideCharacterIds.includes(item.characterId)} /><span className={styles.summaryRank}>#{item.rank}</span><dl><div><dt>Count</dt><dd>{item.count}</dd></div><div><dt>Est. usage</dt><dd>{formatPercent(item.usageRate)}</dd></div><div><dt>Change</dt><dd><Change value={item.changePoints} /></dd></div></dl></article>; })}</div>
+      <div className={styles.summaryGrid} aria-label="Characters represented in chart">{visibleItems.map((item, index) => { const isFocused = focusedId === item.characterId; const toggleFocus = () => setFocusedId(isFocused ? null : item.characterId); return <article key={item.characterId} className={`${styles.summaryCard} ${isFocused ? styles.focusedCard : ""}`}><button type="button" className={styles.summaryFocus} aria-pressed={isFocused} onClick={toggleFocus} aria-label={`${isFocused ? "Clear focus from" : "Focus"} ${item.character.name}`} /><span className={styles.colorDot} style={{ background: colors[index % colors.length] }} /><CharacterIdentity item={item} /><span className={styles.summaryRank}>#{item.rank}</span><dl><div><dt>Count</dt><dd>{item.count}</dd></div><div><dt>Est. usage</dt><dd>{formatPercent(item.usageRate)}</dd></div><div><dt>Change</dt><dd><Change value={item.changePoints} /></dd></div></dl></article>; })}</div>
     </section>
     <section className={styles.rankings} aria-labelledby="ranking-heading">
       <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Latest snapshot · {formatDate(latest.date)}</p><h2 id="ranking-heading">Complete latest ranking</h2><p>{latest.ranking.length} characters recorded across {latest.recordedSlots} team slots.</p></div></div>
-      <div className={styles.rankingList}>{latest.ranking.map((item) => { const isFocused = focusedId === item.characterId; return <article key={item.characterId} className={`${styles.rankingRow} ${isFocused ? styles.focusedRow : ""}`}><button type="button" className={styles.rankButton} onClick={() => setFocusedId(isFocused ? null : item.characterId)} aria-pressed={isFocused} aria-label={`${isFocused ? "Clear focus from" : "Focus"} ${item.character.name}`}><span className={styles.rank}>#{item.rank}</span></button><CharacterIdentity item={item} linked={guideCharacterIds.includes(item.characterId)} />{baselineIds.includes(item.characterId) && <span className={styles.topBadge}>Top 10</span>}<dl><div><dt>Count</dt><dd>{item.count}</dd></div><div><dt>Est. usage</dt><dd>{formatPercent(item.usageRate)}</dd></div><div><dt>Change</dt><dd><Change value={item.changePoints} /></dd></div></dl></article>; })}</div>
+      <div className={styles.rankingList}>{latest.ranking.map((item) => { const isFocused = focusedId === item.characterId; return <article key={item.characterId} className={`${styles.rankingRow} ${isFocused ? styles.focusedRow : ""}`}><button type="button" className={styles.rankButton} onClick={() => setFocusedId(isFocused ? null : item.characterId)} aria-pressed={isFocused} aria-label={`${isFocused ? "Clear focus from" : "Focus"} ${item.character.name}`}><span className={styles.rank}>#{item.rank}</span></button><CharacterIdentity item={item} />{baselineIds.includes(item.characterId) && <span className={styles.topBadge}>Top 10</span>}<dl><div><dt>Count</dt><dd>{item.count}</dd></div><div><dt>Est. usage</dt><dd>{formatPercent(item.usageRate)}</dd></div><div><dt>Change</dt><dd><Change value={item.changePoints} /></dd></div></dl></article>; })}</div>
     </section>
   </>;
 }

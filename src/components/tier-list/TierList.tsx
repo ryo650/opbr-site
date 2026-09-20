@@ -1,6 +1,7 @@
 import styles from "./TierList.module.css";
 import Image from "next/image";
 import type { CSSProperties } from "react";
+import CharacterGuideLink from "@/components/characters/CharacterGuideLink";
 import { characters } from "@/data/characters/index";
 import { tierList } from "@/data/tierList";
 
@@ -29,13 +30,19 @@ export default function TierList() {
                     "--character-index": characterIndex,
                   } as CSSProperties}
                 >
-                  <Image
-                    src={character.image}
-                    alt={character.name}
-                    width={84}
-                    height={84}
-                    className={styles.characterImage}
-                  />
+                  <CharacterGuideLink
+                    characterId={character.id}
+                    characterName={character.name}
+                    className={styles.characterGuideLink}
+                  >
+                    <Image
+                      src={character.image}
+                      alt={character.name}
+                      width={84}
+                      height={84}
+                      className={styles.characterImage}
+                    />
+                  </CharacterGuideLink>
                 </div>
               );
             })}

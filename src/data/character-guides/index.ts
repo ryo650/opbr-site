@@ -7,6 +7,10 @@ export const characterGuides: Record<string, CharacterGuide> = {
   [stMarcusMarsGuide.characterId]: stMarcusMarsGuide,
 };
 
+export function hasCharacterGuide(characterId: string): boolean {
+  return Object.hasOwn(characterGuides, characterId);
+}
+
 export function getCharacterGuide(characterId: string) {
   return characterGuides[characterId];
 }

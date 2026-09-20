@@ -4,7 +4,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const { characters } = require('../src/data/characters');
 const { scouts } = require('../src/data/scouts');
-const { characterGuides } = require('../src/data/character-guides');
+const { characterGuides, hasCharacterGuide } = require('../src/data/character-guides');
 const { tierList } = require('../src/data/tierList');
 const { createScoutRoller, rollScoutMany } = require('../src/lib/scout');
 const { getScoutStatus } = require('../src/lib/scout-status');
@@ -42,6 +42,12 @@ test('tier list and guide matchups resolve, with no duplicate placements', () =>
     assert.ok(characters[id], id);
     for (const item of [...(guide.counters ?? []), ...(guide.strongAgainst ?? [])]) assert.ok(characters[item.characterId], item.characterId);
   }
+});
+
+test('character guide availability follows the guide registry', () => {
+  assert.equal(hasCharacterGuide('seraphim-s-snake'), true);
+  assert.equal(hasCharacterGuide('the-five-elders-st-marcus-mars'), true);
+  assert.equal(hasCharacterGuide('navy-hq-fleet-admiral-akainu'), false);
 });
 
 test('all scout pickups exist and can actually be drawn at their weighted interval', () => {
