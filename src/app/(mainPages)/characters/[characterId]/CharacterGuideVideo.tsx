@@ -12,8 +12,13 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
 
     const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+    const silenceVideo = () => {
+      if (!video.muted) video.muted = true;
+      if (video.volume !== 0) video.volume = 0;
+    };
+
     const playVideo = () => {
-      video.muted = true;
+      silenceVideo();
       void video.play().catch(() => {
         // Autoplay can still be blocked by the browser. Controls remain available.
       });
@@ -38,10 +43,13 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
     };
 
     observer.observe(video);
+    silenceVideo();
+    video.addEventListener("volumechange", silenceVideo);
     reducedMotion.addEventListener("change", handleReducedMotionChange);
 
     return () => {
       observer.disconnect();
+      video.removeEventListener("volumechange", silenceVideo);
       reducedMotion.removeEventListener("change", handleReducedMotionChange);
     };
   }, []);

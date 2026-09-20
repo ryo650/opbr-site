@@ -12,7 +12,7 @@ export const blueCharacters: Record<string, Character> = {
     "seraphim-s-snake": {
         id: "seraphim-s-snake",
         name: "Seraphim-S-Snake",
-        image: "/characters/blue/seraphim-s-snake.webp",
+        image: "/characters/blue/seraphim-s-snake-hd.png",
         grade: "ex",
         element: "blue",
         role: "defender"

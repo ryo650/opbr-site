@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CircleCheck, TriangleAlert } from "lucide-react";
 import type { Character } from "@/data/characters/type";
-import type { CharacterGuide, CounterMatchup, GuidePoint, StrongAgainstMatchup } from "@/data/character-guides/type";
+import type { CharacterGuide, CounterMatchup, HowToPlayGuidePoint, StrengthGuidePoint, StrongAgainstMatchup, WeaknessGuidePoint } from "@/data/character-guides/type";
 import CharacterGuideSkills from "./CharacterGuideSkills";
 import CharacterGuideTableOfContents, { type TableOfContentsItem } from "./CharacterGuideTableOfContents";
 import CharacterGuideVideo from "./CharacterGuideVideo";
@@ -15,8 +15,37 @@ function Section({ id, title, children }: { id: string; title: string; children:
   return <section className={styles.section} id={id} aria-labelledby={`${id}-heading`}><h2 id={`${id}-heading`}>{title}</h2>{children}</section>;
 }
 
-function PointGrid({ points }: { points: GuidePoint[] }) {
-  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><p>{point.description}</p></article>)}</div>;
+type PointSection = {
+  title: string;
+  content: string;
+};
+
+function StructuredPointGrid<T extends { title: string }>({ points, getSections }: { points: T[]; getSections: (point: T) => PointSection[] }) {
+  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><div className={styles.pointDetails}>{getSections(point).map((section) => <div key={section.title}><h4>{section.title}</h4><p>{section.content}</p></div>)}</div></article>)}</div>;
+}
+
+function getStrengthSections(point: StrengthGuidePoint): PointSection[] {
+  if ("description" in point) return [{ title: "Overview", content: point.description }];
+  return [
+    { title: "What Makes It Strong", content: point.mechanic },
+    { title: "Practical Use", content: point.practicalUse },
+  ];
+}
+
+function getWeaknessSections(point: WeaknessGuidePoint): PointSection[] {
+  if ("description" in point) return [{ title: "Overview", content: point.description }];
+  return [
+    { title: "Weakness", content: point.weakness },
+    { title: "How to Manage", content: point.howToManage },
+  ];
+}
+
+function getHowToPlaySections(point: HowToPlayGuidePoint): PointSection[] {
+  if ("description" in point) return [{ title: "Overview", content: point.description }];
+  return [
+    { title: "Objective", content: point.objective },
+    { title: "Action", content: point.action },
+  ];
 }
 
 function QuickPoints({ strengths, weaknesses }: { strengths: string[]; weaknesses: string[] }) {
@@ -80,13 +109,13 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
 
       {hasStrengthsAndWeaknesses && <Section id="strengths-and-weaknesses" title="Strengths and Weaknesses">
         <QuickPoints strengths={guide.quickStrengths} weaknesses={guide.quickWeaknesses} />
-        {!!guide.strengths?.length && <div className={styles.pointSection}><h3>Strengths</h3><PointGrid points={guide.strengths} /></div>}
-        {!!guide.weaknesses?.length && <div className={styles.pointSection}><h3>Weaknesses</h3><PointGrid points={guide.weaknesses} /></div>}
+        {!!guide.strengths?.length && <div className={styles.pointSection}><h3>Strengths</h3><StructuredPointGrid points={guide.strengths} getSections={getStrengthSections} /></div>}
+        {!!guide.weaknesses?.length && <div className={styles.pointSection}><h3>Weaknesses</h3><StructuredPointGrid points={guide.weaknesses} getSections={getWeaknessSections} /></div>}
       </Section>}
 
       {!!guide.normalAttacks?.length && <Section id="normal-attacks" title="Normal Attacks"><div className={styles.mediaGrid}>{guide.normalAttacks.map((attack, index) => <article className={`${styles.card} ${styles.attackCard}`} key={`${attack.label}-${index}`}><div><p className={styles.skillLabel}>{attack.form}</p><h3>{attack.label}</h3></div>{attack.video && <CharacterGuideVideo src={attack.video} label={`${character.name} ${attack.label}`} />}{!!attack.tips.length && <div className={styles.details}><h4>Tips</h4><ul>{attack.tips.map((tip) => <li key={tip}>{tip}</li>)}</ul></div>}</article>)}</div></Section>}
       {!!skillGroups.length && <Section id="skills" title="Skills"><CharacterGuideSkills groups={skillGroups} /></Section>}
-      {!!guide.howToPlay?.length && <Section id="how-to-play" title="How to Play"><PointGrid points={guide.howToPlay} /></Section>}
+      {!!guide.howToPlay?.length && <Section id="how-to-play" title="How to Play"><StructuredPointGrid points={guide.howToPlay} getSections={getHowToPlaySections} /></Section>}
       {!!guide.counters?.length && <Section id="counters" title="Counters"><div className={styles.matchupGrid}>{guide.counters.map((matchup) => <CounterCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}
       {!!guide.strongAgainst?.length && <Section id="strong-against" title="Strong Against"><div className={styles.matchupGrid}>{guide.strongAgainst.map((matchup) => <StrongAgainstCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}
       <aside className={styles.cta}><p className={styles.eyebrow}>Explore the meta</p><h2>See how {character.name} compares with the rest of the current meta.</h2><Link href="/tier-list">View OPBR Tier List</Link></aside>

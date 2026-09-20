@@ -2,7 +2,7 @@
 .content { width: min(1280px, 100%); margin: 0 auto; padding: 0 16px; }
 .hero { display: grid; gap: 24px; align-items: center; padding: 24px; border: 1px solid rgba(255,255,255,.12); border-radius: 20px; background: linear-gradient(135deg, rgba(45,49,55,.96), rgba(24,25,28,.96)); box-shadow: 0 20px 60px rgba(0,0,0,.28); }
 .portraitWrap { display: grid; place-items: center; min-height: 230px; border-radius: 16px; overflow: hidden; background: radial-gradient(circle, rgba(77,157,255,.24), transparent 67%); }
-.portrait { width: min(240px, 100%); height: 240px; object-fit: contain; }
+.portrait { width: min(240px, 100%); height: 240px; object-fit: contain; border-radius: 18px; }
 .eyebrow { margin: 0 0 9px; color: #ffd54a; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
 .hero h1 { margin: 0; font-size: clamp(2rem, 7vw, 4rem); line-height: 1.05; }
 .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
@@ -17,6 +17,10 @@
 .card, .matchupCard { padding: 20px; border: 1px solid rgba(255,255,255,.1); border-radius: 16px; background: rgba(31,33,36,.92); box-shadow: 0 10px 28px rgba(0,0,0,.16); }
 .card h3, .matchupCard h3 { margin: 0 0 10px; font-size: 1.12rem; }
 .card p, .matchupCard > p { margin: 0; color: #cbd0d7; line-height: 1.7; }
+.pointDetails { display: grid; gap: 16px; }
+.pointDetails > div + div { padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1); }
+.pointDetails h4 { margin: 0 0 7px; color: #ffd54a; font-size: .76rem; letter-spacing: .07em; text-transform: uppercase; }
+.pointDetails p { margin: 0; }
 .video { display: block; width: 100%; max-width: 100%; border-radius: 12px; background: #08090a; aspect-ratio: 16 / 9; }
 .skillCard { display: flex; flex-direction: column; gap: 18px; }
 .skillTitle { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }

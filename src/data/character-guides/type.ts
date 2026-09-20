@@ -5,6 +5,24 @@ export type GuidePoint = {
     description: string;
 };
 
+export type StrengthGuidePoint = GuidePoint | {
+    title: string;
+    mechanic: string;
+    practicalUse: string;
+};
+
+export type WeaknessGuidePoint = GuidePoint | {
+    title: string;
+    weakness: string;
+    howToManage: string;
+};
+
+export type HowToPlayGuidePoint = GuidePoint | {
+    title: string;
+    objective: string;
+    action: string;
+};
+
 
 export type GuideOverview = {
     title?: string;
@@ -80,11 +98,11 @@ export type CharacterGuide = {
     overview?: CharacterOverview;
     quickStrengths: string[];
     quickWeaknesses: string[];
-    strengths?: GuidePoint[];
-    weaknesses?: GuidePoint[];
+    strengths?: StrengthGuidePoint[];
+    weaknesses?: WeaknessGuidePoint[];
     normalAttacks?: NormalAttackGuide[];
     skillGroups?: SkillGroup[];
-    howToPlay?: GuidePoint[];
+    howToPlay?: HowToPlayGuidePoint[];
     counters?: CounterMatchup[];
     strongAgainst?: StrongAgainstMatchup[];
 };

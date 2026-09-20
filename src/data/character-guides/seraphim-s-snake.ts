@@ -30,34 +30,41 @@ export const sSnakeGuide: CharacterGuide = {
     strengths: [
         {
             title: "Exceptional Map Control",
-            description: "S-Snake has one of the best repositioning tools among Defenders. By holding her normal attack, she can instantly travel to the farthest allied treasure area, allowing her to stop back-caps, reinforce teammates, or temporarily disengage from unfavorable fights. Her ability to quickly rotate across the map gives her exceptional control over the pace of the match."
+            mechanic: "S-Snake has one of the best repositioning tools among Defenders. By holding her normal attack, she can instantly travel to the farthest allied treasure area.",
+            practicalUse: "Use it to stop back-caps, reinforce teammates, or temporarily disengage from unfavorable fights. Her ability to quickly rotate across the map gives her exceptional control over the pace of the match."
         },
         {
             title: "Dominant Treasure Defense",
-            description: "S-Snake excels at protecting treasure areas. Her third normal attack and both of her skills can knock enemies away from the treasure, making it difficult for Runners to capture flags. Since her skills deal increased damage to Runners, she can often secure a KO while defending. She can also remove enemy Defense increases after landing an attack, making defensive Runners such as St. Marcus Mars much easier to deal with."
+            mechanic: "S-Snake excels at protecting treasure areas. Her third normal attack and both of her skills can knock enemies away from the treasure, and her skills deal increased damage to Runners. She can also remove an enemy's Defense increase after landing an attack.",
+            practicalUse: "She can interrupt captures and often secure a KO while defending. Removing Defense increases also makes defensive Runners such as St. Marcus Mars much easier to deal with."
         },
         {
             title: "Reliable Survivability",
-            description: "Landing Skill 1 grants S-Snake a three-hit invincibility effect, allowing her to completely ignore up to three incoming attacks. This lets her save her dodge for critical moments and survive powerful burst skills from characters like Zoro & Sanji or G5V2(Luffy)."
+            mechanic: "Landing Skill 1 grants S-Snake a three-hit invincibility effect, allowing her to completely ignore up to three incoming attacks.",
+            practicalUse: "This lets her save her dodge for critical moments and survive powerful burst skills from characters like Zoro & Sanji or Gear 5 (V2) Luffy."
         },
         {
             title: "Shuts Down Buff-Dependent Characters",
-            description: "S-Snake can remove an enemy's Attack increase after being hit by one of their skills, preventing Attack-stacking characters from reaching their full potential. This makes her particularly effective against opponents who rely on Attack buffs throughout the match."
+            mechanic: "S-Snake can remove an enemy's Attack increase after being hit by one of their skills, preventing Attack-stacking characters from reaching their full potential.",
+            practicalUse: "This makes her particularly effective against opponents who rely on Attack buffs throughout the match."
         }
     ],
 
     weaknesses: [
         {
             title: "Predictable Repositioning",
-            description: "S-Snake's long-hold normal attack gives her exceptional mobility, but it also creates a predictable landing point. Experienced opponents can time their skills or normal attacks to catch her immediately after she arrives, making careless rotations a significant risk. Only reposition when you are confident the destination is safe or the reward outweighs the risk."
+            weakness: "S-Snake's long-hold normal attack gives her exceptional mobility, but it also creates a predictable landing point. Experienced opponents can time their skills or normal attacks to catch her immediately after she arrives, making careless rotations a significant risk.",
+            howToManage: "Only reposition when you are confident the destination is safe or the reward outweighs the risk."
         },
         {
             title: "Relies on Skill 1 for Survival",
-            description: "Much of S-Snake's survivability comes from the three-hit invincibility granted by Skill 1. Without it, she relies mainly on healing and a 30% damage reduction while standing in her treasure area, making her much easier to eliminate with burst damage. Using Skill 1 at the wrong time can leave her exposed during crucial fights."
+            weakness: "Much of S-Snake's survivability comes from the three-hit invincibility granted by Skill 1. Without it, she relies mainly on healing and a 30% damage reduction while standing in her treasure area, making her much easier to eliminate with burst damage.",
+            howToManage: "Avoid using Skill 1 at the wrong time, as doing so can leave her exposed during crucial fights."
         },
         {
             title: "Vulnerable Outside Treasure Areas",
-            description: "S-Snake performs best while defending treasure areas, where she gains additional survivability. Outside of those zones, she loses a large part of her defensive potential and becomes much easier to pressure or eliminate. Avoid taking extended fights away from your treasure whenever possible."
+            weakness: "S-Snake performs best while defending treasure areas, where she gains additional survivability. Outside of those zones, she loses a large part of her defensive potential and becomes much easier to pressure or eliminate.",
+            howToManage: "Avoid taking extended fights away from your treasure whenever possible."
         }
     ],
 
@@ -119,15 +126,18 @@ export const sSnakeGuide: CharacterGuide = {
     howToPlay: [
         {
             title: "Prioritize Treasure Defense",
-            description: "Your primary role is to protect your team's treasure areas. After your teammates capture a flag, rotate over whenever possible and build up the treasure gauge before enemies arrive."
+            objective: "Protect your team's treasure areas and secure newly captured flags.",
+            action: "After your teammates capture a flag, rotate over whenever possible and build up the treasure gauge before enemies arrive."
         },
         {
             title: "Rotate with Purpose",
-            description: "S-Snake's long-hold normal attack always targets the farthest allied treasure area. Learn the map layouts so you can reliably reach the treasure you intend to defend instead of repositioning at random."
+            objective: "Reach the allied treasure that most needs S-Snake's defense.",
+            action: "Her long-hold normal attack always targets the farthest allied treasure area. Learn the map layouts so you can reliably reach the treasure you intend to defend instead of repositioning at random."
         },
         {
             title: "Stay One Step Ahead",
-            description: "Always watch the minimap for enemies that can quickly reach your treasure, such as Hybrid Kaido or Gear 5 (V2). Position yourself early to defend the flag, or stall the enemy until your teammates arrive."
+            objective: "Prevent fast enemies from reaching and capturing an unguarded treasure.",
+            action: "Always watch the minimap for enemies that can quickly reach your treasure, such as Hybrid Kaido or Gear 5 (V2). Position yourself early to defend the flag, or stall the enemy until your teammates arrive."
         }
     ],
 
