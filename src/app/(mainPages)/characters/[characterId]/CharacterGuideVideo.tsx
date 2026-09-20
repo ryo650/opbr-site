@@ -10,9 +10,8 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
     const video = videoRef.current;
     if (!video) return;
 
-    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
-
     const silenceVideo = () => {
+      video.defaultMuted = true;
       if (!video.muted) video.muted = true;
       if (video.volume !== 0) video.volume = 0;
     };
@@ -20,7 +19,8 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
     const playVideo = () => {
       silenceVideo();
       void video.play().catch(() => {
-        // Autoplay can still be blocked by the browser. Controls remain available.
+        // Muted inline autoplay is widely supported, but playback can still be
+        // blocked by a browser or OS policy. A later intersection retries it.
       });
     };
 
@@ -31,26 +31,18 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
           return;
         }
 
-        if (entry.intersectionRatio >= 0.5 && !reducedMotion.matches) {
-          playVideo();
-        }
+        playVideo();
       },
-      { threshold: [0, 0.5] },
+      { threshold: 0 },
     );
-
-    const handleReducedMotionChange = () => {
-      if (reducedMotion.matches) video.pause();
-    };
 
     observer.observe(video);
     silenceVideo();
     video.addEventListener("volumechange", silenceVideo);
-    reducedMotion.addEventListener("change", handleReducedMotionChange);
 
     return () => {
       observer.disconnect();
       video.removeEventListener("volumechange", silenceVideo);
-      reducedMotion.removeEventListener("change", handleReducedMotionChange);
     };
   }, []);
 
@@ -58,10 +50,11 @@ export default function CharacterGuideVideo({ src, label }: { src: string; label
     <video
       ref={videoRef}
       className={styles.video}
-      controls
+      autoPlay
       muted
       loop
       playsInline
+      disablePictureInPicture
       preload="none"
       aria-label={label}
     >
