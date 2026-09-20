@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import MedalSetDetail from "@/components/medal-sets/MedalSetDetail";
+import { medalSetCategoryLabels } from "@/components/medal-sets/labels";
 import { createMedalById, recommendedMedalSets, resolveMedalSetSlots } from "@/data/medal-sets";
 import { medals } from "@/data/medals";
 
@@ -24,7 +25,7 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { id } = await params;
   const set = resolveMedalSet(id);
-  const title = `${set.name} | OPBR Medal Sets`;
+  const title = `${set.name} (${medalSetCategoryLabels[set.category]}) | OPBR Medal Sets`;
   const description = set.description
     ?? `${set.name} is a recommended three-medal combination for One Piece Bounty Rush.`;
   return {

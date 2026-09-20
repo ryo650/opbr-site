@@ -1,0 +1,32 @@
+.page { min-height: 100vh; padding: 64px 0 96px; }
+.content { width: min(1120px, 100%); margin: 0 auto; padding: 0 18px; }
+.hero { max-width: 780px; }
+.eyebrow, .releaseDate { margin: 0; color: #fbbf24; font-size: .75rem; font-weight: 800; letter-spacing: .13em; text-transform: uppercase; }
+.hero h1 { margin: 12px 0 0; font-size: clamp(2.5rem, 7vw, 5rem); line-height: 1; letter-spacing: -.05em; }
+.hero > p:last-child { max-width: 700px; margin: 22px 0 0; color: #cbd5e1; font-size: 1.05rem; line-height: 1.7; }
+.grid { display: grid; gap: 18px; margin-top: 48px; }
+.card { display: grid; min-width: 0; overflow: hidden; border: 1px solid rgb(255 255 255 / 12%); border-radius: 20px; background: linear-gradient(135deg, rgb(255 255 255 / 7%), rgb(255 255 255 / 2%)); box-shadow: 0 18px 45px rgb(0 0 0 / 22%); transition: transform 180ms ease, border-color 180ms ease; }
+.card:hover { transform: translateY(-3px); border-color: rgb(251 191 36 / 55%); }
+.card:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
+.portraitWrap { display: grid; min-height: 270px; place-items: center; background: radial-gradient(circle, rgb(59 130 246 / 25%), transparent 68%); }
+.portrait { width: min(290px, 88%); height: 270px; object-fit: contain; transition: transform 220ms ease; }
+.card:hover .portrait { transform: scale(1.035); }
+.cardBody { display: flex; min-width: 0; flex-direction: column; align-items: flex-start; padding: 25px; }
+.cardBody h2 { margin: 9px 0 0; overflow-wrap: anywhere; font-size: clamp(1.45rem, 4vw, 2rem); line-height: 1.15; }
+.characterMeta { margin: 10px 0 0; color: #d8dde5; text-transform: capitalize; }
+.availability { margin: 7px 0 0; color: #9ea7b3; font-size: .85rem; }
+.action { display: inline-flex; align-items: center; gap: 8px; margin-top: 24px; color: #ffe084; font-weight: 800; }
+.action svg { width: 17px; height: 17px; transition: transform 180ms ease; }
+.card:hover .action svg { transform: translateX(4px); }
+.empty { margin-top: 48px; padding: 32px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 18px; background: rgb(255 255 255 / 4%); }
+.empty h2 { margin: 0; }
+.empty p { margin: 10px 0 0; color: #b8c0cc; }
+
+@media (min-width: 720px) {
+  .content { padding-inline: 24px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .portrait, .action svg { transition: none; }
+}

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { characterGuides } from "@/data/character-guides";
 import { characters } from "@/data/characters";
+import { SITE_URL } from "@/lib/site";
 import CharacterGuidePage from "./CharacterGuidePage";
 
 type Props = { params: Promise<{ characterId: string }> };
@@ -23,7 +24,26 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { character } = resolveGuide(characterId);
   const title = `${character.name} Guide, Skills, Counters and Matchups`;
   const description = `Learn how to play ${character.name}, including stats, skills, strengths, weaknesses, counters, and favorable matchups in One Piece Bounty Rush.`;
-  return { title, description, alternates: { canonical: `/characters/${characterId}` }, openGraph: { title, description, images: [{ url: character.image, alt: character.name }] } };
+  const url = `/characters/${characterId}`;
+  return {
+    title,
+    description,
+    alternates: { canonical: url },
+    robots: { index: true, follow: true },
+    openGraph: {
+      type: "website",
+      url,
+      title,
+      description,
+      images: [{ url: character.image, alt: character.name }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: [character.image],
+    },
+  };
 }
 
 export default async function Page({ params }: Props) {
@@ -35,5 +55,27 @@ export default async function Page({ params }: Props) {
     if (!matchupCharacter) throw new Error(`Character guide matchup not found: ${id}`);
     return [id, matchupCharacter];
   }));
-  return <CharacterGuidePage character={character} guide={guide} matchupCharacters={matchupCharacters} />;
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: `${character.name} Guide`,
+        item: `${SITE_URL}/characters/${characterId}`,
+      },
+    ],
+  };
+
+  return <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{
+        __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, "\\u003c"),
+      }}
+    />
+    <CharacterGuidePage character={character} guide={guide} matchupCharacters={matchupCharacters} />
+  </>;
 }
