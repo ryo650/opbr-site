@@ -25,6 +25,7 @@
 .pointDetails > div + div { padding-top: 16px; border-top: 1px solid rgba(255,255,255,.1); }
 .pointDetails h4 { margin: 0 0 7px; color: #ffd54a; font-size: .76rem; letter-spacing: .07em; text-transform: uppercase; }
 .pointDetails p { margin: 0; }
+.pointVideo { margin-top: 16px; }
 .video { display: block; width: 100%; max-width: 100%; border-radius: 12px; background: #08090a; aspect-ratio: 16 / 9; }
 .skillCard { display: flex; flex-direction: column; gap: 18px; }
 .skillTitle { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 6px 16px; }

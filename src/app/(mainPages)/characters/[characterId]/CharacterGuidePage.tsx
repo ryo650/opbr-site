@@ -21,7 +21,7 @@ type PointSection = {
 };
 
 function StructuredPointGrid<T extends { title: string }>({ points, getSections }: { points: T[]; getSections: (point: T) => PointSection[] }) {
-  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><div className={styles.pointDetails}>{getSections(point).map((section) => <div key={section.title}><h4>{section.title}</h4><p>{section.content}</p></div>)}</div></article>)}</div>;
+  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><div className={styles.pointDetails}>{getSections(point).map((section) => <div key={section.title}><h4>{section.title}</h4><p>{section.content}</p></div>)}</div>{"video" in point && typeof point.video === "string" && <div className={styles.pointVideo}><CharacterGuideVideo src={point.video} label={`${point.title} demonstration`} /></div>}</article>)}</div>;
 }
 
 function getStrengthSections(point: StrengthGuidePoint): PointSection[] {

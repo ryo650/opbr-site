@@ -5,11 +5,11 @@ export type GuidePoint = {
     description: string;
 };
 
-export type StrengthGuidePoint = GuidePoint | {
+export type StrengthGuidePoint = (GuidePoint | {
     title: string;
     mechanic: string;
     practicalUse: string;
-};
+}) & { video?: string };
 
 export type WeaknessGuidePoint = GuidePoint | {
     title: string;

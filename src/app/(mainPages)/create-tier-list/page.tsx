@@ -9,7 +9,7 @@ export const metadata = {
 
 export default function CreateTierListPage() {
   return (
-    <main id="main-content" tabIndex={-1} className={styles.page}>
+    <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <CreateTierList />
     </main>
   );
