@@ -3,7 +3,7 @@ import type { Character } from "./type.ts";
 export const blueCharacters: Record<string, Character> = {
     "the-five-elders-st-marcus-mars": {
         id: "the-five-elders-st-marcus-mars",
-        name: "The-Five-Elders-St-Marcus-Mars",
+        name: "The Five Elders St.Marcus Mars",
         image: "/characters/blue/the-five-elders-st-marcus-mars.webp",
         grade: "ex",
         element: "blue",

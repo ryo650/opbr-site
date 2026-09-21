@@ -21,7 +21,7 @@ type PointSection = {
 };
 
 function StructuredPointGrid<T extends { title: string }>({ points, getSections }: { points: T[]; getSections: (point: T) => PointSection[] }) {
-  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><div className={styles.pointDetails}>{getSections(point).map((section) => <div key={section.title}><h4>{section.title}</h4><p>{section.content}</p></div>)}</div></article>)}</div>;
+  return <div className={styles.pointGrid}>{points.map((point) => <article className={styles.card} key={point.title}><h3>{point.title}</h3><div className={styles.pointDetails}>{getSections(point).map((section) => <div key={section.title}><h4>{section.title}</h4><p>{section.content}</p></div>)}</div>{"video" in point && typeof point.video === "string" && <div className={styles.pointVideo}><CharacterGuideVideo src={point.video} label={`${point.title} demonstration`} /></div>}</article>)}</div>;
 }
 
 function getStrengthSections(point: StrengthGuidePoint): PointSection[] {
@@ -97,11 +97,12 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
 
   return <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
     <article className={styles.content}>
+      <nav className={styles.breadcrumbs} aria-label="Breadcrumb"><Link href="/">Home</Link><span aria-hidden="true">/</span><span aria-current="page">{character.name} Guide</span></nav>
       <header className={styles.hero}><div className={styles.portraitWrap}><Image src={character.image} alt={character.name} width={280} height={280} className={styles.portrait} preload /></div><div><p className={styles.eyebrow}>Character Guide</p><h1>{character.name}</h1><div className={styles.badges}><span>{character.element} element</span><span>{character.role}</span></div></div></header>
 
       {guide.notice && <aside className={styles.notice}><p className={styles.eyebrow}>{guide.notice.title}</p><p>{guide.notice.description}</p></aside>}
 
-      <section className={styles.introduction} aria-labelledby="guide-overview-heading"><p className={styles.eyebrow}>Guide Overview</p><h2 id="guide-overview-heading">Master {character.name}</h2><p>Review the character&apos;s key strengths, weaknesses, attacks, matchups, and practical game plan.</p></section>
+      <section className={styles.introduction} aria-labelledby="guide-overview-heading"><p className={styles.eyebrow}>Guide Overview</p><h2 id="guide-overview-heading">{guide.guideOverview?.title ?? `Master ${character.name}`}</h2><p>{guide.guideOverview?.description ?? "Review the character's key strengths, weaknesses, attacks, matchups, and practical game plan."}</p></section>
 
       <div className={styles.guideLayout}>
       <div className={styles.guideSections}>

@@ -21,14 +21,16 @@ export default function TierList() {
               if (!character) {
                 return null;
               }
+              const cardStyle = {
+                "--tier-index": tierIndex,
+                "--character-index": characterIndex,
+              } as CSSProperties;
+
               return (
                 <div
                   key={character.id}
                   className={styles.characterCard}
-                  style={{
-                    "--tier-index": tierIndex,
-                    "--character-index": characterIndex,
-                  } as CSSProperties}
+                  style={cardStyle}
                 >
                   <CharacterGuideLink
                     characterId={character.id}

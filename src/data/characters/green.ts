@@ -11,7 +11,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "future-where-i-m-the-most-free-jewelry-bonney": {
         id: "future-where-i-m-the-most-free-jewelry-bonney",
-        name: "Future-Where-I-m-the-Most-Free-Jewelry-Bonney",
+        name: "Future Where I'm the Most Free Jewelry Bonney",
         image: "/characters/green/future-where-i-m-the-most-free-jewelry-bonney.webp",
         grade: "ex",
         element: "green",

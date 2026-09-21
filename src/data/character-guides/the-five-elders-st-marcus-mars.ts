@@ -4,9 +4,16 @@ export const stMarcusMarsGuide: CharacterGuide = {
     characterId: "the-five-elders-st-marcus-mars",
 
     notice: {
-        title: "Early Guide",
+        title: "Guide in Progress",
         description:
-            "This guide is based on currently available information and may be updated after St. Marcus Mars is released and tested in actual matches.",
+            "This guide contains an early overview and is being expanded with attacks, skills, gameplay advice, and matchups.",
+    },
+
+    // Overview: ページ冒頭の要約。日本語の大雑把なメモから入力しても構いません。
+    guideOverview: {
+        title: "St. Marcus Mars Guide",
+        description:
+            "Learn the fundamentals of St. Marcus Mars, including his durability, remote treasure capture, strengths, and weaknesses.",
     },
 
     overview: {
@@ -30,31 +37,56 @@ export const stMarcusMarsGuide: CharacterGuide = {
     strengths: [
         {
             title: "High Survivability",
-            description:
-                "Mars is one of the tankiest characters in the game. His DEF can increase by up to 70% while attacking enemies, and his Boost Trait allows him to fully recover and revive after receiving a fatal attack by consuming the Power Gauge.",
+            mechanic:
+                "Mars can increase his DEF by up to 70% while attacking enemies, and his Boost Trait allows him to fully recover and revive after receiving a fatal attack by consuming the Power Gauge.",
+            practicalUse:
+                "Build DEF through safe attacks, then use the extra durability and revive as insurance while contesting important treasure areas.",
         },
         {
             title: "Strong Against Meta Characters",
-            description:
+            mechanic:
                 "Mars has traits designed to counter several top meta characters. He takes 50% less damage from characters such as Zoro & Sanji and Nusjuro while also reducing their ATK.",
+            practicalUse:
+                "Look for these favorable matchups when choosing which treasure area to pressure, but avoid assuming the damage reduction makes every exchange safe.",
         },
         {
             title: "Excellent Treasure Capture",
-            description:
+            mechanic:
                 "Mars can capture treasure without directly touching the flag, allowing him to bypass obstacles such as Whitebeard's walls. He can also use a skill while capturing to push enemies away.",
+            practicalUse:
+                "Start captures from safer positions and use the available skill to create space when an enemy tries to interrupt.",
         },
     ],
 
     weaknesses: [
         {
             title: "Slow Treasure Capture",
-            description:
-                "Mars does not have a trait that directly increases treasure capture speed. He may need medal sets or support tags to capture flags more quickly.",
+            weakness:
+                "Mars does not have a trait that directly increases treasure capture speed, so exposed captures can take too long.",
+            howToManage:
+                "Use medal sets or support tags that improve capture speed, and begin captures only after creating enough space.",
         },
         {
             title: "Limited Power Gauge at the Start",
-            description:
-                "Unlike Nusjuro or Saturn, Mars does not begin the match with two Power Gauge stocks. This prevents him from fully using his revive mechanic during the early stages of the battle.",
+            weakness:
+                "Unlike Nusjuro or Saturn, Mars does not begin the match with two Power Gauge stocks. This limits access to his revive mechanic early in the battle.",
+            howToManage:
+                "Play more carefully at the start of the match and avoid treating the revive as available until the required gauge is ready.",
         },
     ],
+
+    // Normal Attacks: label / form / video（任意）/ tips を入力してください。
+    normalAttacks: [],
+
+    // Skill 1 / Skill 2: slot / label / name / cooldown / video / quickTips / details を入力してください。
+    skillGroups: [],
+
+    // How to Play: { title, objective: "目的", action: "具体的な行動" }
+    howToPlay: [],
+
+    // Counters: { characterId, difficulty: 1〜5, whyDifficult, howToRespond }
+    counters: [],
+
+    // Strong Against: { characterId, advantage: 1〜5, whyYouWin, watchOut }
+    strongAgainst: [],
 };

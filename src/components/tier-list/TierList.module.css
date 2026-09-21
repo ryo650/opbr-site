@@ -75,6 +75,11 @@
   filter: brightness(1.08);
 }
 
+.characterGuideLink:focus-visible {
+  outline: 3px solid #fbbf24;
+  outline-offset: 3px;
+}
+
 .god { background: #a8b2c1; }
 .SS { background: #f87171; }
 .S { background: #fb923c; }
