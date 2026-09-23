@@ -820,6 +820,62 @@ test("a missing BF row is not treated as zero without complete and resolved ★4
   );
 });
 
+test("a complete featured-only pool tolerates truncated repeating display rates", () => {
+  const pickups = [
+    ...Array.from({ length: 9 }, (_, index) => ({
+      characterId: `featured-${index}`,
+      rate: decimal("0.2222222"),
+    })),
+    { characterId: "featured-9", rate: decimal("3") },
+  ];
+  const totalFourStarRate = decimal("5");
+  const featuredOnlyFourStarPool = isCompleteFeaturedOnlyFourStarPool({
+    totalFourStarRate,
+    pickups,
+    extractionIssues: [],
+    fourStarSectionComplete: true,
+    normalBfRowCount: 0,
+  });
+  const rateCalculation = calculateScoutRates({
+    totalFourStarRate,
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    bfUnitRate: null,
+    characters: pickups.map(({ characterId: id }) => ({ id, grade: "bf" })),
+    featuredOnlyFourStarPool,
+  });
+  const finalRates = calculateFinalScoutRates({
+    totalFourStarRate,
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    pickups,
+    rateCalculation,
+  });
+
+  assert.equal(featuredOnlyFourStarPool, true);
+  assert.equal(decimalToString(finalRates.pickupTotal), "5");
+  assert.equal(decimalToString(finalRates.star4), "0");
+  assert.equal(decimalToString(finalRates.total), "100");
+
+  const moduleSource = renderScoutModule({
+    id: "featured-only",
+    variableName: "scoutFeaturedOnly",
+    name: "Featured Only",
+    bannerPublicPath: "/scouts/featured-only.webp",
+    startAt: "2026-09-23T14:00:00+09:00",
+    endAt: "2026-09-24T13:59:59+09:00",
+    featuredCharacter: { id: "featured-0" },
+    pickups,
+    featuredOnlyFourStarPool,
+    threeStarRate: decimal("35"),
+    twoStarRate: decimal("60"),
+    finalRates,
+  });
+  assert.match(moduleSource, /pickup: 5,/);
+  assert.doesNotMatch(moduleSource, /const totalPickupRate/);
+});
+
 test("BF and star-4 calculations are exact fixed-point operations", () => {
   const characters = [
     { id: "pickup-bf", grade: "bf" },

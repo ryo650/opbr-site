@@ -121,6 +121,8 @@ final star-4 = round(★4 total - pickup total - final bf, 2)
 
 ★4/★3/★2、pickup、characterId、通常BF rate、非負のraw BF/star-4、高精度rate合計、最終出力rate合計が正確に100%、入力されたScout名、featuredCharacterIdとendAtから生成したScout ID、出力競合を生成前に検証します。候補表示は診断のみで、自動選択には使いません。
 
+★4欄がすべてFeaturedで次の★3行まで取得できている場合、個別rateの7桁表示打ち切りによる合計差は0.001ポイント以内に限って許容します。個別pickupのrateは画面値を保持し、Scoutカテゴリのpickup合計には★4総率を使うため、最終出力は正確に100%になります。
+
 ## V1の制限
 
 - Step Up、確定枠、free step、loop countは無視する
