@@ -29,7 +29,10 @@ import { scoutNavyHqSwordHibari20261001 } from "./navy-hq-sword-hibari-20261001"
 
 import { scoutNavyHqFleetAdmiralSengoku20260924 } from "./navy-hq-fleet-admiral-sengoku-20260924";
 
+import { scoutTheFourEmperorsMarshallDTeach20261006 } from "./the-four-emperors-marshall-d-teach-20261006";
+
 export const scouts = [
+    scoutTheFourEmperorsMarshallDTeach20261006,
     scoutNavyHqFleetAdmiralSengoku20260924,
     scoutNavyHqSwordHibari20261001,
     scoutKaidoSSonYamato20260924,
