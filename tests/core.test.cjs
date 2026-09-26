@@ -210,7 +210,8 @@ test('all scout pickups exist and can actually be drawn at their weighted interv
     assert.ok(
       Math.abs(
         scout.rates.pickup - pickupTotal,
-      ) < 1e-9,
+      ) <= 0.001,
+      `${scout.id} pickup total exceeds the importer display-precision tolerance`,
     );
 
     let offset = 0;
