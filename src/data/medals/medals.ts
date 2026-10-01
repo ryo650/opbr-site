@@ -19517,5 +19517,51 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "halloween-perona",
+    "name": "Halloween Perona Medal",
+    "category": "event",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "thriller-bark-pirates",
+        "name": "Thriller Bark Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "ill-trick-you",
+    "name": "I'll Trick You Medal",
+    "category": "event",
+    "uniqueTrait": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 13%. and When upgrading a Medal, \"Happy Halloween! I'm Uta! I'll Trick You!\" Uta's Trick will cause the number of *s to always be 3 no matter the effect.",
+    "tags": [
+      {
+        "id": "film-red",
+        "name": "FILM RED"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

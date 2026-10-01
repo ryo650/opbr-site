@@ -4933,6 +4933,55 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When you capture the Treasure: Reduce the cooldown time of Skill 2 by 8%."
     }
+  ],
+  "hibari": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When using Skill 2: Reduce the cooldown time of Skill 1 by 5%."
+    }
+  ],
+  "prince-grus": [],
+  "garps-protege": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 1 by 13%."
+    }
+  ],
+  "koby-fullalead": [
+    {
+      "effectId": "dodge-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When your HP is 70% or more: Boost the cooldown reduction speed of dodge by 13%."
+    }
+  ],
+  "garp-supreme-king": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When attacked by a character type \"Captain\" enemy: Reduce damage received by 3%."
+    }
+  ],
+  "halloween-perona": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%."
+    }
+  ],
+  "ill-trick-you": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 13%. and When upgrading a Medal, \"Happy Halloween! I'm Uta! I'll Trick You!\" Uta's Trick will cause the number of *s to always be 3 no matter the effect."
+    }
   ]
 };
 

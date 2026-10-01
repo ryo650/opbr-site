@@ -2449,6 +2449,32 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   "vergo": [
     "cooldown",
     "skill-2"
+  ],
+  "hibari": [
+    "cooldown",
+    "skill-1",
+    "skill-2"
+  ],
+  "prince-grus": [
+    "hp-recovery"
+  ],
+  "garps-protege": [
+    "cooldown",
+    "skill-1"
+  ],
+  "koby-fullalead": [
+    "cooldown"
+  ],
+  "garp-supreme-king": [
+    "damage-reduction"
+  ],
+  "halloween-perona": [
+    "cooldown",
+    "skill-2"
+  ],
+  "ill-trick-you": [
+    "cooldown",
+    "skill-1"
   ]
 };
 
