@@ -5,7 +5,10 @@ import CharacterGuideLink from "@/components/characters/CharacterGuideLink";
 import { characters } from "@/data/characters/index";
 import { tierList } from "@/data/tierList";
 
-export default function TierList() {
+import TierUpdateBadge from "./TierUpdateBadge";
+import type { TierUpdateBadge as Badge } from "@/lib/tier-important-updates";
+
+export default function TierList({ badges = {}, preview = false }: { badges?: Record<string, Badge>; preview?: boolean }) {
   return (
     <div className={styles.tierList}>
       {tierList.map((row, tierIndex) => (
@@ -45,6 +48,7 @@ export default function TierList() {
                       className={styles.characterImage}
                     />
                   </CharacterGuideLink>
+                  {badges[id] && <TierUpdateBadge badge={badges[id]} characterName={character.name} preview={preview} />}
                 </div>
               );
             })}

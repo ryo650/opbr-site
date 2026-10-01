@@ -1,0 +1,7 @@
+.badge { position: absolute; z-index: 2; top: -4px; right: -4px; display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 1px solid currentColor; border-radius: 6px; background: #262626; font-size: 14px; line-height: 1; font-weight: 800; }
+.rise { color: #a7f3d0; }
+.fall { color: #fda4af; }
+.new { color: #fde68a; }
+.adjustment { color: #bfdbfe; }
+.badge:focus-visible { outline: 3px solid #fbbf24; outline-offset: 2px; }
+@media (max-width: 640px) { .badge { width: 15px; height: 15px; top: -3px; right: -3px; border-radius: 4px; font-size: 11px; } }

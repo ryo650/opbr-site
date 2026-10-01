@@ -1,5 +1,10 @@
 import TierList from "../../../components/tier-list/TierList"
 import styles from "./page.module.css"
+import { connection } from "next/server"
+import ImportantTierUpdate from "@/components/tier-list/ImportantTierUpdate"
+import { importantTierUpdates } from "@/data/tier-important-updates"
+import { tierList } from "@/data/tierList"
+import { getImportantTierUpdateState } from "@/lib/tier-important-updates"
 
 export const metadata = {
   alternates: { canonical: "/tier-list" },
@@ -8,7 +13,13 @@ export const metadata = {
     "Check the latest OPBR tier list for One Piece Bounty Rush. Find the best characters ranked by current meta strength, league battle performance, roles, and overall usefulness. Stay updated with the top picks for your team.",
 }
 
-export default function TierListPage() {
+export default async function TierListPage() {
+  // Empty production data keeps the existing static page. Registered events need request-time dates.
+  if (importantTierUpdates.length > 0) await connection()
+  // Request-time Server Component, matching the existing scout page clock policy.
+  // eslint-disable-next-line react-hooks/purity
+  const now = Date.now()
+  const { update, currentTiers, badges } = getImportantTierUpdateState(importantTierUpdates, tierList, now)
   return (
     <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
       <div className={styles.content}>
@@ -24,7 +35,7 @@ export default function TierListPage() {
           </p>
         </section>
 
-        {/* アップデート、上方修正によるランキング変動(最新キャラの) */}
+        <ImportantTierUpdate update={update} currentTiers={currentTiers} />
 
         {/* Tier List */}
         <section className={styles.tierSection} aria-labelledby="tier-list-heading">
@@ -33,7 +44,7 @@ export default function TierListPage() {
             <h2 id="tier-list-heading">Tier List</h2>
             <p>Characters are ranked from strongest to weakest within each tier.</p>
           </div>
-          <TierList />
+          <TierList badges={badges} />
         </section>
 
         {/* それぞれのキャラのランキング変動 */}
