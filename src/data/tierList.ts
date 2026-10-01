@@ -22,7 +22,7 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["great-pirate-edward-newgate","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","unexpected-collaboration-rob-lucci","battle-of-monsters-on-onigashima-kaido","kaido-s-son-yamato","ama-no-murakumo-sword-kizaru","navy-hq-sword-koby"]
+        characterIds: ["great-pirate-edward-newgate","happy-halloween-uta","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","unexpected-collaboration-rob-lucci","battle-of-monsters-on-onigashima-kaido","kaido-s-son-yamato","ama-no-murakumo-sword-kizaru","navy-hq-sword-koby"]
     },
     {
         tier: "C",
@@ -32,6 +32,6 @@ export const tierList = [
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["navy-hq-sword-hibari","asl-ace-sabo-luffy","egghead-roronoa-zoro","divine-departure-shanks","seraphim-s-shark","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-sanji"]
+        characterIds: ["navy-hq-sword-hibari","asl-ace-sabo-luffy","egghead-roronoa-zoro","divine-departure-shanks","seraphim-s-shark","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-sanji","singer-of-the-new-genesis-uta"]
     }
 ]
