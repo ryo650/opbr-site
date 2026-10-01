@@ -31,7 +31,12 @@ import { scoutNavyHqFleetAdmiralSengoku20260924 } from "./navy-hq-fleet-admiral-
 
 import { scoutTheFourEmperorsMarshallDTeach20261006 } from "./the-four-emperors-marshall-d-teach-20261006";
 
+import { scoutHappyHalloweenUta20261027 } from "./happy-halloween-uta-20261027";
+import { scoutSingerOfTheNewGenesisUta20261030 } from "./singer-of-the-new-genesis-uta-20261030";
+
 export const scouts = [
+    scoutHappyHalloweenUta20261027,
+    scoutSingerOfTheNewGenesisUta20261030,
     scoutTheFourEmperorsMarshallDTeach20261006,
     scoutNavyHqFleetAdmiralSengoku20260924,
     scoutNavyHqSwordHibari20261001,
