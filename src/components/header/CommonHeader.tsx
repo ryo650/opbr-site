@@ -23,6 +23,7 @@ const navigationItems = [
   { href: "/new-characters", label: "New Characters" },
   { href: "/beginner-guide", label: "Beginner Guide" },
   { href: "/create-tier-list", label: "Create Tier List"},
+  { href: "/updates", label: "Updates" },
 ];
 
 export default function CommonHeader() {

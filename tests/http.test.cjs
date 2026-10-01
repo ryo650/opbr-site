@@ -5,7 +5,7 @@ const { characterGuides } = require('../src/data/character-guides');
 const { recommendedMedalSets } = require('../src/data/medal-sets');
 const { SITE_URL } = require('../src/lib/site');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3100';
-const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
+const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/updates', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
 
 test('all published pages return 200, one main and h1, and their own canonical', async () => {
   const titles = new Set();
