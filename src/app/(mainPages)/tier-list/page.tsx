@@ -35,17 +35,17 @@ export default async function TierListPage() {
           </p>
         </section>
 
-        <ImportantTierUpdate update={update} currentTiers={currentTiers} />
-
         {/* Tier List */}
         <section className={styles.tierSection} aria-labelledby="tier-list-heading">
           <div className={styles.sectionHeading}>
             <p className={styles.sectionKicker}>Current rankings</p>
-            <h2 id="tier-list-heading">Tier List</h2>
+            <h2 id="tier-list-heading" tabIndex={-1}>Tier List</h2>
             <p>Characters are ranked from strongest to weakest within each tier.</p>
           </div>
           <TierList badges={badges} />
         </section>
+
+        <ImportantTierUpdate update={update} currentTiers={currentTiers} />
 
         {/* それぞれのキャラのランキング変動 */}
 

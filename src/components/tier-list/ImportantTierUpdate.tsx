@@ -25,7 +25,7 @@ function Change({ change, currentTier }: { change: ImportantTierChange; currentT
           {change.kind === "adjustment" && <span className={styles.sameTier}> · Same tier</span>}
         </p>
         <p className={styles.reason}>{change.reason}</p>
-        {changedSince && <p className={styles.current}>At publication: {change.toTier}. Current tier: {currentTier ?? "Unranked"}. Rankings below take priority.</p>}
+        {changedSince && <p className={styles.current}>At publication: {change.toTier}. Current tier: {currentTier ?? "Unranked"}. Rankings above take priority.</p>}
       </div>
     </li>
   );
@@ -67,7 +67,7 @@ export default function ImportantTierUpdate({ update, currentTiers, demo = false
           <ul className={styles.changes}>{additional.map((change) => <Change key={change.characterId} change={change} currentTier={currentTiers[change.characterId]} />)}</ul>
         </details>
       )}
-      <p className={styles.note}>Tiers shown here reflect this review. The table below is the current ranking. <span aria-hidden="true">↑ ↓ + ≈</span> Card markers link to this summary and last up to 14 days, or until the next important update.</p>
+      <p className={styles.note}>Tiers shown here reflect this review. The table above is the current ranking. <span aria-hidden="true">↑ ↓ + ≈</span> Card markers link to this summary and last up to 14 days, or until the next important update. <a href="#tier-list-heading">Back to Tier List ↑</a></p>
     </section>
   );
 }

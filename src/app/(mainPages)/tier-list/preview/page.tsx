@@ -27,11 +27,12 @@ export default async function TierUpdatePreview({ searchParams }: { searchParams
           </nav>
         </section>
         {!update && <p className={previewStyles.empty}>No published important update at the simulated time. Production renders no update panel or card markers in this state.</p>}
-        <ImportantTierUpdate update={update} currentTiers={currentTiers} demo />
         <section className={styles.tierSection} aria-labelledby="tier-list-heading">
-          <div className={styles.sectionHeading}><p className={styles.sectionKicker}>Current rankings · Unchanged</p><h2 id="tier-list-heading">Tier List</h2><p>Characters are ranked from strongest to weakest within each tier.</p></div>
+          <div className={styles.sectionHeading}><p className={styles.sectionKicker}>Current rankings · Unchanged</p><h2 id="tier-list-heading" tabIndex={-1}>Tier List</h2><p>Characters are ranked from strongest to weakest within each tier.</p></div>
           <TierList badges={badges} preview />
         </section>
+
+        <ImportantTierUpdate update={update} currentTiers={currentTiers} demo />
       </div>
     </main>
   );

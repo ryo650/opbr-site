@@ -20,5 +20,11 @@ export default function TierUpdateBadge({ badge, characterName, preview = false 
   }, [badge.expiresAt, preview]);
   if (expired) return null;
   const { label, symbol } = tierChangeLabels[badge.kind];
-  return <a className={`${styles.badge} ${styles[badge.kind]}`} href="#tier-important-update" aria-label={`${characterName}: ${label}. Read important update summary.`}><span aria-hidden="true">{symbol}</span></a>;
+  return (
+    <span className={`${styles.frame} ${styles[badge.kind]}`}>
+      <a className={styles.badge} href="#tier-important-update" aria-label={`${characterName}: ${label}. Read important update summary.`}>
+        <span aria-hidden="true">{symbol}</span>
+      </a>
+    </span>
+  );
 }
