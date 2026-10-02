@@ -90,6 +90,7 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
     hasStrengthsAndWeaknesses && ["strengths-and-weaknesses", "Strengths & Weaknesses"],
     guide.normalAttacks?.length && ["normal-attacks", "Normal Attacks"],
     skillGroups.length && ["skills", "Skills"],
+    guide.traits?.length && ["traits", "Traits"],
     guide.howToPlay?.length && ["how-to-play", "How to Play"],
     guide.counters?.length && ["counters", "Counters"],
     guide.strongAgainst?.length && ["strong-against", "Strong Against"],
@@ -116,6 +117,7 @@ export default function CharacterGuidePage({ character, guide, matchupCharacters
 
       {!!guide.normalAttacks?.length && <Section id="normal-attacks" title="Normal Attacks"><div className={styles.mediaGrid}>{guide.normalAttacks.map((attack, index) => <article className={`${styles.card} ${styles.attackCard}`} key={`${attack.label}-${index}`}><div><p className={styles.skillLabel}>{attack.form}</p><h3>{attack.label}</h3></div>{attack.video && <CharacterGuideVideo src={attack.video} label={`${character.name} ${attack.label}`} />}{!!attack.tips.length && <div className={styles.details}><h4>Tips</h4><ul>{attack.tips.map((tip) => <li key={tip}>{tip}</li>)}</ul></div>}</article>)}</div></Section>}
       {!!skillGroups.length && <Section id="skills" title="Skills"><CharacterGuideSkills groups={skillGroups} /></Section>}
+      {!!guide.traits?.length && <Section id="traits" title="Traits"><StructuredPointGrid points={guide.traits} getSections={(point) => [{ title: "Effect", content: point.description }]} /></Section>}
       {!!guide.howToPlay?.length && <Section id="how-to-play" title="How to Play"><StructuredPointGrid points={guide.howToPlay} getSections={getHowToPlaySections} /></Section>}
       {!!guide.counters?.length && <Section id="counters" title="Counters"><div className={styles.matchupGrid}>{guide.counters.map((matchup) => <CounterCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}
       {!!guide.strongAgainst?.length && <Section id="strong-against" title="Strong Against"><div className={styles.matchupGrid}>{guide.strongAgainst.map((matchup) => <StrongAgainstCard key={matchup.characterId} matchup={matchup} character={matchupCharacters[matchup.characterId]} />)}</div></Section>}

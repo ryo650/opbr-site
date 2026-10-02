@@ -65,7 +65,8 @@
 .guideSections { min-width: 0; grid-row: 2; }
 .toc { position: sticky; top: var(--site-header-visible-height); z-index: 30; grid-row: 1; min-width: 0; margin: 24px -16px 0; padding: 11px 16px; border-block: 1px solid rgba(255,255,255,.11); background: rgba(25,27,30,.96); box-shadow: 0 8px 24px rgba(0,0,0,.24); backdrop-filter: blur(12px); transition: top 240ms cubic-bezier(0.22, 1, 0.36, 1); }
 .toc .eyebrow { display: none; }
-.toc ol { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0; padding: 0; overflow-x: auto; list-style: none; scrollbar-width: thin; }
+.toc ol { display: flex; flex-wrap: nowrap; gap: 8px; margin: 0; padding: 0; overflow-x: auto; list-style: none; scrollbar-width: none; -ms-overflow-style: none; }
+.toc ol::-webkit-scrollbar { display: none; }
 .toc li { flex: 0 0 auto; }
 .toc a { display: block; padding: 9px 13px; border: 1px solid rgba(255,255,255,.11); border-radius: 999px; color: #dce0e5; font-size: .86rem; font-weight: 700; white-space: nowrap; transition: border-color 150ms ease, background-color 150ms ease, color 150ms ease; }
 .toc a:hover { border-color: #ffd54a; color: #ffd54a; }

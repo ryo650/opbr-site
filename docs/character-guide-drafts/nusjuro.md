@@ -1,156 +1,354 @@
-# The Five Elders St. Ethanbaron V. Nusjuro — 日本語Draft
+# The Five Elders St. Ethanbaron V. Nusjuro — Publication Draft
 
-- 状態：音声入力を整理した中間メモ。英語化・事実確認・本番実装前。
-- 保存日：2026-09-30
-- characterId：`the-five-elders-st-ethanbaron-v-nusjuro`
-- 出典：[音声入力支援](chatgpt-conversation://6aba1bf7-3c64-83ee-a2e8-ccafa61e0d5a) の整理済み日本語メモ、および今回の保存依頼。
-- 目的：生メモのニュアンスを残し、このファイルを編集してから英語化・`CharacterGuide` 型へ変換する。
-- 方針：数値・条件・スキル名の未確認部分は推測で確定しない。以下は入力者の評価・体感を含む。
+- Status: English publication copy implemented locally; not pushed or published.
+- Updated: 2026-10-02
+- Source: [Character Guide調整確認](chatgpt-conversation://6abee0fe-5ad8-83ee-8f30-cc588fd40820), incorporating the approved gameplay notes.
+- Production data: `src/data/character-guides/the-five-elders-st-ethanbaron-v-nusjuro.ts`.
+- Terminology and structure follow the existing Mars / Bonney guides. Strong Points use the existing `strengths` field and Strengths heading.
+- Power Gauge and DEF growth are separate: treasure filling / KOs build the gauge; skill hits build DEF.
+- The movement-change delay is intentionally left unspecified because the remembered value was not confirmed. Overview stats are verified below; the four supplied videos are implemented using the existing Character Guide player.
+- Traits below explain the approved core mechanics; they are not a complete transcription of every in-game trait.
 
-## 強みの要約 — quickStrengths
+## Character Master Verification
 
-1. 高い機動力
-2. 高い生存能力
-3. 高いKO性能
+The authoritative Record keys and each entry's `id` match. Route slugs use these exact IDs.
 
-## 強み — strengths
+| Character Master name | ID / route slug | Element | Role | Source |
+| --- | --- | --- | --- | --- |
+| The-Five-Elders-St-Ethanbaron-V-Nusjuro | `the-five-elders-st-ethanbaron-v-nusjuro` | red | defender | `src/data/characters/red.ts` |
+| The Five Elders St.Marcus Mars | `the-five-elders-st-marcus-mars` | blue | runner | `src/data/characters/blue.ts` |
+| The-Wings-Zoro-Sanji | `the-wings-zoro-sanji` | blue | attacker | `src/data/characters/blue.ts` |
+| Red-Rock-Monkey-D-Luffy | `red-rock-monkey-d-luffy` | black | runner | `src/data/characters/black.ts` |
+| The-Four-Emperors-Monkey-D.Luffy | `the-four-emperors-monkey-d-luffy` | white | runner | `src/data/characters/white.ts` |
+| Great-Pirate-Gol-D-Roger | `great-pirate-gol-d-roger` | black | runner | `src/data/characters/black.ts` |
+| Animal-Kingdom-Pirates-Lead-Performer-King | `animal-kingdom-pirates-lead-performer-king` | red | runner | `src/data/characters/red.ts` |
+| Winner-Island-Trafalgar-Law | `winner-island-trafalgar-law` | red | runner | `src/data/characters/red.ts` |
+| Future Where I'm the Most Free Jewelry Bonney | `future-where-i-m-the-most-free-jewelry-bonney` | green | attacker | `src/data/characters/green.ts` |
+| Flame-Emperor-Sabo | `flame-emperor-sabo` | green | runner | `src/data/characters/green.ts` |
 
-### 1. 高い機動力
+King is **Animal Kingdom Pirates / Lead Performer King**, the red Runner, ID `animal-kingdom-pirates-lead-performer-king`.
 
-- mechanic：長押しスキルで非常に高速に移動できる。通常攻撃移動でも他キャラより早く移動できる場合がある。
-- practicalUse：平坦なマップでは序盤のC旗にかなり早く到達できる。味方のカバーやお宝エリアの防衛へ素早く移動できる。
+## Guide Overview
 
-### 2. 高い生存能力
+Nusjuro is a mobile Defender whose game plan is to hold three Treasure Areas. Fill Treasure Gauges to 150% to build his Power Gauge, land skills to increase DEF, then use that DEF for both durability and damage. Rotate quickly to cover teammates and protect treasure rather than chasing KOs away from the objective.
 
-- mechanic：シールドを持ち、パワーゲージに応じて復活可能。パワーゲージがあると防御力が上がる。スキル使用でシールドを回復できる。
-- practicalUse：無敵の移動スキルで危険な状況から離脱できる。
+## Overview Stats
 
-### 3. 高いKO性能
+Lv.100, Boost Max, following the existing Mars / Bonney guides. Values are derived from the verified `src/data/characters/level-100-base-stats.ts` entry plus the canonical Boost Max profile in `src/data/characters/boost-profiles.ts`.
 
-- mechanic：障害物貫通かつ射程・横範囲のある高速スキルを持つ。防御力を参照してダメージが上がり、パワーゲージ増加とともに火力も高くなる。変化後の通常攻撃は防御無視。
-- practicalUse：苦手キャラ以外には一撃KOを狙えることが多い。
+| Stat | Verified Base | Boost Max | Guide Display |
+| --- | ---: | ---: | ---: |
+| HP | 7,340 | 2,580 | 9,920 |
+| ATK | 1,233 | 640 | 1,873 |
+| DEF | 1,929 | 640 | 2,569 |
 
-## 弱みの要約 — quickWeaknesses
+The production `overview` uses numeric `hp`, `attack`, `defense` fields in that order. The existing page automatically adds the Overview Stats section and table-of-contents link.
 
-1. 吹っ飛ばし手段が少ない
-2. 変化前の通常攻撃が弱め
+## Video Assets
 
-## 弱み — weaknesses
+The four supplied MOV recordings are converted to silent H.264 MP4 with fast-start metadata and stored under `public/character-guides/the-five-elders-st-ethanbaron-v-nusjuro/`. The shared `CharacterGuideVideo` player preserves muted inline autoplay, looping, `preload="none"`, and pause / resume based on visibility.
 
-### 1. 吹っ飛ばし手段が少ない
+| Supplied recording | Asset filename | Placement |
+| --- | --- | --- |
+| `ScreenRecording_08-31-2026 10.MOV` | `skill-1.mp4` | Skill 1 |
+| `ScreenRecording_08-31-2026 9.MOV` | `skill-2.mp4` | Skill 2 |
+| `ScreenRecording_08-31-2026 8.MOV` | `opening-fast-c-treasure.mp4` | How to Play / Opening: Fast C Treasure Arrival with Skill 2 |
+| `ScreenRecording_08-31-2026 07-08-33_1.MOV` | `changed-normal-attack.mp4` | Normal Attacks / After the Movement Change |
 
-- weakness：吹っ飛ばしがスキルに限られる。「ダッシュ中」の敵を止められず、そのまま旗を抜かれることがある。
-- howToManage：KOを狙うか、吹っ飛ばしスキルを確実に当てる。
+The standard Normal Attack remains text-only because no recording was supplied for it. How to Play uses an optional `video` field and the existing structured-point renderer.
 
-### 2. 変化前の通常攻撃が弱め
+## Quick Strengths
 
-- weakness：一定時間移動して走行状態になる前に攻撃されると苦しい。よろけからそのまま倒される場合がある。キザルなど一部キャラには特に注意。
-- howToManage：パワーゲージがある時はよろけにくいため、焦らず逃げたりスキルを待つ。
+- Excellent mobility for rotating between Treasure Areas and covering teammates.
+- Very high survivability with a Defensive Shield and a developed Power Gauge.
+- High KO potential as DEF increases during battle.
+- Can fill Treasure Gauges to 150%, even with enemies inside the Treasure Area.
 
-## 通常攻撃 — normalAttacks
+## Quick Weaknesses
 
-### 変化前
+- Limited Knockback options for stopping certain Runners from capturing.
+- Normal Attacks before the movement change are weak in direct combat.
+- Much of his survivability depends on maintaining the Power Gauge.
 
-- 特筆事項は少なめ。
-- 走行状態になる前の弱さと対処は「弱み2」を参照。
+## Strong Points
 
-### 変化後
+### Excellent Mobility and Map Coverage
 
-- 防御無視ダメージ。
-- 移動手段としても使える。
+**What Makes It Strong:** After moving continuously for a period of time, Nusjuro's movement and Normal Attack change. The changed movement and Skill 2 give him excellent mobility.
 
-## スキル — skillGroups
+**Practical Use:** Rotate between distant Treasure Areas, cover teammates, and leave unfavorable fights. Use his speed to defend multiple areas; mobility alone does not make his treasure captures faster.
 
-A/Bはメモ上の仮称。正式なスキル名とスキル1/2の割り当ては未確定。`slot` や `name` は確認後に設定する。
+### Very High Survivability
 
-### スキルA
+**What Makes It Strong:** With at least one Power Gauge stock, Nusjuro resists Stagger and nullifies enemy status effects. With at least two stocks, he can consume two to recover 100% HP after taking damage that would KO him. His Defensive Shield provides additional protection.
 
-**quickTips候補**
+**Practical Use:** Build and track the Power Gauge before committing to a fight. Restore the shield with Skill 1 and use Skill 2's invincibility to avoid dangerous attacks or escape.
 
-- 吹っ飛ばし・障害物貫通あり。
-- 使用時にシールドを約半分回復。
-- 相手の回避後や無敵スキル終了後を狙う。
+### High KO Potential
 
-**details**
+**What Makes It Strong:** His skills and changed Normal Attack deal damage based on DEF. Landing skills increases DEF, strengthening both his durability and damage output. Both skills deal increased damage to Runners, and the changed Normal Attack ignores enemy DEF.
 
-- 発生は比較的早い。ただし回避やカウンターを合わせられることがある。
-- 確実に当たるタイミングを狙う。
-- 射程が長く、別の味方と戦っている敵への奇襲にも使いやすい。
-- 「約半分」は音声メモの概数。正式な回復量は未確認。
+**Practical Use:** Build DEF through well-timed skill hits and look for KOs that help defend treasure. Avoid chasing an enemy if it leaves an important Treasure Area exposed.
 
-### スキルB
+### Strong Treasure Defense
 
-**quickTips候補**
+**What Makes It Strong:** Nusjuro can fill a Treasure Gauge to 150% and continue filling it while an enemy is inside the Treasure Area. Filling a Treasure Gauge to 150% adds one Power Gauge stock.
 
-- 長押し中は無敵。
-- 高速で長距離移動可能。
-- 逃走・防衛・味方カバーに使う。
+**Practical Use:** Strengthen your team's defenses while building your own survivability. Look for opportunities to finish filling a Treasure Gauge before rotating to the next threatened area.
 
-**details**
+## Weaknesses
 
-- 拠点離脱や逃走に使える。
-- 苦手キャラと対面した時のために温存する選択肢もある。
-- 遠くのお宝エリアの防衛や味方カバーにも使える。
+### Limited Knockback Options
 
-## パワーゲージ／特性メモ
+**Weakness:** Skill 1 provides Knockback, but Nusjuro has few ways to force certain Runners off a capture when it is unavailable. Mars and Dark Roger can be particularly difficult to stop.
 
-現行の `CharacterGuide` 型には特性専用フィールドがないため、英語化時に `strengths` と `howToPlay` へ反映するための原本として保持する。
+**How to Manage:** Save Skill 1 when a Runner is about to threaten your treasure. If you cannot interrupt the capture or secure a KO, let a better-suited teammate handle the matchup.
 
-- パワーゲージが増えるほど防御力が上昇する。
-- パワーゲージに応じて復活可能。
-- 防御力上昇により与ダメージも増える。
-- 防御が上がることで被ダメージやシールド破壊も抑えられる。
-- パワーゲージを増やす主な条件：敵をKOする／お宝ゲージを満タンまで貯める。
-- 正確な増加量、上昇率、復活条件・消費量はこのメモでは未確定。
+### Weak Standard Normal Attacks in Direct Combat
 
-## 立ち回り — howToPlay
+**Weakness:** Before the movement change, his Normal Attacks deal low damage, can be difficult to land consistently, and lack strong secondary effects such as Freeze or Knockback.
 
-### 1. 3つのお宝エリアを守る
+**How to Manage:** Use the changed Normal Attack for direct combat when possible. The standard attack still has valuable utility: its quick sequence removes King's three-hit protection, and its first hit can bait counters.
 
-- objective：オールラウンダー寄りだが、役職はディフェンダー。基本は3つのお宝エリアを守ることを最優先。
-- action：高い機動力を活かしてマップ全体を見て、味方が危険な場所へ素早くカバーに入る。
+### Power Gauge Dependency
 
-### 2. 序盤にパワーゲージを育てる
+**Weakness:** Losing Power Gauge stocks removes access to key defensive traits. A KO resets the gauge, so Nusjuro must rebuild it after returning to battle.
 
-- objective：お宝ゲージを貯めてパワーゲージを育てる。
-- action：C旗を取ったあとも、状況次第で自陣へ戻ってゲージを貯める。KOを狙えるならC旗でそのまま戦う選択肢もある。必ずC旗へ行く必要はない。
+**How to Manage:** Track your remaining stocks, especially after using the full-HP recovery. Rebuild through treasure defense and safe KO opportunities instead of assuming the recovery is always available.
 
-### 3. 相手を選んで戦う
+## Normal Attacks
 
-- objective：苦手な対面に拘束されず、防衛に貢献する。
-- action：苦手キャラとは極力戦わず、得意な相手を妨害する。移動スキルによる離脱・カバーも選択肢にする。
+### Before the Movement Change
 
-## 苦手キャラ — counters
+- Low damage and limited secondary effects make this a weak option for sustained direct combat.
+- Its quick sequence is one of Nusjuro's fastest options for removing King's three-hit protection when Skill 2 is unavailable.
+- Against a counter user, tap Normal Attack once to use only the first hit and bait a counter. That first hit is usually too quick to counter on sight; skills and the changed Normal Attack are easier to anticipate or react to.
+- Wait for the baited counter to finish before committing to your main attack.
 
-数値は入力された苦手度（`difficulty`）。キャラIDは本番変換時にマスタと照合する。
+### After the Movement Change
 
-| キャラ | difficulty | whyDifficult：理由 | howToRespond：対処 |
-| --- | ---: | --- | --- |
-| St. Marcus Mars | 5 | 基本的に守り切れない。吹っ飛ばし手段が少なく、KOも狙いづらい。 | 基本は得意な味方に任せる。 |
-| Zoro & Sanji | 4 | 正面対面ではかなり厳しい。 | 基本は戦わず、高機動を活かして逃げる。必要なら妨害だけして離脱する。 |
-| Red-Rock Luffy | 3 | 移動速度上昇中は止めにくい。割合攻撃や確定KO系スキルにも注意。 | 20秒をしのいで、速度上昇が切れた後にKOを狙う。危険な攻撃は無敵・回避で冷静に避ける。 |
-| The Four Emperors Luffy | 3 | Big Character状態の旗ダッシュを止めにくい。Just Guardによる回復や別旗への移動にも注意。 | Big Characterの長押し中はナス寿郎側のスキルでKOを狙える場面がある。 |
-| Great Pirate Gol D. Roger（黒） | 3 | 旗ダッシュを吹っ飛ばし以外で止めにくい。 | お宝エリア外なら凍結などの状態異常を入れて倒す。難しければ味方に任せる。 |
-| King | 3 | 未確認：今回の依頼でキャラ名と苦手度を指定。取得できた元会話の整理済みメモには理由の記載なし。 | 未確認。推測で補完せず、後で追記する。 |
+- Moving continuously for a period of time changes Nusjuro's movement and Normal Attack.
+- The changed Normal Attack deals damage based on DEF and ignores enemy DEF.
+- It has a 50% chance to inflict Freeze for 6 seconds and is his main Normal Attack for direct combat.
+- It can also help cover ground while rotating between Treasure Areas.
 
-## 有利キャラ — strongAgainst
+## Skills
 
-数値は入力された有利度（`advantage`）。キャラIDは本番変換時にマスタと照合する。
+### Skill 1 — Godhead of Finance's Flash
 
-| キャラ | advantage | whyYouWin：理由 | watchOut：注意点 |
-| --- | ---: | --- | --- |
-| Winner Island Trafalgar Law | 3 | スキルが入れば一撃KOを狙いやすく、エリア外では状態異常も有効。 | カウンター、Amputate、Shamblesによる逃走・入れ替えに注意。 |
-| Jewelry Bonney EX | 1 | 状態異常が入り、七武海サポートなら凍結継続も狙える。ダメージも通りやすい。 | 復活無効を付けやすいため、シールドなし・瀕死時は危険。 |
-| Flame Emperor Sabo | 4 | 復活無効がなく、スキルを当てればKOを狙いやすい。カウンター後でも障害物貫通スキルで倒せる場合がある。移動スキルで逃げても追いつきやすい。 | カウンターに注意。 |
+Cooldown: 27 seconds.
 
-## 英語化・CharacterGuide変換前の確認事項
+**Quick Tips**
 
-- [ ] スキルA/Bの正式名称とスキル1/2の対応を確認する。
-- [ ] シールド回復「約半分」、Red-Rock Luffyの「20秒」、パワーゲージ関連の数値・条件を確認する。
-- [ ] 「変化前／変化後」「走行状態」の正式な条件・表記を確認する。
-- [ ] 生メモの「ダッシュ」「旗ダッシュ」が移動とお宝奪取のどちらを指すか、各文脈で確認して英語表現を選ぶ。
-- [ ] Kingの対象バージョン、苦手な理由・対処を追記する。
-- [ ] 対面キャラの正式名称・characterIdをマスタと照合する。
-- [ ] 強み・弱みの要約と本文の重複を整え、体感表現（「場合がある」「狙いやすい」）を保持して英語化する。
+- A long-range area attack that ignores obstacles and inflicts Knockback.
+- Deals damage based on DEF, with 100% increased damage to Runners.
+- Reduces enemy ATK by 30% for 10 seconds.
+- Restores 50% of Defensive Shield durability, even if the shield has already been broken.
 
-型の参照先：`src/data/character-guides/type.ts`。このDraftは本番データへの登録・importを行わない。
+**Details**
+
+- Use it to remove enemies from a Treasure Area, attack through obstacles, and restore your shield.
+- Aim after an enemy dodge or invincible skill ends. Its fast activation can still be dodged or countered, so choose a clear opening.
+- Its range can let you surprise an enemy who is fighting a teammate.
+- Avoid wasting this skill when a Runner may soon attempt to capture: it is your main Knockback option.
+
+### Skill 2 — Foolish!!
+
+Cooldown: 30 seconds.
+
+**Quick Tips**
+
+- Nusjuro becomes invincible on activation and stays invincible throughout the held movement.
+- Release the Skill button, or reach the maximum hold duration, to perform a long-range multi-hit area attack.
+- The attack deals damage based on DEF, inflicts Freeze, and deals 50% increased damage to Runners.
+- Reduces enemy ATK by 30% for 10 seconds.
+
+**Details**
+
+- Hold the skill to avoid dangerous attacks, escape unfavorable matchups, move to another Treasure Area, or wait out enemy buffs.
+- The invincibility continues while you hold and move; it is not limited to the moment of activation.
+- The multi-hit attack helps remove hit-based invincibility, including King's three-hit protection.
+- Consider keeping it available when you may need an invincible escape or a quick rotation to defend another treasure.
+
+## Traits
+
+### Defensive Shield
+
+On spawning, Nusjuro gains a Defensive Shield with durability equal to 20% of his Max HP. While it is active, damage reduces shield durability instead of HP. Skill 1 restores 50% of shield durability and can restore a broken shield.
+
+### Build the Power Gauge
+
+The Power Gauge holds up to five stocks. KO an enemy or fill a Treasure Gauge to 150% to gain one stock. His Boost Trait grants two stocks on spawning. The gauge resets when he is KO'd.
+
+### Power Gauge Defensive Effects
+
+With at least one stock, Nusjuro resists Stagger and nullifies status effects inflicted by enemies. With at least two stocks, taking damage that would KO him consumes two stocks and recovers 100% HP. Track the remaining stocks after each recovery.
+
+### Power Gauge Damage Bonus
+
+With at least two Power Gauge stocks, damage dealt to Straw Hat Pirates increases by 50%. Maintaining the gauge supports both survivability and pressure against those opponents.
+
+### Build DEF with Skill Hits
+
+Attacking an enemy with a skill increases DEF by 25%, up to 70%. This increase resets when Nusjuro is KO'd. His skills and changed Normal Attack use DEF for damage, so landing skills improves both durability and offensive power.
+
+### Treasure Gauge at 150%
+
+Nusjuro can fill a Treasure Gauge to 50% above its normal maximum, reaching 150%, even when enemies are inside the Treasure Area. Reaching 150% grants one Power Gauge stock, directly rewarding treasure defense.
+
+## How to Play
+
+### Opening: Fast C Treasure Arrival with Skill 2
+
+**Objective:** Reach the center C Treasure quickly when your team needs an opening contest.
+
+**Action:** Use Skill 2 at the start and hold it while moving toward C Treasure, as shown in the clip. Choose this opening when contesting the center helps your team; filling friendly Treasure Gauges to 150% remains an alternative.
+
+### Build the Power Gauge Early
+
+**Objective:** Establish survivability while strengthening your team's Treasure Gauges.
+
+**Action:** Fill friendly Treasure Gauges to 150% whenever the situation allows. You do not always need to rush the center treasure. If your team secures it, choose between staying for a safe KO opportunity and returning to fill another gauge.
+
+### When Your Team Holds Two or Fewer Treasures
+
+**Objective:** Protect the treasure you have while creating an opportunity to secure a third.
+
+**Action:** Cover threatened friendly Treasure Areas first, then use your mobility to support a third capture or take an open treasure when safe. Avoid leaving your existing defenses exposed during the rotation.
+
+### Maintain Three Treasure Areas
+
+**Objective:** Keep three Treasure Areas stable as your main win condition.
+
+**Action:** Watch where enemies are heading and rotate to cover the threatened treasure. Fill gauges, land skills to build DEF, and take KOs that support defense. Pursue a fourth or fifth treasure only when the three you need are secure.
+
+### Choose Your Fights
+
+**Objective:** Contribute to defense without getting trapped in an unfavorable matchup.
+
+**Action:** Use Skill 2 to disengage, defend another Treasure Area, and let a better-suited teammate handle the opponent. Save Skill 1 for important capture interruptions, and check your Power Gauge and shield before committing.
+
+## Counters
+
+### The Five Elders St.Marcus Mars
+
+- characterId: `the-five-elders-st-marcus-mars`
+- difficulty: 5 / 5
+
+**Why It Is Difficult**
+
+- Mars is difficult to KO, and Nusjuro's limited Knockback options make it hard to stop him from taking treasure.
+
+**How to Respond**
+
+- Let a teammate with a better matchup handle Mars. Use your mobility to defend another threatened Treasure Area.
+
+### The-Wings-Zoro-Sanji
+
+- characterId: `the-wings-zoro-sanji`
+- difficulty: 4 / 5
+
+**Why It Is Difficult**
+
+- A direct fight against Zoro & Sanji is highly unfavorable.
+
+**How to Respond**
+
+- Avoid a prolonged fight. Disrupt them only when needed, then use your mobility to disengage and cover another treasure.
+
+### Red-Rock-Monkey-D-Luffy
+
+- characterId: `red-rock-monkey-d-luffy`
+- difficulty: 3 / 5
+
+**Why It Is Difficult**
+
+- He is difficult to stop while his movement speed buff is active. His percentage-damage attacks and guaranteed-KO skill are also dangerous.
+
+**How to Respond**
+
+- Survive the 20-second movement speed buff, then look for a KO after it expires.
+- Use dodge or Skill 2's invincibility to avoid dangerous attacks while waiting.
+
+### The-Four-Emperors-Monkey-D.Luffy
+
+- characterId: `the-four-emperors-monkey-d-luffy`
+- difficulty: 3 / 5
+
+**Why It Is Difficult**
+
+- His treasure captures in Big Character form are hard to interrupt. Just Guard recovery and rotations to another treasure also make him difficult to contain.
+
+**How to Respond**
+
+- Look for a skill KO opportunity while he is holding his attack in Big Character form. Avoid committing into Just Guard.
+
+### Great-Pirate-Gol-D-Roger
+
+- characterId: `great-pirate-gol-d-roger`
+- difficulty: 3 / 5
+
+**Why It Is Difficult**
+
+- Dark Roger is difficult to interrupt during a treasure capture without Knockback.
+
+**How to Respond**
+
+- Save Skill 1 for the capture. Outside the Treasure Area, use Freeze and look for a KO; leave the matchup to a teammate if you cannot stop him reliably.
+
+### Animal-Kingdom-Pirates-Lead-Performer-King
+
+- characterId: `animal-kingdom-pirates-lead-performer-king`
+- difficulty: 3 / 5
+
+**Why It Is Difficult**
+
+- King's flames indicate protection that nullifies three hits. He can use that protection to absorb attacks while capturing, and his skill mobility makes him difficult to keep in place.
+- His multi-hit percentage-damage skill also inflicts Knockback. It can push Nusjuro away even with a shield active and create a capture opportunity. Landing that skill is also one way King gains his three-hit protection.
+
+**How to Respond**
+
+- Remove the three-hit protection first with Skill 2's multi-hit attack. When Skill 2 is unavailable, the standard Normal Attack before the movement change is one of your quickest options.
+- Prioritize dodging or using invincibility against King's Knockback skill on a Treasure Area. Do not rely on the shield to hold your position.
+
+## Strong Against
+
+### Winner-Island-Trafalgar-Law
+
+- characterId: `winner-island-trafalgar-law`
+- advantage: 3 / 5
+
+**Why You Win**
+
+- Landing a skill provides a strong KO opportunity. Outside the Treasure Area, status effects can also help control Law.
+
+**Watch Out**
+
+- Watch for his counter, Amputate, and escapes or position swaps with Shambles.
+
+### Future Where I'm the Most Free Jewelry Bonney
+
+- characterId: `future-where-i-m-the-most-free-jewelry-bonney`
+- advantage: 1 / 5
+
+**Why You Win**
+
+- Nusjuro can deal effective damage and inflict status effects. Seven Warlords of the Sea support can help extend Freeze.
+
+**Watch Out**
+
+- Bonney can nullify Nusjuro's revival when she KOs him. Be especially careful at low HP with no shield; do not rely on the Power Gauge recovery to survive her finishing hit.
+
+### Flame-Emperor-Sabo
+
+- characterId: `flame-emperor-sabo`
+- advantage: 4 / 5
+
+**Why You Win**
+
+- Sabo does not nullify Nusjuro's revival, and landing a skill creates a strong KO opportunity.
+- After his counter ends, Skill 1 can reach him through obstacles. Nusjuro's mobility also helps catch him after an escape.
+
+**Watch Out**
+
+- Bait or wait out the counter before committing a skill.
