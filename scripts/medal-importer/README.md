@@ -196,7 +196,7 @@ replacement is applied.
 
 ## Draft and import gate
 
-Dry-run writes `draft-medals.json` as its only output. It includes structured
+Dry-run writes `draft-medals.json` and a persistent local tag audit. It includes structured
 fields, source screenshots, raw OCR lines, crop diagnostics, `validationPassed`,
 `needsReview`, and explicit issues for every group. This file is diagnostic; new
 medals do not need to be copied into `reviewed-medals.json` or manually approved
@@ -228,3 +228,63 @@ If an existing production WebP is missing, the importer stops unless the same
 medal is present as an identical validated duplicate in the current batch. In
 that case only the missing image can be safely regenerated from that Details
 screenshot. A WebP already occupying a new ID is never overwritten.
+
+
+## Partial tag loss comparison and local audit
+
+Every Tag screenshot is recognized twice: the normal full-image OCR, then a
+dedicated enlarged crop covering the complete existing tag extraction viewport
+(including text-edge padding). Both passes use the unchanged `extractTags` and
+`rebaseFieldOcrToScreenshot` logic. Tag IDs are compared per screenshot as sets;
+order, duplicate IDs, and names with the same normalized ID do not cause a
+mismatch. Page-level mismatches remain issues after page merging.
+
+Different sets add `tag-ocr-mismatch` and send that medal to `needsReview`.
+Normal tags are never replaced, supplemented, or unioned with crop results,
+including when normal OCR found zero tags. Existing issues are never cleared.
+An OCR execution failure, invalid result, or incomplete dedicated extraction
+stops the run as comparison unavailable, rather than pretending it matched.
+Matching OCR is not proof of completeness: both passes can miss the same tag,
+and neither can see an uncaptured scroll page. Verify real screenshots before
+using this new gate for production; the historical fixture expected values are
+not changed to accommodate OCR disagreement.
+
+`audit/<startUTC>-<UUID>.jsonl` is a Git-ignored, local persistent audit, separate
+from the replaceable Draft. It is excluded from input/staging cleanup. There is
+no backup guarantee: losing this directory or the device loses the evidence.
+No images are archived, and the existing production medals are not backfilled.
+Run files are exclusively created, each has one serialized writer, and each
+event is synced before continuing. Retries create a new run file; even identical
+production duplicates retain comparison evidence but no new import timestamp.
+
+Each screenshot record contains `medalId` (null if unresolved), `sourceImage`,
+`sourceImageSha256`, `detectedTags`, `tagRegionDetectedTags`, `reviewStatus`, and
+`importedAt`. The hash is SHA-256 of the original input file bytes before OCR,
+not the crop, decoded pixels, or converted image. Tag images are checked again
+after crop OCR; read failures or changed bytes stop the run. A filename/hash
+identifies the capture but cannot restore it after deletion. Dedicated results
+are null while unavailable; a successfully extracted empty set is [].
+
+Events distinguish comparison started/completed, validation, and publication.
+`pending` is not approval; final `needs-review` or `validation-passed` reflects
+the existing final medal gate. The fixture's stable ID is used when available,
+then final validation evidence uses the final Draft ID. Evidence remains per
+source image, so ID collisions do not overwrite earlier records.
+
+Audit write/sync failure before publication stops the import. Publication start
+is synced immediately before `publishAtomic`; successful publication appends
+`publication-success` with `importedAt` only for newly committed medals. Dry-run,
+Review, existing duplicates, and image-only recovery never receive an import
+timestamp. Draft remains a pre-publication snapshot with null `importedAt`;
+the durable success event is the source of the import timestamp.
+
+Production data and audit cannot share one transaction. A post-publication audit
+failure is explicitly reported as **production publication succeeded, audit
+completion failed**, with a nonzero exit status; it never triggers rollback or
+pretends production did not commit. If the process dies between commit and its
+success event, a last `publication-started` event means outcome unknown and
+requires checking production before retrying. Earlier unfinished runs likewise
+remain incomplete, never automatically marked successful. Complete malformed
+JSONL lines are errors; an unterminated final line is an incomplete tail, not a
+valid event (`readTagAudit` implements this rule). File syncing does not make
+the filesystem/audit transaction atomic or provide a backup guarantee.
