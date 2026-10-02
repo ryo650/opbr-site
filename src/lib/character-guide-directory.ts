@@ -1,7 +1,8 @@
+import { normalizeCharacterGrade } from "@/data/characters/grades";
 import type { CharacterGuide } from "@/data/character-guides/type";
 import type { Character } from "@/data/characters/type";
 
-export type CharacterGuideEntry = Pick<Character, "id" | "name" | "image" | "element" | "role"> & {
+export type CharacterGuideEntry = Pick<Character, "id" | "name" | "image" | "element" | "role" | "grade"> & {
   summary: string;
   notice?: string;
 };
@@ -16,9 +17,9 @@ export function createCharacterGuideEntries(
     if (guide.characterId !== id || !Object.hasOwn(characters, id)) {
       throw new Error(`Character Guide cannot resolve its character: ${id}`);
     }
-    const { name, image, element, role } = characters[id];
+    const { name, image, element, role, grade } = characters[id];
     return {
-      id, name, image, element, role,
+      id, name, image, element, role, grade: normalizeCharacterGrade(grade),
       summary: guide.guideOverview?.description?.trim() || guide.quickStrengths[0] || "",
       ...(guide.notice && { notice: guide.notice.title }),
     };
@@ -31,12 +32,13 @@ function normalizeSearch(value: string): string {
 }
 
 export function filterCharacterGuideEntries(
-  entries: CharacterGuideEntry[], query: string, element: string, role: string,
+  entries: CharacterGuideEntry[], query: string, element: string, role: string, grade = "",
 ): CharacterGuideEntry[] {
   const words = normalizeSearch(query).split(/\s+/).filter(Boolean);
   return entries.filter((entry) => {
     const name = normalizeSearch(entry.name);
     return (!element || entry.element === element) && (!role || entry.role === role)
+      && (!grade || entry.grade === grade)
       && words.every((word) => name.includes(word));
   });
 }

@@ -5,32 +5,32 @@ TAP version 13
 # Subtest: all published pages return 200, one main and h1, and their own canonical
 ok 1 - all published pages return 200, one main and h1, and their own canonical
   ---
-  duration_ms: 303.11175
+  duration_ms: 299.254917
   ...
 # Subtest: unfinished pages are explicitly noindex and have a main heading
 ok 2 - unfinished pages are explicitly noindex and have a main heading
   ---
-  duration_ms: 5.598125
+  duration_ms: 5.781709
   ...
 # Subtest: unknown pages and inherited object keys return a recoverable 404
 ok 3 - unknown pages and inherited object keys return a recoverable 404
   ---
-  duration_ms: 46.179416
+  duration_ms: 47.245959
   ...
 # Subtest: sitemap includes exactly the published pages and robots points to it
 ok 4 - sitemap includes exactly the published pages and robots points to it
   ---
-  duration_ms: 10.067958
+  duration_ms: 10.132833
   ...
 # Subtest: permanent directory renders every published guide and its real summary
 ok 5 - permanent directory renders every published guide and its real summary
   ---
-  duration_ms: 41.796417
+  duration_ms: 45.194167
   ...
 # Subtest: Home and New Characters both link to the permanent directory; Home waits for supplied artwork
 ok 6 - Home and New Characters both link to the permanent directory; Home waits for supplied artwork
   ---
-  duration_ms: 4.0565
+  duration_ms: 4.837167
   ...
 1..6
 # tests 6
@@ -40,4 +40,4 @@ ok 6 - Home and New Characters both link to the permanent directory; Home waits 
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 632.80325
+# duration_ms 638.937417

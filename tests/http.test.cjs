@@ -73,6 +73,12 @@ test('permanent directory renders every published guide and its real summary', a
   assert.match(html, /Search characters/);
   assert.match(html, /All elements/);
   assert.match(html, /All roles/);
+  assert.match(html, /All rarities/);
+  const { characterGradeLabels } = require('../src/data/characters/grades');
+  for (const [grade, label] of Object.entries(characterGradeLabels)) {
+    if (grade !== 'unknown') assert.ok(html.includes(`<option value="${grade}">${label}</option>`));
+  }
+  assert.doesNotMatch(html, /<option value="unknown">/, 'no fake unclassified entries in published data');
 });
 
 test('Home and New Characters both link to the permanent directory; Home waits for supplied artwork', async () => {

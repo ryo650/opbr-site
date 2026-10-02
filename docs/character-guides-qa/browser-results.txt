@@ -1,5 +1,7 @@
-PASS 1440px: registry coverage, real filters, search, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
-PASS 390px: registry coverage, real filters, search, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
-PASS 320px: registry coverage, real filters, search, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
+PASS 1440px: registry coverage, real rarity options and labels, combined name/element/role/rarity filters, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
+PASS 390px: registry coverage, real rarity options and labels, combined name/element/role/rarity filters, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
+PASS 320px: registry coverage, real rarity options and labels, combined name/element/role/rarity filters, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow
+PASS shared CharacterFrame labels for all 10 grades and unclassified directory option in unpublished fixtures
 PASS unpublished actual-component fixtures: empty registry, long unbroken version name, 24 distinct cards, lazy loading after first 3, no overflow at 320px
+PASS live Scout Simulator: deterministic EX/BF/4★ single pulls, shared result badges, unchanged total/diamond stats, Reset
 PASS no JS runtime or relevant asset errors; existing Vercel Analytics local script 404 (18) recorded separately

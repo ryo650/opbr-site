@@ -4,6 +4,8 @@ import { useState } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Search } from "lucide-react";
+import { characterGradeLabels } from "@/data/characters/grades";
+import type { Character } from "@/data/characters/type";
 import { filterCharacterGuideEntries, type CharacterGuideEntry } from "@/lib/character-guide-directory";
 import styles from "./page.module.css";
 
@@ -11,11 +13,14 @@ export default function CharacterGuideDirectory({ entries }: { entries: Characte
   const [query, setQuery] = useState("");
   const [element, setElement] = useState("");
   const [role, setRole] = useState("");
-  const visibleEntries = filterCharacterGuideEntries(entries, query, element, role);
+  const [grade, setGrade] = useState("");
+  const visibleEntries = filterCharacterGuideEntries(entries, query, element, role, grade);
+  const grades = (Object.keys(characterGradeLabels) as Character["grade"][])
+    .filter((value) => value !== "unknown" || entries.some((entry) => entry.grade === "unknown"));
   const elements = [...new Set(entries.map((entry) => entry.element))].sort();
   const roles = [...new Set(entries.map((entry) => entry.role))].sort();
-  const hasFilters = Boolean(query || element || role);
-  const resetFilters = () => { setQuery(""); setElement(""); setRole(""); };
+  const hasFilters = Boolean(query || element || role || grade);
+  const resetFilters = () => { setQuery(""); setElement(""); setRole(""); setGrade(""); };
 
   if (!entries.length) {
     return <section className={styles.empty} aria-labelledby="empty-heading">
@@ -49,6 +54,15 @@ export default function CharacterGuideDirectory({ entries }: { entries: Characte
             {roles.map((value) => <option key={value} value={value}>{value.charAt(0).toUpperCase() + value.slice(1)}</option>)}
           </select>
         </div>
+        <div className={styles.filterField}>
+          <label htmlFor="guide-rarity">Rarity</label>
+          <select id="guide-rarity" value={grade} onChange={(event) => setGrade(event.target.value)}>
+            <option value="">All rarities</option>
+            {grades.map((value) => <option key={value} value={value}>
+              {value === "unknown" ? `Unclassified (${characterGradeLabels[value]})` : characterGradeLabels[value]}
+            </option>)}
+          </select>
+        </div>
       </div>
       <div className={styles.results}>
         <p role="status" aria-live="polite" aria-atomic="true">
@@ -69,6 +83,7 @@ export default function CharacterGuideDirectory({ entries }: { entries: Characte
                 <div className={styles.cardBody}>
                   <div className={styles.badges}>
                     <span>{entry.element} element</span><span>{entry.role}</span>
+                    <span>{entry.grade === "unknown" ? `Unclassified (${characterGradeLabels[entry.grade]})` : characterGradeLabels[entry.grade]}</span>
                   </div>
                   <h2>{entry.name}</h2>
                   {entry.notice && <p className={styles.notice}>{entry.notice}</p>}

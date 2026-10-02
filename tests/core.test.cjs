@@ -512,6 +512,7 @@ test('permanent guide directory includes exactly the registry, even after New Ch
     const guide = characterGuides[entry.id];
     assert.equal(entry.name, characters[entry.id].name);
     assert.equal(entry.image, characters[entry.id].image);
+    assert.equal(entry.grade, characters[entry.id].grade);
     assert.equal(entry.summary, guide.guideOverview?.description?.trim() || guide.quickStrengths[0] || '');
     assert.equal(entry.notice, guide.notice?.title);
     assert.ok(!Object.hasOwn(entry, 'skillGroups'), 'guide bodies stay off the client');
@@ -547,4 +548,48 @@ test('newly registered versions appear once without touching the directory or re
   assert.equal(filterCharacterGuideEntries(entries, 'Jewelry Bonney', '', '').length, 2);
   assert.deepEqual(filterCharacterGuideEntries(entries, 'Another Version', '', '').map(e => e.id), [id]);
   assert.throws(() => createCharacterGuideEntries({ wrong: expandedGuides[id] }, expandedCharacters), /cannot resolve/);
+});
+
+const { characterGradeLabels, normalizeCharacterGrade } = require('../src/data/characters/grades');
+
+test('Simulator result rarity labels retain the existing catalog grade mapping', () => {
+  assert.deepEqual(characterGradeLabels, {
+    ex: 'EX', bf: 'BF', sp: 'SP', 'star-4': '4★', 'star-3': '3★', 'star-2': '2★',
+    free: 'FREE', exchange: 'EXCH', cola: 'COLA', unknown: '?',
+  });
+  for (const character of Object.values(characters)) {
+    assert.equal(normalizeCharacterGrade(character.grade), character.grade);
+    assert.ok(characterGradeLabels[character.grade]);
+  }
+  for (const grade of [undefined, null, '', 'EX', 'constructor', '__proto__', 'not-a-grade']) {
+    assert.equal(normalizeCharacterGrade(grade), 'unknown');
+  }
+});
+
+test('directory filters catalog rarity together with name, element and role', () => {
+  const entries = createCharacterGuideEntries(characterGuides, characters);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', '', '', 'ex'), entries.filter(e => e.grade === 'ex'));
+  assert.deepEqual(filterCharacterGuideEntries(entries, 's snake', 'blue', 'defender', 'ex').map(e => e.id), ['seraphim-s-snake']);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 's snake', 'blue', 'defender', 'bf'), []);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', '', '', ''), entries);
+  assert.deepEqual(filterCharacterGuideEntries([], '', '', '', 'ex'), []);
+});
+
+test('rarity uses real IDs and preserves unclassified data rather than guessing from names', () => {
+  const template = characters['seraphim-s-snake'];
+  const catalog = {};
+  const guides = {};
+  for (const [index, grade] of [...Object.keys(characterGradeLabels), undefined].entries()) {
+    const id = `rarity-fixture-${index}`;
+    catalog[id] = { ...template, id, name: 'EX BF Special 4 Star Named Character', grade };
+    guides[id] = { characterId: id, quickStrengths: [], quickWeaknesses: [] };
+  }
+  catalog['not-published'] = { ...template, id:'not-published', grade:'bf' };
+  const entries = createCharacterGuideEntries(guides, catalog);
+  assert.equal(entries.length, 11);
+  for (const grade of Object.keys(characterGradeLabels)) {
+    assert.equal(filterCharacterGuideEntries(entries, '', 'blue', 'defender', grade).length, grade === 'unknown' ? 2 : 1);
+  }
+  assert.ok(!entries.some(entry => entry.id === 'not-published'));
+  assert.equal(entries.find(entry => entry.id === 'rarity-fixture-10').grade, 'unknown');
 });
