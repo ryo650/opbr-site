@@ -1624,6 +1624,18 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -1806,6 +1818,18 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -2216,6 +2240,18 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -3878,6 +3914,22 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "fleet-admiral",
+        "name": "Fleet Admiral"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -4503,6 +4555,10 @@ export const medals = [
       {
         "id": "logia",
         "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -8187,6 +8243,10 @@ export const medals = [
       {
         "id": "revolutionary-army",
         "name": "Revolutionary Army"
+      },
+      {
+        "id": "captain-of-the-revolutionary-army",
+        "name": "Captain of the Revolutionary Army"
       }
     ],
     "nativeTraits": [
@@ -8208,6 +8268,14 @@ export const medals = [
       {
         "id": "revolutionary-army",
         "name": "Revolutionary Army"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain-of-the-revolutionary-army",
+        "name": "Captain of the Revolutionary Army"
       }
     ],
     "nativeTraits": [
@@ -8333,6 +8401,18 @@ export const medals = [
       {
         "id": "land-of-wano",
         "name": "Land of Wano"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -9376,6 +9456,18 @@ export const medals = [
       {
         "id": "egghead",
         "name": "Egghead"
+      },
+      {
+        "id": "blackbeard-pirates",
+        "name": "Blackbeard Pirates"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -9748,6 +9840,18 @@ export const medals = [
       {
         "id": "egghead",
         "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -9765,6 +9869,18 @@ export const medals = [
       {
         "id": "land-of-wano",
         "name": "Land of Wano"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -9786,6 +9902,18 @@ export const medals = [
       {
         "id": "supreme-grade-sword-wielder",
         "name": "Supreme Grade Sword Wielder"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -10421,6 +10549,22 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
+      },
+      {
+        "id": "fleet-admiral",
+        "name": "Fleet Admiral"
       }
     ],
     "nativeTraits": [
@@ -11898,6 +12042,18 @@ export const medals = [
       {
         "id": "sabaody-archipelago-island-of-women",
         "name": "Sabaody Archipelago / Island of Women"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -17614,6 +17770,10 @@ export const medals = [
       {
         "id": "logia",
         "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -18389,6 +18549,14 @@ export const medals = [
       {
         "id": "navy",
         "name": "Navy"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
@@ -18745,6 +18913,18 @@ export const medals = [
       {
         "id": "the-paramount-war-at-marineford",
         "name": "The Paramount War at Marineford"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
       }
     ],
     "nativeTraits": [
