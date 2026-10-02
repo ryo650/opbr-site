@@ -1,6 +1,6 @@
 # Site updates
 
-Home shows up to three featured/recent additions immediately after its introductory text, followed by the existing tools. “View all updates” opens `/updates`, the full history. Both surfaces use the same `src/data/site-updates.ts` entries and shared `SiteUpdateCard` component; no database, authentication, environment variables, or external service is needed. The existing Menu also links to `/updates`. This is separate from Tier List ranking notices.
+Home shows Essential OPBR tools after its introductory text, then up to three featured/recent additions under “What's new”, followed by Guides for every step. “View all updates” opens `/updates`, the full history. Both news surfaces use the same `src/data/site-updates.ts` entries and shared `SiteUpdateCard` component; no database, authentication, environment variables, or external service is needed. The existing Menu also links to `/updates`. This is separate from Tier List ranking notices.
 
 ## Add an update
 
@@ -81,3 +81,9 @@ Continued in `/Users/sasakiryou/Desktop/OPBR/opbr-site-updates`, branch `feat/si
 - Not performed: production deployment, field performance monitoring, push/PR/merge, or unrelated guide work.
 
 Disk space was about 15 GiB at the revision's start. Revision screenshots are in `/tmp/opbr-site-updates-qa/`: `home-desktop.jpg`, `home-mobile-full.jpg`, `updates-images-desktop.jpg`, `updates-images-mobile.jpg`, `fixture-long-no-image-320.jpg`, and `fixture-empty-320.jpg`. The temporary fixture server was stopped after verification. Production preview uses `http://127.0.0.1:3104/` (restart using the commands above if needed).
+
+## Section-order revision
+
+At the user's request, Home now orders Essential OPBR tools → What's new → Guides for every step. Only the Home component placement, its existing HTTP order assertion, and this document changed from `7dd4fde4781077a943681d5c7d27dc44ace4a0b7`. The earlier validation notes above describe the previous order.
+
+Pass: lint, TypeScript, 11 core tests, 7 update tests, production build (71 pages), and the updated HTTP regression suite. Actual browser verification at 1440px desktop and 390px/320px mobile confirmed the new heading order and no horizontal overflow. Screenshots: `/tmp/opbr-site-updates-qa/home-reordered-desktop.jpg` and `/tmp/opbr-site-updates-qa/home-reordered-mobile.jpg`. No push, PR, merge, or deployment was performed.

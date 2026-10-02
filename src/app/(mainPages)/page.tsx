@@ -83,8 +83,6 @@ export default function TopPage() {
           </p>
         </section>
 
-        <HomeUpdates updates={siteUpdates} />
-
         <section className={styles.featured} aria-labelledby="featured-heading">
           <div className={styles.sectionHeading}>
             <div>
@@ -117,6 +115,8 @@ export default function TopPage() {
             ))}
           </div>
         </section>
+
+        <HomeUpdates updates={siteUpdates} />
 
         <section className={styles.explore} aria-labelledby="explore-heading">
           <div className={styles.sectionHeading}>

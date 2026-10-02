@@ -8,11 +8,14 @@ const { siteUpdates } = require('../src/data/site-updates');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3100';
 const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/updates', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
 
-test('Home presents updates before existing tools with an all-updates link and h3 cards', async () => {
+test('Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards', async () => {
   const response = await fetch(base + '/');
   assert.equal(response.status, 200);
   const html = await response.text();
-  assert.ok(html.indexOf('id="home-updates-heading"') < html.indexOf('id="featured-heading"'));
+  const toolsIndex = html.indexOf('id="featured-heading"');
+  const updatesIndex = html.indexOf('id="home-updates-heading"');
+  const guidesIndex = html.indexOf('id="explore-heading"');
+  assert.ok(toolsIndex >= 0 && toolsIndex < updatesIndex && updatesIndex < guidesIndex);
   assert.match(html, /href="\/updates"[^>]*>View all updates/);
   const news = html.match(/<section[^>]*aria-labelledby="home-updates-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
   assert.ok(news);
