@@ -332,3 +332,7 @@
     transition: none;
   }
 }
+
+/* No image area until Character Guides artwork is supplied. */
+.textOnlyCard { grid-template-columns: minmax(0, 1fr); }
+.textOnlyCard:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }

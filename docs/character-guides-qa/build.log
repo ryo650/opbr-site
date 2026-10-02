@@ -1,0 +1,59 @@
+> opbr-site@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 16ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 2.3s
+  Running TypeScript ...
+  Finished TypeScript in 999ms ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/71) ...
+  Generating static pages using 7 workers (17/71)
+  Generating static pages using 7 workers (35/71)
+  Generating static pages using 7 workers (53/71)
+✓ Generating static pages using 7 workers (71/71) in 426ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)                                                         Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /basic-gameplay-guide
+├ ○ /beginner-guide
+├ ○ /character-guides
+├ ○ /character-usage
+├   /characters/[characterId]
+│ ├ ● /characters/future-where-i-m-the-most-free-jewelry-bonney
+│ ├ ● /characters/seraphim-s-snake
+│ └ ● /characters/the-five-elders-st-marcus-mars
+├ ○ /contact
+├ ○ /create-tier-list
+├ ○ /icon.png
+├ ƒ /medal-builder
+├ ○ /medal-sets
+├   /medal-sets/[id]
+│ ├ ● /medal-sets/general-01
+│ ├ ● /medal-sets/general-02
+│ ├ ● /medal-sets/general-03
+│ └ ● [+19 more paths]
+├ ○ /new-characters                                                         1h      1y
+├ ○ /new-scout
+├ ○ /privacy-policy
+├ ○ /robots.txt
+├ ƒ /scout-simulator
+├   /scout-simulator/[scoutId]
+│ ├ ● /scout-simulator/happy-halloween-uta-20261027
+│ ├ ● /scout-simulator/singer-of-the-new-genesis-uta-20261030
+│ ├ ● /scout-simulator/the-four-emperors-marshall-d-teach-20261006
+│ └ ● [+21 more paths]
+├ ○ /sitemap.xml
+├ ○ /support-guide
+└ ○ /tier-list
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand

@@ -58,6 +58,9 @@ export default function NewCharactersPage() {
             Meet the latest One Piece Bounty Rush characters and open their guides
             for skills, strengths, weaknesses, counters, and practical gameplay tips.
           </p>
+          <Link href="/character-guides" className={styles.allGuidesLink}>
+            Browse all Character Guides <ArrowRight aria-hidden="true" />
+          </Link>
         </header>
 
         {releases.length ? (

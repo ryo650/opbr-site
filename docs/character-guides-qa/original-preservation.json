@@ -1,0 +1,14 @@
+{
+  "originalCheckoutUnchanged": false,
+  "headUnchanged": true,
+  "indexUnchanged": true,
+  "statusUnchanged": true,
+  "dirtyFileHashesUnchanged": false,
+  "dirtyFiles": 9,
+  "concurrentChangedFiles": [
+    "public/character-guides/the-five-elders-st-ethanbaron-v-nusjuro/changed-normal-attack.mp4",
+    "public/character-guides/the-five-elders-st-ethanbaron-v-nusjuro/skill-1.mp4",
+    "docs/character-guide-drafts/nusjuro.md"
+  ],
+  "note": "This task did not write to the original checkout. Concurrent Nusjuro content updates were retained; HEAD, index and status match the initial snapshot."
+}

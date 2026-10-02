@@ -28,6 +28,13 @@ const featuredCards = [
 
 const exploreCards = [
   {
+    title: "Character Guides",
+    description: "Browse all character guides for skills, counters, and gameplay tips.",
+    href: "/character-guides",
+    // Set to "/home/character-guides.webp" once the supplied artwork is added.
+    image: null as string | null,
+  },
+  {
     title: "New Characters",
     description: "Latest character releases, traits, and updates.",
     href: "/new-characters",
@@ -124,8 +131,8 @@ export default function TopPage() {
 
           <div className={styles.exploreGrid}>
             {exploreCards.map((card) => (
-              <Link href={card.href} className={styles.exploreCard} key={card.title}>
-                <span className={styles.thumbnail}>
+              <Link href={card.href} className={`${styles.exploreCard} ${!card.image ? styles.textOnlyCard : ""}`} key={card.title}>
+                {card.image && <span className={styles.thumbnail}>
                   <Image
                     src={card.image}
                     alt={card.alt ?? ""}
@@ -133,7 +140,7 @@ export default function TopPage() {
                     sizes="(max-width: 767px) 116px, 240px"
                     className={styles.exploreImage}
                   />
-                </span>
+                </span>}
                 <span className={styles.exploreContent}>
                   <strong>{card.title}</strong>
                   <span>{card.description}</span>

@@ -30,3 +30,8 @@
 @media (prefers-reduced-motion: reduce) {
   .card, .portrait, .action svg { transition: none; }
 }
+
+.allGuidesLink { display: inline-flex; align-items: center; gap: 8px; margin-top: 20px; color: #ffe084; font-size: .9rem; font-weight: 700; }
+.allGuidesLink svg { flex-shrink: 0; width: 17px; height: 17px; }
+.allGuidesLink:hover { text-decoration: underline; text-underline-offset: 4px; }
+.allGuidesLink:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }

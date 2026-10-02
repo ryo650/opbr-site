@@ -1,0 +1,83 @@
+> opbr-site@0.1.0 test
+> node --require ./tests/register.cjs --test tests/core.test.cjs
+
+TAP version 13
+# Subtest: every character is addressable by its own ID
+ok 1 - every character is addressable by its own ID
+  ---
+  duration_ms: 2.442667
+  ...
+# Subtest: all local catalog images and guide videos exist
+ok 2 - all local catalog images and guide videos exist
+  ---
+  duration_ms: 1.9855
+  ...
+# Subtest: tier list and guide matchups resolve, with no duplicate placements
+ok 3 - tier list and guide matchups resolve, with no duplicate placements
+  ---
+  duration_ms: 0.148042
+  ...
+# Subtest: character guide availability follows the guide registry
+ok 4 - character guide availability follows the guide registry
+  ---
+  duration_ms: 0.050333
+  ...
+# Subtest: new characters resolve to guides and remain listed for exactly two calendar months
+ok 5 - new characters resolve to guides and remain listed for exactly two calendar months
+  ---
+  duration_ms: 6.835834
+  ...
+# Subtest: all scout pickups exist and can actually be drawn at their weighted interval
+ok 6 - all scout pickups exist and can actually be drawn at their weighted interval
+  ---
+  duration_ms: 3.497416
+  ...
+# Subtest: every configured category returns a character and excludes pickups from normal pools
+ok 7 - every configured category returns a character and excludes pickups from normal pools
+  ---
+  duration_ms: 1.475458
+  ...
+# Subtest: existing non-100 totals remain relative weights as requested
+ok 8 - existing non-100 totals remain relative weights as requested
+  ---
+  duration_ms: 0.106
+  ...
+# Subtest: scout classification respects both boundaries and explicit JST offsets
+ok 9 - scout classification respects both boundaries and explicit JST offsets
+  ---
+  duration_ms: 0.229
+  ...
+# Subtest: monthly filters clamp month ends, including leap years
+ok 10 - monthly filters clamp month ends, including leap years
+  ---
+  duration_ms: 0.314958
+  ...
+# Subtest: usage processing computes coverage and changes without mutating input
+ok 11 - usage processing computes coverage and changes without mutating input
+  ---
+  duration_ms: 1.003875
+  ...
+# Subtest: permanent guide directory includes exactly the registry, even after New Characters expires
+ok 12 - permanent guide directory includes exactly the registry, even after New Characters expires
+  ---
+  duration_ms: 0.227584
+  ...
+# Subtest: directory searches full version names, tolerates punctuation, and combines filters
+ok 13 - directory searches full version names, tolerates punctuation, and combines filters
+  ---
+  duration_ms: 0.699333
+  ...
+# Subtest: newly registered versions appear once without touching the directory or release list
+ok 14 - newly registered versions appear once without touching the directory or release list
+  ---
+  duration_ms: 0.113625
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 319.260333

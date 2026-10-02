@@ -12,6 +12,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tier-list` },
     { url: `${baseUrl}/character-usage` },
     { url: `${baseUrl}/new-characters` },
+    { url: `${baseUrl}/character-guides` },
     { url: `${baseUrl}/create-tier-list` },
     { url: `${baseUrl}/scout-simulator` },
     { url: `${baseUrl}/medal-builder` },
