@@ -1,6 +1,6 @@
 # Site updates
 
-`/updates` is a small, manually maintained history of content and features added to OPBR Guide. It uses `src/data/site-updates.ts`; no database, authentication, environment variables, or external service is needed. The existing Menu links to it. It is separate from Tier List ranking notices.
+Home shows up to three featured/recent additions immediately after its introductory text, followed by the existing tools. “View all updates” opens `/updates`, the full history. Both surfaces use the same `src/data/site-updates.ts` entries and shared `SiteUpdateCard` component; no database, authentication, environment variables, or external service is needed. The existing Menu also links to `/updates`. This is separate from Tier List ranking notices.
 
 ## Add an update
 
@@ -13,11 +13,23 @@ Add an entry to `siteUpdates` once its content or feature is available on the pu
   title: "A short description of the addition",
   category: "content", // content | guide | feature
   description: "What was added and how visitors can use it.",
+  featuredRank: 1, // Optional Home priority; lower positive numbers appear first.
+  image: { // Optional. Use a verified local asset and its actual dimensions.
+    src: "/medals/halloween-perona.webp",
+    alt: "Pink Halloween Perona medal artwork",
+    width: 200,
+    height: 200,
+    kind: "medal", // medal | banner
+  },
   links: [{ href: "/existing-page", label: "Open the related page" }],
 },
 ```
 
-Use a unique lowercase hyphenated `id`, a valid calendar date, at least one working internal link, and a specific link label. Use the date the addition became available on the site, rather than the game's event date, screenshot date, or importer default. Entries sort by date descending; ties keep their source order, so place the latest entry first. Older entries remain a history and do not receive a permanent “new” badge. Empty data shows a message with a home link.
+Use a unique lowercase hyphenated `id`, a valid calendar date, at least one working internal link, and a specific link label. Use the date the addition became available on the site, rather than the game's event date, screenshot date, or importer default. The full list sorts by date descending; ties keep source order, so place the latest entry first. Older entries remain a history and do not receive a permanent “new” badge. Empty data shows an explanation and usable navigation.
+
+Home prioritizes entries with `featuredRank`, then fills remaining slots with the newest unfeatured entries, up to three unique IDs. Equal featured ranks use the newest date, then source order. Omit/remove `featuredRank` when an item no longer needs emphasis; its history entry remains available. Do not add artificial news to fill the three slots: the initial verified data contains two entries, so Home shows two.
+
+Images are optional. Supply an existing local path, meaningful alt text, and the asset's actual width/height. Both medal art and full Scout banners use `object-fit: contain` to preserve their content. The image frame reserves the intrinsic aspect ratio to reduce layout shift; medals are capped to a smaller square. On mobile, the image remains beside the title while description and links span the card width. With no `image`, the text uses the full card width. Use `sips -g pixelWidth -g pixelHeight public/path/to/image.webp` to check dimensions on Mac. No additional article pages or external image collection are needed.
 
 The initial entries are limited to content verified in the starting main branch:
 
@@ -41,7 +53,7 @@ npm run start -- --hostname 127.0.0.1 --port 3100
 npm run test:http
 ```
 
-Check `/updates` on desktop and mobile, open Menu → Updates, and follow every related link. Check long titles and the empty state when changing the display. Rebuild and deploy through the usual authorized workflow to publish new entries; editing the data alone does not update an existing deployment.
+Check Home and `/updates` on desktop and mobile, follow “View all updates” and Menu → Updates, and open the related links. Check Home's featured/newest ordering, three-item limit, empty data, missing images, and long titles when changing the display. Rebuild and deploy through the usual authorized workflow to publish new entries; editing the data alone does not update an existing deployment.
 
 ## Initial implementation checks
 
@@ -56,3 +68,16 @@ Validated from base `774021265d7f307abdcfd60b1c0c816441b216ee` in the dedicated 
 The first sandbox build could not fetch the existing Google font. A network-enabled build compiled, then ran out of disk space. Removing only this task's generated `.next/cache` allowed the final build to complete. Disk space remained low (about 277 MiB at the final check), so no further heavy builds or dependency installation were attempted.
 
 Screenshots are saved outside the repository at `/tmp/opbr-site-updates-qa/desktop.jpg` and `/tmp/opbr-site-updates-qa/mobile.jpg`. A production preview was started at `http://127.0.0.1:3104/updates`. If it is no longer running, use the commands above with `--port 3104` and set `TEST_BASE_URL=http://127.0.0.1:3104` for the HTTP tests.
+
+## Home and related-image revision checks
+
+Continued in `/Users/sasakiryou/Desktop/OPBR/opbr-site-updates`, branch `feat/site-updates`, from clean commit `3a8fa98048d15160919e94695724ccda391641fa`:
+
+- Pass: ESLint, TypeScript, 11 existing core tests, 7 update selection/data/render tests, production build (71 generated pages), and production HTTP tests including the Home section/hierarchy check.
+- Pass: Home and `/updates` in the actual browser at 1440px desktop and 390px/320px mobile. Headings are Home h1 → section h2 → card h3, and archive h1 → card h2. Existing tools and their links remain below the news section.
+- Pass: “View all updates” by keyboard Enter, visible keyboard focus outline, all three related destination links, back navigation, and mobile tap areas of at least 44px. No captured browser warning/error logs.
+- Pass: reused medal and Scout images loaded, reserved intrinsic dimensions/frame aspect ratios, `contain` rendering, and no horizontal overflow. This verifies space reservation, not a measured field CLS score.
+- Pass: temporary read-only HTML fixtures rendered the actual shared components and CSS with 0 entries, image-free content, an unbroken 168-character title, and 4 entries. At desktop, 390px, and 320px, Home selected three unique entries and the full list retained four; empty data kept navigation, and missing images used a single text column. The fixtures were outside the repository and were never added to product data or routes.
+- Not performed: production deployment, field performance monitoring, push/PR/merge, or unrelated guide work.
+
+Disk space was about 15 GiB at the revision's start. Revision screenshots are in `/tmp/opbr-site-updates-qa/`: `home-desktop.jpg`, `home-mobile-full.jpg`, `updates-images-desktop.jpg`, `updates-images-mobile.jpg`, `fixture-long-no-image-320.jpg`, and `fixture-empty-320.jpg`. The temporary fixture server was stopped after verification. Production preview uses `http://127.0.0.1:3104/` (restart using the commands above if needed).

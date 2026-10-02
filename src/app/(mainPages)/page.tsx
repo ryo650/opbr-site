@@ -2,6 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import styles from "./page.module.css"
+import HomeUpdates from "@/components/site-updates/HomeUpdates"
+import { siteUpdates } from "@/data/site-updates"
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -80,6 +82,8 @@ export default function TopPage() {
             a stronger team.
           </p>
         </section>
+
+        <HomeUpdates updates={siteUpdates} />
 
         <section className={styles.featured} aria-labelledby="featured-heading">
           <div className={styles.sectionHeading}>
