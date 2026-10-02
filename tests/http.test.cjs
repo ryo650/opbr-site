@@ -81,12 +81,17 @@ test('permanent directory renders every published guide and its real summary', a
   assert.doesNotMatch(html, /<option value="unknown">/, 'no fake unclassified entries in published data');
 });
 
-test('Home and New Characters both link to the permanent directory; Home waits for supplied artwork', async () => {
+test('Home and New Characters both link to the permanent directory; Home uses the supplied Character Guides artwork', async () => {
   const home = await (await fetch(base + '/')).text();
   const card = home.match(/<a[^>]*href="\/character-guides"[^>]*>(.*?)<\/a>/s)?.[1];
   assert.ok(card, 'Home entry');
   assert.match(card, /Character Guides/);
-  assert.doesNotMatch(card, /<img/);
+  assert.match(card, /<img/);
+  assert.ok(card.includes(encodeURIComponent("/home/character-guides.png")));
+  const image = await fetch(base + "/home/character-guides.png");
+  assert.equal(image.status, 200);
+  assert.match(image.headers.get("content-type"), /image\/png/);
+  assert.equal((await image.arrayBuffer()).byteLength, 1268161);
   const recent = await (await fetch(base + '/new-characters')).text();
   assert.match(recent, /href="\/character-guides"/);
 });

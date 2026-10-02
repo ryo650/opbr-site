@@ -132,7 +132,10 @@ async function loadedImages(page, selector = 'main img') {
       await page.goto(base + '/');
       const homeCard = page.locator('main a[href="/character-guides"]');
       await expect(homeCard).toBeVisible();
-      await expect(homeCard.locator('img')).toHaveCount(0);
+      await expect(homeCard.locator('img')).toHaveCount(1);
+      await expect.poll(() => homeCard.locator('img').evaluate(img => img.complete && img.naturalWidth > 0)).toBe(true);
+      assert.ok((await homeCard.locator('img').getAttribute('src')).includes(encodeURIComponent('/home/character-guides.png')));
+      assert.equal(await homeCard.locator('img').getAttribute('alt'), '');
       for (const href of ['/new-characters','/medal-sets','/beginner-guide','/create-tier-list','/medal-builder','/character-usage','/tier-list','/scout-simulator']) {
         await expect(page.locator(`main a[href="${href}"]`)).toHaveCount(1);
       }
@@ -142,6 +145,7 @@ async function loadedImages(page, selector = 'main img') {
       await page.evaluate(() => scrollTo(0, 0));
       await expect.poll(() => page.locator('header').first().evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThanOrEqual(0);
       if (width !== 390) await page.screenshot({path: path.join(output, `home-${width}.png`), fullPage: true});
+      await homeCard.screenshot({path: path.join(output, `home-entry-${width}.png`)});
       await homeCard.click();
       await expect(page).toHaveURL(base + '/character-guides');
       await page.getByRole('button', {name: 'Open navigation menu'}).click();

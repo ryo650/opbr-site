@@ -31,8 +31,7 @@ const exploreCards = [
     title: "Character Guides",
     description: "Browse all character guides for skills, counters, and gameplay tips.",
     href: "/character-guides",
-    // Set to "/home/character-guides.webp" once the supplied artwork is added.
-    image: null as string | null,
+    image: "/home/character-guides.png",
   },
   {
     title: "New Characters",
