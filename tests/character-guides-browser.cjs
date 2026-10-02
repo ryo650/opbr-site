@@ -137,8 +137,14 @@ async function loadedImages(page, selector = 'main img') {
       assert.ok((await homeCard.locator('img').getAttribute('src')).includes(encodeURIComponent('/home/character-guides.png')));
       assert.equal(await homeCard.locator('img').getAttribute('alt'), '');
       for (const href of ['/new-characters','/medal-sets','/beginner-guide','/create-tier-list','/medal-builder','/character-usage','/tier-list','/scout-simulator']) {
-        await expect(page.locator(`main a[href="${href}"]`)).toHaveCount(1);
+        assert.ok(await page.locator(`main a[href="${href}"]`).count() >= 1, `existing Home link: ${href}`);
       }
+      const news = page.locator('section[aria-labelledby="home-updates-heading"]');
+      await expect(news).toBeVisible();
+      await expect(news.locator('h3')).toHaveCount(2);
+      const sectionOrder = await page.locator('main section[aria-labelledby]').evaluateAll(sections => sections.map(section => section.getAttribute('aria-labelledby')));
+      assert.ok(sectionOrder.indexOf('featured-heading') < sectionOrder.indexOf('home-updates-heading'));
+      assert.ok(sectionOrder.indexOf('home-updates-heading') < sectionOrder.indexOf('explore-heading'));
       await noOverflow(page);
       await loadedImages(page);
       await homeCard.scrollIntoViewIfNeeded();
@@ -150,6 +156,7 @@ async function loadedImages(page, selector = 'main img') {
       await expect(page).toHaveURL(base + '/character-guides');
       await page.getByRole('button', {name: 'Open navigation menu'}).click();
       await expect(page.getByRole('menuitem', {name:'Character Guides', exact:true})).toBeVisible();
+      await expect(page.getByRole('menuitem', {name:'Updates', exact:true})).toBeVisible();
       await page.keyboard.press('Escape');
       for (const entry of entries) {
         await page.goto(base + '/character-guides');
@@ -157,7 +164,7 @@ async function loadedImages(page, selector = 'main img') {
         await expect(page).toHaveURL(base + '/characters/' + entry.id);
         await expect(page.getByRole('heading', {level:1})).toHaveText(entry.name);
       }
-      report.push(`PASS ${width}px: registry coverage, real rarity options and labels, combined name/element/role/rarity filters, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home links, Menu, no overflow`);
+      report.push(`PASS ${width}px: registry coverage, real rarity options and labels, combined name/element/role/rarity filters, zero results/reset, image loads/dimensions/alt, keyboard/focus, every guide navigation, expired Mars, Home image/links and 2 news articles with section order preserved, both Menu entries, no overflow`);
       await page.close();
     }
 

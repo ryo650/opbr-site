@@ -2,6 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import styles from "./page.module.css"
+import HomeUpdates from "@/components/site-updates/HomeUpdates"
+import { siteUpdates } from "@/data/site-updates"
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -119,6 +121,8 @@ export default function TopPage() {
             ))}
           </div>
         </section>
+
+        <HomeUpdates updates={siteUpdates} />
 
         <section className={styles.explore} aria-labelledby="explore-heading">
           <div className={styles.sectionHeading}>

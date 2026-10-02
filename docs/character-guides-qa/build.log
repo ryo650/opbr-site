@@ -1,19 +1,20 @@
+
 > opbr-site@0.1.0 build
 > next build --webpack
 
 ▲ Next.js 16.3.4 (webpack)
-✓ Running next.config.ts took 15ms
+✓ Running next.config.ts took 52ms
 
   Creating an optimized production build ...
-✓ Compiled successfully in 2.4s
+✓ Compiled successfully in 3.0s
   Running TypeScript ...
-  Finished TypeScript in 1305ms ...
+  Finished TypeScript in 2.5s ...
   Collecting page data using 7 workers ...
-  Generating static pages using 7 workers (0/71) ...
-  Generating static pages using 7 workers (17/71)
-  Generating static pages using 7 workers (35/71)
-  Generating static pages using 7 workers (53/71)
-✓ Generating static pages using 7 workers (71/71) in 434ms
+  Generating static pages using 7 workers (0/73) ...
+  Generating static pages using 7 workers (18/73) 
+  Generating static pages using 7 workers (36/73) 
+  Generating static pages using 7 workers (54/73) 
+✓ Generating static pages using 7 workers (73/73) in 404ms
   Finalizing page optimization ...
   Collecting build traces ...
 
@@ -28,7 +29,8 @@ Route (app)                                                         Revalidate  
 ├   /characters/[characterId]
 │ ├ ● /characters/future-where-i-m-the-most-free-jewelry-bonney
 │ ├ ● /characters/seraphim-s-snake
-│ └ ● /characters/the-five-elders-st-marcus-mars
+│ ├ ● /characters/the-five-elders-st-marcus-mars
+│ └ ● /characters/the-five-elders-st-ethanbaron-v-nusjuro
 ├ ○ /contact
 ├ ○ /create-tier-list
 ├ ○ /icon.png
@@ -51,9 +53,11 @@ Route (app)                                                         Revalidate  
 │ └ ● [+21 more paths]
 ├ ○ /sitemap.xml
 ├ ○ /support-guide
-└ ○ /tier-list
+├ ○ /tier-list
+└ ○ /updates
 
 
 ○  (Static)   prerendered as static content
 ●  (SSG)      prerendered as static HTML (uses generateStaticParams)
 ƒ  (Dynamic)  server-rendered on demand
+

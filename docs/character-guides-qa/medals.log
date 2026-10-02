@@ -1,0 +1,484 @@
+
+> opbr-site@0.1.0 medals:test
+> node --test scripts/medal-importer/*.test.mjs
+
+TAP version 13
+# Subtest: current importer batch reconciles strictly with production
+ok 1 - current importer batch reconciles strictly with production
+  ---
+  duration_ms: 1.178708
+  ...
+# Subtest: stale importer batch still fails explicit batch reconciliation
+ok 2 - stale importer batch still fails explicit batch reconciliation
+  ---
+  duration_ms: 0.371667
+  ...
+# Subtest: regression drafts cannot be used for importer batch reconciliation
+ok 3 - regression drafts cannot be used for importer batch reconciliation
+  ---
+  duration_ms: 0.118209
+  ...
+# Subtest: same-name lower scroll before Rate is a continuation candidate
+ok 4 - same-name lower scroll before Rate is a continuation candidate
+  ---
+  duration_ms: 1.187834
+  ...
+# Subtest: a different medal or a Details screen after Rate is not a continuation
+ok 5 - a different medal or a Details screen after Rate is not a continuation
+  ---
+  duration_ms: 0.079
+  ...
+# Subtest: field lines exclude modal controls and retain visible continuation text
+ok 6 - field lines exclude modal controls and retain visible continuation text
+  ---
+  duration_ms: 0.085875
+  ...
+# Subtest: overlapping Unique Trait pages merge without duplicated lines
+ok 7 - overlapping Unique Trait pages merge without duplicated lines
+  ---
+  duration_ms: 0.135166
+  ...
+# Subtest: unrelated Details text cannot be joined
+ok 8 - unrelated Details text cannot be joined
+  ---
+  duration_ms: 0.72575
+  ...
+# Subtest: A. empty input stops safely
+ok 9 - A. empty input stops safely
+  ---
+  duration_ms: 0.872916
+  ...
+# Subtest: B. a new-only batch appends after existing production
+ok 10 - B. a new-only batch appends after existing production
+  ---
+  duration_ms: 4.046292
+  ...
+# Subtest: C. a semantically identical production medal is skipped
+ok 11 - C. a semantically identical production medal is skipped
+  ---
+  duration_ms: 10.1995
+  ...
+# Subtest: D. same production ID with different content is a blocking conflict
+ok 12 - D. same production ID with different content is a blocking conflict
+  ---
+  duration_ms: 0.725042
+  ...
+# Subtest: E. mixed new and identical duplicate batch appends only the new ID
+ok 13 - E. mixed new and identical duplicate batch appends only the new ID
+  ---
+  duration_ms: 39.050125
+  ...
+# Subtest: F. needsReview medals are excluded while validated medals remain eligible
+ok 14 - F. needsReview medals are excluded while validated medals remain eligible
+  ---
+  duration_ms: 2.276542
+  ...
+# Subtest: G. a failure before data commit rolls back added WebPs
+ok 15 - G. a failure before data commit rolls back added WebPs
+  ---
+  duration_ms: 17.823625
+  ...
+# Subtest: numeric filename suffixes sort after their unsuffixed sequence
+ok 16 - numeric filename suffixes sort after their unsuffixed sequence
+  ---
+  duration_ms: 0.933875
+  ...
+# Subtest: multiple continuation suffixes use numeric rather than lexical order
+ok 17 - multiple continuation suffixes use numeric rather than lexical order
+  ---
+  duration_ms: 0.098959
+  ...
+# Subtest: non-sequence filenames still require a safe EXIF fallback
+ok 18 - non-sequence filenames still require a safe EXIF fallback
+  ---
+  duration_ms: 15.454625
+  ...
+# Subtest: approved Native Effects resolve by exact normalized display name
+ok 19 - approved Native Effects resolve by exact normalized display name
+  ---
+  duration_ms: 1.0455
+  ...
+# Subtest: an unknown Native Effect remains diagnostic-only
+ok 20 - an unknown Native Effect remains diagnostic-only
+  ---
+  duration_ms: 29.722416
+  ...
+# Subtest: approve-native-effect adds an entry and regenerates its type
+ok 21 - approve-native-effect adds an entry and regenerates its type
+  ---
+  duration_ms: 7.073334
+  ...
+# Subtest: reapproval is a no-op and name/ID conflicts are rejected
+ok 22 - reapproval is a no-op and name/ID conflicts are rejected
+  ---
+  duration_ms: 7.136209
+  ...
+# Subtest: invalid Native Effect IDs and invalid catalogs are rejected
+ok 23 - invalid Native Effect IDs and invalid catalogs are rejected
+  ---
+  duration_ms: 3.124
+  ...
+# Subtest: production Native Effect IDs must be approved and unique
+ok 24 - production Native Effect IDs must be approved and unique
+  ---
+  duration_ms: 4.047125
+  ...
+# Subtest: K. temporary catalog approval does not change production medal data
+ok 25 - K. temporary catalog approval does not change production medal data
+  ---
+  duration_ms: 7.644584
+  ...
+# Subtest: Rate viewport without a scrollbar proves a one-kind list is complete
+ok 26 - Rate viewport without a scrollbar proves a one-kind list is complete
+  ---
+  duration_ms: 27.352458
+  ...
+# Subtest: a complete two-kind list is accepted by the same terminal rule
+ok 27 - a complete two-kind list is accepted by the same terminal rule
+  ---
+  duration_ms: 5.401167
+  ...
+# Subtest: a scrollbar thumb at the bottom proves the last page was captured
+ok 28 - a scrollbar thumb at the bottom proves the last page was captured
+  ---
+  duration_ms: 3.527375
+  ...
+# Subtest: a partial scrollable one-kind page remains needsReview
+ok 29 - a partial scrollable one-kind page remains needsReview
+  ---
+  duration_ms: 5.066958
+  ...
+# Subtest: a partial scrollable two-kind page remains needsReview
+ok 30 - a partial scrollable two-kind page remains needsReview
+  ---
+  duration_ms: 3.163958
+  ...
+# Subtest: an unparsed visible Trait is rejected even at the list end
+ok 31 - an unparsed visible Trait is rejected even at the list end
+  ---
+  duration_ms: 3.897625
+  ...
+# Subtest: established three-kind batches retain their existing coverage behavior
+ok 32 - established three-kind batches retain their existing coverage behavior
+  ---
+  duration_ms: 2.859
+  ...
+# Subtest: A. ATK / DEF / HP / CRIT remain nativeTraits
+ok 33 - A. ATK / DEF / HP / CRIT remain nativeTraits
+  ---
+  duration_ms: 3.967584
+  ...
+# Subtest: B/C. approved Skill 1 and Skill 2 cooldown effects become nativeEffects
+ok 34 - B/C. approved Skill 1 and Skill 2 cooldown effects become nativeEffects
+  ---
+  duration_ms: 2.176375
+  ...
+# Subtest: D. conditions and values are discarded from an approved effect
+ok 35 - D. conditions and values are discarded from an approved effect
+  ---
+  duration_ms: 0.399167
+  ...
+# Subtest: E. repeated values and conditions deduplicate by approved ID
+ok 36 - E. repeated values and conditions deduplicate by approved ID
+  ---
+  duration_ms: 0.188792
+  ...
+# Subtest: F. an unapproved cooldown target becomes unknown-native-effect
+ok 37 - F. an unapproved cooldown target becomes unknown-native-effect
+  ---
+  duration_ms: 1.343916
+  ...
+# Subtest: G. human approval makes the same effect parse on the next run
+ok 38 - G. human approval makes the same effect parse on the next run
+  ---
+  duration_ms: 17.964708
+  ...
+# Subtest: H. Status reductions remain separate from nativeEffects
+ok 39 - H. Status reductions remain separate from nativeEffects
+  ---
+  duration_ms: 0.36775
+  ...
+# Subtest: I. stat increases remain nativeTraits only
+ok 40 - I. stat increases remain nativeTraits only
+  ---
+  duration_ms: 0.129708
+  ...
+# Subtest: an approved nativeEffect can be the only parsed trait kind
+ok 41 - an approved nativeEffect can be the only parsed trait kind
+  ---
+  duration_ms: 0.4835
+  ...
+# Subtest: J. effect-like percentage text is not silently discarded
+ok 42 - J. effect-like percentage text is not silently discarded
+  ---
+  duration_ms: 2.232667
+  ...
+# Subtest: field retry cannot resolve an unknown effect by merely omitting it
+ok 43 - field retry cannot resolve an unknown effect by merely omitting it
+  ---
+  duration_ms: 0.412834
+  ...
+# Subtest: condition-only and probability lines do not become false effects
+ok 44 - condition-only and probability lines do not become false effects
+  ---
+  duration_ms: 0.137209
+  ...
+# Subtest: a split conditional stat Trait is reconstructed across its probability
+ok 45 - a split conditional stat Trait is reconstructed across its probability
+  ---
+  duration_ms: 0.338917
+  ...
+# Subtest: split Skill cooldown text resolves to the existing approved Effect
+ok 46 - split Skill cooldown text resolves to the existing approved Effect
+  ---
+  duration_ms: 0.458958
+  ...
+# Subtest: approved damage dealt text split by a probability line is safely reconstructed
+ok 47 - approved damage dealt text split by a probability line is safely reconstructed
+  ---
+  duration_ms: 0.308041
+  ...
+# Subtest: approved damage dealt text may split after damage within one Rate entry
+ok 48 - approved damage dealt text may split after damage within one Rate entry
+  ---
+  duration_ms: 0.196542
+  ...
+# Subtest: approved Skill cooldown text split after Boost the is safely reconstructed
+ok 49 - approved Skill cooldown text split after Boost the is safely reconstructed
+  ---
+  duration_ms: 0.664375
+  ...
+# Subtest: nearby lines are not joined unless the result is an approved Native Effect
+ok 50 - nearby lines are not joined unless the result is an approved Native Effect
+  ---
+  duration_ms: 0.865583
+  ...
+# Subtest: approved damage dealt and received Effects parse without values or conditions
+ok 51 - approved damage dealt and received Effects parse without values or conditions
+  ---
+  duration_ms: 0.157333
+  ...
+# Subtest: retry may replace an accented Increase line only when the same stat is parsed
+ok 52 - retry may replace an accented Increase line only when the same stat is parsed
+  ---
+  duration_ms: 0.312583
+  ...
+# Subtest: field retry may restore one dropped character in a native Trait at the same value
+ok 53 - field retry may restore one dropped character in a native Trait at the same value
+  ---
+  duration_ms: 0.306583
+  ...
+# Subtest: IMG_3640-style Details body is accepted without the Unique Trait label
+ok 54 - IMG_3640-style Details body is accepted without the Unique Trait label
+  ---
+  duration_ms: 0.710333
+  ...
+# Subtest: existing character Details with a Unique Trait label remains valid
+ok 55 - existing character Details with a Unique Trait label remains valid
+  ---
+  duration_ms: 0.078833
+  ...
+# Subtest: a game-provided plural Medals name is valid Details evidence
+ok 56 - a game-provided plural Medals name is valid Details evidence
+  ---
+  duration_ms: 0.098458
+  ...
+# Subtest: the legacy Extra Trait + Rate + Craft Details signature remains valid
+ok 57 - the legacy Extra Trait + Rate + Craft Details signature remains valid
+  ---
+  duration_ms: 0.677833
+  ...
+# Subtest: Details title without meaningful body evidence remains fatal
+ok 58 - Details title without meaningful body evidence remains fatal
+  ---
+  duration_ms: 0.483917
+  ...
+# Subtest: missing or competing modal titles remain fatal
+ok 59 - missing or competing modal titles remain fatal
+  ---
+  duration_ms: 0.238709
+  ...
+# Subtest: Rate and Tag modal classifications retain their signatures
+ok 60 - Rate and Tag modal classifications retain their signatures
+  ---
+  duration_ms: 0.14925
+  ...
+# Subtest: A. known Status Effects resolve by approved display name
+ok 61 - A. known Status Effects resolve by approved display name
+  ---
+  duration_ms: 1.189
+  ...
+# Subtest: B. an unknown Status Effect remains unknown and does not alter catalog
+ok 62 - B. an unknown Status Effect remains unknown and does not alter catalog
+  ---
+  duration_ms: 12.949334
+  ...
+# Subtest: C. approve-status adds a new display name and generated ID
+ok 63 - C. approve-status adds a new display name and generated ID
+  ---
+  duration_ms: 5.974167
+  ...
+# Subtest: D. approval makes the same previously unknown display name resolvable
+ok 64 - D. approval makes the same previously unknown display name resolvable
+  ---
+  duration_ms: 4.676083
+  ...
+# Subtest: E. reapproving the same Status Effect is a no-op
+ok 65 - E. reapproving the same Status Effect is a no-op
+  ---
+  duration_ms: 3.460541
+  ...
+# Subtest: F. the same name with a different ID is rejected
+ok 66 - F. the same name with a different ID is rejected
+  ---
+  duration_ms: 1.971917
+  ...
+# Subtest: G. the same ID with a different name is rejected
+ok 67 - G. the same ID with a different name is rejected
+  ---
+  duration_ms: 1.599375
+  ...
+# Subtest: H. an invalid or empty ID is rejected
+ok 68 - H. an invalid or empty ID is rejected
+  ---
+  duration_ms: 1.707166
+  ...
+# Subtest: I. every production statusReductions ID exists in the catalog
+ok 69 - I. every production statusReductions ID exists in the catalog
+  ---
+  duration_ms: 2.301958
+  ...
+# Subtest: J. catalog operations do not change production medal data
+ok 70 - J. catalog operations do not change production medal data
+  ---
+  duration_ms: 18.915
+  ...
+# Subtest: 1. Details + one Tag + Rate keeps the existing grouping
+ok 71 - 1. Details + one Tag + Rate keeps the existing grouping
+  ---
+  duration_ms: 6.489625
+  ...
+# Subtest: 2. Details + two Tags + Rate groups both Tag pages
+ok 72 - 2. Details + two Tags + Rate groups both Tag pages
+  ---
+  duration_ms: 0.316667
+  ...
+# Subtest: 3. overlapping Tag pages preserve order and deduplicate final tags
+ok 73 - 3. overlapping Tag pages preserve order and deduplicate final tags
+  ---
+  duration_ms: 0.536417
+  ...
+# Subtest: 4. identical Tag content is detected as an accidental duplicate
+ok 74 - 4. identical Tag content is detected as an accidental duplicate
+  ---
+  duration_ms: 0.327083
+  ...
+# Subtest: 5. Details boundaries keep Tag pages in separate groups
+ok 75 - 5. Details boundaries keep Tag pages in separate groups
+  ---
+  duration_ms: 0.418208
+  ...
+# Subtest: 6. a Tag screen after Rate is a fatal structure error
+ok 76 - 6. a Tag screen after Rate is a fatal structure error
+  ---
+  duration_ms: 0.368625
+  ...
+# Subtest: 7. a validated Details continuation may follow Tag before Rate
+ok 77 - 7. a validated Details continuation may follow Tag before Rate
+  ---
+  duration_ms: 0.252041
+  ...
+# Subtest: regression: one tag and no issues versus multiple region tags enters Review, keeps normal tags, and is excluded
+ok 78 - regression: one tag and no issues versus multiple region tags enters Review, keeps normal tags, and is excluded
+  ---
+  duration_ms: 1.662833
+  ...
+# Subtest: equal sets ignore order, duplicate IDs, and normalized name differences without mutation
+ok 79 - equal sets ignore order, duplicate IDs, and normalized name differences without mutation
+  ---
+  duration_ms: 0.203666
+  ...
+# Subtest: successful empty OCR differs from unavailable OCR; neither zero rescue nor issue clearing occurs
+ok 80 - successful empty OCR differs from unavailable OCR; neither zero rescue nor issue clearing occurs
+  ---
+  duration_ms: 0.276625
+  ...
+# Subtest: a dedicated parse failure is comparison unavailable, not a successful equal set
+ok 81 - a dedicated parse failure is comparison unavailable, not a successful equal set
+  ---
+  duration_ms: 0.072417
+  ...
+# Subtest: normal issues and other-field Review survive equal tag OCR
+ok 82 - normal issues and other-field Review survive equal tag OCR
+  ---
+  duration_ms: 0.322208
+  ...
+# Subtest: page mismatches survive aggregation even when the final normal/region unions would match
+ok 83 - page mismatches survive aggregation even when the final normal/region unions would match
+  ---
+  duration_ms: 0.119667
+  ...
+# Subtest: dedicated crop covers the existing viewport; unchanged rebasing preserves screenshot coordinates
+ok 84 - dedicated crop covers the existing viewport; unchanged rebasing preserves screenshot coordinates
+  ---
+  duration_ms: 0.405541
+  ...
+# Subtest: all 11 reviewed fixture tag arrays remain identical to production and synthetic equal comparisons pass
+ok 85 - all 11 reviewed fixture tag arrays remain identical to production and synthetic equal comparisons pass
+  ---
+  duration_ms: 6.692708
+  ...
+# Subtest: source SHA-256 uses original bytes, identifies same-name replacement, and refuses failed/invalid reads
+ok 86 - source SHA-256 uses original bytes, identifies same-name replacement, and refuses failed/invalid reads
+  ---
+  duration_ms: 6.209208
+  ...
+# Subtest: exclusive per-run creation, serial appends, and retries preserve earlier evidence
+ok 87 - exclusive per-run creation, serial appends, and retries preserve earlier evidence
+  ---
+  duration_ms: 33.431083
+  ...
+# Subtest: unavailable versus empty dedicated evidence is preserved; no invalid successful hash is accepted
+ok 88 - unavailable versus empty dedicated evidence is preserved; no invalid successful hash is accepted
+  ---
+  duration_ms: 14.036958
+  ...
+# Subtest: JSONL torn tail is incomplete; malformed complete lines are errors
+ok 89 - JSONL torn tail is incomplete; malformed complete lines are errors
+  ---
+  duration_ms: 0.246792
+  ...
+# Subtest: audit write/sync failure before publication prevents the publish callback
+ok 90 - audit write/sync failure before publication prevents the publish callback
+  ---
+  duration_ms: 10.478417
+  ...
+# Subtest: successful publication stamps only caller-selected new records, at one successful commit time
+ok 91 - successful publication stamps only caller-selected new records, at one successful commit time
+  ---
+  duration_ms: 9.141041
+  ...
+# Subtest: production failure is recorded without importedAt; image-only recovery has no new imported records
+ok 92 - production failure is recorded without importedAt; image-only recovery has no new imported records
+  ---
+  duration_ms: 19.44625
+  ...
+# Subtest: post-publication audit write, sync, or close failure preserves committed data and reports audit failure separately
+ok 93 - post-publication audit write, sync, or close failure preserves committed data and reports audit failure separately
+  ---
+  duration_ms: 24.499625
+  ...
+# Subtest: actual importer publication selection excludes Review and duplicates; pre-publication evidence stays unstamped
+ok 94 - actual importer publication selection excludes Review and duplicates; pre-publication evidence stays unstamped
+  ---
+  duration_ms: 0.691667
+  ...
+1..94
+# tests 94
+# suites 0
+# pass 94
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 393.783208

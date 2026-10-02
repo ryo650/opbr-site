@@ -1,3 +1,2 @@
-Command: node node_modules/typescript/bin/tsc --noEmit --incremental false
-Exit code: 0
-Compiler output: none
+node node_modules/typescript/bin/tsc --noEmit --incremental false
+Exit status: 0 (2026-10-02, integrated app code)

@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/scout-simulator` },
     { url: `${baseUrl}/medal-builder` },
     { url: `${baseUrl}/medal-sets` },
+    { url: `${baseUrl}/updates` },
     { url: `${baseUrl}/about` },
     { url: `${baseUrl}/contact` },
     { url: `${baseUrl}/privacy-policy` },

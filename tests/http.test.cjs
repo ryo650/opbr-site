@@ -4,8 +4,31 @@ const { scouts } = require('../src/data/scouts');
 const { characterGuides } = require('../src/data/character-guides');
 const { recommendedMedalSets } = require('../src/data/medal-sets');
 const { SITE_URL } = require('../src/lib/site');
+const { siteUpdates } = require('../src/data/site-updates');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3100';
-const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/character-guides', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
+const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/character-guides', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/updates', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
+
+test('Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards', async () => {
+  const response = await fetch(base + '/');
+  assert.equal(response.status, 200);
+  const html = await response.text();
+  const toolsIndex = html.indexOf('id="featured-heading"');
+  const updatesIndex = html.indexOf('id="home-updates-heading"');
+  const guidesIndex = html.indexOf('id="explore-heading"');
+  assert.ok(toolsIndex >= 0 && toolsIndex < updatesIndex && updatesIndex < guidesIndex);
+  assert.match(html, /href="\/updates"[^>]*>View all updates/);
+  const news = html.match(/<section[^>]*aria-labelledby="home-updates-heading"[^>]*>([\s\S]*?)<\/section>/)?.[1];
+  assert.ok(news);
+  assert.equal((news.match(/<h3 id="update-/g) || []).length, Math.min(3, siteUpdates.length));
+  for (const image of news.matchAll(/<img\b[^>]*>/g)) {
+    assert.match(image[0], /alt="[^"]+"/);
+    assert.match(image[0], /width="\d+"/);
+    assert.match(image[0], /height="\d+"/);
+  }
+  for (const route of ['/tier-list', '/scout-simulator', '/new-characters', '/medal-sets', '/beginner-guide', '/create-tier-list', '/medal-builder', '/character-usage']) {
+    assert.ok(html.includes(`href="${route}"`), route);
+  }
+});
 
 test('all published pages return 200, one main and h1, and their own canonical', async () => {
   const titles = new Set();
