@@ -1,0 +1,45 @@
+TAP version 13
+# Subtest: site update data has valid dates, unique IDs, and existing local links
+ok 1 - site update data has valid dates, unique IDs, and existing local links
+  ---
+  duration_ms: 1.778292
+  ...
+# Subtest: Home prioritizes featured rank, fills with newest items, limits to three, and deduplicates
+ok 2 - Home prioritizes featured rank, fills with newest items, limits to three, and deduplicates
+  ---
+  duration_ms: 1.821916
+  ...
+# Subtest: equal featured ranks use newest dates and source order for date ties
+ok 3 - equal featured ranks use newest dates and source order for date ties
+  ---
+  duration_ms: 0.171417
+  ...
+# Subtest: Home uses h2/h3 hierarchy, always links to all updates, and handles empty data
+ok 4 - Home uses h2/h3 hierarchy, always links to all updates, and handles empty data
+  ---
+  duration_ms: 13.467292
+  ...
+# Subtest: cards reserve image dimensions, supply alt text, and render without optional images
+ok 5 - cards reserve image dimensions, supply alt text, and render without optional images
+  ---
+  duration_ms: 1.15375
+  ...
+# Subtest: empty updates render an explanation and a working home link
+ok 6 - empty updates render an explanation and a working home link
+  ---
+  duration_ms: 0.474875
+  ...
+# Subtest: long titles render safely, dates sort newest first, and input order is preserved
+ok 7 - long titles render safely, dates sort newest first, and input order is preserved
+  ---
+  duration_ms: 1.933
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 584.047541

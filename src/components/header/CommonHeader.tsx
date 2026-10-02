@@ -21,6 +21,7 @@ const navigationItems = [
   { href: "/medal-builder", label: "Medal Builder" },
   { href: "/medal-sets", label: "Medal Sets" },
   { href: "/new-characters", label: "New Characters" },
+  { href: "/character-guides", label: "Character Guides" },
   { href: "/beginner-guide", label: "Beginner Guide" },
   { href: "/create-tier-list", label: "Create Tier List"},
   { href: "/updates", label: "Updates" },

@@ -1,0 +1,49 @@
+
+> opbr-site@0.1.0 test:http
+> node --require ./tests/register.cjs --test tests/http.test.cjs
+
+TAP version 13
+# Subtest: Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards
+ok 1 - Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards
+  ---
+  duration_ms: 22.069333
+  ...
+# Subtest: all published pages return 200, one main and h1, and their own canonical
+ok 2 - all published pages return 200, one main and h1, and their own canonical
+  ---
+  duration_ms: 217.017541
+  ...
+# Subtest: unfinished pages are explicitly noindex and have a main heading
+ok 3 - unfinished pages are explicitly noindex and have a main heading
+  ---
+  duration_ms: 3.608791
+  ...
+# Subtest: unknown pages and inherited object keys return a recoverable 404
+ok 4 - unknown pages and inherited object keys return a recoverable 404
+  ---
+  duration_ms: 43.349917
+  ...
+# Subtest: sitemap includes exactly the published pages and robots points to it
+ok 5 - sitemap includes exactly the published pages and robots points to it
+  ---
+  duration_ms: 12.057417
+  ...
+# Subtest: permanent directory renders every published guide and its real summary
+ok 6 - permanent directory renders every published guide and its real summary
+  ---
+  duration_ms: 40.723833
+  ...
+# Subtest: Home and New Characters both link to the permanent directory; Home uses the supplied Character Guides artwork
+ok 7 - Home and New Characters both link to the permanent directory; Home uses the supplied Character Guides artwork
+  ---
+  duration_ms: 6.476333
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 575.877917
