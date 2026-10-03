@@ -117,3 +117,6 @@
     border-radius: 14px;
   }
 }
+
+.sectionHeading h2 { scroll-margin-top: calc(var(--site-header-height) + 20px); }
+.sectionHeading h2:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }

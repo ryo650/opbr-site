@@ -1,0 +1,44 @@
+[
+  {
+    "name": "14-day boundary",
+    "markers": 0,
+    "scrollWidth": 390,
+    "summary": true,
+    "width": 390
+  },
+  {
+    "name": "Tier mismatch",
+    "markers": 4,
+    "scrollWidth": 390,
+    "summary": true,
+    "width": 390
+  },
+  {
+    "name": "Unpublished",
+    "markers": 0,
+    "scrollWidth": 390,
+    "summary": false,
+    "width": 390
+  },
+  {
+    "name": "Before publication",
+    "markers": 0,
+    "scrollWidth": 390,
+    "summary": false,
+    "width": 390
+  },
+  {
+    "name": "No updates",
+    "markers": 0,
+    "scrollWidth": 390,
+    "summary": false,
+    "width": 390
+  },
+  {
+    "name": "Active",
+    "markers": 5,
+    "scrollWidth": 390,
+    "summary": true,
+    "width": 390
+  }
+]

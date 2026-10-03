@@ -1,0 +1,5 @@
+.scenarios { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.scenarios a { padding: 9px 12px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 8px; color: #cbd5e1; font-size: .8rem; }
+.scenarios a[aria-current] { color: #fde68a; border-color: rgb(251 191 36 / 50%); background: rgb(251 191 36 / 8%); }
+.scenarios a:focus-visible { outline: 3px solid #fbbf24; outline-offset: 3px; }
+.empty { margin-top: 26px; color: #cbd5e1; line-height: 1.7; }

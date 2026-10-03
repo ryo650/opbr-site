@@ -5,52 +5,61 @@ import CharacterGuideLink from "@/components/characters/CharacterGuideLink";
 import { characters } from "@/data/characters/index";
 import { tierList } from "@/data/tierList";
 
-export default function TierList() {
+import TierUpdateBadge from "./TierUpdateBadge";
+import badgeStyles from "./TierUpdateBadge.module.css";
+import TierUpdateLegend from "./TierUpdateLegend";
+import type { TierUpdateBadge as Badge } from "@/lib/tier-important-updates";
+
+export default function TierList({ badges = {}, preview = false }: { badges?: Record<string, Badge>; preview?: boolean }) {
   return (
-    <div className={styles.tierList}>
-      {tierList.map((row, tierIndex) => (
-        <div key={row.tier} className={styles.tier}>
-          <div className={`${styles.tierLabel} ${styles[row.colorClass]}`}>
-            <p>{row.tier}</p>
-          </div>
+    <>
+      {Object.keys(badges).length > 0 && <TierUpdateLegend count={Object.keys(badges).length} />}
+      <div className={styles.tierList}>
+        {tierList.map((row, tierIndex) => (
+          <div key={row.tier} className={styles.tier}>
+            <div className={`${styles.tierLabel} ${styles[row.colorClass]}`}>
+              <p>{row.tier}</p>
+            </div>
 
-          <div className={styles.tierContent}>
-            {row.characterIds.map((id, characterIndex) => {
-              const character = characters[id];
+            <div className={styles.tierContent}>
+              {row.characterIds.map((id, characterIndex) => {
+                const character = characters[id];
 
-              if (!character) {
-                return null;
-              }
-              const cardStyle = {
-                "--tier-index": tierIndex,
-                "--character-index": characterIndex,
-              } as CSSProperties;
+                if (!character) {
+                  return null;
+                }
+                const cardStyle = {
+                  "--tier-index": tierIndex,
+                  "--character-index": characterIndex,
+                } as CSSProperties;
 
-              return (
-                <div
-                  key={character.id}
-                  className={styles.characterCard}
-                  style={cardStyle}
-                >
-                  <CharacterGuideLink
-                    characterId={character.id}
-                    characterName={character.name}
-                    className={styles.characterGuideLink}
+                return (
+                  <div
+                    key={character.id}
+                    className={`${styles.characterCard} ${badgeStyles.card}`}
+                    style={cardStyle}
                   >
-                    <Image
-                      src={character.image}
-                      alt={character.name}
-                      width={84}
-                      height={84}
-                      className={styles.characterImage}
-                    />
-                  </CharacterGuideLink>
-                </div>
-              );
-            })}
+                    <CharacterGuideLink
+                      characterId={character.id}
+                      characterName={character.name}
+                      className={styles.characterGuideLink}
+                    >
+                      <Image
+                        src={character.image}
+                        alt={character.name}
+                        width={84}
+                        height={84}
+                        className={styles.characterImage}
+                      />
+                    </CharacterGuideLink>
+                    {badges[id] && <TierUpdateBadge badge={badges[id]} characterName={character.name} preview={preview} />}
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
-      ))}
-    </div>
+        ))}
+      </div>
+    </>
   )
 }

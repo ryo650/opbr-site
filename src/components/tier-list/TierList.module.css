@@ -45,6 +45,7 @@
 }
 
 .characterCard {
+  position: relative;
   width: 88px;
   height: 88px;
   display: flex;
