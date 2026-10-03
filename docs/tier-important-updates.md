@@ -349,3 +349,34 @@ At 1280x900 and 390x844, all five frame shadows have identical geometry and opac
 - [1280px shared Glow](tier-update-qa/compact-background-glow/desktop-1280-shared-glow.jpg)
 - [390px shared Glow](tier-update-qa/compact-background-glow/mobile-390-shared-glow.jpg)
 - [1280px shared Glow focus](tier-update-qa/compact-background-glow/desktop-1280-shared-glow-focus.jpg)
+
+
+## PR integration verification — October 3, 2026 (JST)
+
+This record supersedes the earlier prototype/integration status above. The accepted UI uses eight side streaks on Rise/Drop, a transparent central 50%, card-height fields and a terminal fade before the frame. All four kinds share frame Glow geometry, with their own colors. New Entry and Adjustment remain static. No real editorial event was registered.
+
+- Starting branch/HEAD: `feat/tier-important-updates` / `39e0236ad0166c7c3d4578ab430a3ef4e8505a7c`.
+- Committed the existing UI and QA work as `b6314ed`.
+- Fetched remote main using existing GitHub HTTPS authentication after SSH public-key authentication failed. Base main: `5c5e0f437cd2ea33c545fee39b2d50e42450961d`.
+- Merged main without conflicts as `edc6079c520934dbea4d4326f1bc00357d397c95`. No whole-worktree copy or history rewrite was used. Header, guide registry/content, sitemap, core tests and HTTP tests match main exactly. The source rankings were not edited by this feature.
+- `npm run lint`: pass.
+- `./node_modules/.bin/tsc --noEmit --incremental false`: pass.
+- Core tests: 18 pass (latest main added one beyond the requested 17). Dedicated important-update tests: 6 pass. Additional newly integrated Tier List save/share and site-update tests: 8 + 7 pass. Combined: 39/39 pass.
+- `npm run build`: pass. `/tier-list` stays static with the empty registry.
+- `TEST_BASE_URL=http://127.0.0.1:3211 npm run test:http`: 7/7 pass against the local production build, including published guide routes and sitemap.
+- Explicit selection assertions: before publication, publication inclusive, one millisecond before cutoff, exact 14-day cutoff exclusive, 30-day expired, active, mismatch, draft, future and empty: pass. Expiry retains the dated summary.
+- Production checks: registry is exactly `[]`; ordinary Tier List has zero update panels, legend or markers and no demo content, preserving its date and Nusjuro guide link. Preview returns 404 and noindex for ordinary, active-query and mismatch-query requests. Preview is absent from sitemap. All 47 public production JS/HTML files were checked for fixture identifiers/title/source and contain none. The fixture import remains server-side behind the development guard; this verification does not claim the fixture is absent from every private server build artifact.
+- In-app browser at 1280x900 and 390x844: document scroll widths equal viewport widths; 41 cards retain 88px/48px widths. Rise/Drop fields contain eight streaks each at 92px/48px height. Computed masks clear the central 25%-75% and fade vertically; Drop reverses the field with `scaleY(-1)`. Shared Glow geometry is present for all kinds. Screenshots show clear portraits and effects contained around the cards.
+- Keyboard Tab reaches the separate portrait/summary links and visible focus outline. Enter on a marker focuses the summary approximately 102px below the top; the return link reaches the Tier List heading. Native disclosure expands and reveals the S-Snake guide link. Nusjuro's portrait opens the newly integrated guide. Navigation includes Character Guides and Updates.
+- Browser scenarios: active = 5 markers and summary; exact cutoff = 0 markers and retained summary; mismatch = 4 markers and explicit “At publication: S. Current tier: SS” explanation; draft/future/empty = 0 markers and no summary. All scenarios have no horizontal overflow at 390px. Browser error log is empty. Production preview also visibly renders Page not found.
+- `git diff --check`: pass.
+
+Not rerun: physical mobile devices, a browser/assistive-technology matrix, screen-reader speech, OS reduced-motion preference switching or pointer-hover interaction. Reduced-motion CSS was reviewed: directional fields are hidden, streak animations stop, added transitions stop and affected-card hover/focus lift is removed. Existing fixture/date selection, request-time `connection()` gate and client expiry rules are unchanged by UI polishing.
+
+Screenshots below use fictional development data and the integrated main header; they are not actual OPBR update history:
+
+- [1280px integrated cards](tier-update-qa/integration-2026-10-03/desktop-1280.jpg)
+- [390px integrated cards and keyboard focus](tier-update-qa/integration-2026-10-03/mobile-390.jpg)
+- [Browser boundary scenario measurements](tier-update-qa/integration-2026-10-03/browser-scenarios.json)
+
+Publication scope ends at a Draft PR. Merge, production deployment and real-event registration are outside this task.
