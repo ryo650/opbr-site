@@ -4,7 +4,7 @@
 
 Adds one latest editorially registered important-update summary below the existing Tier List, plus affected-character colored frames and matching direction tabs. Uses the existing dark background, gold accents, rounded panels, typography and spacing. The first three characters are visible; native disclosure shows the rest, including keyboard operation and operation without JavaScript. Rise/drop/new entry/same-tier important adjustment use both symbols and text. Official notices and OPBR Guide's assessment are separate sections.
 
-**Production events are intentionally empty.** Git history confirms placement edits but does not establish official notice dates or the editorial reasons for a major review. No fictional OPBR change is published. `/tier-list` therefore shows the existing page with no additional panel or markers. Its hard-coded `Last updated: September 18, 2026` is preserved. The preview uses explicitly fictional examples with existing character art; it never changes `src/data/tierList.ts`.
+**Production now has one editorially registered event.** Happy Halloween Uta is published as a `rise` from unranked to B Tier. The event uses the OPBR Guide assessment supplied for this review; no official-adjustment block is included until its notice date and HTTPS source are separately verified. The Tier List `Last updated` date is October 3, 2026. The development preview continues to use explicitly fictional examples and never changes `src/data/tierList.ts`.
 
 Neither Create Tier List, news, global navigation, medals nor Nusjuro guide files were edited. The original checkout remained on `main` at `774021265d7f307abdcfd60b1c0c816441b216ee` with no uncommitted differences during verification. Initial worktrees were the original checkout and `/Users/sasakiryou/.codex/worktrees/6c7c/opbr-site` (detached `3edc7596fd41f95ff6bc573dce7ed74275b1c4ae`). Work began from the original `HEAD`, which matched the locally available `origin/main`; no fetch, push, PR, merge or deployment was performed.
 
@@ -14,7 +14,7 @@ Edit `src/data/tier-important-updates.ts` after verifying a real event. Registra
 
 - Unique event ID, explicit `draft`/`published` status and ISO publication timestamp with timezone.
 - Title and editorial summary; each affected character has an existing ID, change kind, from/to tier and a short OPBR Guide assessment.
-- A `new` entry has `fromTier: null`; `adjustment` keeps the same tier. `rise`/`fall` follow the order `god, SS, S, A, B, C, D`.
+- A `new` entry has `fromTier: null`. A `rise` may also use `fromTier: null` when an existing character moves from unranked into a tier; this remains a Rise rather than a New Entry. `adjustment` keeps the same tier. Ranked `rise`/`fall` transitions follow the order `god, SS, S, A, B, C, D`.
 - An optional official-adjustment section contains only verified facts, its official notice date and HTTPS source. The site's tier evaluation belongs in `reason`, not in that section. For a meta review without an official notice, omit this section.
 - Set `published` only when approved for publication. Scheduled future events and drafts are not displayed early. Sort order in the data file does not matter; the newest published event at request time wins. Avoid identical publication timestamps; ties resolve deterministically by event ID.
 - Update the existing current rankings separately when justified; this UI never changes them. The page's existing Last updated string remains separately maintained.
@@ -380,3 +380,14 @@ Screenshots below use fictional development data and the integrated main header;
 - [Browser boundary scenario measurements](tier-update-qa/integration-2026-10-03/browser-scenarios.json)
 
 Publication scope ends at a Draft PR. Merge, production deployment and real-event registration are outside this task.
+
+
+## Production event registration — October 3, 2026
+
+Happy Halloween Uta is the first real event registered with this UI. The event is published as **Rise · Unranked → B** for `happy-halloween-uta`. This distinguishes an existing character rising from outside the ranked list from a `new` entry, which remains reserved for New Entry semantics.
+
+OPBR Guide assessment:
+
+> The recent buffs greatly improved Uta’s Treasure control and durability. Above 50% HP, she can ignore enemies while capturing Treasure and while charging her team’s Treasure Gauge up to 150%, making her significantly more reliable in contested Treasure Areas.
+
+No `officialAdjustment` object is attached in this change because an official notice date and HTTPS source were not added as part of this review. The ranking already places Happy Halloween Uta in B Tier, so the production Rise marker is coherent with the current table.

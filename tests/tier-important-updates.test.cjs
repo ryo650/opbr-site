@@ -58,6 +58,23 @@ test('all four editorial change kinds are represented; same-tier adjustment can 
   assert.deepEqual(new Set(Object.values(state([demoUpdate]).badges).map((badge) => badge.kind)), new Set(['rise', 'fall', 'new', 'adjustment']));
 });
 
+test('rise can represent an existing character moving from unranked into a tier', () => {
+  const event = {
+    ...demoUpdate,
+    id: 'unranked-rise',
+    changes: [{
+      characterId: 'happy-halloween-uta',
+      kind: 'rise',
+      fromTier: null,
+      toTier: 'B',
+      reason: 'Buffed into the ranked list.',
+    }],
+  };
+  const result = state([event], Date.parse(event.publishedAt));
+  assert.equal(result.badges['happy-halloween-uta'].kind, 'rise');
+  assert.equal(result.update.changes[0].fromTier, null);
+});
+
 test('registered production events have explicit, coherent editorial data and official sources', () => {
   const ranks = ['god', 'SS', 'S', 'A', 'B', 'C', 'D'];
   const ids = new Set();
@@ -79,9 +96,10 @@ test('registered production events have explicit, coherent editorial data and of
       affected.add(change.characterId);
       assert.ok(change.reason.trim() && ranks.includes(change.toTier));
       if (change.kind === 'new') assert.equal(change.fromTier, null);
-      else assert.ok(ranks.includes(change.fromTier));
-      if (change.kind === 'rise') assert.ok(ranks.indexOf(change.toTier) < ranks.indexOf(change.fromTier));
-      else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) > ranks.indexOf(change.fromTier));
+      else if (!(change.kind === 'rise' && change.fromTier === null)) assert.ok(ranks.includes(change.fromTier));
+      if (change.kind === 'rise') {
+        if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) < ranks.indexOf(change.fromTier));
+      } else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) > ranks.indexOf(change.fromTier));
       else if (change.kind === 'adjustment') assert.equal(change.fromTier, change.toTier);
       else assert.equal(change.kind, 'new');
     }
