@@ -482,6 +482,38 @@ test("explicit reviewed character mappings resolve OCR without fuzzy matching", 
   assert.equal(result.rows[0].manuallyResolved, true);
 });
 
+test("reviewed legacy spellings resolve to current canonical characters", async () => {
+  const { characters } = await loadCharacterMaster(characterDir);
+  const aliases = {
+    "Red-Haired-Pirates-Sharp-Shooter-Yassop": "red-haired-pirates-sharp-shooter-yasopp",
+    "Don-Quixote-Pirates-Supremr-Officer-Vergo": "don-quixote-pirates-supreme-officer-vergo",
+    "Buggy-Pirates-Chie-of-Staff-Cabaji": "buggy-pirates-chief-of-staff-cabaji",
+    "Straw-Hat-Pirates-Archaelogist-Nico-Robin": "straw-hat-pirates-archaeologist-nico-robin",
+    "The-Five-Elders-St-Jaygarcia-Satuen": "the-five-elders-st-jaygarcia-saturn",
+  };
+  for (const [legacyName, id] of Object.entries(aliases)) {
+    const canonical = characters.find((character) => character.id === id);
+    assert.ok(canonical);
+    for (const name of [legacyName, canonical.name]) {
+      const result = extractCharacterRows([characterPage([{ nameParts: [name], rate: "1.0%", featured: true }])], characters);
+      assert.deepEqual(result.issues, []);
+      assert.equal(result.rows.length, 1);
+      assert.equal(result.rows[0].character.id, id);
+    }
+  }
+});
+
+test("reviewed legacy aliases stop on collisions instead of overriding a character", () => {
+  const result = extractCharacterRows([characterPage([{
+    nameParts: ["Red-Haired-Pirates-Sharp-Shooter-Yassop"], rate: "1.0%", featured: true,
+  }])], [
+    { id: "red-haired-pirates-sharp-shooter-yasopp", name: "Red-Haired Pirates Sharp Shooter Yasopp", grade: "bf" },
+    { id: "legacy-collision", name: "Red-Haired-Pirates-Sharp-Shooter-Yassop", grade: "bf" },
+  ]);
+  assert.equal(result.rows.length, 0);
+  assert.equal(result.issues[0].code, "ambiguous-character-name");
+});
+
 test("real Character Drop Rates boxes reconstruct rows and exclude the left Scout UI", async () => {
   const master = await loadCharacterMaster(characterDir);
   const result = extractCharacterRows(

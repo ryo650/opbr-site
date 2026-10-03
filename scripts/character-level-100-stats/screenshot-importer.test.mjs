@@ -1,5 +1,8 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { readFile } from "node:fs/promises";
+import { fileURLToPath } from "node:url";
+import { loadCharacterMaster } from "../scout-importer/character-master.mjs";
 import {
   buildCharacterStatsScreenshotDraft,
   createCharacterNameMatcher,
@@ -23,6 +26,28 @@ const canonicalCharacters = {
     role: "runner",
   },
 };
+
+test("reviewed legacy inputs and current names resolve to the same real character ID", async () => {
+  const { characters: master } = await loadCharacterMaster(fileURLToPath(new URL("../../src/data/characters/", import.meta.url)));
+  const catalog = Object.fromEntries(master.map((character) => [character.id, character]));
+  const aliases = JSON.parse(await readFile(new URL("./reviewed-character-name-aliases.json", import.meta.url), "utf8"));
+  const keys = Object.keys(aliases).map(normalizeCharacterName);
+  assert.equal(new Set(keys).size, keys.length);
+  const matcher = createCharacterNameMatcher(catalog, aliases);
+  for (const [legacyName, id] of Object.entries(aliases)) {
+    assert.ok(catalog[id]);
+    for (const name of [legacyName, catalog[id].name]) {
+      const result = matcher({ characterName: name, identityLines: [name] });
+      assert.equal(result.status, "matched");
+      assert.equal(result.characterId, id);
+      assert.deepEqual(result.candidates, []);
+    }
+    for (const [otherId, character] of Object.entries(catalog)) {
+      if (otherId === id) continue;
+      assert.notEqual(normalizeCharacterName(character.name), normalizeCharacterName(legacyName));
+    }
+  }
+});
 
 const fixtureOcr = {
   characterName: {

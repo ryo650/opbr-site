@@ -17,11 +17,11 @@ export type WeaknessGuidePoint = GuidePoint | {
     howToManage: string;
 };
 
-export type HowToPlayGuidePoint = GuidePoint | {
+export type HowToPlayGuidePoint = (GuidePoint | {
     title: string;
     objective: string;
     action: string;
-};
+}) & { video?: string };
 
 
 export type GuideOverview = {
@@ -102,6 +102,7 @@ export type CharacterGuide = {
     weaknesses?: WeaknessGuidePoint[];
     normalAttacks?: NormalAttackGuide[];
     skillGroups?: SkillGroup[];
+    traits?: GuidePoint[];
     howToPlay?: HowToPlayGuidePoint[];
     counters?: CounterMatchup[];
     strongAgainst?: StrongAgainstMatchup[];

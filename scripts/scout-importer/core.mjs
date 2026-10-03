@@ -14,6 +14,15 @@ const ZERO = decimal("0");
 const ONE_HUNDRED = decimal("100");
 const DISPLAY_RATE_TOLERANCE = 0.001;
 
+// Exact legacy inputs only. Keep reviewed misspellings out of canonical names.
+const REVIEWED_CHARACTER_NAME_ALIASES = {
+  "Red-Haired-Pirates-Sharp-Shooter-Yassop": "red-haired-pirates-sharp-shooter-yasopp",
+  "Don-Quixote-Pirates-Supremr-Officer-Vergo": "don-quixote-pirates-supreme-officer-vergo",
+  "Buggy-Pirates-Chie-of-Staff-Cabaji": "buggy-pirates-chief-of-staff-cabaji",
+  "Straw-Hat-Pirates-Archaelogist-Nico-Robin": "straw-hat-pirates-archaeologist-nico-robin",
+  "The-Five-Elders-St-Jaygarcia-Satuen": "the-five-elders-st-jaygarcia-saturn",
+};
+
 function ratesMatchWithinDisplayPrecision(left, right) {
   return Math.abs(decimalToNumber(left) - decimalToNumber(right)) <= DISPLAY_RATE_TOLERANCE;
 }
@@ -171,6 +180,14 @@ export function createCharacterNameIndex(characters) {
         index.get(key).push(character);
       }
     }
+  }
+  for (const [legacyName, characterId] of Object.entries(REVIEWED_CHARACTER_NAME_ALIASES)) {
+    const character = characters.find(({ id }) => id === characterId);
+    if (!character) continue;
+    const key = characterComparisonKey(legacyName);
+    const entries = index.get(key) ?? [];
+    if (!entries.some(({ id }) => id === characterId)) entries.push(character);
+    index.set(key, entries);
   }
   return index;
 }

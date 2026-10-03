@@ -6,8 +6,10 @@ import { characters } from "@/data/characters";
 import type { Character } from "@/data/characters/type";
 import styles from "./CreateTierList.module.css";
 
-type TierGrade = "god" | "ss" | "s" | "a" | "b" | "c" | "d";
-type TierState = Record<TierGrade, string[]>;
+import { emptyTiers, MAX_TITLE_LENGTH } from "@/lib/tier-list-document";
+import type { TierGrade, TierState } from "@/lib/tier-list-document";
+import { useTierListPersistence } from "./useTierListPersistence";
+import TierListActions from "./TierListActions";
 type SortOrder = "default" | "name-asc" | "name-desc";
 type DropZone = TierGrade | "pool";
 type DropPlacement = "before" | "after";
@@ -17,23 +19,22 @@ const tiers: { id: TierGrade; label: string }[] = [
   { id: "god", label: "GOD" }, { id: "ss", label: "SS" }, { id: "s", label: "S" },
   { id: "a", label: "A" }, { id: "b", label: "B" }, { id: "c", label: "C" }, { id: "d", label: "D" },
 ];
-const emptyTiers = (): TierState => ({ god: [], ss: [], s: [], a: [], b: [], c: [], d: [] });
 const allCharacters = Object.values(characters);
 const allIds = allCharacters.map((character) => character.id);
 const grades: Character["grade"][] = ["ex", "bf", "sp", "star-4", "star-3", "star-2", "free", "exchange", "cola", "unknown"];
 const preventTouchScroll = (event: TouchEvent) => event.preventDefault();
 
-function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onHandlePointerStart, onHandlePointerMove, onHandlePointerEnd, onPointerCancel, onSelect }: {
-  character: Character; isDragging: boolean; onDragStart: (event: DragEvent<HTMLDivElement>, id: string) => void; onDragEnd: () => void; onHandlePointerStart: (event: PointerEvent<HTMLButtonElement>, id: string) => void;
+function CharacterCard({ character, readOnly, isDragging, onDragStart, onDragEnd, onHandlePointerStart, onHandlePointerMove, onHandlePointerEnd, onPointerCancel, onSelect }: {
+  character: Character; readOnly: boolean; isDragging: boolean; onDragStart: (event: DragEvent<HTMLDivElement>, id: string) => void; onDragEnd: () => void; onHandlePointerStart: (event: PointerEvent<HTMLButtonElement>, id: string) => void;
   onHandlePointerMove: (event: PointerEvent<HTMLButtonElement>) => void; onHandlePointerEnd: (event: PointerEvent<HTMLButtonElement>) => void;
   onPointerCancel: () => void; onSelect: (id: string) => void;
 }) {
-  return <div className={`${styles.characterCard} ${isDragging ? styles.draggingSource : ""}`} draggable onDragStart={(event) => onDragStart(event, character.id)} onDragEnd={onDragEnd}
+  return <div className={`${styles.characterCard} ${isDragging ? styles.draggingSource : ""}`} draggable={!readOnly} onDragStart={(event) => onDragStart(event, character.id)} onDragEnd={onDragEnd}
     onContextMenu={(event) => event.preventDefault()}
     title={`${character.name} · ${character.element} · ${character.role} · ${character.grade}`}>
     <Image src={character.image} alt={character.name} width={72} height={72} draggable={false} className={styles.characterImage} />
-    <button type="button" className={styles.chooseCharacter} aria-label={`Choose a tier for ${character.name}`} onClick={() => onSelect(character.id)} />
-    <button type="button" className={styles.dragHandle} draggable={false} aria-label={`Drag ${character.name}`}
+    <button type="button" className={styles.chooseCharacter} disabled={readOnly} aria-label={`Choose a tier for ${character.name}`} onClick={() => onSelect(character.id)} />
+    <button type="button" className={styles.dragHandle} disabled={readOnly} draggable={false} aria-label={`Drag ${character.name}`}
       onClick={(event) => event.stopPropagation()} onPointerDown={(event) => onHandlePointerStart(event, character.id)} onPointerMove={onHandlePointerMove}
       onPointerUp={onHandlePointerEnd} onPointerCancel={onPointerCancel}>⣿</button>
     {/*<span className={styles.characterName}>{character.name}</span>
@@ -42,9 +43,10 @@ function CharacterCard({ character, isDragging, onDragStart, onDragEnd, onHandle
 }
 
 export default function CreateTierList() {
-  const [title, setTitle] = useState("My OPBR Tier List");
-  const [tierState, setTierState] = useState<TierState>(emptyTiers);
-  const [poolOrder, setPoolOrder] = useState(allIds);
+  const persistence = useTierListPersistence(allIds);
+  const { session, setTitle, setTierState, setPoolOrder } = persistence;
+  const { title, tiers: tierState, pool: poolOrder } = session.document;
+  const readOnly = session.shared || !session.ready;
   const [query, setQuery] = useState("");
   const [element, setElement] = useState<"all" | Character["element"]>("all");
   const [role, setRole] = useState<"all" | "attacker" | "defender" | "runner">("all");
@@ -93,7 +95,7 @@ export default function CreateTierList() {
   }, []);
 
   const moveCharacter = (id: string, destination: DropZone, targetId?: string, placement: DropPlacement = "after") => {
-    if (!Object.hasOwn(characters, id) || targetId === id) return;
+    if (readOnly || !Object.hasOwn(characters, id) || targetId === id) return;
     setTierState((current) => {
       const next = Object.fromEntries(tiers.map((tier) => [tier.id, current[tier.id].filter((item) => item !== id)])) as TierState;
       if (destination !== "pool") {
@@ -121,6 +123,7 @@ export default function CreateTierList() {
   };
   const drop = (intent: DropIntent) => { if (activeId.current) moveCharacter(activeId.current, intent.destination, intent.targetId, intent.placement); clearDragState(); };
   const dragStartHandler = (event: DragEvent<HTMLDivElement>, id: string) => {
+    if (readOnly) { event.preventDefault(); return; }
     activeId.current = id; setDraggingId(id);
     event.dataTransfer.effectAllowed = "move"; event.dataTransfer.setData("text/plain", id);
     const rect = event.currentTarget.getBoundingClientRect();
@@ -129,11 +132,12 @@ export default function CreateTierList() {
     preview.style.width = `${rect.width}px`; document.body.appendChild(preview); dragPreviewElement.current = preview;
     event.dataTransfer.setDragImage(preview, event.clientX - rect.left, event.clientY - rect.top);
   };
-  const dragOverHandler = (event: DragEvent<HTMLElement>, destination: DropZone) => { event.preventDefault(); event.dataTransfer.dropEffect = "move"; setDropIntent(getIntent(destination, event.target as Element, event.clientX)); };
+  const dragOverHandler = (event: DragEvent<HTMLElement>, destination: DropZone) => { if (readOnly) return; event.preventDefault(); event.dataTransfer.dropEffect = "move"; setDropIntent(getIntent(destination, event.target as Element, event.clientX)); };
   const dragLeaveHandler = (event: DragEvent<HTMLElement>) => { if (!event.currentTarget.contains(event.relatedTarget as Node | null)) setDropIntent(null); };
   const dropFromDataTransfer = (event: DragEvent<HTMLElement>, destination: DropZone) => { event.preventDefault(); const id = event.dataTransfer.getData("text/plain"); const intent = getIntent(destination, event.target as Element, event.clientX); if (id) moveCharacter(id, destination, intent.targetId, intent.placement); clearDragState(); };
   const handlePointerStart = (event: PointerEvent<HTMLButtonElement>, id: string) => {
     event.stopPropagation();
+    if (readOnly) return;
     if (event.pointerType !== "touch" && event.pointerType !== "pen") return;
     event.preventDefault(); pointerDrag.current = { id, pointerId: event.pointerId, target: event.currentTarget }; activeId.current = id;
     event.currentTarget.setPointerCapture(event.pointerId); document.body.classList.add(styles.pointerDraggingBody);
@@ -161,12 +165,13 @@ export default function CreateTierList() {
   const selectDestination = (destination: DropZone) => { if (!selectedCharacterId) return; moveCharacter(selectedCharacterId, destination); setSelectedCharacterId(null); };
   const reset = () => { if (window.confirm("Reset this tier list? Your current placements and filters will be cleared.")) { setTitle("My OPBR Tier List"); setTierState(emptyTiers()); setPoolOrder(allIds); setQuery(""); setElement("all"); setRole("all"); setGrade("all"); setSort("default"); setSelectedCharacterId(null); } };
 
-  const characterCardProps = { onDragStart: dragStartHandler, onDragEnd: clearDragState, onHandlePointerStart: handlePointerStart, onHandlePointerMove: handlePointerMove, onHandlePointerEnd: handlePointerEnd, onPointerCancel: pointerCancelHandler, onSelect: setSelectedCharacterId };
+  const characterCardProps = { readOnly, onDragStart: dragStartHandler, onDragEnd: clearDragState, onHandlePointerStart: handlePointerStart, onHandlePointerMove: handlePointerMove, onHandlePointerEnd: handlePointerEnd, onPointerCancel: pointerCancelHandler, onSelect: setSelectedCharacterId };
 
   return <div className={styles.container}>
-    <header className={styles.header}><div><p className={styles.eyebrow}>OPBR Tools</p><h1>Create Tier List</h1><p>Build your own OPBR tier list. Drag characters into tiers to create your personal ranking.</p></div><button type="button" className={styles.reset} onClick={reset}>Reset</button></header>
-    <label className={styles.titleLabel}>Tier List name<input value={title} onChange={(event) => setTitle(event.target.value)} /></label>
-    <section aria-label={`${title} tiers`} className={styles.tierList}>{tiers.map((tier) => <div className={styles.tierRow} key={tier.id}><div className={`${styles.tierLabel} ${styles[tier.id]}`}>{tier.label}</div><div className={`${styles.tierContent} ${dropIntent?.destination === tier.id && !dropIntent.targetId ? styles.dropAtEnd : ""}`} data-zone-container={tier.id} data-empty={tierState[tier.id].length === 0} onDragOver={(event) => dragOverHandler(event, tier.id)} onDragLeave={dragLeaveHandler} onDrop={(event) => dropFromDataTransfer(event, tier.id)}>{tierState[tier.id].map((id) => { const character = characters[id]; const indicator = dropIntent?.destination === tier.id && dropIntent.targetId === id ? (dropIntent.placement === "before" ? styles.dropBefore : styles.dropAfter) : ""; return character && <div className={`${styles.characterSlot} ${indicator}`} key={id} data-character-id={id}><CharacterCard character={character} isDragging={draggingId === id} {...characterCardProps} /></div>; })}<span className={styles.dropHint}>{tierState[tier.id].length === 0 ? "Drop characters here" : ""}</span></div></div>)}</section>
+    <header className={styles.header}><div><p className={styles.eyebrow}>OPBR Tools</p><h1>Create Tier List</h1><p>Build your own OPBR tier list. Drag characters into tiers to create your personal ranking.</p></div><button type="button" className={styles.reset} disabled={readOnly} onClick={reset}>Reset</button></header>
+    <TierListActions persistence={persistence} />
+    <label className={styles.titleLabel}>Tier List name<input readOnly={readOnly} maxLength={MAX_TITLE_LENGTH} value={title} onChange={(event) => setTitle(event.target.value)} /></label>
+    <section aria-label={`${title} tiers`} className={styles.tierList}>{tiers.map((tier) => <div className={styles.tierRow} key={tier.id}><div className={`${styles.tierLabel} ${styles[tier.id]}`}>{tier.label}</div><div className={`${styles.tierContent} ${dropIntent?.destination === tier.id && !dropIntent.targetId ? styles.dropAtEnd : ""}`} data-zone-container={tier.id} data-empty={tierState[tier.id].length === 0} onDragOver={(event) => dragOverHandler(event, tier.id)} onDragLeave={dragLeaveHandler} onDrop={(event) => dropFromDataTransfer(event, tier.id)}>{tierState[tier.id].map((id) => { const character = characters[id]; const indicator = dropIntent?.destination === tier.id && dropIntent.targetId === id ? (dropIntent.placement === "before" ? styles.dropBefore : styles.dropAfter) : ""; return character && <div className={`${styles.characterSlot} ${indicator}`} key={id} data-character-id={id}><CharacterCard character={character} isDragging={draggingId === id} {...characterCardProps} /></div>; })}<span className={styles.dropHint}>{tierState[tier.id].length === 0 ? (session.shared ? "No characters" : "Drop characters here") : ""}</span></div></div>)}</section>
     <section className={styles.poolSection}><div className={styles.poolHeading}><div><h2>Available Characters</h2><p>{pool.length} characters available</p></div></div><div className={styles.filters}><input aria-label="Search characters" placeholder="Search characters..." value={query} onChange={(event) => setQuery(event.target.value)} /><select aria-label="Element filter" value={element} onChange={(event) => setElement(event.target.value as typeof element)}><option value="all">Element: All</option>{["red", "blue", "green", "white", "black"].map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Role filter" value={role} onChange={(event) => setRole(event.target.value as typeof role)}><option value="all">Role: All</option>{["attacker", "defender", "runner"].map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Grade filter" value={grade} onChange={(event) => setGrade(event.target.value as typeof grade)}><option value="all">Grade: All</option>{grades.map((value) => <option key={value} value={value}>{value}</option>)}</select><select aria-label="Sort characters" value={sort} onChange={(event) => setSort(event.target.value as SortOrder)}><option value="default">Default</option><option value="name-asc">Name A–Z</option><option value="name-desc">Name Z–A</option></select></div>
     <div className={`${styles.pool} ${dropIntent?.destination === "pool" && !dropIntent.targetId ? styles.dropAtEnd : ""}`} data-zone-container="pool" onDragOver={(event) => dragOverHandler(event, "pool")} onDragLeave={dragLeaveHandler} onDrop={(event) => dropFromDataTransfer(event, "pool")}>{filteredPool.map((character) => { const indicator = dropIntent?.destination === "pool" && dropIntent.targetId === character.id ? (dropIntent.placement === "before" ? styles.dropBefore : styles.dropAfter) : ""; return <div className={`${styles.characterSlot} ${indicator}`} key={character.id} data-character-id={character.id}><CharacterCard character={character} isDragging={draggingId === character.id} {...characterCardProps} /></div>; })}{filteredPool.length === 0 && <p className={styles.empty}>No unranked characters match your search and filters.</p>}</div></section>
     {pointerPreview && characters[pointerPreview.id] && <div className={`${styles.characterCard} ${styles.pointerDragPreview}`} style={{ left: pointerPreview.x, top: pointerPreview.y }} aria-hidden="true"><Image src={characters[pointerPreview.id].image} alt="" width={72} height={72} draggable={false} className={styles.characterImage} /></div>}

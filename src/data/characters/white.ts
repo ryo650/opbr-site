@@ -4,7 +4,7 @@ import type { Character } from "./type.ts";
 export const whiteCharacters: Record<string, Character> = {
     "navy-hq-sword-prince-grus": {
         id: "navy-hq-sword-prince-grus",
-        name: "Navy-HQ-Sword-Prince-Grus",
+        name: "Navy HQ SWORD Prince Grus",
         image: "/characters/white/navy-hq-sword-prince-grus.webp",
         grade: "bf",
         element: "white",
@@ -12,7 +12,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "navy-hq-sword-hibari": {
         id: "navy-hq-sword-hibari",
-        name: "Navy-HQ-Sword-Hibari",
+        name: "Navy HQ SWORD Hibari",
         image: "/characters/white/navy-hq-sword-hibari.webp",
         grade: "star-4",
         element: "white",
@@ -20,7 +20,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "asl-ace-sabo-luffy":{
         id: "asl-ace-sabo-luffy",
-        name:"ASL-Ace-Sabo-Luffy",
+        name:"ASL Ace & Sabo & Luffy",
         image: "/characters/white/asl-ace-sabo-luffy.webp",
         grade: "bf",
         element: "white",
@@ -28,7 +28,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "egghead-tony-tony-chopper":{
         id: "egghead-tony-tony-chopper",
-        name:"Egghead-Tony-Tony-Chopper",
+        name:"Egghead Tony Tony Chopper",
         image: "/characters/white/egghead-tony-tony-chopper.webp",
         grade: "bf",
         element: "white",
@@ -36,7 +36,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "great-pirate-edward-newgate":{
         id: "great-pirate-edward-newgate",
-        name:"Great-Pirate-Edward-Newgate",
+        name:"Great Pirate Edward Newgate",
         image: "/characters/white/great-pirate-edward-newgate.webp",
         grade: "ex",
         element: "white",
@@ -44,7 +44,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "the-four-emperors-monkey-d-luffy":{
         id: "the-four-emperors-monkey-d-luffy",
-        name:"The-Four-Emperors-Monkey-D.Luffy",
+        name:"The Four Emperors Monkey D. Luffy",
         image: "/characters/white/the-four-emperors-monkey-d-luffy.webp",
         grade: "ex",
         element: "white",
@@ -52,7 +52,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "heir-to-the-shogun-of-wano-kozuki-oden":{
         id: "heir-to-the-shogun-of-wano-kozuki-oden",
-        name:"Heir-to-the-Shogun-of-Wano-Kozuki-Oden",
+        name:"Heir to the Shogun of Wano Kozuki Oden",
         image: "/characters/white/heir-to-the-shogun-of-wano-kozuki-oden.webp",
         grade: "bf",
         element: "white",
@@ -60,7 +60,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "awakened-form-kaku": {
         id: "awakened-form-kaku",
-        name: "Awakened-Form-Kaku",
+        name: "Awakened Form Kaku",
         image: "/characters/white/awakened-form-kaku.webp",
         grade: "bf",
         element: "white",
@@ -68,7 +68,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "blind-swordsman-fujitora": {
         id: "blind-swordsman-fujitora",
-        name: "Blind-Swordsman-Fujitora",
+        name: "Blind Swordsman Fujitora",
         image: "/characters/white/blind-swordsman-fujitora.webp",
         grade: "bf",
         element: "white",
@@ -76,7 +76,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "celestial-dragon-st-charlos": {
         id: "celestial-dragon-st-charlos",
-        name: "Celestial-Dragon-St.charlos",
+        name: "Celestial Dragon St. Charlos",
         image: "/characters/white/celestial-dragon-st-charlos.webp",
         grade: "exchange",
         element: "white",
@@ -84,7 +84,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "divine-departure-shanks": {
         id: "divine-departure-shanks",
-        name: "Divine-Departure-Shanks",
+        name: "Divine Departure Shanks",
         image: "/characters/white/divine-departure-shanks.webp",
         grade: "ex",
         element: "white",
@@ -92,7 +92,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "egghead-nico-robin": {
         id: "egghead-nico-robin",
-        name: "Egghead-Nico-Robin",
+        name: "Egghead Nico Robin",
         image: "/characters/white/egghead-nico-robin.webp",
         grade: "bf",
         element: "white",
@@ -100,7 +100,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "egghead-roronoa-zoro": {
         id: "egghead-roronoa-zoro",
-        name: "Egghead-Roronoa-Zoro",
+        name: "Egghead Roronoa Zoro",
         image: "/characters/white/egghead-roronoa-zoro.webp",
         grade: "bf",
         element: "white",
@@ -108,7 +108,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "egghead-usopp": {
         id: "egghead-usopp",
-        name: "Egghead-Usopp",
+        name: "Egghead Usopp",
         image: "/characters/white/egghead-usopp.webp",
         grade: "bf",
         element: "white",
@@ -116,7 +116,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "fake-straw-hat-pirates-captain-demaro-black": {
         id: "fake-straw-hat-pirates-captain-demaro-black",
-        name: "Fake-Straw-Hat-Pirates-Captain-Demaro-Black",
+        name: "Fake Straw Hat Pirates Captain Demaro Black",
         image: "/characters/white/fake-straw-hat-pirates-captain-demaro-black.webp",
         grade: "exchange",
         element: "white",
@@ -124,7 +124,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "happosui-army-13th-chief-sai": {
         id: "happosui-army-13th-chief-sai",
-        name: "Happosui-Army-13th-Chief-Sai",
+        name: "Happosui Army 13th Chief Sai",
         image: "/characters/white/happosui-army-13th-chief-sai.webp",
         grade: "bf",
         element: "white",
@@ -132,7 +132,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "navy-hq-lt-commander-helmeppo": {
         id: "navy-hq-lt-commander-helmeppo",
-        name: "Navy-Hq-Lt-Commander-Helmeppo",
+        name: "Navy HQ Lt. Commander Helmeppo",
         image: "/characters/white/navy-hq-lt-commander-helmeppo.webp",
         grade: "star-4",
         element: "white",
@@ -140,7 +140,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "whole-cake-island-carrot": {
         id: "whole-cake-island-carrot",
-        name: "Whole-Cake-Island-Carrot",
+        name: "Whole Cake Island Carrot",
         image: "/characters/white/whole-cake-island-carrot.webp",
         grade: "star-4",
         element: "white",
@@ -148,7 +148,7 @@ export const whiteCharacters: Record<string, Character> = {
     },
     "winner-island-bepo": {
         id: "winner-island-bepo",
-        name: "Winner-Island-Bepo",
+        name: "Winner Island Bepo",
         image: "/characters/white/winner-island-bepo.webp",
         grade: "bf",
         element: "white",

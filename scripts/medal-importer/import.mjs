@@ -45,6 +45,14 @@ import {
   RATE_SCROLLBAR_CROP,
 } from "./rate-coverage.mjs";
 import { groupScreens, mergeTagPages } from "./tag-pages.mjs";
+import {
+  compareTagResults,
+  createTagAudit,
+  publishWithTagAudit,
+  sourceImageSha256,
+  tagComparisonCrop,
+  verifySourceImageHash,
+} from "./tag-review.mjs";
 
 const importerDir = path.dirname(fileURLToPath(import.meta.url));
 const projectDir = path.resolve(importerDir, "../..");
@@ -629,6 +637,21 @@ for (const input of inputFiles) {
   }
 }
 
+const audit = await createTagAudit(path.join(importerDir, "audit"), {
+  mode: regressionMode ? "regression" : dryRun ? "dry-run" : "incremental",
+});
+console.log(`Tag audit: ${audit.file}`);
+const sourceHashes = new Map();
+for (const input of inputFiles) {
+  try {
+    sourceHashes.set(input.file, await sourceImageSha256(input.path));
+  } catch (error) {
+    await audit.append({ event: "source-hash-failed", sourceImage: input.file, error: error.message });
+    await audit.close();
+    throw error;
+  }
+}
+
 const ocr = JSON.parse(
   run(swiftCommand, [ocrPath, ...inputFiles.map((item) => item.path)]),
 );
@@ -909,30 +932,52 @@ for (const group of groups) {
     }
   }
   const tagPageResults = [];
+  const tagOcrComparisons = [];
+  const candidateMedalId = fixture?.id ?? (details.name ? medalIdFromName(details.name) : null);
   for (const { file, ocr: tagOcr } of tagOcrPages) {
-    let extracted = extractTags(tagOcr, file);
-    if (extracted.issues.some((tagIssue) => tagIssue.code === "missing-tags")) {
-      const retry = await retryFieldOcr(
+    const extracted = extractTags(tagOcr, file);
+    const record = {
+      medalId: candidateMedalId,
+      sourceImage: file,
+      sourceImageSha256: sourceHashes.get(file),
+      detectedTags: extracted.tags,
+      tagRegionDetectedTags: null,
+      reviewStatus: "pending",
+      importedAt: null,
+    };
+    await audit.append({ event: "comparison-started", records: [record] });
+    let region;
+    let retry;
+    let compared;
+    try {
+      retry = await retryFieldOcr(
         path.join(inputDir, file),
         "tags",
-        review.fieldCrops.tags,
+        tagComparisonCrop(review.screenshotSize, review.fieldCrops.tags.scale),
       );
-      const retried = extractTags(
-        rebaseFieldOcrToScreenshot(retry, review.screenshotSize),
-        file,
-      );
-      const resolved = retried.tags.length > 0 && retried.issues.length === 0;
-      fieldOcrRetries.push({
-        field: "tags",
-        screenshot: file,
-        crop: retry.crop,
-        initialOcr: tagOcr.lines,
-        retryOcr: retry.lines,
-        resolved,
-      });
-      if (resolved) extracted = retried;
+      // Detect an input replaced while either OCR pass was running.
+      await verifySourceImageHash(path.join(inputDir, file), record.sourceImageSha256);
+      region = extractTags(rebaseFieldOcrToScreenshot(retry, review.screenshotSize), file);
+      compared = compareTagResults(extracted, region, file);
+    } catch (error) {
+      await audit.append({ event: "comparison-failed", records: [record], error: error.message });
+      await audit.close();
+      throw error;
     }
-    tagPageResults.push({ file, ...extracted });
+    record.tagRegionDetectedTags = region.tags;
+    if (!compared.matches || compared.issues.length > 0) record.reviewStatus = "needs-review";
+    await audit.append({ event: "comparison-complete", records: [record] });
+    tagOcrComparisons.push(record);
+    fieldOcrRetries.push({
+      field: "tags",
+      screenshot: file,
+      crop: retry.crop,
+      initialOcr: tagOcr.lines,
+      retryOcr: retry.lines,
+      matches: compared.matches,
+      resolved: false, // Diagnostic comparison only; never replace normal tags.
+    });
+    tagPageResults.push({ file, ...compared });
   }
   const tagResult = mergeTagPages(tagPageResults);
   const draftIssues = [...details.issues, ...tagResult.issues];
@@ -1080,6 +1125,7 @@ for (const group of groups) {
       ? { detailsContinuations: detailsContinuationDiagnostics }
       : {}),
     tagPages: tagResult.pages,
+    tagOcrComparisons,
     rateCoverage: {
       ...rateCoverage,
       traitKindCount: traitKinds.size,
@@ -1125,6 +1171,11 @@ for (const group of groups) {
       );
     }
     if (regressionIssues.length > 0) {
+      await audit.append({
+        event: "regression-failed",
+        records: tagOcrComparisons.map((record) => ({ ...record, medalId: fixture.id, reviewStatus: "needs-review" })),
+      });
+      await audit.close();
       throw new Error(
         `Regression fixture failed: ${fixture.name}\n${regressionIssues.map((value) => (typeof value === "string" ? value : JSON.stringify(value))).join("\n")}`,
       );
@@ -1212,6 +1263,14 @@ for (const conflict of mergePlan.conflicts) {
   draft.needsReview = true;
   draft.validationPassed = false;
 }
+
+for (const draft of drafts) {
+  for (const record of draft.tagOcrComparisons) {
+    record.medalId = draft.id;
+    record.reviewStatus = draft.needsReview ? "needs-review" : "validation-passed";
+  }
+}
+await audit.append({ event: "validation-complete", records: drafts.flatMap((draft) => draft.tagOcrComparisons) });
 
 const summary = {
   inputScreenshots: inputFiles.length,
@@ -1368,8 +1427,10 @@ if (dryRun) {
     );
   }
   console.log(
-    `\nDry run complete; wrote ${path.relative(projectDir, draftPath)} only. Production data and WebP files were not changed.`,
+    `\nDry run complete; wrote ${path.relative(projectDir, draftPath)} and the persistent tag audit. Production data and WebP files were not changed.`,
   );
+  await audit.append({ event: "run-completed", outcome: "dry-run" });
+  await audit.close();
   process.exit(0);
 }
 
@@ -1378,6 +1439,8 @@ if (mergePlan.newMedals.length === 0 && imagesToRecover.length === 0) {
   console.log(
     "\nImport complete; every validated batch medal is an identical production duplicate. Production files were not changed.",
   );
+  await audit.append({ event: "run-completed", outcome: "duplicate-only" });
+  await audit.close();
   process.exit(0);
 }
 await mkdir(path.dirname(dataPath), { recursive: true });
@@ -1436,12 +1499,17 @@ try {
     )}\n`,
   );
 
-  await publishAtomic({
-    stagedDataPath,
-    stagedImages,
-    dataPath,
-    imageDir,
+  const importedSources = new Set(mergePlan.newMedals.map((medal) => medal.sources.details));
+  const publication = await publishWithTagAudit({
+    audit,
+    records: drafts.filter((draft) => importedSources.has(draft.sources.details))
+      .flatMap((draft) => draft.tagOcrComparisons),
+    publish: () => publishAtomic({ stagedDataPath, stagedImages, dataPath, imageDir }),
   });
+  if (!publication.auditComplete) {
+    console.error(`Production publication succeeded; audit completion failed: ${publication.auditError.message}. Audit: ${audit.file}`);
+    process.exitCode = 1;
+  }
 } finally {
   await rm(stageDir, { recursive: true, force: true });
 }

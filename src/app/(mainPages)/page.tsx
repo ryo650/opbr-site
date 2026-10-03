@@ -2,6 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import styles from "./page.module.css"
+import HomeUpdates from "@/components/site-updates/HomeUpdates"
+import { siteUpdates } from "@/data/site-updates"
 
 export const metadata = { alternates: { canonical: "/" } };
 
@@ -27,6 +29,12 @@ const featuredCards = [
 ]
 
 const exploreCards = [
+  {
+    title: "Character Guides",
+    description: "Browse all character guides for skills, counters, and gameplay tips.",
+    href: "/character-guides",
+    image: "/home/character-guides.png",
+  },
   {
     title: "New Characters",
     description: "Latest character releases, traits, and updates.",
@@ -114,6 +122,8 @@ export default function TopPage() {
           </div>
         </section>
 
+        <HomeUpdates updates={siteUpdates} />
+
         <section className={styles.explore} aria-labelledby="explore-heading">
           <div className={styles.sectionHeading}>
             <div>
@@ -124,8 +134,8 @@ export default function TopPage() {
 
           <div className={styles.exploreGrid}>
             {exploreCards.map((card) => (
-              <Link href={card.href} className={styles.exploreCard} key={card.title}>
-                <span className={styles.thumbnail}>
+              <Link href={card.href} className={`${styles.exploreCard} ${!card.image ? styles.textOnlyCard : ""}`} key={card.title}>
+                {card.image && <span className={styles.thumbnail}>
                   <Image
                     src={card.image}
                     alt={card.alt ?? ""}
@@ -133,7 +143,7 @@ export default function TopPage() {
                     sizes="(max-width: 767px) 116px, 240px"
                     className={styles.exploreImage}
                   />
-                </span>
+                </span>}
                 <span className={styles.exploreContent}>
                   <strong>{card.title}</strong>
                   <span>{card.description}</span>

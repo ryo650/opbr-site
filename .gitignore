@@ -47,6 +47,8 @@ public_backup/
 /scripts/medal-importer/input/
 /scripts/medal-importer/draft-medals.json
 /scripts/medal-importer/.tmp/
+# Local persistent audit evidence; never part of input/staging cleanup.
+/scripts/medal-importer/audit/
 
 /scripts/medal-tag-effects/input/
 

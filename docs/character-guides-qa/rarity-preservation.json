@@ -1,0 +1,9 @@
+{
+  "headAtSnapshot": "14be87b7bc362b410b3aa6272ad34684cef74050",
+  "headAtCompletion": "14be87b7bc362b410b3aa6272ad34684cef74050",
+  "headUnchangedSinceSnapshot": true,
+  "indexUnchangedSinceSnapshot": true,
+  "statusUnchangedSinceSnapshot": true,
+  "dirtyHashesUnchangedSinceSnapshot": true,
+  "note": "The original checkout and other branches were not written by this follow-up. The original Nusjuro branch advanced independently before this snapshot; none of it was imported."
+}

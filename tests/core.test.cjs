@@ -22,6 +22,7 @@ const {
 const { getScoutStatus } = require('../src/lib/scout-status');
 const {
   characterUsageSnapshots,
+  createCharacterUsageRanking,
   processCharacterUsageSnapshots,
   filterSnapshotsByRange,
   buildChartData,
@@ -407,6 +408,44 @@ test('monthly filters clamp month ends, including leap years', () => {
   );
 });
 
+test('usage ranks use character IDs for ties and ignore display-name changes', () => {
+  const ids = [
+    'the-strongest-creature-alive-kaido',
+    'red-rock-monkey-d-luffy',
+    'the-four-emperors-marshall-d-teach',
+  ];
+  const snapshot = {
+    date: '2026-09-26',
+    targetPlayers: 10,
+    usage: { [ids[0]]: 2, [ids[1]]: 4, [ids[2]]: 2 },
+  };
+  const rankingValues = (ranking) => ranking.map((item) =>
+    Object.fromEntries(Object.entries(item).filter(([key]) => key !== 'character')),
+  );
+  const original = createCharacterUsageRanking(snapshot);
+  assert.deepEqual(original.map(({ characterId }) => characterId), [ids[1], ids[2], ids[0]]);
+  const names = ids.map((id) => characters[id].name);
+  const historical = processCharacterUsageSnapshots(characterUsageSnapshots)
+    .map(({ ranking }) => rankingValues(ranking));
+
+  try {
+    for (const variants of [
+      ['AAA Kaido', 'ZZZ Luffy', 'zzz Teach'],
+      ['St. Kaido', "Luffy's - NEW Name", 'AAA Teach'],
+      ['kaido', 'LUFFY', 'teach & Partner'],
+    ]) {
+      ids.forEach((id, index) => { characters[id].name = variants[index]; });
+      assert.deepEqual(rankingValues(createCharacterUsageRanking(snapshot)), rankingValues(original));
+      assert.deepEqual(
+        processCharacterUsageSnapshots(characterUsageSnapshots).map(({ ranking }) => rankingValues(ranking)),
+        historical,
+      );
+    }
+  } finally {
+    ids.forEach((id, index) => { characters[id].name = names[index]; });
+  }
+});
+
 test('usage processing computes coverage and changes without mutating input', () => {
   const id = Object.keys(characters)[0];
 
@@ -495,4 +534,101 @@ test('usage processing computes coverage and changes without mutating input', ()
     ).length,
     characterUsageSnapshots.length,
   );
+});
+
+const {
+  createCharacterGuideEntries,
+  filterCharacterGuideEntries,
+} = require('../src/lib/character-guide-directory');
+
+test('permanent guide directory includes exactly the registry, even after New Characters expires', () => {
+  const entries = createCharacterGuideEntries(characterGuides, characters);
+  assert.deepEqual(entries.map(entry => entry.id).sort(), Object.keys(characterGuides).sort());
+  assert.ok(Object.keys(characters).length > entries.length);
+  assert.deepEqual(getActiveNewCharacterReleases(new Date('2100-01-01T00:00:00Z')), []);
+  assert.equal(createCharacterGuideEntries(characterGuides, characters).length, entries.length);
+  for (const entry of entries) {
+    const guide = characterGuides[entry.id];
+    assert.equal(entry.name, characters[entry.id].name);
+    assert.equal(entry.image, characters[entry.id].image);
+    assert.equal(entry.grade, characters[entry.id].grade);
+    assert.equal(entry.summary, guide.guideOverview?.description?.trim() || guide.quickStrengths[0] || '');
+    assert.equal(entry.notice, guide.notice?.title);
+    assert.ok(!Object.hasOwn(entry, 'skillGroups'), 'guide bodies stay off the client');
+  }
+  assert.deepEqual(createCharacterGuideEntries({}, characters), []);
+  assert.throws(() => createCharacterGuideEntries(characterGuides, {}), /cannot resolve/);
+});
+
+test('directory searches full version names, tolerates punctuation, and combines filters', () => {
+  const entries = createCharacterGuideEntries(characterGuides, characters);
+  const bonney = entries.find(entry => entry.id.includes('jewelry-bonney'));
+  assert.ok(bonney);
+  assert.deepEqual(filterCharacterGuideEntries(entries, "  JEWELRY I'm FREE  ", '', '').map(e => e.id), [bonney.id]);
+  const snake = entries.find(entry => entry.id === 'seraphim-s-snake');
+  assert.ok(snake);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 'S Snake', snake.element, snake.role), [snake]);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 'S Snake', snake.element, 'attacker'), []);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 'no-such-character', '', ''), []);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', '', ''), entries);
+  assert.deepEqual(filterCharacterGuideEntries([], '', '', ''), []);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', bonney.element, bonney.role), entries.filter(e => e.element === bonney.element && e.role === bonney.role));
+});
+
+test('newly registered versions appear once without touching the directory or release list', () => {
+  const name = "Another Version Jewelry Bonney";
+  const id = 'fixture-another-version-bonney';
+  const expandedCharacters = { ...characters, [id]: { ...characters['future-where-i-m-the-most-free-jewelry-bonney'], id, name } };
+  const expandedGuides = { ...characterGuides, [id]: { characterId: id, quickStrengths: ['Fixture strength'], quickWeaknesses: [] } };
+  const entries = createCharacterGuideEntries(expandedGuides, expandedCharacters);
+  assert.equal(entries.length, Object.keys(characterGuides).length + 1);
+  assert.equal(entries.filter(e => e.id === id).length, 1);
+  assert.equal(entries.find(e => e.id === id).summary, 'Fixture strength');
+  assert.equal(filterCharacterGuideEntries(entries, 'Jewelry Bonney', '', '').length, 2);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 'Another Version', '', '').map(e => e.id), [id]);
+  assert.throws(() => createCharacterGuideEntries({ wrong: expandedGuides[id] }, expandedCharacters), /cannot resolve/);
+});
+
+const { characterGradeLabels, normalizeCharacterGrade } = require('../src/data/characters/grades');
+
+test('Simulator result rarity labels retain the existing catalog grade mapping', () => {
+  assert.deepEqual(characterGradeLabels, {
+    ex: 'EX', bf: 'BF', sp: 'SP', 'star-4': '4★', 'star-3': '3★', 'star-2': '2★',
+    free: 'FREE', exchange: 'EXCH', cola: 'COLA', unknown: '?',
+  });
+  for (const character of Object.values(characters)) {
+    assert.equal(normalizeCharacterGrade(character.grade), character.grade);
+    assert.ok(characterGradeLabels[character.grade]);
+  }
+  for (const grade of [undefined, null, '', 'EX', 'constructor', '__proto__', 'not-a-grade']) {
+    assert.equal(normalizeCharacterGrade(grade), 'unknown');
+  }
+});
+
+test('directory filters catalog rarity together with name, element and role', () => {
+  const entries = createCharacterGuideEntries(characterGuides, characters);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', '', '', 'ex'), entries.filter(e => e.grade === 'ex'));
+  assert.deepEqual(filterCharacterGuideEntries(entries, 's snake', 'blue', 'defender', 'ex').map(e => e.id), ['seraphim-s-snake']);
+  assert.deepEqual(filterCharacterGuideEntries(entries, 's snake', 'blue', 'defender', 'bf'), []);
+  assert.deepEqual(filterCharacterGuideEntries(entries, '', '', '', ''), entries);
+  assert.deepEqual(filterCharacterGuideEntries([], '', '', '', 'ex'), []);
+});
+
+test('rarity uses real IDs and preserves unclassified data rather than guessing from names', () => {
+  const template = characters['seraphim-s-snake'];
+  const catalog = {};
+  const guides = {};
+  for (const [index, grade] of [...Object.keys(characterGradeLabels), undefined].entries()) {
+    const id = `rarity-fixture-${index}`;
+    catalog[id] = { ...template, id, name: 'EX BF Special 4 Star Named Character', grade };
+    guides[id] = { characterId: id, quickStrengths: [], quickWeaknesses: [] };
+  }
+  catalog['not-published'] = { ...template, id:'not-published', grade:'bf' };
+  const entries = createCharacterGuideEntries(guides, catalog);
+  assert.equal(entries.length, 11);
+  for (const grade of Object.keys(characterGradeLabels)) {
+    assert.equal(filterCharacterGuideEntries(entries, '', 'blue', 'defender', grade).length, grade === 'unknown' ? 2 : 1);
+  }
+  assert.ok(!entries.some(entry => entry.id === 'not-published'));
+  assert.equal(entries.find(entry => entry.id === 'rarity-fixture-10').grade, 'unknown');
 });
