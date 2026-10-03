@@ -6,13 +6,14 @@ import { characters } from "@/data/characters/index";
 import { tierList } from "@/data/tierList";
 
 import TierUpdateBadge from "./TierUpdateBadge";
+import badgeStyles from "./TierUpdateBadge.module.css";
 import TierUpdateLegend from "./TierUpdateLegend";
 import type { TierUpdateBadge as Badge } from "@/lib/tier-important-updates";
 
 export default function TierList({ badges = {}, preview = false }: { badges?: Record<string, Badge>; preview?: boolean }) {
   return (
     <>
-      {Object.keys(badges).length > 0 && <TierUpdateLegend />}
+      {Object.keys(badges).length > 0 && <TierUpdateLegend count={Object.keys(badges).length} />}
       <div className={styles.tierList}>
         {tierList.map((row, tierIndex) => (
           <div key={row.tier} className={styles.tier}>
@@ -35,7 +36,7 @@ export default function TierList({ badges = {}, preview = false }: { badges?: Re
                 return (
                   <div
                     key={character.id}
-                    className={styles.characterCard}
+                    className={`${styles.characterCard} ${badgeStyles.card}`}
                     style={cardStyle}
                   >
                     <CharacterGuideLink

@@ -1,0 +1,2114 @@
+{
+  "beforeDesktop": {
+    "cards": [
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ]
+    ],
+    "documentWidth": 1280,
+    "fields": [
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.55s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.41s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.99s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.8s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.14s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.68s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.56s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.89s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.39s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.25s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.83s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.64s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.98s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.52s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.4s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.73s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.12) 20%, rgba(251, 113, 133, 0.65) 63%, rgba(251, 113, 133, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "matrix(1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.23s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.09s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.67s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.48s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.82s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.36s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.24s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.57s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      }
+    ],
+    "frames": [
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(110 231 183 / 42%),\n    0 0 12px rgb(110 231 183 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.42) 0px 0px 6px 0px, rgba(110, 231, 183, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(110, 231, 183, 0.85) 0px -14px 18px 0px, rgba(110, 231, 183, 0.55) 0px -28px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 113 133 / 55%),\n    0 0 16px rgb(251 113 133 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_fall__wXWId",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(251 113 133 / 42%),\n    0 0 12px rgb(251 113 133 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 113, 133, 0.42) 0px 0px 6px 0px, rgba(251, 113, 133, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(251, 113, 133, 0.85) 0px 14px 18px 0px, rgba(251, 113, 133, 0.55) 0px 28px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 191 36 / 55%),\n    0 0 16px rgb(251 191 36 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_new__N95mA",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(251 191 36 / 42%),\n    0 0 12px rgb(251 191 36 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 191, 36, 0.42) 0px 0px 6px 0px, rgba(251, 191, 36, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(110 231 183 / 42%),\n    0 0 12px rgb(110 231 183 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.42) 0px 0px 6px 0px, rgba(110, 231, 183, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(110, 231, 183, 0.85) 0px -14px 18px 0px, rgba(110, 231, 183, 0.55) 0px -28px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(147 197 253 / 55%),\n    0 0 16px rgb(147 197 253 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_adjustment__xGW1X",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(147 197 253 / 42%),\n    0 0 12px rgb(147 197 253 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(147, 197, 253, 0.42) 0px 0px 6px 0px, rgba(147, 197, 253, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px"
+      }
+    ],
+    "rows": [
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ]
+    ],
+    "width": 1280
+  },
+  "beforeMobile": {
+    "cards": [
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ]
+    ],
+    "documentWidth": 390,
+    "fields": [
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.55s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.41s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.99s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.8s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.14s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.68s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.56s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.89s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48.06011962890625,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.39s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.25s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.83s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.64s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.98s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.52s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.4s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.73s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.12) 20%, rgba(251, 113, 133, 0.65) 63%, rgba(251, 113, 133, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "matrix(1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.23s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.09s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.67s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.48s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.82s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.36s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.24s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.57s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      }
+    ],
+    "frames": [
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(110 231 183 / 40%),\n      0 0 7px rgb(110 231 183 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.4) 0px 0px 4px 0px, rgba(110, 231, 183, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(110, 231, 183, 0.85) 0px -8px 18px 0px, rgba(110, 231, 183, 0.55) 0px -16px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 113 133 / 55%),\n    0 0 16px rgb(251 113 133 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_fall__wXWId",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(251 113 133 / 40%),\n      0 0 7px rgb(251 113 133 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 113, 133, 0.4) 0px 0px 4px 0px, rgba(251, 113, 133, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(251, 113, 133, 0.85) 0px 8px 18px 0px, rgba(251, 113, 133, 0.55) 0px 16px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 191 36 / 55%),\n    0 0 16px rgb(251 191 36 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_new__N95mA",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(251 191 36 / 40%),\n      0 0 7px rgb(251 191 36 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 191, 36, 0.4) 0px 0px 4px 0px, rgba(251, 191, 36, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(110 231 183 / 40%),\n      0 0 7px rgb(110 231 183 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.4) 0px 0px 4px 0px, rgba(110, 231, 183, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(110, 231, 183, 0.85) 0px -8px 18px 0px, rgba(110, 231, 183, 0.55) 0px -16px 30px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(147 197 253 / 55%),\n    0 0 16px rgb(147 197 253 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_adjustment__xGW1X",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(147 197 253 / 40%),\n      0 0 7px rgb(147 197 253 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(147, 197, 253, 0.4) 0px 0px 4px 0px, rgba(147, 197, 253, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px"
+      }
+    ],
+    "rows": [
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ]
+    ],
+    "width": 390
+  },
+  "afterDesktop": {
+    "cards": [
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ],
+      [
+        "88px",
+        "88px"
+      ]
+    ],
+    "documentWidth": 1280,
+    "fields": [
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.55s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.41s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.99s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.8s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.14s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.68s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.56s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.89s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.39s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.25s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.83s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.64s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.98s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.52s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.4s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.73s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.12) 20%, rgba(251, 113, 133, 0.65) 63%, rgba(251, 113, 133, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "matrix(1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.23s",
+            "duration": "1.43s",
+            "height": "33.1172px",
+            "left": "2.69531px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "80.9531px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.09s",
+            "duration": "1.79s",
+            "height": "57.0391px",
+            "left": "8.09375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "95.6797px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.67s",
+            "duration": "1.57s",
+            "height": "40.4766px",
+            "left": "14.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "88.3125px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.48s",
+            "duration": "1.91s",
+            "height": "62.5547px",
+            "left": "18px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "103.039px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.82s",
+            "duration": "1.31s",
+            "height": "27.5938px",
+            "left": "70.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "83.7188px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.36s",
+            "duration": "1.73s",
+            "height": "50.5938px",
+            "left": "75.5938px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "98.4375px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.24s",
+            "duration": "1.49s",
+            "height": "36.7969px",
+            "left": "81px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "91.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.57s",
+            "duration": "1.83s",
+            "height": "53.3594px",
+            "left": "86.3984px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "106.719px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 92,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      }
+    ],
+    "frames": [
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(110 231 183 / 42%),\n    0 0 12px rgb(110 231 183 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.42) 0px 0px 6px 0px, rgba(110, 231, 183, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(110, 231, 183, 0.85) 0px -10px 13px 0px, rgba(110, 231, 183, 0.55) 0px -20px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 113 133 / 55%),\n    0 0 16px rgb(251 113 133 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_fall__wXWId",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(251 113 133 / 42%),\n    0 0 12px rgb(251 113 133 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 113, 133, 0.42) 0px 0px 6px 0px, rgba(251, 113, 133, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(251, 113, 133, 0.85) 0px 10px 13px 0px, rgba(251, 113, 133, 0.55) 0px 20px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 191 36 / 55%),\n    0 0 16px rgb(251 191 36 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_new__N95mA",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(251 191 36 / 42%),\n    0 0 12px rgb(251 191 36 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 191, 36, 0.42) 0px 0px 6px 0px, rgba(251, 191, 36, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(110 231 183 / 42%),\n    0 0 12px rgb(110 231 183 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.42) 0px 0px 6px 0px, rgba(110, 231, 183, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px, rgba(110, 231, 183, 0.85) 0px -10px 13px 0px, rgba(110, 231, 183, 0.55) 0px -20px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(147 197 253 / 55%),\n    0 0 16px rgb(147 197 253 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_adjustment__xGW1X",
+        "normal": "0 0 0 1px #262626,\n    0 0 6px rgb(147 197 253 / 42%),\n    0 0 12px rgb(147 197 253 / 24%),\n    0 3px 8px rgb(0 0 0 / 28%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(147, 197, 253, 0.42) 0px 0px 6px 0px, rgba(147, 197, 253, 0.24) 0px 0px 12px 0px, rgba(0, 0, 0, 0.28) 0px 3px 8px 0px"
+      }
+    ],
+    "rows": [
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ],
+      [
+        1038,
+        1038
+      ]
+    ],
+    "width": 1280
+  },
+  "afterMobile": {
+    "cards": [
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ],
+      [
+        "48px",
+        "48px"
+      ]
+    ],
+    "documentWidth": 390,
+    "fields": [
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.55s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.41s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.99s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.8s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.14s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.68s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.56s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.89s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.39s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.25s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.83s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.64s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.98s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.52s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.4s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.55) 18%, rgb(251, 113, 133) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.73s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(251, 113, 133) 0px 0px 5px 0px, rgba(251, 113, 133, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(251, 113, 133, 0.12) 20%, rgba(251, 113, 133, 0.65) 63%, rgba(251, 113, 133, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "matrix(1, 0, 0, -1, 0, 0)"
+      },
+      {
+        "beams": [
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.23s",
+            "duration": "1.43s",
+            "height": "17.2734px",
+            "left": "1.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "42.2344px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.09s",
+            "duration": "1.79s",
+            "height": "29.7578px",
+            "left": "4.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "49.9141px",
+            "width": "3px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.67s",
+            "duration": "1.57s",
+            "height": "21.1172px",
+            "left": "7.67969px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "46.0781px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.48s",
+            "duration": "1.91s",
+            "height": "32.6328px",
+            "left": "9.59375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "53.7578px",
+            "width": "4px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.82s",
+            "duration": "1.31s",
+            "height": "14.3984px",
+            "left": "37.4375px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "43.6797px",
+            "width": "2px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.36s",
+            "duration": "1.73s",
+            "height": "26.3984px",
+            "left": "40.3125px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "51.3594px",
+            "width": "3.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-1.24s",
+            "duration": "1.49s",
+            "height": "19.1953px",
+            "left": "43.1953px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "47.5156px",
+            "width": "1.5px"
+          },
+          {
+            "background": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.55) 18%, rgb(110, 231, 183) 72%, rgb(255, 255, 255) 95%, rgb(255, 255, 255))",
+            "delay": "-0.57s",
+            "duration": "1.83s",
+            "height": "27.8359px",
+            "left": "46.0781px",
+            "name": "TierUpdateBadge_energyTransfer__KRWG9",
+            "shadow": "rgb(110, 231, 183) 0px 0px 5px 0px, rgba(110, 231, 183, 0.7) 0px 0px 11px 0px",
+            "top": "55.6797px",
+            "width": "2.5px"
+          }
+        ],
+        "before": "linear-gradient(to top, rgba(0, 0, 0, 0), rgba(110, 231, 183, 0.12) 20%, rgba(110, 231, 183, 0.65) 63%, rgba(110, 231, 183, 0.2) 90%, rgba(0, 0, 0, 0))",
+        "composite": "intersect, intersect",
+        "height": 48,
+        "mask": "linear-gradient(to right, rgb(0, 0, 0) 22%, rgba(0, 0, 0, 0) 25%, rgba(0, 0, 0, 0) 75%, rgb(0, 0, 0) 78%), linear-gradient(rgba(0, 0, 0, 0) 4%, rgba(0, 0, 0, 0.15) 8%, rgba(0, 0, 0, 0.55) 15%, rgb(0, 0, 0) 24%, rgb(0, 0, 0) 86%, rgba(0, 0, 0, 0) 100%)",
+        "opacity": "0.9",
+        "transform": "none"
+      }
+    ],
+    "frames": [
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(110 231 183 / 40%),\n      0 0 7px rgb(110 231 183 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.4) 0px 0px 4px 0px, rgba(110, 231, 183, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(110, 231, 183, 0.85) 0px -6px 13px 0px, rgba(110, 231, 183, 0.55) 0px -12px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 113 133 / 55%),\n    0 0 16px rgb(251 113 133 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_fall__wXWId",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(251 113 133 / 40%),\n      0 0 7px rgb(251 113 133 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 113, 133, 0.4) 0px 0px 4px 0px, rgba(251, 113, 133, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(251, 113, 133, 0.85) 0px 6px 13px 0px, rgba(251, 113, 133, 0.55) 0px 12px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(251 191 36 / 55%),\n    0 0 16px rgb(251 191 36 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_new__N95mA",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(251 191 36 / 40%),\n      0 0 7px rgb(251 191 36 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(251, 191, 36, 0.4) 0px 0px 4px 0px, rgba(251, 191, 36, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(110 231 183 / 55%),\n    0 0 16px rgb(110 231 183 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_rise__aFZZQ",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(110 231 183 / 40%),\n      0 0 7px rgb(110 231 183 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(110, 231, 183, 0.4) 0px 0px 4px 0px, rgba(110, 231, 183, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px, rgba(110, 231, 183, 0.85) 0px -6px 13px 0px, rgba(110, 231, 183, 0.55) 0px -12px 22px 0px"
+      },
+      {
+        "active": "0 0 0 1px #262626,\n    0 0 8px rgb(147 197 253 / 55%),\n    0 0 16px rgb(147 197 253 / 32%),\n    0 5px 12px rgb(0 0 0 / 32%)",
+        "kind": "TierUpdateBadge_frame__p8lMf TierUpdateBadge_adjustment__xGW1X",
+        "normal": "0 0 0 1px #262626,\n      0 0 4px rgb(147 197 253 / 40%),\n      0 0 7px rgb(147 197 253 / 22%),\n      0 2px 4px rgb(0 0 0 / 24%)",
+        "shadow": "rgb(38, 38, 38) 0px 0px 0px 1px, rgba(147, 197, 253, 0.4) 0px 0px 4px 0px, rgba(147, 197, 253, 0.22) 0px 0px 7px 0px, rgba(0, 0, 0, 0.24) 0px 2px 4px 0px"
+      }
+    ],
+    "rows": [
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ],
+      [
+        322,
+        322
+      ]
+    ],
+    "width": 390
+  }
+}

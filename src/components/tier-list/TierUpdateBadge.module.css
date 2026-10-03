@@ -1,48 +1,208 @@
-.rise { --change-color: #6ee7b7; --change-glow: rgb(110 231 183 / 25%); }
-.fall { --change-color: #fb7185; --change-glow: rgb(251 113 133 / 25%); }
-.new { --change-color: #fbbf24; --change-glow: rgb(251 191 36 / 25%); }
-.adjustment { --change-color: #93c5fd; --change-glow: rgb(147 197 253 / 25%); }
+.rise { --change-color: #6ee7b7; --change-rgb: 110 231 183; }
+.fall { --change-color: #fb7185; --change-rgb: 251 113 133; }
+.new { --change-color: #fbbf24; --change-rgb: 251 191 36; }
+.adjustment { --change-color: #93c5fd; --change-rgb: 147 197 253; }
 
 .frame {
   position: absolute;
   z-index: 2;
-  inset: -1px;
-  border: 2px solid var(--change-color);
+  inset: -2px;
+  border: 3px solid var(--change-color);
   border-radius: inherit;
-  box-shadow: 0 0 0 1px #262626, 0 0 10px var(--change-glow);
+  /* Keep the glow close to the frame so neighboring portraits stay distinct. */
+  --frame-shadow:
+    0 0 0 1px #262626,
+    0 0 6px rgb(var(--change-rgb) / 42%),
+    0 0 12px rgb(var(--change-rgb) / 24%),
+    0 3px 8px rgb(0 0 0 / 28%);
+  --frame-shadow-active:
+    0 0 0 1px #262626,
+    0 0 8px rgb(var(--change-rgb) / 55%),
+    0 0 16px rgb(var(--change-rgb) / 32%),
+    0 5px 12px rgb(0 0 0 / 32%);
+  box-shadow: var(--frame-shadow);
   pointer-events: none;
+  transition: box-shadow 180ms ease;
 }
-.badge {
+
+/* Extreme review prototype: eight bright trails flow irregularly along the
+   side edges, leaving the portrait center clear without reducing intensity. */
+.directionMotion {
+  /* Bound the visible tracks to the card, independently of Tier-row height.
+     Size containment lets travel follow this field on desktop and mobile. */
+  --energy-travel: 200cqh;
+  position: absolute;
+  inset: -4px -3px;
+  container-type: size;
+  overflow: hidden;
+  /* Intersect the side lanes with a vertical fade, including heads and glow.
+     Fade over the final 20% of visible travel and disappear just before the
+     frame; the flipped Drop field applies the same fade at the bottom.
+     A lighter 14% entrance fade also softens each staggered launch. */
+  mask-image:
+    linear-gradient(to right, #000 22%, transparent 25%, transparent 75%, #000 78%),
+    linear-gradient(to bottom,
+      transparent 4%,
+      rgb(0 0 0 / 15%) 8%,
+      rgb(0 0 0 / 55%) 15%,
+      #000 24%,
+      #000 86%,
+      transparent 100%
+    );
+  mask-composite: intersect;
+  pointer-events: none;
+  opacity: .9;
+  transition: opacity 180ms ease;
+}
+
+/* Invert the complete field so plume, bright heads and movement all reverse. */
+.fall .directionMotion { transform: scaleY(-1); }
+
+.directionMotion::before, .directionMotion::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  clip-path: polygon(50% 0, 88% 45%, 100% 100%, 0 100%, 12% 45%);
+  background: linear-gradient(to top,
+    transparent,
+    rgb(var(--change-rgb) / 12%) 20%,
+    rgb(var(--change-rgb) / 65%) 63%,
+    rgb(var(--change-rgb) / 20%) 90%,
+    transparent
+  );
+}
+
+.directionMotion::before { left: 0; }
+.directionMotion::after { right: 0; }
+
+.lightStreak {
+  position: absolute;
+  top: var(--streak-start-y);
+  left: var(--streak-x);
+  margin-left: calc(var(--streak-width) / -2);
+  width: var(--streak-width);
+  height: var(--streak-length);
+  border-radius: 3px;
+  background: linear-gradient(to top,
+    transparent,
+    rgb(var(--change-rgb) / 55%) 18%,
+    var(--change-color) 72%,
+    #fff 95%,
+    #fff
+  );
+  box-shadow: 0 0 5px var(--change-color), 0 0 11px rgb(var(--change-rgb) / 70%);
+  animation: energyTransfer var(--streak-duration) linear infinite;
+  animation-delay: calc(var(--streak-delay) + var(--character-index, 0) * -160ms);
+}
+
+.lightStreak::before {
+  content: "";
   position: absolute;
   top: -5px;
-  right: -5px;
+  left: -2px;
+  width: calc(100% + 4px);
+  height: 7px;
+  background: #fff;
+  clip-path: polygon(50% 0, 100% 100%, 50% 75%, 0 100%);
+}
+
+/* Four per side, with unequal phases and periods to avoid a marching row. */
+.lightStreak:nth-child(1) { --streak-x: 3%; --streak-start-y: 88%; --streak-width: 2px; --streak-length: 36%; --streak-opacity: .65; --streak-delay: -230ms; --streak-duration: 1.43s; }
+.lightStreak:nth-child(2) { --streak-x: 9%; --streak-start-y: 104%; --streak-width: 3px; --streak-length: 62%; --streak-opacity: .95; --streak-delay: -1090ms; --streak-duration: 1.79s; }
+.lightStreak:nth-child(3) { --streak-x: 16%; --streak-start-y: 96%; --streak-width: 1.5px; --streak-length: 44%; --streak-opacity: .7; --streak-delay: -670ms; --streak-duration: 1.57s; }
+.lightStreak:nth-child(4) { --streak-x: 20%; --streak-start-y: 112%; --streak-width: 4px; --streak-length: 68%; --streak-opacity: 1; --streak-delay: -1480ms; --streak-duration: 1.91s; }
+.lightStreak:nth-child(5) { --streak-x: 78%; --streak-start-y: 91%; --streak-width: 2px; --streak-length: 30%; --streak-opacity: .75; --streak-delay: -820ms; --streak-duration: 1.31s; }
+.lightStreak:nth-child(6) { --streak-x: 84%; --streak-start-y: 107%; --streak-width: 3.5px; --streak-length: 55%; --streak-opacity: .9; --streak-delay: -360ms; --streak-duration: 1.73s; }
+.lightStreak:nth-child(7) { --streak-x: 90%; --streak-start-y: 99%; --streak-width: 1.5px; --streak-length: 40%; --streak-opacity: .6; --streak-delay: -1240ms; --streak-duration: 1.49s; }
+.lightStreak:nth-child(8) { --streak-x: 96%; --streak-start-y: 116%; --streak-width: 2.5px; --streak-length: 58%; --streak-opacity: .85; --streak-delay: -570ms; --streak-duration: 1.83s; }
+
+@keyframes energyTransfer {
+  0% { transform: translateY(0); opacity: 0; }
+  12%, 78% { opacity: var(--streak-opacity); }
+  100% { transform: translateY(calc(-1 * var(--energy-travel))); opacity: 0; }
+}
+
+.card:focus-within .directionMotion { opacity: 1; }
+
+@media (hover: hover) and (pointer: fine) {
+  .card:hover .directionMotion { opacity: 1; }
+}
+
+.badge {
+  position: absolute;
+  top: -7px;
+  right: -6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 4px;
   border: 1px solid var(--change-color);
-  border-radius: 7px 7px 7px 2px;
+  border-radius: 8px 8px 8px 2px;
   background: var(--change-color);
-  box-shadow: 0 0 0 2px #262626;
+  box-shadow: 0 0 0 2px #262626, 0 3px 8px rgb(0 0 0 / 25%);
   color: #111827;
-  font-size: 19px;
   line-height: 1;
   font-weight: 900;
   pointer-events: auto;
 }
-.frame:has(.badge:focus-visible) { outline: 3px solid #fff; outline-offset: 3px; }
+
+.badgeSymbol { flex: 0 0 18px; text-align: center; font-size: 21px; }
+.badgeLabel { max-width: 0; overflow: hidden; opacity: 0; font-size: .68rem; letter-spacing: .025em; white-space: nowrap; text-transform: uppercase; transition: max-width 180ms ease, opacity 180ms ease, margin 180ms ease; }
+.card:has(:focus-visible) .frame { outline: 3px solid #fff; outline-offset: 3px; }
 .badge:focus-visible { outline: 2px solid #111827; outline-offset: -3px; }
 
-.legend { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 16px; padding: 12px 14px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 10px; background: rgb(15 23 42 / 15%); }
-.legendLink { color: #fde68a; font-size: .78rem; font-weight: 700; line-height: 1.6; text-decoration: underline; text-underline-offset: 3px; }
+@media (min-width: 641px) {
+  .card:has(.frame):focus-within { z-index: 3; transform: translateY(-1px); }
+  .card:focus-within .frame { box-shadow: var(--frame-shadow-active); }
+  .card:focus-within .badgeLabel { max-width: 130px; margin-left: 5px; opacity: 1; }
+}
+
+@media (min-width: 641px) and (hover: hover) and (pointer: fine) {
+  .card:has(.frame):hover { z-index: 3; transform: translateY(-1px); }
+  .card:hover .frame { box-shadow: var(--frame-shadow-active); }
+  .card:hover .badgeLabel { max-width: 130px; margin-left: 5px; opacity: 1; }
+}
+
+.legend { margin-bottom: 24px; padding: 20px 0 0; border-top: 2px solid #fbbf24; background: linear-gradient(180deg, rgb(251 191 36 / 5%), transparent); }
+.legendHeading { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; padding: 0 18px; }
+.legendKicker { margin: 0 0 7px; color: #fbbf24; font-size: .75rem; font-weight: 800; letter-spacing: .14em; text-transform: uppercase; }
+.legend h3 { margin: 0; color: #fff; font-size: clamp(1.3rem, 3vw, 1.65rem); line-height: 1.2; letter-spacing: -.025em; }
+.legendCount { margin: 9px 0 0; color: #cbd5e1; font-size: .9rem; line-height: 1.6; }
+.legendLink { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 44px; padding: 10px 15px; border: 1px solid rgb(251 191 36 / 35%); border-radius: 8px; background: rgb(251 191 36 / 10%); color: #fde68a; font-size: .82rem; font-weight: 700; transition: background 180ms ease, border-color 180ms ease; }
+.legendLink:hover { background: rgb(251 191 36 / 18%); border-color: #fbbf24; }
 .legendLink:focus-visible { outline: 3px solid #fbbf24; outline-offset: 4px; }
-.legend ul { display: flex; flex-wrap: wrap; gap: 12px 16px; list-style: none; margin: 0; padding: 0; }
-.legend li { display: flex; align-items: center; gap: 7px; color: #cbd5e1; font-size: .75rem; }
-.legendSymbol { display: flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 2px solid var(--change-color); border-radius: 5px; color: var(--change-color); font-size: 15px; line-height: 1; font-weight: 900; }
+.legend ul { display: flex; flex-wrap: wrap; gap: 12px 24px; list-style: none; margin: 18px 0 0; padding: 16px 18px 0; border-top: 1px solid rgb(255 255 255 / 10%); }
+.legend li { display: flex; align-items: center; gap: 8px; color: #cbd5e1; font-size: .8rem; }
+.legendSymbol { display: flex; align-items: center; justify-content: center; width: 23px; height: 23px; border-radius: 6px 6px 6px 2px; background: var(--change-color); color: #111827; font-size: 17px; line-height: 1; font-weight: 900; }
 
 @media (max-width: 640px) {
-  .badge { width: 18px; height: 18px; top: -4px; right: -4px; border-radius: 5px 5px 5px 1px; font-size: 15px; box-shadow: 0 0 0 1px #262626; }
-  .legend { padding: 12px; gap: 10px; }
-  .legend ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px 14px; width: 100%; }
+  .directionMotion { inset: -2px -2px; }
+  .frame {
+    border-width: 2px;
+    inset: -1px;
+    /* The mobile grid has a 5px gap; use a tighter static glow. */
+    --frame-shadow:
+      0 0 0 1px #262626,
+      0 0 4px rgb(var(--change-rgb) / 40%),
+      0 0 7px rgb(var(--change-rgb) / 22%),
+      0 2px 4px rgb(0 0 0 / 24%);
+  }
+  .badge { min-width: 22px; height: 22px; padding: 0 3px; top: -5px; right: -4px; border-radius: 6px 6px 6px 2px; box-shadow: 0 0 0 1px #262626; }
+  .badgeSymbol { flex-basis: 14px; font-size: 17px; }
+  .legend { margin-bottom: 20px; padding-top: 16px; }
+  .legendHeading { padding-inline: 12px; gap: 12px; }
+  .legendCount { font-size: .85rem; }
+  .legend ul { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; padding: 14px 12px 0; margin-top: 16px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .directionMotion { display: none; transition: none; }
+  .lightStreak { animation: none; }
+  .frame, .badgeLabel, .legendLink { transition: none; }
+  .card:has(.frame) { transition: none; animation: none; }
+  .card:has(.frame):hover, .card:has(.frame):focus-within { transform: none; }
 }

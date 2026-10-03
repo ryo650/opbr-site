@@ -22,8 +22,14 @@ export default function TierUpdateBadge({ badge, characterName, preview = false 
   const { label, symbol } = tierChangeLabels[badge.kind];
   return (
     <span className={`${styles.frame} ${styles[badge.kind]}`}>
+      {(badge.kind === "rise" || badge.kind === "fall") && (
+        <span className={styles.directionMotion} aria-hidden="true">
+          {Array.from({ length: 8 }, (_, index) => <span className={styles.lightStreak} key={index} />)}
+        </span>
+      )}
       <a className={styles.badge} href="#tier-important-update" aria-label={`${characterName}: ${label}. Read important update summary.`}>
-        <span aria-hidden="true">{symbol}</span>
+        <span className={styles.badgeSymbol} aria-hidden="true">{symbol}</span>
+        <span className={styles.badgeLabel} aria-hidden="true">{label}</span>
       </a>
     </span>
   );
