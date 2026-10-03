@@ -3,7 +3,7 @@ import type { Character } from "./type.ts";
 export const greenCharacters: Record<string, Character> ={
     "film-red-shanks": {
         id: "film-red-shanks",
-        name: "FILM-RED-Shanks",
+        name: "FILM RED Shanks",
         image: "/characters/green/film-red-shanks.webp",
         grade: "ex",
         element: "green",
@@ -19,7 +19,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "unexpected-collaboration-kaku": {
         id: "unexpected-collaboration-kaku",
-        name: "Unexpected-Collaboration-Kaku",
+        name: "Unexpected Collaboration Kaku",
         image: "/characters/green/unexpected-collaboration-kaku.webp",
         grade: "bf",
         element: "green",
@@ -27,7 +27,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "flame-emperor-sabo": {
         id: "flame-emperor-sabo",
-        name: "Flame-Emperor-Sabo",
+        name: "Flame Emperor Sabo",
         image: "/characters/green/flame-emperor-sabo.webp",
         grade: "ex",
         element: "green",
@@ -35,7 +35,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "battle-of-monsters-on-onigashima-kaido": {
         id: "battle-of-monsters-on-onigashima-kaido",
-        name: "Battle-of-Monsters-on-Onigashima-Kaido",
+        name: "Battle of Monsters on Onigashima Kaido",
         image: "/characters/green/battle-of-monsters-on-onigashima-kaido.webp",
         grade: "ex",
         element: "green",
@@ -43,7 +43,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "blackbeard-pirates-kuzan": {
         id: "blackbeard-pirates-kuzan",
-        name: "Blackbeard-Pirates-Kuzan",
+        name: "Blackbeard Pirates Kuzan",
         image: "/characters/green/blackbeard-pirates-kuzan.webp",
         grade: "ex",
         element: "green",
@@ -51,7 +51,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "film-z-zephyr": {
         id: "film-z-zephyr",
-        name: "FILM-Z-Zephyr",
+        name: "FILM Z Zephyr",
         image: "/characters/green/film-z-zephyr.webp",
         grade: "ex",
         element: "green",
@@ -59,7 +59,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "gear-five-monkey-d-luffy": {
         id: "gear-five-monkey-d-luffy",
-        name: "Gear-Five-Monkey-D.Luffy",
+        name: "Gear Five Monkey D. Luffy",
         image: "/characters/green/gear-five-monkey-d-luffy.webp",
         grade: "ex",
         element: "green",
@@ -67,7 +67,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "king-of-the-pirates-gol-d-roger": {
         id: "king-of-the-pirates-gol-d-roger",
-        name: "King-of-the-Pirates-Gol-D.Roger",
+        name: "King of the Pirates Gol D. Roger",
         image: "/characters/green/king-of-the-pirates-gol-d-roger.webp",
         grade: "ex",
         element: "green",
@@ -75,7 +75,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "legendary-gladiator-kyros":{
         id: "legendary-gladiator-kyros",
-        name:"Legendary-Gladiator-Kyros",
+        name:"Legendary Gladiator Kyros",
         image: "/characters/green/legendary-gladiator-kyros.webp",
         grade: "bf",
         element: "green",
@@ -83,7 +83,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "animal-kingdom-pirates-lead-performer-jack":{
         id: "animal-kingdom-pirates-lead-performer-jack",
-        name:"Animal-Kingdom-Pirates-Lead-Performer-Jack",
+        name:"Animal Kingdom Pirates Lead Performer Jack",
         image: "/characters/green/animal-kingdom-pirates-lead-performer-jack.webp",
         grade: "bf",
         element: "green",
@@ -99,7 +99,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "raid-on-onigashima-monkey-d-luffy":{
         id: "raid-on-onigashima-monkey-d-luffy",
-        name:"Raid-on-Onigashima-Monkey-D.Luffy",
+        name:"Raid on Onigashima Monkey D. Luffy",
         image: "/characters/green/raid-on-onigashima-monkey-d-luffy.webp",
         grade: "bf",
         element: "green",
@@ -107,7 +107,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "gear-four-bounceman-monkey-d-luffy":{
         id: "gear-four-bounceman-monkey-d-luffy",
-        name:"Gear-Four-Bounceman-Monkey-D.Luffy",
+        name:"Gear Four Bounceman Monkey D. Luffy",
         image: "/characters/green/gear-four-bounceman-monkey-d-luffy.webp",
         grade: "bf",
         element: "green",
@@ -115,7 +115,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "stealth-black-soba-mask":{
         id: "stealth-black-soba-mask",
-        name:"Stealth-Black-Soba-Mask",
+        name:"Stealth Black Soba Mask",
         image: "/characters/green/stealth-black-soba-mask.webp",
         grade: "bf",
         element: "green",
@@ -123,7 +123,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "raid-on-onigashima-sanji":{
         id: "raid-on-onigashima-sanji",
-        name:"Raid-on-Onigashima-Sanji",
+        name:"Raid on Onigashima Sanji",
         image: "/characters/green/raid-on-onigashima-sanji.webp",
         grade: "bf",
         element: "green",
@@ -131,7 +131,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "raid-on-onigashima-tony-tony-chopper":{
         id: "raid-on-onigashima-tony-tony-chopper",
-        name:"Raid-on-Onigashima-Tony-Tony-Chopper",
+        name:"Raid on Onigashima Tony Tony Chopper",
         image: "/characters/green/raid-on-onigashima-tony-tony-chopper.webp",
         grade: "bf",
         element: "green",
@@ -139,7 +139,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-greatest-swordsman-in-the-world-dracule-mihawk":{
         id: "the-greatest-swordsman-in-the-world-dracule-mihawk",
-        name:"The-Greatest-Swordsman-in-the-World-Dracule-Mihawk",
+        name:"The Greatest Swordsman in the World Dracule Mihawk",
         image: "/characters/green/the-greatest-swordsman-in-the-world-dracule-mihawk.webp",
         grade: "bf",
         element: "green",
@@ -147,7 +147,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-paramount-war-crocodile":{
         id: "the-paramount-war-crocodile",
-        name:"The-Paramount-War-Crocodile",
+        name:"The Paramount War Crocodile",
         image: "/characters/green/the-paramount-war-crocodile.webp",
         grade: "bf",
         element: "green",
@@ -155,7 +155,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "roger-s-rival-edward-newgate":{
         id: "roger-s-rival-edward-newgate",
-        name:"Roger's-Rival-Edward-Newgate",
+        name:"Roger's Rival Edward Newgate",
         image: "/characters/green/roger-s-rival-edward-newgate.webp",
         grade: "bf",
         element: "green",
@@ -163,7 +163,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-seven-warlords-of-the-sea-gecko-moria":{
         id: "the-seven-warlords-of-the-sea-gecko-moria",
-        name:"The-Seven-Warlords-of-the-Sea-Gecko-Moria",
+        name:"The Seven Warlords of the Sea Gecko Moria",
         image: "/characters/green/the-seven-warlords-of-the-sea-gecko-moria.webp",
         grade: "bf",
         element: "green",
@@ -171,7 +171,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "whole-cake-island-brook":{
         id: "whole-cake-island-brook",
-        name:"Whole-Cake-Island-Brook",
+        name:"Whole Cake Island Brook",
         image: "/characters/green/whole-cake-island-brook.webp",
         grade: "bf",
         element: "green",
@@ -179,7 +179,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "heart-pirates-captain-trafalgar-law":{
         id: "heart-pirates-captain-trafalgar-law",
-        name:"Heart-Pirates-Captain-Trafalgar-Law",
+        name:"Heart Pirates Captain Trafalgar Law",
         image: "/characters/green/heart-pirates-captain-trafalgar-law.webp",
         grade: "bf",
         element: "green",
@@ -187,7 +187,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "new-world-eustass-kid":{
         id: "new-world-eustass-kid",
-        name:"New-World-Eustass-Kid",
+        name:"New World Eustass Kid",
         image: "/characters/green/new-world-eustass-kid.webp",
         grade: "bf",
         element: "green",
@@ -195,7 +195,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-pirate-king-s-right-arm-the-dark-king-silvers-rayleigh":{
         id: "the-pirate-king-s-right-arm-the-dark-king-silvers-rayleigh",
-        name:"The-Pirate-King's-Right-Arm-The-Dark-King-Silvers-Rayleigh",
+        name:"The Pirate King's Right Arm The Dark King Silvers Rayleigh",
         image: "/characters/green/the-pirate-king-s-right-arm-the-dark-king-silvers-rayleigh.webp",
         grade: "bf",
         element: "green",
@@ -203,7 +203,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "navy-hq-admiral-kizaru":{
         id: "navy-hq-admiral-kizaru",
-        name:"Navy-HQ-Admiral-Kizaru",
+        name:"Navy HQ Admiral Kizaru",
         image: "/characters/green/navy-hq-admiral-kizaru.webp",
         grade: "bf",
         element: "green",
@@ -211,7 +211,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "bikini-boa-hancock":{
         id: "bikini-boa-hancock",
-        name:"Bikini-Boa-Hancock",
+        name:"Bikini Boa Hancock",
         image: "/characters/green/bikini-boa-hancock.webp",
         grade: "bf",
         element: "green",
@@ -219,7 +219,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "land-of-wano-marco":{
         id: "land-of-wano-marco",
-        name:"Land-of-Wano-Marco",
+        name:"Land of Wano Marco",
         image: "/characters/green/land-of-wano-marco.webp",
         grade: "bf",
         element: "green",
@@ -227,7 +227,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "stampede-sabo":{
         id: "stampede-sabo",
-        name:"Stampede-Sabo",
+        name:"Stampede Sabo",
         image: "/characters/green/stampede-sabo.webp",
         grade: "sp",
         element: "green",
@@ -235,7 +235,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "superhuman-charlotte-katakuri":{
         id: "superhuman-charlotte-katakuri",
-        name:"Superhuman-Charlotte-Katakuri",
+        name:"Superhuman Charlotte Katakuri",
         image: "/characters/green/superhuman-charlotte-katakuri.webp",
         grade: "bf",
         element: "green",
@@ -243,7 +243,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "big-mom-pirates-captain-charlotte-linlin":{
         id: "big-mom-pirates-captain-charlotte-linlin",
-        name:"Big-Mom-Pirates-Captain-Charlotte-Linlin",
+        name:"Big Mom Pirates Captain Charlotte Linlin",
         image: "/characters/green/big-mom-pirates-captain-charlotte-linlin.webp",
         grade: "bf",
         element: "green",
@@ -251,7 +251,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "animal-kingdom-pirates-supreme-commander-kaido":{
         id: "animal-kingdom-pirates-supreme-commander-kaido",
-        name:"Animal-Kingdom-Pirates-Supreme-Commander-Kaido",
+        name:"Animal Kingdom Pirates Supreme Commander Kaido",
         image: "/characters/green/animal-kingdom-pirates-supreme-commander-kaido.webp",
         grade: "bf",
         element: "green",
@@ -259,7 +259,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "revolutionary-army-emporio-ivankov":{
         id: "revolutionary-army-emporio-ivankov",
-        name:"Revolutionary-Army-Emporio-Ivankov",
+        name:"Revolutionary Army Emporio Ivankov",
         image: "/characters/green/revolutionary-army-emporio-ivankov.webp",
         grade: "bf",
         element: "green",
@@ -267,7 +267,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "first-act-as-a-married-couple-charlotte-pudding":{
         id: "first-act-as-a-married-couple-charlotte-pudding",
-        name:"First-Act-as-a-Married-Couple-Charlotte-Pudding",
+        name:"First Act as a Married Couple Charlotte Pudding",
         image: "/characters/green/first-act-as-a-married-couple-charlotte-pudding.webp",
         grade: "bf",
         element: "green",
@@ -275,7 +275,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "blackbeard-pirates-helmsman-champ-jesus-burgess":{
         id: "blackbeard-pirates-helmsman-champ-jesus-burgess",
-        name:"Blackbeard-Pirates-Helmsman-Champ-Jesus-Burgess",
+        name:"Blackbeard Pirates Helmsman Champ Jesus Burgess",
         image: "/characters/green/blackbeard-pirates-helmsman-champ-jesus-burgess.webp",
         grade: "bf",
         element: "green",
@@ -283,7 +283,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "clear-clear-fruit-shiryu":{
         id: "clear-clear-fruit-shiryu",
-        name:"Clear-Clear-Fruit-Shiryu",
+        name:"Clear-Clear Fruit Shiryu",
         image: "/characters/green/clear-clear-fruit-shiryu.webp",
         grade: "bf",
         element: "green",
@@ -291,7 +291,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "big-mom-pirates-crewmate-charlotte-perospero":{
         id: "big-mom-pirates-crewmate-charlotte-perospero",
-        name:"Big-Mom-Pirates-Crewmate-Charlotte-Perospero",
+        name:"Big Mom Pirates Crewmate Charlotte Perospero",
         image: "/characters/green/big-mom-pirates-crewmate-charlotte-perospero.webp",
         grade: "bf",
         element: "green",
@@ -299,7 +299,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "don-quixote-pirates-supreme-officer-diamante":{
         id: "don-quixote-pirates-supreme-officer-diamante",
-        name:"Don-Quixote-Pirates-Supreme-Officer-Diamante",
+        name:"Don Quixote Pirates Supreme Officer Diamante",
         image: "/characters/green/don-quixote-pirates-supreme-officer-diamante.webp",
         grade: "bf",
         element: "green",
@@ -307,7 +307,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "don-quixote-pirates-supreme-officer-trebol":{
         id: "don-quixote-pirates-supreme-officer-trebol",
-        name:"Don-Quixote-Pirates-Supreme-Officer-Trebol",
+        name:"Don Quixote Pirates Supreme Officer Trebol",
         image: "/characters/green/don-quixote-pirates-supreme-officer-trebol.webp",
         grade: "bf",
         element: "green",
@@ -315,7 +315,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "animal-kingdom-pirates-tobi-roppo-who-s-who":{
         id: "animal-kingdom-pirates-tobi-roppo-who-s-who",
-        name:"Animal-Kingdom-Pirates-Tobi-Roppo-Who-s-Who",
+        name:"Animal Kingdom Pirates Tobi Roppo Who's-Who",
         image: "/characters/green/animal-kingdom-pirates-tobi-roppo-who-s-who.webp",
         grade: "bf",
         element: "green",
@@ -323,7 +323,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "new-fish-man-pirates-captain-hody-jones":{
         id: "new-fish-man-pirates-captain-hody-jones",
-        name:"New-Fish-Man-Pirates-Captain-Hody-Jones",
+        name:"New Fish-Man Pirates Captain Hody Jones",
         image: "/characters/green/new-fish-man-pirates-captain-hody-jones.webp",
         grade: "bf",
         element: "green",
@@ -331,7 +331,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "ryugu-kingdom-king-neptune":{
         id: "ryugu-kingdom-king-neptune",
-        name:"Ryugu-Kingdom-King-Neptune",
+        name:"Ryugu Kingdom King Neptune",
         image: "/characters/green/ryugu-kingdom-king-neptune.webp",
         grade: "bf",
         element: "green",
@@ -339,7 +339,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "revolutionary-army-captain-of-the-northern-forces-karasu":{
         id: "revolutionary-army-captain-of-the-northern-forces-karasu",
-        name:"Revolutionary-Army-Captain-of-the-Northern-Forces-Karasu",
+        name:"Revolutionary Army Captain of the Northern Forces Karasu",
         image: "/characters/green/revolutionary-army-captain-of-the-northern-forces-karasu.webp",
         grade: "bf",
         element: "green",
@@ -347,7 +347,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "navy-hq-admiral-ryokugyu":{
         id: "navy-hq-admiral-ryokugyu",
-        name:"Navy-HQ-Admiral-Ryokugyu",
+        name:"Navy HQ Admiral Ryokugyu",
         image: "/characters/green/navy-hq-admiral-ryokugyu.webp",
         grade: "bf",
         element: "green",
@@ -355,7 +355,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "cp9-jabra":{
         id: "cp9-jabra",
-        name:"CP9-Jabra",
+        name:"CP9 Jabra",
         image: "/characters/green/cp9-jabra.webp",
         grade: "bf",
         element: "green",
@@ -363,7 +363,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "punk-02-lilith":{
         id: "punk-02-lilith",
-        name:"Punk-02-Lilith",
+        name:"Punk-02 Lilith",
         image: "/characters/green/punk-02-lilith.webp",
         grade: "bf",
         element: "green",
@@ -371,7 +371,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "seraphim-s-bear":{
         id: "seraphim-s-bear",
-        name:"Seraphim-s-Bear",
+        name:"Seraphim S-Bear",
         image: "/characters/green/seraphim-s-bear.webp",
         grade: "bf",
         element: "green",
@@ -379,7 +379,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "seraphim-s-shark":{
         id: "seraphim-s-shark",
-        name:"Seraphim-s-Shark",
+        name:"Seraphim S-Shark",
         image: "/characters/green/seraphim-s-shark.webp",
         grade: "bf",
         element: "green",
@@ -387,7 +387,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "germa-66-vinsmoke-yonji":{
         id: "germa-66-vinsmoke-yonji",
-        name:"Germa-66-Vinsmoke-Yonji",
+        name:"Germa 66 Vinsmoke Yonji",
         image: "/characters/green/germa-66-vinsmoke-yonji.webp",
         grade: "bf",
         element: "green",
@@ -395,7 +395,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "foxy-pirates-captain-foxy":{
         id: "foxy-pirates-captain-foxy",
-        name:"Foxy-Pirates-Captain-Foxy",
+        name:"Foxy Pirates Captain Foxy",
         image: "/characters/green/foxy-pirates-captain-foxy.webp",
         grade: "bf",
         element: "green",
@@ -403,7 +403,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "genius-scientist-vegapunk":{
         id: "genius-scientist-vegapunk",
-        name:"Genius-Scientist-Vegapunk",
+        name:"Genius Scientist Vegapunk",
         image: "/characters/green/genius-scientist-vegapunk.webp",
         grade: "bf",
         element: "green",
@@ -411,7 +411,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "giant-warrior-hajrudin":{
         id: "giant-warrior-hajrudin",
-        name:"Giant-Warrior-Hajrudin",
+        name:"Giant Warrior Hajrudin",
         image: "/characters/green/giant-warrior-hajrudin.webp",
         grade: "bf",
         element: "green",
@@ -435,7 +435,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "film-red-tony-tony-chopper":{
         id: "film-red-tony-tony-chopper",
-        name:"Film - Red - Tony Tony Chopper",
+        name:"FILM RED Tony Tony Chopper",
         image: "/characters/green/film-red-tony-tony-chopper.webp",
         grade: "sp",
         element: "green",
@@ -443,7 +443,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "land-of-wano-orobi":{
         id: "land-of-wano-orobi",
-        name:"Land-of-Wano-Orobi",
+        name:"Land of Wano Orobi",
         image: "/characters/green/land-of-wano-orobi.webp",
         grade: "star-4",
         element: "green",
@@ -531,7 +531,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "one-sword-style-lai-lion-song-roronoa-zoro":{
         id: "one-sword-style-lai-lion-song-roronoa-zoro",
-        name:"One Sword Style - Lai Lion Song (Roronoa Zoro)",
+        name:"One Sword Style - Iai Lion Song (Roronoa Zoro)",
         image: "/characters/green/one-sword-style-lai-lion-song-roronoa-zoro.webp",
         grade: "exchange",
         element: "green",
@@ -611,7 +611,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "son-of-the-king-of-the-pirates-portgaz-d-ace":{
         id: "son-of-the-king-of-the-pirates-portgaz-d-ace",
-        name:"Son of the King of the Pirates - Portgaz D. Ace",
+        name:"Son of the King of the Pirates - Portgas D. Ace",
         image: "/characters/green/son-of-the-king-of-the-pirates-portgaz-d-ace.webp",
         grade: "star-4",
         element: "green",
@@ -619,7 +619,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "peacock-slasher-nefeltari-vivi":{
         id: "peacock-slasher-nefeltari-vivi",
-        name:"Peacock-Slasher-Nefeltari-Vivi",
+        name:"Peacock Slasher Nefertari Vivi",
         image: "/characters/green/peacock-slasher-nefeltari-vivi.webp",
         grade: "star-4",
         element: "green",
@@ -627,7 +627,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "baroque-works-officer-agent-mr-3":{
         id: "baroque-works-officer-agent-mr-3",
-        name:"Baroque-Works-Officer-Agent-Mr-3",
+        name:"Baroque Works Officer Agent Mr. 3",
         image: "/characters/green/baroque-works-officer-agent-mr-3.webp",
         grade: "star-4",
         element: "green",
@@ -635,7 +635,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-bullet-of-dressrosa-bellamy":{
         id: "the-bullet-of-dressrosa-bellamy",
-        name:"The-Bullet-of-Dressrosa-Bellamy",
+        name:"The Bullet of Dressrosa Bellamy",
         image: "/characters/green/the-bullet-of-dressrosa-bellamy.webp",
         grade: "star-4",
         element: "green",
@@ -643,7 +643,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "former-navy-admiral-kuzan":{
         id: "former-navy-admiral-kuzan",
-        name:"Former-Navy-Admiral-Kuzan",
+        name:"Former Navy Admiral Kuzan",
         image: "/characters/green/former-navy-admiral-kuzan.webp",
         grade: "star-4",
         element: "green",
@@ -651,7 +651,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "on-air-pirates-captain-scratchmen-apoo":{
         id: "on-air-pirates-captain-scratchmen-apoo",
-        name:"On-Air-Pirates-Captain-Scratchmen-Apoo",
+        name:"On-Air Pirates Captain Scratchmen Apoo",
         image: "/characters/green/on-air-pirates-captain-scratchmen-apoo.webp",
         grade: "star-4",
         element: "green",
@@ -659,7 +659,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "don-quixote-pirates-servant-assassin-baby-5":{
         id: "don-quixote-pirates-servant-assassin-baby-5",
-        name:"Don-Quixote-Pirates-Servant-Assassin-Baby-5",
+        name:"Don Quixote Pirates Servant Assassin Baby 5",
         image: "/characters/green/don-quixote-pirates-servant-assassin-baby-5.webp",
         grade: "star-4",
         element: "green",
@@ -667,7 +667,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "alvida-pirates-captain-alvida":{
         id: "alvida-pirates-captain-alvida",
-        name: "Alvida-Pirates-Captain-Alvida",
+        name: "Alvida Pirates Captain Alvida",
         image: "/characters/green/alvida-pirates-captain-alvida.webp",
         grade: "star-2",
         element: "green",
@@ -675,7 +675,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "2-years-later-combatant-roronoa-zoro":{
         id: "2-years-later-combatant-roronoa-zoro",
-        name: "2-Years-Later-Combatant-Roronoa-Zoro",
+        name: "2 Years Later Combatant Roronoa Zoro",
         image: "/characters/green/2-years-later-combatant-roronoa-zoro.webp",
         grade: "star-4",
         element: "green",
@@ -683,7 +683,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "slip-slip-fruit-alvida":{
         id: "slip-slip-fruit-alvida",
-        name: "Slip-Slip-Fruit-Alvida",
+        name: "Slip-Slip Fruit Alvida",
         image: "/characters/green/slip-slip-fruit-alvida.webp",
         grade: "star-3",
         element: "green",
@@ -691,7 +691,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "red-haired-pirates-sharp-shooter-yasopp":{
         id: "red-haired-pirates-sharp-shooter-yasopp",
-        name: "Red-Haired-Pirates-Sharp-Shooter-Yassop",
+        name: "Red-Haired Pirates Sharp Shooter Yasopp",
         image: "/characters/green/red-haired-pirates-sharp-shooter-yasopp.webp",
         grade: "star-4",
         element: "green",
@@ -699,7 +699,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "navy-hq-captain-smoker":{
         id: "navy-hq-captain-smoker",
-        name: "Navy-HQ-Captain-Smoker",
+        name: "Navy HQ Captain Smoker",
         image: "/characters/green/navy-hq-captain-smoker.webp",
         grade: "star-4",
         element: "green",
@@ -707,7 +707,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "kami-eneru":{
         id: "kami-eneru",
-        name: "Kami-Eneru",
+        name: "Kami Eneru",
         image: "/characters/green/kami-eneru.webp",
         grade: "star-4",
         element: "green",
@@ -715,7 +715,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "thriller-bark-pirates-mysterious-four-perona":{
         id: "thriller-bark-pirates-mysterious-four-perona",
-        name: "Thriller-Bark-Pirates-Mysterious-Four-Perona",
+        name: "Thriller Bark Pirates Mysterious Four Perona",
         image: "/characters/green/thriller-bark-pirates-mysterious-four-perona.webp",
         grade: "star-4",
         element: "green",
@@ -723,7 +723,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "2-years-later-musician-brook":{
         id: "2-years-later-musician-brook",
-        name: "2-Years-Later-Musician-Brook",
+        name: "2 Years Later Musician Brook",
         image: "/characters/green/2-years-later-musician-brook.webp",
         grade: "star-4",
         element: "green",
@@ -731,7 +731,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "navy-hq-science-team-captain-sentomaru":{
         id: "navy-hq-science-team-captain-sentomaru",
-        name: "Navy-HQ-Science-Team-Captain-Sentomaru",
+        name: "Navy HQ Science Team Captain Sentomaru",
         image: "/characters/green/navy-hq-science-team-captain-sentomaru.webp",
         grade: "star-4",
         element: "green",
@@ -739,7 +739,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "navy-hq-rear-admiral-hina":{
         id: "navy-hq-rear-admiral-hina",
-        name: "Navy-HQ-Rear-Admiral-Hina",
+        name: "Navy HQ Rear Admiral Hina",
         image: "/characters/green/navy-hq-rear-admiral-hina.webp",
         grade: "star-4",
         element: "green",
@@ -747,7 +747,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "don-quixote-pirates-supreme-officer-vergo":{
         id: "don-quixote-pirates-supreme-officer-vergo",
-        name: "Don-Quixote-Pirates-Supremr-Officer-Vergo",
+        name: "Don Quixote Pirates Supreme Officer Vergo",
         image: "/characters/green/don-quixote-pirates-supreme-officer-vergo.webp",
         grade: "star-4",
         element: "green",
@@ -755,7 +755,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "kurozumi-spy-kurozumi-kanjuro":{
         id: "kurozumi-spy-kurozumi-kanjuro",
-        name: "Kurozumi-Spy-Kurozumi-Kanjuro",
+        name: "Kurozumi Spy Kurozumi Kanjuro",
         image: "/characters/green/kurozumi-spy-kurozumi-kanjuro.webp",
         grade: "star-4",
         element: "green",
@@ -763,7 +763,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "animal-kingdom-pirates-tobi-roppo-sasaki":{
         id: "animal-kingdom-pirates-tobi-roppo-sasaki",
-        name: "Animal-Kingdom-Pirates-Tobi-Roppo-Sasaki",
+        name: "Animal Kingdom Pirates Tobi Roppo Sasaki",
         image: "/characters/green/animal-kingdom-pirates-tobi-roppo-sasaki.webp",
         grade: "star-4",
         element: "green",
@@ -771,7 +771,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "the-idiot-son-helmeppo":{
         id: "the-idiot-son-helmeppo",
-        name: "The-Idiot-Son-Helmeppo",
+        name: "The Idiot Son Helmeppo",
         image: "/characters/green/the-idiot-son-helmeppo.webp",
         grade: "star-2",
         element: "green",
@@ -779,7 +779,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "black-cat-pirates-former-captain-captain-kuro":{
         id: "black-cat-pirates-former-captain-captain-kuro",
-        name: "Black-Cat-Pirates-Former-Captain-Captain-Kuro",
+        name: "Black Cat Pirates Former Captain Captain Kuro",
         image: "/characters/green/black-cat-pirates-former-captain-captain-kuro.webp",
         grade: "star-3",
         element: "green",
@@ -787,7 +787,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "arlong-pirates-officer-choo":{
         id: "arlong-pirates-officer-choo",
-        name: "Arlong-Pirates-Officer-Choo",
+        name: "Arlong Pirates Officer Choo",
         image: "/characters/green/arlong-pirates-officer-choo.webp",
         grade: "star-3",
         element: "green",
@@ -795,7 +795,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "straw-hat-pirates-navigator-nami":{
         id: "straw-hat-pirates-navigator-nami",
-        name: "Straw-Hat-Pirates-Navigator-Nami",
+        name: "Straw Hat Pirates Navigator Nami",
         image: "/characters/green/straw-hat-pirates-navigator-nami.webp",
         grade: "star-2",
         element: "green",
@@ -803,7 +803,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "buggy-pirates-chief-of-staff-cabaji":{
         id: "buggy-pirates-chief-of-staff-cabaji",
-        name: "Buggy-Pirates-Chie-of-Staff-Cabaji",
+        name: "Buggy Pirates Chief of Staff Cabaji",
         image: "/characters/green/buggy-pirates-chief-of-staff-cabaji.webp",
         grade: "star-2",
         element: "green",
@@ -811,7 +811,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "krieg-s-pirate-armada-admiral-don-krieg":{
         id: "krieg-s-pirate-armada-admiral-don-krieg",
-        name: "Krieg-s-Pirate-Armada-Admiral-Don-Krieg",
+        name: "Krieg's Pirate Armada Admiral Don Krieg",
         image: "/characters/green/krieg-s-pirate-armada-admiral-don-krieg.webp",
         grade: "star-3",
         element: "green",
@@ -819,7 +819,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "straw-hat-pirates-musician-brook":{
         id: "straw-hat-pirates-musician-brook",
-        name: "Straw-Hat-Pirates-Musician-Brook",
+        name: "Straw Hat Pirates Musician Brook",
         image: "/characters/green/straw-hat-pirates-musician-brook.webp",
         grade: "star-2",
         element: "green",
@@ -827,7 +827,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "straw-hat-pirates-archaeologist-nico-robin":{
         id: "straw-hat-pirates-archaeologist-nico-robin",
-        name: "Straw-Hat-Pirates-Archaelogist-Nico-Robin",
+        name: "Straw Hat Pirates Archaeologist Nico Robin",
         image: "/characters/green/straw-hat-pirates-archaeologist-nico-robin.webp",
         grade: "star-2",
         element: "green",
@@ -835,7 +835,7 @@ export const greenCharacters: Record<string, Character> ={
     },
     "climate-baton-nami":{
         id: "climate-baton-nami",
-        name: "Climate-Baton-Nami",
+        name: "Climate Baton Nami",
         image: "/characters/green/climate-baton-nami.webp",
         grade: "star-3",
         element: "green",

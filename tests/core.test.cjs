@@ -22,6 +22,7 @@ const {
 const { getScoutStatus } = require('../src/lib/scout-status');
 const {
   characterUsageSnapshots,
+  createCharacterUsageRanking,
   processCharacterUsageSnapshots,
   filterSnapshotsByRange,
   buildChartData,
@@ -405,6 +406,44 @@ test('monthly filters clamp month ends, including leap years', () => {
     ),
     [],
   );
+});
+
+test('usage ranks use character IDs for ties and ignore display-name changes', () => {
+  const ids = [
+    'the-strongest-creature-alive-kaido',
+    'red-rock-monkey-d-luffy',
+    'the-four-emperors-marshall-d-teach',
+  ];
+  const snapshot = {
+    date: '2026-09-26',
+    targetPlayers: 10,
+    usage: { [ids[0]]: 2, [ids[1]]: 4, [ids[2]]: 2 },
+  };
+  const rankingValues = (ranking) => ranking.map((item) =>
+    Object.fromEntries(Object.entries(item).filter(([key]) => key !== 'character')),
+  );
+  const original = createCharacterUsageRanking(snapshot);
+  assert.deepEqual(original.map(({ characterId }) => characterId), [ids[1], ids[2], ids[0]]);
+  const names = ids.map((id) => characters[id].name);
+  const historical = processCharacterUsageSnapshots(characterUsageSnapshots)
+    .map(({ ranking }) => rankingValues(ranking));
+
+  try {
+    for (const variants of [
+      ['AAA Kaido', 'ZZZ Luffy', 'zzz Teach'],
+      ['St. Kaido', "Luffy's - NEW Name", 'AAA Teach'],
+      ['kaido', 'LUFFY', 'teach & Partner'],
+    ]) {
+      ids.forEach((id, index) => { characters[id].name = variants[index]; });
+      assert.deepEqual(rankingValues(createCharacterUsageRanking(snapshot)), rankingValues(original));
+      assert.deepEqual(
+        processCharacterUsageSnapshots(characterUsageSnapshots).map(({ ranking }) => rankingValues(ranking)),
+        historical,
+      );
+    }
+  } finally {
+    ids.forEach((id, index) => { characters[id].name = names[index]; });
+  }
 });
 
 test('usage processing computes coverage and changes without mutating input', () => {

@@ -103,7 +103,7 @@ function UsageChart({ rows, characters, visibleIds, focusedId, tooltipIndex, set
   const snapshotRanking = activeRow ? Object.entries(activeRow.values)
     .map(([id, value]) => ({ id, ...value, name: characterMap.get(id)?.name ?? id }))
     .filter((item) => item.count > 0)
-    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
+    .sort((a, b) => b.count - a.count || a.id.localeCompare(b.id))
     .map((item, index) => [item.id, index + 1] as const) : [];
   const rankById = new Map(snapshotRanking);
   const tooltipItems = activeRow ? visibleIds.map((id, colorIndex) => ({ id, colorIndex, character: characterMap.get(id)!, rank: rankById.get(id) ?? null, ...activeRow.values[id] })).sort((a, b) => b.usageRate - a.usageRate || a.character.name.localeCompare(b.character.name)) : [];

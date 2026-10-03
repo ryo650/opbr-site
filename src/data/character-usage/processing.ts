@@ -39,7 +39,7 @@ export function createCharacterUsageRanking(
         changePoints: previousUsageRate === null ? null : usageRate - previousUsageRate,
       };
     })
-    .sort((a, b) => b.count - a.count || a.character.name.localeCompare(b.character.name))
+    .sort((a, b) => b.count - a.count || a.characterId.localeCompare(b.characterId))
     .map((item, index) => ({ ...item, rank: index + 1 }));
 }
 
