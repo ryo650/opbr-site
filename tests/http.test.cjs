@@ -118,3 +118,20 @@ test('Home and New Characters both link to the permanent directory; Home uses th
   const recent = await (await fetch(base + '/new-characters')).text();
   assert.match(recent, /href="\/character-guides"/);
 });
+
+const { simulatorScoutSummaries } = require('../src/data/scouts/simulator-registry');
+test('public registry, listing and sitemap exclude the fictional Step-Up fixture', async () => {
+  assert.deepEqual(simulatorScoutSummaries.map(s => s.id), scouts.map(s => s.id));
+  const html = await (await fetch(base + '/scout-simulator')).text();
+  assert.equal((html.match(/href="\/scout-simulator\/[^"/]+"/g) || []).length, 24);
+  assert.doesNotMatch(html, /fictional-step-up-demo|Fictional Step-Up Demo|DEVELOPMENT FIXTURE/);
+  const fixture = await fetch(base + '/scout-simulator/fictional-step-up-demo');
+  assert.equal(fixture.status, 404);
+  const sitemap = await (await fetch(base + '/sitemap.xml')).text();
+  assert.doesNotMatch(sitemap, /dev\/scout-step-up|fictional-step-up-demo/);
+});
+
+test('production build cannot serve the development fixture route', { skip: process.env.TEST_PRODUCTION !== '1' }, async () => {
+  const response = await fetch(base + '/dev/scout-step-up');
+  assert.equal(response.status, 404);
+});
