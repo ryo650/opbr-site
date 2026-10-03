@@ -1,0 +1,15 @@
+{
+  "scoutId": "fictional-step-up-demo",
+  "schemaVersion": 1,
+  "status": "development-fixture-only",
+  "source": "scout-step-up-investigation-design.md, fictional three-Step fixture section, 2026-10-03",
+  "officialGameData": false,
+  "characters": "Synthetic A/B/C/D/E; never registered in the production character master",
+  "poolContexts": {
+    "N1": "Steps 1 and 2 normal slots: D60/C29/B8/A2/E1",
+    "N3": "Step 3 normal slots: D60/C25/B9/A4/E2",
+    "G4": "Step 2 final fixed guarantee slot: B8/A2/E1; rarity 4",
+    "GF": "Step 3 final fixed guarantee slot: A2/E1; featured A or E"
+  },
+  "expectedCompletion": { "steps": 3, "pulls": 19, "rainbowDiamonds": 40, "rounds": 1, "demoBonus": 1 }
+}

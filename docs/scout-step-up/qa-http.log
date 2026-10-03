@@ -1,0 +1,58 @@
+> opbr-site@0.1.0 test:http
+> node --require ./tests/register.cjs --test tests/http.test.cjs
+
+TAP version 13
+# Subtest: Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards
+ok 1 - Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards
+  ---
+  duration_ms: 38.070125
+  ...
+# Subtest: all published pages return 200, one main and h1, and their own canonical
+ok 2 - all published pages return 200, one main and h1, and their own canonical
+  ---
+  duration_ms: 289.216625
+  ...
+# Subtest: unfinished pages are explicitly noindex and have a main heading
+ok 3 - unfinished pages are explicitly noindex and have a main heading
+  ---
+  duration_ms: 5.195291
+  ...
+# Subtest: unknown pages and inherited object keys return a recoverable 404
+ok 4 - unknown pages and inherited object keys return a recoverable 404
+  ---
+  duration_ms: 48.24075
+  ...
+# Subtest: sitemap includes exactly the published pages and robots points to it
+ok 5 - sitemap includes exactly the published pages and robots points to it
+  ---
+  duration_ms: 10.672
+  ...
+# Subtest: permanent directory renders every published guide and its real summary
+ok 6 - permanent directory renders every published guide and its real summary
+  ---
+  duration_ms: 3.129333
+  ...
+# Subtest: Home and New Characters both link to the permanent directory; Home uses the supplied Character Guides artwork
+ok 7 - Home and New Characters both link to the permanent directory; Home uses the supplied Character Guides artwork
+  ---
+  duration_ms: 5.816
+  ...
+# Subtest: public registry, listing and sitemap exclude the fictional Step-Up fixture
+ok 8 - public registry, listing and sitemap exclude the fictional Step-Up fixture
+  ---
+  duration_ms: 27.286709
+  ...
+# Subtest: production build cannot serve the development fixture route
+ok 9 - production build cannot serve the development fixture route
+  ---
+  duration_ms: 6.727958
+  ...
+1..9
+# tests 9
+# suites 0
+# pass 9
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 752.098541
