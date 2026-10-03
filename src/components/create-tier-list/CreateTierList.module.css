@@ -221,3 +221,27 @@
 @media (prefers-reduced-motion: reduce) {
   .characterCard, .reset { transition: none; }
 }
+
+.persistence { margin-bottom: 24px; padding: 20px; border: 1px solid rgb(255 255 255 / 11%); border-radius: 14px; background: rgb(25 27 30 / 92%); }
+.persistenceHeading { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 18px; }
+.persistenceHeading h2 { margin: 0; font-size: 1.1rem; }
+.saveStatus { color: #fde68a; font-size: .8rem; }
+.persistenceHelp { margin: 10px 0 16px; color: #b8c0cc; font-size: .85rem; line-height: 1.6; }
+.persistenceActions { display: flex; flex-wrap: wrap; gap: 8px; }
+.persistence button, .importAction, .shareLink button { min-height: 44px; padding: 10px 14px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 9px; background: rgb(255 255 255 / 5%); color: #f8fafc; font: inherit; font-size: .85rem; font-weight: 700; cursor: pointer; }
+.persistence .primaryAction { border-color: rgb(251 191 36 / 45%); background: rgb(251 191 36 / 12%); color: #fde68a; }
+.persistence button:hover:not(:disabled), .importAction:hover { background: rgb(255 255 255 / 12%); }
+.persistence button:disabled, .reset:disabled { opacity: .45; cursor: default; }
+.persistence button:focus-visible, .importAction:focus-within, .shareLink input:focus-visible { outline: 3px solid #fbbf24; outline-offset: 3px; }
+.importAction { position: relative; display: inline-flex; align-items: center; overflow: hidden; }
+.importAction input { position: absolute; inset: 0; width: 100%; opacity: 0; cursor: pointer; }
+.persistenceMessage { margin: 12px 0 0; color: #dbeafe; font-size: .85rem; line-height: 1.6; overflow-wrap: anywhere; }
+.persistenceMessage:empty { display: none; }
+.pendingLoad { margin-top: 16px; padding: 14px; border: 1px solid rgb(251 191 36 / 40%); border-radius: 10px; background: rgb(251 191 36 / 6%); }
+.pendingLoad p { margin: 0 0 12px; font-size: .85rem; line-height: 1.6; overflow-wrap: anywhere; }
+.shareLink { display: flex; align-items: end; gap: 10px; margin-top: 14px; }
+.shareLink label { flex: 1; min-width: 0; display: grid; gap: 6px; color: #cbd5e1; font-size: .85rem; }
+.shareLink input { min-width: 0; width: 100%; min-height: 44px; padding: 10px 12px; border: 1px solid rgb(255 255 255 / 18%); border-radius: 9px; background: #121416; color: #fff; font: inherit; font-size: 16px; }
+.characterCard:has(.chooseCharacter:disabled) { cursor: default; }
+.dragHandle:disabled { display: none; }
+@media (max-width: 700px) { .persistence { padding: 14px; } .shareLink { flex-wrap: wrap; } .shareLink label { flex-basis: 100%; } }
