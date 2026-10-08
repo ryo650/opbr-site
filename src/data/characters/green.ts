@@ -1,6 +1,14 @@
 import type { Character } from "./type.ts";
 
 export const greenCharacters: Record<string, Character> ={
+    "daimyo-of-kuri-kozuki-oden": {
+        id: "daimyo-of-kuri-kozuki-oden",
+        name: "Daimyo of Kuri Kozuki Oden",
+        image: "/characters/green/daimyo-of-kuri-kozuki-oden.webp",
+        grade: "ex",
+        element: "green",
+        role: "runner"
+    },
     "film-red-shanks": {
         id: "film-red-shanks",
         name: "FILM RED Shanks",

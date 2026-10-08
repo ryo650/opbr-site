@@ -98,10 +98,27 @@ test('registered production events have explicit, coherent editorial data and of
       if (change.kind === 'new') assert.equal(change.fromTier, null);
       else if (!(change.kind === 'rise' && change.fromTier === null)) assert.ok(ranks.includes(change.fromTier));
       if (change.kind === 'rise') {
-        if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) < ranks.indexOf(change.fromTier));
+        if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) <= ranks.indexOf(change.fromTier));
       } else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) > ranks.indexOf(change.fromTier));
       else if (change.kind === 'adjustment') assert.equal(change.fromTier, change.toTier);
       else assert.equal(change.kind, 'new');
     }
   }
+});
+
+test('buffed characters can rise within a tier and receive an UP badge', () => {
+  const event = {
+    ...demoUpdate,
+    id: 'within-tier-rise',
+    changes: [{
+      characterId: 'blackbeard-pirates-kuzan',
+      kind: 'rise',
+      fromTier: 'A',
+      toTier: 'A',
+      reason: 'Moved higher in A after buffs.',
+    }],
+  };
+  const result = state([event], Date.parse(event.publishedAt));
+  assert.equal(result.badges['blackbeard-pirates-kuzan'].kind, 'rise');
+  assert.equal(result.update.changes[0].toTier, 'A');
 });

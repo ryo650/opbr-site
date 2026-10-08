@@ -26,6 +26,64 @@ export type ImportantTierUpdate = {
 // Editorial opt-in only. Reordering tierList.ts never creates an event.
 export const importantTierUpdates: ImportantTierUpdate[] = [
   {
+    id: "2026-10-08-post-buff-tier-review",
+    status: "published",
+    publishedAt: "2026-10-08T17:40:00+09:00",
+    title: "Post-buff Tier List review: 7 key movements",
+    summary: "Our October 8 review highlights six rises and one drop following recent buffs. Other ranking changes are regular editorial adjustments.",
+    changes: [
+      {
+        characterId: "daimyo-of-kuri-kozuki-oden",
+        kind: "rise",
+        fromTier: null,
+        toTier: "A",
+        reason: "Recent buffs improve Oden's Treasure-capturing value, placing him at the top of A Tier.",
+      },
+      {
+        characterId: "blackbeard-pirates-kuzan",
+        kind: "rise",
+        fromTier: "A",
+        toTier: "A",
+        reason: "Recent buffs raise Kuzan's standing within A Tier, ahead of Teach.",
+      },
+      {
+        characterId: "ama-no-murakumo-sword-kizaru",
+        kind: "fall",
+        fromTier: "B",
+        toTier: "C",
+        reason: "With buffed rivals gaining value, Kizaru moves down to the top of C Tier.",
+      },
+      {
+        characterId: "seraphim-s-snake",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "B",
+        reason: "Recent buffs increase S-Snake's overall value, lifting her into B Tier.",
+      },
+      {
+        characterId: "divine-departure-shanks",
+        kind: "rise",
+        fromTier: "D",
+        toTier: "C",
+        reason: "Recent buffs improve Shanks's evaluation, moving him into C Tier.",
+      },
+      {
+        characterId: "father-and-daughter-kuma-bonny",
+        kind: "rise",
+        fromTier: "B",
+        toTier: "A",
+        reason: "Recent buffs move Kuma and Bonney into A Tier, just behind Teach.",
+      },
+      {
+        characterId: "unexpected-collaboration-rob-lucci",
+        kind: "rise",
+        fromTier: "B",
+        toTier: "B",
+        reason: "Recent buffs move black-element Rob Lucci to the top of B Tier.",
+      },
+    ],
+  },
+  {
     id: "2026-10-03-halloween-uta-rise",
     status: "published",
     publishedAt: "2026-10-03T19:00:00+09:00",
