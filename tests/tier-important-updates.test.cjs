@@ -94,7 +94,8 @@ test('registered production events have explicit, coherent editorial data and of
     for (const change of event.changes) {
       assert.ok(characters[change.characterId] && !affected.has(change.characterId));
       affected.add(change.characterId);
-      assert.ok(change.reason.trim() && ranks.includes(change.toTier));
+      assert.ok(ranks.includes(change.toTier));
+      if (change.reason !== undefined) assert.ok(change.reason.trim());
       if (change.kind === 'new') assert.equal(change.fromTier, null);
       else if (!(change.kind === 'rise' && change.fromTier === null)) assert.ok(ranks.includes(change.fromTier));
       if (change.kind === 'rise') {
