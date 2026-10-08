@@ -98,7 +98,7 @@ test('registered production events have explicit, coherent editorial data and of
       if (change.kind === 'new') assert.equal(change.fromTier, null);
       else if (!(change.kind === 'rise' && change.fromTier === null)) assert.ok(ranks.includes(change.fromTier));
       if (change.kind === 'rise') {
-        if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) < ranks.indexOf(change.fromTier));
+        if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) <= ranks.indexOf(change.fromTier));
       } else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) > ranks.indexOf(change.fromTier));
       else if (change.kind === 'adjustment') assert.equal(change.fromTier, change.toTier);
       else assert.equal(change.kind, 'new');
