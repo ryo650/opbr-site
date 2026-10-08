@@ -7,12 +7,12 @@ export const tierList = [
     {
         tier: "SS",
         colorClass: "SS",
-        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-ethanbaron-v-nusjuro","future-where-i-m-the-most-free-jewelry-bonney"]
+        characterIds: ["the-four-emperors-monkey-d-luffy","the-five-elders-st-ethanbaron-v-nusjuro"]
     },
     {
         tier: "S",
         colorClass: "S",
-        characterIds: ["the-wings-zoro-sanji","the-five-elders-st-marcus-mars"]
+        characterIds: ["future-where-i-m-the-most-free-jewelry-bonney","the-wings-zoro-sanji","the-five-elders-st-marcus-mars"]
     },
     {
         tier: "A",
@@ -22,7 +22,7 @@ export const tierList = [
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["great-pirate-edward-newgate","happy-halloween-uta","red-rock-monkey-d-luffy","father-and-daughter-kuma-bonny","unexpected-collaboration-rob-lucci","battle-of-monsters-on-onigashima-kaido","kaido-s-son-yamato","ama-no-murakumo-sword-kizaru","navy-hq-sword-koby"]
+        characterIds: ["unexpected-collaboration-rob-lucci","great-pirate-edward-newgate","red-rock-monkey-d-luffy","battle-of-monsters-on-onigashima-kaido","kaido-s-son-yamato","navy-hq-sword-koby","seraphim-s-snake","germa-66-vinsmoke-niji","egghead-tony-tony-chopper"]
     },
     {
         tier: "C",
