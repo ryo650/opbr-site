@@ -30,7 +30,7 @@ function Change({ change, currentTier }: { change: ImportantTierChange; currentT
           )}
           {change.kind === "adjustment" && <span className={styles.sameTier}> · Same tier</span>}
         </p>
-        <p className={styles.reason}>{change.reason}</p>
+        {change.reason && <p className={styles.reason}>{change.reason}</p>}
         {changedSince && <p className={styles.current}>At publication: {change.toTier}. Current tier: {currentTier ?? "Unranked"}. Rankings above take priority.</p>}
       </div>
     </li>
