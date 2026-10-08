@@ -17,7 +17,7 @@ export const tierList = [
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["great-pirate-gol-d-roger","flame-emperor-sabo","the-four-emperors-marshall-d-teach","blackbeard-pirates-kuzan","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law"]
+        characterIds: ["daimyo-of-kuri-kozuki-oden","great-pirate-gol-d-roger","flame-emperor-sabo","blackbeard-pirates-kuzan","the-four-emperors-marshall-d-teach","father-and-daughter-kuma-bonny","happy-halloween-uta","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law"]
     },
     {
         tier: "B",
