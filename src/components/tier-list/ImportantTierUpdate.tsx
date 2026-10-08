@@ -11,6 +11,7 @@ function Change({ change, currentTier }: { change: ImportantTierChange; currentT
   if (!character) return null;
   const { symbol, label } = tierChangeLabels[change.kind];
   const changedSince = currentTier !== change.toTier;
+  const sameTierRise = change.kind === "rise" && change.fromTier === change.toTier;
   return (
     <li className={`${styles.change} ${markerStyles[change.kind]}`}>
       <Image src={character.image} alt="" width={44} height={44} className={styles.portrait} />
@@ -22,7 +23,11 @@ function Change({ change, currentTier }: { change: ImportantTierChange; currentT
           <span className={styles.movement}><span aria-hidden="true">{symbol}</span> {label}</span>
         </div>
         <p className={styles.tiers}>
-          <span>{change.fromTier ?? "Unranked"}</span><span aria-hidden="true"> → </span><span className={styles.srOnly}> to </span><strong>{change.toTier}</strong>
+          {sameTierRise ? (
+            <><strong>{change.toTier}</strong><span className={styles.sameTier}> · Higher within tier</span></>
+          ) : (
+            <><span>{change.fromTier ?? "Unranked"}</span><span aria-hidden="true"> → </span><span className={styles.srOnly}> to </span><strong>{change.toTier}</strong></>
+          )}
           {change.kind === "adjustment" && <span className={styles.sameTier}> · Same tier</span>}
         </p>
         <p className={styles.reason}>{change.reason}</p>
