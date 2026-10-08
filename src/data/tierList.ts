@@ -27,11 +27,11 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","germa-66-vinsmoke-niji","film-z-zephyr","seraphim-s-snake","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-tony-tony-chopper"]
+        characterIds: ["ama-no-murakumo-sword-kizaru","navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","film-z-zephyr","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-sanji","asl-ace-sabo-luffy","divine-departure-shanks"]
     },
     {
         tier: "D",
         colorClass: "D",
-        characterIds: ["navy-hq-sword-hibari","asl-ace-sabo-luffy","egghead-roronoa-zoro","divine-departure-shanks","seraphim-s-shark","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn","egghead-sanji","singer-of-the-new-genesis-uta"]
+        characterIds: ["navy-hq-sword-hibari","egghead-roronoa-zoro","seraphim-s-shark","punk-02-lilith","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","heir-to-the-shogun-of-wano-kozuki-oden","the-five-elders-st-jaygarcia-saturn"]
     }
 ]
