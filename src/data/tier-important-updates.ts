@@ -6,7 +6,7 @@ export type ImportantTierChange = {
   kind: TierChangeKind;
   fromTier: TierName | null; // null for a new entry or a rise from unranked
   toTier: TierName;
-  reason: string; // OPBR Guide's assessment, never an official ranking
+  reason?: string; // Optional editorial detail; never an official ranking
 };
 
 export type ImportantTierUpdate = {
@@ -44,42 +44,36 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         kind: "rise",
         fromTier: "A",
         toTier: "A",
-        reason: "Oden's buffs shift the meta in Kuzan's favor, moving him ahead of Teach within A Tier.",
       },
       {
         characterId: "ama-no-murakumo-sword-kizaru",
         kind: "fall",
         fromTier: "B",
         toTier: "C",
-        reason: "Oden's buffs change the meta, lowering Kizaru's relative value to the top of C Tier.",
       },
       {
         characterId: "seraphim-s-snake",
         kind: "rise",
         fromTier: "C",
         toTier: "B",
-        reason: "Oden's buffs shift the meta in S-Snake's favor, moving her into B Tier.",
       },
       {
         characterId: "divine-departure-shanks",
         kind: "rise",
         fromTier: "D",
         toTier: "C",
-        reason: "Oden's buffs change the meta, raising Shanks's relative value into C Tier.",
       },
       {
         characterId: "father-and-daughter-kuma-bonny",
         kind: "rise",
         fromTier: "B",
         toTier: "A",
-        reason: "Oden's buffs shift the meta in Kuma & Bonney's favor, moving them just behind Teach in A Tier.",
       },
       {
         characterId: "unexpected-collaboration-rob-lucci",
         kind: "rise",
         fromTier: "B",
         toTier: "B",
-        reason: "Oden's buffs change the meta, raising black-element Rob Lucci to the top of B Tier.",
       },
     ],
   },
