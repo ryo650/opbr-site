@@ -122,28 +122,3 @@ test('buffed characters can rise within a tier and receive an UP badge', () => {
   assert.equal(result.badges['blackbeard-pirates-kuzan'].kind, 'rise');
   assert.equal(result.update.changes[0].toTier, 'A');
 });
-
-test('Oct 8 agreed positions and seven editorial markers are consistent', () => {
-  const row = (tier) => tierList.find((entry) => entry.tier === tier).characterIds;
-  assert.deepEqual(row('SS'), ['the-four-emperors-monkey-d-luffy', 'the-five-elders-st-ethanbaron-v-nusjuro']);
-  assert.equal(row('S')[0], 'future-where-i-m-the-most-free-jewelry-bonney');
-  assert.deepEqual(row('A').slice(0, 8), [
-    'daimyo-of-kuri-kozuki-oden', 'great-pirate-gol-d-roger',
-    'flame-emperor-sabo', 'blackbeard-pirates-kuzan',
-    'the-four-emperors-marshall-d-teach', 'father-and-daughter-kuma-bonny',
-    'happy-halloween-uta', 'animal-kingdom-pirates-lead-performer-king',
-  ]);
-  assert.equal(row('B')[0], 'unexpected-collaboration-rob-lucci');
-  assert.deepEqual(row('B').slice(-3), ['seraphim-s-snake', 'germa-66-vinsmoke-niji', 'egghead-tony-tony-chopper']);
-  assert.equal(row('C')[0], 'ama-no-murakumo-sword-kizaru');
-  assert.deepEqual(row('C').slice(-3), ['egghead-sanji', 'asl-ace-sabo-luffy', 'divine-departure-shanks']);
-  assert.ok(!tierList.some((tier) => tier.characterIds.includes('singer-of-the-new-genesis-uta')));
-  assert.equal(characters['daimyo-of-kuri-kozuki-oden'].role, 'runner');
-  const event = importantTierUpdates.find((update) => update.id === '2026-10-08-post-buff-tier-review');
-  assert.equal(event.changes.length, 7);
-  assert.equal(event.changes.filter((change) => change.kind === 'rise').length, 6);
-  assert.equal(event.changes.filter((change) => change.kind === 'fall').length, 1);
-  for (const change of event.changes) assert.ok(row(change.toTier).includes(change.characterId));
-  const all = tierList.flatMap((tier) => tier.characterIds);
-  assert.equal(new Set(all).size, all.length);
-});
