@@ -9,7 +9,10 @@
 .slot { min-width: 0; }
 .slotNumber { margin-bottom: 7px; color: #aab4c0; text-transform: uppercase; font-size: .7rem; font-weight: 800; letter-spacing: .12em; }
 .filledSlot, .emptySlot, .activeEmpty { width: 100%; min-height: 152px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 16px; display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 8px; background: rgb(0 0 0 / 17%); color: #e2e8f0; text-align: center; padding: 12px; }
-.filledSlot { background: rgb(251 191 36 / 7%); border-color: rgb(251 191 36 / 32%); font: inherit; cursor: pointer; }
+.filledSlot { position: relative; background: rgb(251 191 36 / 7%); border-color: rgb(251 191 36 / 32%); font: inherit; }
+.removeMedal { position: absolute; top: 3px; right: 3px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: #37383c; color: #fff; font: inherit; font-size: 1.35rem; line-height: 1; cursor: pointer; }
+.removeMedal:hover { background: #6c3131; border-color: #fca5a5; }
+.slotHint { margin: -9px 0 22px; color: #b6bfcb; font-size: .79rem; line-height: 1.5; }
 .activeEmpty { border: 1px dashed #fbbf24; background: rgb(251 191 36 / 5%); }
 .emptySlot { border-style: dashed; opacity: .6; }
 .slotArt, .candidateArt { display: inline-block; flex: 0 0 auto; width: 62px; height: 62px; }
@@ -45,7 +48,7 @@
 .muted, .note { color: #b6bfcb; line-height: 1.5; font-size: .83rem; }
 .note { margin: 10px 0 18px; }
 .effects { padding-left: 20px; margin: 12px 0; color: #d8dee7; line-height: 1.75; font-size: .84rem; }
-.filledSlot:focus-visible, .reset:focus-visible, .controls select:focus-visible, .search input:focus-visible, .medalCard:focus-visible, .more:focus-visible, .builderLink:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+.removeMedal:focus-visible, .reset:focus-visible, .controls select:focus-visible, .search input:focus-visible, .medalCard:focus-visible, .more:focus-visible, .builderLink:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
 @media (max-width: 900px) { .medalGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 650px) {
   .finder { padding: 17px; border-radius: 17px; }
@@ -54,6 +57,7 @@
   .slotNumber { font-size: .64rem; }
   .filledSlot, .emptySlot, .activeEmpty { min-height: 140px; padding: 8px 4px; }
   .slotArt { width: 54px; height: 54px; }
+  .removeMedal { top: 2px; right: 2px; width: 36px; height: 36px; }
   .slotName { font-size: .71rem; }
   .controls { grid-template-columns: 1fr; gap: 12px; }
   .medalGrid { grid-template-columns: 1fr; }
