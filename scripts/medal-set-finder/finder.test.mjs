@@ -7,6 +7,7 @@ import {
   getCommonTags,
   getSharedPurposes,
   matchesCompletedSet,
+  removeMedalFromSlots,
 } from "../../src/data/medal-sets/finder.ts";
 
 const makeMedal = (id, tagIds) => ({
@@ -77,4 +78,32 @@ test("first slot is unrestricted; duplicates and invalid IDs are rejected", () =
 test("the minimum tag threshold can be adjusted without assigning a score", () => {
   assert.equal(matchesCompletedSet(take("skill1-a", "recovery-d", "recovery-e"), filters("all", 2)), true);
   assert.equal(matchesCompletedSet(take("skill1-a", "recovery-d", "recovery-e"), filters("all", 3)), false);
+});
+
+test("removing the third slot preserves the first two medals", () => {
+  assert.deepEqual(
+    removeMedalFromSlots(["skill1-a", "skill2-b", "skill1-c"], 2),
+    ["skill1-a", "skill2-b", null],
+  );
+});
+
+test("removing the middle medal retains the third and repacks the remaining pair", () => {
+  const remaining = removeMedalFromSlots(["skill1-a", "skill2-b", "skill1-c"], 1);
+  assert.deepEqual(remaining, ["skill1-a", "skill1-c", null]);
+  assert.ok(findNextMedals(index, remaining.filter(Boolean), filters("hybrid"))
+    .some(({ medal }) => medal.id === "skill2-b"));
+});
+
+test("removing the first medal retains both others and allows a new third", () => {
+  const remaining = removeMedalFromSlots(["skill1-a", "skill2-b", "skill1-c"], 0);
+  assert.deepEqual(remaining, ["skill2-b", "skill1-c", null]);
+  assert.ok(findNextMedals(index, remaining.filter(Boolean), filters("hybrid"))
+    .some(({ medal }) => medal.id === "skill1-a"));
+});
+
+test("removing from one- and two-medal sets leaves other slots intact", () => {
+  assert.deepEqual(removeMedalFromSlots(["skill1-a", "skill2-b", null], 0), ["skill2-b", null, null]);
+  assert.deepEqual(removeMedalFromSlots(["skill1-a", null, null], 0), [null, null, null]);
+  assert.deepEqual(removeMedalFromSlots(["skill1-a", "skill2-b", null], 2), ["skill1-a", "skill2-b", null]);
+  assert.deepEqual(removeMedalFromSlots(["skill1-a", null, null], -1), ["skill1-a", null, null]);
 });
