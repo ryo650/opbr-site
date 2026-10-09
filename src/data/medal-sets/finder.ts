@@ -41,6 +41,19 @@ export function createFinderIndex(
   }));
 }
 
+// Remove only the chosen medal, then keep the remaining selections in order.
+// Packing left preserves the step-by-step selection flow without clearing later medals.
+export function removeMedalFromSlots(
+  slots: readonly [string | null, string | null, string | null],
+  index: number,
+): [string | null, string | null, string | null] {
+  if (!Number.isInteger(index) || index < 0 || index > 2 || slots[index] === null) {
+    return [...slots];
+  }
+  const remaining = slots.filter((id, position): id is string => position !== index && id !== null);
+  return [remaining[0] ?? null, remaining[1] ?? null, remaining[2] ?? null];
+}
+
 export function getCommonTagCount(items: readonly IndexedMedal[]): number {
   if (!items.length) return 0;
   let count = 0;
