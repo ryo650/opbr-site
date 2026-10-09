@@ -9,7 +9,7 @@
 - Filter by minimum three-way tag overlap (2–6), by Tag (4+), Trait (2+ tags and shared trait purpose), Hybrid (4+ tags and shared purpose), and by a specific shared purpose.
 - No recommendation score or subjective ranking. The candidate list is sorted by objective shared-tag count, then name.
 - When complete, display the shared 3-medal tags, exactly-two tags count, shared trait purposes, and active tag effects. Send the exact 3 medal IDs to the already-supported `/medal-builder?medals=` URL to inspect caps and additional traits.
-- Reset or click a filled slot to replace it; clearing an earlier slot also clears subsequent slots.
+- Use the × control on a filled slot to remove **only that medal**. Remaining selections keep their relative order and shift left so the next candidate list can update. **Reset set** still clears all three slots.
 
 ## Data + correctness
 
@@ -30,7 +30,7 @@ npm run lint
 npm run build
 ```
 
-Also validate in iPhone / desktop Preview: slot selection and replacement, filter changes, empty results, and transfer to Builder.
+Also validate in iPhone / desktop Preview: per-slot × removes only the targeted medal (first/middle/last); other selections remain; Reset set clears all; candidate lists refresh; filter changes, empty results, and transfer to Builder.
 
 ## Limitations / next phase
 
