@@ -16,6 +16,7 @@ import {
   findNextMedals,
   getCommonTags,
   getSharedPurposes,
+  removeMedalFromSlots,
   type FinderMode,
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
@@ -87,8 +88,14 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     setVisibleCount(PAGE_SIZE);
   }
 
-  function clearFrom(index: number) {
-    setSlots((previous) => previous.map((id, position) => position < index ? id : null) as Slots);
+  function removeMedal(index: number) {
+    setSlots((previous) => removeMedalFromSlots(previous, index));
+    setQuery("");
+    setVisibleCount(PAGE_SIZE);
+  }
+
+  function resetSet() {
+    setSlots([null, null, null]);
     setQuery("");
     setVisibleCount(PAGE_SIZE);
   }
@@ -106,7 +113,7 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
           <h2>Medal Set Finder</h2>
           <p>Choose one medal, then another. Each choice updates the available medals for the next slot. No recommendation scores.</p>
         </div>
-        <button type="button" className={styles.reset} onClick={() => clearFrom(0)} disabled={!selectedIds.length}>
+        <button type="button" className={styles.reset} onClick={resetSet} disabled={!selectedIds.length}>
           Reset set
         </button>
       </header>
@@ -118,12 +125,19 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
             <div className={styles.slot} key={position}>
               <div className={styles.slotNumber}>Slot {position + 1}</div>
               {medal ? (
-                <button type="button" className={styles.filledSlot} onClick={() => clearFrom(position)}
-                  aria-label={"Change slot " + (position + 1) + ": " + medal.name}>
+                <div className={styles.filledSlot}>
+                  <button
+                    type="button"
+                    className={styles.removeMedal}
+                    onClick={() => removeMedal(position)}
+                    aria-label={"Remove " + medal.name + " from slot " + (position + 1)}
+                    title="Remove this medal"
+                  >
+                    <span aria-hidden="true">×</span>
+                  </button>
                   <MedalArtwork medal={medal} sizes="64px" className={styles.slotArt} />
                   <span className={styles.slotName}>{medal.name}</span>
-                  <span className={styles.change}>Change</span>
-                </button>
+                </div>
               ) : (
                 <div className={position === selectedIds.length ? styles.activeEmpty : styles.emptySlot}>
                   <span className={styles.plus} aria-hidden="true">+</span>
@@ -134,6 +148,8 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
           );
         })}
       </div>
+
+      <p className={styles.slotHint}>Remove a medal with × to keep the other selections. Remaining medals move left.</p>
 
       <div className={styles.controls}>
         <label>
