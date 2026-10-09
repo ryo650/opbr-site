@@ -1,0 +1,89 @@
+
+> opbr-site@0.1.0 characters:stats-test
+> node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/character-stats-importer/*.test.mjs
+
+TAP version 13
+# Subtest: OCR never infers medals absent or approval; title and name match canonical ID
+ok 1 - OCR never infers medals absent or approval; title and name match canonical ID
+  ---
+  duration_ms: 2.542875
+  ...
+# Subtest: bare, misspelled and wrong-version names remain unmatched suggestions
+ok 2 - bare, misspelled and wrong-version names remain unmatched suggestions
+  ---
+  duration_ms: 9.296042
+  ...
+# Subtest: ambiguous OCR, text, decimal integer and glyph substitutions are withheld
+ok 3 - ambiguous OCR, text, decimal integer and glyph substitutions are withheld
+  ---
+  duration_ms: 0.065792
+  ...
+# Subtest: server requires explicit human approval and canonical identity
+ok 4 - server requires explicit human approval and canonical identity
+  ---
+  duration_ms: 1.312167
+  ...
+# Subtest: invalid values and completely empty primary stats cannot be approved
+ok 5 - invalid values and completely empty primary stats cannot be approved
+  ---
+  duration_ms: 0.573333
+  ...
+# Subtest: partial stats are allowed, identity corrections do not alter raw evidence
+ok 6 - partial stats are allowed, identity corrections do not alter raw evidence
+  ---
+  duration_ms: 0.441666
+  ...
+# Subtest: conflicting existing values require explicit overwrite and retain prior value in review
+ok 7 - conflicting existing values require explicit overwrite and retain prior value in review
+  ---
+  duration_ms: 1.035375
+  ...
+# Subtest: null incoming values preserve existing fields and unrelated characters
+ok 8 - null incoming values preserve existing fields and unrelated characters
+  ---
+  duration_ms: 1.349958
+  ...
+# Subtest: duplicate IDs, unknown drafts, saved drafts and empty approvals are blocked
+ok 9 - duplicate IDs, unknown drafts, saved drafts and empty approvals are blocked
+  ---
+  duration_ms: 1.036
+  ...
+# Subtest: atomic save includes only selected rows; stale catalog and invalid batch leave file intact
+ok 10 - atomic save includes only selected rows; stale catalog and invalid batch leave file intact
+  ---
+  duration_ms: 19.119708
+  ...
+# Subtest: exclusive catalog lock prevents concurrent writers
+ok 11 - exclusive catalog lock prevents concurrent writers
+  ---
+  duration_ms: 2.164875
+  ...
+# Subtest: malformed and duplicate existing records fail validation before save
+ok 12 - malformed and duplicate existing records fail validation before save
+  ---
+  duration_ms: 3.23475
+  ...
+# Subtest: HTTP upload → OCR → correction → individual approval → save; CSRF blocked
+ok 13 - HTTP upload → OCR → correction → individual approval → save; CSRF blocked
+  ---
+  duration_ms: 45.04325
+  ...
+# Subtest: captured OCR text from five screenshots keeps every numeric value and condition; manual identity review saves exact expected records
+ok 14 - captured OCR text from five screenshots keeps every numeric value and condition; manual identity review saves exact expected records
+  ---
+  duration_ms: 16.254125
+  ...
+# Subtest: batch preload uses temporary image copies and removes them when the local session closes
+ok 15 - batch preload uses temporary image copies and removes them when the local session closes
+  ---
+  duration_ms: 3.971
+  ...
+1..15
+# tests 15
+# suites 0
+# pass 15
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 234.521667

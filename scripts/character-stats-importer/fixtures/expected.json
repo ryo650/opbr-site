@@ -1,0 +1,97 @@
+[
+  {
+    "file": "IMG_5229.PNG",
+    "characterId": "navy-hq-captain-koby",
+    "maxStats": {
+      "hp": 9169,
+      "atk": 2398,
+      "def": 2159,
+      "totalPower": 11446,
+      "crit": 11
+    },
+    "conditions": {
+      "screen": "stats-of-max-level",
+      "level": 100,
+      "levelMaximum": 100,
+      "characterBoost": 52,
+      "characterBoostMaximum": 52,
+      "medalsEquipped": false
+    }
+  },
+  {
+    "file": "IMG_5230.PNG",
+    "characterId": "evil-black-drum-kingdom-king-wapol",
+    "maxStats": {
+      "hp": 9981,
+      "atk": 1791,
+      "def": 2526,
+      "totalPower": 11409,
+      "crit": 11
+    },
+    "conditions": {
+      "screen": "stats-of-max-level",
+      "level": 100,
+      "levelMaximum": 100,
+      "characterBoost": 52,
+      "characterBoostMaximum": 52,
+      "medalsEquipped": false
+    }
+  },
+  {
+    "file": "IMG_5231.PNG",
+    "characterId": "unexpected-collaboration-rob-lucci",
+    "maxStats": {
+      "hp": 10066,
+      "atk": 1771,
+      "def": 2562,
+      "totalPower": 11446,
+      "crit": 11
+    },
+    "conditions": {
+      "screen": "stats-of-max-level",
+      "level": 100,
+      "levelMaximum": 100,
+      "characterBoost": 52,
+      "characterBoostMaximum": 52,
+      "medalsEquipped": false
+    }
+  },
+  {
+    "file": "IMG_5232.PNG",
+    "characterId": "legendary-hero-monkey-d-garp",
+    "maxStats": {
+      "hp": 9466,
+      "atk": 2511,
+      "def": 2063,
+      "totalPower": 11537,
+      "crit": 11
+    },
+    "conditions": {
+      "screen": "stats-of-max-level",
+      "level": 100,
+      "levelMaximum": 100,
+      "characterBoost": 52,
+      "characterBoostMaximum": 52,
+      "medalsEquipped": false
+    }
+  },
+  {
+    "file": "IMG_5233.PNG",
+    "characterId": "ex-roger-pirates-first-mate-silvers-rayleigh",
+    "maxStats": {
+      "hp": 9726,
+      "atk": 1939,
+      "def": 2461,
+      "totalPower": 11428,
+      "crit": 11
+    },
+    "conditions": {
+      "screen": "stats-of-max-level",
+      "level": 100,
+      "levelMaximum": 100,
+      "characterBoost": 52,
+      "characterBoostMaximum": 52,
+      "medalsEquipped": false
+    }
+  }
+]

@@ -1,0 +1,30 @@
+name: Character Stats Importer
+on:
+  pull_request:
+    paths:
+      - '.github/workflows/character-stats-importer.yml'
+      - 'scripts/character-stats-importer/**'
+      - 'scripts/character-level-100-stats/**'
+      - 'scripts/medal-importer/**'
+      - 'src/data/characters/**'
+      - 'package.json'
+      - 'package-lock.json'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci
+      - run: npm run characters:stats-test
+      - run: npm run characters:stats-validate
+      - run: npm run characters:test-level-100-stats
+      - run: npm run medals:test
+      - run: npm test
+      - run: npm run lint
+      - run: npx tsc --noEmit --incremental false
