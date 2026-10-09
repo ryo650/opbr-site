@@ -40,7 +40,7 @@ needs more screenshots/layouts; do not remove human approval.
 
 ## Automated checks
 
-- New importer: 15/15 pass with no original screenshots, including captured OCR text replay,
+- New importer: 27/27 pass with no original screenshots, including captured OCR text replay,
   uncertainty, malformed values, unknown IDs, partial records, selected-only
   save, overwrite consent/history, invalid batch rollback, stale revision,
   duplicate IDs, exclusive lock, loopback-only HTTP upload/correction/save, batch preload
@@ -68,9 +68,9 @@ it contained original-image thumbnails.
 
 Only this screenshot layout/conditions are supported. Names need manual
 correction for 3/5 initial examples with the fallback. Vision should be
-rechecked on a Mac where the existing helper is working. Support effects and
-calculation-basis integration remain explicitly unverified. No deployment,
-merge, automatic Base Stats conversion or public/admin web endpoint is added.
+rechecked on a Mac where the existing helper is working. Support-effect correction remains explicitly unverified; Boost Max subtraction
+now uses the existing verified profile and conversion helper. No merge, automatic Base Stats approval or public/admin web endpoint is added.
+Base Stats conversion is available only through explicit local approval.
 Unsaved drafts do not persist across server restart. Atomic importer locks
 cannot prevent an unrelated editor that ignores the lock from racing the
 final revision check; close other editors during review/save.
@@ -89,3 +89,50 @@ imports from the public site's source or assets. It is launched only by
 review copies are removed when the session closes. No account authentication
 was added, and the existing Medal Importer is unchanged. Preview URL checks
 and GitHub CI results are reported on the Draft PR after publication.
+
+## Approved Base Stats conversion extension
+
+The server reuses `boost-profiles.ts` and `deriveBaseStatsFromDisplayedStats()`
+with canonical role + `boost-max`: HP −2580, ATK −640, DEF −640. It recomputes
+from corrected display values on preview and save; client-supplied base numbers
+are ignored. The page displays maximum, deduction, derived base, existing base
+and final base together.
+
+| Character | Base HP | Base ATK | Base DEF | Existing comparison |
+|---|---:|---:|---:|---|
+| Koby | 6589 | 1758 | 1519 | new record |
+| Wapol | 7401 | 1151 | 1886 | new record |
+| Rob Lucci | 7486 | 1131 | 1922 | new record |
+| Monkey D. Garp | 6886 | 1871 | 1423 | exact existing match, 3/3 |
+| Silvers Rayleigh | 7146 | 1299 | 1821 | new record |
+
+All 15 derived values match independently recorded fixture expectations.
+The five-row temporary save preserves every existing record, adds four new
+records and leaves Garp unchanged. No fixture records are promoted into the
+tracked catalog automatically; the real Base Stats source is unchanged.
+
+Twelve added tests cover five OCR conversions, existing Garp equality, unknown
+IDs/roles/conditions and nonpositive values, mandatory conversion/diff approval
+(including equal existing data), separate Base Stats overwrite consent, ignoring
+client-provided base numbers, partial preservation, source/comment/export
+preservation, pre-save backup, equal-value no-op, invalid-batch rollback, stale
+revision/lock handling, unsupported source schema and both HTTP save orders.
+All 159 tests pass (Importer 27, medals 94, previous Base Stats 20, core 18),
+as do full lint, TypeScript and both catalog validators.
+
+Browser QA replayed all five captured OCR texts with synthetic 1×1 PNGs and a
+copy of the actual TypeScript catalog. It verified manual IDs for the three
+uncertain names, all five conversion tables, rejected an unapproved save,
+showed Garp HP 6886 → 6887 when maximum HP was edited to 9467 and rejected that
+change without Base Stats overwrite consent. Restoring 9466 reset approvals.
+One individually approved row then four reapproved selected rows saved correctly:
+5/5 exact values, while the display catalog remained untouched. No browser errors
+were logged. The local screenshot contains only synthetic pixels, and is not
+committed. A temporary disk-space error left the existing file intact; retry
+after space became available succeeded.
+
+Base saves use a source revision, exclusive lock, full selected-batch validation,
+validated temporary source, pre-save backup and atomic replacement. They preserve
+unrelated TypeScript bytes and null fields. Maximum and Base Stats saves are
+separate transactions and approval is reset on reload/edit. Close unrelated
+editors that ignore the lock during saving, as with the existing display store.

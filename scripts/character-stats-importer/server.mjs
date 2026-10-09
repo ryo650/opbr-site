@@ -5,11 +5,14 @@ import { tmpdir } from 'node:os';
 import { join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { characters as canonicalCharacters } from '../../src/data/characters/index.ts';
-import { buildDraft, reviewIssues } from './draft.mjs';
+import { applyCorrection, buildDraft, reviewIssues } from './draft.mjs';
 import { recognizeScreenshot } from './ocr.mjs';
 import { readCatalog, saveApproved } from './store.mjs';
+import { readBaseCatalog, saveBaseApproved } from './base-store.mjs';
+import { previewBaseStats } from './base-conversion.mjs';
 
 const defaultCatalog = fileURLToPath(new URL('../../src/data/characters/max-level-stats.json', import.meta.url));
+const defaultBaseCatalog = fileURLToPath(new URL('../../src/data/characters/level-100-base-stats.ts', import.meta.url));
 async function body(request) {
   if (request.headers['content-type'] !== 'application/json') throw new Error('JSON request required');
   const chunks = [];
@@ -21,7 +24,8 @@ async function body(request) {
   }
   return JSON.parse(Buffer.concat(chunks).toString('utf8'));
 }
-export async function startReviewServer({ catalogPath = defaultCatalog, imagePaths = [], port = 4319, characters = canonicalCharacters, recognize = recognizeScreenshot } = {}) {
+export async function startReviewServer({ catalogPath = defaultCatalog, baseCatalogPath = defaultBaseCatalog, imagePaths = [], port = 4319, characters = canonicalCharacters, recognize = recognizeScreenshot } = {}) {
+  if (resolve(catalogPath) === resolve(baseCatalogPath)) throw new Error('Display and Base Stats catalogs must be separate files');
   const token = randomBytes(32).toString('hex');
   const workDir = await mkdtemp(join(tmpdir(), 'opbr-stats-review-'));
   const drafts = [];
@@ -35,6 +39,7 @@ export async function startReviewServer({ catalogPath = defaultCatalog, imagePat
   }
   try {
     await readCatalog(catalogPath, characters);
+    await readBaseCatalog(baseCatalogPath, characters);
     if (imagePaths.length > 20) throw new Error('Maximum 20 screenshots per initial batch');
     for (const path of imagePaths) {
       const source = resolve(path);
@@ -72,10 +77,19 @@ export async function startReviewServer({ catalogPath = defaultCatalog, imagePat
       if (request.headers['x-review-token'] !== token) return send(403, { error: 'Review token required' });
       if (request.method === 'GET' && path === '/api/state') {
         const catalog = await readCatalog(catalogPath, characters);
-        return send(200, { ...catalog, drafts: drafts.map(row => ({ ...row, issues: reviewIssues(row, characters) })), characters: Object.values(characters).map(({ id, name, role, element }) => ({ id, name, role, element })) });
+        const base = await readBaseCatalog(baseCatalogPath, characters);
+        return send(200, { ...catalog, baseCatalog: { records: base.records, revision: base.revision }, drafts: drafts.map(row => ({ ...row, issues: reviewIssues(row, characters) })), characters: Object.values(characters).map(({ id, name, role, element }) => ({ id, name, role, element })) });
       }
-      if (request.method !== 'POST' || !['/api/upload', '/api/save'].includes(path)) return send(404, { error: 'Not found' });
+      if (request.method !== 'POST' || !['/api/upload', '/api/save', '/api/base-preview', '/api/base-save'].includes(path)) return send(404, { error: 'Not found' });
       if (request.headers.origin !== `http://${expectedHost}`) return send(403, { error: 'Same-origin review required' });
+      if (path === '/api/base-preview') {
+        const input = await body(request);
+        const draft = drafts.find(row => row.id === input.selection?.draftId);
+        if (!draft) throw new Error('Unknown draft');
+        const base = await readBaseCatalog(baseCatalogPath, characters);
+        if (base.revision !== input.expectedRevision) throw new Error('Base Stats catalog changed. Reload and review the new diff.');
+        return send(200, previewBaseStats(applyCorrection(draft, input.selection), base.records, characters));
+      }
       if (busy) return send(409, { error: 'A batch is being processed; wait and retry' });
       busy = true; ownsBusy = true;
       const input = await body(request);
@@ -93,12 +107,14 @@ export async function startReviewServer({ catalogPath = defaultCatalog, imagePat
         catch (error) { await rm(file, { force: true }); throw error; }
         return send(200, { draftId: drafts.at(-1).id });
       }
-      const result = await saveApproved({ path: catalogPath, expectedRevision: input.expectedRevision, drafts, selections: input.selections, characters });
+      const baseSave = path === '/api/base-save';
+      const result = await (baseSave ? saveBaseApproved : saveApproved)({ path: baseSave ? baseCatalogPath : catalogPath, expectedRevision: input.expectedRevision, drafts, selections: input.selections, characters });
       for (const id of result.savedIds) {
         const draft = drafts.find(row => row.id === id);
         const inputRow = input.selections.find(row => row.draftId === id);
-        const record = result.records.find(row => row.characterId === inputRow.characterId);
-        Object.assign(draft, { characterId: record.characterId, maxStats: record.maxStats, conditions: record.conditions, status: 'saved' });
+        draft.lastCorrection = { characterId: inputRow.characterId, maxStats: inputRow.maxStats, conditions: inputRow.conditions };
+        if (baseSave) draft.baseSaved = true;
+        else draft.status = 'saved';
       }
       return send(200, { saved: result.savedIds.length, revision: result.revision });
     } catch (error) { send(400, { error: error.message }); }
@@ -115,14 +131,16 @@ if (process.argv[1] && resolve(process.argv[1]) === fileURLToPath(import.meta.ur
   const args = process.argv.slice(2);
   let port = 4319;
   let catalogPath = defaultCatalog;
+  let baseCatalogPath = defaultBaseCatalog;
   const imagePaths = [];
   for (let i = 0; i < args.length; i++) {
     if (args[i] === '--port') port = Number(args[++i]);
     else if (args[i] === '--catalog') catalogPath = resolve(args[++i]);
+    else if (args[i] === '--base-catalog') baseCatalogPath = resolve(args[++i]);
     else if (args[i].startsWith('--')) throw new Error(`Unknown option: ${args[i]}`);
     else imagePaths.push(args[i]);
   }
-  const app = await startReviewServer({ imagePaths, port, catalogPath });
+  const app = await startReviewServer({ imagePaths, port, catalogPath, baseCatalogPath });
   console.log(`Character Stats Importer v0.1: ${app.url}\nPending rows: ${app.drafts.length}. Only individually reviewed rows can be saved.\nCatalog: ${catalogPath}\nCtrl+C stops the server and discards unsaved drafts.`);
   let stopping = false;
   const stop = async () => { if (stopping) return; stopping = true; await app.close(); process.exit(0); };

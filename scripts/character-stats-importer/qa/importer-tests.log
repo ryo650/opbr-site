@@ -3,87 +3,147 @@
 > node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/character-stats-importer/*.test.mjs
 
 TAP version 13
-# Subtest: OCR never infers medals absent or approval; title and name match canonical ID
-ok 1 - OCR never infers medals absent or approval; title and name match canonical ID
+# Subtest: five captured OCR rows convert to independently specified Base Stats; Garp matches the existing catalog
+ok 1 - five captured OCR rows convert to independently specified Base Stats; Garp matches the existing catalog
   ---
-  duration_ms: 2.542875
+  duration_ms: 13.631625
+  ...
+# Subtest: conversion stops for uncertain ID, unknown role, wrong conditions, invalid or nonpositive results
+ok 2 - conversion stops for uncertain ID, unknown role, wrong conditions, invalid or nonpositive results
+  ---
+  duration_ms: 0.552208
+  ...
+# Subtest: Base Stats save always requires screenshot and conversion/diff approval, including an unchanged Garp
+ok 3 - Base Stats save always requires screenshot and conversion/diff approval, including an unchanged Garp
+  ---
+  duration_ms: 1.568375
+  ...
+# Subtest: conflicting Base Stats require separate overwrite consent; client base values cannot bypass conversion
+ok 4 - conflicting Base Stats require separate overwrite consent; client base values cannot bypass conversion
+  ---
+  duration_ms: 2.289875
+  ...
+# Subtest: partial conversion preserves existing non-null fields and keeps missing new fields null
+ok 5 - partial conversion preserves existing non-null fields and keeps missing new fields null
+  ---
+  duration_ms: 1.749
+  ...
+# Subtest: five individually approved conversions atomically add four entries, preserve every existing entry and surrounding source
+ok 6 - five individually approved conversions atomically add four entries, preserve every existing entry and surrounding source
+  ---
+  duration_ms: 32.798583
+  ...
+# Subtest: Garp equal-value save leaves source bytes and revision unchanged without a backup
+ok 7 - Garp equal-value save leaves source bytes and revision unchanged without a backup
+  ---
+  duration_ms: 9.328333
+  ...
+# Subtest: explicit overwrite changes only the approved field and saves the previous source
+ok 8 - explicit overwrite changes only the approved field and saves the previous source
+  ---
+  duration_ms: 17.914833
+  ...
+# Subtest: invalid batches, duplicate IDs, stale revisions and locks leave Base Stats source intact
+ok 9 - invalid batches, duplicate IDs, stale revisions and locks leave Base Stats source intact
+  ---
+  duration_ms: 20.251416
+  ...
+# Subtest: literal parser rejects schema changes, expressions, duplicates and invalid values before editing
+ok 10 - literal parser rejects schema changes, expressions, duplicates and invalid values before editing
+  ---
+  duration_ms: 9.81575
+  ...
+# Subtest: a catalog without trailing commas remains valid after adding a partial record
+ok 11 - a catalog without trailing commas remains valid after adding a partial record
+  ---
+  duration_ms: 11.81275
+  ...
+# Subtest: local HTTP preview/save handles both save orders, requires Base Stats approval, and isolates both catalogs
+ok 12 - local HTTP preview/save handles both save orders, requires Base Stats approval, and isolates both catalogs
+  ---
+  duration_ms: 67.940041
+  ...
+# Subtest: OCR never infers medals absent or approval; title and name match canonical ID
+ok 13 - OCR never infers medals absent or approval; title and name match canonical ID
+  ---
+  duration_ms: 2.095917
   ...
 # Subtest: bare, misspelled and wrong-version names remain unmatched suggestions
-ok 2 - bare, misspelled and wrong-version names remain unmatched suggestions
+ok 14 - bare, misspelled and wrong-version names remain unmatched suggestions
   ---
-  duration_ms: 9.296042
+  duration_ms: 11.496666
   ...
 # Subtest: ambiguous OCR, text, decimal integer and glyph substitutions are withheld
-ok 3 - ambiguous OCR, text, decimal integer and glyph substitutions are withheld
+ok 15 - ambiguous OCR, text, decimal integer and glyph substitutions are withheld
   ---
-  duration_ms: 0.065792
+  duration_ms: 0.073917
   ...
 # Subtest: server requires explicit human approval and canonical identity
-ok 4 - server requires explicit human approval and canonical identity
+ok 16 - server requires explicit human approval and canonical identity
   ---
-  duration_ms: 1.312167
+  duration_ms: 1.535625
   ...
 # Subtest: invalid values and completely empty primary stats cannot be approved
-ok 5 - invalid values and completely empty primary stats cannot be approved
+ok 17 - invalid values and completely empty primary stats cannot be approved
   ---
-  duration_ms: 0.573333
+  duration_ms: 0.777333
   ...
 # Subtest: partial stats are allowed, identity corrections do not alter raw evidence
-ok 6 - partial stats are allowed, identity corrections do not alter raw evidence
+ok 18 - partial stats are allowed, identity corrections do not alter raw evidence
   ---
-  duration_ms: 0.441666
+  duration_ms: 0.597958
   ...
 # Subtest: conflicting existing values require explicit overwrite and retain prior value in review
-ok 7 - conflicting existing values require explicit overwrite and retain prior value in review
+ok 19 - conflicting existing values require explicit overwrite and retain prior value in review
   ---
-  duration_ms: 1.035375
+  duration_ms: 1.797917
   ...
 # Subtest: null incoming values preserve existing fields and unrelated characters
-ok 8 - null incoming values preserve existing fields and unrelated characters
+ok 20 - null incoming values preserve existing fields and unrelated characters
   ---
-  duration_ms: 1.349958
+  duration_ms: 1.821792
   ...
 # Subtest: duplicate IDs, unknown drafts, saved drafts and empty approvals are blocked
-ok 9 - duplicate IDs, unknown drafts, saved drafts and empty approvals are blocked
+ok 21 - duplicate IDs, unknown drafts, saved drafts and empty approvals are blocked
   ---
-  duration_ms: 1.036
+  duration_ms: 2.285458
   ...
 # Subtest: atomic save includes only selected rows; stale catalog and invalid batch leave file intact
-ok 10 - atomic save includes only selected rows; stale catalog and invalid batch leave file intact
+ok 22 - atomic save includes only selected rows; stale catalog and invalid batch leave file intact
   ---
-  duration_ms: 19.119708
+  duration_ms: 18.215541
   ...
 # Subtest: exclusive catalog lock prevents concurrent writers
-ok 11 - exclusive catalog lock prevents concurrent writers
+ok 23 - exclusive catalog lock prevents concurrent writers
   ---
-  duration_ms: 2.164875
+  duration_ms: 7.441958
   ...
 # Subtest: malformed and duplicate existing records fail validation before save
-ok 12 - malformed and duplicate existing records fail validation before save
+ok 24 - malformed and duplicate existing records fail validation before save
   ---
-  duration_ms: 3.23475
+  duration_ms: 2.619708
   ...
 # Subtest: HTTP upload → OCR → correction → individual approval → save; CSRF blocked
-ok 13 - HTTP upload → OCR → correction → individual approval → save; CSRF blocked
+ok 25 - HTTP upload → OCR → correction → individual approval → save; CSRF blocked
   ---
-  duration_ms: 45.04325
+  duration_ms: 59.361167
   ...
 # Subtest: captured OCR text from five screenshots keeps every numeric value and condition; manual identity review saves exact expected records
-ok 14 - captured OCR text from five screenshots keeps every numeric value and condition; manual identity review saves exact expected records
+ok 26 - captured OCR text from five screenshots keeps every numeric value and condition; manual identity review saves exact expected records
   ---
-  duration_ms: 16.254125
+  duration_ms: 13.043417
   ...
 # Subtest: batch preload uses temporary image copies and removes them when the local session closes
-ok 15 - batch preload uses temporary image copies and removes them when the local session closes
+ok 27 - batch preload uses temporary image copies and removes them when the local session closes
   ---
-  duration_ms: 3.971
+  duration_ms: 8.017209
   ...
-1..15
-# tests 15
+1..27
+# tests 27
 # suites 0
-# pass 15
+# pass 27
 # fail 0
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 234.521667
+# duration_ms 518.467417

@@ -1,22 +1,31 @@
-# Character Stats Importer v0.1 — ローカル確認・承認付き保存
+# Character Stats Importer v0.1 — 最大値・基礎値の確認と承認付き保存
 
-管理者がゲーム内の最大ステータス画像をまとめて読み込み、領域OCR → 既存Character ID照合 → 個別修正・確認 → 承認後保存を行えるローカルツールを追加します。既存メダルImporterとunboosted Base Stats catalogは変更しません。
+管理者が最大ステータス画像を一括OCRし、既存IDを照合・手動修正・個別承認して保存できるローカルツールを追加します。最大値と、Boost Maxを差し引いた基礎値を同じ確認画面で比較できます。
 
-- 表示値とLv100/100・Boost52/52・メダル未装備の条件を別catalogへ保存。部分入力、空欄による既存値の消去防止、差分・上書き同意、更新検知、ロック、atomic saveと変更履歴に対応。
-- キャラ名＋バージョン名の完全一致だけを自動照合。曖昧なOCRは候補表示で止まり、人がIDと値を確認します。
-- 元画像をGitHubに含めません。既存の未pushコミットを再構成し、5枚のPNGと元画像サムネイル入りQA画像を履歴から除外。正解JSON・実測OCR文字データ・検証レポートのみ保持します。
-- 通常テストは画像不要。HTTP入力には合成1×1 PNG、実データには保存済みOCR文字データを使用。再OCRは --input-dir でローカル画像を指定した時だけ行います。
-- 公開サイトのルート・API・リンクは追加せず、127.0.0.1だけで待受。アカウント認証は追加していません。
-- GitHub Actionsで画像なしのImporterテスト、既存回帰テスト、型・lint・catalog検証を実行します。
+- 最大値・Lv100/100・Boost52/52・メダル未装備条件を別catalogに保存。曖昧なIDは候補表示で止め、個別承認が必要です。
+- 既存 `boost-profiles.ts` と `deriveBaseStatsFromDisplayedStats()` を再利用（HP −2580、ATK −640、DEF −640）。計算結果・既存基礎値・反映後を表示し、変換/差分の承認後に既存 `characterLevel100BaseStatsCatalog` に保存できます。
+- 最大値と基礎値の保存は別操作です。基礎値は同値でも差分確認必須、異なる既存値は追加の上書き同意が必要です。空欄は既存値を保持。サーバー側で再計算し、任意の基礎値入力は採用しません。
+- 基礎値保存は既存TypeScript形式を維持。承認した値/新規行のみ編集し、既存validator・更新検知・ロック・バックアップ・atomic replacementで保護します。不正な選択行があれば全選択行の保存を中止。
+- 既存メダルImporterは変更なし。公開サイトのルート・API・リンクは追加せず127.0.0.1だけで待受。元画像はGitHubにも到達可能なブランチ履歴にも含めません。通常テストは画像不要。
 
 ## 検証
 
-5枚の実測OCRでHP/ATK/DEF/CRIT/総合力の25/25項目とLv/Boost/最大画面条件が一致。ID自動照合は2/5、Wapol/Lucci/Garpは候補からの手動選択が必要です（v0.1で許容）。ID修正・個別承認後の一時catalog保存結果は5/5一致。厳密OCR比較は52/55でexit 1となる点を隠していません。
+実測OCRは数値25/25一致、ID自動照合2/5（Wapol/Lucci/Garpは手動選択、v0.1で許容）。保存済みOCR文字データから5体の基礎値15/15一致を検証しました。
 
-元画像削除後の新Importer15件、既存メダル94件、既存基礎ステータス20件、core18件の147件が通過。型・full lint・catalog検証・差分チェックも通過しています。
+| キャラ | 基礎HP | 基礎ATK | 基礎DEF |
+|---|---:|---:|---:|
+| Rayleigh | 7146 | 1299 | 1821 |
+| Garp | 6886 | 1871 | 1423 |
+| Lucci | 7486 | 1131 | 1922 |
+| Wapol | 7401 | 1151 | 1886 |
+| Koby | 6589 | 1758 | 1519 |
 
-## 残る確認
+Garpは既存値3/3一致。同値保存は元ファイルを変更せず、一時catalogへの5体保存では既存データを維持して4体のみ追加。実データの自動承認/追加はしていません。画面でも承認不足・上書き同意不足の拒否、ID/値の修正、個別保存と一括保存を確認しました。
 
-このMacでは既存Vision helperも失敗したため、実測には新Importer専用Tesseract.js fallbackを使用。Visionが動く環境での確認、他画面レイアウト、サポート効果・計算基準の検証は今後の課題です。未保存draftはサーバー再起動で破棄されます。
+テスト159件（Importer27、medals94、既存Base Stats20、core18）、型・full lint・両catalog検証・差分チェックが通過。GitHub Actionsでも同じ検証を実行します。
 
-詳細と全変更ファイルは scripts/character-stats-importer/README.md、QA.md、CHANGED-FILES.md を参照してください。Draft PRとして提出し、merge・本番deployは行いません。
+## 確認範囲
+
+Visionが動く環境、別画像レイアウト、サポート効果の補正は今後の確認点です。変換は既知のBoost Max差引きのみ。未保存draftは再起動で破棄されます。
+
+詳細は README.md / QA.md / CHANGED-FILES.md を参照。main向けDraft PRを維持し、merge・本番deployは行いません。

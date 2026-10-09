@@ -6,92 +6,92 @@ TAP version 13
 # Subtest: every character is addressable by its own ID
 ok 1 - every character is addressable by its own ID
   ---
-  duration_ms: 0.591416
+  duration_ms: 1.218583
   ...
 # Subtest: all local catalog images and guide videos exist
 ok 2 - all local catalog images and guide videos exist
   ---
-  duration_ms: 1.496208
+  duration_ms: 3.171375
   ...
 # Subtest: tier list and guide matchups resolve, with no duplicate placements
 ok 3 - tier list and guide matchups resolve, with no duplicate placements
   ---
-  duration_ms: 0.175792
+  duration_ms: 0.446958
   ...
 # Subtest: character guide availability follows the guide registry
 ok 4 - character guide availability follows the guide registry
   ---
-  duration_ms: 0.048916
+  duration_ms: 0.114875
   ...
 # Subtest: new characters resolve to guides and remain listed for exactly two calendar months
 ok 5 - new characters resolve to guides and remain listed for exactly two calendar months
   ---
-  duration_ms: 6.079208
+  duration_ms: 9.498208
   ...
 # Subtest: all scout pickups exist and can actually be drawn at their weighted interval
 ok 6 - all scout pickups exist and can actually be drawn at their weighted interval
   ---
-  duration_ms: 3.445333
+  duration_ms: 3.525042
   ...
 # Subtest: every configured category returns a character and excludes pickups from normal pools
 ok 7 - every configured category returns a character and excludes pickups from normal pools
   ---
-  duration_ms: 1.46875
+  duration_ms: 2.073459
   ...
 # Subtest: existing non-100 totals remain relative weights as requested
 ok 8 - existing non-100 totals remain relative weights as requested
   ---
-  duration_ms: 0.104917
+  duration_ms: 0.14675
   ...
 # Subtest: scout classification respects both boundaries and explicit JST offsets
 ok 9 - scout classification respects both boundaries and explicit JST offsets
   ---
-  duration_ms: 0.225125
+  duration_ms: 0.239125
   ...
 # Subtest: monthly filters clamp month ends, including leap years
 ok 10 - monthly filters clamp month ends, including leap years
   ---
-  duration_ms: 0.318084
+  duration_ms: 0.342333
   ...
 # Subtest: usage ranks use character IDs for ties and ignore display-name changes
 ok 11 - usage ranks use character IDs for ties and ignore display-name changes
   ---
-  duration_ms: 2.489833
+  duration_ms: 3.040958
   ...
 # Subtest: usage processing computes coverage and changes without mutating input
 ok 12 - usage processing computes coverage and changes without mutating input
   ---
-  duration_ms: 0.447417
+  duration_ms: 0.626959
   ...
 # Subtest: permanent guide directory includes exactly the registry, even after New Characters expires
 ok 13 - permanent guide directory includes exactly the registry, even after New Characters expires
   ---
-  duration_ms: 0.194583
+  duration_ms: 0.396625
   ...
 # Subtest: directory searches full version names, tolerates punctuation, and combines filters
 ok 14 - directory searches full version names, tolerates punctuation, and combines filters
   ---
-  duration_ms: 0.670875
+  duration_ms: 1.264917
   ...
 # Subtest: newly registered versions appear once without touching the directory or release list
 ok 15 - newly registered versions appear once without touching the directory or release list
   ---
-  duration_ms: 0.103916
+  duration_ms: 0.255167
   ...
 # Subtest: Simulator result rarity labels retain the existing catalog grade mapping
 ok 16 - Simulator result rarity labels retain the existing catalog grade mapping
   ---
-  duration_ms: 0.130917
+  duration_ms: 0.220083
   ...
 # Subtest: directory filters catalog rarity together with name, element and role
 ok 17 - directory filters catalog rarity together with name, element and role
   ---
-  duration_ms: 0.063958
+  duration_ms: 0.088416
   ...
 # Subtest: rarity uses real IDs and preserves unclassified data rather than guessing from names
 ok 18 - rarity uses real IDs and preserves unclassified data rather than guessing from names
   ---
-  duration_ms: 0.147875
+  duration_ms: 0.168125
   ...
 1..18
 # tests 18
@@ -101,4 +101,4 @@ ok 18 - rarity uses real IDs and preserves unclassified data rather than guessin
 # cancelled 0
 # skipped 0
 # todo 0
-# duration_ms 330.959708
+# duration_ms 595.019041

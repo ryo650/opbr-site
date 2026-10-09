@@ -24,7 +24,7 @@ export function buildDraft(evidence, characters, aliases = {}) {
   const [characterBoost, characterBoostMaximum] = readPair(evidence.ocr.boost);
   const preview = normalizeCharacterName((evidence.ocr.preview?.lines ?? []).join(' ')).includes('stats of max level');
   return {
-    id: randomUUID(), ...evidence, identityText, match,
+    ...evidence, id: randomUUID(), identityText, match,
     characterId: match.status === 'matched' ? match.characterId : null,
     maxStats: Object.fromEntries(statFields.map(field => [field, readNumber(evidence.ocr[field], field === 'crit')])),
     conditions: { screen: preview ? 'stats-of-max-level' : null, level, levelMaximum, characterBoost, characterBoostMaximum,

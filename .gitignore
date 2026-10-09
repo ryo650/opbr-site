@@ -71,3 +71,7 @@ public_backup/
 /scripts/character-stats-importer/qa/*.png
 /scripts/character-stats-importer/qa/*.jpg
 /scripts/character-stats-importer/qa/*.jpeg
+# Local Base Stats pre-save snapshots (structured TypeScript data only)
+src/data/characters/.character-stats-backups/
+src/data/characters/level-100-base-stats.ts.lock
+src/data/characters/level-100-base-stats.ts.*.tmp

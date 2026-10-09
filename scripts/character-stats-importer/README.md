@@ -2,9 +2,9 @@
 
 Local maintainer workflow: screenshots → cropped OCR → canonical character
 suggestion → per-row corrections/review → approved local catalog save.
-The existing Medal Importer and Lv.100 Base Stats prototype are unchanged.
-No Next.js route, public write endpoint, deployment or automatic data promotion
-is introduced.
+The existing Medal Importer is unchanged. Approved conversions can update the
+existing Lv.100 Base Stats TypeScript catalog without changing its schema.
+No Next.js route, public write endpoint or automatic data promotion is introduced.
 
 ## Run
 
@@ -29,11 +29,17 @@ Verify the version AND personal name, edit each value/condition if needed,
 confirm all three medal slots are empty, then approve each row. Save one row
 or select several individually approved rows and save together. Any invalid
 selected row stops the entire selected save. Unselected rows remain pending.
+The page shows display values, Boost Max deductions, derived Base Stats,
+existing Base Stats and the proposed final values together. Display and Base
+Stats have separate save buttons; saving either resets approvals. Base Stats
+requires the additional conversion/diff confirmation even when existing values
+are identical. Conflicting Base Stats requires its own overwrite consent.
 Saving does not commit Git changes or deploy the site.
 
 `--port 0` picks a free port. `--catalog /path/to/test.json` uses a separate
-catalog (initialize it with `[]` first) for safe verification. Normal saves
-go to `src/data/characters/max-level-stats.json`. Keep this server local;
+display catalog (initialize it with `[]` first). `--base-catalog /path/to/test.ts`
+uses a copy of `src/data/characters/level-100-base-stats.ts` for conversion/save
+verification. The two targets must be different files. Normal display saves go to `src/data/characters/max-level-stats.json`. Keep this server local;
 Host, Origin and session-token checks restrict writes to this review page.
 Pending edits survive catalog reloads in the current page, with approvals
 reset. Unsaved drafts are session-only; exiting the server discards them.
@@ -57,8 +63,15 @@ v0.1 only accepts the landscape 2048×946 layout and proportionally scaled
 images with the same aspect ratio. It requires reviewed Stats of max level,
 Lv100/100, Boost52/52, and no medals. Support effects are explicitly
 `not-verified`. These observations are not silently converted to Base Stats
-or fed into the medal calculator. Builder integration needs separate
-verification of the calculation basis and support effects.
+or fed into the medal calculator. The separately approved Base Stats conversion
+reuses `boost-profiles.ts` and `deriveBaseStatsFromDisplayedStats()` with
+`boost-max` (HP 2580, ATK 640, DEF 640). It subtracts only this known Boost;
+support effects remain explicitly unverified. Only Lv100/100 + Boost52/52 +
+max-level screen + confirmed empty medals can be approved. Nonpositive derived
+values, invalid roles and uncertain IDs stop Base Stats saves. Partial display
+fields yield null derived fields, preserving any existing Base Stats values.
+The existing Builder already consumes complete records from this Base Stats
+catalog; partial records remain excluded by its existing completeness filter.
 
 Name matching requires the combined version title and personal name to match
 a canonical name exactly after punctuation normalization. Fuzzy scores only
@@ -72,7 +85,16 @@ The entire selected batch validates before one atomic catalog replacement.
 An exclusive lock prevents concurrent importer writers; a SHA-256 revision
 rejects previews made against stale catalog data. Previous values remain in
 review history. Repeated character IDs within an approval batch stop the save.
-No other character data, Base Stats, medals or images are overwritten.
+Display saves never modify Base Stats. A separate Base Stats transaction edits
+only approved literal fields/entries in `characterLevel100BaseStatsCatalog`,
+preserving TypeScript comments, exports and unrelated records. It parses the
+source with TypeScript (unsupported expressions/schema changes stop the save),
+uses the existing Base Stats validator, requires the current catalog revision,
+and locks before atomic replacement. A pre-save copy is retained in ignored
+`src/data/characters/.character-stats-backups/<revision>.ts`; no images enter it.
+Identical Garp values leave source bytes unchanged. Two catalogs are deliberately
+separate transactions; there is no partially committed cross-file save.
+No other character data, medals or images are overwritten.
 
 ## Verification
 

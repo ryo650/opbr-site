@@ -16,6 +16,11 @@
       "characterBoost": 52,
       "characterBoostMaximum": 52,
       "medalsEquipped": false
+    },
+    "baseStats": {
+      "baseHp": 6589,
+      "baseAtk": 1758,
+      "baseDef": 1519
     }
   },
   {
@@ -35,6 +40,11 @@
       "characterBoost": 52,
       "characterBoostMaximum": 52,
       "medalsEquipped": false
+    },
+    "baseStats": {
+      "baseHp": 7401,
+      "baseAtk": 1151,
+      "baseDef": 1886
     }
   },
   {
@@ -54,6 +64,11 @@
       "characterBoost": 52,
       "characterBoostMaximum": 52,
       "medalsEquipped": false
+    },
+    "baseStats": {
+      "baseHp": 7486,
+      "baseAtk": 1131,
+      "baseDef": 1922
     }
   },
   {
@@ -73,6 +88,11 @@
       "characterBoost": 52,
       "characterBoostMaximum": 52,
       "medalsEquipped": false
+    },
+    "baseStats": {
+      "baseHp": 6886,
+      "baseAtk": 1871,
+      "baseDef": 1423
     }
   },
   {
@@ -92,6 +112,11 @@
       "characterBoost": 52,
       "characterBoostMaximum": 52,
       "medalsEquipped": false
+    },
+    "baseStats": {
+      "baseHp": 7146,
+      "baseAtk": 1299,
+      "baseDef": 1821
     }
   }
 ]
