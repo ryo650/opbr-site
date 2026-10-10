@@ -1,0 +1,20 @@
+.section { margin: 0 0 28px; padding: 20px; border-radius: 16px; border: 1px solid rgb(255 255 255 / 13%); background: rgb(0 0 0 / 15%); }
+.heading { display: flex; justify-content: space-between; gap: 16px; margin-bottom: 16px; }
+.kicker { display: block; color: #fbbf24; font-size: .7rem; letter-spacing: .13em; font-weight: 800; text-transform: uppercase; }
+.heading h3 { margin: 6px 0 7px; color: #f8fafc; font-size: 1.18rem; }
+.heading p { max-width: 650px; margin: 0; font-size: .82rem; line-height: 1.5; color: #b6bfcc; }
+.grid { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 10px; }
+.card { display: flex; min-width: 0; flex-direction: column; align-items: center; gap: 8px; padding: 12px 7px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 13px; background: #292c31; color: #f8fafc; font: inherit; cursor: pointer; text-align: center; }
+.card:hover { border-color: rgb(251 191 36 / 65%); background: #34373c; }
+.card:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+.artwork { width: 60px; height: 60px; display: inline-block; flex: 0 0 auto; }
+.name { flex: 1; display: block; min-width: 0; overflow-wrap: anywhere; font-size: .76rem; font-weight: 750; line-height: 1.35; }
+.action { display: block; color: #fcd34d; font-size: .72rem; font-weight: 800; }
+@media (max-width: 950px) { .grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+@media (max-width: 650px) {
+  .section { padding: 14px; margin-bottom: 24px; }
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+  .card { min-height: 144px; }
+  .artwork { width: 56px; height: 56px; }
+}
+@media (prefers-reduced-motion: reduce) { .card { transition: none; } }
