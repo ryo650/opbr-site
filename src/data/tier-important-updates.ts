@@ -23,9 +23,7 @@ export type ImportantTierUpdate = {
   changes: ImportantTierChange[];
 };
 
-// Editorial opt-in only. Reordering tierList.ts never creates an event.
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const odenBuffOctober8Review: ImportantTierUpdate = {
     id: "2026-10-08-post-buff-tier-review",
     status: "published",
     publishedAt: "2026-10-08T17:40:00+09:00",
@@ -76,7 +74,36 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         toTier: "B",
       },
     ],
+};
+
+// Editorial opt-in only. Reordering tierList.ts never creates an event.
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-10-10-oden-meta-follow-up",
+    status: "published",
+    publishedAt: "2026-10-10T13:50:00+09:00",
+    title: "Oden Buff Meta Impact: 2 additional ranking changes",
+    summary: "Following our October 8 review, Zoro & Sanji move to the bottom of S Tier and St. Marcus Mars moves to the top. These are relative ranking changes caused by Oden's buff and its impact on the meta, not balance adjustments to either character. The seven October 8 changes are retained below: seven rises and two drops across the combined review.",
+    changes: [
+      {
+        characterId: "the-wings-zoro-sanji",
+        kind: "fall",
+        fromTier: "S",
+        toTier: "S",
+        reason: "Down to the bottom of S Tier: Oden's buff has shifted the meta, lowering Zoro & Sanji's relative evaluation. Zoro & Sanji themselves have not received a balance adjustment.",
+      },
+      {
+        characterId: "the-five-elders-st-marcus-mars",
+        kind: "rise",
+        fromTier: "S",
+        toTier: "S",
+        reason: "Up to the top of S Tier: Oden's buff has shifted the meta, raising St. Marcus Mars's relative evaluation. St. Marcus Mars himself has not received a balance adjustment.",
+      },
+      // The latest event owns all markers; retain the October 8 review's seven changes.
+      ...odenBuffOctober8Review.changes,
+    ],
   },
+  odenBuffOctober8Review,
   {
     id: "2026-10-03-halloween-uta-rise",
     status: "published",
