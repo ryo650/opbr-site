@@ -31,6 +31,8 @@ import {
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
 import MedalFinderFilters from "./MedalFinderFilters";
+import RecentMedals from "./RecentMedals";
+import { getRecentlyAddedMedals } from "@/data/medal-sets/recent-medals";
 import styles from "./MedalSetFinder.module.css";
 
 const PAGE_SIZE = 36;
@@ -56,6 +58,7 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     [medals],
   );
   const medalById = useMemo(() => new Map(medals.map((medal) => [medal.id, medal])), [medals]);
+  const recentlyAddedMedals = useMemo(() => getRecentlyAddedMedals(medals), [medals]);
   const indexById = useMemo(() => new Map(index.map((entry) => [entry.medal.id, entry])), [index]);
   const selectedIds = useMemo(() => slots.filter((id): id is string => id !== null), [slots]);
   const chosen = useMemo(
@@ -73,6 +76,14 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
   const filterOptions = useMemo(() => getTagSetEffectFilterOptions(medals), [medals]);
   const effectTagIdsById = useMemo(() => createTagSetEffectFilterIndex(filterOptions), [filterOptions]);
   const activeFilterCount = countFinderCatalogFilters(catalogFilters);
+  const recentQuickPicks = useMemo(
+    () => recentlyAddedMedals.filter((medal) =>
+      (!search ||
+        medal.name.toLocaleLowerCase().includes(search) ||
+        medal.tags.some((tag) => tag.name.toLocaleLowerCase().includes(search))) &&
+      matchesFinderCatalogFilters(medal, catalogFilters, effectTagIdsById)),
+    [recentlyAddedMedals, search, catalogFilters, effectTagIdsById],
+  );
   const filtered = useMemo(
     () => candidates.filter(({ medal }) =>
       (!search ||
@@ -231,6 +242,9 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
         </section>
       ) : (
         <section className={styles.results} aria-live="polite">
+          {selectedIds.length === 0 && (
+            <RecentMedals medals={recentQuickPicks} onChoose={chooseMedal} />
+          )}
           <div className={styles.resultsHeader}>
             <div>
               <h3>{selectedIds.length === 0 ? "Choose your first medal" : "Choose medal " + (selectedIds.length + 1)}</h3>
