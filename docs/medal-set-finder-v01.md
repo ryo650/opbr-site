@@ -7,6 +7,9 @@
 - A candidate list contains **individual next medals**, not all generated three-medal set combinations.
 - Search the candidate list by medal name or tag. Lists are paginated in groups of 36 to avoid loading hundreds of medal artworks simultaneously.
 - Sort candidates using the same five options as Medal Builder: **Default (catalog order)**, **Name A–Z**, **Name Z–A**, **Category**, and **Best Tag Match**. Best Tag Match becomes available after the first selection and orders by pair/trio common tag count. Sorting does not change which medals qualify; switching sort returns pagination to the first 36 items.
+- **Filter** candidates, especially the initial 700-medal list, using the same Builder catalog controls: Category (All/Character/Event), Set Effects & Tags (effect groups OR over associated tags; explicit selected tags ANDed), Unique Traits (text + categories Any/All), Extra Trait Effects, Status Reductions, Native Traits. Candidate counts respond immediately and filtering resets the visible pagination.
+- These catalog filters apply to the **medal being browsed now**, not to the already selected slots or the 3-medal completion rule. They remain visible as an active-filter count until manually cleared; the global Reset set does not clear catalog filters. They can therefore be changed independently at each selection stage.
+- The Sort menu remains optional; it changes only display order and was added before the clarification that catalog filtering was desired.
 - Filter by minimum three-way tag overlap (2–6), by Tag (4+), Trait (2+ tags and shared trait purpose), Hybrid (4+ tags and shared purpose), and by a specific shared purpose.
 - No recommendation score or subjective ranking. The candidate list is sorted by objective shared-tag count, then name.
 - When complete, display the shared 3-medal tags, exactly-two tags count, shared trait purposes, and active tag effects. Send the exact 3 medal IDs to the already-supported `/medal-builder?medals=` URL to inspect caps and additional traits.
@@ -31,7 +34,7 @@ npm run lint
 npm run build
 ```
 
-Also validate in iPhone / desktop Preview: per-slot × removes only the targeted medal (first/middle/last); other selections remain; Reset set clears all; candidate lists refresh; all five sort modes (including disabled Best Tag Match before slot 1), sort switching while a search is active, pagination reset, filter changes, empty results, and transfer to Builder.
+Also validate in iPhone / desktop Preview: first-medal Category/Tag/Unique Trait filters on the full catalog, all six Builder filter groups, group/tag checkboxes, Any/All matching, clear filters, preservation of already-chosen slots, candidate counts and empty states, per-slot × removal, Reset set, sort modes, pagination reset, and transfer to Builder.
 
 ## Limitations / next phase
 
