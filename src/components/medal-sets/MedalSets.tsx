@@ -4,10 +4,12 @@ import { useMemo, useState } from "react";
 import type { Medal } from "@/data/medals";
 import { createMedalById, type MedalSetCategory, type RecommendedMedalSet } from "@/data/medal-sets";
 import MedalSetCard from "./MedalSetCard";
+import MedalSetFinder from "./MedalSetFinder";
 import { medalSetCategoryLabels } from "./labels";
 import styles from "./MedalSets.module.css";
 
 type Filter = "all" | MedalSetCategory;
+type View = "featured" | "finder";
 
 const categoryOrder: readonly MedalSetCategory[] = [
   "general",
@@ -26,6 +28,7 @@ export default function MedalSets({
   medals: readonly Medal[];
   sets: readonly RecommendedMedalSet[];
 }) {
+  const [view, setView] = useState<View>("featured");
   const [filter, setFilter] = useState<Filter>("all");
   const medalById = useMemo(() => createMedalById(medals), [medals]);
   const visibleSets = filter === "all" ? sets : sets.filter((set) => set.category === filter);
@@ -34,28 +37,38 @@ export default function MedalSets({
     <main id="main-content" tabIndex={-1} className={styles.page}>
       <div className={styles.inner}>
         <header className={styles.hero}>
-          <p className={styles.eyebrow}>Recommended Builds</p>
+          <p className={styles.eyebrow}>Build your medal set</p>
           <h1>Medal Sets</h1>
-          <p>Find the best medal combinations for different playstyles.</p>
+          <p>Explore curated combinations or find matching medals one at a time.</p>
         </header>
 
-        <nav className={styles.filters} aria-label="Filter medal sets by category">
-          <button type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}>All</button>
-          {categoryOrder.map((category) => (
-            <button
-              type="button"
-              key={category}
-              aria-pressed={filter === category}
-              onClick={() => setFilter(category)}
-            >
-              {medalSetCategoryLabels[category]}
-            </button>
-          ))}
+        <nav className={styles.filters} aria-label="Medal sets view">
+          <button type="button" aria-pressed={view === "featured"} onClick={() => setView("featured")}>Featured Sets</button>
+          <button type="button" aria-pressed={view === "finder"} onClick={() => setView("finder")}>Set Finder</button>
         </nav>
 
-        <div className={styles.grid} aria-live="polite">
-          {visibleSets.map((set) => <MedalSetCard key={set.id} set={set} medalById={medalById} />)}
-        </div>
+        {view === "featured" ? (
+          <>
+            <nav className={styles.filters} aria-label="Filter medal sets by category">
+              <button type="button" aria-pressed={filter === "all"} onClick={() => setFilter("all")}>All</button>
+              {categoryOrder.map((category) => (
+                <button
+                  type="button"
+                  key={category}
+                  aria-pressed={filter === category}
+                  onClick={() => setFilter(category)}
+                >
+                  {medalSetCategoryLabels[category]}
+                </button>
+              ))}
+            </nav>
+            <div className={styles.grid} aria-live="polite">
+              {visibleSets.map((set) => <MedalSetCard key={set.id} set={set} medalById={medalById} />)}
+            </div>
+          </>
+        ) : (
+          <MedalSetFinder medals={medals} />
+        )}
       </div>
     </main>
   );
