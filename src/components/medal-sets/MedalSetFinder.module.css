@@ -12,6 +12,8 @@
 .filledSlot { position: relative; background: rgb(251 191 36 / 7%); border-color: rgb(251 191 36 / 32%); font: inherit; }
 .removeMedal { position: absolute; top: 3px; right: 3px; display: grid; place-items: center; width: 36px; height: 36px; padding: 0; border: 1px solid rgb(255 255 255 / 28%); border-radius: 50%; background: #37383c; color: #fff; font: inherit; font-size: 1.35rem; line-height: 1; cursor: pointer; }
 .removeMedal:hover { background: #6c3131; border-color: #fca5a5; }
+.slotInfo { position: absolute; top: 3px; left: 3px; display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid rgb(255 255 255 / 24%); border-radius: 50%; background: #303338; color: #e4ebf5; font-size: 1.1rem; cursor: pointer; }
+.slotInfo:hover { border-color: #fbbf24; background: rgb(251 191 36 / 14%); }
 .slotHint { margin: -9px 0 22px; color: #b6bfcb; font-size: .79rem; line-height: 1.5; }
 .activeEmpty { border: 1px dashed #fbbf24; background: rgb(251 191 36 / 5%); }
 .emptySlot { border-style: dashed; opacity: .6; }
@@ -24,6 +26,22 @@
 .controls select, .search input { width: 100%; min-width: 0; border: 1px solid rgb(255 255 255 / 22%); border-radius: 10px; background: #17191d; color: #f8fafc; font: inherit; font-size: .88rem; padding: 11px 12px; }
 .controls select { cursor: pointer; }
 .results { padding-top: 4px; }
+.recentSection { margin: 2px 0 28px; padding: 20px; background: rgb(251 191 36 / 4%); border: 1px solid rgb(251 191 36 / 22%); border-radius: 16px; }
+.recentHeading { margin-bottom: 16px; }
+.recentHeading h3 { margin: 7px 0 6px; font-size: 1.22rem; line-height: 1.25; }
+.recentHeading p { max-width: 700px; margin: 0; color: #b6bfcc; font-size: .81rem; line-height: 1.5; }
+.recentGrid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 11px; }
+.recentCard { display: flex; flex-direction: column; min-width: 0; border: 1px solid rgb(255 255 255 / 14%); border-radius: 13px; overflow: hidden; background: rgb(0 0 0 / 20%); color: #f8fafc; text-align: center; }
+.recentCard:hover { border-color: #fbbf24; }
+.recentSelect { display: flex; flex: 1; flex-direction: column; align-items: center; gap: 8px; width: 100%; padding: 14px 9px 12px; border: 0; background: transparent; color: inherit; font: inherit; text-align: center; cursor: pointer; }
+.recentSelect:hover { background: rgb(251 191 36 / 9%); }
+.recentInfo { min-height: 40px; width: 100%; border: 0; border-top: 1px solid rgb(255 255 255 / 15%); background: rgb(255 255 255 / 4%); color: #dce4ee; font: inherit; font-size: .76rem; font-weight: 800; cursor: pointer; }
+.recentInfo:hover { background: rgb(251 191 36 / 12%); color: #fcd34d; }
+.recentSelect:focus-visible, .recentInfo:focus-visible { outline: 3px solid #93c5fd; outline-offset: -3px; }
+.recentArtwork { display: inline-block; width: 72px; height: 72px; }
+.recentName { font-size: .81rem; line-height: 1.35; font-weight: 750; overflow-wrap: anywhere; }
+.recentAction { margin-top: auto; color: #fcd34d; font-size: .75rem; font-weight: 800; }
+
 .resultsHeader { margin-bottom: 18px; }
 .resultsHeader h3, .summary h3 { margin: 0 0 6px; font-size: 1.3rem; }
 .count { white-space: nowrap; border: 1px solid rgb(255 255 255 / 18%); background: rgb(255 255 255 / 6%); border-radius: 999px; padding: 7px 12px; color: #fcd34d; font-size: .84rem; }
@@ -36,8 +54,12 @@
 .sort select { width: 100%; border: 1px solid rgb(255 255 255 / 22%); border-radius: 10px; background: #17191d; color: #f8fafc; padding: 11px 12px; font: inherit; font-size: .88rem; cursor: pointer; }
 .sort select:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
 .medalGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
-.medalCard { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 12px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 12px; background: #292c31; color: #f8fafc; font: inherit; cursor: pointer; text-align: left; transition: border-color .15s ease, background .15s ease; }
-.medalCard:hover { border-color: #fbbf24; background: #34373b; }
+.medalCard { display: flex; align-items: stretch; min-width: 0; overflow: hidden; border: 1px solid rgb(255 255 255 / 12%); border-radius: 12px; background: #292c31; color: #f8fafc; transition: border-color .15s ease, background .15s ease; }
+.medalCard:hover { border-color: #fbbf24; }
+.candidateSelect { display: flex; flex: 1; align-items: center; gap: 10px; min-width: 0; padding: 12px; border: 0; background: transparent; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.candidateSelect:hover, .candidateInfoButton:hover { background: #34373b; }
+.candidateInfoButton { flex: 0 0 42px; border: 0; border-left: 1px solid rgb(255 255 255 / 13%); background: rgb(255 255 255 / 3%); color: #fcd34d; font: inherit; font-size: 1.25rem; cursor: pointer; }
+.candidateSelect:focus-visible, .candidateInfoButton:focus-visible { outline: 3px solid #93c5fd; outline-offset: -3px; }
 .candidateInfo { flex: 1; min-width: 0; }
 .candidateInfo strong { display: block; overflow-wrap: anywhere; font-size: .82rem; line-height: 1.35; }
 .candidateInfo small { display: block; margin-top: 5px; font-size: .7rem; color: #b5bfcb; line-height: 1.35; }
@@ -55,16 +77,22 @@
 .muted, .note { color: #b6bfcb; line-height: 1.5; font-size: .83rem; }
 .note { margin: 10px 0 18px; }
 .effects { padding-left: 20px; margin: 12px 0; color: #d8dee7; line-height: 1.75; font-size: .84rem; }
-.removeMedal:focus-visible, .reset:focus-visible, .controls select:focus-visible, .search input:focus-visible, .medalCard:focus-visible, .more:focus-visible, .builderLink:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
-@media (max-width: 900px) { .medalGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+.slotInfo:focus-visible, .removeMedal:focus-visible, .reset:focus-visible, .controls select:focus-visible, .search input:focus-visible, .medalCard:focus-visible, .more:focus-visible, .builderLink:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
+@media (max-width: 900px) { .medalGrid, .recentGrid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media (max-width: 650px) {
   .finder { padding: 17px; border-radius: 17px; }
+  .recentSection { padding: 14px; }
+  .recentGrid { gap: 8px; }
+  .recentArtwork { width: 60px; height: 60px; }
+  .recentSelect { padding: 12px 7px; }
+  .recentName { font-size: .75rem; }
   .intro, .resultsHeader, .summaryHeading { flex-direction: column; align-items: stretch; }
   .slots { gap: 7px; margin-top: 22px; }
   .slotNumber { font-size: .64rem; }
   .filledSlot, .emptySlot, .activeEmpty { min-height: 140px; padding: 8px 4px; }
   .slotArt { width: 54px; height: 54px; }
   .removeMedal { top: 2px; right: 2px; width: 36px; height: 36px; }
+  .slotInfo { top: 2px; left: 2px; width: 36px; height: 36px; }
   .slotName { font-size: .71rem; }
   .controls { grid-template-columns: 1fr; gap: 12px; }
   .browserControls { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); align-items: end; gap: 12px; }

@@ -30,7 +30,9 @@ import {
   type FinderSort,
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
+import { getRecentlyAddedMedals } from "@/data/medals/recently-added";
 import MedalFinderFilters from "./MedalFinderFilters";
+import MedalFinderDetailsDialog from "./MedalFinderDetailsDialog";
 import styles from "./MedalSetFinder.module.css";
 
 const PAGE_SIZE = 36;
@@ -39,6 +41,8 @@ const purposeLabels = new Map<string, string>(
 );
 
 type Slots = [string | null, string | null, string | null];
+type DetailSource = "recent" | "candidate" | "selected";
+type ActiveDetail = { medalId: string; source: DetailSource } | null;
 
 export default function MedalSetFinder({ medals }: { medals: readonly Medal[] }) {
   const [slots, setSlots] = useState<Slots>([null, null, null]);
@@ -50,12 +54,14 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
   const [catalogFilters, setCatalogFilters] = useState<FinderCatalogFilters>({ ...emptyFinderCatalogFilters });
   const [catalogFiltersOpen, setCatalogFiltersOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
+  const [activeDetail, setActiveDetail] = useState<ActiveDetail>(null);
 
   const index = useMemo(
     () => createFinderIndex(medals, uniqueTraitCategoryIdsByMedalId),
     [medals],
   );
   const medalById = useMemo(() => new Map(medals.map((medal) => [medal.id, medal])), [medals]);
+  const recentlyAddedMedals = useMemo(() => getRecentlyAddedMedals(medals), [medals]);
   const indexById = useMemo(() => new Map(index.map((entry) => [entry.medal.id, entry])), [index]);
   const selectedIds = useMemo(() => slots.filter((id): id is string => id !== null), [slots]);
   const chosen = useMemo(
@@ -84,6 +90,12 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
   );
   const sorted = useMemo(() => sortFinderCandidates(filtered, sort, medals), [filtered, sort, medals]);
   const visible = sorted.slice(0, visibleCount);
+  const detailMedal = activeDetail ? medalById.get(activeDetail.medalId) : undefined;
+  const detailIsSelected = Boolean(detailMedal && selectedIds.includes(detailMedal.id));
+  const detailCanAdd = Boolean(detailMedal && !detailIsSelected && selectedIds.length < 3 && (
+    (activeDetail?.source === "recent" && selectedIds.length === 0) ||
+    (activeDetail?.source === "candidate" && filtered.some(({ medal }) => medal.id === detailMedal.id))
+  ));
   const selectedMedals = chosen.map(({ medal }) => medal);
   const complete = selectedMedals.length === 3;
   const sharedTags = complete ? getCommonTags(selectedMedals) : [];
@@ -105,6 +117,22 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     });
     setQuery("");
     setVisibleCount(PAGE_SIZE);
+  }
+
+  function startFromRecentMedal(id: string) {
+    // A recent-medal shortcut starts a fresh partner search. Clear catalog-only
+    // filters so choices from a previous browse do not hide the next slot.
+    setCatalogFilters({ ...emptyFinderCatalogFilters });
+    setCatalogFiltersOpen(false);
+    setSort("default");
+    chooseMedal(id);
+  }
+
+  function addFromDetail() {
+    if (!detailMedal || !detailCanAdd) return;
+    if (activeDetail?.source === "recent") startFromRecentMedal(detailMedal.id);
+    else chooseMedal(detailMedal.id);
+    setActiveDetail(null);
   }
 
   function removeMedal(index: number) {
@@ -156,6 +184,9 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
                   >
                     <span aria-hidden="true">×</span>
                   </button>
+                  <button type="button" className={styles.slotInfo}
+                    onClick={() => setActiveDetail({ medalId: medal.id, source: "selected" })}
+                    aria-label={"View details for " + medal.name} title="Medal details">ⓘ</button>
                   <MedalArtwork medal={medal} sizes="64px" className={styles.slotArt} />
                   <span className={styles.slotName}>{medal.name}</span>
                 </div>
@@ -231,6 +262,33 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
         </section>
       ) : (
         <section className={styles.results} aria-live="polite">
+          {selectedIds.length === 0 && recentlyAddedMedals.length > 0 && (
+            <div className={styles.recentSection} aria-label="Recently added medals">
+              <div className={styles.recentHeading}>
+                <div>
+                  <span className={styles.eyebrow}>Quick start</span>
+                  <h3>Recently Added Medals</h3>
+                  <p>New to the OPBR Guide catalog, not necessarily the latest in-game releases. Pick one to search matching partners.</p>
+                </div>
+              </div>
+              <div className={styles.recentGrid}>
+                {recentlyAddedMedals.map((medal) => (
+                  <div key={medal.id} className={styles.recentCard}>
+                    <button type="button" className={styles.recentSelect}
+                      onClick={() => startFromRecentMedal(medal.id)}
+                      aria-label={"Find combinations with " + medal.name}>
+                      <MedalArtwork medal={medal} sizes="72px" className={styles.recentArtwork} />
+                      <span className={styles.recentName}>{medal.name}</span>
+                      <span className={styles.recentAction}>Find combinations →</span>
+                    </button>
+                    <button type="button" className={styles.recentInfo}
+                      onClick={() => setActiveDetail({ medalId: medal.id, source: "recent" })}
+                      aria-label={"View details for " + medal.name}>ⓘ Details</button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
           <div className={styles.resultsHeader}>
             <div>
               <h3>{selectedIds.length === 0 ? "Choose your first medal" : "Choose medal " + (selectedIds.length + 1)}</h3>
@@ -276,18 +334,23 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
           {visible.length > 0 ? (
             <div className={styles.medalGrid}>
               {visible.map(({ medal, commonTagCount, completionCount }) => (
-                <button type="button" className={styles.medalCard} key={medal.id}
-                  onClick={() => chooseMedal(medal.id)} aria-label={"Choose " + medal.name}>
-                  <MedalArtwork medal={medal} sizes="64px" className={styles.candidateArt} />
-                  <span className={styles.candidateInfo}>
-                    <strong>{medal.name}</strong>
-                    {selectedIds.length > 0 && <small>
-                      {commonTagCount} shared {selectedIds.length === 1 ? "pair" : "trio"} tags
-                      {completionCount !== null && " · " + completionCount + " possible third medals"}
-                    </small>}
-                  </span>
-                  <span className={styles.cardArrow} aria-hidden="true">+</span>
-                </button>
+                <div className={styles.medalCard} key={medal.id}>
+                  <button type="button" className={styles.candidateSelect}
+                    onClick={() => chooseMedal(medal.id)} aria-label={"Choose " + medal.name}>
+                    <MedalArtwork medal={medal} sizes="64px" className={styles.candidateArt} />
+                    <span className={styles.candidateInfo}>
+                      <strong>{medal.name}</strong>
+                      {selectedIds.length > 0 && <small>
+                        {commonTagCount} shared {selectedIds.length === 1 ? "pair" : "trio"} tags
+                        {completionCount !== null && " · " + completionCount + " possible third medals"}
+                      </small>}
+                    </span>
+                    <span className={styles.cardArrow} aria-hidden="true">+</span>
+                  </button>
+                  <button type="button" className={styles.candidateInfoButton}
+                    onClick={() => setActiveDetail({ medalId: medal.id, source: "candidate" })}
+                    aria-label={"View details for " + medal.name}>ⓘ</button>
+                </div>
               ))}
             </div>
           ) : (
@@ -298,6 +361,15 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
               Show more ({filtered.length - visibleCount} remaining)
             </button>}
         </section>
+      )}
+      {detailMedal && (
+        <MedalFinderDetailsDialog
+          medal={detailMedal}
+          selected={detailIsSelected}
+          slotNumber={detailCanAdd ? selectedIds.length + 1 : null}
+          onAdd={addFromDetail}
+          onClose={() => setActiveDetail(null)}
+        />
       )}
     </section>
   );
