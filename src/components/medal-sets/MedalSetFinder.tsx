@@ -30,6 +30,7 @@ import {
   type FinderSort,
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
+import { getRecentlyAddedMedals } from "@/data/medals/recently-added";
 import MedalFinderFilters from "./MedalFinderFilters";
 import styles from "./MedalSetFinder.module.css";
 
@@ -56,6 +57,7 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     [medals],
   );
   const medalById = useMemo(() => new Map(medals.map((medal) => [medal.id, medal])), [medals]);
+  const recentlyAddedMedals = useMemo(() => getRecentlyAddedMedals(medals), [medals]);
   const indexById = useMemo(() => new Map(index.map((entry) => [entry.medal.id, entry])), [index]);
   const selectedIds = useMemo(() => slots.filter((id): id is string => id !== null), [slots]);
   const chosen = useMemo(
@@ -105,6 +107,15 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     });
     setQuery("");
     setVisibleCount(PAGE_SIZE);
+  }
+
+  function startFromRecentMedal(id: string) {
+    // A recent-medal shortcut starts a fresh partner search. Clear catalog-only
+    // filters so choices from a previous browse do not hide the next slot.
+    setCatalogFilters({ ...emptyFinderCatalogFilters });
+    setCatalogFiltersOpen(false);
+    setSort("default");
+    chooseMedal(id);
   }
 
   function removeMedal(index: number) {
@@ -231,6 +242,28 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
         </section>
       ) : (
         <section className={styles.results} aria-live="polite">
+          {selectedIds.length === 0 && recentlyAddedMedals.length > 0 && (
+            <div className={styles.recentSection} aria-label="Recently added medals">
+              <div className={styles.recentHeading}>
+                <div>
+                  <span className={styles.eyebrow}>Quick start</span>
+                  <h3>Recently Added Medals</h3>
+                  <p>New to the OPBR Guide catalog, not necessarily the latest in-game releases. Pick one to search matching partners.</p>
+                </div>
+              </div>
+              <div className={styles.recentGrid}>
+                {recentlyAddedMedals.map((medal) => (
+                  <button key={medal.id} type="button" className={styles.recentCard}
+                    onClick={() => startFromRecentMedal(medal.id)}
+                    aria-label={"Find combinations with " + medal.name}>
+                    <MedalArtwork medal={medal} sizes="72px" className={styles.recentArtwork} />
+                    <span className={styles.recentName}>{medal.name}</span>
+                    <span className={styles.recentAction}>Find combinations →</span>
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
           <div className={styles.resultsHeader}>
             <div>
               <h3>{selectedIds.length === 0 ? "Choose your first medal" : "Choose medal " + (selectedIds.length + 1)}</h3>
