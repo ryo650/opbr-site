@@ -8,6 +8,7 @@ import {
   getSharedPurposes,
   matchesCompletedSet,
   removeMedalFromSlots,
+  sortFinderCandidates,
 } from "../../src/data/medal-sets/finder.ts";
 
 const makeMedal = (id, tagIds) => ({
@@ -106,4 +107,40 @@ test("removing from one- and two-medal sets leaves other slots intact", () => {
   assert.deepEqual(removeMedalFromSlots(["skill1-a", null, null], 0), [null, null, null]);
   assert.deepEqual(removeMedalFromSlots(["skill1-a", "skill2-b", null], 2), ["skill1-a", "skill2-b", null]);
   assert.deepEqual(removeMedalFromSlots(["skill1-a", null, null], -1), ["skill1-a", null, null]);
+});
+
+test("Finder default sort matches Builder catalog order even if search returns a different order", () => {
+  const mixed = findNextMedals(index, [], filters("all")).reverse();
+  const sorted = sortFinderCandidates(mixed, "default", medals);
+  assert.deepEqual(sorted.map(({ medal }) => medal.id), medals.map((medal) => medal.id));
+  assert.deepEqual(mixed.map(({ medal }) => medal.id), medals.map((medal) => medal.id).reverse());
+});
+
+test("Finder name A-Z and Z-A sorting are consistent regardless of candidate ranking", () => {
+  const mixed = findNextMedals(index, [], filters("all")).reverse();
+  const alphabetical = [...medals].sort((a, b) => a.name.localeCompare(b.name)).map((medal) => medal.id);
+  assert.deepEqual(sortFinderCandidates(mixed, "az", medals).map(({ medal }) => medal.id), alphabetical);
+  assert.deepEqual(sortFinderCandidates(mixed, "za", medals).map(({ medal }) => medal.id), [...alphabetical].reverse());
+});
+
+test("Finder category sort groups medals and keeps source order within each category", () => {
+  const catalog = [
+    { ...medals[0], category: "event" },
+    { ...medals[1], category: "character" },
+    { ...medals[2], category: "event" },
+    { ...medals[3], category: "character" },
+  ];
+  const mixed = catalog.map((medal, commonTagCount) => ({ medal, commonTagCount, completionCount: null })).reverse();
+  assert.deepEqual(sortFinderCandidates(mixed, "category", catalog).map(({ medal }) => medal.id),
+    [medals[1].id, medals[3].id, medals[0].id, medals[2].id]);
+});
+
+test("Finder Best Tag Match sorts by active pair/trio overlap and keeps matching candidates", () => {
+  const candidates = findNextMedals(index, ["skill1-a"], filters("all", 2));
+  const sorted = sortFinderCandidates([...candidates].reverse(), "match", medals);
+  assert.deepEqual(sorted.map(({ commonTagCount }) => commonTagCount),
+    [...sorted.map(({ commonTagCount }) => commonTagCount)].sort((a, b) => b - a));
+  assert.deepEqual(new Set(sorted.map(({ medal }) => medal.id)), new Set(candidates.map(({ medal }) => medal.id)));
+  assert.deepEqual(candidates.map(({ medal }) => medal.id).sort(),
+    sortFinderCandidates(candidates, "az", medals).map(({ medal }) => medal.id).sort());
 });
