@@ -5,6 +5,7 @@ import { characterUsage20260902 } from "./snapshots/2026-09-02";
 import { characterUsage20260909 } from "./snapshots/2026-09-09";
 import { characterUsage20260919 } from "./snapshots/2026-09-19";
 import { characterUsage20260926 } from "./snapshots/2026-09-27";
+import { characterUsage20261010 } from "./snapshots/2026-10-10";
 
 export const characterUsageSnapshots = [
   characterUsage20260802,
@@ -14,6 +15,7 @@ export const characterUsageSnapshots = [
   characterUsage20260909,
   characterUsage20260919,
   characterUsage20260926,
+  characterUsage20261010,
 ].sort(
   (a, b) =>
     new Date(a.date).getTime() -
