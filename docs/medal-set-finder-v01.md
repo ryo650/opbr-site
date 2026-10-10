@@ -6,6 +6,7 @@
 - Select an initial medal, then select a second from medals that have **at least one valid third-medal completion**. The third list is recomputed immediately from both fixed medals.
 - A candidate list contains **individual next medals**, not all generated three-medal set combinations.
 - Search the candidate list by medal name or tag. Lists are paginated in groups of 36 to avoid loading hundreds of medal artworks simultaneously.
+- Sort candidates using the same five options as Medal Builder: **Default (catalog order)**, **Name A–Z**, **Name Z–A**, **Category**, and **Best Tag Match**. Best Tag Match becomes available after the first selection and orders by pair/trio common tag count. Sorting does not change which medals qualify; switching sort returns pagination to the first 36 items.
 - Filter by minimum three-way tag overlap (2–6), by Tag (4+), Trait (2+ tags and shared trait purpose), Hybrid (4+ tags and shared purpose), and by a specific shared purpose.
 - No recommendation score or subjective ranking. The candidate list is sorted by objective shared-tag count, then name.
 - When complete, display the shared 3-medal tags, exactly-two tags count, shared trait purposes, and active tag effects. Send the exact 3 medal IDs to the already-supported `/medal-builder?medals=` URL to inspect caps and additional traits.
@@ -30,7 +31,7 @@ npm run lint
 npm run build
 ```
 
-Also validate in iPhone / desktop Preview: per-slot × removes only the targeted medal (first/middle/last); other selections remain; Reset set clears all; candidate lists refresh; filter changes, empty results, and transfer to Builder.
+Also validate in iPhone / desktop Preview: per-slot × removes only the targeted medal (first/middle/last); other selections remain; Reset set clears all; candidate lists refresh; all five sort modes (including disabled Best Tag Match before slot 1), sort switching while a search is active, pagination reset, filter changes, empty results, and transfer to Builder.
 
 ## Limitations / next phase
 
