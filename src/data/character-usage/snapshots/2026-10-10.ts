@@ -13,7 +13,7 @@ export const characterUsage20261010 = {
     "the-four-emperors-monkey-d-luffy": 21,
     "the-four-emperors-marshall-d-teach": 5,
     "happy-halloween-uta": 7,
-    "heir-to-the-shogun-of-wano-kozuki-oden": 12,
+    "daimyo-of-kuri-kozuki-oden": 12,
     "blackbeard-pirates-kuzan": 7,
     "great-pirate-gol-d-roger": 1,
     "father-and-daughter-kuma-bonny": 11,
