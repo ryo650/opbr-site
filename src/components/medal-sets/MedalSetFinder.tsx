@@ -8,9 +8,17 @@ import {
   uniqueTraitCategoryIdsByMedalId,
 } from "@/data/medals";
 import {
+  createTagSetEffectFilterIndex,
   formatMedalEffectValue,
   getActiveTagSetEffects,
+  getTagSetEffectFilterOptions,
 } from "@/data/medals/active-tag-set-effects";
+import {
+  countFinderCatalogFilters,
+  emptyFinderCatalogFilters,
+  matchesFinderCatalogFilters,
+  type FinderCatalogFilters,
+} from "@/data/medal-sets/finder-catalog-filters";
 import {
   createFinderIndex,
   findNextMedals,
@@ -22,6 +30,7 @@ import {
   type FinderSort,
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
+import MedalFinderFilters from "./MedalFinderFilters";
 import styles from "./MedalSetFinder.module.css";
 
 const PAGE_SIZE = 36;
@@ -38,6 +47,8 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
   const [purposeId, setPurposeId] = useState<UniqueTraitCategoryId | null>(null);
   const [query, setQuery] = useState("");
   const [sort, setSort] = useState<FinderSort>("default");
+  const [catalogFilters, setCatalogFilters] = useState<FinderCatalogFilters>({ ...emptyFinderCatalogFilters });
+  const [catalogFiltersOpen, setCatalogFiltersOpen] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const index = useMemo(
@@ -59,13 +70,17 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     [index, selectedIds, mode, minTags, purposeId],
   );
   const search = query.trim().toLocaleLowerCase();
+  const filterOptions = useMemo(() => getTagSetEffectFilterOptions(medals), [medals]);
+  const effectTagIdsById = useMemo(() => createTagSetEffectFilterIndex(filterOptions), [filterOptions]);
+  const activeFilterCount = countFinderCatalogFilters(catalogFilters);
   const filtered = useMemo(
     () => candidates.filter(({ medal }) =>
-      !search ||
-      medal.name.toLocaleLowerCase().includes(search) ||
-      medal.tags.some((tag) => tag.name.toLocaleLowerCase().includes(search)),
+      (!search ||
+        medal.name.toLocaleLowerCase().includes(search) ||
+        medal.tags.some((tag) => tag.name.toLocaleLowerCase().includes(search))) &&
+      matchesFinderCatalogFilters(medal, catalogFilters, effectTagIdsById),
     ),
-    [candidates, search],
+    [candidates, search, catalogFilters, effectTagIdsById],
   );
   const sorted = useMemo(() => sortFinderCandidates(filtered, sort, medals), [filtered, sort, medals]);
   const visible = sorted.slice(0, visibleCount);
@@ -245,7 +260,19 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
                 <option value="match" disabled={selectedIds.length === 0}>Best Tag Match</option>
               </select>
             </label>
+            <button className={styles.filterButton} type="button" aria-expanded={catalogFiltersOpen}
+              onClick={() => setCatalogFiltersOpen((open) => !open)}>
+              Filters{activeFilterCount ? ` (${activeFilterCount})` : ""}
+            </button>
           </div>
+          {catalogFiltersOpen && (
+            <MedalFinderFilters
+              medals={medals}
+              filters={catalogFilters}
+              onChange={(next) => { setCatalogFilters(next); setVisibleCount(PAGE_SIZE); }}
+              onClose={() => setCatalogFiltersOpen(false)}
+            />
+          )}
           {visible.length > 0 ? (
             <div className={styles.medalGrid}>
               {visible.map(({ medal, commonTagCount, completionCount }) => (
