@@ -37,11 +37,13 @@ test("invalid history anchors never result in guessed latest medals", () => {
   assert.deepEqual(getRecentlyAddedMedals(fixtures, -1), []);
 });
 
-test("production catalog contains the documented 2026-10-01 addition anchor", () => {
-  const current = getRecentlyAddedMedals(medals);
+test("production catalog uses the confirmed append anchor even after more than eight new imports", () => {
+  const anchor = medals.findIndex(({ id }) => id === "halloween-perona");
+  assert.ok(anchor >= 0);
+  assert.equal(medals[anchor + 1]?.id, "ill-trick-you");
   assert.ok(RECENT_MEDALS_LIMIT > 0 && RECENT_MEDALS_LIMIT <= 10);
-  assert.ok(current.length >= 2 && current.length <= RECENT_MEDALS_LIMIT);
-  assert.ok(current.some((medal) => medal.id === "halloween-perona"));
-  assert.ok(current.some((medal) => medal.id === "ill-trick-you"));
-  assert.ok(current.every((medal) => medals.some(({ id }) => id === medal.id)));
+  const current = getRecentlyAddedMedals(medals);
+  const expected = medals.slice(anchor).slice(-RECENT_MEDALS_LIMIT).reverse();
+  assert.deepEqual(current.map(({ id }) => id), expected.map(({ id }) => id));
+  assert.ok(current.length >= 1 && current.length <= RECENT_MEDALS_LIMIT);
 });
