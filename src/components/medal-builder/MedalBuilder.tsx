@@ -43,6 +43,7 @@ import {
 } from "@/data/characters";
 import type { NativeEffectType } from "@/data/medals/types";
 import MedalArtwork from "@/components/medals/MedalArtwork";
+import MedalInformation from "@/components/medals/MedalInformation";
 import {
   createTagSetEffectFilterIndex,
   formatMedalEffectCondition,
@@ -731,7 +732,7 @@ function MedalDetails({ medal, slots, extraTraitsBySlot, onPlace, onRemove, onUp
     <header className={styles.detailsHeader}><MedalArt medal={medal} sizes="150px" eager /><div><span>{medal.category}</span><h2 id="medal-detail-title">{medal.name}</h2></div></header>
     <section className={styles.miniSet}><div><span className={styles.kicker}>Current set</span><p>Choose a slot to add or replace.</p></div><div className={styles.miniSlots}>{currentSetSlots.map(({ medal: slotMedal, slotIndex }) => { const current = slotMedal?.id === medal.id; return <button type="button" key={`${slotIndex}:${slotMedal?.id ?? "empty"}`} data-current-set-slot={slotIndex + 1} data-slot-state={slotMedal ? "filled" : "empty"} className={current ? styles.currentMiniSlot : ""} onClick={() => current ? onRemove(slotIndex) : onPlace(slotIndex, medal)} aria-label={current ? `${medal.name} is in slot ${slotIndex + 1}` : `${slotMedal ? "Replace" : "Add to"} slot ${slotIndex + 1}`}><span>{slotMedal ? <MedalArt medal={slotMedal} sizes="64px" eager /> : slotIndex + 1}</span><strong>{current ? "CURRENT" : `SLOT ${slotIndex + 1}`}</strong></button>; })}</div></section>
     <ExtraTraitsEditor medal={medal} slots={slots} extraTraitsBySlot={extraTraitsBySlot} onUpdate={onUpdateExtraTrait} />
-    <div className={styles.detailContent}><DetailSection title="Unique Trait"><p>{medal.uniqueTrait}</p></DetailSection><DetailSection title="Tags"><Pills values={medal.tags.map((tag) => tag.name)} /></DetailSection><DetailSection title="Native Traits"><Pills values={medal.nativeTraits.map((trait) => traitLabels[trait])} /></DetailSection><DetailSection title="Extra Trait Effects"><Pills values={(medal.nativeEffects ?? []).map(labelId)} /></DetailSection><DetailSection title="Status Reductions"><Pills values={(medal.statusReductions ?? []).map(labelId)} /></DetailSection></div>
+    <MedalInformation medal={medal} />
   </article></div>;
 }
 
@@ -791,8 +792,6 @@ function ExtraTraitsEditor({ medal, slots, extraTraitsBySlot, onUpdate }: { meda
   </section>;
 }
 
-function DetailSection({ title, children }: { title: string; children: React.ReactNode }) { return <section className={styles.detailSection}><h3>{title}</h3>{children}</section>; }
-function Pills({ values }: { values: readonly string[] }) { return values.length ? <div className={styles.pills}>{values.map((value) => <span key={value}>{value}</span>)}</div> : <em className={styles.none}>None</em>; }
 function FilterLauncher({ title, count, expanded, onClick }: { title: string; count: number; expanded: boolean; onClick: () => void }) { return <button type="button" className={styles.filterLauncher} onClick={onClick} aria-expanded={expanded}><span>{title}</span>{count > 0 && <strong>{count}</strong>}<span aria-hidden="true">{expanded ? "−" : "+"}</span></button>; }
 function UniqueTraitFilter({ query, selected, matchMode, onQueryChange, onToggle, onMatchModeChange }: { query: string; selected: readonly UniqueTraitCategoryId[]; matchMode: UniqueTraitCategoryMatchMode; onQueryChange: (value: string) => void; onToggle: (id: UniqueTraitCategoryId) => void; onMatchModeChange: (mode: UniqueTraitCategoryMatchMode) => void }) {
   return <div className={styles.filterSelector} aria-label="Unique Trait filters">
