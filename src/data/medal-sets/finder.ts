@@ -2,6 +2,7 @@ import type { Medal, MedalTag } from "../medals/types";
 import type { UniqueTraitCategoryId } from "../medals/unique-trait-categories";
 
 export type FinderMode = "all" | "tag" | "trait" | "hybrid";
+export type FinderSort = "default" | "az" | "za" | "category" | "match";
 
 export type FinderCriteria = {
   readonly mode: FinderMode;
@@ -154,4 +155,35 @@ export function findNextMedals(
     a.medal.name.localeCompare(b.medal.name) ||
     a.medal.id.localeCompare(b.medal.id),
   );
+}
+
+
+// Consistent with Medal Builder: default uses the catalog order, the alphabetic
+// modes compare names, category groups character/event medals, and Best Tag Match
+// uses the actual intersection with the chosen medal(s) in this Finder.
+export function sortFinderCandidates(
+  candidates: readonly FinderCandidate[],
+  sort: FinderSort,
+  catalog: readonly Medal[],
+): FinderCandidate[] {
+  const originalOrder = new Map(catalog.map((medal, index) => [medal.id, index]));
+  const byOriginalOrder = (a: FinderCandidate, b: FinderCandidate): number =>
+    (originalOrder.get(a.medal.id) ?? Number.MAX_SAFE_INTEGER) -
+    (originalOrder.get(b.medal.id) ?? Number.MAX_SAFE_INTEGER);
+
+  return [...candidates].sort((a, b) => {
+    if (sort === "az") {
+      return a.medal.name.localeCompare(b.medal.name) || byOriginalOrder(a, b);
+    }
+    if (sort === "za") {
+      return b.medal.name.localeCompare(a.medal.name) || byOriginalOrder(a, b);
+    }
+    if (sort === "category") {
+      return a.medal.category.localeCompare(b.medal.category) || byOriginalOrder(a, b);
+    }
+    if (sort === "match") {
+      return b.commonTagCount - a.commonTagCount || byOriginalOrder(a, b);
+    }
+    return byOriginalOrder(a, b);
+  });
 }
