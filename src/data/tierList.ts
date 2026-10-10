@@ -12,22 +12,22 @@ export const tierList = [
     {
         tier: "S",
         colorClass: "S",
-        characterIds: ["future-where-i-m-the-most-free-jewelry-bonney","the-wings-zoro-sanji","the-five-elders-st-marcus-mars"]
+        characterIds: ["the-five-elders-st-marcus-mars","future-where-i-m-the-most-free-jewelry-bonney","the-wings-zoro-sanji"]
     },
     {
         tier: "A",
         colorClass: "A",
-        characterIds: ["daimyo-of-kuri-kozuki-oden","great-pirate-gol-d-roger","flame-emperor-sabo","blackbeard-pirates-kuzan","the-four-emperors-marshall-d-teach","father-and-daughter-kuma-bonny","happy-halloween-uta","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law"]
+        characterIds: ["daimyo-of-kuri-kozuki-oden","great-pirate-gol-d-roger","flame-emperor-sabo","blackbeard-pirates-kuzan","the-four-emperors-marshall-d-teach","happy-halloween-uta","animal-kingdom-pirates-lead-performer-king","winner-island-trafalgar-law","father-and-daughter-kuma-bonny"]
     },
     {
         tier: "B",
         colorClass: "B",
-        characterIds: ["unexpected-collaboration-rob-lucci","great-pirate-edward-newgate","red-rock-monkey-d-luffy","battle-of-monsters-on-onigashima-kaido","kaido-s-son-yamato","navy-hq-sword-koby","seraphim-s-snake","germa-66-vinsmoke-niji","egghead-tony-tony-chopper"]
+        characterIds: ["kaido-s-son-yamato","unexpected-collaboration-rob-lucci","red-rock-monkey-d-luffy","battle-of-monsters-on-onigashima-kaido","great-pirate-edward-newgate","navy-hq-sword-koby","seraphim-s-snake","germa-66-vinsmoke-niji","egghead-tony-tony-chopper"]
     },
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["ama-no-murakumo-sword-kizaru","navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","film-z-zephyr","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu","egghead-sanji","asl-ace-sabo-luffy","divine-departure-shanks"]
+        characterIds: ["ama-no-murakumo-sword-kizaru","asl-ace-sabo-luffy","divine-departure-shanks","egghead-sanji","navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","film-z-zephyr","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu"]
     },
     {
         tier: "D",

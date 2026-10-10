@@ -27,7 +27,7 @@ export default async function TierListPage() {
         <section className={styles.introduction}>
           <p className={styles.eyebrow}>One Piece Bounty Rush Guide</p>
           <h1 className={styles.title}>OPBR Character Tier List</h1>
-          <p className={styles.updated}>Last updated: October 8, 2026</p>
+          <p className={styles.updated}>Last updated: October 10, 2026</p>
           <p className={styles.description}>
             This OPBR tier list ranks the best characters in One Piece Bounty Rush
             based on their current meta strength, league battle performance, role value,
@@ -45,9 +45,7 @@ export default async function TierListPage() {
           <TierList badges={badges} />
         </section>
 
-        <ImportantTierUpdate update={update} currentTiers={currentTiers} />
-
-        {/* それぞれのキャラのランキング変動 */}
+        <ImportantTierUpdate update={update} currentTiers={currentTiers} compact />
 
         <section className={styles.criteria} aria-labelledby="criteria-heading">
           <p className={styles.sectionKicker}>How we rank</p>

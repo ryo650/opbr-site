@@ -6,7 +6,15 @@ const { tierList } = require('../src/data/tierList');
 const { characters } = require('../src/data/characters');
 const { demoUpdate, demoNow, getDemoScenario } = require('./fixtures/tier-important-updates');
 const day = 24 * 60 * 60 * 1000;
-const state = (events, now = demoNow, rankings = tierList) => getImportantTierUpdateState(events, rankings, now);
+// Synthetic scenarios need synthetic placements, independent of live editorial changes.
+const demoRankings = tierList.map((row) => ({
+  ...row,
+  characterIds: [
+    ...row.characterIds.filter((id) => !demoUpdate.changes.some((change) => change.characterId === id)),
+    ...demoUpdate.changes.filter((change) => change.toTier === row.tier).map((change) => change.characterId),
+  ],
+}));
+const state = (events, now = demoNow, rankings = demoRankings) => getImportantTierUpdateState(events, rankings, now);
 
 test('no event is inferred from rankings, drafts, invalid dates or scheduled publications', () => {
   for (const scenario of ['empty', 'draft', 'future']) {
@@ -50,7 +58,7 @@ test('historical tier mismatch or removal suppresses misleading badges without r
   assert.equal(result.badges[id], undefined);
   assert.equal(result.currentTiers[id], 'SS');
   assert.equal(result.update.changes[0].toTier, 'S');
-  const removed = tierList.map((row) => ({ ...row, characterIds: row.characterIds.filter((characterId) => characterId !== id) }));
+  const removed = demoRankings.map((row) => ({ ...row, characterIds: row.characterIds.filter((characterId) => characterId !== id) }));
   assert.equal(state([demoUpdate], now, removed).badges[id], undefined);
 });
 
@@ -70,7 +78,7 @@ test('rise can represent an existing character moving from unranked into a tier'
       reason: 'Buffed into the ranked list.',
     }],
   };
-  const result = state([event], Date.parse(event.publishedAt));
+  const result = state([event], Date.parse(event.publishedAt), [{ tier: 'B', characterIds: ['happy-halloween-uta'] }]);
   assert.equal(result.badges['happy-halloween-uta'].kind, 'rise');
   assert.equal(result.update.changes[0].fromTier, null);
 });
@@ -100,7 +108,7 @@ test('registered production events have explicit, coherent editorial data and of
       else if (!(change.kind === 'rise' && change.fromTier === null)) assert.ok(ranks.includes(change.fromTier));
       if (change.kind === 'rise') {
         if (change.fromTier !== null) assert.ok(ranks.indexOf(change.toTier) <= ranks.indexOf(change.fromTier));
-      } else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) > ranks.indexOf(change.fromTier));
+      } else if (change.kind === 'fall') assert.ok(ranks.indexOf(change.toTier) >= ranks.indexOf(change.fromTier));
       else if (change.kind === 'adjustment') assert.equal(change.fromTier, change.toTier);
       else assert.equal(change.kind, 'new');
     }
@@ -122,4 +130,33 @@ test('buffed characters can rise within a tier and receive an UP badge', () => {
   const result = state([event], Date.parse(event.publishedAt));
   assert.equal(result.badges['blackbeard-pirates-kuzan'].kind, 'rise');
   assert.equal(result.update.changes[0].toTier, 'A');
+});
+
+test('October 10 meta follow-up retains the October 8 review and marks both same-tier directions', () => {
+  const followUp = importantTierUpdates.find((event) => event.id === '2026-10-10-oden-meta-follow-up');
+  const october8 = importantTierUpdates.find((event) => event.id === '2026-10-08-post-buff-tier-review');
+  assert.deepEqual(followUp.changes.slice(2), october8.changes);
+  assert.equal(followUp.changes.length, 9);
+  assert.equal(followUp.officialAdjustment, undefined);
+  const start = Date.parse(followUp.publishedAt);
+  assert.equal(state(importantTierUpdates, start - 1, tierList).update.id, october8.id);
+  const result = state(importantTierUpdates, start, tierList);
+  assert.equal(result.update.id, followUp.id);
+  assert.equal(Object.keys(result.badges).length, 9);
+  for (const [id, kind] of [['the-wings-zoro-sanji', 'fall'], ['the-five-elders-st-marcus-mars', 'rise']]) {
+    const change = followUp.changes.find((item) => item.characterId === id);
+    assert.equal(change.fromTier, 'S');
+    assert.equal(change.toTier, 'S');
+    assert.equal(change.kind, kind);
+    assert.equal(result.badges[id].kind, kind);
+    assert.match(change.reason, /Oden's buff/);
+    assert.match(change.reason, /not received a balance adjustment/);
+  }
+  assert.deepEqual(tierList.find((row) => row.tier === 'S').characterIds, [
+    'the-five-elders-st-marcus-mars',
+    'future-where-i-m-the-most-free-jewelry-bonney',
+    'the-wings-zoro-sanji',
+  ]);
+  assert.equal(Object.keys(state(importantTierUpdates, start + 14 * day - 1, tierList).badges).length, 9);
+  assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
