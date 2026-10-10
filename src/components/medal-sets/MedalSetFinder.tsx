@@ -17,7 +17,9 @@ import {
   getCommonTags,
   getSharedPurposes,
   removeMedalFromSlots,
+  sortFinderCandidates,
   type FinderMode,
+  type FinderSort,
 } from "@/data/medal-sets/finder";
 import MedalArtwork from "@/components/medals/MedalArtwork";
 import styles from "./MedalSetFinder.module.css";
@@ -35,6 +37,7 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
   const [minTags, setMinTags] = useState(2);
   const [purposeId, setPurposeId] = useState<UniqueTraitCategoryId | null>(null);
   const [query, setQuery] = useState("");
+  const [sort, setSort] = useState<FinderSort>("default");
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
 
   const index = useMemo(
@@ -64,7 +67,8 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
     ),
     [candidates, search],
   );
-  const visible = filtered.slice(0, visibleCount);
+  const sorted = useMemo(() => sortFinderCandidates(filtered, sort, medals), [filtered, sort, medals]);
+  const visible = sorted.slice(0, visibleCount);
   const selectedMedals = chosen.map(({ medal }) => medal);
   const complete = selectedMedals.length === 3;
   const sharedTags = complete ? getCommonTags(selectedMedals) : [];
@@ -90,12 +94,14 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
 
   function removeMedal(index: number) {
     setSlots((previous) => removeMedalFromSlots(previous, index));
+    if (selectedIds.length === 1) setSort((current) => current === "match" ? "default" : current);
     setQuery("");
     setVisibleCount(PAGE_SIZE);
   }
 
   function resetSet() {
     setSlots([null, null, null]);
+    setSort((current) => current === "match" ? "default" : current);
     setQuery("");
     setVisibleCount(PAGE_SIZE);
   }
@@ -223,11 +229,23 @@ export default function MedalSetFinder({ medals }: { medals: readonly Medal[] })
             </div>
             <strong className={styles.count}>{filtered.length} medals</strong>
           </div>
-          <label className={styles.search}>
-            Find a medal by name or tag
-            <input type="search" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE); }}
-              placeholder="Search medals or tags…" autoComplete="off" />
-          </label>
+          <div className={styles.browserControls}>
+            <label className={styles.search}>
+              Find a medal by name or tag
+              <input type="search" value={query} onChange={(event) => { setQuery(event.target.value); setVisibleCount(PAGE_SIZE); }}
+                placeholder="Search medals or tags…" autoComplete="off" />
+            </label>
+            <label className={styles.sort}>
+              Sort
+              <select value={sort} onChange={(event) => { setSort(event.target.value as FinderSort); setVisibleCount(PAGE_SIZE); }}>
+                <option value="default">Default</option>
+                <option value="az">Name A–Z</option>
+                <option value="za">Name Z–A</option>
+                <option value="category">Category</option>
+                <option value="match" disabled={selectedIds.length === 0}>Best Tag Match</option>
+              </select>
+            </label>
+          </div>
           {visible.length > 0 ? (
             <div className={styles.medalGrid}>
               {visible.map(({ medal, commonTagCount, completionCount }) => (
