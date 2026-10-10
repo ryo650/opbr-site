@@ -46,6 +46,7 @@ independently verified against the current main.
 npx tsc --noEmit
 npm run lint
 npm run build
+node --require ./tests/register.cjs --test tests/medal-information.test.cjs
 node --experimental-strip-types --test scripts/medal-set-finder/finder.test.mjs
 node --experimental-strip-types --test scripts/medal-set-finder/finder-catalog-filters.test.mjs
 node --experimental-strip-types --test scripts/medal-set-finder/recently-added.test.mjs
