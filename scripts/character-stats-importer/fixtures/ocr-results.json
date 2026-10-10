@@ -1,0 +1,1299 @@
+{
+  "templateId": "stats-of-max-level-v01",
+  "pass": false,
+  "rows": [
+    {
+      "file": "IMG_5229.PNG",
+      "comparisons": {
+        "characterId": {
+          "expected": "navy-hq-captain-koby",
+          "actual": "navy-hq-captain-koby",
+          "pass": true
+        },
+        "hp": {
+          "expected": 9169,
+          "actual": 9169,
+          "pass": true
+        },
+        "atk": {
+          "expected": 2398,
+          "actual": 2398,
+          "pass": true
+        },
+        "def": {
+          "expected": 2159,
+          "actual": 2159,
+          "pass": true
+        },
+        "crit": {
+          "expected": 11,
+          "actual": 11,
+          "pass": true
+        },
+        "totalPower": {
+          "expected": 11446,
+          "actual": 11446,
+          "pass": true
+        },
+        "screen": {
+          "expected": "stats-of-max-level",
+          "actual": "stats-of-max-level",
+          "pass": true
+        },
+        "level": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "levelMaximum": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "characterBoost": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        },
+        "characterBoostMaximum": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        }
+      },
+      "draft": {
+        "id": "9090dfe0-0721-4d31-b1fd-e64c4c72038a",
+        "sourceImage": "IMG_5229.PNG",
+        "sourceSha256": "2e148e23e1496d00fccaa39ce3ad821e615ada51990000979ba54859ab72df80",
+        "templateId": "stats-of-max-level-v01",
+        "engine": "tesseract",
+        "visionError": null,
+        "imageSize": {
+          "width": 2048,
+          "height": 946
+        },
+        "crops": {
+          "identityTitle": {
+            "x": 205,
+            "y": 802,
+            "width": 575,
+            "height": 40
+          },
+          "identityName": {
+            "x": 205,
+            "y": 844,
+            "width": 510,
+            "height": 46
+          },
+          "level": {
+            "x": 1160,
+            "y": 163,
+            "width": 260,
+            "height": 40
+          },
+          "hp": {
+            "x": 1335,
+            "y": 250,
+            "width": 155,
+            "height": 40
+          },
+          "atk": {
+            "x": 1335,
+            "y": 290,
+            "width": 155,
+            "height": 40
+          },
+          "def": {
+            "x": 1335,
+            "y": 330,
+            "width": 155,
+            "height": 40
+          },
+          "crit": {
+            "x": 1330,
+            "y": 369,
+            "width": 160,
+            "height": 34
+          },
+          "totalPower": {
+            "x": 1680,
+            "y": 204,
+            "width": 160,
+            "height": 42
+          },
+          "boost": {
+            "x": 1665,
+            "y": 325,
+            "width": 140,
+            "height": 42
+          },
+          "preview": {
+            "x": 635,
+            "y": 702,
+            "width": 270,
+            "height": 32
+          }
+        },
+        "ocr": {
+          "identityTitle": {
+            "file": "identityTitle.png",
+            "lines": [
+              "Navy HQ / Captain"
+            ],
+            "observations": [],
+            "confidence": 93
+          },
+          "identityName": {
+            "file": "identityName.png",
+            "lines": [
+              "Koby"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "level": {
+            "file": "level.png",
+            "lines": [
+              "Lv.100/100"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "hp": {
+            "file": "hp.png",
+            "lines": [
+              "9169"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "atk": {
+            "file": "atk.png",
+            "lines": [
+              "2398"
+            ],
+            "observations": [],
+            "confidence": 95
+          },
+          "def": {
+            "file": "def.png",
+            "lines": [
+              "2159"
+            ],
+            "observations": [],
+            "confidence": 90
+          },
+          "crit": {
+            "file": "crit.png",
+            "lines": [
+              "+11.00%"
+            ],
+            "observations": [],
+            "confidence": 89
+          },
+          "totalPower": {
+            "file": "totalPower.png",
+            "lines": [
+              "11446"
+            ],
+            "observations": [],
+            "confidence": 93
+          },
+          "boost": {
+            "file": "boost.png",
+            "lines": [
+              "52/52"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "preview": {
+            "file": "preview.png",
+            "lines": [
+              "*Stats of max level."
+            ],
+            "observations": [],
+            "confidence": 94
+          }
+        },
+        "identityText": "Navy HQ / Captain Koby",
+        "match": {
+          "status": "matched",
+          "characterId": "navy-hq-captain-koby",
+          "characterRole": "attacker",
+          "method": "canonical-name",
+          "identityText": "Navy HQ / Captain Koby",
+          "candidates": []
+        },
+        "characterId": "navy-hq-captain-koby",
+        "maxStats": {
+          "hp": 9169,
+          "atk": 2398,
+          "def": 2159,
+          "crit": 11,
+          "totalPower": 11446
+        },
+        "conditions": {
+          "screen": "stats-of-max-level",
+          "level": 100,
+          "levelMaximum": 100,
+          "characterBoost": 52,
+          "characterBoostMaximum": 52,
+          "medalsEquipped": null,
+          "supportEffects": "not-verified"
+        },
+        "status": "pending"
+      }
+    },
+    {
+      "file": "IMG_5230.PNG",
+      "comparisons": {
+        "characterId": {
+          "expected": "evil-black-drum-kingdom-king-wapol",
+          "actual": null,
+          "pass": false
+        },
+        "hp": {
+          "expected": 9981,
+          "actual": 9981,
+          "pass": true
+        },
+        "atk": {
+          "expected": 1791,
+          "actual": 1791,
+          "pass": true
+        },
+        "def": {
+          "expected": 2526,
+          "actual": 2526,
+          "pass": true
+        },
+        "crit": {
+          "expected": 11,
+          "actual": 11,
+          "pass": true
+        },
+        "totalPower": {
+          "expected": 11409,
+          "actual": 11409,
+          "pass": true
+        },
+        "screen": {
+          "expected": "stats-of-max-level",
+          "actual": "stats-of-max-level",
+          "pass": true
+        },
+        "level": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "levelMaximum": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "characterBoost": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        },
+        "characterBoostMaximum": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        }
+      },
+      "draft": {
+        "id": "3e7142ea-3b6b-4a6b-a9ea-0899b8448e93",
+        "sourceImage": "IMG_5230.PNG",
+        "sourceSha256": "518861eda996c660b33353ee9a0634648bf0960cc20f42262bf88069a133e430",
+        "templateId": "stats-of-max-level-v01",
+        "engine": "tesseract",
+        "visionError": null,
+        "imageSize": {
+          "width": 2048,
+          "height": 946
+        },
+        "crops": {
+          "identityTitle": {
+            "x": 205,
+            "y": 802,
+            "width": 575,
+            "height": 40
+          },
+          "identityName": {
+            "x": 205,
+            "y": 844,
+            "width": 510,
+            "height": 46
+          },
+          "level": {
+            "x": 1160,
+            "y": 163,
+            "width": 260,
+            "height": 40
+          },
+          "hp": {
+            "x": 1335,
+            "y": 250,
+            "width": 155,
+            "height": 40
+          },
+          "atk": {
+            "x": 1335,
+            "y": 290,
+            "width": 155,
+            "height": 40
+          },
+          "def": {
+            "x": 1335,
+            "y": 330,
+            "width": 155,
+            "height": 40
+          },
+          "crit": {
+            "x": 1330,
+            "y": 369,
+            "width": 160,
+            "height": 34
+          },
+          "totalPower": {
+            "x": 1680,
+            "y": 204,
+            "width": 160,
+            "height": 42
+          },
+          "boost": {
+            "x": 1665,
+            "y": 325,
+            "width": 140,
+            "height": 42
+          },
+          "preview": {
+            "x": 635,
+            "y": 702,
+            "width": 270,
+            "height": 32
+          }
+        },
+        "ocr": {
+          "identityTitle": {
+            "file": "identityTitle.png",
+            "lines": [
+              "Evil Black Drum Bdngdom / King"
+            ],
+            "observations": [],
+            "confidence": 78
+          },
+          "identityName": {
+            "file": "identityName.png",
+            "lines": [
+              "Wapol L"
+            ],
+            "observations": [],
+            "confidence": 45
+          },
+          "level": {
+            "file": "level.png",
+            "lines": [
+              "Lv.100/100"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "hp": {
+            "file": "hp.png",
+            "lines": [
+              "9981"
+            ],
+            "observations": [],
+            "confidence": 81
+          },
+          "atk": {
+            "file": "atk.png",
+            "lines": [
+              "1791"
+            ],
+            "observations": [],
+            "confidence": 92
+          },
+          "def": {
+            "file": "def.png",
+            "lines": [
+              "2526"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "crit": {
+            "file": "crit.png",
+            "lines": [
+              "+11.00%"
+            ],
+            "observations": [],
+            "confidence": 89
+          },
+          "totalPower": {
+            "file": "totalPower.png",
+            "lines": [
+              "11409"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "boost": {
+            "file": "boost.png",
+            "lines": [
+              "52/52"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "preview": {
+            "file": "preview.png",
+            "lines": [
+              "*Stats of max level."
+            ],
+            "observations": [],
+            "confidence": 94
+          }
+        },
+        "identityText": "Evil Black Drum Bdngdom / King Wapol L",
+        "match": {
+          "status": "unmatched",
+          "characterId": null,
+          "characterRole": null,
+          "method": null,
+          "identityText": "Evil Black Drum Bdngdom / King Wapol L",
+          "candidates": [
+            {
+              "characterId": "evil-black-drum-kingdom-king-wapol",
+              "name": "Evil Black Drum Kingdom King Wapol",
+              "score": 0.7692307692307693
+            },
+            {
+              "characterId": "drum-kingdom-former-ruler-wapol",
+              "name": "Drum Kingdom - Former Ruler Wapol",
+              "score": 0.3333333333333333
+            },
+            {
+              "characterId": "drum-island-lapin",
+              "name": "Drum Island Lapin",
+              "score": 0.2
+            },
+            {
+              "characterId": "ryugu-kingdom-king-neptune",
+              "name": "Ryugu Kingdom King Neptune",
+              "score": 0.18181818181818182
+            },
+            {
+              "characterId": "sakura-kingdom-king-dalton",
+              "name": "Sakura Kingdom King Dalton",
+              "score": 0.18181818181818182
+            }
+          ]
+        },
+        "characterId": null,
+        "maxStats": {
+          "hp": 9981,
+          "atk": 1791,
+          "def": 2526,
+          "crit": 11,
+          "totalPower": 11409
+        },
+        "conditions": {
+          "screen": "stats-of-max-level",
+          "level": 100,
+          "levelMaximum": 100,
+          "characterBoost": 52,
+          "characterBoostMaximum": 52,
+          "medalsEquipped": null,
+          "supportEffects": "not-verified"
+        },
+        "status": "pending"
+      }
+    },
+    {
+      "file": "IMG_5231.PNG",
+      "comparisons": {
+        "characterId": {
+          "expected": "unexpected-collaboration-rob-lucci",
+          "actual": null,
+          "pass": false
+        },
+        "hp": {
+          "expected": 10066,
+          "actual": 10066,
+          "pass": true
+        },
+        "atk": {
+          "expected": 1771,
+          "actual": 1771,
+          "pass": true
+        },
+        "def": {
+          "expected": 2562,
+          "actual": 2562,
+          "pass": true
+        },
+        "crit": {
+          "expected": 11,
+          "actual": 11,
+          "pass": true
+        },
+        "totalPower": {
+          "expected": 11446,
+          "actual": 11446,
+          "pass": true
+        },
+        "screen": {
+          "expected": "stats-of-max-level",
+          "actual": "stats-of-max-level",
+          "pass": true
+        },
+        "level": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "levelMaximum": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "characterBoost": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        },
+        "characterBoostMaximum": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        }
+      },
+      "draft": {
+        "id": "c16b4161-5862-4dc1-836a-026eef1be242",
+        "sourceImage": "IMG_5231.PNG",
+        "sourceSha256": "77ed7193be331af21595970d4c6a07eee2f4812174666885f0529a2a6ca1948e",
+        "templateId": "stats-of-max-level-v01",
+        "engine": "tesseract",
+        "visionError": null,
+        "imageSize": {
+          "width": 2048,
+          "height": 946
+        },
+        "crops": {
+          "identityTitle": {
+            "x": 205,
+            "y": 802,
+            "width": 575,
+            "height": 40
+          },
+          "identityName": {
+            "x": 205,
+            "y": 844,
+            "width": 510,
+            "height": 46
+          },
+          "level": {
+            "x": 1160,
+            "y": 163,
+            "width": 260,
+            "height": 40
+          },
+          "hp": {
+            "x": 1335,
+            "y": 250,
+            "width": 155,
+            "height": 40
+          },
+          "atk": {
+            "x": 1335,
+            "y": 290,
+            "width": 155,
+            "height": 40
+          },
+          "def": {
+            "x": 1335,
+            "y": 330,
+            "width": 155,
+            "height": 40
+          },
+          "crit": {
+            "x": 1330,
+            "y": 369,
+            "width": 160,
+            "height": 34
+          },
+          "totalPower": {
+            "x": 1680,
+            "y": 204,
+            "width": 160,
+            "height": 42
+          },
+          "boost": {
+            "x": 1665,
+            "y": 325,
+            "width": 140,
+            "height": 42
+          },
+          "preview": {
+            "x": 635,
+            "y": 702,
+            "width": 270,
+            "height": 32
+          }
+        },
+        "ocr": {
+          "identityTitle": {
+            "file": "identityTitle.png",
+            "lines": [
+              "Unexpected Callaboration NS"
+            ],
+            "observations": [],
+            "confidence": 51
+          },
+          "identityName": {
+            "file": "identityName.png",
+            "lines": [
+              "Rob Lucei"
+            ],
+            "observations": [],
+            "confidence": 67
+          },
+          "level": {
+            "file": "level.png",
+            "lines": [
+              "Lv.100/100"
+            ],
+            "observations": [],
+            "confidence": 87
+          },
+          "hp": {
+            "file": "hp.png",
+            "lines": [
+              "10066"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "atk": {
+            "file": "atk.png",
+            "lines": [
+              "1771"
+            ],
+            "observations": [],
+            "confidence": 92
+          },
+          "def": {
+            "file": "def.png",
+            "lines": [
+              "2562"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "crit": {
+            "file": "crit.png",
+            "lines": [
+              "+11.00%"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "totalPower": {
+            "file": "totalPower.png",
+            "lines": [
+              "11446"
+            ],
+            "observations": [],
+            "confidence": 93
+          },
+          "boost": {
+            "file": "boost.png",
+            "lines": [
+              "52/52"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "preview": {
+            "file": "preview.png",
+            "lines": [
+              "*Stats of. max level."
+            ],
+            "observations": [],
+            "confidence": 86
+          }
+        },
+        "identityText": "Unexpected Callaboration NS Rob Lucei",
+        "match": {
+          "status": "unmatched",
+          "characterId": null,
+          "characterRole": null,
+          "method": null,
+          "identityText": "Unexpected Callaboration NS Rob Lucei",
+          "candidates": [
+            {
+              "characterId": "unexpected-collaboration-rob-lucci",
+              "name": "Unexpected Collaboration Rob Lucci",
+              "score": 0.4444444444444444
+            },
+            {
+              "characterId": "cp-9-rob-lucci",
+              "name": "CP9 - Rob Lucci",
+              "score": 0.25
+            },
+            {
+              "characterId": "cp0-rob-lucci",
+              "name": "CP0 Rob Lucci",
+              "score": 0.25
+            },
+            {
+              "characterId": "unexpected-collaboration-kaku",
+              "name": "Unexpected Collaboration Kaku",
+              "score": 0.25
+            },
+            {
+              "characterId": "awakened-form-rob-lucci",
+              "name": "Awakened Form Rob Lucci",
+              "score": 0.2222222222222222
+            }
+          ]
+        },
+        "characterId": null,
+        "maxStats": {
+          "hp": 10066,
+          "atk": 1771,
+          "def": 2562,
+          "crit": 11,
+          "totalPower": 11446
+        },
+        "conditions": {
+          "screen": "stats-of-max-level",
+          "level": 100,
+          "levelMaximum": 100,
+          "characterBoost": 52,
+          "characterBoostMaximum": 52,
+          "medalsEquipped": null,
+          "supportEffects": "not-verified"
+        },
+        "status": "pending"
+      }
+    },
+    {
+      "file": "IMG_5232.PNG",
+      "comparisons": {
+        "characterId": {
+          "expected": "legendary-hero-monkey-d-garp",
+          "actual": null,
+          "pass": false
+        },
+        "hp": {
+          "expected": 9466,
+          "actual": 9466,
+          "pass": true
+        },
+        "atk": {
+          "expected": 2511,
+          "actual": 2511,
+          "pass": true
+        },
+        "def": {
+          "expected": 2063,
+          "actual": 2063,
+          "pass": true
+        },
+        "crit": {
+          "expected": 11,
+          "actual": 11,
+          "pass": true
+        },
+        "totalPower": {
+          "expected": 11537,
+          "actual": 11537,
+          "pass": true
+        },
+        "screen": {
+          "expected": "stats-of-max-level",
+          "actual": "stats-of-max-level",
+          "pass": true
+        },
+        "level": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "levelMaximum": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "characterBoost": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        },
+        "characterBoostMaximum": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        }
+      },
+      "draft": {
+        "id": "6959833c-8bde-4136-a551-cd424a62c543",
+        "sourceImage": "IMG_5232.PNG",
+        "sourceSha256": "32a7fe30b4ad8c455ded40403680dc4cb6e56dcfac91398faec9bef50c3018ab",
+        "templateId": "stats-of-max-level-v01",
+        "engine": "tesseract",
+        "visionError": null,
+        "imageSize": {
+          "width": 2048,
+          "height": 946
+        },
+        "crops": {
+          "identityTitle": {
+            "x": 205,
+            "y": 802,
+            "width": 575,
+            "height": 40
+          },
+          "identityName": {
+            "x": 205,
+            "y": 844,
+            "width": 510,
+            "height": 46
+          },
+          "level": {
+            "x": 1160,
+            "y": 163,
+            "width": 260,
+            "height": 40
+          },
+          "hp": {
+            "x": 1335,
+            "y": 250,
+            "width": 155,
+            "height": 40
+          },
+          "atk": {
+            "x": 1335,
+            "y": 290,
+            "width": 155,
+            "height": 40
+          },
+          "def": {
+            "x": 1335,
+            "y": 330,
+            "width": 155,
+            "height": 40
+          },
+          "crit": {
+            "x": 1330,
+            "y": 369,
+            "width": 160,
+            "height": 34
+          },
+          "totalPower": {
+            "x": 1680,
+            "y": 204,
+            "width": 160,
+            "height": 42
+          },
+          "boost": {
+            "x": 1665,
+            "y": 325,
+            "width": 140,
+            "height": 42
+          },
+          "preview": {
+            "x": 635,
+            "y": 702,
+            "width": 270,
+            "height": 32
+          }
+        },
+        "ocr": {
+          "identityTitle": {
+            "file": "identityTitle.png",
+            "lines": [
+              "Legendary Hero® Ch"
+            ],
+            "observations": [],
+            "confidence": 36
+          },
+          "identityName": {
+            "file": "identityName.png",
+            "lines": [
+              "Monkey D. Garp"
+            ],
+            "observations": [],
+            "confidence": 92
+          },
+          "level": {
+            "file": "level.png",
+            "lines": [
+              "Lv.100/100"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "hp": {
+            "file": "hp.png",
+            "lines": [
+              "9466"
+            ],
+            "observations": [],
+            "confidence": 95
+          },
+          "atk": {
+            "file": "atk.png",
+            "lines": [
+              "2511"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "def": {
+            "file": "def.png",
+            "lines": [
+              "2063"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "crit": {
+            "file": "crit.png",
+            "lines": [
+              "+11.00%"
+            ],
+            "observations": [],
+            "confidence": 89
+          },
+          "totalPower": {
+            "file": "totalPower.png",
+            "lines": [
+              "11537"
+            ],
+            "observations": [],
+            "confidence": 95
+          },
+          "boost": {
+            "file": "boost.png",
+            "lines": [
+              "52/52"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "preview": {
+            "file": "preview.png",
+            "lines": [
+              "*Stats of, max level."
+            ],
+            "observations": [],
+            "confidence": 86
+          }
+        },
+        "identityText": "Legendary Hero® Ch Monkey D. Garp",
+        "match": {
+          "status": "unmatched",
+          "characterId": null,
+          "characterRole": null,
+          "method": null,
+          "identityText": "Legendary Hero® Ch Monkey D. Garp",
+          "candidates": [
+            {
+              "characterId": "legendary-hero-monkey-d-garp",
+              "name": "Legendary Hero Monkey D Garp",
+              "score": 0.9090909090909091
+            },
+            {
+              "characterId": "hero-of-navy-monkey-d-garp",
+              "name": "Hero Of Navy Monkey D Garp",
+              "score": 0.6666666666666666
+            },
+            {
+              "characterId": "navy-hq-vice-admiral-monkey-d-garp",
+              "name": "Navy HQ Vice Admiral - Monkey D. Garp",
+              "score": 0.46153846153846156
+            },
+            {
+              "characterId": "egghead-monkey-d-luffy",
+              "name": "Egghead Monkey D Luffy",
+              "score": 0.4
+            },
+            {
+              "characterId": "stampede-monkey-d-luffy",
+              "name": "Stampede Monkey D Luffy",
+              "score": 0.4
+            }
+          ]
+        },
+        "characterId": null,
+        "maxStats": {
+          "hp": 9466,
+          "atk": 2511,
+          "def": 2063,
+          "crit": 11,
+          "totalPower": 11537
+        },
+        "conditions": {
+          "screen": "stats-of-max-level",
+          "level": 100,
+          "levelMaximum": 100,
+          "characterBoost": 52,
+          "characterBoostMaximum": 52,
+          "medalsEquipped": null,
+          "supportEffects": "not-verified"
+        },
+        "status": "pending"
+      }
+    },
+    {
+      "file": "IMG_5233.PNG",
+      "comparisons": {
+        "characterId": {
+          "expected": "ex-roger-pirates-first-mate-silvers-rayleigh",
+          "actual": "ex-roger-pirates-first-mate-silvers-rayleigh",
+          "pass": true
+        },
+        "hp": {
+          "expected": 9726,
+          "actual": 9726,
+          "pass": true
+        },
+        "atk": {
+          "expected": 1939,
+          "actual": 1939,
+          "pass": true
+        },
+        "def": {
+          "expected": 2461,
+          "actual": 2461,
+          "pass": true
+        },
+        "crit": {
+          "expected": 11,
+          "actual": 11,
+          "pass": true
+        },
+        "totalPower": {
+          "expected": 11428,
+          "actual": 11428,
+          "pass": true
+        },
+        "screen": {
+          "expected": "stats-of-max-level",
+          "actual": "stats-of-max-level",
+          "pass": true
+        },
+        "level": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "levelMaximum": {
+          "expected": 100,
+          "actual": 100,
+          "pass": true
+        },
+        "characterBoost": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        },
+        "characterBoostMaximum": {
+          "expected": 52,
+          "actual": 52,
+          "pass": true
+        }
+      },
+      "draft": {
+        "id": "76f9c283-9b48-490b-ad52-7612579313bb",
+        "sourceImage": "IMG_5233.PNG",
+        "sourceSha256": "3afc477ef75deb21259550b36d8134133d04a359f208ba57d05903c308288163",
+        "templateId": "stats-of-max-level-v01",
+        "engine": "tesseract",
+        "visionError": null,
+        "imageSize": {
+          "width": 2048,
+          "height": 946
+        },
+        "crops": {
+          "identityTitle": {
+            "x": 205,
+            "y": 802,
+            "width": 575,
+            "height": 40
+          },
+          "identityName": {
+            "x": 205,
+            "y": 844,
+            "width": 510,
+            "height": 46
+          },
+          "level": {
+            "x": 1160,
+            "y": 163,
+            "width": 260,
+            "height": 40
+          },
+          "hp": {
+            "x": 1335,
+            "y": 250,
+            "width": 155,
+            "height": 40
+          },
+          "atk": {
+            "x": 1335,
+            "y": 290,
+            "width": 155,
+            "height": 40
+          },
+          "def": {
+            "x": 1335,
+            "y": 330,
+            "width": 155,
+            "height": 40
+          },
+          "crit": {
+            "x": 1330,
+            "y": 369,
+            "width": 160,
+            "height": 34
+          },
+          "totalPower": {
+            "x": 1680,
+            "y": 204,
+            "width": 160,
+            "height": 42
+          },
+          "boost": {
+            "x": 1665,
+            "y": 325,
+            "width": 140,
+            "height": 42
+          },
+          "preview": {
+            "x": 635,
+            "y": 702,
+            "width": 270,
+            "height": 32
+          }
+        },
+        "ocr": {
+          "identityTitle": {
+            "file": "identityTitle.png",
+            "lines": [
+              "Ex-Roger Pirates / First Mate"
+            ],
+            "observations": [],
+            "confidence": 90
+          },
+          "identityName": {
+            "file": "identityName.png",
+            "lines": [
+              "Silvers Rayleigh"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "level": {
+            "file": "level.png",
+            "lines": [
+              "Lv.100/100"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "hp": {
+            "file": "hp.png",
+            "lines": [
+              "9726"
+            ],
+            "observations": [],
+            "confidence": 92
+          },
+          "atk": {
+            "file": "atk.png",
+            "lines": [
+              "1939"
+            ],
+            "observations": [],
+            "confidence": 96
+          },
+          "def": {
+            "file": "def.png",
+            "lines": [
+              "2461"
+            ],
+            "observations": [],
+            "confidence": 93
+          },
+          "crit": {
+            "file": "crit.png",
+            "lines": [
+              "+11.00%"
+            ],
+            "observations": [],
+            "confidence": 88
+          },
+          "totalPower": {
+            "file": "totalPower.png",
+            "lines": [
+              "11428"
+            ],
+            "observations": [],
+            "confidence": 93
+          },
+          "boost": {
+            "file": "boost.png",
+            "lines": [
+              "52/52"
+            ],
+            "observations": [],
+            "confidence": 94
+          },
+          "preview": {
+            "file": "preview.png",
+            "lines": [
+              "*Stats of max level."
+            ],
+            "observations": [],
+            "confidence": 91
+          }
+        },
+        "identityText": "Ex-Roger Pirates / First Mate Silvers Rayleigh",
+        "match": {
+          "status": "matched",
+          "characterId": "ex-roger-pirates-first-mate-silvers-rayleigh",
+          "characterRole": "defender",
+          "method": "canonical-name",
+          "identityText": "Ex-Roger Pirates / First Mate Silvers Rayleigh",
+          "candidates": []
+        },
+        "characterId": "ex-roger-pirates-first-mate-silvers-rayleigh",
+        "maxStats": {
+          "hp": 9726,
+          "atk": 1939,
+          "def": 2461,
+          "crit": 11,
+          "totalPower": 11428
+        },
+        "conditions": {
+          "screen": "stats-of-max-level",
+          "level": 100,
+          "levelMaximum": 100,
+          "characterBoost": 52,
+          "characterBoostMaximum": 52,
+          "medalsEquipped": null,
+          "supportEffects": "not-verified"
+        },
+        "status": "pending"
+      }
+    }
+  ]
+}

@@ -1,0 +1,5 @@
+
+> opbr-site@0.1.0 characters:stats-validate
+> node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/validate.mjs
+
+Validated 0 reviewed max-level records and 33 existing Base Stats records.

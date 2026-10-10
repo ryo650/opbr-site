@@ -37,3 +37,6 @@ export const characters = {
     ...blackCharacters,
     ...whiteCharacters
 }
+
+export { characterMaxLevelStatsCatalog, characterMaxLevelStatsByCharacterId } from "./max-level-stats.ts";
+export type { CharacterMaxLevelStats } from "./max-level-stats.ts";

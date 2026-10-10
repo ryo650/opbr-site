@@ -59,3 +59,19 @@ public_backup/
 /scripts/scout-importer/input/*
 !/scripts/scout-importer/input/.gitkeep
 /scripts/scout-importer/.tmp/
+
+# Character Stats local OCR cache and atomic save staging
+/scripts/character-stats-importer/.cache/
+/src/data/characters/max-level-stats.json.lock
+/src/data/characters/max-level-stats.json.*.tmp
+
+# Character Stats source screenshots are local-only, never Git artifacts
+/scripts/character-stats-importer/input/
+/scripts/character-stats-importer/fixtures/images/
+/scripts/character-stats-importer/qa/*.png
+/scripts/character-stats-importer/qa/*.jpg
+/scripts/character-stats-importer/qa/*.jpeg
+# Local Base Stats pre-save snapshots (structured TypeScript data only)
+src/data/characters/.character-stats-backups/
+src/data/characters/level-100-base-stats.ts.lock
+src/data/characters/level-100-base-stats.ts.*.tmp
