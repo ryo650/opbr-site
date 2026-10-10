@@ -1,0 +1,208 @@
+{
+  "base": "3c57ca8f116fc5f8d7426d90426b9bf0d1fbad2c",
+  "verifiedFiles": 40,
+  "normalScouts": 24,
+  "allMatch": true,
+  "files": [
+    {
+      "path": "src/data/characters/black.ts",
+      "sha256": "8f2cbc1a907080af94de134bda43c3f09eb3b41bb566874b9bbd246d07eff767",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/blue.ts",
+      "sha256": "ac750a356577a852958f6e00a6405996980eedd3fa58e20a0bc6226f572c0d31",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/boost-profiles.ts",
+      "sha256": "102ffb9dd9d10047972821c8ea5551d6a9f164bde54d26d5f610c9bb9dde0a3c",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/grades.ts",
+      "sha256": "78b6a9407ef38fc4ce5c80df4a02f3dd31f66dfbafb94adb8d83ce184fc40fb9",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/green.ts",
+      "sha256": "30a3e8a03ddaa90bd1eaf6f1f4419f08423dafdea747fa1fbe564c9c6f2b0444",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/index.ts",
+      "sha256": "dff4f613d787e955620d5db9ad15f561ef1170a52c6e7ebcecfd35ff05c1348a",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/level-100-base-stats.ts",
+      "sha256": "cb84b1c7e6b9c24cd49dcf8fce3cf9d77a38f13cbdb2efa5d5b0ff06ca478dee",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/red.ts",
+      "sha256": "0a96b04873afb10c30b97c18576ede7f3e5ace36acb260bab8befa4ff0b12e5f",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/type.ts",
+      "sha256": "c44b545be1de868c3b4d3a0d58e83f042a0a3d81688ddc6763e36e5cd09abfde",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/characters/white.ts",
+      "sha256": "2833f6afd84ad58baaa9bb792350bccd150f388c921198f11659db0d23ce1078",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/260-million-downloads-celebration-extreme-bounty-festival-2.ts",
+      "sha256": "b7203bb8fe99f267a06623ab2ada9021c772ddb302e8413909a4723ecadd3ac8",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/260-million-downloads-celebration-extreme-bounty-festival.ts",
+      "sha256": "21515ac254afcf6286ae9c3106ebf5d51c5de0267d64ca91af0e9be1decd4f41",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5bfKaku.ts",
+      "sha256": "5781e0e3705a98de5c5a913ec9bc2a99f87e407b1ee3e90846a0eca71b961b89",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5bfRobLucci.ts",
+      "sha256": "3c208bd5ef6f9431e54817d755ab8ec64b6f8b89f9fc16b27a2e3b31f8f9d9f0",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5exBonney.ts",
+      "sha256": "08c2270e02c71dfe253d34497a453bb98d018680630494a7dcaabab3445f9b61",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5exKuzan.ts",
+      "sha256": "2e1d130027b98c65f1c0d1f45811dafdbe8d7acbf0472f7e16d47f7271a6590e",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5exSabo.ts",
+      "sha256": "550f295650c33875f0e362d6c3603ccbfec0e2b27bb04bae20e2827d1d87cf98",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5exZephyr.ts",
+      "sha256": "2bc7c11443c6352392fe6f1575aaacc04fb341e3706cfb7aa689a4344b00f638",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/7-5exlinlin.ts",
+      "sha256": "06e846aa3ea7dbc51022d29254fb77dfc46c68821db85a80660fa61406cf98ef",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/OPDayExBountyFestival.ts",
+      "sha256": "21d338eba3f68d841f8d3b16d99ff8686763032cafb274916c35a789b5a9fe6d",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/doressrosabf.ts",
+      "sha256": "a689704b0a6ce4013bd659341703fc28216e98ad47e03d3bf5f645bb6f666888",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/eXTheFourEmperorsMonkeyDLuffyRivival.ts",
+      "sha256": "a5e5ea45e5e9ee51e15fbd734969f7f4c762bd9c0797030f559bb21fb9bffb6a",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/exWhitebeardRivival.ts",
+      "sha256": "a1805eaec3e4a74b77e6c7b4b456d0cdc9075d4ac1e4dcfe74be7f8bf988a992",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/giant-warrior-hajrudin-20260928.ts",
+      "sha256": "223d114b9f9230f560b386755ddc4bcdf33e58284bdc3e7d936f623ad21c70f2",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/happy-halloween-uta-20261027.ts",
+      "sha256": "921d4877da07b7b14508db974e0439e40511c26f2061c36a7b986f9f61e0c074",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/index.ts",
+      "sha256": "4db817cce3fc044a497ffdc9c49172458322a8f777a5b5574e667e1cbe9b6f99",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/kaido-s-son-yamato-20260924.ts",
+      "sha256": "dde822e1108d42e3a1d78541cc18647fdef8c2144a97ffa5d3f89432785398a5",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/navy-hq-fleet-admiral-sengoku-20260924.ts",
+      "sha256": "182dc44ef137d8136a8f03af2791588f140cea2045e6d75740d5f7281ff43df1",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/navy-hq-sword-hibari-20261001.ts",
+      "sha256": "e8e328f660bf245edbc494d7c0c4ccb403a3efaf5dee7f906905e07a520a2510",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/navy-hq-sword-koby-20261013.ts",
+      "sha256": "2c877b9ae368a403dc8610619ea9d1432205e40f5edb222489e019693d8e8aab",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/raid-on-onigashima-sanji-20260914.ts",
+      "sha256": "c5fa88d85782b0d4b23db9169678dc97c927e75e24e51d191682d3217c2a8557",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/singer-of-the-new-genesis-uta-20261030.ts",
+      "sha256": "b55486b2d4378bf4d2aaccf454dd7c552a054ce879b28fee744948c6d23ddcb3",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/st-marz.ts",
+      "sha256": "58cc0bcaf5f8189ecdfc8d15b4fcc22c8ed24e8816d314308e8b40900906eb3f",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/the-four-emperors-marshall-d-teach-20261006.ts",
+      "sha256": "5028de5b145541299fd0064bcf930e33988a82f008a2aac9eb92033c51e33785",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/the-four-emperors-monkey-d-luffy-20260917.ts",
+      "sha256": "ed170c3fb775c1ee18982ccecb12a57ce9b268493562fdad6a3029f0aa54c8e2",
+      "matchesBase": true
+    },
+    {
+      "path": "src/data/scouts/type.ts",
+      "sha256": "d8211897b12e8f577fa28b249d8efc4ae274af92233b8e2f4e72666be1fe768f",
+      "matchesBase": true
+    },
+    {
+      "path": "src/lib/scout.ts",
+      "sha256": "ffb43aa6590efc131679013f349a6ede7094dc0a4c790273cf8ec057b9e98454",
+      "matchesBase": true
+    },
+    {
+      "path": "src/app/(mainPages)/scout-simulator/[scoutId]/ScoutSimulator.tsx",
+      "sha256": "965383be572fa0874c01cf93cde63841d714d60be3a37cb71f808df49c4cd41d",
+      "matchesBase": true
+    },
+    {
+      "path": "src/app/(mainPages)/scout-simulator/[scoutId]/ScoutSimulator.module.css",
+      "sha256": "7d2289645d28dc56c18d82992a1b1751ac7c485d71667572e635e932925514b7",
+      "matchesBase": true
+    },
+    {
+      "path": "tests/core.test.cjs",
+      "sha256": "5597eed6429c06e059f9e2d28a07a50cb4442549420e97596503abe3c3be1129",
+      "matchesBase": true
+    }
+  ]
+}

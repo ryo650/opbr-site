@@ -1,0 +1,188 @@
+> opbr-site@0.1.0 scouts:test
+> node --test scripts/scout-importer/*.test.mjs
+
+TAP version 13
+# Subtest: automaticStartAt uses the previous 14:00 JST before cutoff
+ok 1 - automaticStartAt uses the previous 14:00 JST before cutoff
+  ---
+  duration_ms: 14.606917
+  ...
+# Subtest: date overrides default to JST and offset dates are converted
+ok 2 - date overrides default to JST and offset dates are converted
+  ---
+  duration_ms: 0.249625
+  ...
+# Subtest: endAt is extracted from common game period formats
+ok 3 - endAt is extracted from common game period formats
+  ---
+  duration_ms: 0.266083
+  ...
+# Subtest: Drop Rates summary keeps seven-decimal OCR precision
+ok 4 - Drop Rates summary keeps seven-decimal OCR precision
+  ---
+  duration_ms: 0.308875
+  ...
+# Subtest: Drop Rates summary ignores individual rates below Character Drop Rates
+ok 5 - Drop Rates summary ignores individual rates below Character Drop Rates
+  ---
+  duration_ms: 0.193875
+  ...
+# Subtest: IMG_4823-like OCR returns aggregate rates when the character heading is split
+ok 6 - IMG_4823-like OCR returns aggregate rates when the character heading is split
+  ---
+  duration_ms: 0.081792
+  ...
+# Subtest: Scout ID uses the featured character and Tokyo end date
+ok 7 - Scout ID uses the featured character and Tokyo end date
+  ---
+  duration_ms: 0.165167
+  ...
+# Subtest: Scout ID date is calculated in Asia/Tokyo and never gains a suffix
+ok 8 - Scout ID date is calculated in Asia/Tokyo and never gains a suffix
+  ---
+  duration_ms: 0.155209
+  ...
+# Subtest: IMG filenames use numeric natural order without role-based names
+ok 9 - IMG filenames use numeric natural order without role-based names
+  ---
+  duration_ms: 0.857625
+  ...
+# Subtest: ordered OCR slots accept period, total rates, then character rates
+ok 10 - ordered OCR slots accept period, total rates, then character rates
+  ---
+  duration_ms: 0.553334
+  ...
+# Subtest: ordered OCR validation skips aggregate parsing for headingless character continuations
+ok 11 - ordered OCR validation skips aggregate parsing for headingless character continuations
+  ---
+  duration_ms: 0.29625
+  ...
+# Subtest: IMG_4805 summary accepts aggregate rates above a visible character fragment
+ok 12 - IMG_4805 summary accepts aggregate rates above a visible character fragment
+  ---
+  duration_ms: 0.250792
+  ...
+# Subtest: a character-only image is not accepted as the third summary image
+ok 13 - a character-only image is not accepted as the third summary image
+  ---
+  duration_ms: 0.08425
+  ...
+# Subtest: ordered OCR slots stop when period and total-rate images are swapped
+ok 14 - ordered OCR slots stop when period and total-rate images are swapped
+  ---
+  duration_ms: 0.0655
+  ...
+# Subtest: reviewed endAt override still requires a visible to marker in slot 2
+ok 15 - reviewed endAt override still requires a visible to marker in slot 2
+  ---
+  duration_ms: 0.112209
+  ...
+# Subtest: character rows use exact master names and section headings
+ok 16 - character rows use exact master names and section headings
+  ---
+  duration_ms: 0.61275
+  ...
+# Subtest: ambiguous OCR is reported and never fuzzily selected
+ok 17 - ambiguous OCR is reported and never fuzzily selected
+  ---
+  duration_ms: 0.193542
+  ...
+# Subtest: strict character comparison ignores OCR spaces but stops on key collisions
+ok 18 - strict character comparison ignores OCR spaces but stops on key collisions
+  ---
+  duration_ms: 0.112709
+  ...
+# Subtest: explicit reviewed character mappings resolve OCR without fuzzy matching
+ok 19 - explicit reviewed character mappings resolve OCR without fuzzy matching
+  ---
+  duration_ms: 0.077292
+  ...
+# Subtest: real Character Drop Rates boxes reconstruct rows and exclude the left Scout UI
+ok 20 - real Character Drop Rates boxes reconstruct rows and exclude the left Scout UI
+  ---
+  duration_ms: 27.005959
+  ...
+# Subtest: the third-image character fragment is parsed and deduped with the fourth image
+ok 21 - the third-image character fragment is parsed and deduped with the fourth image
+  ---
+  duration_ms: 0.255208
+  ...
+# Subtest: real continuation screenshots inherit table geometry and finalize all complete rows
+ok 22 - real continuation screenshots inherit table geometry and finalize all complete rows
+  ---
+  duration_ms: 17.836917
+  ...
+# Subtest: continuation screenshots stop when inherited table geometry is unsafe
+ok 23 - continuation screenshots stop when inherited table geometry is unsafe
+  ---
+  duration_ms: 6.206042
+  ...
+# Subtest: duplicate character screenshots dedupe exact rows and cross-check conflicts
+ok 24 - duplicate character screenshots dedupe exact rows and cross-check conflicts
+  ---
+  duration_ms: 0.119333
+  ...
+# Subtest: multiple non-featured BF rows must have the same unit rate
+ok 25 - multiple non-featured BF rows must have the same unit rate
+  ---
+  duration_ms: 0.050417
+  ...
+# Subtest: a completed featured-only ★4 pool succeeds without a normal BF row
+ok 26 - a completed featured-only ★4 pool succeeds without a normal BF row
+  ---
+  duration_ms: 0.507083
+  ...
+# Subtest: a missing BF row is not treated as zero without complete and resolved ★4 evidence
+ok 27 - a missing BF row is not treated as zero without complete and resolved ★4 evidence
+  ---
+  duration_ms: 0.052667
+  ...
+# Subtest: a complete featured-only pool tolerates truncated repeating display rates
+ok 28 - a complete featured-only pool tolerates truncated repeating display rates
+  ---
+  duration_ms: 0.268167
+  ...
+# Subtest: BF and star-4 calculations are exact fixed-point operations
+ok 29 - BF and star-4 calculations are exact fixed-point operations
+  ---
+  duration_ms: 0.0635
+  ...
+# Subtest: BF count override replaces the character-master count and validates input
+ok 30 - BF count override replaces the character-master count and validates input
+  ---
+  duration_ms: 0.248666
+  ...
+# Subtest: an explicit no-BF Scout assigns the remaining four-star rate to star-4
+ok 31 - an explicit no-BF Scout assigns the remaining four-star rate to star-4
+  ---
+  duration_ms: 0.142584
+  ...
+# Subtest: final rates round BF, derive star-4 from the rounded BF, and total 100
+ok 32 - final rates round BF, derive star-4 from the rounded BF, and total 100
+  ---
+  duration_ms: 0.159833
+  ...
+# Subtest: character master is parsed from the repository TypeScript
+ok 33 - character master is parsed from the repository TypeScript
+  ---
+  duration_ms: 5.252417
+  ...
+# Subtest: generated module and index follow existing ScoutBanner registration
+ok 34 - generated module and index follow existing ScoutBanner registration
+  ---
+  duration_ms: 0.277709
+  ...
+# Subtest: deduplicateScreenshots keeps the first image for each signature
+ok 35 - deduplicateScreenshots keeps the first image for each signature
+  ---
+  duration_ms: 0.6075
+  ...
+1..35
+# tests 35
+# suites 0
+# pass 35
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 320.030125
