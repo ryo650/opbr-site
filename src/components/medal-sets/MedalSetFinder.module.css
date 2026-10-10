@@ -27,7 +27,11 @@
 .resultsHeader { margin-bottom: 18px; }
 .resultsHeader h3, .summary h3 { margin: 0 0 6px; font-size: 1.3rem; }
 .count { white-space: nowrap; border: 1px solid rgb(255 255 255 / 18%); background: rgb(255 255 255 / 6%); border-radius: 999px; padding: 7px 12px; color: #fcd34d; font-size: .84rem; }
-.search { max-width: 420px; margin: 0 0 20px; }
+.browserControls { display: flex; align-items: end; gap: 14px; margin: 0 0 20px; }
+.browserControls .search { flex: 1 1 300px; max-width: 420px; margin: 0; }
+.sort { display: flex; flex: 0 0 185px; flex-direction: column; gap: 8px; color: #c7cfd9; font-size: .76rem; font-weight: 750; }
+.sort select { width: 100%; border: 1px solid rgb(255 255 255 / 22%); border-radius: 10px; background: #17191d; color: #f8fafc; padding: 11px 12px; font: inherit; font-size: .88rem; cursor: pointer; }
+.sort select:focus-visible { outline: 3px solid #93c5fd; outline-offset: 3px; }
 .medalGrid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 10px; }
 .medalCard { display: flex; align-items: center; gap: 10px; min-width: 0; padding: 12px; border: 1px solid rgb(255 255 255 / 12%); border-radius: 12px; background: #292c31; color: #f8fafc; font: inherit; cursor: pointer; text-align: left; transition: border-color .15s ease, background .15s ease; }
 .medalCard:hover { border-color: #fbbf24; background: #34373b; }
@@ -60,6 +64,8 @@
   .removeMedal { top: 2px; right: 2px; width: 36px; height: 36px; }
   .slotName { font-size: .71rem; }
   .controls { grid-template-columns: 1fr; gap: 12px; }
+  .browserControls { align-items: stretch; flex-direction: column; gap: 12px; }
+  .browserControls .search, .sort { width: 100%; max-width: none; flex: none; }
   .medalGrid { grid-template-columns: 1fr; }
   .count { align-self: start; }
 }
