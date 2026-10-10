@@ -1,0 +1,43 @@
+import type { CharacterUsageSnapshot } from "../type";
+
+// 100 players x 2 slots = 200 expected. 197 slots recorded (98.5% coverage).
+// Three unidentified slots are intentionally left unassigned.
+export const characterUsage20261010 = {
+  date: "2026-10-10",
+  targetPlayers: 100,
+  usage: {
+    "the-wings-zoro-sanji": 20,
+    "the-five-elders-st-ethanbaron-v-nusjuro": 16,
+    "the-five-elders-st-marcus-mars": 14,
+    "future-where-i-m-the-most-free-jewelry-bonney": 22,
+    "the-four-emperors-monkey-d-luffy": 21,
+    "the-four-emperors-marshall-d-teach": 5,
+    "happy-halloween-uta": 7,
+    "daimyo-of-kuri-kozuki-oden": 12,
+    "blackbeard-pirates-kuzan": 7,
+    "great-pirate-gol-d-roger": 1,
+    "father-and-daughter-kuma-bonny": 11,
+    "ama-no-murakumo-sword-kizaru": 8,
+    "cp9-blueno": 1,
+    "animal-kingdom-pirates-lead-performer-king": 6,
+    "warp-warp-fruit-van-ogre": 1,
+    "raid-on-onigashima-trafalgar-law": 1,
+    "gear-four-snakeman-monkey-d-luffy": 1,
+    "seraphim-s-snake": 1,
+    "unexpected-collaboration-rob-lucci": 10,
+    "navy-hq-sword-koby": 3,
+    "winner-island-trafalgar-law": 8,
+    "great-pirate-edward-newgate": 3,
+    "legendary-hero-monkey-d-garp": 3,
+    "raid-on-onigashima-roronoa-zoro": 1,
+    "big-mom-pirates-sweet-3-general-charlotte-cracker": 1,
+    "egghead-tony-tony-chopper": 2,
+    "battle-of-monsters-on-onigashima-kaido": 2,
+    "flame-emperor-sabo": 2,
+    "sick-sick-fruit-doc-q": 1,
+    "genius-scientist-vegapunk": 1,
+    "red-rock-monkey-d-luffy": 1,
+    "kaido-s-son-yamato": 3,
+    "awakened-form-rob-lucci": 1,
+  },
+} satisfies CharacterUsageSnapshot;
