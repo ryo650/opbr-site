@@ -34,7 +34,13 @@ import { scoutTheFourEmperorsMarshallDTeach20261006 } from "./the-four-emperors-
 import { scoutHappyHalloweenUta20261027 } from "./happy-halloween-uta-20261027";
 import { scoutSingerOfTheNewGenesisUta20261030 } from "./singer-of-the-new-genesis-uta-20261030";
 
+import { scoutDaimyoOfKuriKozukiOden20261027 } from "./daimyo-of-kuri-kozuki-oden-20261027";
+
+import { scoutWinnerIslandTrafalgarLaw20261016 } from "./winner-island-trafalgar-law-20261016";
+
 export const scouts = [
+    scoutWinnerIslandTrafalgarLaw20261016,
+    scoutDaimyoOfKuriKozukiOden20261027,
     scoutHappyHalloweenUta20261027,
     scoutSingerOfTheNewGenesisUta20261030,
     scoutTheFourEmperorsMarshallDTeach20261006,
