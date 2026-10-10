@@ -1,5 +1,6 @@
 import type { Medal, MedalEffectId, NativeTraitType, StatusEffectType, UniqueTraitCategoryId, UniqueTraitCategoryMatchMode } from "../medals";
-import { matchesUniqueTraitFilters, uniqueTraitCategoryIdsByMedalId } from "../medals";
+import { matchesUniqueTraitFilters } from "../medals/unique-trait-categories.ts";
+import { uniqueTraitCategoryIdsByMedalId } from "../medals/unique-trait-categories.generated.ts";
 import { matchesSelectedTagSetEffects, type TagSetEffectFilterIndex } from "../medals/active-tag-set-effects";
 
 export type FinderCatalogFilters = {
