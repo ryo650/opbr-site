@@ -1,0 +1,230 @@
+{
+  "schemaVersion": 1,
+  "scoutId": "supreme-great-grade-sword-wielders-20261013",
+  "status": "partial-evidence-awaiting-step-specific-rates",
+  "publishable": false,
+  "sourceKind": "gameScreenshots",
+  "title": "4-Step Supreme Grade Sword Wielder / Great Grade Sword Wielder Featured Scout",
+  "officialGameData": true,
+  "banner": "User-supplied screenshot IMG_5257.jpeg; not yet committed as webp",
+  "time": {
+    "timezone": "Asia/Tokyo",
+    "startAt": null,
+    "endAt": "2026-10-13T13:59:00+09:00",
+    "evidence": "IMG_5258.jpeg"
+  },
+  "repeat": {
+    "kind": "finite",
+    "maxRounds": 3,
+    "evidence": "IMG_5257.jpeg"
+  },
+  "steps": [
+    {
+      "step": 1,
+      "costDiamonds": 50,
+      "pullCount": 11,
+      "guarantee": null,
+      "normalRateScreen": "IMG_5259.jpeg",
+      "bonus": {
+        "iconUnidentified": true,
+        "quantity": 20
+      },
+      "bonusEvidence": "IMG_5257.jpeg"
+    },
+    {
+      "step": 2,
+      "costDiamonds": 50,
+      "pullCount": 11,
+      "guarantee": {
+        "rarity": 4,
+        "label": "4★ Character(s) ×1 Guaranteed!",
+        "algorithm": null,
+        "eligiblePool": null,
+        "weights": null
+      },
+      "bonus": null
+    },
+    {
+      "step": 3,
+      "costDiamonds": 50,
+      "pullCount": 11,
+      "guarantee": null,
+      "normalRateScreen": null,
+      "bonus": {
+        "iconUnidentified": true,
+        "quantity": 30
+      },
+      "bonusEvidence": "IMG_5257.jpeg"
+    },
+    {
+      "step": 4,
+      "costDiamonds": 50,
+      "pullCount": 11,
+      "guarantee": {
+        "rarity": 4,
+        "label": "4★ Legendary Character(s) ×1 Guaranteed!",
+        "algorithm": null,
+        "eligiblePool": null,
+        "weights": null
+      },
+      "bonus": null
+    }
+  ],
+  "shownRateContext": {
+    "step": 1,
+    "rarityTotalsPct": {
+      "2": 60,
+      "3": 35,
+      "4": 5
+    },
+    "individualFourStarPctSumApprox": 4.9999998,
+    "roundedDifferenceFromTotal": 2e-7,
+    "remarks": "Nine characters at 0.2222222% and five characters at 0.6000000%; do not force-adjust truncated on-screen rates."
+  },
+  "featuredFourStar": [
+    {
+      "characterId": "blind-swordsman-fujitora",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5260.jpeg"
+    },
+    {
+      "characterId": "egghead-roronoa-zoro",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5260.jpeg"
+    },
+    {
+      "characterId": "heir-to-the-shogun-of-wano-kozuki-oden",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5260.jpeg"
+    },
+    {
+      "characterId": "shogun-of-wano-kozuki-momonosuke",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5261.jpeg"
+    },
+    {
+      "characterId": "roger-s-rival-edward-newgate",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5261.jpeg"
+    },
+    {
+      "characterId": "the-billion-fold-world-trichiliocosm-roronoa-zoro",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5262.jpeg"
+    },
+    {
+      "characterId": "the-greatest-swordsman-in-the-world-dracule-mihawk",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5262.jpeg"
+    },
+    {
+      "characterId": "navy-hq-admiral-fujitora",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5263.jpeg"
+    },
+    {
+      "characterId": "whitebeard-pirates-captain-whitebeard-edward-newgate",
+      "ratePercent": 0.2222222,
+      "source": "IMG_5263.jpeg"
+    },
+    {
+      "characterId": "land-of-wano-luffytaro",
+      "ratePercent": 0.6,
+      "source": "IMG_5263.jpeg"
+    },
+    {
+      "characterId": "land-of-wano-zorojuro",
+      "ratePercent": 0.6,
+      "source": "IMG_5264.jpeg"
+    },
+    {
+      "characterId": "2-years-later-combatant-roronoa-zoro",
+      "ratePercent": 0.6,
+      "source": "IMG_5264.jpeg"
+    },
+    {
+      "characterId": "108-pound-phoenix-roronoa-zoro",
+      "ratePercent": 0.6,
+      "source": "IMG_5264.jpeg"
+    },
+    {
+      "characterId": "the-seven-warlords-of-the-sea-dracule-mihawk",
+      "ratePercent": 0.6,
+      "source": "IMG_5265.jpeg"
+    }
+  ],
+  "visibleThreeStarSamples": [
+    {
+      "characterId": "arlong-pirates-officer-kuroobi",
+      "ratePercent": 2.5,
+      "source": "IMG_5265.jpeg"
+    },
+    {
+      "characterId": "arlong-pirates-officer-choo",
+      "ratePercent": 2.5,
+      "source": "IMG_5265.jpeg"
+    },
+    {
+      "characterId": "arlong-pirates-officer-hatchan",
+      "ratePercent": 2.5,
+      "source": "IMG_5265.jpeg"
+    }
+  ],
+  "evidenceFiles": [
+    {
+      "filename": "IMG_5257.jpeg",
+      "sha256": "f52d29154a53542833b7690bd870bd3195fcebf488aaa7e134ebb8f893859b9a",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5258.jpeg",
+      "sha256": "a21e909dd8a796c5b5c316cd956cff6b3318e04589e34225b75ca2ab04a712c5",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5259.jpeg",
+      "sha256": "6ce4113a281a8a4b134a12623255be735cd7846d5914f95264b7ab491e343f31",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5260.jpeg",
+      "sha256": "f9c613a8018c7d38a5181fcd9d14aeac92bbbfc0564f16a88a469b062e1e8256",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5261.jpeg",
+      "sha256": "2b57ea1a7cbbba858afd9290dd92bbecbafdf38faeeacabd8b969837e0664f9a",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5262.jpeg",
+      "sha256": "a9974c1b881c2d57959c676de0853c7d96d11dfc8281101fc724cabdff47422f",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5263.jpeg",
+      "sha256": "b79d8a181883220b89bf37bc880b3ac41363d442bddb2b81c6f5fbeafa252c9c",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5264.jpeg",
+      "sha256": "c3baadd6ad8c048d55808a0749a82e5d3f7a3727e8f7833df8fd5e22e5f2b05d",
+      "location": "chat upload; image bytes not committed to repository"
+    },
+    {
+      "filename": "IMG_5265.jpeg",
+      "sha256": "873f05827d8bd7ca6aa81e4d9503581062c0cad0b92de5ab32d6d6e39311ddef",
+      "location": "chat upload; image bytes not committed to repository"
+    }
+  ],
+  "openQuestions": [
+    "Step 2: normal slots distribution, guaranteed-slot eligible characters and individual rates, actual guarantee mechanism",
+    "Step 3: whether normal distribution is identical to Step 1 (must verify)",
+    "Step 4: normal and legendary guarantee-slot distribution, eligible character IDs and rates, actual guarantee mechanism",
+    "Full 3-star and 2-star character pools and per-character rates for all steps",
+    "Scout start date, named rewards and precise grant semantics; Scout Points +10 appears on screen but is not implemented in vertical slice",
+    "Whether guaranteed character occupies one of the 11 slots or is awarded by a different mechanism",
+    "Source banner asset to be converted and committed into public/scouts/ before publication"
+  ],
+  "note": "Evidence only: do not register in simulator-registry.ts or publish. No unverified pool weights or guarantee rates have been filled."
+}
