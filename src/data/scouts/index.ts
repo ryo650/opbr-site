@@ -38,7 +38,10 @@ import { scoutDaimyoOfKuriKozukiOden20261027 } from "./daimyo-of-kuri-kozuki-ode
 
 import { scoutWinnerIslandTrafalgarLaw20261016 } from "./winner-island-trafalgar-law-20261016";
 
+import { scoutSupremeGreatGradeSwordWielders20261013 } from "./supreme-great-grade-sword-wielders-20261013";
+
 export const scouts = [
+    scoutSupremeGreatGradeSwordWielders20261013,
     scoutWinnerIslandTrafalgarLaw20261016,
     scoutDaimyoOfKuriKozukiOden20261027,
     scoutHappyHalloweenUta20261027,
