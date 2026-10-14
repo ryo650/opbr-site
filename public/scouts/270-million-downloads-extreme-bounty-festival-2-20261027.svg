@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" role="img" aria-labelledby="title desc">
+<title id="title">270 Million Downloads Extreme Bounty Festival 2</title>
+<desc id="desc">Temporary illustration for the Akainu featured Scout banner; not official game artwork.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#241512"/><stop offset=".42" stop-color="#752018"/><stop offset="1" stop-color="#120e1a"/></linearGradient>
+<linearGradient id="lava" x1="0" y1="1" x2=".6" y2="0"><stop stop-color="#ff3420"/><stop offset=".5" stop-color="#ff941c"/><stop offset="1" stop-color="#ffe25c"/></linearGradient>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#fffac4"/><stop offset=".48" stop-color="#ffc949"/><stop offset="1" stop-color="#ff6428"/></linearGradient>
+<filter id="glow"><feGaussianBlur stdDeviation="18"/></filter>
+<pattern id="diamond" width="66" height="66" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0H66V66H0Z" fill="none" stroke="#ffbe7e" stroke-opacity=".1" stroke-width="2"/></pattern>
+</defs>
+<rect width="1200" height="480" fill="url(#bg)"/>
+<rect width="1200" height="480" fill="url(#diamond)"/>
+<g opacity=".9"><path d="M580 480C760 260 760 330 875 130C935 45 1010 100 1085 10L1200 0V480Z" fill="#ff3c16" opacity=".35" filter="url(#glow)"/>
+<path d="M720 480 850 260 865 326 970 144 1030 250 1160 66 1200 180 1200 480Z" fill="url(#lava)" opacity=".66"/>
+<path d="m875 478 38-178 60 80 69-212 40 108 70-132 48 64v270Z" fill="#ff561c" opacity=".8"/>
+<path d="m930 480 80-162 54 91 68-177 68 141v107Z" fill="#34131a" opacity=".78"/></g>
+<path d="M867 0 718 480" stroke="#14cbe0" stroke-width="13" opacity=".95"/>
+<path d="M880 0 731 480" stroke="#073944" stroke-width="5" opacity=".75"/>
+<g fill="#ffa233" opacity=".75"><circle cx="771" cy="68" r="8"/><circle cx="862" cy="120" r="4"/><circle cx="1011" cy="52" r="8"/><circle cx="1050" cy="178" r="6"/><circle cx="1170" cy="34" r="4"/><circle cx="1094" cy="393" r="7"/></g>
+<rect x="36" y="30" width="234" height="54" rx="12" fill="#00a5bf"/><text x="153" y="67" fill="white" font-size="31" font-family="Arial, sans-serif" font-weight="900" text-anchor="middle">5-STEP SCOUT</text>
+<text x="41" y="168" fill="url(#gold)" stroke="#3a0d12" stroke-width="6" paint-order="stroke" font-size="61" font-family="Arial, sans-serif" font-weight="900">270 MILLION</text>
+<text x="41" y="225" fill="#fff4c4" stroke="#3a0d12" stroke-width="5" paint-order="stroke" font-size="48" font-family="Arial, sans-serif" font-weight="900">DOWNLOADS CELEBRATION</text>
+<text x="42" y="291" fill="url(#gold)" stroke="#260e12" stroke-width="7" paint-order="stroke" font-size="50" font-family="Arial, sans-serif" font-weight="900">EXTREME BOUNTY</text>
+<text x="42" y="346" fill="url(#gold)" stroke="#260e12" stroke-width="7" paint-order="stroke" font-size="51" font-family="Arial, sans-serif" font-weight="900">FESTIVAL #2</text>
+<text x="44" y="412" fill="white" font-size="39" font-family="Arial, sans-serif" font-weight="900" letter-spacing="9">AKAINU</text>
+<text x="1152" y="454" text-anchor="end" fill="#fff7e9" font-size="17" font-family="Arial, sans-serif" opacity=".6">Illustrative banner</text>
+</svg>
