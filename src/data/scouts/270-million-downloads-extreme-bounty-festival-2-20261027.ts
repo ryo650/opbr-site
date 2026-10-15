@@ -26,7 +26,7 @@ const pickups = [
 export const scout270MillionDownloadsExtremeBountyFestival220261027: ScoutBanner = {
     id: "270-million-downloads-extreme-bounty-festival-2-20261027",
     name: "5-Step [270 Million Downloads Celebration] Extreme Bounty Festival #2",
-    bannerImg: "/scouts/270-million-downloads-extreme-bounty-festival-2-20261027.svg",
+    bannerImg: "/scouts/270-million-downloads-extreme-bounty-festival-2-20261027.webp",
     startAt: "2026-10-15T00:00:00+09:00",
     endAt: "2026-10-27T13:59:59+09:00",
     pullOptions: {
