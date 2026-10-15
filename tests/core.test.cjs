@@ -632,3 +632,22 @@ test('rarity uses real IDs and preserves unclassified data rather than guessing 
   assert.ok(!entries.some(entry => entry.id === 'not-published'));
   assert.equal(entries.find(entry => entry.id === 'rarity-fixture-10').grade, 'unknown');
 });
+
+test('270M Akainu Step 1 registration matches the source rate table', () => {
+  const scout = scouts.find((entry) => entry.id === '270-million-downloads-extreme-bounty-festival-2-20261027');
+  assert.ok(scout);
+  assert.equal(scout.featuredCharacterId, 'navy-hq-fleet-admiral-akainu');
+  assert.equal(scout.pickups.length, 10);
+  assert.equal(scout.pullOptions.multi.pullCount, 11);
+  assert.equal(scout.pullOptions.multi.diamondCost, 30);
+  assert.equal(scout.rates.pickup, 7);
+  assert.equal(scout.rates['star-3'], 35);
+  assert.equal(scout.rates['star-2'], 58);
+  assert.equal(Object.values(scout.rates).reduce((sum, rate) => sum + rate, 0), 100);
+  assert.equal(scout.pickups[0].rate, 0.2);
+  for (const pickup of scout.pickups.slice(1)) {
+    assert.equal(pickup.rate, 0.7555555);
+  }
+  assert.equal(scout.endAt, '2026-10-27T13:59:59+09:00');
+  assert.ok(fs.existsSync(path.join(__dirname, '../public', scout.bannerImg)));
+});
