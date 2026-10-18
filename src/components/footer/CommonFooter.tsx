@@ -18,6 +18,13 @@ export default function CommonFooter() {
               {link.label}
             </Link>
           ))}
+          <a
+            href="https://ko-fi.com/opbrguide"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            ☕ Support the Developer
+          </a>
         </nav>
         <p className={styles.disclaimer}>
           An unofficial fan site for ONE PIECE Bounty Rush players.
