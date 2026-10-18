@@ -27,7 +27,7 @@ export const tierList = [
     {
         tier: "C",
         colorClass: "C",
-        characterIds: ["ama-no-murakumo-sword-kizaru","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","asl-ace-sabo-luffy","divine-departure-shanks","egghead-sanji","navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","film-z-zephyr","awakened-form-rob-lucci","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu"]
+        characterIds: ["ama-no-murakumo-sword-kizaru","man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy","asl-ace-sabo-luffy","divine-departure-shanks","egghead-sanji","navy-hq-sword-prince-grus","unexpected-collaboration-kaku","legendary-gladiator-kyros","film-z-zephyr","awakened-form-rob-lucci","king-of-the-pirates-gol-d-roger","legendary-hero-monkey-d-garp","navy-hq-fleet-admiral-akainu"]
     },
     {
         tier: "D",
