@@ -47,6 +47,22 @@ export default function AboutPage() {
               informational fan resource.
             </p>
           </article>
+          <article className={styles.card}>
+            <h2>Support OPBR Guide</h2>
+            <p>
+              Support is entirely optional. Your contributions help cover site
+              running costs and the development of new features.
+            </p>
+            <p>
+              <a
+                href="https://ko-fi.com/opbrguide"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                Support OPBR Guide
+              </a>
+            </p>
+          </article>
         </section>
       </div>
     </main>
