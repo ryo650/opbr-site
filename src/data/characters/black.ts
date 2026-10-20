@@ -168,5 +168,14 @@ export const blackCharacters: Record<string, Character> = {
         grade: "bf",
         element: "black",
         role: "attacker"
-    }
+    },
+    "the-five-elders-st-shepherd-ju-peter": {
+        id: "the-five-elders-st-shepherd-ju-peter",
+        name: "The Five Elders St. Shepherd Ju Peter",
+        image: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
+        grade: "ex",
+        element: "black",
+        role: "runner"
+    },
+
 }
