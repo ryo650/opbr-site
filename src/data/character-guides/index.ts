@@ -1,3 +1,4 @@
+import { stShepherdJuPeterGuide } from "./the-five-elders-st-shepherd-ju-peter";
 import { jewelryBonneyGuide } from "./future-where-i-m-the-most-free-jewelry-bonney";
 import { sSnakeGuide } from "./seraphim-s-snake";
 import { stMarcusMarsGuide } from "./the-five-elders-st-marcus-mars";
@@ -5,6 +6,7 @@ import { stEthanbaronVNusjuroGuide } from "./the-five-elders-st-ethanbaron-v-nus
 import type { CharacterGuide } from "./type";
 
 export const characterGuides: Record<string, CharacterGuide> = {
+  [stShepherdJuPeterGuide.characterId]: stShepherdJuPeterGuide,
   [jewelryBonneyGuide.characterId]: jewelryBonneyGuide,
   [sSnakeGuide.characterId]: sSnakeGuide,
   [stMarcusMarsGuide.characterId]: stMarcusMarsGuide,
