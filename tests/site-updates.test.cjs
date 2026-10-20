@@ -45,7 +45,7 @@ test('site update data has valid dates, unique IDs, and existing local links', (
       assert.ok(fs.existsSync(path.join(__dirname, '../public', update.image.src)));
       assert.ok(update.image.alt.trim());
       assert.ok(update.image.width > 0 && update.image.height > 0);
-      assert.ok(['medal', 'banner'].includes(update.image.kind));
+      assert.ok(['medal', 'banner', 'character'].includes(update.image.kind));
     }
     for (const link of update.links) {
       assert.ok(link.label.trim());
@@ -115,6 +115,22 @@ test('cards reserve image dimensions, supply alt text, and render without option
   assert.doesNotMatch(fallback, /<img\b/);
   assert.match(fallback, /Halloween Perona and Uta medals added/);
   assert.match(fallback, /href="\/medal-builder"/);
+});
+
+test('Peter guide announcement uses the existing character portrait on Home and Updates', () => {
+  const peter = siteUpdates.find(update => update.id === 'st-shepherd-ju-peter-pre-release-guide');
+  assert.ok(peter);
+  assert.equal(peter.image.kind, 'character');
+  assert.equal(peter.image.src, '/characters/black/the-five-elders-st-shepherd-ju-peter.webp');
+  assert.equal(peter.image.width, 574);
+  assert.equal(peter.image.height, 489);
+  assert.ok(fs.existsSync(path.join(__dirname, '../public', peter.image.src)));
+  const html = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update: peter }));
+  assert.match(html, /St\\. Shepherd Ju Peter official pre-release character artwork/);
+  assert.match(html, /aspect-ratio:574 \\/ 489/);
+  assert.match(html, /href="\\/characters\\/the-five-elders-st-shepherd-ju-peter"/);
+  const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
+  assert.match(home, /the-five-elders-st-shepherd-ju-peter\\.webp/);
 });
 
 test('empty updates render an explanation and a working home link', () => {
