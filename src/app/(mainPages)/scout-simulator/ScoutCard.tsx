@@ -56,6 +56,8 @@ export default function ScoutCard({ scout, characters }: ScoutCardProps) {
           </div>
         </div>
 
+        {scout.provisionalNotice && <p className={styles.scoutNotice}>{scout.provisionalNotice}</p>}
+
         <dl className={styles.scoutFacts}>
           <div>
             <dt>Scout Period</dt>
