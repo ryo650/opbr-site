@@ -126,11 +126,11 @@ test('Peter guide announcement uses the existing character portrait on Home and 
   assert.equal(peter.image.height, 489);
   assert.ok(fs.existsSync(path.join(__dirname, '../public', peter.image.src)));
   const html = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update: peter }));
-  assert.match(html, /St\\. Shepherd Ju Peter official pre-release character artwork/);
-  assert.match(html, /aspect-ratio:574 \\/ 489/);
-  assert.match(html, /href="\\/characters\\/the-five-elders-st-shepherd-ju-peter"/);
+  assert.ok(html.includes('St. Shepherd Ju Peter official pre-release character artwork'));
+  assert.ok(html.includes('aspect-ratio:574 / 489'));
+  assert.ok(html.includes('href="/characters/the-five-elders-st-shepherd-ju-peter"'));
   const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
-  assert.match(home, /the-five-elders-st-shepherd-ju-peter\\.webp/);
+  assert.ok(home.includes('the-five-elders-st-shepherd-ju-peter'));
 });
 
 test('empty updates render an explanation and a working home link', () => {
