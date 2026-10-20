@@ -10,6 +10,14 @@ export type NewCharacterRelease = {
  */
 export const newCharacterReleases = [
   {
+    characterId: "the-five-elders-st-topman-warcury",
+    releaseDate: "2026-10-21",
+  },
+  {
+    characterId: "the-five-elders-st-shepherd-ju-peter",
+    releaseDate: "2026-10-21",
+  },
+  {
     characterId: "the-five-elders-st-marcus-mars",
     releaseDate: "2026-07-29",
   },
