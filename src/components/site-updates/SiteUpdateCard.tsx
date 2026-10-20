@@ -29,7 +29,7 @@ export default function SiteUpdateCard({ update, compact = false }: {
       <Heading id={`update-${update.id}`} className={styles.title}>{update.title}</Heading>
       {update.image && (
         <div
-          className={`${styles.media} ${update.image.kind === "medal" ? styles.medal : ""}`}
+          className={`${styles.media} ${(update.image.kind === "medal" || update.image.kind === "character") ? styles.medal : ""}`}
           style={{ aspectRatio: `${update.image.width} / ${update.image.height}` }}
         >
           <Image
