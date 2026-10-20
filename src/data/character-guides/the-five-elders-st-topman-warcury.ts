@@ -58,6 +58,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
   "normalAttacks": [
     {
       "label": "Normal Attack Combo",
+      "video": "/character-guides/the-five-elders-st-topman-warcury/normal-attacks.mp4",
       "tips": [
         "The third hit inflicts Knockback. Normal Attack hits reduce Skill 1 cooldown by 5%.",
         "Direct Normal Attack damage is not yet confirmed; use the combo primarily to interrupt captures and help cycle Skill 1."
@@ -65,6 +66,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     },
     {
       "label": "Hold Normal Attack: Treasure Response",
+      "video": "/character-guides/the-five-elders-st-topman-warcury/held-normal-attack.mp4",
       "tips": [
         "Holding the Normal Attack button during the first hit changes the second hit into a move toward the closest allied Treasure Area under capture, followed by an obstacle-ignoring, three-hit area attack dealing 5% of enemy max HP per hit.",
         "This movement does not occur if none of your team's Treasure Areas is being captured."
@@ -79,6 +81,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
           "label": "Skill 1",
           "name": "I Will Chop You Up!",
           "cooldown": 27,
+          "video": "/character-guides/the-five-elders-st-topman-warcury/skill-1.mp4",
           "quickTips": [],
           "details": []
         },
@@ -87,6 +90,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
           "label": "Skill 2",
           "name": "Godhead of Justice's Onrush",
           "cooldown": 29,
+          "video": "/character-guides/the-five-elders-st-topman-warcury/skill-2.mp4",
           "quickTips": [],
           "details": []
         }
