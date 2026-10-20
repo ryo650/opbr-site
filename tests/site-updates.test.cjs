@@ -51,8 +51,12 @@ test('site update data has valid dates, unique IDs, and existing local links', (
       assert.ok(link.label.trim());
       assert.match(link.href, /^\/(?!\/)/);
       const scoutId = link.href.match(/^\/scout-simulator\/([^/]+)$/)?.[1];
+      const guideId = link.href.match(/^\/characters\/([a-z0-9-]+)$/)?.[1];
       if (scoutId) {
         assert.ok(scouts.some(scout => scout.id === scoutId), link.href);
+      } else if (guideId) {
+        assert.ok(fs.existsSync(path.join(__dirname, '../src/app/(mainPages)/characters/[characterId]/page.tsx')), link.href);
+        assert.ok(fs.existsSync(path.join(__dirname, '../src/data/character-guides', `${guideId}.ts`)), link.href);
       } else {
         assert.ok(fs.existsSync(path.join(__dirname, '../src/app/(mainPages)', link.href, 'page.tsx')), link.href);
       }
