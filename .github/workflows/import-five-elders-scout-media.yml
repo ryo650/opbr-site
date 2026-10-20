@@ -1,0 +1,47 @@
+name: Import Five Elders scout media (one-time)
+on:
+  push:
+    branches:
+      - feat/five-elders-warcury-peter-ex-scout-20261020
+    paths:
+      - warcury-peter-scout-media.zip
+
+permissions:
+  contents: write
+
+jobs:
+  import-scout-images:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate and install approved media
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          from zipfile import ZipFile
+          archive = Path("warcury-peter-scout-media.zip")
+          targets = {
+              "media/banner.webp": Path("public/scouts/five-elders-warcury-peter-extreme-bounty-festival-20261021.webp"),
+              "media/warcury.webp": Path("public/characters/black/the-five-elders-st-topman-warcury.webp"),
+          }
+          if not archive.is_file():
+              raise RuntimeError("ZIP not found at repository root")
+          with ZipFile(archive) as z:
+              for key, destination in targets.items():
+                  payload = z.read(key)
+                  if not (payload[:4] == b"RIFF" and payload[8:12] == b"WEBP") or not 1000 < len(payload) < 2000000:
+                      raise ValueError("Invalid WebP: " + key)
+                  destination.parent.mkdir(parents=True, exist_ok=True)
+                  destination.write_bytes(payload)
+          archive.unlink()
+          print("Imported two WebP images; removed temporary ZIP")
+          PY
+      - name: Commit images to current Draft PR
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          if ! git diff --cached --quiet; then
+            git commit -m "assets: add Five Elders scout banner and Warcury portrait"
+            git push origin HEAD:feat/five-elders-warcury-peter-ex-scout-20261020
+          fi
