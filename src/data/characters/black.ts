@@ -172,7 +172,7 @@ export const blackCharacters: Record<string, Character> = {
     "the-five-elders-st-shepherd-ju-peter": {
         id: "the-five-elders-st-shepherd-ju-peter",
         name: "The Five Elders St. Shepherd Ju Peter",
-        image: "/characters/black/the-five-elders-st-shepherd-ju-peter.svg",
+        image: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
         grade: "ex",
         element: "black",
         role: "runner"

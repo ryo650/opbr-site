@@ -4,8 +4,8 @@ import type { CharacterGuide } from "./type";
 export const stShepherdJuPeterGuide: CharacterGuide = {
   "characterId": "the-five-elders-st-shepherd-ju-peter",
   "notice": {
-    "title": "Pre-Release Guide — Media Integration Pending",
-    "description": "Early guide based on official pre-release reveals. Matchup ratings are predictions, not post-launch results. Temporary portrait and skill-video uploads are pending before final preview approval."
+    "title": "Pre-Release Guide",
+    "description": "Based on official pre-release reveals. Matchup ratings are predictions and will be reviewed after the October 21, 2026 release."
   },
   "guideOverview": {
     "title": "St. Shepherd Ju Peter Guide (Pre-Release)",
@@ -29,6 +29,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
     },
     {
       "title": "Match-Winning Capture Pressure",
+      "video": "/character-guides/the-five-elders-st-shepherd-ju-peter/sp-capture.mp4",
       "mechanic": "SP Capture repositions Peter outside a Treasure Area, destroys certain enemy-created objects, and places a temporary shield that blocks nearby attacks and movement. After the shield breaks or expires, his special capture begins. He can ignore enemies while capturing.",
       "practicalUse": "Use the threat of SP Capture to force defenders to react and control the flag count. A decisive capture late in a match can secure the third treasure needed to win."
     }
@@ -62,6 +63,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
           "slot": 1,
           "label": "Skill 1",
           "name": "None of You Are Leaving Alive!",
+      "video": "/character-guides/the-five-elders-st-shepherd-ju-peter/skill-1.mp4",
           "cooldown": 28,
           "quickTips": [],
           "details": []
@@ -70,6 +72,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
           "slot": 2,
           "label": "Skill 2",
           "name": "Godhead of Agriculture's Raid",
+      "video": "/character-guides/the-five-elders-st-shepherd-ju-peter/skill-2.mp4",
           "cooldown": 35,
           "quickTips": [],
           "details": []
@@ -106,6 +109,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
   "howToPlay": [
     {
       "title": "Keep HP Above 50%",
+      "video": "/character-guides/the-five-elders-st-shepherd-ju-peter/capture-hp-50.mp4",
       "objective": "Maintain protection against interruption during captures.",
       "action": "Avoid unnecessary damage and recover through safe skill hits, Perfect Guards, treasure captures, and SP Capture attacks. Knockback resistance is also listed separately, but losing HP-gated Stagger and Down resistance is a major risk."
     },
