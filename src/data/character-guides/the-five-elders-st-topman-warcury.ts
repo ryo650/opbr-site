@@ -5,43 +5,43 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
   "characterId": "the-five-elders-st-topman-warcury",
   "notice": {
     "title": "Pre-Release Guide",
-    "description": "Based on official pre-release information and predicted matchups. Ratings and gameplay advice have not yet been verified in live matches and will be reviewed after the October 21, 2026 release."
+    "description": "This pre-release guide is based on official information and matchup predictions. Ratings and gameplay advice have not been verified in live matches and may change after the October 21, 2026 release."
   },
   "guideOverview": {
     "title": "St. Topman Warcury Guide (Pre-Release)",
-    "description": "A Dark EX Defender who can become an Attacker when using skills. Warcury looks built to defend multiple Treasure Areas through repeatable shields and rapid responses to captures, then support teammates with DEF-based skills when defense is secure."
+    "description": "A Dark EX Defender who switches to Attacker when using a skill. Warcury can protect multiple Treasure Areas with a recoverable Defensive Shield and fast responses to enemy captures, then support allies with DEF-scaling skills when the team's Treasures are secure."
   },
   "quickStrengths": [
-    "A Defensive Shield with a maximum durability equal to 100% max HP, supported by many recovery and restoration triggers.",
-    "Strong map coverage: a held Normal Attack can respond to nearby allied Treasures under capture, with a separate conditional respawn movement effect.",
-    "Can bypass 1-HP survival and KO-triggered HP recovery under different conditions, making it easier to finish some durable opponents."
+    "A Defensive Shield with maximum durability equal to 100% of his max HP, supported by several ways to recover or restore it.",
+    "Strong map coverage: holding Normal Attack can move him to the closest allied Treasure Area being captured, while a separate movement effect can trigger on respawn.",
+    "Can nullify 1-HP survival and HP recovery from otherwise fatal damage under different conditions, making some durable enemies easier to KO."
   ],
   "quickWeaknesses": [
     "DEF-dependent durability and skill damage are vulnerable to DEF-increase removal; DEF-ignoring attacks can bypass the defensive benefit of DEF.",
-    "Conditional respawn movement goes to the furthest allied Treasure, which may be the wrong location for the immediate defensive need.",
+    "Conditional respawn movement sends him to the allied Treasure Area farthest away, which may not be the one that needs defending.",
     "Skill usage appears important for burst damage and immediate shield/HP recovery; ordinary Normal Attack damage may be limited."
   ],
   "strengths": [
     {
-      "title": "Powerful, Repeatably Restored Defensive Shield",
-      "mechanic": "Warcury's Defensive Shield can hold durability equivalent to 100% of his max HP, although it starts at only 20% durability upon spawning. Using either skill restores 30% HP and 30% shield durability, and multiple other actions can restore a broken shield. Skill hits in Attacker class also build DEF by 10% per hit, up to 50% (reset upon KO).",
-      "practicalUse": "Protect the shield by regularly refilling Treasure Gauges, timing skills for recovery, and selecting favorable fights. A full shield can greatly extend survivability, but it must first be built up."
+      "title": "Powerful Shield with Multiple Recovery Options",
+      "mechanic": "Warcury's Defensive Shield has maximum durability equal to 100% of his max HP, but starts at just 20% of that capacity when he spawns. Using either skill restores 30% HP and 30% shield durability, and multiple other actions can restore a broken shield. While in Attacker class, each skill hit increases his DEF by 10%, up to 50%, until Warcury is KO'd.",
+      "practicalUse": "Protect the shield by regularly refilling Treasure Gauges, timing skills for recovery, and selecting favorable fights. A full shield can greatly extend his survivability, but it takes recovery triggers to reach full durability."
     },
     {
       "title": "Rapid Responses Across Multiple Treasure Areas",
-      "mechanic": "Holding Normal Attack during the first hit changes the second hit into a move toward the closest allied Treasure Area currently being captured, followed by an obstacle-ignoring percentage-damage attack. If an enemy is capturing an allied Treasure while Warcury respawns, he instead moves to the furthest allied Treasure and attacks. Skill 2 can also be used while moving.",
-      "practicalUse": "React to enemy capture attempts instead of staying on just one flag. Watch where the automatic respawn movement sends you: it does not necessarily target the Treasure being stolen."
+      "mechanic": "Holding Normal Attack during the first hit changes the second hit into a move toward the closest allied Treasure Area currently being captured, followed by an obstacle-ignoring percentage-damage attack. Separately, if an enemy is capturing an allied Treasure Area when Warcury respawns, he moves to the allied Treasure Area farthest from him and attacks. Skill 2 also provides movement while attacking.",
+      "practicalUse": "React to enemy capture attempts instead of staying on just one flag. Watch where the automatic respawn movement sends you: it does not necessarily target the Treasure Area being captured."
     },
     {
       "title": "Two Conditional Ways to Bypass Survival Traits",
-      "mechanic": "While his Defensive Shield has durability remaining, Warcury nullifies traits that recover HP when damage would otherwise KO an enemy. His maximum Boost Trait also nullifies the effect that leaves an opponent at 1 HP when he attacks an enemy at 30% max HP or below.",
+      "mechanic": "While his Defensive Shield has durability remaining, Warcury nullifies traits that recover HP when damage would otherwise KO an enemy. At maximum Boost, he also nullifies traits that leave an opponent at 1 HP when attacking enemies at or below 30% of their max HP.",
       "practicalUse": "Finish opponents who normally survive a fatal hit, but check the conditions first: shield durability and the target's remaining HP govern different effects."
     }
   ],
   "weaknesses": [
     {
       "title": "Heavy Reliance on DEF for Defense and Offense",
-      "weakness": "Warcury has no listed general damage-reduction trait. Removing his DEF increases can reduce both his practical durability and his DEF-scaling skill damage. Skills that ignore DEF are also threatening to his DEF-based protection, even though they do not remove the buff itself.",
+      "weakness": "Warcury has no general damage-reduction trait listed in his pre-release information. Removing his DEF increases can reduce both his practical durability and his DEF-scaling skill damage. Attacks that ignore DEF can bypass DEF-based damage mitigation without removing the DEF increase itself.",
       "howToManage": "Be cautious around enemies that remove DEF increases or ignore DEF, such as predicted counter picks. Preserve shield durability and avoid trading skills without a defensive plan."
     },
     {
@@ -51,7 +51,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     },
     {
       "title": "Reliance on Skills for Damage and Immediate Recovery",
-      "weakness": "Warcury's major attacks are DEF-scaling skills, while his Normal Attacks emphasize Knockback, cooldown cycling and defensive movement; their direct damage is not yet verified. Skill usage also grants a large immediate HP and shield recovery.",
+      "weakness": "Warcury's major attacks are DEF-scaling skills, while his Normal Attacks emphasize Knockback, cooldown cycling and defensive movement; their direct damage is not yet verified. Using a skill also restores a substantial amount of HP and shield durability immediately.",
       "howToManage": "Use his many cooldown-reduction conditions to keep skills cycling. Shield recovery is not limited to skills: Treasure Gauge refills and conditional hits or KOs can also restore it."
     }
   ],
@@ -68,7 +68,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "label": "Hold Normal Attack: Treasure Response",
       "video": "/character-guides/the-five-elders-st-topman-warcury/held-normal-attack.mp4",
       "tips": [
-        "Holding the Normal Attack button during the first hit changes the second hit into a move toward the closest allied Treasure Area under capture, followed by an obstacle-ignoring, three-hit area attack dealing 5% of enemy max HP per hit.",
+        "Holding the Normal Attack button during the first hit changes the second hit into a move toward the closest allied Treasure Area being captured, followed by an obstacle-ignoring, three-hit area attack that deals 5% of the enemy's max HP per hit.",
         "This movement does not occur if none of your team's Treasure Areas is being captured."
       ]
     }
@@ -104,7 +104,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     },
     {
       "title": "Shield Recovery and Restoration",
-      "description": "Shield capacity is 100% of max HP, but starts at 20% on spawning. Skill use restores 30% HP and 30% shield durability; KOing an enemy as an Attacker restores 30% of each. As a Defender in your team's Treasure Area, each continuous 10% of Treasure Gauge recovery restores 3% shield durability. Conditional respawn movement restores 10% shield durability, attacking Straw Hat Pirates restores 20%, and being hit by a skill from an enemy who can change Elements restores 5%. The listed triggers can restore the shield after it has been destroyed."
+      "description": "Shield capacity is 100% of max HP, but starts at 20% on spawning. Skill use restores 30% HP and 30% shield durability; KOing an enemy as an Attacker restores 30% of each. As a Defender in an allied Treasure Area, each time Warcury continuously refills the Treasure Gauge by 10%, he restores 3% shield durability. Conditional respawn movement restores 10% shield durability, attacking Straw Hat Pirates restores 20%, and being hit by a skill from an enemy who can change Elements restores 5%. The listed triggers can restore the shield after it has been destroyed."
     },
     {
       "title": "Defender / Attacker Class Switching",
@@ -131,7 +131,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     {
       "title": "Prioritize Treasure Defense and Shield Upkeep",
       "objective": "Make the shield last and keep allied Treasure Gauges full.",
-      "action": "Warcury spawns with only 20% of his shield's full capacity. Refill Treasure Gauges, using enemy-ignore refill and the 150% maximum to build defense while restoring shield durability. Use skills when their immediate HP and shield recovery matters."
+      "action": "Warcury spawns with only 20% of his shield's full capacity. Refill Treasure Gauges, ignoring nearby enemies while refilling up to 150%, and restore shield durability as you do. Use skills when their immediate HP and shield recovery matters."
     },
     {
       "title": "Rotate Quickly to Threatened Treasures",
@@ -149,8 +149,8 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "characterId": "flame-emperor-sabo",
       "difficulty": 4,
       "whyDifficult": [
-        "DEF-ignoring skills and favorable Element matchup could deal heavy damage through Warcury's DEF-dependent defense, creating a realistic KO threat.",
-        "As a Runner, Sabo can use a counter-created obstacle to contest captures and threaten important Treasure Areas."
+        "Sabo's DEF-ignoring skills and favorable Element matchup could deal heavy damage despite Warcury's DEF increases, creating a credible KO threat.",
+        "As a Runner, Sabo can create an obstacle with his counter to support Treasure captures and contest important Treasure Areas."
       ],
       "howToRespond": [
         "Avoid relying on DEF stacks alone; note that Warcury has attacks that ignore obstacles."
@@ -161,7 +161,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Can remove Warcury's DEF increases, weakening both durability and DEF-scaling skill damage.",
-        "Runner and Attacker options may let Bonney respond to him in both capture pressure and direct combat."
+        "Bonney's Runner and Attacker roles may let her challenge him both when capturing Treasures and in direct combat."
       ],
       "howToRespond": [
         "Watch for buff removal, and avoid overextending when a Treasure Area needs defending."
@@ -182,7 +182,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "characterId": "winner-island-trafalgar-law",
       "difficulty": 3,
       "whyDifficult": [
-        "Strong capture capabilities and a counter may let Law evade attacks, create space, and contribute as a Runner without a direct duel."
+        "Law's strong Treasure capture abilities and counter may help him evade attacks, create space, and contribute as a Runner without committing to a direct duel."
       ],
       "howToRespond": [
         "Punish predictable captures, but respect Law's counter. Law may be vulnerable if his 1-HP survival is nullified at 30% HP or below."
@@ -194,7 +194,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "characterId": "the-four-emperors-monkey-d-luffy",
       "advantage": 5,
       "whyYouWin": [
-        "Attacking a Straw Hat Pirates opponent restores Warcury's HP and shield durability while increasing damage dealt by 50%, making extended duels very favorable."
+        "Landing attacks on a Straw Hat Pirates character restores Warcury's HP and shield durability and increases his damage by 50%, making extended fights highly favorable."
       ],
       "watchOut": [
         "The recovery comes from Warcury landing attacks, not from simply being hit."
