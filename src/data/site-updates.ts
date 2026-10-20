@@ -26,6 +26,18 @@ export const siteUpdateCategoryLabels: Record<SiteUpdate["category"], string> = 
 // Only record additions available on the published site. See docs/site-updates.md.
 export const siteUpdates: readonly SiteUpdate[] = [
   {
+    id: "st-shepherd-ju-peter-pre-release-guide",
+    date: "2026-10-20",
+    title: "St. Shepherd Ju Peter pre-release guide added",
+    category: "guide",
+    featuredRank: 1,
+    description:
+      "A pre-release Character Guide for St. Shepherd Ju Peter is now available. Explore SP Capture, strengths and weaknesses, predicted matchups, and gameplay tips ahead of his October 21 debut.",
+    links: [
+      { href: "/characters/the-five-elders-st-shepherd-ju-peter", label: "Read Peter's guide" },
+    ],
+  },
+  {
     id: "halloween-perona-and-uta-medals",
     // 774021265d7f307abdcfd60b1c0c816441b216ee: 2026-10-01T22:36:22Z.
     date: "2026-10-01",
