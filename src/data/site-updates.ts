@@ -26,6 +26,25 @@ export const siteUpdateCategoryLabels: Record<SiteUpdate["category"], string> = 
 // Only record additions available on the published site. See docs/site-updates.md.
 export const siteUpdates: readonly SiteUpdate[] = [
   {
+    id: "st-topman-warcury-pre-release-guide",
+    date: "2026-10-20",
+    title: "St. Topman Warcury pre-release guide added",
+    category: "guide",
+    featuredRank: 1,
+    image: {
+      src: "/characters/black/the-five-elders-st-topman-warcury.webp",
+      alt: "St. Topman Warcury character artwork",
+      width: 615,
+      height: 490,
+      kind: "character",
+    },
+    description:
+      "Explore the pre-release Character Guide for St. Topman Warcury, including his Defensive Shield, Defender/Attacker switching, skill and Normal Attack videos, predicted matchups, and practical gameplay tips ahead of his October 21 debut.",
+    links: [
+      { href: "/characters/the-five-elders-st-topman-warcury", label: "Read Warcury's guide" },
+    ],
+  },
+  {
     id: "five-elders-warcury-peter-ex-scout-20261021",
     date: "2026-10-20",
     title: "Five Elders: Warcury & Peter EX Scout announced",

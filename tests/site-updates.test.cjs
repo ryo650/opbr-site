@@ -149,6 +149,24 @@ test('Five Elders EX scout announcement uses the correct banner and working link
   assert.ok(home.includes('Five Elders: Warcury &amp; Peter EX Scout announced'));
 });
 
+test('Warcury guide announcement uses its character portrait and leads on Home', () => {
+  const warcury = siteUpdates.find(update => update.id === 'st-topman-warcury-pre-release-guide');
+  assert.ok(warcury);
+  assert.equal(warcury.category, 'guide');
+  assert.equal(warcury.image.kind, 'character');
+  assert.equal(warcury.image.src, '/characters/black/the-five-elders-st-topman-warcury.webp');
+  assert.deepEqual([warcury.image.width, warcury.image.height], [615, 490]);
+  assert.ok(fs.existsSync(path.join(__dirname, '../public', warcury.image.src)));
+  assert.equal(warcury.links[0].href, '/characters/the-five-elders-st-topman-warcury');
+  const card = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update: warcury }));
+  assert.ok(card.includes('St. Topman Warcury character artwork'));
+  assert.ok(card.includes('aspect-ratio:615 / 490'));
+  assert.ok(card.includes('href="/characters/the-five-elders-st-topman-warcury"'));
+  assert.equal(getHomeSiteUpdates(siteUpdates)[0].id, warcury.id);
+  const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));
+  assert.ok(updates.includes('St. Topman Warcury pre-release guide added'));
+});
+
 test('empty updates render an explanation and a working home link', () => {
   const html = renderToStaticMarkup(React.createElement(UpdatesList, { updates: [] }));
   assert.match(html, /No updates yet/);

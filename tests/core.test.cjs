@@ -125,6 +125,39 @@ test('character guide availability follows the guide registry', () => {
   );
 });
 
+test('Warcury pre-release guide registers the agreed matchups and skill metadata', () => {
+  const warcuryId = 'the-five-elders-st-topman-warcury';
+  const guide = characterGuides[warcuryId];
+  assert.ok(guide);
+  assert.equal(hasCharacterGuide(warcuryId), true);
+  assert.equal(guide.strengths?.length, 3);
+  assert.equal(guide.weaknesses?.length, 3);
+  assert.equal(guide.counters?.length, 4);
+  assert.equal(guide.strongAgainst?.length, 7);
+  assert.equal(guide.traits?.length, 7);
+  assert.deepEqual(
+    guide.skillGroups?.[0].skills.map(({ slot, cooldown }) => ({ slot, cooldown })),
+    [
+      { slot: 1, cooldown: 27 },
+      { slot: 2, cooldown: 29 },
+    ],
+  );
+  assert.deepEqual(
+    guide.counters.map(({ characterId, difficulty }) => [characterId, difficulty]),
+    [
+      ['flame-emperor-sabo', 4],
+      ['future-where-i-m-the-most-free-jewelry-bonney', 3],
+      ['happy-halloween-uta', 3],
+      ['winner-island-trafalgar-law', 3],
+    ],
+  );
+  assert.ok(guide.strongAgainst.every(({ advantage }) => advantage === 5));
+  assert.deepEqual(guide.normalAttacks?.map(({ label }) => label), [
+    'Normal Attack Combo',
+    'Hold Normal Attack: Treasure Response',
+  ]);
+});
+
 test('new characters resolve to guides and remain listed for exactly two calendar months', () => {
   for (const release of newCharacterReleases) {
     assert.ok(
