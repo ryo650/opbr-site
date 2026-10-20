@@ -28,4 +28,6 @@ export type ScoutBanner = {
     pickups: readonly ScoutPickup[];
     featuredCharacterId: string;
     rates: ScoutRates;
+    /** Describe any temporary unverified scout parameters visibly to visitors. */
+    provisionalNotice?: string;
 }
