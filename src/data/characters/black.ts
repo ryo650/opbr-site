@@ -178,4 +178,12 @@ export const blackCharacters: Record<string, Character> = {
         role: "runner"
     },
 
+    "the-five-elders-st-topman-warcury": {
+        id: "the-five-elders-st-topman-warcury",
+        name: "The Five Elders St. Topman Warcury",
+        image: "/characters/black/the-five-elders-st-topman-warcury.webp",
+        grade: "ex",
+        element: "black",
+        role: "defender"
+    },
 }
