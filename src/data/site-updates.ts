@@ -12,7 +12,7 @@ export type SiteUpdate = {
     alt: string;
     width: number;
     height: number;
-    kind: "medal" | "banner";
+    kind: "medal" | "banner" | "character";
   };
   links: readonly { href: `/${string}`; label: string }[];
 };
@@ -31,6 +31,13 @@ export const siteUpdates: readonly SiteUpdate[] = [
     title: "St. Shepherd Ju Peter pre-release guide added",
     category: "guide",
     featuredRank: 1,
+    image: {
+      src: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
+      alt: "St. Shepherd Ju Peter official pre-release character artwork",
+      width: 574,
+      height: 489,
+      kind: "character",
+    },
     description:
       "A pre-release Character Guide for St. Shepherd Ju Peter is now available. Explore SP Capture, strengths and weaknesses, predicted matchups, and gameplay tips ahead of his October 21 debut.",
     links: [
