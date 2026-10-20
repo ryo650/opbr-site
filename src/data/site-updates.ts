@@ -26,6 +26,28 @@ export const siteUpdateCategoryLabels: Record<SiteUpdate["category"], string> = 
 // Only record additions available on the published site. See docs/site-updates.md.
 export const siteUpdates: readonly SiteUpdate[] = [
   {
+    id: "five-elders-warcury-peter-ex-scout-20261021",
+    date: "2026-10-20",
+    title: "Five Elders: Warcury & Peter EX Scout announced",
+    category: "content",
+    featuredRank: 1,
+    image: {
+      src: "/scouts/five-elders-warcury-peter-extreme-bounty-festival-20261021.webp",
+      alt: "St. Topman Warcury and St. Shepherd Ju Peter Extreme Bounty Festival banner",
+      width: 1206,
+      height: 529,
+      kind: "banner",
+    },
+    description:
+      "A new Extreme Bounty Festival featuring St. Topman Warcury and St. Shepherd Ju Peter is scheduled for October 21 at 14:00 JST. Try the Scout Simulator with 0.1% featured rates each. Other scout rates, costs, and the November 30 end date are provisional.",
+    links: [
+      {
+        href: "/scout-simulator/five-elders-warcury-peter-extreme-bounty-festival-20261021",
+        label: "Try the Five Elders Scout",
+      },
+    ],
+  },
+  {
     id: "st-shepherd-ju-peter-pre-release-guide",
     date: "2026-10-20",
     title: "St. Shepherd Ju Peter pre-release guide added",
