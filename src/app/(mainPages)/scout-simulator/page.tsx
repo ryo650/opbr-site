@@ -34,7 +34,8 @@ const pastScouts = scouts
 
 const upcomingScouts = scouts
   .filter((scout) => getScoutStatus(scout, now) === "upcoming")
-  .sort(newestScoutFirst);
+  // Show the next scheduled scout first, rather than the furthest one.
+  .sort((a, b) => new Date(a.startAt).getTime() - new Date(b.startAt).getTime());
 
   return (
     <main id="main-content" tabIndex={-1} className={`${styles.page} upper-page-background`}>
@@ -49,6 +50,11 @@ const upcomingScouts = scouts
             Pick a banner and try your luck with its in-game rates.
           </p>
         </header>
+
+        {upcomingScouts.length > 0 && <section className={styles.section} aria-labelledby="upcoming-scouts-title">
+          <div className={styles.sectionHeading}><h2 id="upcoming-scouts-title">Upcoming Scouts</h2><span>{upcomingScouts.length}</span></div>
+          <div className={styles.scoutList}>{upcomingScouts.map((scout) => <ScoutCard key={scout.id} scout={scout} characters={characters} />)}</div>
+        </section>}
 
         <section className={styles.section} aria-labelledby="current-scouts-title">
           <div className={styles.sectionHeading}>
@@ -66,11 +72,6 @@ const upcomingScouts = scouts
           </div>
           {!currentScouts.length && <p>No current scout banners are listed. You can still try past scouts below.</p>}
         </section>
-
-        {upcomingScouts.length > 0 && <section className={styles.section} aria-labelledby="upcoming-scouts-title">
-          <div className={styles.sectionHeading}><h2 id="upcoming-scouts-title">Upcoming Scouts</h2><span>{upcomingScouts.length}</span></div>
-          <div className={styles.scoutList}>{upcomingScouts.map((scout) => <ScoutCard key={scout.id} scout={scout} characters={characters} />)}</div>
-        </section>}
 
         {pastScouts.length > 0 && (
           <section className={styles.section} aria-labelledby="past-scouts-title">
