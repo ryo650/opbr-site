@@ -241,6 +241,24 @@ test('all scout pickups exist and can actually be drawn at their weighted interv
   }
 });
 
+test('Warcury and Peter dual EX scout has two 0.1% featured characters', () => {
+  const scout = scouts.find((item) => item.id === 'five-elders-warcury-peter-extreme-bounty-festival-20261021');
+  assert.ok(scout);
+  assert.deepEqual(scout.pickups.map(({ characterId, rate }) => [characterId, rate]), [
+    ['the-five-elders-st-topman-warcury', 0.1],
+    ['the-five-elders-st-shepherd-ju-peter', 0.1],
+  ]);
+  assert.equal(scout.rates.pickup, 0.2);
+  assert.equal(scout.startAt, '2026-10-21T14:00:00+09:00');
+  assert.equal(scout.endAt, '2026-11-30T13:59:59+09:00');
+  assert.match(scout.provisionalNotice, /unverified placeholders/);
+  const warcury = characters['the-five-elders-st-topman-warcury'];
+  assert.equal(warcury.name, 'The Five Elders St. Topman Warcury');
+  assert.equal(warcury.element, 'black');
+  assert.equal(warcury.role, 'defender');
+  assert.equal(warcury.grade, 'ex');
+});
+
 test('every configured category returns a character and excludes pickups from normal pools', () => {
   for (const scout of scouts) {
     const total = Object.values(scout.rates).reduce(

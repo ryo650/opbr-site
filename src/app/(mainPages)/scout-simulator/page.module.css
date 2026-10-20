@@ -33,3 +33,5 @@
 .simulatorLink:hover { filter: brightness(1.06); }
 .simulatorLink span { font-size: 20px; line-height: 1; }
 @media (max-width: 699px) { .page { padding: 24px 16px calc(88px + env(safe-area-inset-bottom)); } .intro { margin-bottom: 24px; } .scoutCard { grid-template-columns: minmax(0, 1fr); } .banner { min-height: 190px; } .details { gap: 16px; padding: 16px; } .scoutFacts { grid-template-columns: 1fr; gap: 8px; } }
+
+.scoutNotice { margin: 0; padding: 10px 12px; border: 1px solid rgba(251,191,36,.35); border-radius: 8px; background: rgba(251,191,36,.07); color: #e9d9af; font-size: 11px; line-height: 1.6; }

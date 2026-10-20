@@ -241,6 +241,10 @@ export default function ScoutSimulator({ scout }: { scout: ScoutBanner }) {
           </div>
         </section>
 
+        {scout.provisionalNotice && (
+          <p className={styles.scoutNotice}>{scout.provisionalNotice}</p>
+        )}
+
         <p role="status" className="sr-only">{stats.totalPulls} total pulls. {stats.pickupPulls} pickups. {stats.diamondsSpent} diamonds spent.</p>
         <section className={styles.resultsSection} aria-labelledby="results-title">
           <div className={styles.sectionHeading}>
