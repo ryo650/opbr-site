@@ -3,7 +3,7 @@ import Image from "next/image";
 import type { CSSProperties } from "react";
 import CharacterGuideLink from "@/components/characters/CharacterGuideLink";
 import { characters } from "@/data/characters/index";
-import { tierList } from "@/data/tierList";
+import { visibleTierList } from "@/data/tierList";
 
 import TierUpdateBadge from "./TierUpdateBadge";
 import badgeStyles from "./TierUpdateBadge.module.css";
@@ -11,11 +11,15 @@ import TierUpdateLegend from "./TierUpdateLegend";
 import type { TierUpdateBadge as Badge } from "@/lib/tier-important-updates";
 
 export default function TierList({ badges = {}, preview = false }: { badges?: Record<string, Badge>; preview?: boolean }) {
+  const visibleBadgeCount = visibleTierList.reduce(
+    (count, row) => count + row.characterIds.filter((id) => badges[id]).length,
+    0,
+  );
   return (
     <>
-      {Object.keys(badges).length > 0 && <TierUpdateLegend count={Object.keys(badges).length} />}
+      {visibleBadgeCount > 0 && <TierUpdateLegend count={visibleBadgeCount} />}
       <div className={styles.tierList}>
-        {tierList.map((row, tierIndex) => (
+        {visibleTierList.map((row, tierIndex) => (
           <div key={row.tier} className={styles.tier}>
             <div className={`${styles.tierLabel} ${styles[row.colorClass]}`}>
               <p>{row.tier}</p>
