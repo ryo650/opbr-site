@@ -8,6 +8,17 @@ const { siteUpdates } = require('../src/data/site-updates');
 const base = process.env.TEST_BASE_URL || 'http://127.0.0.1:3100';
 const pages = ['/', '/tier-list', '/character-usage', '/new-characters', '/character-guides', '/create-tier-list', '/medal-builder', '/medal-sets', '/scout-simulator', '/updates', '/about', '/contact', '/privacy-policy', ...scouts.map(s => `/scout-simulator/${s.id}`), ...Object.keys(characterGuides).map(id => `/characters/${id}`), ...recommendedMedalSets.map(set => `/medal-sets/${set.id}`)];
 
+test('old Five Elders announcement links redirect to the imported normal scout', async () => {
+  const replacement = '/scout-simulator/the-five-elders-st-topman-warcury-20261111';
+  const response = await fetch(base + '/scout-simulator/five-elders-warcury-peter-extreme-bounty-festival-20261021', { redirect: 'manual' });
+  assert.equal(response.status, 308);
+  assert.equal(new URL(response.headers.get('location'), base).pathname, replacement);
+  const html = (await (await fetch(base + replacement)).text()).replace(/<!--[\s\S]*?-->/g, '');
+  assert.match(html, /St\. Topman Warcury \(0\.2%\)/);
+  assert.match(html, /St\. Shepherd Ju Peter \(0\.2%\)/);
+  assert.doesNotMatch(html, /Step 1 normal-draw simulation|In-game Scout Details/);
+});
+
 test('Home presents essential tools before updates, followed by guides, with an all-updates link and h3 cards', async () => {
   const response = await fetch(base + '/');
   assert.equal(response.status, 200);

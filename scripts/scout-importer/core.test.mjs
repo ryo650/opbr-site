@@ -151,6 +151,20 @@ test("Drop Rates summary ignores individual rates below Character Drop Rates", (
   assert.equal(decimalToString(rates.twoStar), "58");
 });
 
+test("IMG_5541 OCR Cyrillic Ze in the starred rarity label means ★3", () => {
+  const rates = parseDropRates([
+    "Drop Rates(x11)",
+    "*4", "Extreme", "7.0000000%",
+    "Bounty Festival", "*З", "35.0000000 %",
+    "*2", "58.0000000 %",
+    "Character Dron Rates",
+  ]);
+  assert.equal(decimalToString(rates.fourStar), "7");
+  assert.equal(decimalToString(rates.threeStar), "35");
+  assert.equal(decimalToString(rates.twoStar), "58");
+  assert.equal(parseDropRates(["З unrelated text 35%"]).threeStar, null);
+});
+
 test("IMG_4823-like OCR returns aggregate rates when the character heading is split", () => {
   const rates = parseDropRates([
     "Show Drop Rates",
