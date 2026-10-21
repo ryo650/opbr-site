@@ -64,6 +64,7 @@ export default function ImportantTierUpdate({ update, currentTiers, demo = false
         </div>
         <h2 id="important-update-heading">{compact ? "Latest Tier Changes" : update.title}</h2>
         <p className={styles.summary}>{compact ? compactSummary : update.summary}</p>
+        {compact && <p className={styles.summary}>{update.summary}</p>}
       </header>
       <div className={styles.assessmentHeading}>
         <h3 className={styles.label}>OPBR Guide assessment</h3>
