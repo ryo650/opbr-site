@@ -17,6 +17,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/scout-simulator/five-elders-warcury-peter-extreme-bounty-festival-20261021",
+        destination: "/scout-simulator/the-five-elders-st-topman-warcury-20261111",
+        permanent: true,
+      },
+      {
         source: "/scout-simulator/future-where-i-m-the-most-free-jewelry-bonny",
         destination: "/scout-simulator/future-where-i-m-the-most-free-jewelry-bonney",
         permanent: true,

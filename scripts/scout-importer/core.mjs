@@ -97,6 +97,9 @@ function parsePercent(value) {
 
 function detectStarLabel(value) {
   const normalized = value
+    // Apple Vision reads the 3 in IMG_5541's ★3 label as Cyrillic Ze.
+    // Accept it only directly after a star, never in arbitrary OCR text.
+    .replace(/([★☆*]\s*)З(?=\s|$)/gu, (_, star) => `${star}3`)
     .replace(/[★☆*]/g, " star ")
     .replace(/[^a-zA-Z0-9]+/g, " ")
     .toLowerCase();

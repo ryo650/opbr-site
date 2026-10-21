@@ -1,4 +1,3 @@
-import { scoutFiveEldersWarcuryPeter20261021 } from "./five-elders-warcury-peter-extreme-bounty-festival-20261021";
 import { scout270MillionDownloadsExtremeBountyFestival220261027 } from "./270-million-downloads-extreme-bounty-festival-2-20261027";
 import { exWhitebeardRivival } from "./exWhitebeardRivival";
 import { OPDayExBountyFestival } from "./OPDayExBountyFestival"
@@ -42,8 +41,10 @@ import { scoutWinnerIslandTrafalgarLaw20261016 } from "./winner-island-trafalgar
 
 import { scoutSupremeGreatGradeSwordWielders20261013 } from "./supreme-great-grade-sword-wielders-20261013";
 
+import { scoutTheFiveEldersStTopmanWarcury20261111 } from "./the-five-elders-st-topman-warcury-20261111";
+
 export const scouts = [
-    scoutFiveEldersWarcuryPeter20261021,
+    scoutTheFiveEldersStTopmanWarcury20261111,
     scout270MillionDownloadsExtremeBountyFestival220261027,
     scoutSupremeGreatGradeSwordWielders20261013,
     scoutWinnerIslandTrafalgarLaw20261016,

@@ -26,8 +26,9 @@ const UpdatesList = require('../src/app/(mainPages)/updates/UpdatesList.tsx').de
 const HomeUpdates = require('../src/components/site-updates/HomeUpdates.tsx').default;
 const SiteUpdateCard = require('../src/components/site-updates/SiteUpdateCard.tsx').default;
 
-test('site update data has valid dates, unique IDs, and existing local links', () => {
+test('site update data has valid dates, unique IDs, and existing local links', async () => {
   const ids = new Set();
+  const redirects = await require('../next.config.ts').default.redirects();
   for (const update of siteUpdates) {
     assert.match(update.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
     assert.ok(!ids.has(update.id), `Duplicate update ID: ${update.id}`);
@@ -53,7 +54,9 @@ test('site update data has valid dates, unique IDs, and existing local links', (
       const scoutId = link.href.match(/^\/scout-simulator\/([^/]+)$/)?.[1];
       const guideId = link.href.match(/^\/characters\/([a-z0-9-]+)$/)?.[1];
       if (scoutId) {
-        assert.ok(scouts.some(scout => scout.id === scoutId), link.href);
+        const destination = redirects.find(redirect => redirect.source === link.href)?.destination;
+        const redirectedScoutId = destination?.match(/^\/scout-simulator\/([^/]+)$/)?.[1];
+        assert.ok(scouts.some(scout => scout.id === (redirectedScoutId ?? scoutId)), link.href);
       } else if (guideId) {
         assert.ok(fs.existsSync(path.join(__dirname, '../src/app/(mainPages)/characters/[characterId]/page.tsx')), link.href);
         assert.ok(fs.existsSync(path.join(__dirname, '../src/data/character-guides', `${guideId}.ts`)), link.href);
