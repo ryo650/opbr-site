@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  images: {
+    localPatterns: [
+      { pathname: "/**", search: "" },
+      {
+        pathname: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
+        search: "?v=3778d4be853d",
+      },
+      {
+        pathname: "/characters/black/the-five-elders-st-topman-warcury.webp",
+        search: "?v=96be9b0c9a5d",
+      },
+    ],
+  },
   async redirects() {
     return [
       {

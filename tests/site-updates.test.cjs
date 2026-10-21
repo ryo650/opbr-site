@@ -42,7 +42,7 @@ test('site update data has valid dates, unique IDs, and existing local links', (
     }
     if (update.image) {
       assert.match(update.image.src, /^\/(?!\/)/);
-      assert.ok(fs.existsSync(path.join(__dirname, '../public', update.image.src)));
+      assert.ok(fs.existsSync(path.join(__dirname, '../public', new URL(update.image.src, 'http://localhost').pathname)));
       assert.ok(update.image.alt.trim());
       assert.ok(update.image.width > 0 && update.image.height > 0);
       assert.ok(['medal', 'banner', 'character'].includes(update.image.kind));
@@ -121,13 +121,13 @@ test('Peter guide announcement uses the existing character portrait on Home and 
   const peter = siteUpdates.find(update => update.id === 'st-shepherd-ju-peter-pre-release-guide');
   assert.ok(peter);
   assert.equal(peter.image.kind, 'character');
-  assert.equal(peter.image.src, '/characters/black/the-five-elders-st-shepherd-ju-peter.webp');
-  assert.equal(peter.image.width, 574);
-  assert.equal(peter.image.height, 489);
-  assert.ok(fs.existsSync(path.join(__dirname, '../public', peter.image.src)));
+  assert.equal(peter.image.src, '/characters/black/the-five-elders-st-shepherd-ju-peter.webp?v=3778d4be853d');
+  assert.equal(peter.image.width, 888);
+  assert.equal(peter.image.height, 719);
+  assert.ok(fs.existsSync(path.join(__dirname, '../public', new URL(peter.image.src, 'http://localhost').pathname)));
   const html = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update: peter }));
-  assert.ok(html.includes('St. Shepherd Ju Peter official pre-release character artwork'));
-  assert.ok(html.includes('aspect-ratio:574 / 489'));
+  assert.ok(html.includes('St. Shepherd Ju Peter character artwork'));
+  assert.ok(html.includes('aspect-ratio:888 / 719'));
   assert.ok(html.includes('href="/characters/the-five-elders-st-shepherd-ju-peter"'));
   const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
   assert.ok(home.includes('the-five-elders-st-shepherd-ju-peter'));
@@ -154,13 +154,13 @@ test('Warcury guide announcement uses its character portrait and leads on Home',
   assert.ok(warcury);
   assert.equal(warcury.category, 'guide');
   assert.equal(warcury.image.kind, 'character');
-  assert.equal(warcury.image.src, '/characters/black/the-five-elders-st-topman-warcury.webp');
-  assert.deepEqual([warcury.image.width, warcury.image.height], [615, 490]);
-  assert.ok(fs.existsSync(path.join(__dirname, '../public', warcury.image.src)));
+  assert.equal(warcury.image.src, '/characters/black/the-five-elders-st-topman-warcury.webp?v=96be9b0c9a5d');
+  assert.deepEqual([warcury.image.width, warcury.image.height], [876, 676]);
+  assert.ok(fs.existsSync(path.join(__dirname, '../public', new URL(warcury.image.src, 'http://localhost').pathname)));
   assert.equal(warcury.links[0].href, '/characters/the-five-elders-st-topman-warcury');
   const card = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update: warcury }));
   assert.ok(card.includes('St. Topman Warcury character artwork'));
-  assert.ok(card.includes('aspect-ratio:615 / 490'));
+  assert.ok(card.includes('aspect-ratio:876 / 676'));
   assert.ok(card.includes('href="/characters/the-five-elders-st-topman-warcury"'));
   assert.equal(getHomeSiteUpdates(siteUpdates)[0].id, warcury.id);
   const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));

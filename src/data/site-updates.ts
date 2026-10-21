@@ -32,10 +32,10 @@ export const siteUpdates: readonly SiteUpdate[] = [
     category: "guide",
     featuredRank: 1,
     image: {
-      src: "/characters/black/the-five-elders-st-topman-warcury.webp",
+      src: "/characters/black/the-five-elders-st-topman-warcury.webp?v=96be9b0c9a5d",
       alt: "St. Topman Warcury character artwork",
-      width: 615,
-      height: 490,
+      width: 876,
+      height: 676,
       kind: "character",
     },
     description:
@@ -73,10 +73,10 @@ export const siteUpdates: readonly SiteUpdate[] = [
     category: "guide",
     featuredRank: 1,
     image: {
-      src: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
-      alt: "St. Shepherd Ju Peter official pre-release character artwork",
-      width: 574,
-      height: 489,
+      src: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp?v=3778d4be853d",
+      alt: "St. Shepherd Ju Peter character artwork",
+      width: 888,
+      height: 719,
       kind: "character",
     },
     description:

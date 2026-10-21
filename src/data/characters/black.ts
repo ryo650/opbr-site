@@ -172,7 +172,7 @@ export const blackCharacters: Record<string, Character> = {
     "the-five-elders-st-shepherd-ju-peter": {
         id: "the-five-elders-st-shepherd-ju-peter",
         name: "The Five Elders St. Shepherd Ju Peter",
-        image: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp",
+        image: "/characters/black/the-five-elders-st-shepherd-ju-peter.webp?v=3778d4be853d",
         grade: "ex",
         element: "black",
         role: "runner"
@@ -181,7 +181,7 @@ export const blackCharacters: Record<string, Character> = {
     "the-five-elders-st-topman-warcury": {
         id: "the-five-elders-st-topman-warcury",
         name: "The Five Elders St. Topman Warcury",
-        image: "/characters/black/the-five-elders-st-topman-warcury.webp",
+        image: "/characters/black/the-five-elders-st-topman-warcury.webp?v=96be9b0c9a5d",
         grade: "ex",
         element: "black",
         role: "defender"
