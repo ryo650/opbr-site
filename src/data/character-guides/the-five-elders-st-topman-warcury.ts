@@ -153,7 +153,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
         "As a Runner, Sabo can create an obstacle with his counter to support Treasure captures and contest important Treasure Areas."
       ],
       "howToRespond": [
-        "Avoid relying on DEF stacks alone; note that Warcury has attacks that ignore obstacles."
+        "Track Sabo on the minimap and avoid direct encounters when possible; leave the matchup to an ally better equipped to handle him."
       ]
     },
     {
@@ -164,7 +164,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
         "Bonney's Runner and Attacker roles may let her challenge him both when capturing Treasures and in direct combat."
       ],
       "howToRespond": [
-        "Watch for buff removal, and avoid overextending when a Treasure Area needs defending."
+        "Avoid direct combat with Bonney where possible, especially when she can remove DEF increases; let a better-matched ally handle her."
       ]
     },
     {
@@ -175,7 +175,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
         "Obstacle placement can support treasure capture and defense against Warcury."
       ],
       "howToRespond": [
-        "Use Warcury's obstacle-ignoring attacks where appropriate; the obstacle does not guarantee safety."
+        "Avoid unnecessary fights with Uta because her DEF increase removal weakens Warcury's defense and skill damage; leave her to a better-matched ally."
       ]
     },
     {
@@ -186,6 +186,39 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       ],
       "howToRespond": [
         "Punish predictable captures, but respect Law's counter. Law may be vulnerable if his 1-HP survival is nullified at 30% HP or below."
+      ]
+    },
+    {
+      "characterId": "king-of-the-pirates-gol-d-roger",
+      "difficulty": 3,
+      "whyDifficult": [
+        "Roger can deal heavy damage to Warcury and generally has the advantage in damage trades when Roger avoids Warcury's skills.",
+        "With an ATK increase active, Roger may be able to KO Warcury in a single hit."
+      ],
+      "howToRespond": [
+        "Avoid direct fights when possible and leave Roger to an ally with a better matchup. If you must fight, look for a window when Roger's ATK is not increased."
+      ]
+    },
+    {
+      "characterId": "legendary-hero-monkey-d-garp",
+      "difficulty": 3,
+      "whyDifficult": [
+        "Garp can deal heavy damage to Warcury and generally has the advantage in damage trades when Garp avoids Warcury's skills.",
+        "With an ATK increase active, Garp may be able to KO Warcury in a single hit."
+      ],
+      "howToRespond": [
+        "Avoid direct fights when possible and leave Garp to an ally with a better matchup. If you must fight, look for a window when Garp's ATK is not increased."
+      ]
+    },
+    {
+      "characterId": "film-red-shanks",
+      "difficulty": 3,
+      "whyDifficult": [
+        "Shanks can deal heavy damage to Warcury and generally has the advantage in damage trades when Shanks avoids Warcury's skills.",
+        "With an ATK increase active, Shanks may be able to KO Warcury in a single hit."
+      ],
+      "howToRespond": [
+        "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
       ]
     }
   ],
