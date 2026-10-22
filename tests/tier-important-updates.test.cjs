@@ -205,17 +205,18 @@ test('October 21 meta review retains 8 rises, 7 falls and 2 new entries', () => 
   assert.deepEqual(state(october21Events, start + 14 * day, tierListBeforeOctober22Reorder).badges, {});
 });
 
-test('October 22 placements satisfy the Whitebeard, Kuzan, Garp and Blackbeard follow-ups', () => {
+test('October 22 placements satisfy all follow-ups, with blue Lucci last in B', () => {
   const row = (tier) => tierList.find((row) => row.tier === tier);
   assert.deepEqual(row('B').characterIds.slice(0, 3), [
-    'ama-no-murakumo-sword-kizaru', 'awakened-form-rob-lucci', 'the-wings-zoro-sanji',
+    'ama-no-murakumo-sword-kizaru', 'the-wings-zoro-sanji', 'the-four-emperors-marshall-d-teach',
   ]);
+  assert.equal(row('B').characterIds.at(-1), 'awakened-form-rob-lucci');
   const whiteNika = row('B').characterIds.indexOf('the-four-emperors-monkey-d-luffy');
   assert.ok(whiteNika >= 0);
   assert.deepEqual(row('B').characterIds.slice(whiteNika, whiteNika + 3), [
     'the-four-emperors-monkey-d-luffy', 'great-pirate-edward-newgate', 'egghead-tony-tony-chopper',
   ]);
-  assert.deepEqual(row('B').characterIds.slice(3, 5), [
+  assert.deepEqual(row('B').characterIds.slice(2, 4), [
     'the-four-emperors-marshall-d-teach', 'king-of-the-pirates-gol-d-roger',
   ]);
   assert.deepEqual(row('C').characterIds.slice(0, 3), [

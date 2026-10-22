@@ -49,7 +49,6 @@ export const tierList: TierRow[] = [
     colorClass: "B",
     characterIds: [
       "ama-no-murakumo-sword-kizaru",
-      "awakened-form-rob-lucci",
       "the-wings-zoro-sanji",
       "the-four-emperors-marshall-d-teach",
       "king-of-the-pirates-gol-d-roger",
@@ -57,6 +56,7 @@ export const tierList: TierRow[] = [
       "the-four-emperors-monkey-d-luffy",
       "great-pirate-edward-newgate",
       "egghead-tony-tony-chopper",
+      "awakened-form-rob-lucci",
     ],
   },
   {
