@@ -65,6 +65,7 @@ export default function ImportantTierUpdate({ update, currentTiers, demo = false
         <h2 id="important-update-heading">{compact ? "Latest Tier Changes" : update.title}</h2>
         <p className={styles.summary}>{compact ? compactSummary : update.summary}</p>
         {compact && <p className={styles.summary}>{update.summary}</p>}
+        <p className={styles.current}>This dated update records the assessment at publication, including order within tiers. Current placements and order are shown in the Tier List above.</p>
       </header>
       <div className={styles.assessmentHeading}>
         <h3 className={styles.label}>OPBR Guide assessment</h3>
