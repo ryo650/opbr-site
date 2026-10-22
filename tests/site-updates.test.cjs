@@ -136,20 +136,34 @@ test('Peter guide announcement uses the existing character portrait on Home and 
   assert.ok(home.includes('the-five-elders-st-shepherd-ju-peter'));
 });
 
-test('Five Elders EX scout announcement uses the correct banner and working link', () => {
+test('Five Elders announcement matches the updated scout on Home and Updates', () => {
   const update = siteUpdates.find(item => item.id === 'five-elders-warcury-peter-ex-scout-20261021');
+  const scout = scouts.find(item => item.id === 'the-five-elders-st-topman-warcury-20261111');
   assert.ok(update);
+  assert.ok(scout);
   assert.equal(update.date, '2026-10-20');
   assert.equal(update.image.kind, 'banner');
-  assert.equal(update.image.src, '/scouts/five-elders-warcury-peter-extreme-bounty-festival-20261021.webp');
-  assert.deepEqual([update.image.width, update.image.height], [1206, 529]);
+  assert.equal(update.image.src, scout.bannerImg);
+  assert.deepEqual([update.image.width, update.image.height], [1946, 1032]);
   assert.ok(fs.existsSync(path.join(__dirname, '../public', update.image.src)));
-  assert.equal(update.links[0].href, '/scout-simulator/five-elders-warcury-peter-extreme-bounty-festival-20261021');
+  assert.equal(update.links[0].href, `/scout-simulator/${scout.id}`);
+  assert.deepEqual(scout.pickups.map(pickup => pickup.rate), [0.2, 0.2]);
+  assert.equal(scout.endAt, '2026-11-11T13:59:59+09:00');
+  assert.match(update.description, /featured rates of 0\.2% each/);
+  assert.match(update.description, /November 11, 2026 at 13:59:59 JST/);
+  assert.doesNotMatch(update.description, /0\.1%|November 30|provisional|scheduled/);
   const html = renderToStaticMarkup(React.createElement(SiteUpdateCard, { update }));
   assert.ok(html.includes('St. Topman Warcury and St. Shepherd Ju Peter Extreme Bounty Festival banner'));
-  assert.ok(html.includes('aspect-ratio:1206 / 529'));
+  assert.ok(html.includes('aspect-ratio:1946 / 1032'));
   const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
-  assert.ok(home.includes('Five Elders: Warcury &amp; Peter EX Scout announced'));
+  const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));
+  for (const rendered of [home, updates]) {
+    assert.ok(rendered.includes('Five Elders: Warcury &amp; Peter EX Scout updated'));
+    assert.ok(rendered.includes(update.description));
+    assert.ok(rendered.includes(`href="/scout-simulator/${scout.id}"`));
+    assert.ok(rendered.includes(encodeURIComponent(scout.bannerImg)));
+    assert.doesNotMatch(rendered, /0\.1%|November 30|provisional/);
+  }
 });
 
 test('Warcury guide announcement uses its character portrait and leads on Home', () => {
