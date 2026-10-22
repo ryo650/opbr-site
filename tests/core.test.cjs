@@ -210,6 +210,12 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
   assert.match(luffy.whyYouWin.join(' '), /Straw Hat Pirates/);
   assert.match(luffy.whyYouWin.join(' '), /50% ATK reduction/);
   assert.doesNotMatch(luffy.whyYouWin.join(' '), /Element-change/);
+  const bonney = peter.strongAgainst.find(({ characterId }) => characterId === 'future-where-i-m-the-most-free-jewelry-bonney');
+  assert.equal(bonney?.advantage, 2);
+  assert.match(bonney.whyYouWin.join(' '), /Royalty \/ Former Royalty/);
+  assert.match(bonney.whyYouWin.join(' '), /remove that ATK reduction by using a skill/);
+  assert.match(bonney.watchOut.join(' '), /Normal Attacks/);
+  assert.match(bonney.watchOut.join(' '), /hit-and-run/);
 });
 
 test('new characters resolve to guides and remain listed for exactly two calendar months', () => {
