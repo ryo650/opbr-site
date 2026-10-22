@@ -172,6 +172,7 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
   ];
   assert.ok(peter);
   assert.ok(warcury);
+  assert.equal(peter.counters?.find(({ characterId }) => characterId === 'unexpected-collaboration-rob-lucci')?.difficulty, 2);
   assert.deepEqual(peter.counters?.map(({ characterId }) => characterId), [
     'unexpected-collaboration-rob-lucci',
     'flame-emperor-sabo',
