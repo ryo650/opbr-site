@@ -90,14 +90,14 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         kind: "new",
         fromTier: null,
         toTier: "SS",
-        reason: "Enters SS Tier at the top of the October 21 ranking.",
+        reason: "Enters SS Tier immediately after St. Topman Warcury.",
       },
       {
         characterId: "the-five-elders-st-topman-warcury",
         kind: "new",
         fromTier: null,
         toTier: "SS",
-        reason: "Enters SS Tier immediately after St. Shepherd Ju Peter.",
+        reason: "Enters SS Tier at the top of the October 21 ranking.",
       },
       {
         characterId: "flame-emperor-sabo",
