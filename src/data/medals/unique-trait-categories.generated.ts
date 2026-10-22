@@ -2475,6 +2475,19 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   "ill-trick-you": [
     "cooldown",
     "skill-1"
+  ],
+  "st-topman-warcury": [
+    "damage-reduction"
+  ],
+  "st-shepherd-ju-peter": [
+    "capture-speed"
+  ],
+  "kizaru-egghead": [
+    "damage-reduction"
+  ],
+  "luffy-dawn-rocket": [
+    "cooldown",
+    "skill-1"
   ]
 };
 
