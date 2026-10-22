@@ -128,7 +128,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
   "counters": [
     {
       "characterId": "unexpected-collaboration-rob-lucci",
-      "difficulty": 4,
+      "difficulty": 2,
       "whyDifficult": [
         "Can quickly reach a Treasure Area being captured and attack through obstacles, threatening SP Capture.",
         "Can bypass Peter's survive-with-1-HP trait and may KO with Skill 1 when no obstacle blocks the attack."
