@@ -3,12 +3,8 @@ import type { CharacterGuide } from "./type";
 // PRE-RELEASE: Matchup scores are predictions based on official reveals.
 export const stTopmanWarcuryGuide: CharacterGuide = {
   "characterId": "the-five-elders-st-topman-warcury",
-  "notice": {
-    "title": "Pre-Release Guide",
-    "description": "This pre-release guide is based on official information and matchup predictions. Ratings and gameplay advice have not been verified in live matches and may change after the October 21, 2026 release."
-  },
   "guideOverview": {
-    "title": "St. Topman Warcury Guide (Pre-Release)",
+    "title": "St. Topman Warcury Guide",
     "description": "A Dark EX Defender who switches to Attacker when using a skill. Warcury can protect multiple Treasure Areas with a recoverable Defensive Shield and fast responses to enemy captures, then support allies with DEF-scaling skills when the team's Treasures are secure."
   },
   "quickStrengths": [
@@ -225,10 +221,10 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "characterId": "navy-hq-fleet-admiral-akainu",
       "difficulty": 4,
       "whyDifficult": [
-        "Akainu's attacks that increase Dodge cooldown and his attacks while enhanced can let him keep Warcury under one-sided pressure. His three-hit invincibility also makes it easier for him to KO Warcury."
+        "Akainu's attacks that increase Dodge cooldown and his attacks in Mag-Mag state can let him keep Warcury under one-sided pressure. While in Mag-Mag state, he can nullify incoming damage and accompanying effects up to 3 times, making it easier for him to KO Warcury."
       ],
       "howToRespond": [
-        "There may be an opening to fight when Akainu is not in his enhanced state and cannot use the skill that activates it. Otherwise, generally avoid fighting him; if forced to respond, look to disengage with skills."
+        "There may be an opening to fight when Akainu is not in Mag-Mag state and his Skill 2 (Meteor Volcano), which activates it, is on cooldown. Otherwise, generally avoid fighting him; if forced to respond, try to disengage with skills."
       ]
     }
   ],

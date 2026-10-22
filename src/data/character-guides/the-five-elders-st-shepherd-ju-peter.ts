@@ -3,12 +3,8 @@ import type { CharacterGuide } from "./type";
 // PRE-RELEASE: Ratings are matchup predictions. No game-verified stats yet.
 export const stShepherdJuPeterGuide: CharacterGuide = {
   "characterId": "the-five-elders-st-shepherd-ju-peter",
-  "notice": {
-    "title": "Pre-Release Guide",
-    "description": "Based on official pre-release reveals. Matchup ratings are predictions and will be reviewed after the October 21, 2026 release."
-  },
   "guideOverview": {
-    "title": "St. Shepherd Ju Peter Guide (Pre-Release)",
+    "title": "St. Shepherd Ju Peter Guide",
     "description": "A Dark EX Runner with top-tier potential through SP Capture and favorable matchups against leading meta characters. Peter can swing treasure counts, but his results may depend heavily on matchup selection, HP management, and Power Gauge timing."
   },
   "quickStrengths": [
