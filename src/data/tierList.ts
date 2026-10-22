@@ -9,7 +9,8 @@ type TierRow = {
 
 // Source: user screenshot, October 21, 2026 at 16:00:51 JST, left to right.
 // October 22 user-requested placements override the screenshot, including Whitebeard
-// between White Nika and Egghead Chopper in B. No new editorial badges were requested.
+// between White Nika and Egghead Chopper in B. Directional assessments are registered
+// separately in tier-important-updates.ts and do not change this order.
 // Earlier placements, including characters omitted from the screenshot, are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },

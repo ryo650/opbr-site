@@ -76,9 +76,8 @@ const odenBuffOctober8Review: ImportantTierUpdate = {
     ],
 };
 
-// Editorial opt-in only. Reordering tierList.ts never creates an event.
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+// Preserve the October 21 publication exactly as a separate historical review.
+const warcuryJuPeterOctober21Review: ImportantTierUpdate = {
     id: "2026-10-21-warcury-ju-peter-meta",
     status: "published",
     publishedAt: "2026-10-21T16:00:51+09:00",
@@ -205,7 +204,77 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         reason: "Blackbeard moves to B Tier, immediately before Zoro & Sanji, as his relative evaluation falls in the current meta; this is not a character nerf.",
       },
     ],
+  };
+
+// Explicit editorial carry-forward list; independent of the ranking table.
+const retainedOctober21AssessmentIds = new Set([
+  "the-five-elders-st-shepherd-ju-peter",
+  "the-five-elders-st-topman-warcury",
+  "flame-emperor-sabo",
+  "winner-island-trafalgar-law",
+  "king-of-the-pirates-gol-d-roger",
+  "film-red-shanks",
+  "ama-no-murakumo-sword-kizaru",
+  "navy-hq-fleet-admiral-akainu",
+  "the-five-elders-st-ethanbaron-v-nusjuro",
+  "the-wings-zoro-sanji",
+  "father-and-daughter-kuma-bonny",
+  "the-four-emperors-marshall-d-teach",
+]);
+
+// Editorial opt-in only. Reordering tierList.ts never creates an event.
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-10-22-tier-assessment-follow-up",
+    status: "published",
+    publishedAt: "2026-10-22T14:51:42+09:00",
+    title: "October 22 Tier Review: 5 assessment updates",
+    summary: "White Nika, Kuzan and black Roger receive Down assessments; Garp and King receive Up assessments. Their current tiers and positions are unchanged. The 12 other active markers are carried forward from the October 21 review. Up/Down reflects our relative assessment, not character buffs or nerfs.",
+    changes: [
+      {
+        characterId: "the-four-emperors-monkey-d-luffy",
+        kind: "fall",
+        fromTier: "B",
+        toTier: "B",
+        reason: "White Nika receives a lower relative assessment within B Tier. His current tier and position are unchanged.",
+      },
+      {
+        characterId: "blackbeard-pirates-kuzan",
+        kind: "fall",
+        fromTier: "C",
+        toTier: "C",
+        reason: "Kuzan receives a lower relative assessment within C Tier. His current tier and position are unchanged.",
+      },
+      {
+        characterId: "great-pirate-gol-d-roger",
+        kind: "fall",
+        fromTier: "C",
+        toTier: "C",
+        reason: "Black Roger receives a lower relative assessment within C Tier. His current tier and position are unchanged.",
+      },
+      {
+        characterId: "legendary-hero-monkey-d-garp",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "C",
+        reason: "Garp receives a higher relative assessment within C Tier. His current tier and position are unchanged.",
+      },
+      {
+        characterId: "animal-kingdom-pirates-lead-performer-king",
+        kind: "rise",
+        fromTier: "A",
+        toTier: "A",
+        reason: "King receives a higher relative assessment within A Tier. His current tier and position are unchanged.",
+      },
+      ...warcuryJuPeterOctober21Review.changes
+        .filter((change) => retainedOctober21AssessmentIds.has(change.characterId))
+        .map((change) => ({
+          ...change,
+          reason: "Assessment carried forward from the October 21 review. Refer to the current Tier List for placement and order.",
+        })),
+    ],
   },
+  warcuryJuPeterOctober21Review,
   {
     id: "2026-10-10-oden-meta-follow-up",
     status: "published",
