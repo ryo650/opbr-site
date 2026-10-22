@@ -187,10 +187,22 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
       assert.match(matchup.howToRespond.join(' '), /ATK is not increased/);
     }
   }
-  for (const id of ['flame-emperor-sabo', 'happy-halloween-uta', 'future-where-i-m-the-most-free-jewelry-bonney']) {
+  for (const id of ['happy-halloween-uta', 'future-where-i-m-the-most-free-jewelry-bonney']) {
     const respond = warcury.counters.find(({ characterId }) => characterId === id)?.howToRespond?.join(' ') ?? '';
     assert.match(respond, /avoid/i);
     assert.match(respond, /ally/i);
+    assert.doesNotMatch(respond, /obstacle/i);
+  }
+  for (const id of ['flame-emperor-sabo', 'winner-island-trafalgar-law']) {
+    const matchup = warcury.counters.find(({ characterId }) => characterId === id);
+    assert.ok(matchup, id);
+    const respond = matchup.howToRespond?.join(' ') ?? '';
+    assert.match(respond, /avoid using the held Normal Attack movement/i);
+    assert.match(respond, /approach directly/i);
+    assert.match(respond, /first or second hit/i);
+    assert.match(respond, /third-hit Knockback/i);
+    assert.match(respond, /counter/i);
+    assert.match(respond, /skill/i);
     assert.doesNotMatch(respond, /obstacle/i);
   }
   const luffy = peter.strongAgainst.find(({ characterId }) => characterId === 'the-four-emperors-monkey-d-luffy');
