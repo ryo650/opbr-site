@@ -164,25 +164,36 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       ]
     },
     {
-      "characterId": "seraphim-s-snake",
-      "difficulty": 2,
+      "characterId": "king-of-the-pirates-gol-d-roger",
+      "difficulty": 3,
       "whyDifficult": [
-        "Rapid Treasure rotations and bonus skill damage to Runners can threaten Peter.",
-        "However, obstacle handling and his Knockback resistance may limit her ability to stop SP Capture; obvious skills may invite a Perfect Guard."
+        "Roger can deal heavy damage to Peter and generally has the advantage in damage trades when Roger avoids Peter's skills.",
+        "With an ATK increase active, Roger may be able to KO Peter in a single hit."
       ],
       "howToRespond": [
-        "Position SP Capture carefully and guard predictable skills."
+        "Avoid direct fights when possible and leave Roger to an ally with a better matchup. If you must fight, look for a window when Roger's ATK is not increased."
       ]
     },
     {
-      "characterId": "blackbeard-pirates-kuzan",
-      "difficulty": 2,
+      "characterId": "legendary-hero-monkey-d-garp",
+      "difficulty": 3,
       "whyDifficult": [
-        "Kuzan can damage obstacles heavily and apply pressure without activating Peter's targeted removal traits.",
-        "But Kuzan may not keep up with SP Capture movement, and predictable skills may allow Perfect Guard healing."
+        "Garp can deal heavy damage to Peter and generally has the advantage in damage trades when Garp avoids Peter's skills.",
+        "With an ATK increase active, Garp may be able to KO Peter in a single hit."
       ],
       "howToRespond": [
-        "Use positioning rather than direct trading, and guard against telegraphed attacks."
+        "Avoid direct fights when possible and leave Garp to an ally with a better matchup. If you must fight, look for a window when Garp's ATK is not increased."
+      ]
+    },
+    {
+      "characterId": "film-red-shanks",
+      "difficulty": 3,
+      "whyDifficult": [
+        "Shanks can deal heavy damage to Peter and generally has the advantage in damage trades when Shanks avoids Peter's skills.",
+        "With an ATK increase active, Shanks may be able to KO Peter in a single hit."
+      ],
+      "howToRespond": [
+        "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
       ]
     }
   ],
@@ -211,7 +222,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "characterId": "the-four-emperors-monkey-d-luffy",
       "advantage": 5,
       "whyYouWin": [
-        "Element-change interaction allows ATK increase removal and HP recovery, supporting highly favorable treasure pressure."
+        "When Luffy attacks Peter, his Straw Hat Pirates tag triggers ATK increase removal and a 50% ATK reduction for 5 seconds, making this a favorable matchup."
       ],
       "watchOut": [
         "Be careful with the first hit before the reactive effect."
@@ -219,12 +230,13 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
     },
     {
       "characterId": "future-where-i-m-the-most-free-jewelry-bonney",
-      "advantage": 4,
+      "advantage": 2,
       "whyYouWin": [
-        "Royalty / Former Royalty ATK reduction plus SP Capture, its blocking shield and Perfect Guard can produce strong capture pressure."
+        "Peter can reduce Bonney's ATK through his Royalty / Former Royalty trait, but Bonney can remove that ATK reduction by using a skill, limiting Peter's advantage."
       ],
       "watchOut": [
-        "This trigger applies an ATK debuff but does not remove increases, so the broader team benefit is limited."
+        "Watch for Bonney's skills, which can clear the ATK reduction. Her Normal Attacks can also deal substantial damage when her attack power is boosted.",
+        "Avoid prolonged damage trades; use hit-and-run attacks to pressure Bonney without exposing Peter to repeated hits."
       ]
     }
   ]
