@@ -8,7 +8,8 @@ type TierRow = {
 };
 
 // Source: user screenshot, October 21, 2026 at 16:00:51 JST, left to right.
-// Later requests place black Roger first and blue Lucci second in C, overriding the screenshot.
+// October 22 user-requested placements override the screenshot, including Whitebeard
+// between White Nika and Egghead Chopper in B. No new editorial badges were requested.
 // Earlier placements, including characters omitted from the screenshot, are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -28,7 +29,6 @@ export const tierList: TierRow[] = [
       "future-where-i-m-the-most-free-jewelry-bonney",
       "winner-island-trafalgar-law",
       "the-five-elders-st-marcus-mars",
-      "unexpected-collaboration-rob-lucci",
     ],
   },
   {
@@ -40,31 +40,32 @@ export const tierList: TierRow[] = [
       "kaido-s-son-yamato",
       "animal-kingdom-pirates-lead-performer-king",
       "happy-halloween-uta",
+      "unexpected-collaboration-rob-lucci",
     ],
   },
   {
     tier: "B",
     colorClass: "B",
     characterIds: [
+      "ama-no-murakumo-sword-kizaru",
+      "awakened-form-rob-lucci",
+      "the-wings-zoro-sanji",
       "king-of-the-pirates-gol-d-roger",
       "legendary-hero-monkey-d-garp",
       "father-and-daughter-kuma-bonny",
-      "ama-no-murakumo-sword-kizaru",
+      "the-four-emperors-monkey-d-luffy",
+      "great-pirate-edward-newgate",
       "egghead-tony-tony-chopper",
-      "blackbeard-pirates-kuzan",
-      "daimyo-of-kuri-kozuki-oden",
       "the-four-emperors-marshall-d-teach",
-      "the-wings-zoro-sanji",
+      "blackbeard-pirates-kuzan",
     ],
   },
   {
     tier: "C",
     colorClass: "C",
     characterIds: [
-      "the-four-emperors-monkey-d-luffy",
+      "daimyo-of-kuri-kozuki-oden",
       "great-pirate-gol-d-roger",
-      "awakened-form-rob-lucci",
-      "great-pirate-edward-newgate",
       "germa-66-vinsmoke-niji",
       "battle-of-monsters-on-onigashima-kaido",
       "film-red-shanks",
