@@ -195,6 +195,16 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "howToRespond": [
         "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
       ]
+    },
+    {
+      "characterId": "ama-no-murakumo-sword-kizaru",
+      "difficulty": 4,
+      "whyDifficult": [
+        "Kizaru's skills can damage Peter effectively, and his high mobility makes it difficult for Peter to escape. Peter's limited KO potential can leave him at a one-sided disadvantage."
+      ],
+      "howToRespond": [
+        "Try to Perfect Guard Kizaru's skills whenever possible, and carefully choose when to activate SP Capture and which Treasure to target."
+      ]
     }
   ],
   "strongAgainst": [
