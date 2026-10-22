@@ -50,6 +50,7 @@ export const tierList: TierRow[] = [
       "legendary-hero-monkey-d-garp",
       "father-and-daughter-kuma-bonny",
       "ama-no-murakumo-sword-kizaru",
+      "egghead-tony-tony-chopper",
       "blackbeard-pirates-kuzan",
       "daimyo-of-kuri-kozuki-oden",
       "the-four-emperors-marshall-d-teach",
