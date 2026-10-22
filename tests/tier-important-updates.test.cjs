@@ -163,28 +163,39 @@ test('October 10 meta follow-up retains the October 8 review and marks both same
   assert.deepEqual(state(historicalEvents, start + 14 * day, tierListOctober10).badges, {});
 });
 
-test('October 21 replaces the previous meta markers with the requested 6 rises, 6 falls and 2 new entries', () => {
+test('October 21 meta review retains 8 rises, 6 falls and 2 new entries', () => {
   const update = importantTierUpdates.find((event) => event.id === '2026-10-21-warcury-ju-peter-meta');
   const start = Date.parse(update.publishedAt);
   assert.equal(state(importantTierUpdates, start - 1, tierList).update.id, '2026-10-10-oden-meta-follow-up');
   const result = state(importantTierUpdates, start, tierList);
   assert.equal(result.update.id, update.id);
+  assert.deepEqual(tierList.find(({ tier }) => tier === 'SS').characterIds, [
+    'the-five-elders-st-topman-warcury',
+    'the-five-elders-st-shepherd-ju-peter',
+  ]);
+  const warcury = update.changes.find(({ characterId }) => characterId === 'the-five-elders-st-topman-warcury');
+  const peter = update.changes.find(({ characterId }) => characterId === 'the-five-elders-st-shepherd-ju-peter');
+  assert.match(warcury.reason, /at the top of/);
+  assert.match(peter.reason, /immediately after St. Topman Warcury/);
   const expected = {
-    rise: ['flame-emperor-sabo', 'winner-island-trafalgar-law', 'unexpected-collaboration-rob-lucci', 'king-of-the-pirates-gol-d-roger', 'legendary-hero-monkey-d-garp', 'film-red-shanks'],
+    rise: ['flame-emperor-sabo', 'winner-island-trafalgar-law', 'unexpected-collaboration-rob-lucci', 'king-of-the-pirates-gol-d-roger', 'legendary-hero-monkey-d-garp', 'film-red-shanks', 'ama-no-murakumo-sword-kizaru', 'navy-hq-fleet-admiral-akainu'],
     fall: ['the-five-elders-st-ethanbaron-v-nusjuro', 'the-four-emperors-monkey-d-luffy', 'the-wings-zoro-sanji', 'blackbeard-pirates-kuzan', 'father-and-daughter-kuma-bonny', 'daimyo-of-kuri-kozuki-oden'],
     new: ['the-five-elders-st-shepherd-ju-peter', 'the-five-elders-st-topman-warcury'],
   };
   for (const [kind, ids] of Object.entries(expected)) {
     assert.deepEqual(Object.keys(result.badges).filter((id) => result.badges[id].kind === kind).sort(), [...ids].sort());
   }
-  assert.equal(Object.keys(result.badges).length, 14);
+  assert.equal(Object.keys(result.badges).length, 16);
   assert.equal(update.officialAdjustment, undefined);
   assert.match(update.summary, /relative ranking/);
   assert.match(update.summary, /not character buffs or nerfs/);
   assert.equal(result.badges['the-five-elders-st-marcus-mars'], undefined);
   assert.equal(result.badges['seraphim-s-snake'], undefined);
-  assert.equal(result.badges['ama-no-murakumo-sword-kizaru'], undefined);
-  assert.equal(Object.keys(state(importantTierUpdates, start + 14 * day - 1, tierList).badges).length, 14);
+  assert.equal(result.badges['ama-no-murakumo-sword-kizaru'].kind, 'rise');
+  assert.equal(result.badges['navy-hq-fleet-admiral-akainu'].kind, 'rise');
+  assert.equal(result.badges['animal-kingdom-pirates-lead-performer-king'], undefined);
+  assert.equal(result.badges['the-red-broggy'], undefined);
+  assert.equal(Object.keys(state(importantTierUpdates, start + 14 * day - 1, tierList).badges).length, 16);
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
 
@@ -193,14 +204,17 @@ test('C is visible with black Roger first and blue Lucci second, while only god 
   assert.notEqual(c.hidden, true);
   assert.deepEqual(tierList.filter((row) => row.hidden).map((row) => row.tier), ['god', 'D']);
   assert.deepEqual(c.characterIds.slice(0, 2), ['great-pirate-gol-d-roger', 'awakened-form-rob-lucci']);
-  assert.equal(c.characterIds.length, 10);
+  assert.equal(c.characterIds.length, 9);
+  assert.equal(c.characterIds.at(-1), 'the-red-broggy');
+  assert.deepEqual(tierList.find((row) => row.tier === 'A').characterIds.slice(-3), ['navy-hq-fleet-admiral-akainu', 'kaido-s-son-yamato', 'animal-kingdom-pirates-lead-performer-king']);
+  assert.deepEqual(tierList.find((row) => row.tier === 'B').characterIds.slice(0, 4), ['king-of-the-pirates-gol-d-roger', 'legendary-hero-monkey-d-garp', 'father-and-daughter-kuma-bonny', 'ama-no-murakumo-sword-kizaru']);
   assert.deepEqual(visibleTierList.map((row) => row.tier), ['SS', 'S', 'A', 'B', 'C']);
   const update = importantTierUpdates.find((event) => event.id === '2026-10-21-warcury-ju-peter-meta');
   const result = state(importantTierUpdates, Date.parse(update.publishedAt), tierList);
   assert.equal(result.currentTiers['awakened-form-rob-lucci'], 'C');
   assert.equal(result.currentTiers['film-red-shanks'], 'C');
   assert.equal(result.badges['film-red-shanks'].kind, 'rise');
-  assert.equal(visibleTierList.flatMap((row) => row.characterIds).filter((id) => result.badges[id]).length, 14);
+  assert.equal(visibleTierList.flatMap((row) => row.characterIds).filter((id) => result.badges[id]).length, 16);
   for (const row of tierListOctober10) {
     for (const id of row.characterIds) assert.ok(characters[id], id);
   }
