@@ -3,12 +3,8 @@ import type { CharacterGuide } from "./type";
 // PRE-RELEASE: Ratings are matchup predictions. No game-verified stats yet.
 export const stShepherdJuPeterGuide: CharacterGuide = {
   "characterId": "the-five-elders-st-shepherd-ju-peter",
-  "notice": {
-    "title": "Pre-Release Guide",
-    "description": "Based on official pre-release reveals. Matchup ratings are predictions and will be reviewed after the October 21, 2026 release."
-  },
   "guideOverview": {
-    "title": "St. Shepherd Ju Peter Guide (Pre-Release)",
+    "title": "St. Shepherd Ju Peter Guide",
     "description": "A Dark EX Runner with top-tier potential through SP Capture and favorable matchups against leading meta characters. Peter can swing treasure counts, but his results may depend heavily on matchup selection, HP management, and Power Gauge timing."
   },
   "quickStrengths": [
@@ -132,7 +128,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
   "counters": [
     {
       "characterId": "unexpected-collaboration-rob-lucci",
-      "difficulty": 4,
+      "difficulty": 2,
       "whyDifficult": [
         "Can quickly reach a Treasure Area being captured and attack through obstacles, threatening SP Capture.",
         "Can bypass Peter's survive-with-1-HP trait and may KO with Skill 1 when no obstacle blocks the attack."
@@ -168,7 +164,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Roger can deal heavy damage to Peter and generally has the advantage in damage trades when Roger avoids Peter's skills.",
-        "With an ATK increase active, Roger may be able to KO Peter in a single hit."
+        "With an ATK increase active, Roger can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Roger to an ally with a better matchup. If you must fight, look for a window when Roger's ATK is not increased."
@@ -179,7 +175,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Garp can deal heavy damage to Peter and generally has the advantage in damage trades when Garp avoids Peter's skills.",
-        "With an ATK increase active, Garp may be able to KO Peter in a single hit."
+        "With an ATK increase active, Garp can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Garp to an ally with a better matchup. If you must fight, look for a window when Garp's ATK is not increased."
@@ -190,7 +186,8 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Shanks can deal heavy damage to Peter and generally has the advantage in damage trades when Shanks avoids Peter's skills.",
-        "With an ATK increase active, Shanks may be able to KO Peter in a single hit."
+        "With an ATK increase active, Shanks can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP.",
+        "Shanks's max HP reduction is also effective against Peter; it lowers his maximum HP as a separate effect from ordinary damage to his current HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."

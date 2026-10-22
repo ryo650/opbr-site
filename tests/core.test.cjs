@@ -125,7 +125,7 @@ test('character guide availability follows the guide registry', () => {
   );
 });
 
-test('Warcury pre-release guide registers the agreed matchups and skill metadata', () => {
+test('Warcury guide registers the agreed matchups and skill metadata', () => {
   const warcuryId = 'the-five-elders-st-topman-warcury';
   const guide = characterGuides[warcuryId];
   assert.ok(guide);
@@ -172,6 +172,7 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
   ];
   assert.ok(peter);
   assert.ok(warcury);
+  assert.equal(peter.counters?.find(({ characterId }) => characterId === 'unexpected-collaboration-rob-lucci')?.difficulty, 2);
   assert.deepEqual(peter.counters?.map(({ characterId }) => characterId), [
     'unexpected-collaboration-rob-lucci',
     'flame-emperor-sabo',
@@ -230,10 +231,10 @@ test('Warcury and Peter add Akainu and Kizaru counters with the agreed ratings a
         characterId: 'navy-hq-fleet-admiral-akainu',
         difficulty: 4,
         whyDifficult: [
-          "Akainu's attacks that increase Dodge cooldown and his attacks while enhanced can let him keep Warcury under one-sided pressure. His three-hit invincibility also makes it easier for him to KO Warcury.",
+          "Akainu's attacks that increase Dodge cooldown and his attacks in Mag-Mag state can let him keep Warcury under one-sided pressure. While in Mag-Mag state, he can nullify incoming damage and accompanying effects up to 3 times, making it easier for him to KO Warcury.",
         ],
         howToRespond: [
-          'There may be an opening to fight when Akainu is not in his enhanced state and cannot use the skill that activates it. Otherwise, generally avoid fighting him; if forced to respond, look to disengage with skills.',
+          'There may be an opening to fight when Akainu is not in Mag-Mag state and his Skill 2 (Meteor Volcano), which activates it, is on cooldown. Otherwise, generally avoid fighting him; if forced to respond, try to disengage with skills.',
         ],
       },
     },
