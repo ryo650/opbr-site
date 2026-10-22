@@ -230,12 +230,13 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
     },
     {
       "characterId": "future-where-i-m-the-most-free-jewelry-bonney",
-      "advantage": 4,
+      "advantage": 2,
       "whyYouWin": [
-        "Royalty / Former Royalty ATK reduction plus SP Capture, its blocking shield and Perfect Guard can produce strong capture pressure."
+        "Peter can reduce Bonney's ATK through his Royalty / Former Royalty trait, but Bonney can remove that ATK reduction by using a skill, limiting Peter's advantage."
       ],
       "watchOut": [
-        "This trigger applies an ATK debuff but does not remove increases, so the broader team benefit is limited."
+        "Watch for Bonney's skills, which can clear the ATK reduction. Her Normal Attacks can also deal substantial damage when her attack power is boosted.",
+        "Avoid prolonged damage trades; use hit-and-run attacks to pressure Bonney without exposing Peter to repeated hits."
       ]
     }
   ]
