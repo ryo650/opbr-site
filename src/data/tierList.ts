@@ -16,8 +16,8 @@ export const tierList: TierRow[] = [
     tier: "SS",
     colorClass: "SS",
     characterIds: [
-      "the-five-elders-st-shepherd-ju-peter",
       "the-five-elders-st-topman-warcury",
+      "the-five-elders-st-shepherd-ju-peter",
     ],
   },
   {
