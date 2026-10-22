@@ -164,7 +164,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Roger can deal heavy damage to Peter and generally has the advantage in damage trades when Roger avoids Peter's skills.",
-        "With an ATK increase active, Roger may be able to KO Peter in a single hit."
+        "With an ATK increase active, Roger can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Roger to an ally with a better matchup. If you must fight, look for a window when Roger's ATK is not increased."
@@ -175,7 +175,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Garp can deal heavy damage to Peter and generally has the advantage in damage trades when Garp avoids Peter's skills.",
-        "With an ATK increase active, Garp may be able to KO Peter in a single hit."
+        "With an ATK increase active, Garp can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Garp to an ally with a better matchup. If you must fight, look for a window when Garp's ATK is not increased."
@@ -186,7 +186,8 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "difficulty": 3,
       "whyDifficult": [
         "Shanks can deal heavy damage to Peter and generally has the advantage in damage trades when Shanks avoids Peter's skills.",
-        "With an ATK increase active, Shanks may be able to KO Peter in a single hit."
+        "With an ATK increase active, Shanks can quickly leave Peter critically low on HP, potentially triggering Peter's trait that lets him survive with 1 HP.",
+        "Shanks's max HP reduction is also effective against Peter; it lowers his maximum HP as a separate effect from ordinary damage to his current HP."
       ],
       "howToRespond": [
         "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
