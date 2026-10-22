@@ -132,7 +132,7 @@ test('Warcury pre-release guide registers the agreed matchups and skill metadata
   assert.equal(hasCharacterGuide(warcuryId), true);
   assert.equal(guide.strengths?.length, 3);
   assert.equal(guide.weaknesses?.length, 3);
-  assert.equal(guide.counters?.length, 7);
+  assert.equal(guide.counters?.length, 8);
   assert.equal(guide.strongAgainst?.length, 7);
   assert.equal(guide.traits?.length, 7);
   assert.deepEqual(
@@ -152,6 +152,7 @@ test('Warcury pre-release guide registers the agreed matchups and skill metadata
       ['king-of-the-pirates-gol-d-roger', 3],
       ['legendary-hero-monkey-d-garp', 3],
       ['film-red-shanks', 3],
+      ['navy-hq-fleet-admiral-akainu', 4],
     ],
   );
   assert.ok(guide.strongAgainst.every(({ advantage }) => advantage === 5));
@@ -176,6 +177,7 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
     'flame-emperor-sabo',
     'tontatta-pirates-captain-leo',
     ...addedIds,
+    'ama-no-murakumo-sword-kizaru',
   ]);
   for (const guide of [peter, warcury]) {
     assert.equal(new Set(guide.counters.map(({ characterId }) => characterId)).size, guide.counters.length);
@@ -216,6 +218,53 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
   assert.match(bonney.whyYouWin.join(' '), /remove that ATK reduction by using a skill/);
   assert.match(bonney.watchOut.join(' '), /Normal Attacks/);
   assert.match(bonney.watchOut.join(' '), /hit-and-run/);
+});
+
+test('Warcury and Peter add Akainu and Kizaru counters with the agreed ratings and guidance', () => {
+  const cases = [
+    {
+      guideId: 'the-five-elders-st-topman-warcury',
+      count: 8,
+      name: 'Navy HQ Fleet Admiral Akainu',
+      matchup: {
+        characterId: 'navy-hq-fleet-admiral-akainu',
+        difficulty: 4,
+        whyDifficult: [
+          "Akainu's attacks that increase Dodge cooldown and his attacks while enhanced can let him keep Warcury under one-sided pressure. His three-hit invincibility also makes it easier for him to KO Warcury.",
+        ],
+        howToRespond: [
+          'There may be an opening to fight when Akainu is not in his enhanced state and cannot use the skill that activates it. Otherwise, generally avoid fighting him; if forced to respond, look to disengage with skills.',
+        ],
+      },
+    },
+    {
+      guideId: 'the-five-elders-st-shepherd-ju-peter',
+      count: 7,
+      name: 'Ama no Murakumo Sword Kizaru',
+      matchup: {
+        characterId: 'ama-no-murakumo-sword-kizaru',
+        difficulty: 4,
+        whyDifficult: [
+          "Kizaru's skills can damage Peter effectively, and his high mobility makes it difficult for Peter to escape. Peter's limited KO potential can leave him at a one-sided disadvantage.",
+        ],
+        howToRespond: [
+          "Try to Perfect Guard Kizaru's skills whenever possible, and carefully choose when to activate SP Capture and which Treasure to target.",
+        ],
+      },
+    },
+  ];
+
+  for (const { guideId, count, name, matchup } of cases) {
+    const counters = characterGuides[guideId].counters;
+    assert.equal(counters.length, count, guideId);
+    assert.equal(new Set(counters.map(({ characterId }) => characterId)).size, count, guideId);
+    assert.equal(characters[matchup.characterId].name, name);
+    assert.deepEqual(
+      counters.filter(({ characterId }) => characterId === matchup.characterId),
+      [matchup],
+      guideId,
+    );
+  }
 });
 
 test('new characters resolve to guides and remain listed for exactly two calendar months', () => {

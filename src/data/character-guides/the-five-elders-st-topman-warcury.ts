@@ -220,6 +220,16 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "howToRespond": [
         "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
       ]
+    },
+    {
+      "characterId": "navy-hq-fleet-admiral-akainu",
+      "difficulty": 4,
+      "whyDifficult": [
+        "Akainu's attacks that increase Dodge cooldown and his attacks while enhanced can let him keep Warcury under one-sided pressure. His three-hit invincibility also makes it easier for him to KO Warcury."
+      ],
+      "howToRespond": [
+        "There may be an opening to fight when Akainu is not in his enhanced state and cannot use the skill that activates it. Otherwise, generally avoid fighting him; if forced to respond, look to disengage with skills."
+      ]
     }
   ],
   "strongAgainst": [
