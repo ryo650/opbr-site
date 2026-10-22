@@ -41,6 +41,7 @@ export const tierList: TierRow[] = [
       "happy-halloween-uta",
       "the-four-emperors-marshall-d-teach",
       "kaido-s-son-yamato",
+      "animal-kingdom-pirates-lead-performer-king",
     ],
   },
   {
@@ -53,7 +54,6 @@ export const tierList: TierRow[] = [
       "blackbeard-pirates-kuzan",
       "daimyo-of-kuri-kozuki-oden",
       "red-rock-monkey-d-luffy",
-      "animal-kingdom-pirates-lead-performer-king",
     ],
   },
   {
