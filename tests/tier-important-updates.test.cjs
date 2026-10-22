@@ -204,7 +204,7 @@ test('October 21 meta review retains 8 rises, 7 falls and 2 new entries', () => 
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierListBeforeOctober22Reorder).badges, {});
 });
 
-test('October 22 placements satisfy every requested position, including the Whitebeard follow-up', () => {
+test('October 22 placements satisfy the Whitebeard, Kuzan, Garp and Blackbeard follow-ups', () => {
   const row = (tier) => tierList.find((row) => row.tier === tier);
   assert.deepEqual(row('B').characterIds.slice(0, 3), [
     'ama-no-murakumo-sword-kizaru', 'awakened-form-rob-lucci', 'the-wings-zoro-sanji',
@@ -214,8 +214,12 @@ test('October 22 placements satisfy every requested position, including the Whit
   assert.deepEqual(row('B').characterIds.slice(whiteNika, whiteNika + 3), [
     'the-four-emperors-monkey-d-luffy', 'great-pirate-edward-newgate', 'egghead-tony-tony-chopper',
   ]);
-  assert.equal(row('B').characterIds.at(-1), 'blackbeard-pirates-kuzan');
-  assert.equal(row('C').characterIds[0], 'daimyo-of-kuri-kozuki-oden');
+  assert.deepEqual(row('B').characterIds.slice(3, 5), [
+    'the-four-emperors-marshall-d-teach', 'king-of-the-pirates-gol-d-roger',
+  ]);
+  assert.deepEqual(row('C').characterIds.slice(0, 3), [
+    'blackbeard-pirates-kuzan', 'legendary-hero-monkey-d-garp', 'daimyo-of-kuri-kozuki-oden',
+  ]);
   assert.equal(row('A').characterIds.at(-1), 'unexpected-collaboration-rob-lucci');
   assert.notEqual(row('C').hidden, true);
   assert.deepEqual(tierList.filter((row) => row.hidden).map((row) => row.tier), ['god', 'D']);
@@ -227,6 +231,7 @@ test('October 22 reorder preserves the roster and all other characters’ relati
     'ama-no-murakumo-sword-kizaru', 'awakened-form-rob-lucci', 'the-wings-zoro-sanji',
     'the-four-emperors-monkey-d-luffy', 'great-pirate-edward-newgate', 'blackbeard-pirates-kuzan',
     'daimyo-of-kuri-kozuki-oden', 'unexpected-collaboration-rob-lucci',
+    'legendary-hero-monkey-d-garp', 'the-four-emperors-marshall-d-teach',
   ]);
   const placements = tierList.flatMap((row) => row.characterIds);
   assert.equal(new Set(placements).size, placements.length);
@@ -247,7 +252,7 @@ test('October 22 reorder preserves the roster and all other characters’ relati
   assert.equal(tierListOctober10.find((row) => row.tier === 'C').characterIds.length, 13);
 });
 
-test('October 22 reorder adds no event or badges and suppresses only the three tier mismatches', () => {
+test('October 22 reorder adds no event or badges and suppresses only the five tier mismatches', () => {
   const update = importantTierUpdates.find((event) => event.id === '2026-10-21-warcury-ju-peter-meta');
   const start = Date.parse(update.publishedAt);
   const previous = state(importantTierUpdates, start, tierListBeforeOctober22Reorder);
@@ -255,7 +260,10 @@ test('October 22 reorder adds no event or badges and suppresses only the three t
   assert.equal(current.update, update);
   assert.equal(importantTierUpdates.length, 4);
   assert.equal(update.changes.length, 17);
-  const suppressed = ['unexpected-collaboration-rob-lucci', 'the-four-emperors-monkey-d-luffy', 'daimyo-of-kuri-kozuki-oden'];
+  const suppressed = [
+    'unexpected-collaboration-rob-lucci', 'the-four-emperors-monkey-d-luffy', 'daimyo-of-kuri-kozuki-oden',
+    'legendary-hero-monkey-d-garp', 'blackbeard-pirates-kuzan',
+  ];
   const expected = { ...previous.badges };
   for (const id of suppressed) {
     assert.ok(expected[id]);
@@ -263,10 +271,10 @@ test('October 22 reorder adds no event or badges and suppresses only the three t
     assert.notEqual(current.currentTiers[id], update.changes.find((change) => change.characterId === id).toTier);
   }
   assert.deepEqual(current.badges, expected);
-  assert.equal(Object.keys(current.badges).length, 14);
+  assert.equal(Object.keys(current.badges).length, 12);
   assert.equal(current.badges['ama-no-murakumo-sword-kizaru'].kind, 'rise');
   assert.equal(current.badges['the-wings-zoro-sanji'].kind, 'fall');
-  assert.equal(current.badges['blackbeard-pirates-kuzan'].kind, 'fall');
+  assert.equal(current.badges['the-four-emperors-marshall-d-teach'].kind, 'fall');
   for (const id of ['awakened-form-rob-lucci', 'great-pirate-edward-newgate', 'egghead-tony-tony-chopper']) {
     assert.equal(current.badges[id], undefined);
   }
