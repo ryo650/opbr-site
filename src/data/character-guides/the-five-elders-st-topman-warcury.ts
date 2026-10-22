@@ -153,7 +153,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
         "As a Runner, Sabo can create an obstacle with his counter to support Treasure captures and contest important Treasure Areas."
       ],
       "howToRespond": [
-        "Track Sabo on the minimap and avoid direct encounters when possible; leave the matchup to an ally better equipped to handle him."
+        Against Sabo, avoid using the held Normal Attack movement and approach directly instead. Predictable skills are easy to counter, so mix up Normal Attacks: stop after the first or second hit and use the threat of the third-hit Knockback to bait Sabo's counter. Once the counter is no longer active, look for an opening to land a skill.
       ]
     },
     {
@@ -185,7 +185,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
         "Law's strong Treasure capture abilities and counter may help him evade attacks, create space, and contribute as a Runner without committing to a direct duel."
       ],
       "howToRespond": [
-        "Punish predictable captures, but respect Law's counter. Law may be vulnerable if his 1-HP survival is nullified at 30% HP or below."
+        Against Law, avoid using the held Normal Attack movement and approach directly instead. Rather than throwing out a predictable skill into his counter, vary the Normal Attack combo: stop after the first or second hit and threaten the third-hit Knockback to draw out his counter. When the counter is no longer active, time a skill to punish the opening.
       ]
     },
     {
