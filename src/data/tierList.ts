@@ -36,13 +36,10 @@ export const tierList: TierRow[] = [
     colorClass: "A",
     characterIds: [
       "the-five-elders-st-ethanbaron-v-nusjuro",
-      "the-four-emperors-monkey-d-luffy",
-      "the-wings-zoro-sanji",
-      "happy-halloween-uta",
-      "the-four-emperors-marshall-d-teach",
       "navy-hq-fleet-admiral-akainu",
       "kaido-s-son-yamato",
       "animal-kingdom-pirates-lead-performer-king",
+      "happy-halloween-uta",
     ],
   },
   {
@@ -55,13 +52,15 @@ export const tierList: TierRow[] = [
       "ama-no-murakumo-sword-kizaru",
       "blackbeard-pirates-kuzan",
       "daimyo-of-kuri-kozuki-oden",
-      "red-rock-monkey-d-luffy",
+      "the-four-emperors-marshall-d-teach",
+      "the-wings-zoro-sanji",
     ],
   },
   {
     tier: "C",
     colorClass: "C",
     characterIds: [
+      "the-four-emperors-monkey-d-luffy",
       "great-pirate-gol-d-roger",
       "awakened-form-rob-lucci",
       "great-pirate-edward-newgate",
