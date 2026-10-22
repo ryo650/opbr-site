@@ -4982,6 +4982,38 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When your HP is 70% or more: Boost the cooldown reduction speed of Skill 1 by 13%. and When upgrading a Medal, \"Happy Halloween! I'm Uta! I'll Trick You!\" Uta's Trick will cause the number of *s to always be 3 no matter the effect."
     }
+  ],
+  "st-topman-warcury": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When your HP is 70% or more: Reduce damage received by 5%."
+    }
+  ],
+  "st-shepherd-ju-peter": [
+    {
+      "effectId": "capture-speed-increase",
+      "value": 8,
+      "unit": "percent",
+      "originalText": "When your HP is 70% or more: Boost capture speed by 8%."
+    }
+  ],
+  "kizaru-egghead": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When attacked by a character type \"Straw Hat Pirates\" enemy: Reduce damage received by 3%."
+    }
+  ],
+  "luffy-dawn-rocket": [
+    {
+      "effectId": "skill1-cooldown-reduction-speed",
+      "value": 2,
+      "unit": "percent",
+      "originalText": "When attacking an enemy with a Normal Attack, 30% chance to: Reduce the cooldown time of Skill 1 by 2%."
+    }
   ]
 };
 

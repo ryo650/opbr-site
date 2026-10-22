@@ -1,0 +1,173 @@
+
+> opbr-site@0.1.0 medals:test-unique-trait-categories
+> node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/medal-unique-traits/*.test.mjs
+
+TAP version 13
+# Subtest: generated category data stays in sync with all production Medals
+ok 1 - generated category data stays in sync with all production Medals
+  ---
+  duration_ms: 6.490417
+  type: 'test'
+  ...
+# Subtest: the catalog contains exactly the in-game canonical categories
+ok 2 - the catalog contains exactly the in-game canonical categories
+  ---
+  duration_ms: 0.119042
+  type: 'test'
+  ...
+# Subtest: representative Damage Increase, Damage Reduction, Skill 1, and Skill 2 traits classify correctly
+ok 3 - representative Damage Increase, Damage Reduction, Skill 1, and Skill 2 traits classify correctly
+  ---
+  duration_ms: 0.081333
+  type: 'test'
+  ...
+# Subtest: Match Any returns the union and Match All returns the intersection
+ok 4 - Match Any returns the union and Match All returns the intersection
+  ---
+  duration_ms: 1.708416
+  type: 'test'
+  ...
+# Subtest: one selected category has identical Match Any and Match All results
+ok 5 - one selected category has identical Match Any and Match All results
+  ---
+  duration_ms: 2.019709
+  type: 'test'
+  ...
+# Subtest: category filtering combines with Unique Trait text search
+ok 6 - category filtering combines with Unique Trait text search
+  ---
+  duration_ms: 0.677708
+  type: 'test'
+  ...
+# Subtest: cleared Unique Trait filters return the full catalog
+ok 7 - cleared Unique Trait filters return the full catalog
+  ---
+  duration_ms: 0.682125
+  type: 'test'
+  ...
+# Subtest: Damage Dealt and Damage Received values extract as percentages
+ok 8 - Damage Dealt and Damage Received values extract as percentages
+  ---
+  duration_ms: 2.406292
+  type: 'test'
+  ...
+# Subtest: Normal Attack damage remains distinct from general Damage Dealt
+ok 9 - Normal Attack damage remains distinct from general Damage Dealt
+  ---
+  duration_ms: 0.094667
+  type: 'test'
+  ...
+# Subtest: Skill 1 cooldown extraction contributes to its verified cap group
+ok 10 - Skill 1 cooldown extraction contributes to its verified cap group
+  ---
+  duration_ms: 0.353083
+  type: 'test'
+  ...
+# Subtest: reviewed production OCR fixes extract Bed Rest and Usopp FILM RED safely
+ok 11 - reviewed production OCR fixes extract Bed Rest and Usopp FILM RED safely
+  ---
+  duration_ms: 0.211375
+  type: 'test'
+  ...
+# Subtest: one Unique Trait can produce two ordered Effects
+ok 12 - one Unique Trait can produce two ordered Effects
+  ---
+  duration_ms: 1.1585
+  type: 'test'
+  ...
+# Subtest: Unique Trait, Extra Trait, and Set Effect share one cap bucket
+ok 13 - Unique Trait, Extra Trait, and Set Effect share one cap bucket
+  ---
+  duration_ms: 0.9215
+  type: 'test'
+  ...
+# Subtest: Unique Trait Contribution retains Medal label and full originalText for UI details
+ok 14 - Unique Trait Contribution retains Medal label and full originalText for UI details
+  ---
+  duration_ms: 0.423917
+  type: 'test'
+  ...
+# Subtest: same Medal x3 contributes per slot and slot removal drops only that contribution
+ok 15 - same Medal x3 contributes per slot and slot removal drops only that contribution
+  ---
+  duration_ms: 0.23825
+  type: 'test'
+  ...
+# Subtest: ambiguous and OCR-corrupted supported Effects go to needsReview
+ok 16 - ambiguous and OCR-corrupted supported Effects go to needsReview
+  ---
+  duration_ms: 1.702917
+  type: 'test'
+  ...
+# Subtest: generated Effect extraction stays in sync with all production Medals
+not ok 17 - generated Effect extraction stays in sync with all production Medals
+  ---
+  duration_ms: 41.626833
+  type: 'test'
+  location: '<pr-checkout>/scripts/medal-unique-traits/unique-trait-effects.test.mjs:178:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+
+    704 !== 666
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 666
+  actual: 704
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<pr-checkout>/scripts/medal-unique-traits/unique-trait-effects.test.mjs:183:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: every unextracted cap-relevant production Trait is explicitly in needsReview
+not ok 18 - every unextracted cap-relevant production Trait is explicitly in needsReview
+  ---
+  duration_ms: 3.205041
+  type: 'test'
+  location: '<pr-checkout>/scripts/medal-unique-traits/unique-trait-effects.test.mjs:207:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly deep-equal:
+    + actual - expected
+
+    + [
+    +   'the-strongest-man-in-the-world'
+    + ]
+    - []
+
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected:
+  actual:
+    0: 'the-strongest-man-in-the-world'
+  operator: 'deepStrictEqual'
+  stack: |-
+    TestContext.<anonymous> (file://<pr-checkout>/scripts/medal-unique-traits/unique-trait-effects.test.mjs:226:10)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+# Subtest: every generated effectId is canonical and timed Cannot Stack Effects stay out of Cap Usage
+ok 19 - every generated effectId is canonical and timed Cannot Stack Effects stay out of Cap Usage
+  ---
+  duration_ms: 2.194958
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 17
+# fail 2
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 512.7095

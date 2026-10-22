@@ -1,0 +1,16 @@
+{
+  "baseCommit": "00cca921c5a9ae6e2d08afe76847f75d820f4d62",
+  "sourceCommit": "833a7d96ca7404bd2688a7578ce4b6220cb579f2",
+  "emitted": 4,
+  "retained": 4,
+  "failures": [],
+  "published": false,
+  "publicationReady": false,
+  "publicationActions": [],
+  "productionReceipts": [
+    "missing",
+    "missing",
+    "missing",
+    "missing"
+  ]
+}

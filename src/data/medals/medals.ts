@@ -19743,5 +19743,121 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "st-topman-warcury",
+    "name": "St. Topman Warcury Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Reduce damage received by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "st-shepherd-ju-peter",
+    "name": "St. Shepherd Ju Peter Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 70% or more: Boost capture speed by 8%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "world-noble",
+        "name": "World Noble"
+      },
+      {
+        "id": "the-five-elders",
+        "name": "The Five Elders"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "kizaru-egghead",
+    "name": "Kizaru (Egghead) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type \"Straw Hat Pirates\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "logia",
+        "name": "Logia"
+      },
+      {
+        "id": "navy-admiral-former-navy-admiral",
+        "name": "Navy Admiral / Former Navy Admiral"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "luffy-dawn-rocket",
+    "name": "Luffy (Dawn Rocket) Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with a Normal Attack, 30% chance to: Reduce the cooldown time of Skill 1 by 2%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "the-four-emperors",
+        "name": "The Four Emperors"
+      },
+      {
+        "id": "blood-brothers",
+        "name": "Blood Brothers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

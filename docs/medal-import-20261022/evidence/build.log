@@ -1,0 +1,63 @@
+
+> opbr-site@0.1.0 build
+> next build --webpack
+
+▲ Next.js 16.3.4 (webpack)
+✓ Running next.config.ts took 68ms
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 4.7s
+  Running TypeScript ...
+  Finished TypeScript in 2.7s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/81) ...
+  Generating static pages using 7 workers (20/81)
+  Generating static pages using 7 workers (40/81)
+  Generating static pages using 7 workers (60/81)
+✓ Generating static pages using 7 workers (81/81) in 534ms
+  Finalizing page optimization ...
+  Collecting build traces ...
+
+Route (app)                                                                      Revalidate  Expire
+┌ ○ /
+├ ○ /_not-found
+├ ○ /about
+├ ○ /basic-gameplay-guide
+├ ○ /beginner-guide
+├ ○ /character-guides
+├ ○ /character-usage
+├   /characters/[characterId]
+│ ├ ● /characters/the-five-elders-st-shepherd-ju-peter
+│ ├ ● /characters/the-five-elders-st-topman-warcury
+│ ├ ● /characters/future-where-i-m-the-most-free-jewelry-bonney
+│ └ ● [+3 more paths]
+├ ○ /contact
+├ ○ /create-tier-list
+├ ○ /icon.png
+├ ƒ /medal-builder
+├ ○ /medal-sets
+├   /medal-sets/[id]
+│ ├ ● /medal-sets/general-01
+│ ├ ● /medal-sets/general-02
+│ ├ ● /medal-sets/general-03
+│ └ ● [+19 more paths]
+├ ○ /new-characters                                                                      1h      1y
+├ ○ /new-scout
+├ ○ /privacy-policy
+├ ○ /robots.txt
+├ ƒ /scout-simulator
+├   /scout-simulator/[scoutId]
+│ ├ ● /scout-simulator/the-five-elders-st-topman-warcury-20261111
+│ ├ ● /scout-simulator/270-million-downloads-extreme-bounty-festival-2-20261027
+│ ├ ● /scout-simulator/supreme-great-grade-sword-wielders-20261013
+│ └ ● [+26 more paths]
+├ ○ /sitemap.xml
+├ ○ /support-guide
+├ ƒ /tier-list
+├ ○ /tier-list/preview
+└ ○ /updates
+
+
+○  (Static)   prerendered as static content
+●  (SSG)      prerendered as static HTML (uses generateStaticParams)
+ƒ  (Dynamic)  server-rendered on demand
