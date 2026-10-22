@@ -132,7 +132,7 @@ test('Warcury pre-release guide registers the agreed matchups and skill metadata
   assert.equal(hasCharacterGuide(warcuryId), true);
   assert.equal(guide.strengths?.length, 3);
   assert.equal(guide.weaknesses?.length, 3);
-  assert.equal(guide.counters?.length, 4);
+  assert.equal(guide.counters?.length, 7);
   assert.equal(guide.strongAgainst?.length, 7);
   assert.equal(guide.traits?.length, 7);
   assert.deepEqual(
@@ -149,6 +149,9 @@ test('Warcury pre-release guide registers the agreed matchups and skill metadata
       ['future-where-i-m-the-most-free-jewelry-bonney', 3],
       ['happy-halloween-uta', 3],
       ['winner-island-trafalgar-law', 3],
+      ['king-of-the-pirates-gol-d-roger', 3],
+      ['legendary-hero-monkey-d-garp', 3],
+      ['film-red-shanks', 3],
     ],
   );
   assert.ok(guide.strongAgainst.every(({ advantage }) => advantage === 5));
@@ -156,6 +159,45 @@ test('Warcury pre-release guide registers the agreed matchups and skill metadata
     'Normal Attack Combo',
     'Hold Normal Attack: Treasure Response',
   ]);
+});
+
+test('Peter and Warcury matchup updates retain counter perspective', () => {
+  const peter = characterGuides['the-five-elders-st-shepherd-ju-peter'];
+  const warcury = characterGuides['the-five-elders-st-topman-warcury'];
+  const addedIds = [
+    'king-of-the-pirates-gol-d-roger',
+    'legendary-hero-monkey-d-garp',
+    'film-red-shanks',
+  ];
+  assert.ok(peter);
+  assert.ok(warcury);
+  assert.deepEqual(peter.counters?.map(({ characterId }) => characterId), [
+    'unexpected-collaboration-rob-lucci',
+    'flame-emperor-sabo',
+    'tontatta-pirates-captain-leo',
+    ...addedIds,
+  ]);
+  for (const guide of [peter, warcury]) {
+    assert.equal(new Set(guide.counters.map(({ characterId }) => characterId)).size, guide.counters.length);
+    for (const id of addedIds) {
+      const matchup = guide.counters.find(({ characterId }) => characterId === id);
+      assert.equal(matchup?.difficulty, 3, id);
+      assert.match(matchup.whyDifficult.join(' '), /ATK increase/);
+      assert.match(matchup.howToRespond.join(' '), /ally with a better matchup/);
+      assert.match(matchup.howToRespond.join(' '), /ATK is not increased/);
+    }
+  }
+  for (const id of ['flame-emperor-sabo', 'happy-halloween-uta', 'future-where-i-m-the-most-free-jewelry-bonney']) {
+    const respond = warcury.counters.find(({ characterId }) => characterId === id)?.howToRespond?.join(' ') ?? '';
+    assert.match(respond, /avoid/i);
+    assert.match(respond, /ally/i);
+    assert.doesNotMatch(respond, /obstacle/i);
+  }
+  const luffy = peter.strongAgainst.find(({ characterId }) => characterId === 'the-four-emperors-monkey-d-luffy');
+  assert.equal(luffy?.advantage, 5);
+  assert.match(luffy.whyYouWin.join(' '), /Straw Hat Pirates/);
+  assert.match(luffy.whyYouWin.join(' '), /50% ATK reduction/);
+  assert.doesNotMatch(luffy.whyYouWin.join(' '), /Element-change/);
 });
 
 test('new characters resolve to guides and remain listed for exactly two calendar months', () => {
