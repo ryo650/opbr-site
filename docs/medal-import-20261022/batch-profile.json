@@ -1,0 +1,63 @@
+{
+  "screenshotSize": {
+    "width": 2622,
+    "height": 1206
+  },
+  "crop": {
+    "x": 830,
+    "y": 140,
+    "width": 200,
+    "height": 200
+  },
+  "fieldCrops": {
+    "name": {
+      "x": 1020,
+      "y": 105,
+      "width": 800,
+      "height": 90,
+      "scale": 2
+    },
+    "uniqueTrait": {
+      "x": 980,
+      "y": 175,
+      "width": 900,
+      "height": 350,
+      "scale": 2.5
+    },
+    "tags": {
+      "x": 500,
+      "y": 110,
+      "width": 1450,
+      "height": 500,
+      "scale": 2.5
+    },
+    "rateTraits": {
+      "x": 830,
+      "y": 349,
+      "width": 850,
+      "height": 622,
+      "scale": 2.5
+    }
+  },
+  "rateScrollbarCrop": {
+    "x": 2007,
+    "y": 349,
+    "width": 12,
+    "height": 621
+  },
+  "uniqueTraitScrollbarCrop": {
+    "x": 1818,
+    "y": 283,
+    "width": 14,
+    "height": 235
+  },
+  "primaryOcrModalCrop": {
+    "x": 506,
+    "y": 43,
+    "width": 1610,
+    "height": 1120,
+    "rebaseObservationsToOriginal": true,
+    "scale": 1.5
+  },
+  "ocrCompute": "CPU"
+}

@@ -1,0 +1,28 @@
+TAP version 13
+# Subtest: shared Builder/Finder medal information renders all fact sections
+ok 1 - shared Builder/Finder medal information renders all fact sections
+  ---
+  duration_ms: 4.77375
+  type: 'test'
+  ...
+# Subtest: medals without optional extra effects show None rather than fabricated values
+ok 2 - medals without optional extra effects show None rather than fabricated values
+  ---
+  duration_ms: 0.429333
+  type: 'test'
+  ...
+# Subtest: react escapes untrusted OCR-derived medal text
+ok 3 - react escapes untrusted OCR-derived medal text
+  ---
+  duration_ms: 0.520084
+  type: 'test'
+  ...
+1..3
+# tests 3
+# suites 0
+# pass 3
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 173.910792

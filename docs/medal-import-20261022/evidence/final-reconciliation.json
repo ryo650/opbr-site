@@ -1,0 +1,25 @@
+{
+  "baseCommit": "00cca921c5a9ae6e2d08afe76847f75d820f4d62",
+  "before": 700,
+  "after": 704,
+  "addedIds": [
+    "st-topman-warcury",
+    "st-shepherd-ju-peter",
+    "kizaru-egghead",
+    "luffy-dawn-rocket"
+  ],
+  "existing700Preserved": true,
+  "sourceTranscriptionMatches": true,
+  "recentlyAddedFirstFourVerified": true,
+  "productFilesSha256": {
+    "src/data/medals/medals.ts": "542afe3a6b320a65d17264a06164d2320520a24aa1a7a9eb408eebebb59692e8",
+    "src/data/medals/unique-trait-categories.generated.ts": "380ad4d2ee93dcb4d7361517fd31f993c9ec9ab4a8cfe0e61d5525e486ffda4f",
+    "src/data/medals/unique-trait-effects.generated.ts": "51e0f8a6a3c8136a324091c5ad55f5be06eea2b046dce321893856ab17bcd374",
+    "public/medals/st-topman-warcury.webp": "106c92704b9804dd96ab74adc3738a3352641ce9fd1281f06feea67144ba844d",
+    "public/medals/st-shepherd-ju-peter.webp": "805e5e4d5dff3fcd025164b92f25999617d0e2731c3aaaf2d0d1bd40a03c3c8d",
+    "public/medals/kizaru-egghead.webp": "d32ad819ad930f085285c52414387cb6dd34032dd8b43d8b744af8fc7d3441df",
+    "public/medals/luffy-dawn-rocket.webp": "3c55c74c976d7d5323d66352e3e22ef104a5d834afb821d0edb5ffc64dafe6cf"
+  },
+  "sourceCommit": "833a7d96ca7404bd2688a7578ce4b6220cb579f2",
+  "committedFilesMatchValidatedFiles": true
+}

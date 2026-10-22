@@ -1,0 +1,101 @@
+{
+  "sourceCommit": "833a7d96ca7404bd2688a7578ce4b6220cb579f2",
+  "sourcePR": null,
+  "baseCommit": "00cca921c5a9ae6e2d08afe76847f75d820f4d62",
+  "scope": "Four screenshot-backed medals; existing 700 entries preserved; 700 to 704.",
+  "verification": {
+    "status": "failed",
+    "completedAt": "2026-10-22T06:13:59.517688+00:00",
+    "checks": [
+      {
+        "name": "importer-batch",
+        "result": "pass",
+        "evidenceRef": "evidence/batch-validation.log"
+      },
+      {
+        "name": "production-and-all-704-images",
+        "result": "pass",
+        "evidenceRef": "evidence/production-validation.log"
+      },
+      {
+        "name": "importer-94-tests",
+        "result": "pass",
+        "evidenceRef": "evidence/importer-tests.log"
+      },
+      {
+        "name": "core-23-tests",
+        "result": "pass",
+        "evidenceRef": "evidence/core-tests.log"
+      },
+      {
+        "name": "medal-information-3-tests",
+        "result": "pass",
+        "evidenceRef": "evidence/medal-information-tests.log"
+      },
+      {
+        "name": "unique-trait-tests",
+        "result": "fail",
+        "evidenceRef": "evidence/unique-trait-tests.log"
+      },
+      {
+        "name": "finder-tests",
+        "result": "fail",
+        "evidenceRef": "evidence/finder-tests.log"
+      },
+      {
+        "name": "typescript",
+        "result": "pass",
+        "evidenceRef": "evidence/typescript.log"
+      },
+      {
+        "name": "scoped-eslint",
+        "result": "pass",
+        "evidenceRef": "evidence/data-lint.log"
+      },
+      {
+        "name": "production-build",
+        "result": "pass",
+        "evidenceRef": "evidence/build.log"
+      },
+      {
+        "name": "catalog-append-and-recently-added",
+        "result": "pass",
+        "evidenceRef": "evidence/final-reconciliation.json"
+      },
+      {
+        "name": "read-only-news-shadow",
+        "result": "pass",
+        "evidenceRef": "evidence/news-shadow-summary.json"
+      }
+    ]
+  },
+  "newDataChecks": "passed",
+  "existingBaselineFailures": [
+    {
+      "suite": "unique-trait-tests",
+      "passed": 17,
+      "failed": 2,
+      "baselineEvidenceRef": "evidence/unique-trait-tests-baseline.log",
+      "reasons": [
+        "Historical catalog count and extraction totals are hard-coded to the old 666-medal snapshot.",
+        "Existing unresolved the-strongest-man-in-the-world entry."
+      ]
+    },
+    {
+      "suite": "finder-tests",
+      "passed": 18,
+      "failed": 2,
+      "baselineEvidenceRef": "evidence/finder-tests-baseline.log",
+      "reasons": [
+        "The documented direct Node command cannot resolve an existing extensionless TypeScript import.",
+        "The pre-existing default-sort fixture disagrees with the Finder ordering."
+      ]
+    }
+  ],
+  "resultsReusedAfterCommit": "The product commit blobs were SHA-256 checked against the exact files used by the recorded tests; the following commit adds documentation only.",
+  "notes": [
+    "The original OCR batch validated all four medals with no needsReview and no conflicts.",
+    "No importer implementation or catalog approval files were changed.",
+    "Read-only News Shadow observed these four committed medals; publication remains disabled."
+  ]
+}

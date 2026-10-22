@@ -1,0 +1,14 @@
+
+> opbr-site@0.1.0 medals:validate-importer-batch
+> node scripts/medal-importer/validate-importer-batch.mjs
+
+{
+  "validationScope": "importer-batch",
+  "previousProduction": 700,
+  "batchMedals": 4,
+  "newMedals": 4,
+  "duplicateSkipped": 0,
+  "mergedProduction": 704,
+  "existingProductionPreserved": true,
+  "batchFieldsMatch": true
+}

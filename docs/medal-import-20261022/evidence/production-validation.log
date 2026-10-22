@@ -1,0 +1,46 @@
+
+> opbr-site@0.1.0 medals:validate
+> node scripts/medal-importer/validate-output.mjs
+
+{
+  "validationScope": "production",
+  "productionMedals": 704,
+  "uniqueIds": 704,
+  "regressionFixturesPreserved": 11,
+  "webpFiles": 704,
+  "webpSize": "200x200",
+  "targetedRetryValuesMatch": true,
+  "approvedStatusEffects": 28,
+  "productionStatusEffectsCatalogued": true,
+  "generatedStatusEffectTypeCurrent": true,
+  "approvedNativeEffects": 4,
+  "productionNativeEffectsCatalogued": true,
+  "generatedNativeEffectTypeCurrent": true,
+  "generatedUniqueTraitCategoriesCurrent": true,
+  "uniqueTraitCategoryCounts": {
+    "cooldown": 304,
+    "damage-increase": 121,
+    "damage-reduction": 100,
+    "hp-recovery": 66,
+    "capture-speed": 52,
+    "treasure-gauge": 19,
+    "hp-increase": 2,
+    "atk-increase": 1,
+    "def-increase": 0,
+    "crit-increase": 18,
+    "status-effect-reduction": 0,
+    "status-effect-nullification": 11,
+    "status-effect-infliction": 26,
+    "power-up-down": 33,
+    "spd-increase": 16,
+    "skill-1": 166,
+    "skill-2": 154
+  },
+  "uniqueTraitCategoriesNeedsReview": 9,
+  "generatedUniqueTraitEffectsCurrent": true,
+  "uniqueTraitEffectExtractedMedals": 610,
+  "uniqueTraitEffectExtractions": 614,
+  "uniqueTraitEffectMultipleEffectMedals": 4,
+  "uniqueTraitEffectsNeedsReview": 11,
+  "uniqueTraitEffectsUnclassified": 83
+}

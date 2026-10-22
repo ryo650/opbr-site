@@ -1,0 +1,152 @@
+
+> opbr-site@0.1.0 test
+> node --require ./tests/register.cjs --test tests/core.test.cjs
+
+TAP version 13
+# Subtest: every character is addressable by its own ID
+ok 1 - every character is addressable by its own ID
+  ---
+  duration_ms: 1.028166
+  type: 'test'
+  ...
+# Subtest: all local catalog images and guide videos exist
+ok 2 - all local catalog images and guide videos exist
+  ---
+  duration_ms: 2.075084
+  type: 'test'
+  ...
+# Subtest: tier list and guide matchups resolve, with no duplicate placements
+ok 3 - tier list and guide matchups resolve, with no duplicate placements
+  ---
+  duration_ms: 0.469041
+  type: 'test'
+  ...
+# Subtest: character guide availability follows the guide registry
+ok 4 - character guide availability follows the guide registry
+  ---
+  duration_ms: 0.11325
+  type: 'test'
+  ...
+# Subtest: Warcury guide registers the agreed matchups and skill metadata
+ok 5 - Warcury guide registers the agreed matchups and skill metadata
+  ---
+  duration_ms: 0.962292
+  type: 'test'
+  ...
+# Subtest: Peter and Warcury matchup updates retain counter perspective
+ok 6 - Peter and Warcury matchup updates retain counter perspective
+  ---
+  duration_ms: 0.594541
+  type: 'test'
+  ...
+# Subtest: Warcury and Peter add Akainu and Kizaru counters with the agreed ratings and guidance
+ok 7 - Warcury and Peter add Akainu and Kizaru counters with the agreed ratings and guidance
+  ---
+  duration_ms: 0.348458
+  type: 'test'
+  ...
+# Subtest: new characters resolve to guides and remain listed for exactly two calendar months
+ok 8 - new characters resolve to guides and remain listed for exactly two calendar months
+  ---
+  duration_ms: 6.861542
+  type: 'test'
+  ...
+# Subtest: all scout pickups exist and can actually be drawn at their weighted interval
+ok 9 - all scout pickups exist and can actually be drawn at their weighted interval
+  ---
+  duration_ms: 7.612
+  type: 'test'
+  ...
+# Subtest: imported Warcury and Peter normal scout replaces the provisional registration
+ok 10 - imported Warcury and Peter normal scout replaces the provisional registration
+  ---
+  duration_ms: 0.465917
+  type: 'test'
+  ...
+# Subtest: every configured category returns a character and excludes pickups from normal pools
+ok 11 - every configured category returns a character and excludes pickups from normal pools
+  ---
+  duration_ms: 3.091166
+  type: 'test'
+  ...
+# Subtest: existing non-100 totals remain relative weights as requested
+ok 12 - existing non-100 totals remain relative weights as requested
+  ---
+  duration_ms: 0.175084
+  type: 'test'
+  ...
+# Subtest: scout classification respects both boundaries and explicit JST offsets
+ok 13 - scout classification respects both boundaries and explicit JST offsets
+  ---
+  duration_ms: 0.062084
+  type: 'test'
+  ...
+# Subtest: monthly filters clamp month ends, including leap years
+ok 14 - monthly filters clamp month ends, including leap years
+  ---
+  duration_ms: 0.177916
+  type: 'test'
+  ...
+# Subtest: usage ranks use character IDs for ties and ignore display-name changes
+ok 15 - usage ranks use character IDs for ties and ignore display-name changes
+  ---
+  duration_ms: 5.265625
+  type: 'test'
+  ...
+# Subtest: usage processing computes coverage and changes without mutating input
+ok 16 - usage processing computes coverage and changes without mutating input
+  ---
+  duration_ms: 1.75875
+  type: 'test'
+  ...
+# Subtest: permanent guide directory includes exactly the registry, even after New Characters expires
+ok 17 - permanent guide directory includes exactly the registry, even after New Characters expires
+  ---
+  duration_ms: 0.817542
+  type: 'test'
+  ...
+# Subtest: directory searches full version names, tolerates punctuation, and combines filters
+ok 18 - directory searches full version names, tolerates punctuation, and combines filters
+  ---
+  duration_ms: 2.149458
+  type: 'test'
+  ...
+# Subtest: newly registered versions appear once without touching the directory or release list
+ok 19 - newly registered versions appear once without touching the directory or release list
+  ---
+  duration_ms: 0.516708
+  type: 'test'
+  ...
+# Subtest: Simulator result rarity labels retain the existing catalog grade mapping
+ok 20 - Simulator result rarity labels retain the existing catalog grade mapping
+  ---
+  duration_ms: 0.429834
+  type: 'test'
+  ...
+# Subtest: directory filters catalog rarity together with name, element and role
+ok 21 - directory filters catalog rarity together with name, element and role
+  ---
+  duration_ms: 0.255583
+  type: 'test'
+  ...
+# Subtest: rarity uses real IDs and preserves unclassified data rather than guessing from names
+ok 22 - rarity uses real IDs and preserves unclassified data rather than guessing from names
+  ---
+  duration_ms: 0.367958
+  type: 'test'
+  ...
+# Subtest: 270M Akainu Step 1 registration matches the source rate table
+ok 23 - 270M Akainu Step 1 registration matches the source rate table
+  ---
+  duration_ms: 0.142875
+  type: 'test'
+  ...
+1..23
+# tests 23
+# suites 0
+# pass 23
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 667.270375
