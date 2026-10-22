@@ -202,6 +202,16 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "howToRespond": [
         "Try to Perfect Guard Kizaru's skills whenever possible, and carefully choose when to activate SP Capture and which Treasure to target."
       ]
+    },
+    {
+      "characterId": "navy-hq-fleet-admiral-akainu",
+      "difficulty": 4,
+      "whyDifficult": [
+        "Akainu's enhanced Normal Attacks in Mag-Mag state and the heavy damage over time from Incinerate can overwhelm Peter."
+      ],
+      "howToRespond": [
+        "Avoid direct fights with Akainu. Target a different Treasure Area instead of contesting one he is defending."
+      ]
     }
   ],
   "strongAgainst": [

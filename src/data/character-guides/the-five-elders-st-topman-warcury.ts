@@ -226,6 +226,17 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       "howToRespond": [
         "There may be an opening to fight when Akainu is not in Mag-Mag state and his Skill 2 (Meteor Volcano), which activates it, is on cooldown. Otherwise, generally avoid fighting him; if forced to respond, try to disengage with skills."
       ]
+    },
+    {
+      "characterId": "ama-no-murakumo-sword-kizaru",
+      "difficulty": 3,
+      "whyDifficult": [
+        "Kizaru's high-damage Normal Attacks can overwhelm Warcury.",
+        "Kizaru can change Elements, so being hit by his skills can trigger Warcury's trait that removes the attacker's ATK increase and restores 5% HP and 5% Defensive Shield durability. This recovery does not overcome the disadvantage against Kizaru's Normal Attacks."
+      ],
+      "howToRespond": [
+        "Generally avoid direct fights with Kizaru and focus on defending another Treasure Area when possible. Do not deliberately take his skills to trigger recovery."
+      ]
     }
   ],
   "strongAgainst": [
