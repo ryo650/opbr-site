@@ -47,21 +47,21 @@ export const siteUpdates: readonly SiteUpdate[] = [
   {
     id: "five-elders-warcury-peter-ex-scout-20261021",
     date: "2026-10-20",
-    title: "Five Elders: Warcury & Peter EX Scout announced",
+    title: "Five Elders: Warcury & Peter EX Scout updated",
     category: "content",
     featuredRank: 1,
     image: {
-      src: "/scouts/five-elders-warcury-peter-extreme-bounty-festival-20261021.webp",
+      src: "/scouts/the-five-elders-st-topman-warcury-20261111.webp",
       alt: "St. Topman Warcury and St. Shepherd Ju Peter Extreme Bounty Festival banner",
-      width: 1206,
-      height: 529,
+      width: 1946,
+      height: 1032,
       kind: "banner",
     },
     description:
-      "A new Extreme Bounty Festival featuring St. Topman Warcury and St. Shepherd Ju Peter is scheduled for October 21 at 14:00 JST. Try the Scout Simulator with 0.1% featured rates each. Other scout rates, costs, and the November 30 end date are provisional.",
+      "Try the updated Extreme Bounty Festival featuring St. Topman Warcury and St. Shepherd Ju Peter in the Scout Simulator, with featured rates of 0.2% each. The scout ends on November 11, 2026 at 13:59:59 JST.",
     links: [
       {
-        href: "/scout-simulator/five-elders-warcury-peter-extreme-bounty-festival-20261021",
+        href: "/scout-simulator/the-five-elders-st-topman-warcury-20261111",
         label: "Try the Five Elders Scout",
       },
     ],
