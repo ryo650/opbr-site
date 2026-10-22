@@ -82,8 +82,8 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
     id: "2026-10-21-warcury-ju-peter-meta",
     status: "published",
     publishedAt: "2026-10-21T16:00:51+09:00",
-    title: "Warcury & Ju Peter Meta: 12 ranking changes and 2 new entries",
-    summary: "Warcury and St. Shepherd Ju Peter enter SS Tier. Their arrival shifts the meta: six characters move up and six move down in relative ranking. Up/Down reflects our assessment of the current meta, not character buffs or nerfs.",
+    title: "Warcury & Ju Peter Meta: 14 ranking changes and 2 new entries",
+    summary: "Warcury and St. Shepherd Ju Peter enter SS Tier. Their arrival shifts the meta: eight characters move up and six move down in relative ranking. Up/Down reflects our assessment of the current meta, not character buffs or nerfs.",
     changes: [
       {
         characterId: "the-five-elders-st-shepherd-ju-peter",
@@ -140,6 +140,20 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         fromTier: null,
         toTier: "C",
         reason: "Enters the ranked data in C Tier as his relative value increases in the new meta.",
+      },
+      {
+        characterId: "ama-no-murakumo-sword-kizaru",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "B",
+        reason: "Rises to B Tier, immediately after Kuma & Bonney, as his relative value increases in the current meta.",
+      },
+      {
+        characterId: "navy-hq-fleet-admiral-akainu",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "A",
+        reason: "Rises to A Tier, immediately after Blackbeard, as his relative value increases in the current meta.",
       },
       {
         characterId: "the-five-elders-st-ethanbaron-v-nusjuro",
