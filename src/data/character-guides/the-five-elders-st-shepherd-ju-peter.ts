@@ -211,7 +211,7 @@ export const stShepherdJuPeterGuide: CharacterGuide = {
       "characterId": "the-four-emperors-monkey-d-luffy",
       "advantage": 5,
       "whyYouWin": [
-        "Element-change interaction allows ATK increase removal and HP recovery, supporting highly favorable treasure pressure."
+        "When Luffy attacks Peter, his Straw Hat Pirates tag triggers ATK increase removal and a 50% ATK reduction for 5 seconds, making this a favorable matchup."
       ],
       "watchOut": [
         "Be careful with the first hit before the reactive effect."
