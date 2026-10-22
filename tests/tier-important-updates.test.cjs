@@ -169,6 +169,14 @@ test('October 21 meta review retains 8 rises, 6 falls and 2 new entries', () => 
   assert.equal(state(importantTierUpdates, start - 1, tierList).update.id, '2026-10-10-oden-meta-follow-up');
   const result = state(importantTierUpdates, start, tierList);
   assert.equal(result.update.id, update.id);
+  assert.deepEqual(tierList.find(({ tier }) => tier === 'SS').characterIds, [
+    'the-five-elders-st-topman-warcury',
+    'the-five-elders-st-shepherd-ju-peter',
+  ]);
+  const warcury = update.changes.find(({ characterId }) => characterId === 'the-five-elders-st-topman-warcury');
+  const peter = update.changes.find(({ characterId }) => characterId === 'the-five-elders-st-shepherd-ju-peter');
+  assert.match(warcury.reason, /at the top of/);
+  assert.match(peter.reason, /immediately after St. Topman Warcury/);
   const expected = {
     rise: ['flame-emperor-sabo', 'winner-island-trafalgar-law', 'unexpected-collaboration-rob-lucci', 'king-of-the-pirates-gol-d-roger', 'legendary-hero-monkey-d-garp', 'film-red-shanks', 'ama-no-murakumo-sword-kizaru', 'navy-hq-fleet-admiral-akainu'],
     fall: ['the-five-elders-st-ethanbaron-v-nusjuro', 'the-four-emperors-monkey-d-luffy', 'the-wings-zoro-sanji', 'blackbeard-pirates-kuzan', 'father-and-daughter-kuma-bonny', 'daimyo-of-kuri-kozuki-oden'],
