@@ -196,28 +196,6 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       ]
     },
     {
-      "characterId": "legendary-hero-monkey-d-garp",
-      "difficulty": 3,
-      "whyDifficult": [
-        "Garp can deal heavy damage to Warcury and generally has the advantage in damage trades when Garp avoids Warcury's skills.",
-        "With an ATK increase active, Garp may be able to KO Warcury in a single hit."
-      ],
-      "howToRespond": [
-        "Avoid direct fights when possible and leave Garp to an ally with a better matchup. If you must fight, look for a window when Garp's ATK is not increased."
-      ]
-    },
-    {
-      "characterId": "film-red-shanks",
-      "difficulty": 3,
-      "whyDifficult": [
-        "Shanks can deal heavy damage to Warcury and generally has the advantage in damage trades when Shanks avoids Warcury's skills.",
-        "With an ATK increase active, Shanks may be able to KO Warcury in a single hit."
-      ],
-      "howToRespond": [
-        "Avoid direct fights when possible and leave Shanks to an ally with a better matchup. If you must fight, look for a window when Shanks's ATK is not increased."
-      ]
-    },
-    {
       "characterId": "navy-hq-fleet-admiral-akainu",
       "difficulty": 4,
       "whyDifficult": [
@@ -229,7 +207,7 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     },
     {
       "characterId": "ama-no-murakumo-sword-kizaru",
-      "difficulty": 3,
+      "difficulty": 4,
       "whyDifficult": [
         "Kizaru's high-damage Normal Attacks can overwhelm Warcury.",
         "Kizaru can change Elements, so being hit by his skills can trigger Warcury's trait that removes the attacker's ATK increase and restores 5% HP and 5% Defensive Shield durability. This recovery does not overcome the disadvantage against Kizaru's Normal Attacks."
@@ -252,12 +230,12 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
     },
     {
       "characterId": "the-wings-zoro-sanji",
-      "advantage": 5,
+      "advantage": 2,
       "whyYouWin": [
-        "The Straw Hat Pirates damage boost and HP/shield recovery can let Warcury outlast their attacks and punish close-range exchanges."
+        "Against the Straw Hat Pirates, Warcury's traits increase his damage and restore HP and shield durability when he lands attacks, giving him some counterplay."
       ],
       "watchOut": [
-        "Do not assume the shield is full at spawn; keep it restored."
+        "Even with HP and shield recovery, Zoro & Sanji can still KO Warcury if they pressure him with skills and Normal Attacks while their damage is boosted. Do not rely on recovery alone to survive their attacks."
       ]
     },
     {

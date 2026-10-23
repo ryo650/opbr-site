@@ -8,9 +8,9 @@ type TierRow = {
 };
 
 // Source: user screenshot, October 21, 2026 at 16:00:51 JST, left to right.
-// October 22 user-requested placements override the screenshot, including Whitebeard
-// between White Nika and Egghead Chopper in B. Directional assessments are registered
-// separately in tier-important-updates.ts and do not change this order.
+// October 22 and 23 user-requested placements override the screenshot.
+// Directional assessments are registered separately in tier-important-updates.ts
+// and are intentionally unchanged by these placement-only edits.
 // Earlier placements, including characters omitted from the screenshot, are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -29,17 +29,18 @@ export const tierList: TierRow[] = [
       "flame-emperor-sabo",
       "future-where-i-m-the-most-free-jewelry-bonney",
       "winner-island-trafalgar-law",
-      "the-five-elders-st-marcus-mars",
     ],
   },
   {
     tier: "A",
     colorClass: "A",
     characterIds: [
+      "the-five-elders-st-marcus-mars",
       "the-five-elders-st-ethanbaron-v-nusjuro",
-      "navy-hq-fleet-admiral-akainu",
       "kaido-s-son-yamato",
       "animal-kingdom-pirates-lead-performer-king",
+      "navy-hq-fleet-admiral-akainu",
+      "ama-no-murakumo-sword-kizaru",
       "happy-halloween-uta",
       "unexpected-collaboration-rob-lucci",
     ],
@@ -48,15 +49,14 @@ export const tierList: TierRow[] = [
     tier: "B",
     colorClass: "B",
     characterIds: [
-      "ama-no-murakumo-sword-kizaru",
-      "the-wings-zoro-sanji",
-      "the-four-emperors-marshall-d-teach",
-      "king-of-the-pirates-gol-d-roger",
-      "father-and-daughter-kuma-bonny",
       "the-four-emperors-monkey-d-luffy",
       "great-pirate-edward-newgate",
+      "the-wings-zoro-sanji",
+      "king-of-the-pirates-gol-d-roger",
+      "father-and-daughter-kuma-bonny",
       "egghead-tony-tony-chopper",
       "awakened-form-rob-lucci",
+      "the-four-emperors-marshall-d-teach",
     ],
   },
   {
