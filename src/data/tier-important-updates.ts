@@ -270,6 +270,8 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         .filter((change) => retainedOctober21AssessmentIds.has(change.characterId))
         .map((change) => ({
           ...change,
+          // Keep Kizaru's requested Up marker at his current A-tier placement.
+          toTier: change.characterId === "ama-no-murakumo-sword-kizaru" ? "A" : change.toTier,
           reason: "Assessment carried forward from the October 21 review. Refer to the current Tier List for placement and order.",
         })),
     ],

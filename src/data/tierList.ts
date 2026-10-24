@@ -8,7 +8,7 @@ type TierRow = {
 };
 
 // Source: user screenshot, October 21, 2026 at 16:00:51 JST, left to right.
-// October 22 and 23 user-requested placements override the screenshot.
+// October 22, 23 and 25 user-requested placements override the screenshot.
 // Directional assessments are registered separately in tier-important-updates.ts
 // and are intentionally unchanged by these placement-only edits.
 // Earlier placements, including characters omitted from the screenshot, are in tier-list-archive.ts.
@@ -26,9 +26,9 @@ export const tierList: TierRow[] = [
     tier: "S",
     colorClass: "S",
     characterIds: [
-      "flame-emperor-sabo",
       "future-where-i-m-the-most-free-jewelry-bonney",
       "winner-island-trafalgar-law",
+      "flame-emperor-sabo",
     ],
   },
   {
@@ -63,11 +63,11 @@ export const tierList: TierRow[] = [
     tier: "C",
     colorClass: "C",
     characterIds: [
-      "blackbeard-pirates-kuzan",
-      "legendary-hero-monkey-d-garp",
+      "germa-66-vinsmoke-niji",
       "daimyo-of-kuri-kozuki-oden",
       "great-pirate-gol-d-roger",
-      "germa-66-vinsmoke-niji",
+      "blackbeard-pirates-kuzan",
+      "legendary-hero-monkey-d-garp",
       "battle-of-monsters-on-onigashima-kaido",
       "film-red-shanks",
       "seraphim-s-snake",
