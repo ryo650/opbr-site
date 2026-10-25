@@ -185,6 +185,20 @@ export const stTopmanWarcuryGuide: CharacterGuide = {
       ]
     },
     {
+      "characterId": "animal-kingdom-pirates-lead-performer-king",
+      "difficulty": 3,
+      "whyDifficult": [
+        "King's held movement Skill 2 deals double damage to Attackers. Warcury changes to Attacker when he uses a skill, so taking Skill 2 in that class can deal massive damage or even KO him.",
+        "The moving hits of King's Skill 2 normally Down targets, while its final hit inflicts Knockback. Warcury's Defensive Shield can absorb those hits without him being Downed, letting the moving attack hit repeatedly. This can quickly break even a fully recovered shield with capacity equal to 100% of Warcury's max HP, then expose Warcury to the skill itself.",
+        "King's three-hit invincibility protection lets him force Treasure captures, often avoiding Warcury's skills or held Normal Attack movement. His high mobility further complicates defending Treasure Areas."
+      ],
+      "howToRespond": [
+        "When King has Skill 2 ready, keep either Dodge or Warcury's invincible Skill 1 available. Dodge the held charge or time Skill 1 as he uses it; do not rely on shield durability alone to survive repeated moving hits.",
+        "Against a capture protected by King's three invincibility hits, use Normal Attacks to remove those protections before trying to interrupt the capture with a skill or another attack.",
+        "King's attacks other than Skill 2 are generally less threatening to Warcury. Prioritize avoiding Skill 2 and avoid spending both Dodge and the invincible skill before King uses it."
+      ]
+    },
+    {
       "characterId": "king-of-the-pirates-gol-d-roger",
       "difficulty": 3,
       "whyDifficult": [
