@@ -41,7 +41,6 @@ export const tierList: TierRow[] = [
       "animal-kingdom-pirates-lead-performer-king",
       "navy-hq-fleet-admiral-akainu",
       "ama-no-murakumo-sword-kizaru",
-      "happy-halloween-uta",
       "unexpected-collaboration-rob-lucci",
     ],
   },
@@ -49,7 +48,7 @@ export const tierList: TierRow[] = [
     tier: "B",
     colorClass: "B",
     characterIds: [
-      "the-four-emperors-monkey-d-luffy",
+      "happy-halloween-uta",
       "great-pirate-edward-newgate",
       "the-wings-zoro-sanji",
       "king-of-the-pirates-gol-d-roger",
@@ -57,6 +56,7 @@ export const tierList: TierRow[] = [
       "egghead-tony-tony-chopper",
       "awakened-form-rob-lucci",
       "the-four-emperors-marshall-d-teach",
+      "the-four-emperors-monkey-d-luffy",
     ],
   },
   {
@@ -67,6 +67,7 @@ export const tierList: TierRow[] = [
       "daimyo-of-kuri-kozuki-oden",
       "great-pirate-gol-d-roger",
       "blackbeard-pirates-kuzan",
+      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
       "legendary-hero-monkey-d-garp",
       "battle-of-monsters-on-onigashima-kaido",
       "film-red-shanks",
