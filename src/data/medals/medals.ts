@@ -19859,5 +19859,30 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "kumacy",
+    "name": "Kumacy Medal",
+    "category": "character",
+    "uniqueTrait": "When your HP is 30% or less: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "thriller-bark",
+        "name": "Thriller Bark"
+      },
+      {
+        "id": "zombie",
+        "name": "Zombie"
+      },
+      {
+        "id": "thriller-bark-pirates",
+        "name": "Thriller Bark Pirates"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
   }
 ] as const satisfies readonly Medal[];

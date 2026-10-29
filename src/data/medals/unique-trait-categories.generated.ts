@@ -2488,6 +2488,9 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   "luffy-dawn-rocket": [
     "cooldown",
     "skill-1"
+  ],
+  "kumacy": [
+    "damage-reduction"
   ]
 };
 
