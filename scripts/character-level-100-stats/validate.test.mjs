@@ -25,8 +25,8 @@ const partialEntry = { characterId: "fixture-character", baseHp: 7_420, baseAtk:
 test("production Base Stats catalog passes validation after the reviewed Max-to-Base conversion", () => {
   const result = validateCharacterLevel100BaseStats(characterLevel100BaseStatsCatalog, characters);
   assert.deepEqual(result.errors, []);
-  assert.equal(result.entryCount, 33);
-  assert.equal(result.verifiedCount, 33);
+  assert.equal(result.entryCount, 38);
+  assert.equal(result.verifiedCount, 38);
   assert.equal(result.pendingCount, 0);
   assert.equal(result.partialCount, 0);
 });

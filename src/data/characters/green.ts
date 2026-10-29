@@ -1,6 +1,14 @@
 import type { Character } from "./type.ts";
 
 export const greenCharacters: Record<string, Character> ={
+    "thriller-bark-pirates-kumacy-green": {
+        id: "thriller-bark-pirates-kumacy-green",
+        name: "Thriller Bark Pirates Kumacy",
+        image: "/characters/thriller-bark-pirates-kumacy.webp",
+        grade: "star-4",
+        element: "green",
+        role: "attacker"
+    },
     "daimyo-of-kuri-kozuki-oden": {
         id: "daimyo-of-kuri-kozuki-oden",
         name: "Daimyo of Kuri Kozuki Oden",

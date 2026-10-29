@@ -30,6 +30,14 @@ export function getSelectableCharacterLevel100BaseStats(
 // Enter Base HP / ATK / DEF directly after confirming them in game. Pending
 // targets deliberately use null rather than guessed or displayed values.
 export const characterLevel100BaseStatsCatalog: readonly CharacterLevel100BaseStats[] = [
+  // Shared across all five elements. User's Lv.100, 52/52 Boost Max preview:
+  // displayed HP 10,536 / ATK 2,023 / DEF 2,045 minus Boost Max 2,580 / 640 / 640.
+  { characterId: "thriller-bark-pirates-kumacy-red", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
+  { characterId: "thriller-bark-pirates-kumacy-blue", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
+  { characterId: "thriller-bark-pirates-kumacy-green", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
+  { characterId: "thriller-bark-pirates-kumacy-white", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
+  { characterId: "thriller-bark-pirates-kumacy-black", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
+
   // Verified from the unowned Max Level Preview screenshot fixture (IMG_4816).
   { characterId: "red-rock-monkey-d-luffy", baseHp: 6_806, baseAtk: 1_535, baseDef: 1_688 },
 

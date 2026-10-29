@@ -132,7 +132,7 @@ test('Warcury guide registers the agreed matchups and skill metadata', () => {
   assert.equal(hasCharacterGuide(warcuryId), true);
   assert.equal(guide.strengths?.length, 3);
   assert.equal(guide.weaknesses?.length, 3);
-  assert.equal(guide.counters?.length, 9);
+  assert.equal(guide.counters?.length, 8);
   assert.equal(guide.strongAgainst?.length, 7);
   assert.equal(guide.traits?.length, 7);
   assert.deepEqual(
@@ -149,14 +149,21 @@ test('Warcury guide registers the agreed matchups and skill metadata', () => {
       ['future-where-i-m-the-most-free-jewelry-bonney', 3],
       ['happy-halloween-uta', 3],
       ['winner-island-trafalgar-law', 3],
-      ['king-of-the-pirates-gol-d-roger', 3],
-      ['legendary-hero-monkey-d-garp', 3],
-      ['film-red-shanks', 3],
+      ['animal-kingdom-pirates-lead-performer-king', 3],
+      ['king-of-the-pirates-gol-d-roger', 2],
       ['navy-hq-fleet-admiral-akainu', 4],
-      ['ama-no-murakumo-sword-kizaru', 3],
+      ['ama-no-murakumo-sword-kizaru', 4],
     ],
   );
-  assert.ok(guide.strongAgainst.every(({ advantage }) => advantage === 5));
+  assert.deepEqual(guide.strongAgainst.map(({ characterId, advantage }) => [characterId, advantage]), [
+    ['the-four-emperors-monkey-d-luffy', 5],
+    ['the-wings-zoro-sanji', 2],
+    ['great-pirate-gol-d-roger', 5],
+    ['daimyo-of-kuri-kozuki-oden', 5],
+    ['kaido-s-son-yamato', 5],
+    ['red-rock-monkey-d-luffy', 5],
+    ['battle-of-monsters-on-onigashima-kaido', 5],
+  ]);
   assert.deepEqual(guide.normalAttacks?.map(({ label }) => label), [
     'Normal Attack Combo',
     'Hold Normal Attack: Treasure Response',
@@ -182,11 +189,14 @@ test('Peter and Warcury matchup updates retain counter perspective', () => {
     'ama-no-murakumo-sword-kizaru',
     'navy-hq-fleet-admiral-akainu',
   ]);
-  for (const guide of [peter, warcury]) {
+  for (const [guide, matchups] of [
+    [peter, addedIds.map((id) => [id, 3])],
+    [warcury, [['king-of-the-pirates-gol-d-roger', 2]]],
+  ]) {
     assert.equal(new Set(guide.counters.map(({ characterId }) => characterId)).size, guide.counters.length);
-    for (const id of addedIds) {
+    for (const [id, difficulty] of matchups) {
       const matchup = guide.counters.find(({ characterId }) => characterId === id);
-      assert.equal(matchup?.difficulty, 3, id);
+      assert.equal(matchup?.difficulty, difficulty, id);
       assert.match(matchup.whyDifficult.join(' '), /ATK increase/);
       assert.match(matchup.howToRespond.join(' '), /ally with a better matchup/);
       assert.match(matchup.howToRespond.join(' '), /ATK is not increased/);
@@ -227,7 +237,7 @@ test('Warcury and Peter add Akainu and Kizaru counters with the agreed ratings a
   const cases = [
     {
       guideId: 'the-five-elders-st-topman-warcury',
-      count: 9,
+      count: 8,
       name: 'Navy HQ Fleet Admiral Akainu',
       matchup: {
         characterId: 'navy-hq-fleet-admiral-akainu',
@@ -274,7 +284,7 @@ test('Warcury and Peter avoid their additional Kizaru and Akainu counters', () =
   const warcury = characterGuides['the-five-elders-st-topman-warcury'];
   const kizaru = warcury.counters.filter(({ characterId }) => characterId === 'ama-no-murakumo-sword-kizaru');
   assert.equal(kizaru.length, 1);
-  assert.equal(kizaru[0].difficulty, 3);
+  assert.equal(kizaru[0].difficulty, 4);
   const kizaruReason = kizaru[0].whyDifficult.join(' ');
   assert.match(kizaruReason, /high-damage Normal Attacks can overwhelm Warcury/);
   assert.match(kizaruReason, /can change Elements/);

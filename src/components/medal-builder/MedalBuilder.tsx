@@ -42,6 +42,7 @@ import {
   type CharacterBoostStageId,
 } from "@/data/characters";
 import type { NativeEffectType } from "@/data/medals/types";
+import type { Character } from "@/data/characters/type";
 import MedalArtwork from "@/components/medals/MedalArtwork";
 import MedalInformation from "@/components/medals/MedalInformation";
 import {
@@ -86,7 +87,14 @@ const traitLabels: Record<NativeTraitType, string> = { atk: "ATK", def: "DEF", h
 const labelId = (value: string) => value.replaceAll("-", " ").replace(/\b\w/g, (letter) => letter.toUpperCase());
 const extraTraitEffectOptions = [...new Map(selectableExtraTraits.map((definition) => [definition.effectId, definition.label])).entries()];
 const characterStatNumber = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
-const formatCharacterDisplayName = (name: string) => name.replaceAll("-", " ");
+const characterNameCounts = new Map<string, number>();
+for (const { name } of Object.values(characters)) {
+  characterNameCounts.set(name, (characterNameCounts.get(name) ?? 0) + 1);
+}
+const formatCharacterDisplayName = ({ name, element }: Pick<Character, "name" | "element">) => {
+  const label = name.replaceAll("-", " ");
+  return (characterNameCounts.get(name) ?? 0) > 1 ? `${label} (${labelId(element)})` : label;
+};
 const charactersWithLevel100BaseStats = getSelectableCharacterLevel100BaseStats(characterLevel100BaseStatsCatalog).flatMap((stats) => {
   const character = characters[stats.characterId];
   return character ? [{ character, stats }] : [];
@@ -615,8 +623,8 @@ function CharacterPreview({ extraTraitsBySlot }: { extraTraitsBySlot: EquippedEx
     {preview
       ? <>
         <div className={styles.characterPreviewIdentity}>
-          <Image src={preview.character.image} alt={formatCharacterDisplayName(preview.character.name)} width={104} height={104} sizes="(max-width: 900px) 88px, 104px" />
-          <div><strong>{formatCharacterDisplayName(preview.character.name)}</strong><span>Lv.100</span></div>
+          <Image src={preview.character.image} alt={formatCharacterDisplayName(preview.character)} width={104} height={104} sizes="(max-width: 900px) 88px, 104px" />
+          <div><strong>{formatCharacterDisplayName(preview.character)}</strong><span>Lv.100</span></div>
         </div>
         <CharacterBoostSelector value={boostStageId} onChange={setBoostStageId} />
         <div className={styles.characterStatRows}>{(["hp", "atk", "def"] as const).map((stat) => <div key={stat}>
@@ -647,7 +655,7 @@ function CharacterSelector({ value, onChange, disabled = false }: { value: strin
     <span className={styles.srOnly}>Select Character</span>
     <select value={value} onChange={(event) => onChange(event.target.value)} disabled={disabled}>
       <option value="">{disabled ? "No verified Characters" : "Select Character"}</option>
-      {charactersWithLevel100BaseStats.map(({ character }) => <option value={character.id} key={character.id}>{formatCharacterDisplayName(character.name)}</option>)}
+      {charactersWithLevel100BaseStats.map(({ character }) => <option value={character.id} key={character.id}>{formatCharacterDisplayName(character)}</option>)}
     </select>
   </label>;
 }

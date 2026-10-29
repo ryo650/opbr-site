@@ -5014,6 +5014,14 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When attacking an enemy with a Normal Attack, 30% chance to: Reduce the cooldown time of Skill 1 by 2%."
     }
+  ],
+  "kumacy": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When your HP is 30% or less: Reduce damage received by 3%."
+    }
   ]
 };
 

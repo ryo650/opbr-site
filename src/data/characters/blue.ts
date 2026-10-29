@@ -1,6 +1,14 @@
 import type { Character } from "./type.ts";
 
 export const blueCharacters: Record<string, Character> = {
+    "thriller-bark-pirates-kumacy-blue": {
+        id: "thriller-bark-pirates-kumacy-blue",
+        name: "Thriller Bark Pirates Kumacy",
+        image: "/characters/thriller-bark-pirates-kumacy.webp",
+        grade: "star-4",
+        element: "blue",
+        role: "attacker"
+    },
     "the-five-elders-st-marcus-mars": {
         id: "the-five-elders-st-marcus-mars",
         name: "The Five Elders St. Marcus Mars",
