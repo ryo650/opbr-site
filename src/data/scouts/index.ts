@@ -43,7 +43,10 @@ import { scoutSupremeGreatGradeSwordWielders20261013 } from "./supreme-great-gra
 
 import { scoutTheFiveEldersStTopmanWarcury20261111 } from "./the-five-elders-st-topman-warcury-20261111";
 
+import { scoutTheFiveEldersStMarcusMars20261111 } from "./the-five-elders-st-marcus-mars-20261111";
+
 export const scouts = [
+    scoutTheFiveEldersStMarcusMars20261111,
     scoutTheFiveEldersStTopmanWarcury20261111,
     scout270MillionDownloadsExtremeBountyFestival220261027,
     scoutSupremeGreatGradeSwordWielders20261013,
