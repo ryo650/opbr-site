@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Image from "next/image";
 import type { Medal } from "@/data/medals";
+import { getMedalArtworkTransform } from "./medal-artwork-transform";
 import styles from "./MedalArtwork.module.css";
 
 type Props = {
@@ -20,6 +21,8 @@ export default function MedalArtwork({
   eager = false,
   children,
 }: Props) {
+  const { translateX, translateY, scale } = getMedalArtworkTransform(medal.id);
+
   return (
     <span className={`${styles.artwork}${className ? ` ${className}` : ""}`} data-medal-art>
       <span className={styles.viewport}>
@@ -28,6 +31,7 @@ export default function MedalArtwork({
           alt={alt}
           fill
           sizes={sizes}
+          style={{ transform: `translate(${translateX}%, ${translateY}%) scale(${scale})` }}
           loading={eager ? "eager" : "lazy"}
           decoding={eager ? "sync" : "async"}
           fetchPriority={eager ? "high" : undefined}
