@@ -339,7 +339,7 @@ function incompatibleCharacterGeometry(page, geometry) {
   };
 }
 
-function characterRowsFromPage(page, geometry) {
+function characterRowsFromPage(page, geometry, { continuation = false } = {}) {
   const observations = page.observations ?? [];
   const {
     tableTop,
@@ -351,9 +351,14 @@ function characterRowsFromPage(page, geometry) {
     rateLeft,
     rateRight,
   } = geometry;
+  // Scrolling moves the first row above the original table header. Only extend
+  // into content below this page's modal title; absent that anchor, fail closed.
+  const contentTop = continuation
+    ? Math.max(tableTop, singleAnchor(observations, "Show Drop Rates")?.y ?? tableTop)
+    : tableTop;
   const inTableY = (observation) => {
     const y = centerY(observation);
-    return y < tableTop && y > tableBottom;
+    return y < contentTop && y > tableBottom;
   };
   const rateObservations = observations
     .filter((observation) => {
@@ -386,7 +391,7 @@ function characterRowsFromPage(page, geometry) {
   const rows = rateObservations.map((rateObservation, index) => {
     const rateY = centerY(rateObservation);
     const upper = index === 0
-      ? tableTop
+      ? Math.min(contentTop, Math.max(tableTop, rateY + fallbackHalfGap))
       : (centerY(rateObservations[index - 1]) + rateY) / 2;
     const lower = index === rateObservations.length - 1
       ? Math.max(tableBottom, rateY - fallbackHalfGap)
@@ -454,7 +459,9 @@ export function extractCharacterRows(
         continue;
       }
     }
-    const reconstructed = characterRowsFromPage(page, geometry);
+    const reconstructed = characterRowsFromPage(page, geometry, {
+      continuation: pageGeometry.geometry === null,
+    });
     if (!page.optionalFragment) issues.push(...reconstructed.issues);
     if (
       reconstructed.rows.some(
