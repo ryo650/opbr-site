@@ -704,6 +704,87 @@ test("continuation screenshots stop when inherited table geometry is unsafe", as
   );
 });
 
+test("continuation first rows retain Featured headings above the inherited table header", () => {
+  const characters = [
+    { id: "sabo", name: "Flame Emperor Sabo", grade: "ex" },
+    { id: "franky", name: "Egghead Franky", grade: "bf" },
+    { id: "robin", name: "Egghead Nico Robin", grade: "bf" },
+    { id: "normal", name: "Normal BF", grade: "bf" },
+  ];
+  const observation = (text, x, center, width = 0.12, height = 0.03) => ({
+    text, x, y: center - height / 2, width, height,
+  });
+  const firstPage = {
+    file: "first.png",
+    observations: [
+      { text: "Character Drop Rates", x: 0.3997, y: 0.81675, width: 0.1802, height: 0.035 },
+      observation("Flame Emperor Sabo", 0.39, 0.7),
+      observation("Featured Characters", 0.577, 0.73635, 0.154),
+      observation("0.1000000%", 0.613, 0.68454, 0.083),
+    ],
+  };
+  const continuation = (file, name, rateY, featuredY) => ({
+    file,
+    observations: [
+      { text: "Show Drop Rates", x: 0.3968, y: 0.89884, width: 0.2035, height: 0.045 },
+      observation(name, 0.39, rateY + 0.02),
+      observation("Featured Characters", 0.577, featuredY, 0.154),
+      observation("0.3000000%", 0.613, rateY, 0.083),
+      observation("Normal BF", 0.39, rateY - 0.15),
+      observation("0.0043478%", 0.613, rateY - 0.17035, 0.083),
+    ],
+  });
+  const extracted = extractCharacterRows([
+    firstPage,
+    continuation("franky.png", "Egghead Franky", 0.77603, 0.82817),
+    continuation("robin.png", "Egghead Nico Robin", 0.76972, 0.82014),
+  ], characters);
+  assert.deepEqual(extracted.issues, []);
+  const merged = mergeCharacterRows(extracted.rows);
+  assert.deepEqual(merged.issues, []);
+  assert.deepEqual(
+    merged.rows.filter(({ featured }) => featured).map(({ character }) => character.id),
+    ["sabo", "franky", "robin"],
+  );
+  const bfSelection = selectNormalBfUnitRate(merged.rows);
+  assert.deepEqual(bfSelection.issues, []);
+  assert.equal(decimalToString(bfSelection.rate), "0.0043478");
+});
+
+test("continuation rate search reaches the modal content top and excludes the title area", () => {
+  const firstPage = characterPage([{
+    nameParts: ["Setup"], rate: "0.1000000%", featured: true,
+  }]);
+  firstPage.observations[0].y = 0.81675;
+  const continuation = {
+    file: "continuation.png",
+    observations: [
+      { text: "Show Drop Rates", x: 0.3968, y: 0.89884, width: 0.2035, height: 0.045 },
+      { text: "Normal BF", x: 0.4, y: 0.85, width: 0.12, height: 0.03 },
+      { text: "0.0043478%", x: 0.613, y: 0.815, width: 0.083, height: 0.03 },
+      { text: "Lower BF", x: 0.4, y: 0.57, width: 0.12, height: 0.03 },
+      { text: "0.0043478%", x: 0.613, y: 0.55, width: 0.083, height: 0.03 },
+      { text: "Outside UI", x: 0.4, y: 0.91, width: 0.12, height: 0.03 },
+      { text: "Featured Characters", x: 0.577, y: 0.91, width: 0.154, height: 0.03 },
+      { text: "99.0000000%", x: 0.613, y: 0.91, width: 0.083, height: 0.03 },
+    ],
+  };
+  const extracted = extractCharacterRows([firstPage, continuation], [
+    { id: "setup", name: "Setup", grade: "ex" },
+    { id: "normal", name: "Normal BF", grade: "bf" },
+    { id: "lower", name: "Lower BF", grade: "bf" },
+  ]);
+  assert.deepEqual(extracted.issues, []);
+  assert.deepEqual(
+    extracted.rows.map(({ character, featured }) => ({ id: character.id, featured })),
+    [
+      { id: "setup", featured: true },
+      { id: "normal", featured: false },
+      { id: "lower", featured: false },
+    ],
+  );
+});
+
 test("duplicate character screenshots dedupe exact rows and cross-check conflicts", () => {
   const character = { id: "bf-one", name: "BF-One", grade: "bf" };
   const duplicate = mergeCharacterRows([
