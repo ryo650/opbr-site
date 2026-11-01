@@ -44,6 +44,7 @@ import {
 import type { NativeEffectType } from "@/data/medals/types";
 import type { Character } from "@/data/characters/type";
 import MedalArtwork from "@/components/medals/MedalArtwork";
+import { getMedalArtworkTransform } from "@/components/medals/medal-artwork-transform";
 import MedalInformation from "@/components/medals/MedalInformation";
 import {
   createTagSetEffectFilterIndex,
@@ -138,7 +139,7 @@ function useSelectedMedalCount(store: SelectionCountStore, medalId: string) {
   return useSyncExternalStore(subscribe, getSnapshot, getServerSelectionCount);
 }
 
-function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElement) {
+function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElement, medalId: string) {
   const pixelRatio = window.devicePixelRatio || 1;
   canvas.width = Math.round(DRAG_PREVIEW_SIZE * pixelRatio);
   canvas.height = Math.round(DRAG_PREVIEW_SIZE * pixelRatio);
@@ -152,10 +153,11 @@ function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElemen
   context.imageSmoothingQuality = "high";
 
   const center = DRAG_PREVIEW_SIZE / 2;
+  const { translateX, translateY, scale } = getMedalArtworkTransform(medalId);
   const artworkScale = Math.max(
     DRAG_PREVIEW_SIZE / image.naturalWidth,
     DRAG_PREVIEW_SIZE / image.naturalHeight,
-  ) * 1.1;
+  ) * scale;
   const artworkWidth = image.naturalWidth * artworkScale;
   const artworkHeight = image.naturalHeight * artworkScale;
 
@@ -165,8 +167,8 @@ function paintMedalDragPreview(canvas: HTMLCanvasElement, image: HTMLImageElemen
   context.clip();
   context.drawImage(
     image,
-    (DRAG_PREVIEW_SIZE - artworkWidth) / 2 + DRAG_PREVIEW_SIZE * 0.03,
-    (DRAG_PREVIEW_SIZE - artworkHeight) / 2 + DRAG_PREVIEW_SIZE * 0.04,
+    (DRAG_PREVIEW_SIZE - artworkWidth) / 2 + DRAG_PREVIEW_SIZE * translateX / 100,
+    (DRAG_PREVIEW_SIZE - artworkHeight) / 2 + DRAG_PREVIEW_SIZE * translateY / 100,
     artworkWidth,
     artworkHeight,
   );
@@ -369,7 +371,7 @@ export default function MedalBuilder({
     if (!medalArt) return;
     const renderedImage = medalArt.querySelector<HTMLImageElement>("img");
     const dragPreview = dragPreviewRef.current;
-    if (!dragPreview || !renderedImage?.complete || !renderedImage.naturalWidth || !paintMedalDragPreview(dragPreview, renderedImage)) {
+    if (!dragPreview || !renderedImage?.complete || !renderedImage.naturalWidth || !paintMedalDragPreview(dragPreview, renderedImage, medal.id)) {
       const { width, height } = medalArt.getBoundingClientRect();
       event.dataTransfer.setDragImage(medalArt, width / 2, height / 2);
       return;

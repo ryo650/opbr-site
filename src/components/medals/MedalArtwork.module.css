@@ -17,6 +17,5 @@
 .viewport img {
   object-fit: cover;
   object-position: center;
-  transform: translate(3%, 4%) scale(1.1);
   transform-origin: center;
 }
