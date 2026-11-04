@@ -57,6 +57,7 @@ export const tierList: TierRow[] = [
       "awakened-form-rob-lucci",
       "the-four-emperors-marshall-d-teach",
       "the-four-emperors-monkey-d-luffy",
+      "egghead-sanji",
       "happy-halloween-uta",
     ],
   },
@@ -65,6 +66,7 @@ export const tierList: TierRow[] = [
     colorClass: "C",
     characterIds: [
       "blackbeard-pirates-kuzan",
+      "paramount-war-sengoku",
       "germa-66-vinsmoke-niji",
       "daimyo-of-kuri-kozuki-oden",
       "great-pirate-gol-d-roger",
