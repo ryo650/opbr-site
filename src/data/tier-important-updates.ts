@@ -223,8 +223,7 @@ const retainedOctober21AssessmentIds = new Set([
 ]);
 
 // Editorial opt-in only. Reordering tierList.ts never creates an event.
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const october22TierAssessmentFollowUp: ImportantTierUpdate = {
     id: "2026-10-22-tier-assessment-follow-up",
     status: "published",
     publishedAt: "2026-10-22T14:51:42+09:00",
@@ -275,7 +274,27 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
           reason: "Assessment carried forward from the October 21 review. Refer to the current Tier List for placement and order.",
         })),
     ],
+};
+
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-11-04-ryokugyu-b-tier-rise",
+    status: "published",
+    publishedAt: "2026-11-04T09:33:00+09:00",
+    title: "Red Ryokugyu enters B Tier with an Up assessment",
+    summary: "Red Ryokugyu joins B Tier immediately before blue Rob Lucci with an Up marker. The 17 existing assessments from the October 22 review are carried forward unchanged. Up/Down reflects OPBR Guide's relative ranking assessment, not an official character buff or nerf.",
+    changes: [
+      {
+        characterId: "groves-of-wrath-ryokugyu",
+        kind: "rise",
+        fromTier: null,
+        toTier: "B",
+        reason: "Newly included in B Tier just ahead of blue Rob Lucci, with a higher relative assessment in the current Tier List.",
+      },
+      ...october22TierAssessmentFollowUp.changes,
+    ],
   },
+  october22TierAssessmentFollowUp,
   warcuryJuPeterOctober21Review,
   {
     id: "2026-10-10-oden-meta-follow-up",
