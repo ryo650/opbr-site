@@ -281,9 +281,23 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
     id: "2026-11-04-ryokugyu-b-tier-rise",
     status: "published",
     publishedAt: "2026-11-04T09:33:00+09:00",
-    title: "Red Ryokugyu enters B Tier with an Up assessment",
-    summary: "Red Ryokugyu joins B Tier immediately before blue Rob Lucci with an Up marker. The 17 existing assessments from the October 22 review are carried forward unchanged. Up/Down reflects OPBR Guide's relative ranking assessment, not an official character buff or nerf.",
+    title: "November 4 Tier Review: Sanji, Sengoku and Ryokugyu Up",
+    summary: "Egghead Sanji joins B Tier before black Uta, and blue Attacker Sengoku joins C Tier after Kuzan. Both receive Up markers alongside red Ryokugyu, whose Up assessment is preserved. All 17 previous assessments are carried forward unchanged. Up/Down reflects OPBR Guide's relative assessment, not an official character buff or nerf.",
     changes: [
+      {
+        characterId: "egghead-sanji",
+        kind: "rise",
+        fromTier: null,
+        toTier: "B",
+        reason: "Added immediately before black Uta in B Tier with an Up assessment.",
+      },
+      {
+        characterId: "paramount-war-sengoku",
+        kind: "rise",
+        fromTier: null,
+        toTier: "C",
+        reason: "The blue Attacker Sengoku joins C Tier directly after Kuzan, with an Up assessment.",
+      },
       {
         characterId: "groves-of-wrath-ryokugyu",
         kind: "rise",
