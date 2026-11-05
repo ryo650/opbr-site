@@ -3,6 +3,11 @@
 import type { UniqueTraitCategoryId } from "./unique-trait-categories";
 
 export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly UniqueTraitCategoryId[]>> = {
+  "rock-n-roll-blaster": [
+    "cooldown",
+    "skill-1",
+    "skill-2"
+  ],
   "future-where-im-the-most-free": [
     "cooldown",
     "skill-2"
