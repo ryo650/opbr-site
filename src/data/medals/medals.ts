@@ -4,6 +4,35 @@ import type { Medal } from "./types";
 
 export const medals = [
   {
+    "id": "rock-n-roll-blaster",
+    "name": "Rock 'n' Roll Blaster Medal",
+    "category": "character",
+    "uniqueTrait": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      },
+      {
+        "id": "vice-admiral",
+        "name": "Vice Admiral"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
     "id": "future-where-im-the-most-free",
     "name": "Future Where I'm the Most Free Medal",
     "category": "character",

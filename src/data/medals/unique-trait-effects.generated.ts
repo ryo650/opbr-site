@@ -17,6 +17,14 @@ export type UniqueTraitEffectNeedsReview = {
 };
 
 export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly UniqueTraitEffectExtraction[]>> = {
+  "rock-n-roll-blaster": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When using Skill 1: Reduce the cooldown time of Skill 2 by 5%."
+    }
+  ],
   "future-where-im-the-most-free": [
     {
       "effectId": "skill2-cooldown-reduction-speed",

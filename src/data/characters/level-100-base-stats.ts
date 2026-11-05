@@ -30,6 +30,10 @@ export function getSelectableCharacterLevel100BaseStats(
 // Enter Base HP / ATK / DEF directly after confirming them in game. Pending
 // targets deliberately use null rather than guessed or displayed values.
 export const characterLevel100BaseStatsCatalog: readonly CharacterLevel100BaseStats[] = [
+  // User's unowned Lv.100, 52/52 Boost Max preview (IMG_5887):
+  // displayed HP 9,757 / ATK 1,837 / DEF 2,462 minus Boost Max 2,580 / 640 / 640.
+  { characterId: "navy-hq-vice-admiral-doll", baseHp: 7_177, baseAtk: 1_197, baseDef: 1_822 },
+
   // Shared across all five elements. User's Lv.100, 52/52 Boost Max preview:
   // displayed HP 10,536 / ATK 2,023 / DEF 2,045 minus Boost Max 2,580 / 640 / 640.
   { characterId: "thriller-bark-pirates-kumacy-red", baseHp: 7_956, baseAtk: 1_383, baseDef: 1_405 },
