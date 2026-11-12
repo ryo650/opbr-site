@@ -335,7 +335,7 @@ test('October 22 explicit assessments carry prior markers whose placements still
   assert.equal(expired.update, followUp);
 });
 
-test('November 12 placements match the screenshot in tier and portrait order', () => {
+test('November 12 placements include Egghead Sanji immediately after Kuma & Bonney', () => {
   const placements = tierList.flatMap(({ characterIds }) => characterIds);
   assert.equal(new Set(placements).size, 31);
   assert.ok(placements.every((id) => characters[id]));
@@ -352,7 +352,7 @@ test('November 12 placements match the screenshot in tier and portrait order', (
     ['B', [
       'the-five-elders-st-ethanbaron-v-nusjuro', 'battle-of-monsters-on-onigashima-kaido', 'the-wings-zoro-sanji',
       'ama-no-murakumo-sword-kizaru', 'great-pirate-edward-newgate', 'king-of-the-pirates-gol-d-roger',
-      'egghead-sanji', 'kaido-s-son-yamato', 'father-and-daughter-kuma-bonny', 'egghead-tony-tony-chopper',
+      'kaido-s-son-yamato', 'father-and-daughter-kuma-bonny', 'egghead-sanji', 'egghead-tony-tony-chopper',
       'the-four-emperors-marshall-d-teach', 'happy-halloween-uta',
     ]],
     ['C', [
@@ -365,7 +365,7 @@ test('November 12 placements match the screenshot in tier and portrait order', (
   assert.deepEqual(visibleTierList.map(({ tier }) => tier), ['SS', 'S', 'A', 'B', 'C']);
 });
 
-test('November 12 marks tier moves, carries active assessments and retires both New markers', () => {
+test('November 12 shows the requested markers after removing nine directions and both New markers', () => {
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-12-shanks-lucci-tier-review');
   const start = Date.parse(update.publishedAt);
   const before = state(importantTierUpdates, start - 1, tierListNovember4);
@@ -378,7 +378,25 @@ test('November 12 marks tier moves, carries active assessments and retires both 
   assert.equal(after.badges['the-five-elders-st-topman-warcury'].kind, 'fall');
   assert.equal(after.badges['the-five-elders-st-shepherd-ju-peter'], undefined);
 
+  const removedMarkers = new Set([
+    'the-wings-zoro-sanji',
+    'ama-no-murakumo-sword-kizaru',
+    'egghead-sanji',
+    'father-and-daughter-kuma-bonny',
+    'the-four-emperors-marshall-d-teach',
+    'great-pirate-gol-d-roger',
+    'legendary-hero-monkey-d-garp',
+    'asl-ace-sabo-luffy',
+    'red-rock-monkey-d-luffy',
+  ]);
+  for (const id of removedMarkers) {
+    assert.ok(after.currentTiers[id], id);
+    assert.equal(after.badges[id], undefined, id);
+    assert.ok(!update.changes.some(({ characterId }) => characterId === id), id);
+  }
+
   for (const [id, toTier] of Object.entries(after.currentTiers)) {
+    if (removedMarkers.has(id)) continue;
     const fromTier = before.currentTiers[id];
     const previousKind = before.badges[id]?.kind;
     if (fromTier === toTier) {
@@ -391,7 +409,7 @@ test('November 12 marks tier moves, carries active assessments and retires both 
       assert.equal(change.toTier, toTier, id);
     }
   }
-  assert.equal(Object.keys(after.badges).length, 24);
+  assert.equal(Object.keys(after.badges).length, 15);
   assert.ok(Object.keys(after.badges).every((id) => after.currentTiers[id]));
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
