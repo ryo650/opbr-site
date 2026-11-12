@@ -8,6 +8,7 @@ type TierRow = {
 };
 
 // Source: user screenshot, November 12, 2026 at 10:30:39 JST, left to right.
+// November 12 follow-up places Egghead Sanji immediately after Kuma & Bonney.
 // Earlier placements are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -50,9 +51,9 @@ export const tierList: TierRow[] = [
       "ama-no-murakumo-sword-kizaru",
       "great-pirate-edward-newgate",
       "king-of-the-pirates-gol-d-roger",
-      "egghead-sanji",
       "kaido-s-son-yamato",
       "father-and-daughter-kuma-bonny",
+      "egghead-sanji",
       "egghead-tony-tony-chopper",
       "the-four-emperors-marshall-d-teach",
       "happy-halloween-uta",

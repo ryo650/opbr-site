@@ -309,16 +309,10 @@ const november4TierReview: ImportantTierUpdate = {
 };
 
 const retainedNovember4AssessmentIds = new Set([
-  "egghead-sanji",
   "blackbeard-pirates-kuzan",
-  "great-pirate-gol-d-roger",
-  "legendary-hero-monkey-d-garp",
   "animal-kingdom-pirates-lead-performer-king",
   "flame-emperor-sabo",
   "king-of-the-pirates-gol-d-roger",
-  "the-wings-zoro-sanji",
-  "father-and-daughter-kuma-bonny",
-  "the-four-emperors-marshall-d-teach",
 ]);
 
 export const importantTierUpdates: ImportantTierUpdate[] = [
@@ -327,7 +321,7 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
     status: "published",
     publishedAt: "2026-11-12T10:30:39+09:00",
     title: "November 12 Tier Review: FILM RED Shanks and Awakened Lucci",
-    summary: "Following the buffs to FILM RED Shanks and Awakened Form Rob Lucci, five characters rise to higher tiers, six drop, and three return to C Tier. Ten assessments carry forward from November 4.",
+    summary: "This review reflects the updated rankings following the buffs to FILM RED Shanks and Awakened Form Rob Lucci. Four assessments carry forward from November 4.",
     changes: [
       {
         characterId: "awakened-form-rob-lucci",
@@ -378,28 +372,10 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
         toTier: "B",
       },
       {
-        characterId: "ama-no-murakumo-sword-kizaru",
-        kind: "fall",
-        fromTier: "A",
-        toTier: "B",
-      },
-      {
         characterId: "kaido-s-son-yamato",
         kind: "fall",
         fromTier: "A",
         toTier: "B",
-      },
-      {
-        characterId: "asl-ace-sabo-luffy",
-        kind: "rise",
-        fromTier: null,
-        toTier: "C",
-      },
-      {
-        characterId: "red-rock-monkey-d-luffy",
-        kind: "rise",
-        fromTier: null,
-        toTier: "C",
       },
       {
         characterId: "navy-hq-fleet-admiral-akainu",
