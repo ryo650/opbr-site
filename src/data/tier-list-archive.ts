@@ -105,3 +105,141 @@ export const tierListBeforeOctober22Reorder = [
   },
   { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
 ];
+
+// Snapshot after the October 22 ranking and assessment update (PR #128).
+export const tierListOctober22 = [
+  { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
+  {
+    tier: "SS",
+    colorClass: "SS",
+    characterIds: [
+      "the-five-elders-st-topman-warcury",
+      "the-five-elders-st-shepherd-ju-peter",
+    ],
+  },
+  {
+    tier: "S",
+    colorClass: "S",
+    characterIds: [
+      "flame-emperor-sabo",
+      "future-where-i-m-the-most-free-jewelry-bonney",
+      "winner-island-trafalgar-law",
+      "the-five-elders-st-marcus-mars",
+    ],
+  },
+  {
+    tier: "A",
+    colorClass: "A",
+    characterIds: [
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "navy-hq-fleet-admiral-akainu",
+      "kaido-s-son-yamato",
+      "animal-kingdom-pirates-lead-performer-king",
+      "happy-halloween-uta",
+      "unexpected-collaboration-rob-lucci",
+    ],
+  },
+  {
+    tier: "B",
+    colorClass: "B",
+    characterIds: [
+      "ama-no-murakumo-sword-kizaru",
+      "the-wings-zoro-sanji",
+      "the-four-emperors-marshall-d-teach",
+      "king-of-the-pirates-gol-d-roger",
+      "father-and-daughter-kuma-bonny",
+      "the-four-emperors-monkey-d-luffy",
+      "great-pirate-edward-newgate",
+      "egghead-tony-tony-chopper",
+      "awakened-form-rob-lucci",
+    ],
+  },
+  {
+    tier: "C",
+    colorClass: "C",
+    characterIds: [
+      "blackbeard-pirates-kuzan",
+      "legendary-hero-monkey-d-garp",
+      "daimyo-of-kuri-kozuki-oden",
+      "great-pirate-gol-d-roger",
+      "germa-66-vinsmoke-niji",
+      "battle-of-monsters-on-onigashima-kaido",
+      "film-red-shanks",
+      "seraphim-s-snake",
+      "the-blue-dorry",
+      "the-red-broggy",
+    ],
+  },
+  { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
+];
+
+// Snapshot before the November 12 update, including the November 4 placements (PR #138).
+export const tierListNovember4 = [
+  { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
+  {
+    tier: "SS",
+    colorClass: "SS",
+    characterIds: [
+      "the-five-elders-st-topman-warcury",
+      "the-five-elders-st-shepherd-ju-peter",
+    ],
+  },
+  {
+    tier: "S",
+    colorClass: "S",
+    characterIds: [
+      "future-where-i-m-the-most-free-jewelry-bonney",
+      "winner-island-trafalgar-law",
+      "flame-emperor-sabo",
+    ],
+  },
+  {
+    tier: "A",
+    colorClass: "A",
+    characterIds: [
+      "the-five-elders-st-marcus-mars",
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "kaido-s-son-yamato",
+      "animal-kingdom-pirates-lead-performer-king",
+      "ama-no-murakumo-sword-kizaru",
+      "navy-hq-fleet-admiral-akainu",
+      "unexpected-collaboration-rob-lucci",
+    ],
+  },
+  {
+    tier: "B",
+    colorClass: "B",
+    characterIds: [
+      "great-pirate-edward-newgate",
+      "the-wings-zoro-sanji",
+      "king-of-the-pirates-gol-d-roger",
+      "father-and-daughter-kuma-bonny",
+      "egghead-tony-tony-chopper",
+      "groves-of-wrath-ryokugyu",
+      "awakened-form-rob-lucci",
+      "the-four-emperors-marshall-d-teach",
+      "the-four-emperors-monkey-d-luffy",
+      "egghead-sanji",
+      "happy-halloween-uta",
+    ],
+  },
+  {
+    tier: "C",
+    colorClass: "C",
+    characterIds: [
+      "blackbeard-pirates-kuzan",
+      "paramount-war-sengoku",
+      "germa-66-vinsmoke-niji",
+      "daimyo-of-kuri-kozuki-oden",
+      "great-pirate-gol-d-roger",
+      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
+      "legendary-hero-monkey-d-garp",
+      "battle-of-monsters-on-onigashima-kaido",
+      "film-red-shanks",
+      "seraphim-s-snake",
+      "the-blue-dorry",
+      "the-red-broggy",
+    ],
+  },
+  { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
+];

@@ -3,11 +3,12 @@ const assert = require('node:assert/strict');
 const { getImportantTierUpdateState } = require('../src/lib/tier-important-updates');
 const { importantTierUpdates } = require('../src/data/tier-important-updates');
 const { tierList, visibleTierList } = require('../src/data/tierList');
-const { tierListOctober10, tierListBeforeOctober22Reorder } = require('../src/data/tier-list-archive');
+const { tierListOctober10, tierListBeforeOctober22Reorder, tierListOctober22, tierListNovember4 } = require('../src/data/tier-list-archive');
 const { characters } = require('../src/data/characters');
 const { demoUpdate, demoNow, getDemoScenario } = require('./fixtures/tier-important-updates');
 const day = 24 * 60 * 60 * 1000;
-const october21Events = importantTierUpdates.filter((event) => event.id !== '2026-10-22-tier-assessment-follow-up');
+const october21Events = importantTierUpdates.filter((event) => event.publishedAt < '2026-10-22');
+const october22Events = importantTierUpdates.filter((event) => event.publishedAt < '2026-10-23');
 // Synthetic scenarios need synthetic placements, independent of live editorial changes.
 const demoRankings = tierList.map((row) => ({
   ...row,
@@ -170,7 +171,7 @@ test('October 21 meta review retains 8 rises, 7 falls and 2 new entries', () => 
   assert.equal(state(october21Events, start - 1, tierListBeforeOctober22Reorder).update.id, '2026-10-10-oden-meta-follow-up');
   const result = state(october21Events, start, tierListBeforeOctober22Reorder);
   assert.equal(result.update.id, update.id);
-  assert.deepEqual(tierList.find(({ tier }) => tier === 'SS').characterIds, [
+  assert.deepEqual(tierListBeforeOctober22Reorder.find(({ tier }) => tier === 'SS').characterIds, [
     'the-five-elders-st-topman-warcury',
     'the-five-elders-st-shepherd-ju-peter',
   ]);
@@ -206,7 +207,7 @@ test('October 21 meta review retains 8 rises, 7 falls and 2 new entries', () => 
 });
 
 test('October 22 placements satisfy all follow-ups, with blue Lucci last in B', () => {
-  const row = (tier) => tierList.find((row) => row.tier === tier);
+  const row = (tier) => tierListOctober22.find((row) => row.tier === tier);
   assert.deepEqual(row('B').characterIds.slice(0, 3), [
     'ama-no-murakumo-sword-kizaru', 'the-wings-zoro-sanji', 'the-four-emperors-marshall-d-teach',
   ]);
@@ -224,8 +225,7 @@ test('October 22 placements satisfy all follow-ups, with blue Lucci last in B', 
   ]);
   assert.equal(row('A').characterIds.at(-1), 'unexpected-collaboration-rob-lucci');
   assert.notEqual(row('C').hidden, true);
-  assert.deepEqual(tierList.filter((row) => row.hidden).map((row) => row.tier), ['god', 'D']);
-  assert.deepEqual(visibleTierList.map((row) => row.tier), ['SS', 'S', 'A', 'B', 'C']);
+  assert.deepEqual(tierListOctober22.filter((row) => row.hidden).map((row) => row.tier), ['god', 'D']);
 });
 
 test('October 22 reorder preserves the roster and all other characters’ relative tier order', () => {
@@ -235,10 +235,10 @@ test('October 22 reorder preserves the roster and all other characters’ relati
     'daimyo-of-kuri-kozuki-oden', 'unexpected-collaboration-rob-lucci',
     'legendary-hero-monkey-d-garp', 'the-four-emperors-marshall-d-teach',
   ]);
-  const placements = tierList.flatMap((row) => row.characterIds);
+  const placements = tierListOctober22.flatMap((row) => row.characterIds);
   assert.equal(new Set(placements).size, placements.length);
   assert.deepEqual([...placements].sort(), tierListBeforeOctober22Reorder.flatMap((row) => row.characterIds).sort());
-  for (const row of tierList) {
+  for (const row of tierListOctober22) {
     for (const id of row.characterIds) assert.ok(characters[id], id);
     const previous = tierListBeforeOctober22Reorder.find((old) => old.tier === row.tier);
     assert.equal(row.colorClass, previous.colorClass);
@@ -258,7 +258,7 @@ test('October 22 reorder retains the five historical tier mismatches before the 
   const update = importantTierUpdates.find((event) => event.id === '2026-10-21-warcury-ju-peter-meta');
   const start = Date.parse(update.publishedAt);
   const previous = state(october21Events, start, tierListBeforeOctober22Reorder);
-  const current = state(october21Events, start, tierList);
+  const current = state(october21Events, start, tierListOctober22);
   assert.equal(current.update, update);
   assert.equal(october21Events.length, 4);
   assert.equal(update.changes.length, 17);
@@ -280,22 +280,22 @@ test('October 22 reorder retains the five historical tier mismatches before the 
   for (const id of ['awakened-form-rob-lucci', 'great-pirate-edward-newgate', 'egghead-tony-tony-chopper']) {
     assert.equal(current.badges[id], undefined);
   }
-  assert.deepEqual(state(october21Events, start + 14 * day - 1, tierList).badges, expected);
-  const expired = state(october21Events, start + 14 * day, tierList);
+  assert.deepEqual(state(october21Events, start + 14 * day - 1, tierListOctober22).badges, expected);
+  const expired = state(october21Events, start + 14 * day, tierListOctober22);
   assert.deepEqual(expired.badges, {});
   assert.equal(expired.update, update);
 });
 
-test('October 22 explicit assessments mark the five requested characters and retain the other 12 markers', () => {
+test('October 22 explicit assessments carry prior markers whose placements still match', () => {
   const followUp = importantTierUpdates.find((event) => event.id === '2026-10-22-tier-assessment-follow-up');
   const start = Date.parse(followUp.publishedAt);
-  const before = state(importantTierUpdates, start - 1, tierList);
-  const current = state(importantTierUpdates, start, tierList);
+  const before = state(october22Events, start - 1, tierListOctober22);
+  const current = state(october22Events, start, tierListOctober22);
   assert.equal(before.update.id, '2026-10-21-warcury-ju-peter-meta');
   assert.equal(Object.keys(before.badges).length, 12);
   assert.ok(Object.values(before.badges).every((badge) => badge.expiresAt === start));
   assert.equal(current.update, followUp);
-  assert.equal(importantTierUpdates.length, 5);
+  assert.equal(october22Events.length, 5);
   assert.equal(followUp.changes.length, 17);
   assert.equal(new Set(followUp.changes.map((change) => change.characterId)).size, 17);
   const requested = {
@@ -313,21 +313,87 @@ test('October 22 explicit assessments mark the five requested characters and ret
     assert.equal(current.currentTiers[id], tier);
     assert.match(change.reason, /tier and position are unchanged/);
   }
-  for (const [id, badge] of Object.entries(before.badges)) {
+  // The later Kizaru correction records A. The archived October 22 table had him in B.
+  const kizaru = 'ama-no-murakumo-sword-kizaru';
+  assert.equal(before.badges[kizaru].kind, 'rise');
+  assert.equal(current.badges[kizaru], undefined);
+  const retained = Object.entries(before.badges).filter(([id]) => id !== kizaru);
+  for (const [id, badge] of retained) {
     assert.equal(current.badges[id].kind, badge.kind, id);
     assert.match(followUp.changes.find((change) => change.characterId === id).reason, /carried forward from the October 21 review/);
   }
-  assert.deepEqual(Object.keys(current.badges).sort(), [...Object.keys(before.badges), ...Object.keys(requested)].sort());
-  assert.deepEqual(['rise', 'fall', 'new'].map((kind) => Object.values(current.badges).filter((badge) => badge.kind === kind).length), [8, 7, 2]);
+  assert.deepEqual(Object.keys(current.badges).sort(), [...retained.map(([id]) => id), ...Object.keys(requested)].sort());
+  assert.deepEqual(['rise', 'fall', 'new'].map((kind) => Object.values(current.badges).filter((badge) => badge.kind === kind).length), [7, 7, 2]);
   for (const id of ['unexpected-collaboration-rob-lucci', 'daimyo-of-kuri-kozuki-oden', 'awakened-form-rob-lucci', 'great-pirate-edward-newgate', 'egghead-tony-tony-chopper']) {
     assert.equal(current.badges[id], undefined, id);
   }
   assert.equal(followUp.officialAdjustment, undefined);
   assert.match(followUp.summary, /not character buffs or nerfs/);
-  assert.equal(Object.keys(state(importantTierUpdates, start + 14 * day - 1, tierList).badges).length, 17);
-  const expired = state(importantTierUpdates, start + 14 * day, tierList);
+  assert.equal(Object.keys(state(october22Events, start + 14 * day - 1, tierListOctober22).badges).length, 16);
+  const expired = state(october22Events, start + 14 * day, tierListOctober22);
   assert.deepEqual(expired.badges, {});
   assert.equal(expired.update, followUp);
+});
+
+test('November 12 placements match the screenshot in tier and portrait order', () => {
+  const placements = tierList.flatMap(({ characterIds }) => characterIds);
+  assert.equal(new Set(placements).size, 31);
+  assert.ok(placements.every((id) => characters[id]));
+  assert.deepEqual(tierList.map(({ tier, characterIds }) => [tier, characterIds]), [
+    ['god', []],
+    ['SS', [
+      'the-five-elders-st-shepherd-ju-peter', 'future-where-i-m-the-most-free-jewelry-bonney', 'awakened-form-rob-lucci',
+    ]],
+    ['S', ['the-five-elders-st-topman-warcury', 'flame-emperor-sabo']],
+    ['A', [
+      'film-red-shanks', 'the-four-emperors-monkey-d-luffy', 'winner-island-trafalgar-law',
+      'animal-kingdom-pirates-lead-performer-king', 'the-five-elders-st-marcus-mars', 'unexpected-collaboration-rob-lucci',
+    ]],
+    ['B', [
+      'the-five-elders-st-ethanbaron-v-nusjuro', 'battle-of-monsters-on-onigashima-kaido', 'the-wings-zoro-sanji',
+      'ama-no-murakumo-sword-kizaru', 'great-pirate-edward-newgate', 'king-of-the-pirates-gol-d-roger',
+      'egghead-sanji', 'kaido-s-son-yamato', 'father-and-daughter-kuma-bonny', 'egghead-tony-tony-chopper',
+      'the-four-emperors-marshall-d-teach', 'happy-halloween-uta',
+    ]],
+    ['C', [
+      'great-pirate-gol-d-roger', 'legendary-hero-monkey-d-garp', 'asl-ace-sabo-luffy', 'blackbeard-pirates-kuzan',
+      'red-rock-monkey-d-luffy', 'navy-hq-fleet-admiral-akainu',
+      'man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy', 'divine-departure-shanks',
+    ]],
+    ['D', []],
+  ]);
+  assert.deepEqual(visibleTierList.map(({ tier }) => tier), ['SS', 'S', 'A', 'B', 'C']);
+});
+
+test('November 12 marks tier moves, carries active assessments and retires both New markers', () => {
+  const update = importantTierUpdates.find(({ id }) => id === '2026-11-12-shanks-lucci-tier-review');
+  const start = Date.parse(update.publishedAt);
+  const before = state(importantTierUpdates, start - 1, tierListNovember4);
+  const after = state(importantTierUpdates, start, tierList);
+  const ranks = tierList.map(({ tier }) => tier);
+  assert.equal(before.update.id, '2026-11-04-ryokugyu-b-tier-rise');
+  assert.equal(after.update, update);
+  assert.equal(before.badges['the-five-elders-st-topman-warcury'].kind, 'new');
+  assert.equal(before.badges['the-five-elders-st-shepherd-ju-peter'].kind, 'new');
+  assert.equal(after.badges['the-five-elders-st-topman-warcury'].kind, 'fall');
+  assert.equal(after.badges['the-five-elders-st-shepherd-ju-peter'], undefined);
+
+  for (const [id, toTier] of Object.entries(after.currentTiers)) {
+    const fromTier = before.currentTiers[id];
+    const previousKind = before.badges[id]?.kind;
+    if (fromTier === toTier) {
+      assert.equal(after.badges[id]?.kind, previousKind === 'new' ? undefined : previousKind, id);
+    } else {
+      const kind = !fromTier || ranks.indexOf(toTier) < ranks.indexOf(fromTier) ? 'rise' : 'fall';
+      const change = update.changes.find(({ characterId }) => characterId === id);
+      assert.equal(after.badges[id].kind, kind, id);
+      assert.equal(change.fromTier, fromTier ?? null, id);
+      assert.equal(change.toTier, toTier, id);
+    }
+  }
+  assert.equal(Object.keys(after.badges).length, 24);
+  assert.ok(Object.keys(after.badges).every((id) => after.currentTiers[id]));
+  assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
 
 test('dated public summary preserves history and distinguishes it from current tiers and ordering', () => {
@@ -345,7 +411,7 @@ test('dated public summary preserves history and distinguishes it from current t
   require.extensions['.css'] = module => { module.exports = {}; };
   const ImportantTierUpdate = require('../src/components/tier-list/ImportantTierUpdate.tsx').default;
   const update = importantTierUpdates.find((event) => event.id === '2026-10-21-warcury-ju-peter-meta');
-  const current = state(importantTierUpdates, Date.parse(update.publishedAt), tierList);
+  const current = state(october22Events, Date.parse(update.publishedAt), tierListOctober22);
   for (const compact of [true, false]) {
     const html = renderToStaticMarkup(React.createElement(ImportantTierUpdate, {update, currentTiers: current.currentTiers, compact}));
     assert.match(html, /assessment at publication, including order within tiers/);
@@ -359,7 +425,7 @@ test('dated public summary preserves history and distinguishes it from current t
     else assert.match(html, /Zoro &amp; Sanji move to the end of B Tier/);
   }
   const followUp = importantTierUpdates.find((event) => event.id === '2026-10-22-tier-assessment-follow-up');
-  const latest = state(importantTierUpdates, Date.parse(followUp.publishedAt), tierList);
+  const latest = state(october22Events, Date.parse(followUp.publishedAt), tierListOctober22);
   for (const compact of [true, false]) {
     const html = renderToStaticMarkup(React.createElement(ImportantTierUpdate, {update: followUp, currentTiers: latest.currentTiers, compact}));
     assert.match(html, /October 22, 2026/);
@@ -368,7 +434,7 @@ test('dated public summary preserves history and distinguishes it from current t
     assert.match(html, /Show 14 more characters/);
     assert.equal((html.match(/Higher within tier/g) || []).length, 2);
     assert.equal((html.match(/Lower within tier/g) || []).length, 3);
-    assert.doesNotMatch(html, /At publication:/);
+    assert.match(html, /At publication: A. Current tier: B/);
     if (compact) assert.match(html, /8 Up · 7 Down · 2 New/);
   }
 });
