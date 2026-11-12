@@ -7,27 +7,24 @@ type TierRow = {
   hidden?: boolean;
 };
 
-// Source: user screenshot, October 21, 2026 at 16:00:51 JST, left to right.
-// October 22, 23 and 25 user-requested placements override the screenshot.
-// Directional assessments are registered separately in tier-important-updates.ts
-// and are intentionally unchanged by these placement-only edits.
-// Earlier placements, including characters omitted from the screenshot, are in tier-list-archive.ts.
+// Source: user screenshot, November 12, 2026 at 10:30:39 JST, left to right.
+// Earlier placements are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
   {
     tier: "SS",
     colorClass: "SS",
     characterIds: [
-      "the-five-elders-st-topman-warcury",
       "the-five-elders-st-shepherd-ju-peter",
+      "future-where-i-m-the-most-free-jewelry-bonney",
+      "awakened-form-rob-lucci",
     ],
   },
   {
     tier: "S",
     colorClass: "S",
     characterIds: [
-      "future-where-i-m-the-most-free-jewelry-bonney",
-      "winner-island-trafalgar-law",
+      "the-five-elders-st-topman-warcury",
       "flame-emperor-sabo",
     ],
   },
@@ -35,12 +32,11 @@ export const tierList: TierRow[] = [
     tier: "A",
     colorClass: "A",
     characterIds: [
-      "the-five-elders-st-marcus-mars",
-      "the-five-elders-st-ethanbaron-v-nusjuro",
-      "kaido-s-son-yamato",
+      "film-red-shanks",
+      "the-four-emperors-monkey-d-luffy",
+      "winner-island-trafalgar-law",
       "animal-kingdom-pirates-lead-performer-king",
-      "ama-no-murakumo-sword-kizaru",
-      "navy-hq-fleet-admiral-akainu",
+      "the-five-elders-st-marcus-mars",
       "unexpected-collaboration-rob-lucci",
     ],
   },
@@ -48,16 +44,17 @@ export const tierList: TierRow[] = [
     tier: "B",
     colorClass: "B",
     characterIds: [
-      "great-pirate-edward-newgate",
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "battle-of-monsters-on-onigashima-kaido",
       "the-wings-zoro-sanji",
+      "ama-no-murakumo-sword-kizaru",
+      "great-pirate-edward-newgate",
       "king-of-the-pirates-gol-d-roger",
+      "egghead-sanji",
+      "kaido-s-son-yamato",
       "father-and-daughter-kuma-bonny",
       "egghead-tony-tony-chopper",
-      "groves-of-wrath-ryokugyu",
-      "awakened-form-rob-lucci",
       "the-four-emperors-marshall-d-teach",
-      "the-four-emperors-monkey-d-luffy",
-      "egghead-sanji",
       "happy-halloween-uta",
     ],
   },
@@ -65,18 +62,14 @@ export const tierList: TierRow[] = [
     tier: "C",
     colorClass: "C",
     characterIds: [
-      "blackbeard-pirates-kuzan",
-      "paramount-war-sengoku",
-      "germa-66-vinsmoke-niji",
-      "daimyo-of-kuri-kozuki-oden",
       "great-pirate-gol-d-roger",
-      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
       "legendary-hero-monkey-d-garp",
-      "battle-of-monsters-on-onigashima-kaido",
-      "film-red-shanks",
-      "seraphim-s-snake",
-      "the-blue-dorry",
-      "the-red-broggy",
+      "asl-ace-sabo-luffy",
+      "blackbeard-pirates-kuzan",
+      "red-rock-monkey-d-luffy",
+      "navy-hq-fleet-admiral-akainu",
+      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
+      "divine-departure-shanks",
     ],
   },
   { tier: "D", colorClass: "D", hidden: true, characterIds: [] },

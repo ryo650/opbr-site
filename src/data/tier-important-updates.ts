@@ -276,8 +276,7 @@ const october22TierAssessmentFollowUp: ImportantTierUpdate = {
     ],
 };
 
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const november4TierReview: ImportantTierUpdate = {
     id: "2026-11-04-ryokugyu-b-tier-rise",
     status: "published",
     publishedAt: "2026-11-04T09:33:00+09:00",
@@ -307,7 +306,122 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
       },
       ...october22TierAssessmentFollowUp.changes,
     ],
+};
+
+const retainedNovember4AssessmentIds = new Set([
+  "egghead-sanji",
+  "blackbeard-pirates-kuzan",
+  "great-pirate-gol-d-roger",
+  "legendary-hero-monkey-d-garp",
+  "animal-kingdom-pirates-lead-performer-king",
+  "flame-emperor-sabo",
+  "king-of-the-pirates-gol-d-roger",
+  "the-wings-zoro-sanji",
+  "father-and-daughter-kuma-bonny",
+  "the-four-emperors-marshall-d-teach",
+]);
+
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-11-12-shanks-lucci-tier-review",
+    status: "published",
+    publishedAt: "2026-11-12T10:30:39+09:00",
+    title: "November 12 Tier Review: FILM RED Shanks and Awakened Lucci",
+    summary: "Following the buffs to FILM RED Shanks and Awakened Form Rob Lucci, five characters rise to higher tiers, six drop, and three return to C Tier. Ten assessments carry forward from November 4.",
+    changes: [
+      {
+        characterId: "awakened-form-rob-lucci",
+        kind: "rise",
+        fromTier: "B",
+        toTier: "SS",
+      },
+      {
+        characterId: "film-red-shanks",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "A",
+      },
+      {
+        characterId: "future-where-i-m-the-most-free-jewelry-bonney",
+        kind: "rise",
+        fromTier: "S",
+        toTier: "SS",
+      },
+      {
+        characterId: "the-five-elders-st-topman-warcury",
+        kind: "fall",
+        fromTier: "SS",
+        toTier: "S",
+      },
+      {
+        characterId: "the-four-emperors-monkey-d-luffy",
+        kind: "rise",
+        fromTier: "B",
+        toTier: "A",
+      },
+      {
+        characterId: "winner-island-trafalgar-law",
+        kind: "fall",
+        fromTier: "S",
+        toTier: "A",
+      },
+      {
+        characterId: "the-five-elders-st-ethanbaron-v-nusjuro",
+        kind: "fall",
+        fromTier: "A",
+        toTier: "B",
+      },
+      {
+        characterId: "battle-of-monsters-on-onigashima-kaido",
+        kind: "rise",
+        fromTier: "C",
+        toTier: "B",
+      },
+      {
+        characterId: "ama-no-murakumo-sword-kizaru",
+        kind: "fall",
+        fromTier: "A",
+        toTier: "B",
+      },
+      {
+        characterId: "kaido-s-son-yamato",
+        kind: "fall",
+        fromTier: "A",
+        toTier: "B",
+      },
+      {
+        characterId: "asl-ace-sabo-luffy",
+        kind: "rise",
+        fromTier: null,
+        toTier: "C",
+      },
+      {
+        characterId: "red-rock-monkey-d-luffy",
+        kind: "rise",
+        fromTier: null,
+        toTier: "C",
+      },
+      {
+        characterId: "navy-hq-fleet-admiral-akainu",
+        kind: "fall",
+        fromTier: "A",
+        toTier: "C",
+      },
+      {
+        characterId: "divine-departure-shanks",
+        kind: "rise",
+        fromTier: null,
+        toTier: "C",
+      },
+      ...november4TierReview.changes
+        .filter(({ characterId }) => retainedNovember4AssessmentIds.has(characterId))
+        .map((change) => ({
+          ...change,
+          reason: "Assessment carried forward from the November 4 review.",
+        })),
+    ],
   },
+  november4TierReview,
   october22TierAssessmentFollowUp,
   warcuryJuPeterOctober21Review,
   {
