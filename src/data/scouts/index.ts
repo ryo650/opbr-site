@@ -49,7 +49,10 @@ import { scoutTheFourEmperorsMonkeyDLuffy20261126 } from "./the-four-emperors-mo
 
 import { scoutLegendaryHeroMonkeyDGarp20261124 } from "./legendary-hero-monkey-d-garp-20261124";
 
+import { scoutFilmRedShanks20261202 } from "./film-red-shanks-20261202";
+
 export const scouts = [
+    scoutFilmRedShanks20261202,
     scoutLegendaryHeroMonkeyDGarp20261124,
     scoutTheFourEmperorsMonkeyDLuffy20261126,
     scoutTheFiveEldersStMarcusMars20261111,
