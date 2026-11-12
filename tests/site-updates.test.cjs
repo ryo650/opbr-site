@@ -41,12 +41,12 @@ test('site update data has valid dates, unique IDs, and existing local links', a
     if (update.featuredRank !== undefined) {
       assert.ok(Number.isInteger(update.featuredRank) && update.featuredRank > 0);
     }
-    if (update.image) {
-      assert.match(update.image.src, /^\/(?!\/)/);
-      assert.ok(fs.existsSync(path.join(__dirname, '../public', new URL(update.image.src, 'http://localhost').pathname)));
-      assert.ok(update.image.alt.trim());
-      assert.ok(update.image.width > 0 && update.image.height > 0);
-      assert.ok(['medal', 'banner', 'character'].includes(update.image.kind));
+    for (const image of [update.image].flat().filter(Boolean)) {
+      assert.match(image.src, /^\/(?!\/)/);
+      assert.ok(fs.existsSync(path.join(__dirname, '../public', new URL(image.src, 'http://localhost').pathname)));
+      assert.ok(image.alt.trim());
+      assert.ok(image.width > 0 && image.height > 0);
+      assert.ok(['medal', 'banner', 'character'].includes(image.kind));
     }
     for (const link of update.links) {
       assert.ok(link.label.trim());
@@ -132,8 +132,10 @@ test('Peter guide announcement uses the existing character portrait on Home and 
   assert.ok(html.includes('St. Shepherd Ju Peter character artwork'));
   assert.ok(html.includes('aspect-ratio:888 / 719'));
   assert.ok(html.includes('href="/characters/the-five-elders-st-shepherd-ju-peter"'));
-  const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
+  const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: [peter] }));
   assert.ok(home.includes('the-five-elders-st-shepherd-ju-peter'));
+  const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));
+  assert.ok(updates.includes('St. Shepherd Ju Peter pre-release guide added'));
 });
 
 test('Five Elders announcement matches the updated scout on Home and Updates', () => {
@@ -166,7 +168,7 @@ test('Five Elders announcement matches the updated scout on Home and Updates', (
   }
 });
 
-test('Warcury guide announcement uses its character portrait and leads on Home', () => {
+test('Warcury guide announcement uses its character portrait on Home and Updates', () => {
   const warcury = siteUpdates.find(update => update.id === 'st-topman-warcury-pre-release-guide');
   assert.ok(warcury);
   assert.equal(warcury.category, 'guide');
@@ -179,9 +181,27 @@ test('Warcury guide announcement uses its character portrait and leads on Home',
   assert.ok(card.includes('St. Topman Warcury character artwork'));
   assert.ok(card.includes('aspect-ratio:876 / 676'));
   assert.ok(card.includes('href="/characters/the-five-elders-st-topman-warcury"'));
-  assert.equal(getHomeSiteUpdates(siteUpdates)[0].id, warcury.id);
+  assert.ok(getHomeSiteUpdates(siteUpdates).some(({ id }) => id === warcury.id));
   const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));
   assert.ok(updates.includes('St. Topman Warcury pre-release guide added'));
+});
+
+test('the Lucci and Shanks tier update leads both news lists with both character portraits', () => {
+  const id = 'lucci-shanks-buffs-tier-list-20261112';
+  assert.equal(getHomeSiteUpdates(siteUpdates)[0].id, id);
+  assert.equal(getSortedSiteUpdates(siteUpdates)[0].id, id);
+  const home = renderToStaticMarkup(React.createElement(HomeUpdates, { updates: siteUpdates }));
+  const updates = renderToStaticMarkup(React.createElement(UpdatesList, { updates: siteUpdates }));
+  for (const html of [home, updates]) {
+    const card = html.match(new RegExp(`<article[^>]*aria-labelledby="update-${id}"[^>]*>.*?</article>`))?.[0];
+    assert.ok(card);
+    assert.match(card, /Awakened Form Rob Lucci moves from B to SS Tier/);
+    assert.match(card, /FILM RED Shanks moves from C to A Tier/);
+    assert.match(card, /href="\/tier-list"/);
+    assert.equal((card.match(/<img\b/g) || []).length, 2);
+    assert.ok(card.includes(encodeURIComponent('/characters/blue/awakened-form-rob-lucci.webp')));
+    assert.ok(card.includes(encodeURIComponent('/characters/green/film-red-shanks.webp')));
+  }
 });
 
 test('empty updates render an explanation and a working home link', () => {

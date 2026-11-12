@@ -1,3 +1,11 @@
+type SiteUpdateImage = {
+  src: `/${string}`;
+  alt: string;
+  width: number;
+  height: number;
+  kind: "medal" | "banner" | "character";
+};
+
 export type SiteUpdate = {
   id: string;
   /** Site publication date in UTC (YYYY-MM-DD), not a game event date. */
@@ -7,13 +15,7 @@ export type SiteUpdate = {
   description: string;
   /** Optional Home priority. Lower positive numbers appear first. */
   featuredRank?: number;
-  image?: {
-    src: `/${string}`;
-    alt: string;
-    width: number;
-    height: number;
-    kind: "medal" | "banner" | "character";
-  };
+  image?: SiteUpdateImage | [SiteUpdateImage, SiteUpdateImage];
   links: readonly { href: `/${string}`; label: string }[];
 };
 
@@ -25,6 +27,32 @@ export const siteUpdateCategoryLabels: Record<SiteUpdate["category"], string> = 
 
 // Only record additions available on the published site. See docs/site-updates.md.
 export const siteUpdates: readonly SiteUpdate[] = [
+  {
+    id: "lucci-shanks-buffs-tier-list-20261112",
+    date: "2026-11-12",
+    title: "Tier List updated after Lucci and Shanks buffs",
+    category: "content",
+    featuredRank: 1,
+    image: [
+      {
+        src: "/characters/blue/awakened-form-rob-lucci.webp",
+        alt: "Awakened Form Rob Lucci",
+        width: 320,
+        height: 340,
+        kind: "character",
+      },
+      {
+        src: "/characters/green/film-red-shanks.webp",
+        alt: "FILM RED Shanks",
+        width: 431,
+        height: 414,
+        kind: "character",
+      },
+    ],
+    description:
+      "After their buffs, Awakened Form Rob Lucci moves from B to SS Tier and FILM RED Shanks moves from C to A Tier. See the latest rankings and other tier changes.",
+    links: [{ href: "/tier-list", label: "View the updated Tier List" }],
+  },
   {
     id: "st-topman-warcury-pre-release-guide",
     date: "2026-10-20",

@@ -72,9 +72,19 @@
   align-self: center;
   justify-self: center;
   width: 100%;
+}
+
+.imageFrame {
   overflow: hidden;
   border-radius: 12px;
   background: rgb(0 0 0 / 12%);
+}
+
+.pairedMedia {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: center;
+  gap: 8px;
 }
 
 .medal {
@@ -253,5 +263,24 @@
   .compact .title {
     align-self: center;
     font-size: 1.1rem;
+  }
+
+  .card:has(.pairedMedia) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pairedMedia {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+    max-width: 200px;
+  }
+
+  .pairedMedia ~ .description {
+    grid-row: 4;
+  }
+
+  .pairedMedia ~ .links {
+    grid-row: 5;
   }
 }
