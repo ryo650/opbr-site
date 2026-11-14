@@ -420,12 +420,12 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
     status: "published",
     publishedAt: "2026-11-14T18:42:32+09:00",
     title: "Awakened Form Rob Lucci moves to S Tier",
-    summary: "Awakened Form Rob Lucci moves from SS to the top of S Tier. The other active assessments carry forward.",
+    summary: "Awakened Form Rob Lucci now leads S Tier. His Up marker reflects his rise from B Tier before the November 12 review. The other active assessments carry forward.",
     changes: [
       {
         characterId: "awakened-form-rob-lucci",
-        kind: "fall",
-        fromTier: "SS",
+        kind: "rise",
+        fromTier: "B",
         toTier: "S",
       },
       ...november14ShanksReview.changes.filter(({ characterId }) => characterId !== "awakened-form-rob-lucci"),

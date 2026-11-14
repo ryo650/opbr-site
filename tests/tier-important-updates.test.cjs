@@ -444,7 +444,7 @@ test('the November 14 follow-up marks the Shanks promotion and carries the other
   assert.equal(Object.keys(result.badges).length, 15);
 });
 
-test('the Lucci follow-up replaces his Up marker with Down and preserves all fourteen other markers', () => {
+test('the Lucci follow-up keeps his Up marker from B to S and preserves all fourteen other markers', () => {
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-14-awakened-lucci-s-tier');
   const start = Date.parse(update.publishedAt);
   const before = state(importantTierUpdates, start - 1, rankingsBeforeLucciMove);
@@ -453,12 +453,12 @@ test('the Lucci follow-up replaces his Up marker with Down and preserves all fou
   assert.equal(before.badges[lucci].kind, 'rise');
   assert.equal(after.update, update);
   assert.deepEqual(update.changes[0], {
-    characterId: lucci, kind: 'fall', fromTier: 'SS', toTier: 'S',
+    characterId: lucci, kind: 'rise', fromTier: 'B', toTier: 'S',
   });
   assert.equal(after.currentTiers[lucci], 'S');
   assert.deepEqual(
     Object.fromEntries(Object.entries(after.badges).map(([id, badge]) => [id, badge.kind])),
-    { ...Object.fromEntries(Object.entries(before.badges).map(([id, badge]) => [id, badge.kind])), [lucci]: 'fall' },
+    Object.fromEntries(Object.entries(before.badges).map(([id, badge]) => [id, badge.kind])),
   );
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
