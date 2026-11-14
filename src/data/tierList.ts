@@ -9,6 +9,7 @@ type TierRow = {
 
 // Source: user screenshot, November 12, 2026 at 10:30:39 JST, left to right.
 // November 12 follow-up places Egghead Sanji immediately after Kuma & Bonney.
+// November 14 adds Genius Scientist Vegapunk at the top of C.
 // Earlier placements are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -63,6 +64,7 @@ export const tierList: TierRow[] = [
     tier: "C",
     colorClass: "C",
     characterIds: [
+      "genius-scientist-vegapunk",
       "great-pirate-gol-d-roger",
       "legendary-hero-monkey-d-garp",
       "asl-ace-sabo-luffy",
