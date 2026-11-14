@@ -9,7 +9,7 @@ type TierRow = {
 
 // Source: user screenshot, November 12, 2026 at 10:30:39 JST, left to right.
 // November 12 follow-up places Egghead Sanji immediately after Kuma & Bonney.
-// November 14 adds Genius Scientist Vegapunk at the top of C.
+// November 14 adds Genius Scientist Vegapunk at the top of C and moves FILM RED Shanks to the end of S.
 // Earlier placements are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -28,13 +28,13 @@ export const tierList: TierRow[] = [
     characterIds: [
       "the-five-elders-st-topman-warcury",
       "flame-emperor-sabo",
+      "film-red-shanks",
     ],
   },
   {
     tier: "A",
     colorClass: "A",
     characterIds: [
-      "film-red-shanks",
       "the-four-emperors-monkey-d-luffy",
       "winner-island-trafalgar-law",
       "animal-kingdom-pirates-lead-performer-king",

@@ -335,7 +335,7 @@ test('October 22 explicit assessments carry prior markers whose placements still
   assert.equal(expired.update, followUp);
 });
 
-test('current placements put Vegapunk first in C and Egghead Sanji immediately after Kuma & Bonney', () => {
+test('current placements put FILM RED Shanks last in S, Vegapunk first in C and Egghead Sanji after Kuma & Bonney', () => {
   const placements = tierList.flatMap(({ characterIds }) => characterIds);
   assert.equal(placements.length, 32);
   assert.equal(new Set(placements).size, placements.length);
@@ -345,9 +345,9 @@ test('current placements put Vegapunk first in C and Egghead Sanji immediately a
     ['SS', [
       'the-five-elders-st-shepherd-ju-peter', 'future-where-i-m-the-most-free-jewelry-bonney', 'awakened-form-rob-lucci',
     ]],
-    ['S', ['the-five-elders-st-topman-warcury', 'flame-emperor-sabo']],
+    ['S', ['the-five-elders-st-topman-warcury', 'flame-emperor-sabo', 'film-red-shanks']],
     ['A', [
-      'film-red-shanks', 'the-four-emperors-monkey-d-luffy', 'winner-island-trafalgar-law',
+      'the-four-emperors-monkey-d-luffy', 'winner-island-trafalgar-law',
       'animal-kingdom-pirates-lead-performer-king', 'the-five-elders-st-marcus-mars', 'unexpected-collaboration-rob-lucci',
     ]],
     ['B', [
@@ -371,7 +371,13 @@ test('November 12 shows the requested markers after removing nine directions and
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-12-shanks-lucci-tier-review');
   const start = Date.parse(update.publishedAt);
   const before = state(importantTierUpdates, start - 1, tierListNovember4);
-  const after = state(importantTierUpdates, start, tierList);
+  const previousRankings = tierList.map((row) => ({
+    ...row,
+    characterIds: row.tier === 'A'
+      ? ['film-red-shanks', ...row.characterIds]
+      : row.characterIds.filter((id) => id !== 'film-red-shanks' && id !== 'genius-scientist-vegapunk'),
+  }));
+  const after = state(importantTierUpdates, start, previousRankings);
   const ranks = tierList.map(({ tier }) => tier);
   assert.equal(before.update.id, '2026-11-04-ryokugyu-b-tier-rise');
   assert.equal(after.update, update);
@@ -379,7 +385,6 @@ test('November 12 shows the requested markers after removing nine directions and
   assert.equal(before.badges['the-five-elders-st-shepherd-ju-peter'].kind, 'new');
   assert.equal(after.badges['the-five-elders-st-topman-warcury'].kind, 'fall');
   assert.equal(after.badges['the-five-elders-st-shepherd-ju-peter'], undefined);
-  assert.equal(after.badges['genius-scientist-vegapunk'], undefined);
 
   const removedMarkers = new Set([
     'the-wings-zoro-sanji',
@@ -399,7 +404,6 @@ test('November 12 shows the requested markers after removing nine directions and
   }
 
   for (const [id, toTier] of Object.entries(after.currentTiers)) {
-    if (id === 'genius-scientist-vegapunk') continue; // Added on November 14 after this review.
     if (removedMarkers.has(id)) continue;
     const fromTier = before.currentTiers[id];
     const previousKind = before.badges[id]?.kind;
@@ -415,6 +419,22 @@ test('November 12 shows the requested markers after removing nine directions and
   }
   assert.equal(Object.keys(after.badges).length, 15);
   assert.ok(Object.keys(after.badges).every((id) => after.currentTiers[id]));
+});
+
+test('the November 14 follow-up marks the Shanks promotion and carries the other active markers', () => {
+  const update = importantTierUpdates.find(({ id }) => id === '2026-11-14-film-red-shanks-s-tier');
+  const previous = importantTierUpdates.find(({ id }) => id === '2026-11-12-shanks-lucci-tier-review');
+  const start = Date.parse(update.publishedAt);
+  const result = state(importantTierUpdates, start, tierList);
+  assert.equal(result.update, update);
+  assert.deepEqual(update.changes[0], {
+    characterId: 'film-red-shanks', kind: 'rise', fromTier: 'A', toTier: 'S',
+  });
+  assert.deepEqual(update.changes.slice(1), previous.changes.filter(({ characterId }) => characterId !== 'film-red-shanks'));
+  assert.equal(result.currentTiers['film-red-shanks'], 'S');
+  assert.equal(result.badges['film-red-shanks'].kind, 'rise');
+  assert.equal(result.badges['genius-scientist-vegapunk'], undefined);
+  assert.equal(Object.keys(result.badges).length, 15);
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
 
