@@ -11,6 +11,7 @@ type TierRow = {
 // November 12 follow-up places Egghead Sanji immediately after Kuma & Bonney.
 // November 14 adds Genius Scientist Vegapunk at the top of C and moves FILM RED Shanks to the end of S.
 // The November 14 follow-up places Awakened Form Rob Lucci first in S.
+// November 15 moves Bonney and Lucci ahead of Peter in SS and puts Sabo first in S.
 // Earlier placements are in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
@@ -18,17 +19,17 @@ export const tierList: TierRow[] = [
     tier: "SS",
     colorClass: "SS",
     characterIds: [
-      "the-five-elders-st-shepherd-ju-peter",
       "future-where-i-m-the-most-free-jewelry-bonney",
+      "awakened-form-rob-lucci",
+      "the-five-elders-st-shepherd-ju-peter",
     ],
   },
   {
     tier: "S",
     colorClass: "S",
     characterIds: [
-      "awakened-form-rob-lucci",
-      "the-five-elders-st-topman-warcury",
       "flame-emperor-sabo",
+      "the-five-elders-st-topman-warcury",
       "film-red-shanks",
     ],
   },

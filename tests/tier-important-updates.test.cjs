@@ -335,7 +335,7 @@ test('October 22 explicit assessments carry prior markers whose placements still
   assert.equal(expired.update, followUp);
 });
 
-test('current placements put awakened Lucci first in S and FILM RED Shanks last', () => {
+test('current placements show Bonney, Lucci and Peter in SS and put Sabo first in S', () => {
   const placements = tierList.flatMap(({ characterIds }) => characterIds);
   assert.equal(placements.length, 32);
   assert.equal(new Set(placements).size, placements.length);
@@ -343,9 +343,9 @@ test('current placements put awakened Lucci first in S and FILM RED Shanks last'
   assert.deepEqual(tierList.map(({ tier, characterIds }) => [tier, characterIds]), [
     ['god', []],
     ['SS', [
-      'the-five-elders-st-shepherd-ju-peter', 'future-where-i-m-the-most-free-jewelry-bonney',
+      'future-where-i-m-the-most-free-jewelry-bonney', 'awakened-form-rob-lucci', 'the-five-elders-st-shepherd-ju-peter',
     ]],
-    ['S', ['awakened-form-rob-lucci', 'the-five-elders-st-topman-warcury', 'flame-emperor-sabo', 'film-red-shanks']],
+    ['S', ['flame-emperor-sabo', 'the-five-elders-st-topman-warcury', 'film-red-shanks']],
     ['A', [
       'the-four-emperors-monkey-d-luffy', 'winner-island-trafalgar-law',
       'animal-kingdom-pirates-lead-performer-king', 'the-five-elders-st-marcus-mars', 'unexpected-collaboration-rob-lucci',
@@ -367,7 +367,15 @@ test('current placements put awakened Lucci first in S and FILM RED Shanks last'
   assert.deepEqual(visibleTierList.map(({ tier }) => tier), ['SS', 'S', 'A', 'B', 'C']);
 });
 
-const rankingsBeforeLucciMove = tierList.map((row) => ({
+const november14Rankings = tierList.map((row) => ({
+  ...row,
+  characterIds: {
+    SS: ['the-five-elders-st-shepherd-ju-peter', 'future-where-i-m-the-most-free-jewelry-bonney'],
+    S: ['awakened-form-rob-lucci', 'the-five-elders-st-topman-warcury', 'flame-emperor-sabo', 'film-red-shanks'],
+  }[row.tier] ?? row.characterIds,
+}));
+
+const rankingsBeforeLucciMove = november14Rankings.map((row) => ({
   ...row,
   characterIds: row.tier === 'SS'
     ? [...row.characterIds, 'awakened-form-rob-lucci']
@@ -448,7 +456,7 @@ test('the Lucci follow-up keeps his Up marker from B to S and preserves all four
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-14-awakened-lucci-s-tier');
   const start = Date.parse(update.publishedAt);
   const before = state(importantTierUpdates, start - 1, rankingsBeforeLucciMove);
-  const after = state(importantTierUpdates, start, tierList);
+  const after = state(importantTierUpdates, start, november14Rankings);
   const lucci = 'awakened-form-rob-lucci';
   assert.equal(before.badges[lucci].kind, 'rise');
   assert.equal(after.update, update);
@@ -460,6 +468,19 @@ test('the Lucci follow-up keeps his Up marker from B to S and preserves all four
     Object.fromEntries(Object.entries(after.badges).map(([id, badge]) => [id, badge.kind])),
     Object.fromEntries(Object.entries(before.badges).map(([id, badge]) => [id, badge.kind])),
   );
+});
+
+test('November 15 retains every Up and Down marker while placing Lucci in SS', () => {
+  const update = importantTierUpdates.find(({ id }) => id === '2026-11-15-bonney-lucci-sabo-placement');
+  const start = Date.parse(update.publishedAt);
+  const before = state(importantTierUpdates, start - 1, november14Rankings);
+  const after = state(importantTierUpdates, start, tierList);
+  const markerKinds = (badges) => Object.fromEntries(Object.entries(badges).map(([id, badge]) => [id, badge.kind]));
+  assert.equal(after.update, update);
+  assert.equal(after.currentTiers['awakened-form-rob-lucci'], 'SS');
+  assert.equal(after.badges['awakened-form-rob-lucci'].kind, 'rise');
+  assert.equal(Object.keys(after.badges).length, 15);
+  assert.deepEqual(markerKinds(after.badges), markerKinds(before.badges));
   assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
 });
 
