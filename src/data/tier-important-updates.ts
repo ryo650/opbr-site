@@ -397,8 +397,7 @@ const november12TierReview: ImportantTierUpdate = {
     ],
 };
 
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const november14ShanksReview: ImportantTierUpdate = {
     id: "2026-11-14-film-red-shanks-s-tier",
     status: "published",
     publishedAt: "2026-11-14T18:34:28+09:00",
@@ -413,7 +412,26 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
       },
       ...november12TierReview.changes.filter(({ characterId }) => characterId !== "film-red-shanks"),
     ],
+};
+
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-11-14-awakened-lucci-s-tier",
+    status: "published",
+    publishedAt: "2026-11-14T18:42:32+09:00",
+    title: "Awakened Form Rob Lucci moves to S Tier",
+    summary: "Awakened Form Rob Lucci now leads S Tier. His Up marker reflects his rise from B Tier before the November 12 review. The other active assessments carry forward.",
+    changes: [
+      {
+        characterId: "awakened-form-rob-lucci",
+        kind: "rise",
+        fromTier: "B",
+        toTier: "S",
+      },
+      ...november14ShanksReview.changes.filter(({ characterId }) => characterId !== "awakened-form-rob-lucci"),
+    ],
   },
+  november14ShanksReview,
   november12TierReview,
   november4TierReview,
   october22TierAssessmentFollowUp,
