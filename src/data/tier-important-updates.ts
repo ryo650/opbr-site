@@ -414,8 +414,7 @@ const november14ShanksReview: ImportantTierUpdate = {
     ],
 };
 
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const november14LucciReview: ImportantTierUpdate = {
     id: "2026-11-14-awakened-lucci-s-tier",
     status: "published",
     publishedAt: "2026-11-14T18:42:32+09:00",
@@ -430,7 +429,20 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
       },
       ...november14ShanksReview.changes.filter(({ characterId }) => characterId !== "awakened-form-rob-lucci"),
     ],
+};
+
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-11-15-bonney-lucci-sabo-placement",
+    status: "published",
+    publishedAt: "2026-11-15T07:29:35+09:00",
+    title: "Bonney, Lucci and Sabo ranking update",
+    summary: "Bonney leads SS Tier, followed by Awakened Form Rob Lucci and Ju Peter. Flame Emperor Sabo leads S Tier. The existing Up and Down assessments carry forward.",
+    changes: november14LucciReview.changes.map((change) =>
+      change.characterId === "awakened-form-rob-lucci" ? { ...change, toTier: "SS" } : change
+    ),
   },
+  november14LucciReview,
   november14ShanksReview,
   november12TierReview,
   november4TierReview,
