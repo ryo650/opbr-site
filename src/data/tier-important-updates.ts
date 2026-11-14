@@ -315,8 +315,7 @@ const retainedNovember4AssessmentIds = new Set([
   "king-of-the-pirates-gol-d-roger",
 ]);
 
-export const importantTierUpdates: ImportantTierUpdate[] = [
-  {
+const november12TierReview: ImportantTierUpdate = {
     id: "2026-11-12-shanks-lucci-tier-review",
     status: "published",
     publishedAt: "2026-11-12T10:30:39+09:00",
@@ -396,7 +395,26 @@ export const importantTierUpdates: ImportantTierUpdate[] = [
           reason: "Assessment carried forward from the November 4 review.",
         })),
     ],
+};
+
+export const importantTierUpdates: ImportantTierUpdate[] = [
+  {
+    id: "2026-11-14-film-red-shanks-s-tier",
+    status: "published",
+    publishedAt: "2026-11-14T18:34:28+09:00",
+    title: "FILM RED Shanks rises to S Tier",
+    summary: "FILM RED Shanks moves from A to the end of S Tier, immediately after Flame Emperor Sabo. The other assessments from November 12 carry forward.",
+    changes: [
+      {
+        characterId: "film-red-shanks",
+        kind: "rise",
+        fromTier: "A",
+        toTier: "S",
+      },
+      ...november12TierReview.changes.filter(({ characterId }) => characterId !== "film-red-shanks"),
+    ],
   },
+  november12TierReview,
   november4TierReview,
   october22TierAssessmentFollowUp,
   warcuryJuPeterOctober21Review,
