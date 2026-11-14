@@ -335,9 +335,10 @@ test('October 22 explicit assessments carry prior markers whose placements still
   assert.equal(expired.update, followUp);
 });
 
-test('November 12 placements include Egghead Sanji immediately after Kuma & Bonney', () => {
+test('current placements put Vegapunk first in C and Egghead Sanji immediately after Kuma & Bonney', () => {
   const placements = tierList.flatMap(({ characterIds }) => characterIds);
-  assert.equal(new Set(placements).size, 31);
+  assert.equal(placements.length, 32);
+  assert.equal(new Set(placements).size, placements.length);
   assert.ok(placements.every((id) => characters[id]));
   assert.deepEqual(tierList.map(({ tier, characterIds }) => [tier, characterIds]), [
     ['god', []],
@@ -356,7 +357,8 @@ test('November 12 placements include Egghead Sanji immediately after Kuma & Bonn
       'the-four-emperors-marshall-d-teach', 'happy-halloween-uta',
     ]],
     ['C', [
-      'great-pirate-gol-d-roger', 'legendary-hero-monkey-d-garp', 'asl-ace-sabo-luffy', 'blackbeard-pirates-kuzan',
+      'genius-scientist-vegapunk', 'great-pirate-gol-d-roger', 'legendary-hero-monkey-d-garp',
+      'asl-ace-sabo-luffy', 'blackbeard-pirates-kuzan',
       'red-rock-monkey-d-luffy', 'navy-hq-fleet-admiral-akainu',
       'man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy', 'divine-departure-shanks',
     ]],
@@ -377,6 +379,7 @@ test('November 12 shows the requested markers after removing nine directions and
   assert.equal(before.badges['the-five-elders-st-shepherd-ju-peter'].kind, 'new');
   assert.equal(after.badges['the-five-elders-st-topman-warcury'].kind, 'fall');
   assert.equal(after.badges['the-five-elders-st-shepherd-ju-peter'], undefined);
+  assert.equal(after.badges['genius-scientist-vegapunk'], undefined);
 
   const removedMarkers = new Set([
     'the-wings-zoro-sanji',
@@ -396,6 +399,7 @@ test('November 12 shows the requested markers after removing nine directions and
   }
 
   for (const [id, toTier] of Object.entries(after.currentTiers)) {
+    if (id === 'genius-scientist-vegapunk') continue; // Added on November 14 after this review.
     if (removedMarkers.has(id)) continue;
     const fromTier = before.currentTiers[id];
     const previousKind = before.badges[id]?.kind;
