@@ -45,6 +45,7 @@ export default function StepUpSimulator({ definition, characters }: { definition
     <div className={styles.content}>
       <header><p className={styles.eyebrow}>{fixture ? "DEVELOPMENT FIXTURE" : "OPBR STEP-UP"}</p><h1>{data.meta.name}</h1>
         {fixture && <p className={styles.notice}>Fictional characters, rates and rewards. This is a development test, not an official Scout.</p>}
+        {data.meta.provisionalNotice && <p className={styles.notice}>{data.meta.provisionalNotice}</p>}
       </header>
       <section className={styles.panel} aria-labelledby="progress-title">
         <h2 id="progress-title">{state.status === "completed" ? "Completed" : `Round ${state.currentRound} / ${rounds} · Step ${state.currentStepIndex! + 1} / ${data.steps.length}`}</h2>
@@ -66,7 +67,7 @@ export default function StepUpSimulator({ definition, characters }: { definition
         {step.drawPlan.groups.map((group, index) => {
           const pool = compiled.pools[group.poolId];
           return <details key={index}><summary>{group.count} {group.role} slots · {group.poolId}</summary><p>{data.pools[group.poolId].source.context}</p>
-            <table><caption>{group.role === "guarantee" ? "Guaranteed slot pool" : "Normal slot pool"}</caption><thead><tr><th scope="col">Character</th><th scope="col">Rarity</th><th scope="col">Featured</th><th scope="col">Rate</th></tr></thead><tbody>{pool.entries.map(entry => <tr key={entry.characterId}><th scope="row">{characters[entry.characterId].name}</th><td>{entry.rarity}★</td><td>{entry.featured ? "Yes" : "No"}</td><td>{(100 * entry.weight / pool.total).toFixed(2)}%</td></tr>)}</tbody></table>
+            <table><caption>{group.role === "guarantee" ? "Guaranteed slot pool" : "Normal slot pool"}</caption><thead><tr><th scope="col">Character</th><th scope="col">Rarity</th><th scope="col">Featured</th><th scope="col">Rate</th></tr></thead><tbody>{pool.entries.map(entry => <tr key={entry.characterId}><th scope="row">{characters[entry.characterId].name}</th><td>{entry.rarity}★</td><td>{entry.featured ? "Yes" : "No"}</td><td>{(100 * entry.weight / pool.total).toFixed(fixture ? 2 : 7)}%</td></tr>)}</tbody></table>
           </details>;
         })}
       </section>}
