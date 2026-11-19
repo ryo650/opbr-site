@@ -1,4 +1,6 @@
-import type {
+import type { Character } from "./type.ts";
+
+export const blackCharacters: Record<string, Character> = {
     "fish-man-karate-assistant-master-koala": {
         id: "fish-man-karate-assistant-master-koala",
         name: "Fish-Man Karate Assistant Master Koala",
@@ -8,9 +10,6 @@ import type {
         element: "black",
         role: "defender"
     },
- Character } from "./type.ts";
-
-export const blackCharacters: Record<string, Character> = {
     "navy-hq-vice-admiral-doll": {
         id: "navy-hq-vice-admiral-doll",
         name: "Navy HQ / Vice Admiral Doll",
