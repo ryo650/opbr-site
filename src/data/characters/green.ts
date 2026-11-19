@@ -1,4 +1,13 @@
-import type { Character } from "./type.ts";
+import type {
+    "egghead-stussy": {
+        id: "egghead-stussy",
+        name: "Egghead Stussy",
+        image: "/characters/green/egghead-stussy.webp",
+        grade: "star-4",
+        element: "green",
+        role: "runner"
+    },
+ Character } from "./type.ts";
 
 export const greenCharacters: Record<string, Character> ={
     "thriller-bark-pirates-kumacy-green": {
