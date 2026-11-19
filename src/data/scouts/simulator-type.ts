@@ -2,6 +2,7 @@ import type { ScoutBanner } from "./type";
 
 export type ScoutSummary = Pick<ScoutBanner, "id" | "name" | "bannerImg" | "startAt" | "endAt" | "featuredCharacterId"> & {
   displayPickupIds: readonly string[];
+  provisionalNotice?: string;
 };
 
 // Evidence references point to a small reviewed manifest, not an OCR import system.
