@@ -10,6 +10,10 @@ export type NewCharacterRelease = {
  */
 export const newCharacterReleases = [
   {
+    characterId: "egghead-stussy",
+    releaseDate: "2026-11-18",
+  },
+  {
     characterId: "the-five-elders-st-topman-warcury",
     releaseDate: "2026-10-21",
   },
