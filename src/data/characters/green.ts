@@ -1,4 +1,6 @@
-import type {
+import type { Character } from "./type.ts";
+
+export const greenCharacters: Record<string, Character> ={
     "egghead-stussy": {
         id: "egghead-stussy",
         name: "Egghead Stussy",
@@ -7,9 +9,6 @@ import type {
         element: "green",
         role: "runner"
     },
- Character } from "./type.ts";
-
-export const greenCharacters: Record<string, Character> ={
     "thriller-bark-pirates-kumacy-green": {
         id: "thriller-bark-pirates-kumacy-green",
         name: "Thriller Bark Pirates Kumacy",
