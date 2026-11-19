@@ -37,7 +37,8 @@
     "characters:stats-review": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/server.mjs",
     "characters:stats-evaluate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/evaluate.mjs",
     "characters:stats-test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/character-stats-importer/*.test.mjs",
-    "characters:stats-validate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/validate.mjs"
+    "characters:stats-validate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/validate.mjs",
+    "scouts:verify-stussy": "node scripts/scout-importer/reviewed-stussy.mjs --check"
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.10",

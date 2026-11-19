@@ -1,0 +1,22 @@
+const {test}=require("node:test");
+const assert=require("node:assert/strict");
+const {scouts}=require("../src/data/scouts");
+const {characters}=require("../src/data/characters");
+const {rollScoutMany}=require("../src/lib/scout");
+test("Egghead Stussy imported as a standard 11x50 Scout without Step-Up mechanics",()=>{
+  const scout=scouts.find(s=>s.id==="egghead-stussy-20261202");
+  assert.ok(scout);
+  assert.equal(scout.pullOptions.multi.pullCount,11);
+  assert.equal(scout.pullOptions.multi.diamondCost,50);
+  assert.equal(scout.pickups.length,11);
+  assert.equal(scout.pickups[0].characterId,"egghead-stussy");
+  assert.equal(scout.pickups[0].rate,1);
+  assert.equal(scout.pickups.slice(1).reduce((sum,p)=>sum+p.rate,0).toFixed(2),"2.00");
+  assert.equal(scout.rates["star-3"],35);
+  assert.equal(scout.rates["star-2"],60);
+  assert.equal(Number((scout.rates.pickup+scout.rates.bf+scout.rates["star-4"]).toFixed(2)),5);
+  assert.equal(Number(Object.values(scout.rates).reduce((s,n)=>s+n,0).toFixed(2)),100);
+  assert.equal(characters["egghead-stussy"].role,"runner");
+  assert.equal(characters["egghead-stussy"].element,"green");
+  assert.equal(rollScoutMany(scout,characters,11).length,11);
+});

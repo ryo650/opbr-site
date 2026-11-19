@@ -53,7 +53,10 @@ import { scoutFilmRedShanks20261202 } from "./film-red-shanks-20261202";
 
 import { scoutAwakenedFormRobLucci20261126 } from "./awakened-form-rob-lucci-20261126";
 
+import { scoutEggheadStussy20261202 } from "./egghead-stussy-20261202";
+
 export const scouts = [
+    scoutEggheadStussy20261202,
     scoutAwakenedFormRobLucci20261126,
     scoutFilmRedShanks20261202,
     scoutLegendaryHeroMonkeyDGarp20261124,
