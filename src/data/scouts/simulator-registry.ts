@@ -1,4 +1,5 @@
 import { scouts } from ".";
+import { scoutEggheadStussy20261202 } from "./egghead-stussy-20261202";
 import { characters } from "@/data/characters";
 import type { Character } from "@/data/characters/type";
 import type { ScoutBanner } from "./type";
@@ -58,5 +59,5 @@ export function createPublishedScoutRegistry(definitions: readonly ScoutDefiniti
 }
 
 // Reviewed real Scouts only. Development fixtures must never be added here.
-export const simulatorScouts = createPublishedScoutRegistry(scouts.map(adaptNormalScout), characters);
+export const simulatorScouts = createPublishedScoutRegistry([...scouts.map(adaptNormalScout), scoutEggheadStussy20261202], characters);
 export const simulatorScoutSummaries = simulatorScouts.map(getScoutSummary);
