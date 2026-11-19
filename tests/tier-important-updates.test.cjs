@@ -368,12 +368,12 @@ test('November 19 placements follow the requested A/B/C order without dropping e
       'seraphim-s-snake',
       'father-and-daughter-kuma-bonny',
       'unexpected-collaboration-rob-lucci',
+      'the-four-emperors-marshall-d-teach',
       'the-wings-zoro-sanji',
       'king-of-the-pirates-gol-d-roger',
       'kaido-s-son-yamato',
       'egghead-sanji',
       'egghead-tony-tony-chopper',
-      'the-four-emperors-marshall-d-teach',
       'happy-halloween-uta',
     ]],
     ['C', [
