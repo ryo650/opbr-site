@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { getImportantTierUpdateState } = require('../src/lib/tier-important-updates');
 const { importantTierUpdates } = require('../src/data/tier-important-updates');
 const { tierList, visibleTierList } = require('../src/data/tierList');
-const { tierListOctober10, tierListBeforeOctober22Reorder, tierListOctober22, tierListNovember4 } = require('../src/data/tier-list-archive');
+const { tierListOctober10, tierListBeforeOctober22Reorder, tierListOctober22, tierListNovember4, tierListNovember15 } = require('../src/data/tier-list-archive');
 const { characters } = require('../src/data/characters');
 const { demoUpdate, demoNow, getDemoScenario } = require('./fixtures/tier-important-updates');
 const day = 24 * 60 * 60 * 1000;
@@ -335,39 +335,66 @@ test('October 22 explicit assessments carry prior markers whose placements still
   assert.equal(expired.update, followUp);
 });
 
-test('current placements show Bonney, Lucci and Peter in SS and put Sabo first in S', () => {
+test('November 19 placements follow the requested A/B/C order without dropping existing characters', () => {
   const placements = tierList.flatMap(({ characterIds }) => characterIds);
-  assert.equal(placements.length, 32);
+  assert.equal(placements.length, 36);
   assert.equal(new Set(placements).size, placements.length);
   assert.ok(placements.every((id) => characters[id]));
+  assert.equal(characters['vegapunk-s-spy-stussy'].role, 'defender');
   assert.deepEqual(tierList.map(({ tier, characterIds }) => [tier, characterIds]), [
     ['god', []],
     ['SS', [
-      'future-where-i-m-the-most-free-jewelry-bonney', 'awakened-form-rob-lucci', 'the-five-elders-st-shepherd-ju-peter',
+      'future-where-i-m-the-most-free-jewelry-bonney',
+      'awakened-form-rob-lucci',
+      'the-five-elders-st-shepherd-ju-peter',
     ]],
-    ['S', ['flame-emperor-sabo', 'the-five-elders-st-topman-warcury', 'film-red-shanks']],
+    ['S', [
+      'flame-emperor-sabo',
+      'the-five-elders-st-topman-warcury',
+      'film-red-shanks',
+    ]],
     ['A', [
-      'the-four-emperors-monkey-d-luffy', 'winner-island-trafalgar-law',
-      'animal-kingdom-pirates-lead-performer-king', 'the-five-elders-st-marcus-mars', 'unexpected-collaboration-rob-lucci',
+      'the-four-emperors-monkey-d-luffy',
+      'winner-island-trafalgar-law',
+      'animal-kingdom-pirates-lead-performer-king',
+      'great-pirate-edward-newgate',
+      'the-five-elders-st-ethanbaron-v-nusjuro',
+      'ama-no-murakumo-sword-kizaru',
+      'vegapunk-s-spy-stussy',
     ]],
     ['B', [
-      'the-five-elders-st-ethanbaron-v-nusjuro', 'battle-of-monsters-on-onigashima-kaido', 'the-wings-zoro-sanji',
-      'ama-no-murakumo-sword-kizaru', 'great-pirate-edward-newgate', 'king-of-the-pirates-gol-d-roger',
-      'kaido-s-son-yamato', 'father-and-daughter-kuma-bonny', 'egghead-sanji', 'egghead-tony-tony-chopper',
-      'the-four-emperors-marshall-d-teach', 'happy-halloween-uta',
+      'battle-of-monsters-on-onigashima-kaido',
+      'the-five-elders-st-marcus-mars',
+      'seraphim-s-snake',
+      'father-and-daughter-kuma-bonny',
+      'unexpected-collaboration-rob-lucci',
+      'the-wings-zoro-sanji',
+      'king-of-the-pirates-gol-d-roger',
+      'kaido-s-son-yamato',
+      'egghead-sanji',
+      'egghead-tony-tony-chopper',
+      'the-four-emperors-marshall-d-teach',
+      'happy-halloween-uta',
     ]],
     ['C', [
-      'genius-scientist-vegapunk', 'great-pirate-gol-d-roger', 'legendary-hero-monkey-d-garp',
-      'asl-ace-sabo-luffy', 'blackbeard-pirates-kuzan',
-      'red-rock-monkey-d-luffy', 'navy-hq-fleet-admiral-akainu',
-      'man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy', 'divine-departure-shanks',
+      'seraphim-s-shark',
+      'genius-scientist-vegapunk',
+      'great-pirate-gol-d-roger',
+      'punk-02-lilith',
+      'legendary-hero-monkey-d-garp',
+      'asl-ace-sabo-luffy',
+      'blackbeard-pirates-kuzan',
+      'red-rock-monkey-d-luffy',
+      'navy-hq-fleet-admiral-akainu',
+      'man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy',
+      'divine-departure-shanks',
     ]],
     ['D', []],
   ]);
   assert.deepEqual(visibleTierList.map(({ tier }) => tier), ['SS', 'S', 'A', 'B', 'C']);
 });
 
-const november14Rankings = tierList.map((row) => ({
+const november14Rankings = tierListNovember15.map((row) => ({
   ...row,
   characterIds: {
     SS: ['the-five-elders-st-shepherd-ju-peter', 'future-where-i-m-the-most-free-jewelry-bonney'],
@@ -474,14 +501,31 @@ test('November 15 retains every Up and Down marker while placing Lucci in SS', (
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-15-bonney-lucci-sabo-placement');
   const start = Date.parse(update.publishedAt);
   const before = state(importantTierUpdates, start - 1, november14Rankings);
-  const after = state(importantTierUpdates, start, tierList);
+  const after = state(importantTierUpdates, start, tierListNovember15);
   const markerKinds = (badges) => Object.fromEntries(Object.entries(badges).map(([id, badge]) => [id, badge.kind]));
   assert.equal(after.update, update);
   assert.equal(after.currentTiers['awakened-form-rob-lucci'], 'SS');
   assert.equal(after.badges['awakened-form-rob-lucci'].kind, 'rise');
   assert.equal(Object.keys(after.badges).length, 15);
   assert.deepEqual(markerKinds(after.badges), markerKinds(before.badges));
-  assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierList).badges, {});
+  assert.deepEqual(state(importantTierUpdates, start + 14 * day, tierListNovember15).badges, {});
+});
+
+test('November 19 keeps all 15 existing directions and adds only Stussy Up', () => {
+  const update = importantTierUpdates.find(({ id }) => id === '2026-11-19-tier-list-reorder-stussy-up');
+  const start = Date.parse(update.publishedAt);
+  const previous = state(importantTierUpdates, start - 1, tierListNovember15);
+  const current = state(importantTierUpdates, start, tierList);
+  assert.equal(current.update, update);
+  assert.equal(Object.keys(previous.badges).length, 15);
+  assert.equal(Object.keys(current.badges).length, 16);
+  for (const [id, badge] of Object.entries(previous.badges)) {
+    assert.equal(current.badges[id]?.kind, badge.kind, id);
+  }
+  assert.equal(current.badges['vegapunk-s-spy-stussy'].kind, 'rise');
+  assert.equal(current.badges['the-five-elders-st-ethanbaron-v-nusjuro'].kind, 'fall');
+  assert.equal(current.badges['the-five-elders-st-marcus-mars'], undefined);
+  assert.equal(current.badges['unexpected-collaboration-rob-lucci'], undefined);
 });
 
 test('dated public summary preserves history and distinguishes it from current tiers and ordering', () => {
