@@ -431,16 +431,47 @@ const november14LucciReview: ImportantTierUpdate = {
     ],
 };
 
+// Keep the November 15 published marker set intact for the historical review.
+const november15PlacementChanges = november14LucciReview.changes.map((change) =>
+  change.characterId === "awakened-form-rob-lucci" ? { ...change, toTier: "SS" as const } : change
+);
+
+const november19TierReorder: ImportantTierUpdate = {
+  id: "2026-11-19-tier-list-reorder-stussy-up",
+  status: "published",
+  publishedAt: "2026-11-19T16:02:00+09:00",
+  title: "November 19 Tier List: Stussy joins A Tier",
+  summary: "Stussy joins the end of A Tier with an Up assessment. Whitebeard, Nusjuro, Kizaru, Mars, black Lucci, S-Snake, Kuma & Bonney, Lilith and S-Shark are repositioned. The previously displayed Up/Down markers are carried forward unchanged; tier movements alone do not create additional badges.",
+  changes: [
+    {
+      characterId: "vegapunk-s-spy-stussy",
+      kind: "rise",
+      fromTier: null,
+      toTier: "A",
+      reason: "Vegapunk's Spy Stussy (green Defender) joins at the end of A Tier with an Up assessment.",
+    },
+    ...november15PlacementChanges.map((change) =>
+      change.characterId === "the-five-elders-st-ethanbaron-v-nusjuro"
+        ? {
+            ...change,
+            fromTier: "SS" as const,
+            toTier: "A" as const,
+            reason: "The existing Down assessment from the earlier SS-era review is carried forward despite this placement change from B to A.",
+          }
+        : change
+    ),
+  ],
+};
+
 export const importantTierUpdates: ImportantTierUpdate[] = [
+  november19TierReorder,
   {
     id: "2026-11-15-bonney-lucci-sabo-placement",
     status: "published",
     publishedAt: "2026-11-15T07:29:35+09:00",
     title: "Bonney, Lucci and Sabo ranking update",
     summary: "Bonney leads SS Tier, followed by Awakened Form Rob Lucci and Ju Peter. Flame Emperor Sabo leads S Tier. The existing Up and Down assessments carry forward.",
-    changes: november14LucciReview.changes.map((change) =>
-      change.characterId === "awakened-form-rob-lucci" ? { ...change, toTier: "SS" } : change
-    ),
+    changes: november15PlacementChanges,
   },
   november14LucciReview,
   november14ShanksReview,

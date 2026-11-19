@@ -243,3 +243,71 @@ export const tierListNovember4 = [
   },
   { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
 ];
+
+// Snapshot of the November 15 published placements, before the November 19 editorial reorder.
+export const tierListNovember15 = [
+  { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
+  {
+    tier: "SS",
+    colorClass: "SS",
+    characterIds: [
+      "future-where-i-m-the-most-free-jewelry-bonney",
+      "awakened-form-rob-lucci",
+      "the-five-elders-st-shepherd-ju-peter",
+    ],
+  },
+  {
+    tier: "S",
+    colorClass: "S",
+    characterIds: [
+      "flame-emperor-sabo",
+      "the-five-elders-st-topman-warcury",
+      "film-red-shanks",
+    ],
+  },
+  {
+    tier: "A",
+    colorClass: "A",
+    characterIds: [
+      "the-four-emperors-monkey-d-luffy",
+      "winner-island-trafalgar-law",
+      "animal-kingdom-pirates-lead-performer-king",
+      "the-five-elders-st-marcus-mars",
+      "unexpected-collaboration-rob-lucci",
+    ],
+  },
+  {
+    tier: "B",
+    colorClass: "B",
+    characterIds: [
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "battle-of-monsters-on-onigashima-kaido",
+      "the-wings-zoro-sanji",
+      "ama-no-murakumo-sword-kizaru",
+      "great-pirate-edward-newgate",
+      "king-of-the-pirates-gol-d-roger",
+      "kaido-s-son-yamato",
+      "father-and-daughter-kuma-bonny",
+      "egghead-sanji",
+      "egghead-tony-tony-chopper",
+      "the-four-emperors-marshall-d-teach",
+      "happy-halloween-uta",
+    ],
+  },
+  {
+    tier: "C",
+    colorClass: "C",
+    characterIds: [
+      "genius-scientist-vegapunk",
+      "great-pirate-gol-d-roger",
+      "legendary-hero-monkey-d-garp",
+      "asl-ace-sabo-luffy",
+      "blackbeard-pirates-kuzan",
+      "red-rock-monkey-d-luffy",
+      "navy-hq-fleet-admiral-akainu",
+      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
+      "divine-departure-shanks",
+    ],
+  },
+  { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
+];

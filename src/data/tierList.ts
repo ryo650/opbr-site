@@ -12,7 +12,7 @@ type TierRow = {
 // November 14 adds Genius Scientist Vegapunk at the top of C and moves FILM RED Shanks to the end of S.
 // The November 14 follow-up places Awakened Form Rob Lucci first in S.
 // November 15 moves Bonney and Lucci ahead of Peter in SS and puts Sabo first in S.
-// Earlier placements are in tier-list-archive.ts.
+// November 19 adds Stussy and reorders A/B/C; November 15 placements are archived in tier-list-archive.ts.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
   {
@@ -40,25 +40,27 @@ export const tierList: TierRow[] = [
       "the-four-emperors-monkey-d-luffy",
       "winner-island-trafalgar-law",
       "animal-kingdom-pirates-lead-performer-king",
-      "the-five-elders-st-marcus-mars",
-      "unexpected-collaboration-rob-lucci",
+      "great-pirate-edward-newgate",
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "ama-no-murakumo-sword-kizaru",
+      "vegapunk-s-spy-stussy",
     ],
   },
   {
     tier: "B",
     colorClass: "B",
     characterIds: [
-      "the-five-elders-st-ethanbaron-v-nusjuro",
       "battle-of-monsters-on-onigashima-kaido",
+      "the-five-elders-st-marcus-mars",
+      "seraphim-s-snake",
+      "father-and-daughter-kuma-bonny",
+      "unexpected-collaboration-rob-lucci",
+      "the-four-emperors-marshall-d-teach",
       "the-wings-zoro-sanji",
-      "ama-no-murakumo-sword-kizaru",
-      "great-pirate-edward-newgate",
       "king-of-the-pirates-gol-d-roger",
       "kaido-s-son-yamato",
-      "father-and-daughter-kuma-bonny",
       "egghead-sanji",
       "egghead-tony-tony-chopper",
-      "the-four-emperors-marshall-d-teach",
       "happy-halloween-uta",
     ],
   },
@@ -66,8 +68,10 @@ export const tierList: TierRow[] = [
     tier: "C",
     colorClass: "C",
     characterIds: [
+      "seraphim-s-shark",
       "genius-scientist-vegapunk",
       "great-pirate-gol-d-roger",
+      "punk-02-lilith",
       "legendary-hero-monkey-d-garp",
       "asl-ace-sabo-luffy",
       "blackbeard-pirates-kuzan",
