@@ -2,11 +2,11 @@ import Image from "next/image";
 import Link from "next/link";
 import CharacterFrame from "@/components/character-frame/CharacterFrame";
 import type { Character } from "@/data/characters/type";
-import type { ScoutBanner } from "@/data/scouts/type";
+import type { ScoutSummary } from "@/data/scouts/simulator-type";
 import styles from "./page.module.css";
 
 type ScoutCardProps = {
-  scout: ScoutBanner;
+  scout: ScoutSummary;
   characters: Record<string, Character>;
 };
 
@@ -23,8 +23,8 @@ function formatDateRange(startAt: string, endAt: string): string {
 }
 
 export default function ScoutCard({ scout, characters }: ScoutCardProps) {
-  const pickupCharacters = scout.pickups.flatMap((pickup) => {
-    const character = characters[pickup.characterId];
+  const pickupCharacters = scout.displayPickupIds.flatMap((characterId) => {
+    const character = characters[characterId];
 
     return character ? [character] : [];
   });

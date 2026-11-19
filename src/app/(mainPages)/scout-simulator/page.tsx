@@ -1,5 +1,5 @@
 import { characters } from "@/data/characters";
-import { scouts } from "@/data/scouts";
+import { simulatorScoutSummaries as scouts } from "@/data/scouts/simulator-registry";
 import ScoutCard from "./ScoutCard";
 import styles from "./page.module.css";
 import { connection } from "next/server";
