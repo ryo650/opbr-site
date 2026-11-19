@@ -42,9 +42,10 @@ function ids(value: unknown, path: string, characters: Record<string, Character>
 export function validateStepUpDefinition(value: unknown, characters: Record<string, Character>): asserts value is StepUpDefinition {
   const d = object(value, "definition", ["kind", "schemaVersion", "meta", "source", "pools", "steps", "repeat"]);
   if (d.kind !== "stepUp" || d.schemaVersion !== 1) reject("unsupported kind/schemaVersion");
-  const meta = object(d.meta, "meta", ["id", "name", "bannerImg", "startAt", "endAt", "displayPickupIds", "featuredCharacterId"]);
+  const meta = object(d.meta, "meta", ["id", "name", "bannerImg", "startAt", "endAt", "displayPickupIds", "featuredCharacterId", "provisionalNotice"]);
   for (const key of ["id", "name", "bannerImg", "startAt", "endAt", "featuredCharacterId"]) text(meta[key], `meta.${key}`);
   if (!Number.isFinite(Date.parse(meta.startAt as string)) || !(Date.parse(meta.startAt as string) < Date.parse(meta.endAt as string))) reject("invalid period");
+  if (meta.provisionalNotice !== undefined) text(meta.provisionalNotice, "meta.provisionalNotice");
   const displayIds = ids(meta.displayPickupIds, "meta.displayPickupIds", characters);
   if (!displayIds.has(meta.featuredCharacterId as string)) reject("featured character must be in displayPickupIds");
   source(d.source, "source");
