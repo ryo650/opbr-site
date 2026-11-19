@@ -1,15 +1,6 @@
 import type { Character } from "./type.ts";
 
 export const blackCharacters: Record<string, Character> = {
-    "fish-man-karate-assistant-master-koala": {
-        id: "fish-man-karate-assistant-master-koala",
-        name: "Fish-Man Karate Assistant Master Koala",
-        // Official 4★ pool candidate absent from the master. Artwork is not verified.
-        image: "/rainbow-diamonds.webp",
-        grade: "star-4",
-        element: "black",
-        role: "defender"
-    },
     "navy-hq-vice-admiral-doll": {
         id: "navy-hq-vice-admiral-doll",
         name: "Navy HQ / Vice Admiral Doll",

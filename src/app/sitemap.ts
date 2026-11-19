@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { simulatorScoutSummaries as scouts } from "@/data/scouts/simulator-registry";
+import { scouts } from "@/data/scouts";
 import { characterGuides } from "@/data/character-guides";
 import { recommendedMedalSets } from "@/data/medal-sets";
 import { SITE_URL } from "@/lib/site";

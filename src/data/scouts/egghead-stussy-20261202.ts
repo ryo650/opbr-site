@@ -1,208 +1,80 @@
-// Source-verified roster: Bandai Namco's November 18 2026 Step 1 / 3 / 4 rate tables.
-// Official percentages are truncated to seven decimal places: use exact category
-// totals divided across identical-weight characters, avoiding cumulative rounding bias.
-import type { CharacterPool, PoolEntry, ScoutSource, StepUpDefinition, ScoutStep } from "./simulator-type";
-const featuredIds = [
-  "egghead-stussy",
-  "unexpected-collaboration-kaku",
-  "unexpected-collaboration-rob-lucci",
-  "vegapunk-s-spy-stussy",
-  "awakened-form-kaku",
-  "cp9-blueno",
-  "cp9-jabra",
-  "animal-kingdom-pirates-tobi-roppo-who-s-who",
-  "cp0-rob-lucci",
-  "cp9-kaku",
-  "cp-9-rob-lucci",
-] as const;
-const regularFourStarIds = [
-  "2-years-later-archaelogist-nico-robin",
-  "2-years-later-navigator-nami",
-  "2-years-later-ship-carpenter-franky",
-  "30million-berry-bounty-monkey-d-luffy",
-  "barto-club-captain-bartolomeo",
-  "big-mom-pirates-crewmate-charlotte-oven",
-  "big-mom-pirates-crewmate-charlotte-pudding",
-  "caribou-pirates-captain-caribou",
-  "don-quixote-pirates-officer-senor-pink",
-  "don-quixute-pirates-officer-monet",
-  "fallen-monk-pirates-captain-mad-monk-urouge",
-  "former-world-government-science-division-member-caesar-clown",
-  "gear-four-snakeman-monkey-d-luffy",
-  "gum-gum-storm-monkey-d-luffy",
-  "king-of-the-night-cat-viper",
-  "kozuki-clan-servant-kawamatsu",
-  "kozuki-clan-servant-raizo",
-  "land-of-wano-trafalgar-law",
-  "land-of-wano-usohachi",
-  "punk-06-york",
-  "punk-hazard-smoker",
-  "revolutionary-army-officer-koala",
-  "surgeon-of-death-trafalgar-law",
-  "the-kingdom-of-prodence-king-elizabello-2",
-  "the-seven-warlords-of-the-sea-dracule-mihawk",
-  "whitebeard-pirates-1st-division-commander-marco",
-  "whole-cake-island-jinbe",
-  "whole-cake-island-sanji",
-  "2-years-later-doctor-tony-tony-chopper",
-  "2-years-later-monkey-d-luffy",
-  "2-years-later-sharp-shooter-usopp",
-  "arlong-pirates-captain-arlong",
-  "arm-point-tony-tony-chopper",
-  "baroque-works-officer-agent-ms-goldenweek",
-  "baroque-works-vice-president-ms-all-sunday",
-  "don-quixote-family-officer-corazon",
-  "egghead-jewelry-bonny",
-  "flying-pirates-captain-vander-decken-4",
-  "former-whitebeard-pirates-16th-division-commander-izo",
-  "germa-66-vinsmoke-reiju",
-  "ghost-princess-perona",
-  "girl-from-syrup-village-kaya",
-  "grand-line-naval-base-5-vice-admiral-smoker",
-  "hyogoro-family-big-boss-hyogoro",
-  "kyoshiro-family-boss-napping-kyoshiro",
-  "land-of-wano-bonekichi",
-  "land-of-wano-franosuke",
-  "land-of-wano-luffytaro",
-  "land-of-wano-otama-komachiyo",
-  "land-of-wano-zorojuro",
-  "most-handsome-swordsman-in-the-land-of-wano-kikunojo",
-  "navy-hq-master-chief-petty-officer-koby",
-  "ray-of-hope-nightmare-luffy",
-  "revolutionary-army-officer-inazuma",
-  "revolutionary-army-soldier-hack",
-  "the-seven-warlords-of-the-sea-buggy",
-  "the-seven-warlords-of-the-sea-crocodile",
-  "top-secret-special-force-captain-of-sword-x-drake",
-  "veteran-kunoichi-shinobu",
-  "whitebeard-pirates-5th-division-commander-vista",
-  "land-of-wano-onami",
-  "land-of-wano-orobi",
-  "baroque-works-officer-agent-bon-clay-aka-mr-2",
-  "beautiful-pirates-captain-cavendish",
-  "king-of-the-day-dogstorm",
-  "kozuki-clan-servant-ashura-doji",
-  "minks-carrot",
-  "leader-of-the-whale-forest-guardians-pedro",
-  "animal-kingdom-pirates-tobi-roppo-black-maria",
-  "baroque-works-officer-agent-ms-valentine",
-  "2-years-later-cook-sanji",
-  "son-of-the-king-of-the-pirates-portgaz-d-ace",
-  "peacock-slasher-nefeltari-vivi",
-  "baroque-works-officer-agent-mr-3",
-  "the-bullet-of-dressrosa-bellamy",
-  "former-navy-admiral-kuzan",
-  "on-air-pirates-captain-scratchmen-apoo",
-  "don-quixote-pirates-servant-assassin-baby-5",
-  "2-years-later-combatant-roronoa-zoro",
-  "red-haired-pirates-sharp-shooter-yasopp",
-  "navy-hq-captain-smoker",
-  "kami-eneru",
-  "thriller-bark-pirates-mysterious-four-perona",
-  "2-years-later-musician-brook",
-  "navy-hq-science-team-captain-sentomaru",
-  "navy-hq-rear-admiral-hina",
-  "don-quixote-pirates-supreme-officer-vergo",
-  "kurozumi-spy-kurozumi-kanjuro",
-  "animal-kingdom-pirates-tobi-roppo-sasaki",
-  "navy-hq-vice-admiral-doll",
-  "baroque-works-officer-agent-mr-5",
-  "punk-05-atlas",
-  "the-sky-knight-ganfor",
-  "navy-hq-sword-hibari",
-  "navy-hq-lt-commander-helmeppo",
-  "whole-cake-island-carrot",
-  "fish-man-karate-assistant-master-koala",
-  "triple-x-level-boxer-ideo",
-  "first-act-as-a-married-couple-charlotte-pudding",
-  "blackbeard-pirates-helmsman-champ-jesus-burgess",
-  "fire-fist-portgaz-d-ace",
-  "happy-holiday-nico-robin",
-  "happy-holiday-tony-tony-chopper",
-  "108-pound-phoenix-roronoa-zoro",
-  "drum-kingdom-former-ruler-wapol",
-] as const;
-const threeStarIds = [
-  "arlong-pirates-officer-hatchan",
-  "baratie-head-chef-zeff",
-  "buggy-pirates-captain-buggy",
-  "krieg-s-pirate-armada-battle-commander-gin",
-  "5t-hammer-usopp",
-  "arlong-pirates-officer-kuroobi",
-  "baroque-works-frontier-agents-ms-wednesday",
-  "navy-hq-master-chief-petty-officer-tashigi",
-  "veau-vengeance-sanji",
-  "slip-slip-fruit-alvida",
-  "black-cat-pirates-former-captain-captain-kuro",
-  "arlong-pirates-officer-choo",
-  "krieg-s-pirate-armada-admiral-don-krieg",
-  "climate-baton-nami",
-] as const;
-const twoStarIds = [
-  "black-cat-pirates-captain-django",
-  "bounty-hunter-yosaku",
-  "chore-boy-koby",
-  "mountain-bandits-leader-higuma-the-bear",
-  "straw-hat-pirates-captain-monkey-d-luffy",
-  "straw-hat-pirates-doctor-tony-tony-chopper",
-  "straw-hat-pirates-ship-carpenter-franky",
-  "black-cat-pirates-guard-butchie",
-  "bounty-hunter-johnny",
-  "navy-captain-morgan",
-  "straw-hat-pirates-cook-sanji",
-  "straw-hat-pirates-sharp-shooter-usopp",
-  "straw-hat-pirates-combatant-roronoa-zoro",
-  "alvida-pirates-captain-alvida",
-  "the-idiot-son-helmeppo",
-  "straw-hat-pirates-navigator-nami",
-  "buggy-pirates-chief-of-staff-cabaji",
-  "straw-hat-pirates-musician-brook",
-  "straw-hat-pirates-archaeologist-nico-robin",
-] as const;
-const source: ScoutSource = {
-  kind: "gameScreenshots",
-  evidencePath: "docs/scout-step-up/evidence/egghead-stussy-20261202.md",
-  context: "Official Bandai Namco per-character rates for Steps 1/3/4, corroborated with in-game screenshots.",
-};
-const normal: PoolEntry[] = [
-  { characterId: featuredIds[0], rarity: 4, featured: true, weight: 1 },
-  ...featuredIds.slice(1).map(characterId => ({ characterId, rarity: 4 as const, featured: true, weight: 0.2 })),
-  ...regularFourStarIds.map(characterId => ({ characterId, rarity: 4 as const, featured: false, weight: 2 / 105 })),
-  ...threeStarIds.map(characterId => ({ characterId, rarity: 3 as const, featured: false, weight: 35 / 14 })),
-  ...twoStarIds.map(characterId => ({ characterId, rarity: 2 as const, featured: false, weight: 60 / 19 })),
-];
-const guaranteedFour: PoolEntry[] = [
-  { characterId: featuredIds[0], rarity: 4, featured: true, weight: 2 },
-  ...featuredIds.slice(1).map(characterId => ({ characterId, rarity: 4 as const, featured: true, weight: 1 })),
-  ...regularFourStarIds.map(characterId => ({ characterId, rarity: 4 as const, featured: false, weight: 88 / 105 })),
-];
-const pools: Readonly<Record<string, CharacterPool>> = {
-  normal: { kind: "characterWeights", unit: "percent", entries: normal, source: { ...source, context: "Normal 11/11 or 10/11 slots: ★4 5%, ★3 35%, ★2 60%; 11 featured + 105 regular 4★." } },
-  guaranteedFour: { kind: "characterWeights", unit: "percent", entries: guaranteedFour, source: { ...source, context: "Fixed 1/11 guaranteed 4★ slot in Steps 3 and 4; Stussy 2%, 10 featured 1% each, 105 regular share 88%." } },
-};
-const gift = { kind: "displayItem" as const, rewardId: "step-gift", label: "Step bonus gift (contents unverified)", quantity: 4, grant: "onStepCompletion" as const };
-function step(id: string, amount: number, guaranteed: boolean, reward: boolean): ScoutStep {
-  return {
-    id, displayLabel: "Step " + id.slice(1) + (amount === 0 ? " · Free" : ""),
-    cost: { kind: "rainbowDiamonds", amount }, eligibility: { kind: "unrestricted" }, pullCount: 11,
-    drawPlan: { kind: "independentSlots", groups: guaranteed
-      ? [{ role: "normal", poolId: "normal", count: 10 }, { role: "guarantee", poolId: "guaranteedFour", count: 1, criterion: { kind: "rarityAtLeast", rarity: 4 } }]
-      : [{ role: "normal", poolId: "normal", count: 11 }] },
-    rewards: reward ? [{ ...gift }] : [],
-  };
-}
-export const scoutEggheadStussy20261202: StepUpDefinition = {
-  kind: "stepUp", schemaVersion: 1, source,
-  meta: {
-    id: "egghead-stussy-20261202", name: "4-Step Egghead Scout #3",
+/* This file is generated with the Scout Importer V1 core from reviewed game rates. */
+
+import type {
+    ScoutBanner,
+    ScoutPickup,
+} from "./type";
+
+const pickups = [
+    {
+        characterId: "egghead-stussy",
+        rate: 1,
+    },
+    {
+        characterId: "unexpected-collaboration-kaku",
+        rate: 0.2,
+    },
+    {
+        characterId: "unexpected-collaboration-rob-lucci",
+        rate: 0.2,
+    },
+    {
+        characterId: "vegapunk-s-spy-stussy",
+        rate: 0.2,
+    },
+    {
+        characterId: "awakened-form-kaku",
+        rate: 0.2,
+    },
+    {
+        characterId: "cp9-blueno",
+        rate: 0.2,
+    },
+    {
+        characterId: "cp9-jabra",
+        rate: 0.2,
+    },
+    {
+        characterId: "animal-kingdom-pirates-tobi-roppo-who-s-who",
+        rate: 0.2,
+    },
+    {
+        characterId: "cp0-rob-lucci",
+        rate: 0.2,
+    },
+    {
+        characterId: "cp9-kaku",
+        rate: 0.2,
+    },
+    {
+        characterId: "cp-9-rob-lucci",
+        rate: 0.2,
+    },
+] satisfies readonly ScoutPickup[];
+
+const totalPickupRate = pickups.reduce(
+    (total, pickup) => total + pickup.rate,
+    0,
+);
+
+export const scoutEggheadStussy20261202: ScoutBanner = {
+    id: "egghead-stussy-20261202",
+    name: "4-Step Egghead Scout #3",
     bannerImg: "/scouts/egghead-stussy-20261202.webp",
-    startAt: "2026-11-18T14:00:00+09:00", endAt: "2026-12-02T13:59:59+09:00",
-    displayPickupIds: featuredIds, featuredCharacterId: "egghead-stussy",
-    provisionalNotice: "The Step bonus gift counts are shown in-game; their contents are unverified.",
-  },
-  pools, steps: [
-    step("S1", 40, false, true), step("S2", 0, false, false),
-    step("S3", 50, true, true), step("S4", 50, true, true),
-  ],
-  repeat: { kind: "finite", maxRounds: 2 },
+    startAt: "2026-11-18T14:00:00+09:00",
+    endAt: "2026-12-02T13:59:59+09:00",
+    pullOptions: {
+        single: { pullCount: 1, diamondCost: 5 },
+        multi: { pullCount: 11, diamondCost: 50 },
+    },
+    pickups,
+    featuredCharacterId: "egghead-stussy",
+    provisionalNotice: "Normal-rate simulation only: 11 pulls cost 50 diamonds. Step-Up discounts, free steps and guaranteed 4-star slots are not simulated.",
+    rates: {
+        pickup: totalPickupRate,
+        bf: 0.08,
+        "star-4": 1.92,
+        "star-3": 35,
+        "star-2": 60,
+    },
 };

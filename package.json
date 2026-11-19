@@ -32,12 +32,13 @@
     "characters:test-level-100-stats-importer": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/character-level-100-stats/screenshot-importer.test.mjs",
     "scouts:import": "node scripts/scout-importer/import.mjs",
     "scouts:test": "node --test scripts/scout-importer/*.test.mjs",
-    "test": "node --require ./tests/register.cjs --test tests/core.test.cjs tests/scout-step-up.test.cjs tests/egghead-stussy-step-up.test.cjs",
+    "test": "node --require ./tests/register.cjs --test tests/core.test.cjs",
     "test:http": "node --require ./tests/register.cjs --test tests/http.test.cjs",
     "characters:stats-review": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/server.mjs",
     "characters:stats-evaluate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/evaluate.mjs",
     "characters:stats-test": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON --test scripts/character-stats-importer/*.test.mjs",
-    "characters:stats-validate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/validate.mjs"
+    "characters:stats-validate": "node --experimental-strip-types --disable-warning=ExperimentalWarning --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/character-stats-importer/validate.mjs",
+    "scouts:verify-stussy": "node scripts/scout-importer/reviewed-stussy.mjs --check"
   },
   "dependencies": {
     "@tanstack/react-virtual": "^3.14.10",
