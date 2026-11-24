@@ -13,6 +13,7 @@ type TierRow = {
 // The November 14 follow-up places Awakened Form Rob Lucci first in S.
 // November 15 moves Bonney and Lucci ahead of Peter in SS and puts Sabo first in S.
 // November 19 adds Stussy and reorders A/B/C; November 15 placements are archived in tier-list-archive.ts.
+// November 24 adds S-Bear and S-Hawk and reorders Kizaru, Kuzan and black Roger.
 export const tierList: TierRow[] = [
   { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
   {
@@ -39,10 +40,10 @@ export const tierList: TierRow[] = [
     characterIds: [
       "the-four-emperors-monkey-d-luffy",
       "winner-island-trafalgar-law",
+      "ama-no-murakumo-sword-kizaru",
       "animal-kingdom-pirates-lead-performer-king",
       "great-pirate-edward-newgate",
       "the-five-elders-st-ethanbaron-v-nusjuro",
-      "ama-no-murakumo-sword-kizaru",
       "vegapunk-s-spy-stussy",
     ],
   },
@@ -57,7 +58,9 @@ export const tierList: TierRow[] = [
       "unexpected-collaboration-rob-lucci",
       "the-four-emperors-marshall-d-teach",
       "the-wings-zoro-sanji",
+      "seraphim-s-bear",
       "king-of-the-pirates-gol-d-roger",
+      "great-pirate-gol-d-roger",
       "kaido-s-son-yamato",
       "egghead-sanji",
       "egghead-tony-tony-chopper",
@@ -68,13 +71,13 @@ export const tierList: TierRow[] = [
     tier: "C",
     colorClass: "C",
     characterIds: [
+      "blackbeard-pirates-kuzan",
       "seraphim-s-shark",
       "genius-scientist-vegapunk",
-      "great-pirate-gol-d-roger",
       "punk-02-lilith",
+      "seraphim-s-hawk",
       "legendary-hero-monkey-d-garp",
       "asl-ace-sabo-luffy",
-      "blackbeard-pirates-kuzan",
       "red-rock-monkey-d-luffy",
       "navy-hq-fleet-admiral-akainu",
       "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",

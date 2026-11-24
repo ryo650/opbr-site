@@ -3,7 +3,7 @@ const assert = require('node:assert/strict');
 const { getImportantTierUpdateState } = require('../src/lib/tier-important-updates');
 const { importantTierUpdates } = require('../src/data/tier-important-updates');
 const { tierList, visibleTierList } = require('../src/data/tierList');
-const { tierListOctober10, tierListBeforeOctober22Reorder, tierListOctober22, tierListNovember4, tierListNovember15 } = require('../src/data/tier-list-archive');
+const { tierListOctober10, tierListBeforeOctober22Reorder, tierListOctober22, tierListNovember4, tierListNovember15, tierListNovember19 } = require('../src/data/tier-list-archive');
 const { characters } = require('../src/data/characters');
 const { demoUpdate, demoNow, getDemoScenario } = require('./fixtures/tier-important-updates');
 const day = 24 * 60 * 60 * 1000;
@@ -336,12 +336,12 @@ test('October 22 explicit assessments carry prior markers whose placements still
 });
 
 test('November 19 placements follow the requested A/B/C order without dropping existing characters', () => {
-  const placements = tierList.flatMap(({ characterIds }) => characterIds);
+  const placements = tierListNovember19.flatMap(({ characterIds }) => characterIds);
   assert.equal(placements.length, 36);
   assert.equal(new Set(placements).size, placements.length);
   assert.ok(placements.every((id) => characters[id]));
   assert.equal(characters['vegapunk-s-spy-stussy'].role, 'defender');
-  assert.deepEqual(tierList.map(({ tier, characterIds }) => [tier, characterIds]), [
+  assert.deepEqual(tierListNovember19.map(({ tier, characterIds }) => [tier, characterIds]), [
     ['god', []],
     ['SS', [
       'future-where-i-m-the-most-free-jewelry-bonney',
@@ -515,7 +515,7 @@ test('November 19 keeps all 15 existing directions and adds only Stussy Up', () 
   const update = importantTierUpdates.find(({ id }) => id === '2026-11-19-tier-list-reorder-stussy-up');
   const start = Date.parse(update.publishedAt);
   const previous = state(importantTierUpdates, start - 1, tierListNovember15);
-  const current = state(importantTierUpdates, start, tierList);
+  const current = state(importantTierUpdates, start, tierListNovember19);
   assert.equal(current.update, update);
   assert.equal(Object.keys(previous.badges).length, 15);
   assert.equal(Object.keys(current.badges).length, 16);
@@ -526,6 +526,46 @@ test('November 19 keeps all 15 existing directions and adds only Stussy Up', () 
   assert.equal(current.badges['the-five-elders-st-ethanbaron-v-nusjuro'].kind, 'fall');
   assert.equal(current.badges['the-five-elders-st-marcus-mars'], undefined);
   assert.equal(current.badges['unexpected-collaboration-rob-lucci'], undefined);
+});
+
+test('November 24 places the five requested characters and preserves all other placements and assessments', () => {
+  const update = importantTierUpdates.find(({ id }) => id === '2026-11-24-tier-list-reorder-s-bear-kizaru-up');
+  const start = Date.parse(update.publishedAt);
+  const previous = state(importantTierUpdates, start - 1, tierListNovember19);
+  const current = state(importantTierUpdates, start, tierList);
+  const moved = new Set(["seraphim-s-bear","seraphim-s-hawk","blackbeard-pirates-kuzan","ama-no-murakumo-sword-kizaru","great-pirate-gol-d-roger"]);
+  const previousIds = tierListNovember19.flatMap(({ characterIds }) => characterIds);
+  const currentIds = tierList.flatMap(({ characterIds }) => characterIds);
+  assert.equal(currentIds.length, previousIds.length + 2);
+  assert.equal(new Set(currentIds).size, currentIds.length);
+  assert.ok(currentIds.every((id) => characters[id]));
+  assert.ok(previousIds.every((id) => currentIds.includes(id)));
+  for (const row of tierListNovember19) {
+    const actual = tierList.find(({ tier }) => tier === row.tier);
+    assert.deepEqual(actual.characterIds.filter((id) => !moved.has(id)), row.characterIds.filter((id) => !moved.has(id)));
+  }
+  for (const [tier, id, target] of [
+    ['A', 'ama-no-murakumo-sword-kizaru', 'animal-kingdom-pirates-lead-performer-king'],
+    ['B', 'seraphim-s-bear', 'king-of-the-pirates-gol-d-roger'],
+    ['B', 'great-pirate-gol-d-roger', 'kaido-s-son-yamato'],
+    ['C', 'seraphim-s-hawk', 'legendary-hero-monkey-d-garp'],
+  ]) {
+    const placements = tierList.find((row) => row.tier === tier).characterIds;
+    assert.ok(placements.includes(id));
+    assert.equal(placements.indexOf(id) + 1, placements.indexOf(target));
+  }
+  assert.equal(tierList.find(({ tier }) => tier === 'C').characterIds[0], 'blackbeard-pirates-kuzan');
+  const markerKinds = (badges) => Object.fromEntries(Object.entries(badges).map(([id, badge]) => [id, badge.kind]));
+  assert.equal(current.update, update);
+  assert.equal(Object.keys(previous.badges).length, 16);
+  assert.deepEqual(markerKinds(current.badges), {
+    ...markerKinds(previous.badges),
+    'seraphim-s-bear': 'rise',
+    'ama-no-murakumo-sword-kizaru': 'rise',
+  });
+  assert.equal(current.badges['blackbeard-pirates-kuzan'].kind, 'fall');
+  assert.equal(current.badges['seraphim-s-hawk'], undefined);
+  assert.equal(current.badges['great-pirate-gol-d-roger'], undefined);
 });
 
 test('dated public summary preserves history and distinguishes it from current tiers and ordering', () => {

@@ -463,7 +463,33 @@ const november19TierReorder: ImportantTierUpdate = {
   ],
 };
 
+const november24TierReorder: ImportantTierUpdate = {
+  id: "2026-11-24-tier-list-reorder-s-bear-kizaru-up",
+  status: "published",
+  publishedAt: "2026-11-24T16:15:00+09:00",
+  title: "November 24 Tier List: S-Bear and Kizaru Up",
+  summary: "S-Bear joins B Tier immediately before green Roger, and Kizaru moves ahead of King in A Tier. Both receive Up assessments. S-Hawk joins C Tier before Garp, Kuzan moves to the top of C, and black Roger moves into B Tier before Yamato. All previous assessment directions, including Kuzan's Down marker, carry forward unchanged. These are OPBR Guide's relative rankings, not official balance adjustments.",
+  changes: [
+    {
+      characterId: "seraphim-s-bear",
+      kind: "rise",
+      fromTier: null,
+      toTier: "B",
+      reason: "Joins B Tier immediately before green Roger with an Up assessment.",
+    },
+    {
+      characterId: "ama-no-murakumo-sword-kizaru",
+      kind: "rise",
+      fromTier: "A",
+      toTier: "A",
+      reason: "Moves higher within A Tier, immediately before King.",
+    },
+    ...november19TierReorder.changes,
+  ],
+};
+
 export const importantTierUpdates: ImportantTierUpdate[] = [
+  november24TierReorder,
   november19TierReorder,
   {
     id: "2026-11-15-bonney-lucci-sabo-placement",
