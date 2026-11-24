@@ -5030,6 +5030,14 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When your HP is 30% or less: Reduce damage received by 3%."
     }
+  ],
+  "stussy-egghead": [
+    {
+      "effectId": "crit-increase-timed-cannot-stack",
+      "value": 120,
+      "unit": "percent",
+      "originalText": "When performing a Perfect Dodge: CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)"
+    }
   ]
 };
 

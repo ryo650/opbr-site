@@ -14,6 +14,8 @@ const transformsByMedalId: Record<string, MedalArtworkTransform> = {
   "kizaru-egghead": eggheadTransform,
   "luffy-dawn-rocket": eggheadTransform,
   kumacy: { translateX: 2, translateY: 2, scale: 1.08 },
+  doll: { translateX: 2.2, translateY: 3.6, scale: 1.1 },
+  "stussy-egghead": { translateX: 0, translateY: 0, scale: 1.1 },
 };
 
 export function getMedalArtworkTransform(medalId: string): MedalArtworkTransform {
