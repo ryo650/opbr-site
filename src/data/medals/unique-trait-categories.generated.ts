@@ -2496,6 +2496,10 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   ],
   "kumacy": [
     "damage-reduction"
+  ],
+  "stussy-egghead": [
+    "crit-increase",
+    "power-up-down"
   ]
 };
 

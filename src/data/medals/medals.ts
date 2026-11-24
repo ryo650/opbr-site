@@ -19913,5 +19913,34 @@ export const medals = [
       "def",
       "crit"
     ]
+  },
+  {
+    "id": "stussy-egghead",
+    "name": "Stussy (Egghead) Medal",
+    "category": "character",
+    "uniqueTrait": "When performing a Perfect Dodge: CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "cipher-pol-former-cipher-pol",
+        "name": "Cipher Pol / Former Cipher Pol"
+      },
+      {
+        "id": "zoan",
+        "name": "Zoan"
+      },
+      {
+        "id": "six-powers",
+        "name": "Six Powers"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

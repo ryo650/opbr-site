@@ -1,0 +1,113 @@
+{
+  "scope": "Review-assisted import using the existing importer's extraction, tag comparison, Rate coverage, merge validation and rendering functions, plus its existing Unique Trait generators. The stock macOS CLI was not executed: its full-screen OCR gate, durable tag audit, production WebP validation and atomic local publication are not certified. The final commit is assembled atomically via GitHub.",
+  "sourceCommit": "49d0e55da5aebb33d2c62ebc71301f88149cad9f",
+  "sourceImages": [
+    {
+      "file": "IMG_6053.PNG",
+      "sha256": "7d790c786a916bb9f2c2f66aea5fb3dd8be55cd7d8b54d4be279acb0f5045df7"
+    },
+    {
+      "file": "IMG_6054.PNG",
+      "sha256": "ea5ad1168c1b0916f3058912fbb4b4971a3959ae7d520ce9f6de1ad586b104b2"
+    },
+    {
+      "file": "IMG_6055.PNG",
+      "sha256": "c992b0301895075c11d8b14b24249ccb08e33acfee42e3305a7bb022ae55cfa1"
+    },
+    {
+      "file": "IMG_6056.PNG",
+      "sha256": "7ba59a929605f6fcc7e4be920b4f2e5753e0fc4a88b837cd3ce3a3511fb6aa29"
+    }
+  ],
+  "screenshotSize": {
+    "width": 2048,
+    "height": 941
+  },
+  "crop": {
+    "x": 646,
+    "y": 108,
+    "width": 160,
+    "height": 160,
+    "outputWidth": 200,
+    "outputHeight": 200,
+    "webpBlobSha": "1e3aad67029f61298a4123ddccecf56353f67852",
+    "meanRgb": {
+      "red": 0.446663,
+      "green": 0.379854,
+      "blue": 0.264398
+    }
+  },
+  "ocr": {
+    "backend": "Tesseract (Linux); focused crops, reviewed screenshot observations",
+    "detailsFocused": [
+      "When performing a Perfect Dodge:",
+      "CRIT: Boosted by 120% for 20",
+      "second(s). (Cannot Stack)"
+    ],
+    "detailsName": "Stussy (Egghead) Medal (visually confirmed; focused OCR included stray characters)",
+    "tagsPassA": [
+      "Egghead",
+      "Cipher Pol / Former Cipher Pol",
+      "Zoan",
+      "Six Powers"
+    ],
+    "tagsPassB": [
+      "Egghead",
+      "Cipher Pol / Former Cipher Pol",
+      "Zoan",
+      "Six Powers"
+    ],
+    "tagPasses": "Four visible tag label strips extracted at two thresholds (115 and 150) and scales (2x and 3x). Full-modal OCR was incomplete; the entire tag panel was visually checked. Not equivalent to the stock independent full-image/full-region gate.",
+    "rate1": [
+      "Increase HP by 14%.",
+      "Increase HP by 12%.",
+      "Increase HP by 11%.",
+      "Increase ATK by 14%."
+    ],
+    "rate2": [
+      "Increase ATK by 12%.",
+      "Increase ATK by 11%.",
+      "Increase DEF by 14%.",
+      "Increase DEF by 12%."
+    ]
+  },
+  "tagComparison": {
+    "matches": true,
+    "issues": []
+  },
+  "rateCoverage": {
+    "accepted": true,
+    "terminalReached": false,
+    "basis": "complete-common-trait-set",
+    "note": "Scrollbar non-terminal visually verified. No unseen traits or rates inferred."
+  },
+  "reconciliation": {
+    "previous": 706,
+    "appended": 1,
+    "merged": 707,
+    "existingPreserved": true,
+    "duplicates": 0,
+    "conflicts": 0,
+    "existingAssetPathsPresent": true,
+    "generatedCategoryBaselineExact": true,
+    "generatedEffectBaselineExact": true,
+    "categoryIds": [
+      "crit-increase",
+      "power-up-down"
+    ],
+    "effectId": "crit-increase-timed-cannot-stack",
+    "effectValue": 120,
+    "outputBlobs": {
+      "medals": "735d892d7c6a7a9d4e818a938cf684d72f9ad6fb",
+      "categories": "4425dccf92c46d7410fd5eaebcb1aba0d6f3858c",
+      "effects": "27d7421ccd2ab59d4643b32c675d09bc438bc2e0"
+    }
+  },
+  "unrun": [
+    "medals:import --dry-run",
+    "medals:import",
+    "medals:validate-importer-batch",
+    "medals:validate",
+    "TypeScript/build/browser rendering"
+  ]
+}
