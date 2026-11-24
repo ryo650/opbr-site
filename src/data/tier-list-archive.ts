@@ -311,3 +311,75 @@ export const tierListNovember15 = [
   },
   { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
 ];
+
+// Snapshot of the November 19 placements before the November 24 editorial update.
+export const tierListNovember19 = [
+  { tier: "god", colorClass: "god", hidden: true, characterIds: [] },
+  {
+    tier: "SS",
+    colorClass: "SS",
+    characterIds: [
+      "future-where-i-m-the-most-free-jewelry-bonney",
+      "awakened-form-rob-lucci",
+      "the-five-elders-st-shepherd-ju-peter",
+    ],
+  },
+  {
+    tier: "S",
+    colorClass: "S",
+    characterIds: [
+      "flame-emperor-sabo",
+      "the-five-elders-st-topman-warcury",
+      "film-red-shanks",
+    ],
+  },
+  {
+    tier: "A",
+    colorClass: "A",
+    characterIds: [
+      "the-four-emperors-monkey-d-luffy",
+      "winner-island-trafalgar-law",
+      "animal-kingdom-pirates-lead-performer-king",
+      "great-pirate-edward-newgate",
+      "the-five-elders-st-ethanbaron-v-nusjuro",
+      "ama-no-murakumo-sword-kizaru",
+      "vegapunk-s-spy-stussy",
+    ],
+  },
+  {
+    tier: "B",
+    colorClass: "B",
+    characterIds: [
+      "battle-of-monsters-on-onigashima-kaido",
+      "the-five-elders-st-marcus-mars",
+      "seraphim-s-snake",
+      "father-and-daughter-kuma-bonny",
+      "unexpected-collaboration-rob-lucci",
+      "the-four-emperors-marshall-d-teach",
+      "the-wings-zoro-sanji",
+      "king-of-the-pirates-gol-d-roger",
+      "kaido-s-son-yamato",
+      "egghead-sanji",
+      "egghead-tony-tony-chopper",
+      "happy-halloween-uta",
+    ],
+  },
+  {
+    tier: "C",
+    colorClass: "C",
+    characterIds: [
+      "seraphim-s-shark",
+      "genius-scientist-vegapunk",
+      "great-pirate-gol-d-roger",
+      "punk-02-lilith",
+      "legendary-hero-monkey-d-garp",
+      "asl-ace-sabo-luffy",
+      "blackbeard-pirates-kuzan",
+      "red-rock-monkey-d-luffy",
+      "navy-hq-fleet-admiral-akainu",
+      "man-who-dreams-of-becoming-the-king-of-the-pirates-monkey-d-luffy",
+      "divine-departure-shanks",
+    ],
+  },
+  { tier: "D", colorClass: "D", hidden: true, characterIds: [] },
+];
