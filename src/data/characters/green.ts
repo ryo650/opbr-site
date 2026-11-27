@@ -1,6 +1,14 @@
 import type { Character } from "./type.ts";
 
 export const greenCharacters: Record<string, Character> ={
+    "naval-science-team-battle-weapon-pacifista-mk-iii": {
+        id: "naval-science-team-battle-weapon-pacifista-mk-iii",
+        name: "Naval Science Team Battle Weapon Pacifista Mk. III",
+        image: "/characters/green/naval-science-team-battle-weapon-pacifista-mk-iii.webp",
+        grade: "bf",
+        element: "green",
+        role: "attacker"
+    },
     "egghead-stussy": {
         id: "egghead-stussy",
         name: "Egghead Stussy",

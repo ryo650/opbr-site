@@ -30,6 +30,12 @@ export function getSelectableCharacterLevel100BaseStats(
 // Enter Base HP / ATK / DEF directly after confirming them in game. Pending
 // targets deliberately use null rather than guessed or displayed values.
 export const characterLevel100BaseStatsCatalog: readonly CharacterLevel100BaseStats[] = [
+  // Lv.100 screenshots (Boost 52/52): subtract 2,580 HP / 640 ATK / 640 DEF from displayed values.
+  // Emet displayed HP 10,221 / ATK 1,876 / DEF 2,381.
+  { characterId: "the-iron-giant-emet", baseHp: 7_641, baseAtk: 1_236, baseDef: 1_741 },
+  // Pacifista Mk. III displayed HP 9,204 / ATK 2,469 / DEF 2,042.
+  { characterId: "naval-science-team-battle-weapon-pacifista-mk-iii", baseHp: 6_624, baseAtk: 1_829, baseDef: 1_402 },
+
   // IMG_6012: displayed Lv.100 Boost 52/52 HP 9103 / ATK 2116 / DEF 2347.
   // Subtract established Boost Max values: HP 2580 / ATK 640 / DEF 640.
   { characterId: "egghead-stussy", baseHp: 6_523, baseAtk: 1_476, baseDef: 1_707 },
