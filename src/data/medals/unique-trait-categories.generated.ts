@@ -2501,6 +2501,12 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
     "crit-increase",
     "power-up-down"
   ],
+  "love-is-stronger-than-light": [
+    "damage-increase"
+  ],
+  "promise-with-daddy": [
+    "damage-reduction"
+  ],
   "emet": [
     "cooldown",
     "skill-2"
