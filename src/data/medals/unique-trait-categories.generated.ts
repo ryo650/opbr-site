@@ -2500,6 +2500,12 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   "stussy-egghead": [
     "crit-increase",
     "power-up-down"
+  ],
+  "love-is-stronger-than-light": [
+    "damage-increase"
+  ],
+  "promise-with-daddy": [
+    "damage-reduction"
   ]
 };
 
