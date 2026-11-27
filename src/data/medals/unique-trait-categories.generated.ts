@@ -2506,6 +2506,14 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   ],
   "promise-with-daddy": [
     "damage-reduction"
+  ],
+  "emet": [
+    "cooldown",
+    "skill-2"
+  ],
+  "pacifista-mk-iii": [
+    "damage-increase",
+    "skill-2"
   ]
 };
 

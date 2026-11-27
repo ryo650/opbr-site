@@ -5054,6 +5054,22 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When attacked by a character type \"Celestial Dragons / Former Celestial Dragons\" enemy: Reduce damage received by 3%."
     }
+  ],
+  "emet": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%."
+    }
+  ],
+  "pacifista-mk-iii": [
+    {
+      "effectId": "damage-dealt-increase",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When attacking an enemy with Skill 2: Increase damage dealt by 5%."
+    }
   ]
 };
 
