@@ -8,6 +8,7 @@ const defaultTransform: MedalArtworkTransform = { translateX: 3, translateY: 4, 
 
 // These imports have different framing from the older catalog images.
 const eggheadTransform: MedalArtworkTransform = { translateX: 1, translateY: 0, scale: 1.05 };
+const centeredTransform: MedalArtworkTransform = { translateX: 0, translateY: 0, scale: 1.1 };
 const transformsByMedalId: Record<string, MedalArtworkTransform> = {
   "st-topman-warcury": eggheadTransform,
   "st-shepherd-ju-peter": eggheadTransform,
@@ -15,7 +16,9 @@ const transformsByMedalId: Record<string, MedalArtworkTransform> = {
   "luffy-dawn-rocket": eggheadTransform,
   kumacy: { translateX: 2, translateY: 2, scale: 1.08 },
   doll: { translateX: 2.2, translateY: 3.6, scale: 1.1 },
-  "stussy-egghead": { translateX: 0, translateY: 0, scale: 1.1 },
+  "stussy-egghead": centeredTransform,
+  emet: centeredTransform,
+  "pacifista-mk-iii": centeredTransform,
 };
 
 export function getMedalArtworkTransform(medalId: string): MedalArtworkTransform {

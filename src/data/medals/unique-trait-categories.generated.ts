@@ -2500,6 +2500,14 @@ export const uniqueTraitCategoryIdsByMedalId: Readonly<Record<string, readonly U
   "stussy-egghead": [
     "crit-increase",
     "power-up-down"
+  ],
+  "emet": [
+    "cooldown",
+    "skill-2"
+  ],
+  "pacifista-mk-iii": [
+    "damage-increase",
+    "skill-2"
   ]
 };
 

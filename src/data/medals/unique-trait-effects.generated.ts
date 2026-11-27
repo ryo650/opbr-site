@@ -5038,6 +5038,22 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When performing a Perfect Dodge: CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)"
     }
+  ],
+  "emet": [
+    {
+      "effectId": "skill2-cooldown-reduction-speed",
+      "value": 13,
+      "unit": "percent",
+      "originalText": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%."
+    }
+  ],
+  "pacifista-mk-iii": [
+    {
+      "effectId": "damage-dealt-increase",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When attacking an enemy with Skill 2: Increase damage dealt by 5%."
+    }
   ]
 };
 

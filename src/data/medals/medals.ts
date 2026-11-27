@@ -19942,5 +19942,43 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "emet",
+    "name": "Emet Medal",
+    "category": "character",
+    "uniqueTrait": "When in the area around your captured Treasure: Boost the cooldown reduction speed of Skill 2 by 13%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      }
+    ],
+    "nativeTraits": [
+      "atk",
+      "def",
+      "crit"
+    ]
+  },
+  {
+    "id": "pacifista-mk-iii",
+    "name": "Pacifista Mk. III Medal",
+    "category": "character",
+    "uniqueTrait": "When attacking an enemy with Skill 2: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "navy",
+        "name": "Navy"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "def",
+      "crit"
+    ]
   }
 ] as const satisfies readonly Medal[];
