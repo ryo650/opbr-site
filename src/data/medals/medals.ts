@@ -19942,5 +19942,71 @@ export const medals = [
       "atk",
       "def"
     ]
+  },
+  {
+    "id": "love-is-stronger-than-light",
+    "name": "Love Is Stronger Than Light Medal",
+    "category": "event",
+    "uniqueTrait": "When attacking an enemy with the Element you are strong against: Increase damage dealt by 5%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "straw-hat-pirates",
+        "name": "Straw Hat Pirates"
+      },
+      {
+        "id": "cook",
+        "name": "Cook"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
+  },
+  {
+    "id": "promise-with-daddy",
+    "name": "Promise with Daddy Medal",
+    "category": "event",
+    "uniqueTrait": "When attacked by a character type \"Celestial Dragons / Former Celestial Dragons\" enemy: Reduce damage received by 3%.",
+    "tags": [
+      {
+        "id": "egghead",
+        "name": "Egghead"
+      },
+      {
+        "id": "bonney-pirates",
+        "name": "Bonney Pirates"
+      },
+      {
+        "id": "paramecia",
+        "name": "Paramecia"
+      },
+      {
+        "id": "captain",
+        "name": "Captain"
+      },
+      {
+        "id": "royalty-former-royalty",
+        "name": "Royalty / Former Royalty"
+      },
+      {
+        "id": "worst-generation",
+        "name": "Worst Generation"
+      }
+    ],
+    "nativeTraits": [
+      "hp",
+      "atk",
+      "def"
+    ]
   }
 ] as const satisfies readonly Medal[];

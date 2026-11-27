@@ -5038,6 +5038,22 @@ export const uniqueTraitEffectsByMedalId: Readonly<Record<string, readonly Uniqu
       "unit": "percent",
       "originalText": "When performing a Perfect Dodge: CRIT: Boosted by 120% for 20 second(s). (Cannot Stack)"
     }
+  ],
+  "love-is-stronger-than-light": [
+    {
+      "effectId": "damage-dealt-increase",
+      "value": 5,
+      "unit": "percent",
+      "originalText": "When attacking an enemy with the Element you are strong against: Increase damage dealt by 5%."
+    }
+  ],
+  "promise-with-daddy": [
+    {
+      "effectId": "damage-received-reduction",
+      "value": 3,
+      "unit": "percent",
+      "originalText": "When attacked by a character type \"Celestial Dragons / Former Celestial Dragons\" enemy: Reduce damage received by 3%."
+    }
   ]
 };
 
