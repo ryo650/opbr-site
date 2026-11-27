@@ -2,6 +2,14 @@ import type { Character } from "./type.ts";
 
 
 export const redCharacters: Record<string, Character> = {
+    "the-iron-giant-emet": {
+        id: "the-iron-giant-emet",
+        name: "The Iron Giant Emet",
+        image: "/characters/red/the-iron-giant-emet.webp",
+        grade: "bf",
+        element: "red",
+        role: "defender"
+    },
     "thriller-bark-pirates-kumacy-red": {
         id: "thriller-bark-pirates-kumacy-red",
         name: "Thriller Bark Pirates Kumacy",
